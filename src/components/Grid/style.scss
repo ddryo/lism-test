@@ -1,0 +1,40 @@
+.l--grid{
+	// --gta: none;
+	// --gtc: none;
+	// --gtr: none;
+
+	// display: grid;
+	// grid-template-areas: var(--gta);
+	// grid-template-columns: var(--gtc);
+	// grid-template-rows: var(--gtr);
+}
+
+
+// [style*=でやるべきか？]
+
+// .l--item--grid|flex
+
+.l--gridItem {
+	--ls--ga: auto;
+	--ls--gc: auto;
+	--ls--gr: auto;
+	grid-area: var(--ls--ga);
+	grid-column: var(--ls--gc);
+	grid-row: var(--ls--gr);
+}
+
+.l--flexItem,
+.l--gridItem{
+	--ls--as: auto;
+	--ls--js: auto;
+	align-self: var(--ls--as);
+	justify-self: var(--ls--js);
+}
+
+.l--flexItem{
+	--fxb: auto;
+	--fxg: 0;
+	--fxsh: 1;
+	--ls--fx: var(--fxg) var(--fxb) var(--fxsh);
+	flex: var(--ls--fx);
+}

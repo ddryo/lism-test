@@ -1,0 +1,28 @@
+@use "./flow";
+@use "./flex";
+@use "./stack";
+
+// --------------------
+// center 検討中　→　box　に統合?
+// 内在的なセンター寄せ→
+// l--box--stack[data-align="center"] or l--box--stack.is--constrained で実現可能。
+// l--box--stack.is--constrained
+// --------------------
+// .is--center ?
+// .is--box--center {
+// 	margin-right: auto;
+// 	margin-left: auto;
+// }
+
+
+// box専用であれば data-属性化すべきか ?
+// [class^="l--box"][data-has-width],
+// .has--box--maxW {
+// 	--ls--maxW: 30em;
+// 	max-width: var(--ls--maxW);
+// }
+
+// .has--box--minW {
+// 	--ls--miw: 30em;
+// 	min-width: var(--ls--miw);
+// }

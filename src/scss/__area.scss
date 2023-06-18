@@ -1,0 +1,18 @@
+// 特定のエリアに対するスタイル。（使用者によってこのクラスが使われるかわからないもの）
+
+// a--entryContent?
+// p,
+// .entry-content {
+// 	line-height: var(--ls--lh--content);
+// }
+
+// is--contentWrapper? u--lh:contents?
+
+// --------------------
+// WPを使わない場合、wp-block-heading での判定ができないので以下を追記
+// --------------------
+// .entry-content {
+// 	> h1, > h2, > h3, > h4, > h5, > h6{
+// 		--ls--flowGap: 2.5em;
+// 	}
+// }

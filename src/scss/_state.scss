@@ -1,0 +1,139 @@
+@use 'state/padding';
+@use 'state/margin';
+@use 'state/gap';
+
+
+.alignfull + .alignfull{
+	margin-block-start: 0;
+}
+
+
+// コンテナクエリの基点とする要素
+.is--container {
+	container-type: inline-size;
+}
+
+
+// 内部のコンテンツ幅を制御する
+.is--constrained {
+	container-type: inline-size;
+
+	// 左寄せ・右寄せ・全幅以外の要素に対して、max-widthを設定する?
+	> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+		max-width: var(--ls--contentSize);
+		margin-right: auto !important;
+		margin-left: auto !important;
+	}
+
+	// 幅広の場合はmax-widthを上書きする
+	> .alignwide {
+		max-width: var(--ls--contentSize--wide);
+	}
+}
+
+.is--constrained.-slim {
+
+	> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+		max-width: var(--ls--contentSize--slim);
+	}
+
+	// 幅広の場合はmax-widthを上書きする
+	> .alignwide {
+		max-width: var(--ls--contentSize);
+	}
+}
+
+
+
+// .has-global-padding はコア以外の要素で使うと想像した結果にならないことがあるので同じようなことをするクラスを作る
+// .has--gutter?　has--sideSpace?
+.has--sidePadding {
+	padding-right: var(--ls--space--side);
+	padding-left: var(--ls--space--side);
+
+	> .alignfull {
+		// --pl, --pr > --padding > --ls--space--side
+		margin-right: calc(var(--ls--space--side) * -1);
+		margin-left: calc(var(--ls--space--side) * -1);
+	}
+}
+
+[style*="--ls--height:"]{
+	height: var(--ls--height) !important;
+}
+[style*="--ls--width:"]{
+	width: var(--ls--width) !important;
+}
+
+@container (max-width: 720px) {
+	[style*="--ls--width--Qsm:"]{
+		width: var(--ls--width--Qsm) !important;
+	}
+	[style*="--ls--height--Qsm:"]{
+		height: var(--ls--height--Qsm) !important;
+	}
+}
+
+@container (max-width: 440px) {
+	[style*="--ls--width--Qxs:"]{
+		width: var(--ls--width--Qxs) !important;
+	}
+	[style*="--ls--height--Qxs:"]{
+		height: var(--ls--height--Qxs) !important;
+	}
+}
+
+
+
+
+// l--flex, l--stack, l--reel, ...
+.is--flex{
+	--fxw: nowrap;
+	--fxd: row;
+	display: flex;
+	flex-direction: var(--fxd);
+	flex-wrap: var(--fxw);
+
+	> * {
+		// 予期せぬカラム落ちを防ぐ
+		overflow-wrap: anywhere;
+	}
+}
+
+.is--grid{
+	--gta: none;
+	--gtc: none;
+	--gtr: none;
+
+	// @sm
+	--gta--Qsm: var(--gta);
+	--gtc--Qsm: var(--gtc);
+	--gtr--Qsm: var(--gtr);
+
+	// @xs
+	--gta--Qxs: var(--gta--Qsm);
+	--gtc--Qxs: var(--gtc--Qsm);
+	--gtr--Qxs: var(--gtr--Qsm);
+
+	display: grid;
+	grid-template-areas: var(--gta);
+	grid-template-columns: var(--gtc);
+	grid-template-rows: var(--gtr);
+
+	@container (max-width: 720px) {
+		grid-template-areas: var(--gta--Qsm);
+		grid-template-columns: var(--gtc--Qsm);
+		grid-template-rows: var(--gtr--Qsm);
+	}
+
+	@container (max-width: 440px) {
+		grid-template-areas: var(--gta--Qxs);
+		grid-template-columns: var(--gtc--Qxs);
+		grid-template-rows: var(--gtr--Qxs);
+	}
+
+	> * {
+		// 予期せぬカラム落ちを防ぐ
+		overflow-wrap: anywhere;
+	}
+}

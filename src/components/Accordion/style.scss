@@ -1,0 +1,113 @@
+
+.l--accordion {
+	--duration: .25s;
+
+	@at-root{
+		.l--accordion__header {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: var(--ls--space--40);
+			gap: var(--ls--space--30);
+			background: var(--ls--color--gray, #f7f7f7);
+			cursor: pointer;
+		
+			/* Safariで表示されるデフォルトの三角形アイコンを消します */
+			&::-webkit-details-marker {
+				display: none;
+			}
+		}
+
+		.l--accordion__label {
+			flex: 1 1 auto;
+			word-break: break-all;
+		}
+		
+	}
+}
+
+
+
+.l--accordion__body {
+	position: relative;
+	display: grid;
+	grid-template-rows: 1fr;
+	transition-property: padding, opacity, grid-template-rows;
+	transition-duration: var(--duration);
+	padding: var(--ls--space--40);
+	border: solid 2px var(--ls--color--gray);
+	border-top: none;
+
+	> .l--accordion__bodyInner{
+		overflow: hidden;
+	}
+}
+.l--accordion:not(.-opened)  {
+	> .l--accordion__body{
+		opacity: 0.1;
+		grid-template-rows: 0fr;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+}
+
+// アコーディオンブロックのネスト時、別のアイコンタイプにすると表示が崩れるがそこまでは考慮しない。
+.l--accordion__icon {
+	position: relative;
+	display: block;
+	flex: 0 0 auto;
+	width: 1em;
+	height: 1em;
+	text-align: center;
+	transition: transform .25s;
+
+
+	/* stylelint-disable function-url-quotes */
+	[data-icon-type="caret"] & {
+		background-color: currentColor;
+		-webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><polygon points="14.6,3.5 8,10.2 1.4,3.5 0.2,4.7 6.9,11.3 8,12.5 9.1,11.3 15.8,4.7 "/></svg>') no-repeat center center / contain;
+		mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><polygon points="14.6,3.5 8,10.2 1.4,3.5 0.2,4.7 6.9,11.3 8,12.5 9.1,11.3 15.8,4.7 "/></svg>') no-repeat center center / contain;
+	}
+
+	[data-icon-type="triangle"] & {
+		background-color: currentColor;
+		clip-path: polygon(50% 80%, 0% 15%, 100% 15%);
+	}
+
+	&::before,
+	&::after {
+		position: absolute;
+		margin: auto;
+		background-color: currentColor;
+		inset: 0;
+	}
+
+	[data-icon-type="plus"] & {
+		position: relative;
+
+		&::before {
+			width: 100%;
+			height: 2px;
+			content: "";
+		}
+
+		&::after {
+			width: 2px;
+			height: 100%;
+			transition: opacity .25s;
+			content: "";
+		}
+	}
+
+}
+
+// 開いた時
+.-opened > .l--accordion__header .l--accordion__icon {
+	transform: rotate(180deg);
+
+	// [data-icon-type="plus"] > .-opened でちゃんと指定したいがCSS長くなるのでdata指定なしでいく
+	&::after {
+		opacity: 0;
+	}
+}

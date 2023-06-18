@@ -1,0 +1,124 @@
+.b--section2 {
+
+	// .b--section__content {
+	// 	margin-bottom: auto;
+	// 	margin-top: auto;
+	// }
+
+	// &.b--section2.b--section2{
+	// 	.b--section__inner{
+	// 		display: grid;
+	// 		grid-template-areas: "header" "body" "footer";
+	// 		grid-template-columns: 100%;
+	// 		grid-template-rows: auto 1fr auto;
+	// 		flex-grow: 1;
+	// 		height: 100%;
+	// 	}
+	// 	.b--section__header{
+	// 		grid-area: header;
+	// 	}
+	// 	.b--section__body{
+	// 		grid-area: body;
+	// 		align-self: center;
+	// 		height: auto; // 100% にしない
+	// 	}
+	// 	.b--section__footer{
+	// 		grid-area: footer;
+	// 	}
+	// }
+}
+
+.b--section {
+	--ls--mih: auto;
+	position: relative;
+	min-height: var(--ls--mih);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	.l--divider{
+		z-index: 1;
+	}
+
+	// ここは stack
+	.b--section__body{
+		// margin: auto 0;
+		flex-grow: 1; // height:100% が効くように
+		height: 100%;
+		position: relative;
+		z-index: 1;
+	}
+
+	.b--section__inner{
+		display: grid;
+		grid-template-areas: "header" "body" "footer";
+		grid-template-columns: 100%;
+		grid-template-rows: auto 1fr auto;
+		flex-grow: 1;
+		height: 100%;
+	}
+	.b--section__header{
+		grid-area: header;
+	}
+	.b--section__body{
+		grid-area: body;
+		align-self: center;
+		height: auto; // 100% にしない
+	}
+	.b--section__footer{
+		grid-area: footer;
+	}
+	
+
+	&:not(.b--section2) .b--section__content{
+		margin-top: auto;
+		margin-bottom: auto;
+	}
+
+	.b--section__content {
+		// flex-grow: 1; // height:100% が効くように
+		// height: 100%;
+		position: relative;
+		z-index: 1;
+	}
+
+	// &:not(.has--padding){
+	// 	--ls--padding: var(--ls--space--50) 0;
+	// 	padding: var(--ls--padding);
+	// }
+
+	// data-height
+	// &[data-height="auto"] {
+	// 	--ls--mih: 0;
+	// }
+
+	// .b--section__bg {
+	// 	background-color: #f7f7f7;
+	// }
+
+	// stack と一緒に使う ?
+	// .b--section__header,.b--section__footer {
+	// 	z-index: 1;
+	// }
+
+	> :not([class*="l--layer"]) {
+		z-index: 1;
+	}
+
+
+	// .b--section__content {
+	// 	margin-top: auto;
+	// 	margin-bottom: auto;
+	// }
+
+	// .b--section__head{}
+	// .b--section__foot{}
+
+
+	&[data-fullscreen="1"] {
+		--ls--mih: 100vh;
+		// min-height: 100vh;
+	}
+
+}

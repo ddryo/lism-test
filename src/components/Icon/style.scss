@@ -1,0 +1,56 @@
+.l--icon{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: fit-content;
+	height: fit-content;
+	// margin-left: auto;
+	// margin-right: auto;
+
+	// .l--icon__inner{
+	// 	display: flex;
+	// 	align-items: center;
+	// 	justify-content: center;
+	// 	width: fit-content;
+	// 	height: fit-content;
+	// 	// margin-left: auto;
+	// 	// margin-right: auto;
+	// }
+	> .e--icon{
+		display: block;
+		vertical-align: unset;
+	}
+}
+
+
+// インライン
+.e--icon{
+	// width: .75em;
+	// height: .75em;
+	vertical-align: -.125em;
+
+	// display: inline-flex;
+	// align-items: baseline;
+}
+
+
+.l--iconBox{
+	--ls--gap: var(--ls--space--10);
+	display: flex;
+	align-items: center;
+
+	> .e--icon{
+		flex: 0 0 auto;
+		box-sizing: content-box;
+		vertical-align: unset;
+	}
+
+	// .l--iconBox__body{
+	// 	flex-grow: 1;
+	// }
+}
+
+// span.l--iconBox{
+// 	display: inline-flex;
+// }
+// span,small,i,b,...

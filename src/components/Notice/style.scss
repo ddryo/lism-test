@@ -1,0 +1,26 @@
+
+.b--noticeBox{
+
+	--ls--bgc: #fffdf5;
+	--ls--bdc: #edbd4d;
+
+	&[data-notice-type="memo"]{
+		--ls--bgc: #f6f6f6;
+		--ls--bdc: #b3b3b3;
+	}
+
+	background-color: var(--ls--bgc);
+	border: double 3px var(--ls--bdc);;
+	border-radius: 4px;
+
+	.b--noticeBox__caption{
+		border-bottom: solid 1px var(--ls--bdc);;
+		width: fit-content;
+		padding: var(--ls--space--10) var(--ls--space--30);
+		font-size: var(--ls--fz--S);
+		font-weight: bold;
+	}
+	.b--noticeBox__content{
+		padding: var(--ls--space--40) var(--ls--space--30);
+	}
+}

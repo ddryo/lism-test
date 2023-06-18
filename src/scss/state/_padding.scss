@@ -1,0 +1,60 @@
+
+// ulタグなど、デフォルトで一方向にpaddingがついているような要素でも使えるように、完全に各方向で分離しているが、
+// Boxだけを考慮するのであればコンポーネント側で --padding にまとめてしまってもいい。
+
+// .has--padding いるか...？
+// .has--padding {}
+
+// important つけるべきか？
+[style*="--ls--pt:"]{
+	padding-top: var(--ls--pt) !important;
+}
+[style*="--ls--pr:"]{
+	padding-right: var(--ls--pr) !important;
+}
+[style*="--ls--pb:"]{
+	padding-bottom: var(--ls--pb) !important;
+}
+[style*="--ls--pl:"]{
+	padding-left: var(--ls--pl) !important;
+}
+[style*="--ls--padding:"]{
+	padding: var(--ls--padding) !important;
+}
+
+@container (max-width: 720px) {
+	
+	[style*="--ls--pt--Qsm:"]{
+		padding-top: var(--ls--pt--Qsm) !important;
+	}
+	[style*="--ls--pr--Qsm:"]{
+		padding-right: var(--ls--pr--Qsm) !important;
+	}
+	[style*="--ls--pb--Qsm:"]{
+		padding-bottom: var(--ls--pb--Qsm) !important;
+	}
+	[style*="--ls--pl--Qsm:"]{
+		padding-left: var(--ls--pl--Qsm) !important;
+	}
+	[style*="--ls--padding--Qsm:"]{
+		padding: var(--ls--padding--Qsm) !important;
+	}
+}
+
+@container (max-width: 440px) {
+	[style*="--ls--pt--Qxs:"]{
+		padding-top: var(--ls--pt--Qxs) !important;
+	}
+	[style*="--ls--pr--Qxs:"]{
+		padding-right: var(--ls--pr--Qxs) !important;
+	}
+	[style*="--ls--pb--Qxs:"]{
+		padding-bottom: var(--ls--pb--Qxs) !important;
+	}
+	[style*="--ls--pl--Qxs:"]{
+		padding-left: var(--ls--pl--Qxs) !important;
+	}
+	[style*="--ls--padding--Qxs:"]{
+		padding: var(--ls--padding--Qxs) !important;
+	}
+}

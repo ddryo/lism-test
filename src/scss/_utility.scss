@@ -1,0 +1,458 @@
+:root{
+	// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+	// --tim-shadow: 0 8px 26px -4px rgba(20, 20, 20, .15),  0 8px 9px -5px rgba(20, 20, 20, .06);
+	--ls--shadow--solid: 0 1px 5px 0 rgba(20, 20, 20, 0.1), 0 2px 3px 1px rgba(20, 20, 20, 0.05);
+	--ls--shadow--sm: 0 3px 8px -1px rgba(20, 20, 20, .1);
+	--ls--shadow--md: 0 5px 13px -3px rgba(20, 20, 20, .1), 0 5px 8px -3px rgba(20, 20, 20, .05);
+	--ls--shadow--lg: 0 5px 34px -8px rgba(20, 20, 20, .12), 0 5px 8px -3px rgba(20, 20, 20, .05);
+	--ls--shadow--lg--hover: 0 5px 34px -5px rgba(20, 20, 20, .15), 0 8px 13px -5px rgba(20, 20, 20, .05);
+	--ls--shadow--linkBox--hover: 0 8px 21px -5px rgba(20, 20, 20, 0.15), 0 8px 13px -5px rgba(20, 20, 20, .05);
+
+	// border-radius
+	--ls--bdrs--xs: 2px; // or 1
+	--ls--bdrs--sm: 3px;
+	--ls--bdrs--md: 5px;
+	--ls--bdrs--lg: 8px;
+	--ls--bdrs--xl: 13px;
+	--ls--bdrs--circle: 999px;
+	// 1,2,4,6,8,12 ... ?
+	// 1,2,3,5,8,13 ... 999px ?
+}
+
+.u--bdrs\:xs{
+	border-radius: var(--ls--bdrs--xs) !important;
+}
+.u--bdrs\:sm{
+	border-radius: var(--ls--bdrs--sm) !important;
+}
+.u--bdrs\:md{
+	border-radius: var(--ls--bdrs--md) !important;
+}
+.u--bdrs\:lg{
+	border-radius: var(--ls--bdrs--lg) !important;
+}
+.u--bdrs\:xl{
+	border-radius: var(--ls--bdrs--xl) !important;
+}
+.u--bdrs\:circle{
+	border-radius: var(--ls--bdrs--circle) !important;
+}
+
+.u--bxsh\:solid{
+	--shadow: var(--ls--shadow--solid);
+	box-shadow: var(--shadow) !important;
+}
+.u--bxsh\:sm{
+	--shadow: var(--ls--shadow--sm);
+	box-shadow: var(--shadow) !important;
+}
+.u--bxsh\:md{
+	--shadow: var(--ls--shadow--md);
+	box-shadow: var(--shadow) !important;
+}
+.u--bxsh\:lg{
+	--shadow: var(--ls--shadow--lg);
+	box-shadow: var(--shadow) !important;
+
+	// linkboxホバー時、基本のホバーシャドウだと小さくなるのでlgは別途定義
+	--shadow--hover: var(--ls--shadow--lg--hover);
+}
+// [class*="u--bxsh\:"].is--linkBox[data-hover="shadow"]{
+// 	box-shadow: var(--shadow--hover);
+// }
+
+// display
+.u--d\:n{
+	display: none;
+}
+.u--d\:b{
+	display: block;
+}
+.u--d\:i{
+	display: inline;
+}
+.u--d\:if{
+	display: inline-flex;
+}
+.u--d\:ib{
+	display: inline-block;
+}
+
+@container (max-width: 720px) {
+	.u--d\:n-\@sm{
+		display: none;
+	}
+	.u--d\:b-\@sm{
+		display: block;
+	}
+}
+
+@container (max-width: 440px) {
+	.u--d\:n-\@xs{
+		display: none;
+	}
+	.u--d\:b-\@xs{
+		display: block;
+	}
+}
+
+//カラー系
+.u--c\:white{
+	color:#fff;
+}
+.u--c\:black{
+	color:#000;
+}
+
+.u--c\:main{
+	color: var(--ls--color--main);
+}
+.u--c\:sub{
+	color: var(--ls--color--sub);
+}
+.u--c\:accent{
+	color: var(--ls--color--accent);
+}
+.u--c\:base{
+	color: var(--ls--color--base);
+}
+.u--c\:bgSub{
+	color: var(--ls--color--bgSub);
+}
+.u--c\:link{
+	color:  var(--ls--color--link);
+}
+.u--c\:text{
+	color:  var(--ls--color--text);
+}
+.u--c\:gray{
+	color: var(--ls--color--gray);
+}
+
+
+.u--bgc\:main{
+	background-color: var(--ls--color--main);
+}
+.u--bgc\:sub{
+	background-color: var(--ls--color--sub);
+}
+.u--bgc\:accent{
+	background-color: var(--ls--color--accent);
+}
+.u--bgc\:base{
+	background-color: var(--ls--color--base);
+}
+.u--bgc\:bgSub{
+	background-color: var(--ls--color--bgSub);
+}
+.u--bgc\:text{
+	background-color:  var(--ls--color--text);
+}
+.u--bgc\:gray{
+	background-color: var(--ls--color--gray);
+}
+.u--bgc\:white{
+	background-color:#fff;
+}
+.u--bgc\:black{
+	background-color:#000;
+}
+
+
+
+// text-align
+.u--ta\:c {
+	text-align: center;
+}
+.u--ta\:r {
+	text-align: right;
+}
+.u--ta\:l {
+	text-align: left;
+}
+
+
+// line-hegiht
+.u--lh\:1\.2 {
+	line-height: 1.2;
+}
+.u--lh\:1\.5 {
+	line-height: 1.5;
+}
+
+
+// clear float
+// .u--cf::after {
+// 	display: block;
+// 	clear: both;
+// 	width: 0;
+// 	height: 0;
+// 	content: "";
+// }
+
+
+// --------------------
+// .u--mt 系
+//   --ls--flowGap をいじると内部にも影響でてしまうので margin を直接上書き。
+//   ツールバーから使う用でもあるので、block-start 方向に指定したい。
+//  mt では 規則的に margin-top になるべきなので、どうするか。
+//  mT でもいいか...。 （mB は margin-block-end）
+// もしくは、mBs, m-bs とか...？
+// --------------------
+.u--mT\:0 {
+	margin-block-start: var(--ls--space--0) !important;
+}
+.u--mT\:10 {
+	margin-block-start: var(--ls--space--10) !important;
+}
+.u--mT\:20 {
+	margin-block-start: var(--ls--space--20) !important;
+}
+.u--mT\:30 {
+	margin-block-start: var(--ls--space--30) !important;
+}
+.u--mT\:40 {
+	margin-block-start: var(--ls--space--40) !important;
+}
+.u--mT\:50 {
+	margin-block-start: var(--ls--space--50) !important;
+}
+.u--mT\:60 {
+	margin-block-start: var(--ls--space--60) !important;
+}
+.u--mT\:70 {
+	margin-block-start: var(--ls--space--70) !important;
+}
+.u--mT\:80 {
+	margin-block-start: var(--ls--space--80) !important;
+}
+.u--mT\:90 {
+	margin-block-start: var(--ls--space--90) !important;
+}
+.u--mT\:100 {
+	margin-block-start: var(--ls--space--100) !important;
+}
+
+
+// --------------------
+// padding
+// p-X系、p-Y系は、ユーティリティクラスを用意。
+// --------------------
+// [data-lism-pX:10]とかでもいいかも?
+// .u--pX\:s10, みたいに 数値がプリセット値であることは s をつけて明示的に指定する？
+// .u--pY\:0 {
+// 	padding-top: var(--ls--space--0) !important;
+// 	padding-bottom: var(--ls--space--0) !important;
+// }
+// .u--pY\:10 {
+// 	padding-top: var(--ls--space--10) !important;
+// 	padding-bottom: var(--ls--space--10) !important;
+// }
+// .u--pY\:20 {
+// 	padding-top: var(--ls--space--20) !important;
+// 	padding-bottom: var(--ls--space--20) !important;
+// }
+// .u--pY\:30 {
+// 	padding-top: var(--ls--space--30) !important;
+// 	padding-bottom: var(--ls--space--30) !important;
+// }
+// .u--pY\:40 {
+// 	padding-top: var(--ls--space--40) !important;
+// 	padding-bottom: var(--ls--space--40) !important;
+// }
+// .u--pY\:50 {
+// 	padding-top: var(--ls--space--50) !important;
+// 	padding-bottom: var(--ls--space--50) !important;
+// }
+// .u--pY\:60 {
+// 	padding-top: var(--ls--space--60) !important;
+// 	padding-bottom: var(--ls--space--60) !important;
+// }
+// .u--pY\:70 {
+// 	padding-top: var(--ls--space--70) !important;
+// 	padding-bottom: var(--ls--space--70) !important;
+// }
+// .u--pY\:80 {
+// 	padding-top: var(--ls--space--80) !important;
+// 	padding-bottom: var(--ls--space--80) !important;
+// }
+// .u--pY\:90 {
+// 	padding-top: var(--ls--space--90) !important;
+// 	padding-bottom: var(--ls--space--90) !important;
+// }
+// .u--pY\:100 {
+// 	padding-top: var(--ls--space--100) !important;
+// 	padding-bottom: var(--ls--space--100) !important;
+// }
+
+// .u--pX\:0 {
+// 	padding-left: var(--ls--space--0) !important;
+// 	padding-right: var(--ls--space--0) !important;
+// }
+// .u--pX\:10 {
+// 	padding-left: var(--ls--space--10) !important;
+// 	padding-right: var(--ls--space--10) !important;
+// }
+// .u--pX\:20 {
+// 	padding-left: var(--ls--space--20) !important;
+// 	padding-right: var(--ls--space--20) !important;
+// }
+// .u--pX\:30 {
+// 	padding-left: var(--ls--space--30) !important;
+// 	padding-right: var(--ls--space--30) !important;
+// }
+// .u--pX\:40 {
+// 	padding-left: var(--ls--space--40) !important;
+// 	padding-right: var(--ls--space--40) !important;
+// }
+// .u--pX\:50 {
+// 	padding-left: var(--ls--space--50) !important;
+// 	padding-right: var(--ls--space--50) !important;
+// }
+// .u--pX\:60 {
+// 	padding-left: var(--ls--space--60) !important;
+// 	padding-right: var(--ls--space--60) !important;
+// }
+// .u--pX\:70 {
+// 	padding-left: var(--ls--space--70) !important;
+// 	padding-right: var(--ls--space--70) !important;
+// }
+// .u--pX\:80 {
+// 	padding-left: var(--ls--space--80) !important;
+// 	padding-right: var(--ls--space--80) !important;
+// }
+// .u--pX\:90 {
+// 	padding-left: var(--ls--space--90) !important;
+// 	padding-right: var(--ls--space--90) !important;
+// }
+// .u--pX\:100 {
+// 	padding-left: var(--ls--space--100) !important;
+// 	padding-right: var(--ls--space--100) !important;
+// }
+
+
+
+// --ls系style ?
+// [style*="--ls--padding:"] {
+// 	padding: var(--ls--padding);
+// }
+
+// [style*="--ls--margin:"] {
+// 	margin: var(--ls--margin);
+// }
+
+// [style*="--ls--border:"] {
+// 	border: var(--ls--border);
+// }
+
+
+// --------------------
+// line-height
+// --------------------
+// .u--lh--10{
+// 	line-height: 1;
+// }
+// .u--lh--20{
+// 	line-height: 2;
+// }
+
+// --------------------
+// flexオプション
+// --------------------
+
+
+
+.u--fxw\:w{
+	flex-wrap:wrap !important;
+}
+.u--fxw\:n{
+	flex-wrap:nowrap !important;
+}
+
+// align-items
+// [class*="u--ai:"],
+[style*="--ls--ai:"]{
+	align-items: var( --ls--ai ) !important;
+}
+.u--ai\:c{
+	align-items:center !important;
+}
+.u--ai\:fe{
+	align-items:flex-end !important;
+}
+.u--ai\:fs{
+	align-items:flex-start !important;
+}
+.u--ai\:s{
+	align-items:stretch !important;
+}
+
+// justify-content
+// [class*="u--jc:"],
+[style*="--ls--jc:"]{
+	justify-content: var( --ls--jc ) !important;
+}
+.u--jc\:c{
+	justify-content:center !important;
+}
+.u--jc\:fe{
+	justify-content:flex-end !important;
+}
+.u--jc\:fs{
+	justify-content:flex-start !important;
+}
+.u--jc\:sb{
+	justify-content:space-between !important;
+}
+
+
+// .u--jc\:sa{
+// 	justify-content:space-around !important;
+// }
+
+// [style*="--ls--fxw:"]{
+// 	flex-wrap: var(--ls--fxw) !important;
+// }
+// [style*="--ls--ai:"]{
+// 	align-items: var(--ls--ai) !important;
+// }
+// [style*="--ls--jc:"]{
+// 	justify-content: var(--ls--jc) !important;
+// }
+
+// [style*="--ls--as:"]{
+// 	align-self: var(--ls--as) !important;
+// }
+// [style*="--ls--js:"]{
+// 	justify-self: var(--ls--js) !important;
+// }
+
+
+
+// その他
+.u--lis\:n{
+	list-style: none;
+}
+
+// Layer の基点を作るためにrelativeにしたいことがある
+.u--pos\:r{
+	position: relative;
+}
+// .u--pos\:f{
+// 	position: fixed;
+// }
+// .u--pos\:a{
+// 	position: absolute;
+// }
+
+// 折返し禁止
+// .i--nowrap,
+.u--whs\:nw {
+	white-space: nowrap;
+}
+
+// 単語中でも折り返しさせる
+// ※ ovw は emmetの正式定義ではない.
+.u--ovw\:any{
+	overflow-wrap: anywhere;
+}

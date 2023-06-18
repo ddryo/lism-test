@@ -1,0 +1,69 @@
+
+.l--frame {
+	--ls--d: 1; // 幅
+	--ls--n: 1; // 高さ
+	position: relative;
+	height: fit-content; // grid系直下においた時などに、align-items: strech; の影響で引き伸ばされないようにする
+
+	// ::before でやらないのは、ブロックエディターを考慮しているため
+	>.l--frame__placeholder{
+		padding-bottom: calc(var(--ls--n) / var(--ls--d) * 100%);
+	}
+
+	// 縦横比を反転して縦長にする
+	&[data-direction="portrait"] > .l--frame__placeholder{
+		padding-bottom: calc(var(--ls--d) / var(--ls--n) * 100%);
+	}
+
+	&[data-ratio="16:9"]{
+		--ls--d: 16;
+		--ls--n: 9;
+	}
+	&[data-ratio="2:1"]{
+		--ls--d: 2;
+		--ls--n: 1;
+	}
+	&[data-ratio="4:3"]{
+		--ls--d: 4;
+		--ls--n: 3;
+	}
+	&[data-ratio="3:2"]{
+		--ls--d: 3;
+		--ls--n: 2;
+	}
+	&[data-ratio="golden"]{
+		--ls--d: 16.18;
+		--ls--n: 10;
+	}
+	&[data-ratio="silver"]{
+		--ls--d: 14.14;
+		--ls--n: 10;
+	}
+	&[data-ratio="bronze"]{
+		--ls--d: 33.03;
+		--ls--n: 10;
+	}
+	&[data-ratio="ogp"]{
+		--ls--d: 1.91;
+		--ls--n: 1;
+	}
+
+}
+
+// MediaLayer などとともに使われることを想定
+.l--frame__content{
+	z-index: 1;
+}
+
+// utility化する？
+// .l--frame__media{
+// 	> img,
+// 	> video {
+// 		width: 100%;
+// 		height: 100%;
+// 		object-fit: cover;
+// 		display: block;
+// 	}
+// }
+
+// .l--frame__content{}

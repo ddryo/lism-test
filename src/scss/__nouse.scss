@@ -1,0 +1,80 @@
+
+// --------------------
+// contentSize 検討中 → has--maxW とかと組合わせてできないか？
+// --------------------
+
+// 子要素の幅を制限するのではなく、自分自身のmax-widthで幅を管理するクラス。
+// .l--contentSize {
+// 	--ls--maxW: var(--wp--style--global--content-size);
+// 	width: var(--ls--maxW);
+// 	max-width: 100%;
+// 	margin-right: auto !important;
+// 	margin-left: auto !important;
+// }
+
+// .l--contentSize.alignwide {
+// 	--ls--maxW: var(--wp--style--global--wide-size);
+// }
+
+// .l--contentSize.has-global-padding {
+// 	// box-sizing: content-box;
+// 	width: calc(var(--ls--maxW) + var(--wp--style--root--padding-right) + var(--wp--style--root--padding-left));
+// 	padding-right: var(--wp--style--root--padding-right);
+// 	padding-left: var(--wp--style--root--padding-left);
+// }
+
+
+// ==================== 使わない ===========================
+
+
+// --------------------
+// switcher
+// --------------------
+.l--switcher {
+	--ls--gap: var(--ls--space--50);
+
+	/* --threshold に px を使うと計算できない */
+	--ls--threshold: 40em;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--ls--gap);
+	// container-name: switcher;
+
+	&[data-switch-by="parent"] > * {
+		flex-basis: calc((var(--ls--threshold) - 100% ) * 999);
+		flex-grow: 1;
+		// min-width: 40em;
+	}
+
+	&[data-switch-by="child"] {
+		--ls--threshold: 12em;
+		--ls--colums: 2;
+
+		> * {
+			flex-basis: calc((var(--ls--threshold) - (100% / var(--ls--colums)) ) * 999);
+			flex-grow: 1;
+		}
+
+		&[data-col="3"] > * {
+			--ls--colums: 3;
+			// flex-basis: calc((var(--ls--threshold) - 33.33% ) * 999);
+		}
+
+		&[data-col="4"] > * {
+			--ls--colums: 4;
+			flex-basis: calc((var(--ls--threshold) - 25% ) * 999);
+		}
+	}
+
+}
+
+/* ブロックで幅を個別に設定した時 */
+
+/* @container (width <= 400px) { */
+// @container (max-width: 440px) {
+
+// 	.switcher > * {
+// 		flex-basis: 100%;
+// 	}
+// }
+

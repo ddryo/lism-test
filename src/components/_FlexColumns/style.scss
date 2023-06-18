@@ -1,0 +1,103 @@
+
+// --------------------
+// flexカラム
+// --------------------
+
+// memo: [style*="--ls--item--fxb--Qsm"] などをつかってクエリ上書きしていないので、ネスト時にCSS変数が意図せず親から継承されてしまう可能性がある。
+// data-columnsがなくカスタムで値を指定する場合、各クエリ用の変数がセットされるように注意すべき...？
+.l--flexColumns {
+	--ls--fxb: 50%;
+	--ls--fxb--Qsm: var(--ls--fxb);
+	--ls--fxb--Qxs: var(--ls--fxb--Qsm);
+
+	// container-type: inline-size;
+	display: flex;
+	flex-wrap: wrap;
+
+	// ↓ .has--gapに任す
+	// --ls--gap: var(--ls--space--40);
+	// gap: var(--ls--gap);
+
+	// 16.6, 33.3 などはちょっと小さくても grow があれば問題ないので端数切り下げで指定。
+	// &[data-columns="8"] {
+	// 	--ls--item--fxb: 12.5%;
+	// 	--ls--item--fxb--Qsm: 25%;
+	// 	--ls--item--fxb--Qxs: 50%;
+	// }
+
+	// &[data-columns="7"] {
+	// 	--ls--item--fxb: 14%;
+	// 	--ls--item--fxb--Qsm: 25%;
+	// 	--ls--item--fxb--Qxs: 50%;
+	// }
+
+	// &[data-columns="6"] {
+	// 	--ls--item--fxb: 16%;
+	// 	--ls--item--fxb--Qsm: 33%;
+	// 	--ls--item--fxb--Qxs: 50%;
+	// }
+
+	// &[data-columns="5"] {
+	// 	--ls--item--fxb: 20%;
+	// 	--ls--item--fxb--Qsm: 33%;
+	// 	--ls--item--fxb--Qxs: 100%;
+	// }
+
+	// &[data-columns="4"] {
+	// 	--ls--item--fxb: 25%;
+	// 	--ls--item--fxb--Qsm: 50%;
+	// 	--ls--item--fxb--Qxs: 100%;
+	// }
+
+	// &[data-columns="3"] {
+	// 	--ls--item--fxb: 33%;
+	// 	--ls--item--fxb--Qxs: 100%;
+	// }
+
+	// &[data-columns="2"] {
+	// 	--ls--item--fxb: 50%;
+	// 	--ls--item--fxb--Qxs: 100%;
+	// }
+
+	// &[data-columns="1"] {
+	// 	--ls--item--fxb: 100%;
+	// }
+
+
+	// @container (max-width: 720px) {
+	// 	&[style*="--ls--fxb--Qsm:"]{
+	// 		--ls--fxb: var(--ls--fxb--Qsm) !important;
+	// 	}
+	// }
+
+	// @container (max-width: 440px) {
+	// 	&[style*="--ls--fxb--Qxs:"]{
+	// 		--ls--fxb: var(--ls--fxb--Qxs) !important;
+	// 	}
+	// }
+
+	// 子要素の幅計算
+	// 子要素側で計算するとその子要素がBoxでgapを持っているとき等に計算が狂うので、ここで行う。
+
+	// --colGap の個別指定がなければ gap 値をそのまま使う
+	--ls--colGap: var(--ls--gap); // ここで初期値与えるべきかは要検討
+	--ls--colGap--Qsm: var(--ls--colGap--Qsm);
+	--ls--colGap--Qxs: var(--ls--colGap--Qxs);
+	
+	--ls--item--fxb: calc(var(--ls--fxb) - var(--ls--colGap));
+
+	@container (max-width: 720px) {
+		--ls--item--fxb: calc(var(--ls--fxb--Qsm) - var(--ls--colGap--Qsm));
+	}
+
+	@container (max-width: 440px) {
+		--ls--item--fxb: calc(var(--ls--fxb--Qxs) - var(--ls--colGap--Qxs));
+	}
+
+	> * {
+		flex-basis: var(--ls--item--fxb);
+		flex-grow: 1; // gap分の余白が右端にできるのを防ぐ
+		overflow-wrap: anywhere;//予期せぬカラム落ちを防ぐ
+	}
+
+}

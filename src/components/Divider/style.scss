@@ -1,0 +1,148 @@
+
+
+
+// --------------------
+// divider
+// --------------------
+.l--divider {
+	--ls--color: #000;
+	--ls--height: 2.5vw;
+	position: relative;
+	height: var(--ls--height);
+	max-width: 100%; // is--constrainedの影響を受けないようにする
+	overflow: hidden;
+	--ls--rotateX: 0deg;
+	--ls--rotateY: 0deg;
+	--ls--duration: 12s;
+
+	&[data-flip="xy"]{
+		--ls--rotateX: 180deg;
+		--ls--rotateY: 180deg;
+		margin-top: -.5px; // transform で上下反転させると隙間ができてしまう
+	}
+	&[data-flip="y"]{
+		--ls--rotateX: 180deg;
+		margin-top: -.5px; // transform で上下反転させると隙間ができてしまう
+	}
+	&[data-flip="x"]{
+		--ls--rotateY: 180deg;
+	}
+
+	.l--divider__svg{
+		color: var(--ls--color);
+		width: 100%;
+		height: 100%;
+	}
+
+	.l--divider__inner{
+		position: absolute;
+		inset: 0;
+		transform: rotateX(var(--ls--rotateX)) rotateY(var(--ls--rotateY));
+	}
+	
+	path{
+		fill: currentColor;
+	}
+}
+
+
+
+
+/* 左右にスライドするだけ */
+@keyframes LsDividerMove {
+	0%{
+		transform:scaleX(4);
+	}
+	100% {
+		transform: scaleX(4) translateX(calc(100% - 25%));
+	}
+}
+.l--divider[data-animation="lr"] {
+
+	// .l--divider__inner{}
+	.l--divider__svg {
+		/* ↓ X 100% にしてるのは translateXのcalc計算で * -1 をしなくていいように。*/
+		transform-origin: 100% 0;
+		animation: LsDividerMove var(--ls--duration) infinite alternate linear;
+	}
+}
+
+
+@keyframes LsDividerLoop {
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+// 多くの場合、継ぎ目が見えてしまう
+.l--divider[data-animation="loop"] {
+
+	.l--divider__inner{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		gap: 0;
+	}
+
+
+	.l--divider__svg {
+		display: block;
+		flex: 0 0 100%;
+		min-width: 200%;
+		transform-origin: 0 0;
+		animation: LsDividerLoop var(--ls--duration) infinite linear;
+		margin: 0 -1.5px;
+		// min-width: 100%;
+		// transform: scaleX(2);
+		// transform-origin: 0 0;
+		// animation: animateWave 8s linear infinite;
+	}
+}
+
+// @keyframes loop {
+// 	0% {
+// 		transform: scaleX(4) translateX(0%);
+// 	}
+// 	100% {
+// 		transform: scaleX(4) translateX(-100%);
+// 	}
+// }
+// @keyframes loop2 {
+// 	0% {
+// 		transform: scaleX(4) translateX(75%);
+// 	}
+// 	100% {
+// 		transform: scaleX(4) translateX(-25%);
+// 	}
+// }
+
+
+// // 多くの場合、継ぎ目が見えてしまう
+// .l--divider[data-animation="loop"] {
+
+// 	.l--divider__inner{
+// 		display: flex;
+// 		overflow: hidden;
+// 	}
+
+// 	.l--divider__svg {
+// 		min-width: 100%;
+// 		transform: scaleX(4);
+// 		transform-origin: 0 0;
+		
+// 	}
+
+// 	.l--divider__svg:first-child {
+// 		animation: loop 12s linear infinite;
+// 	}
+// 	.l--divider__svg:last-child {
+// 		animation: loop2 12s linear infinite;
+// 	}
+
+// }
+
+

@@ -1,0 +1,151 @@
+// State
+// @forward './state.scss';
+
+// コンポーネント
+@forward '../components/Box/style.scss';
+@forward '../components/Grid/style.scss';
+@forward '../components/Columns/style.scss';
+@forward '../components/AreaGrid/style.scss';
+@forward '../components/RatioGrid/style.scss';
+@forward '../components/LiquidGrid/style.scss';
+@forward '../components/SideFix/style.scss';
+@forward '../components/Layer/style.scss';
+@forward '../components/Frame/style.scss';
+@forward '../components/Reel/style.scss';
+@forward '../components/Divider/style.scss';
+@forward '../components/Tab/style.scss';
+@forward '../components/Icon/style.scss';
+
+// block module?
+@forward '../components/LinkBox/style.scss';
+@forward '../components/Banner/style.scss';
+@forward '../components/Notice/style.scss';
+@forward '../components/Accordion/style.scss';
+@forward '../components/Section/style.scss';
+
+
+// _
+// @forward '../components/FlexColumns/style.scss';
+
+.e--delimiter {
+
+	&[type="/"] {
+
+		&::before {
+			content: "/";
+		}
+	}
+
+	&[type="|"] {
+
+		&::before {
+			content: "|";
+		}
+	}
+
+	.is--flex > & {
+		--ls--miw: 1em;
+		text-align: center;
+
+		// .e--delimiter 自身にネガティブマージンつけると辺にスクロール発生しやすくなるのでbeforeにつける
+		&::before {
+			margin-right: calc(0px - var(--ls--gap) / 2);
+			margin-left: calc(0px - var(--ls--gap) / 2);
+		}
+	}
+}
+
+
+
+// test
+.ex-cards{
+	--ls--height: 20em;
+	--ls--fxb--expanded: 60%;
+	// --ls--height: auto;
+	display: flex;
+	height: var(--ls--height);
+	align-items: stretch;
+	
+	.ex-cards__content{
+		// visibility: hidden;
+		// opacity: 0;
+		max-height: 100%;
+		width: max(20em, 200%);
+		transition-property: opacity, width, visibility;
+		transition-duration: .3s;
+	}
+
+	> * {
+		flex-grow: 1;
+		flex-shrink: 1;
+		flex-basis: 10%;
+		transition: flex-basis 0.3s; //, flex-grow 0.3s;
+		overflow: hidden;
+		position: relative;
+
+		// > * {
+		// 	visibility: hidden;
+		// }
+
+		// height: 100%;
+		&:hover,
+		&:focus{
+			// flex-grow: var(--ls--fxg--expanded); // 複数開いてしまった時に、grow で管理していたほうがどちらも見える?
+			flex-basis: var(--ls--fxb--expanded);
+
+			> .ex-cards__content{
+				visibility: visible;
+				width: 100%;
+				opacity: 1;
+			}
+		}
+	 }
+ }
+
+
+ .container-breakinside {
+	column-count: 3; /* こいつが肝 */
+	// height: auto !important; /* 検証として高さは可変（auto）に設定しているだけです。実際は不要です。 */
+}
+.container-breakinside > div {
+	// height: auto !important; /* 検証として高さは可変（auto）に設定しているだけです。実際は不要です。 */
+	// break-inside: avoid; /* こいつが肝 */
+	break-inside: avoid; // auto だとコンテンツが途中で改行されてしまう。
+	margin: 0 0 10px;
+	background-color: #333;
+	color: #FFF;
+	padding: 0.5em 1em;
+}
+
+
+
+// --------------------
+// .l--mediaContent 検討中
+// メディアとコンテンツ。メディアテキストブロックとほぼ同じだが、メディアクエリに依存しない。
+// b-- にして内部で .l--mainSub 使う？
+// --------------------
+.l--mediaContent {
+	--ls--gap: var(--ls--space--50);
+	--ls--content--minW: 24em;
+	--ls--media--width: 50%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--ls--gap);
+	align-items: center; // デフォルトで中央揃えにする
+}
+
+.l--mediaContent__content {
+	flex-basis: 0;
+	flex-grow: 999;
+	min-width: min(100%, var(--ls--content--minW));  // このサイズが折り返しポイント
+}
+
+.l--mediaContent__media {
+	flex-basis: var(--ls--media--width);
+	flex-grow: 1;
+
+	img {
+		display: block;
+		width: 1000%;
+	}
+}

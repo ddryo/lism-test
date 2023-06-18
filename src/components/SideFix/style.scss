@@ -1,0 +1,77 @@
+.l--sideFix {
+	// --ls--gap: var(--ls--space--50);
+	--ls--side--width: 16rem;
+	--ls--main--miw: 55%;
+
+	display: flex;
+	flex-wrap: wrap;
+	// gap: var(--ls--gap);
+
+	// どっちをfixするか。
+	.l--sideFix__side {
+		flex-basis: var(--ls--side--width);
+		flex-grow: 1;
+		// max-width: var(--ls--sub--width); // きっちりと幅をきめてしまうと折り返し時に広がってくれない。
+	}
+
+	.l--sideFix__main{
+		flex-basis: var(--ls--main--miw); // EL のように 0 にするとsubがでかくなりやすいので、最低限miw分は比率として指定しておく
+		flex-grow: 100000; // できるだけ sub 側を 指定値ピッタリに近づける
+		min-width: min(100%,var(--ls--main--miw));  // このサイズが折り返しポイント
+
+		// 折り返しが効かない長い文字列があった場合にバグるのを防ぐ
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+	}
+}
+
+.l--sideFix[data-mode="grid"] {
+	--ls--side--width: 16rem;
+	display: grid;
+	grid-template-areas: "main side";
+	grid-template-columns: 1fr var(--ls--side--width);
+	grid-template-rows: auto;
+
+	/* >:last-child, */
+	.l--sideFix__main {
+		grid-area: main;
+
+		// main内に折り返しが効かない長い文字列があった場合にバグるのを防ぐ
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+	}
+
+	/* >:first-child, */
+	.l--sideFix__side {
+		grid-area: side;
+	}
+
+	&:where([data-left="side"]){
+		grid-template-areas: "side main";
+		grid-template-columns: var(--ls--side--width) 1fr;
+	}
+
+
+	&[data-break="sm"]{
+		@container (max-width: 720px) {
+			grid-template-areas: "main" "side";
+			grid-template-columns: 100%;
+	
+			&[data-upper="side"]{
+				grid-template-areas: "side" "main";
+			}
+		}
+	}
+	&[data-break="xs"]{
+		@container (max-width: 440px) {
+			grid-template-areas: "main" "side";
+			grid-template-columns: 100%;
+
+			&[data-upper="side"]{
+				grid-template-areas: "side" "main";
+			}
+		}
+	}
+
+}
+

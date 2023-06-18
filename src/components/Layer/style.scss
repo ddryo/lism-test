@@ -1,0 +1,129 @@
+// .has--layer {
+// 	position: relative;
+// }
+
+// --------------------
+// Layer
+// --------------------
+.l--layer {
+	position: absolute;
+	overflow-y: auto;
+
+	// .has--top,left,...
+	// &.has--bottom {
+	// 	bottom: 0;
+	// }
+
+	// &[data-type="fixed"] {
+	// 	position: fixed;
+	// }
+
+	&[data-position="top left"] {
+		top: 0;
+		left: 0;
+	}
+	&[data-position="top right"] {
+		top: 0;
+		right: 0;
+	}
+	&[data-position="top center"] {
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, 0);
+	}
+	&[data-position="bottom left"] {
+		bottom: 0;
+		left: 0;
+	}
+	&[data-position="bottom right"] {
+		bottom: 0;
+		right: 0;
+	}
+	&[data-position="bottom center"] {
+		bottom: 0;
+		left: 50%;
+		transform: translate(-50%, 0);
+	}
+	&[data-position="center left"] {
+		top: 50%;
+		left: 0;
+		transform: translate(0, -50%);
+	}
+	&[data-position="center right"] {
+		top: 50%;
+		right: 0;
+		transform: translate(0, -50%);
+	}
+	&[data-position="center"] {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	
+	// 親要素のサイズを超えないようにする設定
+	&[data-position="cover"] {
+		inset: 0;
+		overflow-y: auto;
+
+		// コンテンツを上下中央に寄せる
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	
+		> :first-child{
+			margin-top: auto;
+		}
+		> :last-child{
+			margin-bottom: auto;
+		}
+
+
+	}
+
+	// &[data-fit="center"] {
+	// 	top: 50%;
+	// 	left: 50%;
+	// 	--ls--width: max-content;
+	// 	max-width: 100%;
+	// 	transform: translate(-50%, -50%);
+	// }
+
+
+	// 親要素をはみ出さないようにする. cover のときには不要
+	&[data-contain="1"] {
+		max-width: 100%;
+		max-height: 100%;
+		// overflow-y: auto;
+	}
+
+	// &[data-fit="contain"] {
+	// 	top: 50%;
+	// 	left: 50%;
+	// 	max-width: 100%;
+	// 	height: 100%;
+	// 	max-height: 100%;
+	// 	overflow: auto;
+	// 	transform: translate(-50%, -50%);
+	// }
+}
+
+.l--layer--media {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	// overflow-y: auto;
+
+	// media
+	> img,
+	> video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+}
+
+.l--layer--filter {
+	position: absolute;
+	inset: 0;
+}

@@ -1,0 +1,61 @@
+// --ls--gap は計算にも使用され得ることに注意。
+//     row-gap, column-gap の両方を別枠で用意してもいいが、
+//     一旦、ルールとして rowGap のみ上書き可能に制限して分わかりやすくする?
+// .has--gap,
+.is--flex,
+.is--grid{
+	// 入れ子になっても影響受けないように変数リセット
+	--ls--gap: var(--ls--space--50); // ここで初期値与えるべきかは要検討
+
+	// --ls--gap--Qsm: var(--ls--gap);
+	// --ls--gap--Qxs: var(--ls--gap--Qsm);
+	gap: var(--ls--gap);
+}
+
+
+
+// gaps={{ sm: 30 }} rowGap={40}
+// とかの時、rowGapが負ける。
+
+
+// row,col で個別に指定も可能。column-gap は colmg あるが row-gapがemmetにない。
+// --gapを計算に含めているレイアウトでは注意が必要...。
+[style*="--ls--rowGap:"]{
+	row-gap: var(--ls--rowGap);
+}
+
+[style*="--ls--colGap:"]{
+	column-gap: var(--ls--colGap);
+}
+
+@container (max-width: 720px) {
+	// gap: var(--ls--gap--Qsm);
+
+	[style*="--ls--gap--Qsm:"]{
+		gap: var(--ls--gap--Qsm);
+	}
+
+	[style*="--ls--rowGap--Qsm:"]{
+		row-gap: var(--ls--rowGap--Qsm);
+	}
+
+	[style*="--ls--colGap--Qsm:"]{
+		column-gap: var(--ls--colGap--Qsm);
+	}
+}
+
+@container (max-width: 440px) {
+	// gap: var(--ls--gap--Qxs);
+	[style*="--ls--gap--Qxs:"]{
+		gap: var(--ls--gap--Qxs);
+	}
+
+	[style*="--ls--rowGap--Qxs:"]{
+		row-gap: var(--ls--rowGap--Qxs);
+	}
+
+	[style*="--ls--colGap--Qxs:"]{
+		column-gap: var(--ls--colGap--Qxs);
+	}
+}
+

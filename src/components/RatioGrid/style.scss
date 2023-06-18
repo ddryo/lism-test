@@ -1,0 +1,28 @@
+
+// --------------------
+// 比率固定グリッド
+// --------------------
+.l--ratioGrid {
+	--gtc: 1fr 2fr;
+
+	// --gtc--Qsm: var(--gtc);
+	// --gtc--Qxs: var(--gtc--Qsm);
+
+	// display: grid;
+	// --gtc: var(--gtc);
+
+	// @container (max-width: 720px) {
+	// 	--gtc: var(--gtc--Qsm);
+	// }
+	// @container (max-width: 440px) {
+	// 	--gtc: var(--gtc--Qxs);
+	// }
+
+	// > * {
+	// 	// 予期せぬカラム落ちを防ぐ
+	// 	overflow-wrap: anywhere;
+	// }
+}
+
+
+

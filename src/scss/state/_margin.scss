@@ -1,0 +1,56 @@
+// .has--margin いるか...？
+// .has--margin {}
+
+// important つけるべきか？
+[style*="--ls--mt:"]{
+	margin-top: var(--ls--mt) !important;
+}
+[style*="--ls--mr:"]{
+	margin-right: var(--ls--mr) !important;
+}
+[style*="--ls--mb:"]{
+	margin-bottom: var(--ls--mb) !important;
+}
+[style*="--ls--ml:"]{
+	margin-left: var(--ls--ml) !important;
+}
+[style*="--ls--margin:"]{
+	margin: var(--ls--margin) !important;
+}
+
+@container (max-width: 720px) {
+	
+	[style*="--ls--mt--Qsm:"]{
+		margin-top: var(--ls--mt--Qsm) !important;
+	}
+	[style*="--ls--mr--Qsm:"]{
+		margin-right: var(--ls--mr--Qsm) !important;
+	}
+	[style*="--ls--mb--Qsm:"]{
+		margin-bottom: var(--ls--mb--Qsm) !important;
+	}
+	[style*="--ls--ml--Qsm:"]{
+		margin-left: var(--ls--ml--Qsm) !important;
+	}
+	[style*="--ls--margin--Qsm:"]{
+		margin: var(--ls--margin--Qsm) !important;
+	}
+}
+
+@container (max-width: 440px) {
+	[style*="--ls--mt--Qxs:"]{
+		margin-top: var(--ls--mt--Qxs) !important;
+	}
+	[style*="--ls--mr--Qxs:"]{
+		margin-right: var(--ls--mr--Qxs) !important;
+	}
+	[style*="--ls--mb--Qxs:"]{
+		margin-bottom: var(--ls--mb--Qxs) !important;
+	}
+	[style*="--ls--ml--Qxs:"]{
+		margin-left: var(--ls--ml--Qxs) !important;
+	}
+	[style*="--ls--margin--Qxs:"]{
+		margin: var(--ls--margin--Qxs) !important;
+	}
+}

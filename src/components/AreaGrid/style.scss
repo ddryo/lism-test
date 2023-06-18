@@ -1,0 +1,37 @@
+
+// --------------------
+// AreaGrid
+// --------------------
+// .l--areaGrid,
+.l--grid--area3 {
+	// --ls--item--miw: 20em;
+	// display: grid;
+	height: 100%; // デフォルトで親要素にfitさせる ?
+
+	&[data-direction="horizontal"]{
+		// display: grid;
+		
+		// grid-template-areas
+		--gta: "left body right";
+		// grid-template-columns
+		--gtc: auto 1fr auto;
+
+		// grid-template-rows: 100%; 
+
+		// body 要素側で指定すればよくないか？
+		&[data-center="center"] .body{
+			justify-self: center;
+		}
+	}
+
+	&[data-direction="vertical"]{
+		// display: grid;
+		--gta: "header" "body" "footer";
+		// grid-template-columns: 100%;
+		--gtr: auto 1fr auto;
+
+		&[data-body="center"] .body{
+			align-self: center;
+		}
+	}
+}

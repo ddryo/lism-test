@@ -1,0 +1,62 @@
+// wp使わない時用
+body {
+	// WPでは theme.json 設定によって出力される
+	background-color: var(--ls--color--base); // var(--wp--preset--color--bg-primary);
+	color: var(--ls--color--text); // var(--wp--preset--color--text-normal);
+	font-family: var(--ls--root--ff); //var(--wp--preset--font-family--system-font);
+	font-size: var(--ls--root--fz);
+	line-height: var(--ls--root--lh);
+	margin: 0;
+	margin: 0;
+}
+
+a {
+	color: var(--ls--color--link);
+	text-decoration: underline;
+}
+
+
+// .align系 ?
+// .aligncenter{
+// 	clear:both;
+// }
+
+//---------------------------------------
+// wpでは figure の mb が設定される。
+// figure {
+// 	margin:0 0 1em;
+// }
+
+// → u--screenReaderText ? 
+.screen-reader-text{
+	clip:rect(1px, 1px, 1px, 1px);
+	word-wrap:normal !important;
+	border:0;
+	-webkit-clip-path:inset(50%);
+	clip-path:inset(50%);
+	height:1px;
+	margin:-1px;
+	overflow:hidden;
+	padding:0;
+	position:absolute;
+	width:1px;
+}
+
+.screen-reader-text:focus{
+	clip:auto !important;
+	background-color:#ddd;
+	-webkit-clip-path:none;
+			clip-path:none;
+	color:#444;
+	display:block;
+	font-size:1em;
+	height:auto;
+	left:5px;
+	line-height:normal;
+	padding:15px 23px 14px;
+	text-decoration:none;
+	top:5px;
+	width:auto;
+	z-index:100000;
+}
+

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useLayoutEffect, useContext, createContext } from 'react';
 import { Box } from '../index';
-import { separateStyleProps } from '../../lib';
+import { getCommonProps } from '../../lib';
 import classnames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 // import setEvent from "./setEvent";
@@ -9,7 +9,7 @@ const TabContext = createContext(null);
 
 // animationTime: [s]
 export const Tab = ({ children, tabId, defaultIndex, keepHeight, className, ...props }) => {
-	const { classNames, styles, attrs } = separateStyleProps(props);
+	const { classNames, styles, attrs } = getCommonProps(props);
 
 	// エディタ上での開閉状態を管理
 	// const [actTab, setActTab] = useState(activeTab);

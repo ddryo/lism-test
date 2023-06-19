@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 // import Image from "next/image";
 import { Box, Frame, FrameContent, LinkBox } from '../index';
-// import { separateStyleProps } from '../../lib';
+// import { getCommonProps } from '../../lib';
 import { getMediaLayer, getFilterLayer } from '../helper';
 
 // "Banner" (b--banner) にする

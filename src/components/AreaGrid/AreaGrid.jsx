@@ -1,5 +1,5 @@
 import React from 'react';
-// import { separateStyleProps } from '../../lib';
+// import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 import { Grid } from '../index';
 
@@ -9,7 +9,7 @@ export default function AreaGrid({
 	direction, // horizontal, vertical
 	...props
 }) {
-	// const { classNames, styles, attrs } = separateStyleProps(props);
+	// const { classNames, styles, attrs } = getCommonProps(props);
 
 	const blockProps = {
 		'data-direction': direction || 'vertical',

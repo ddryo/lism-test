@@ -2,8 +2,10 @@ import React from 'react';
 import classnames from 'classnames';
 // import Image from "next/image";
 import {
+	// Base,
 	Box,
-	// Stack,
+	Grid,
+	Stack,
 	// Layer,
 	Divider,
 	// MediaLayer,
@@ -34,7 +36,7 @@ export default function Section({
 	// const hasPadding = !isEmptyObj(paddingStyles);
 
 	const blockProps = {
-		className: classnames('b--section b--section2', className),
+		className: classnames('b--section', className),
 		style: filterEmptyFromObj({
 			...style,
 			'--ls--mih': mih || null,
@@ -47,16 +49,15 @@ export default function Section({
 	const innerProps = { padding, paddings, gap, gaps };
 
 	return (
-		<Box {...blockProps}>
+		<Stack alignfull {...blockProps}>
 			{divider.top && <Divider {...divider.top} flip='xy'></Divider>}
 			{getMediaLayer(media)}
 			{getFilterLayer(filter)}
-			{/* Grid */}
-			<Box className='b--section__inner' {...innerProps}>
+			<Grid className='b--section__inner' {...innerProps}>
 				{children}
-			</Box>
+			</Grid>
 			{divider.bottom && <Divider {...divider.bottom}></Divider>}
-		</Box>
+		</Stack>
 	);
 }
 
@@ -64,6 +65,7 @@ export const SectionBody = ({ children, className, ...props }) => {
 	return (
 		<Box
 			isFlow
+			isItem
 			padding={{ Y: 50 }}
 			isConstrained
 			hasSidePadding
@@ -77,7 +79,7 @@ export const SectionBody = ({ children, className, ...props }) => {
 
 export const SectionHeader = ({ children, className, ...props }) => {
 	return (
-		<Box className={classnames('b--section__header', className)} {...props}>
+		<Box isItem className={classnames('b--section__header', className)} {...props}>
 			{children}
 		</Box>
 	);
@@ -85,7 +87,7 @@ export const SectionHeader = ({ children, className, ...props }) => {
 
 export const SectionFooter = ({ children, className, ...props }) => {
 	return (
-		<Box className={classnames('b--section__footer', className)} {...props}>
+		<Box isItem className={classnames('b--section__footer', className)} {...props}>
 			{children}
 		</Box>
 	);

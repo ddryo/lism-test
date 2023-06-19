@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { filterEmptyFromObj, separateStyleProps } from '../../lib';
+import { filterEmptyFromObj, getCommonProps } from '../../lib';
 // import { DynamicCSS } from '../index';
 
 // 1:2:3 → 1fr 2fr 3fr に変換
@@ -44,10 +44,10 @@ export default function RatioGrid({
 	// itemProps = {},
 	...props
 }) {
-	const { classNames, styles, attrs } = separateStyleProps(props, { grid: true });
+	const { classNames, styles, attrs } = getCommonProps({ ...props, isGrid: true });
 
 	const blockProps = {
-		className: classnames('l--ratioGrid is--grid', className, classNames),
+		className: classnames('l--ratioGrid', className, classNames),
 		style: {
 			...styles,
 			...getRatioStyles({ _: ratio, sm, xs, ...ratios }),

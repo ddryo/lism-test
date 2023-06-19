@@ -1,16 +1,16 @@
 // これじゃだめ
 // .is--flow {
-// 	--ls--inner--flowGap: var(--ls--flowGap);
-// 	--ls--inner--flowGap--Qsm: var(--ls--inner--flowGap);
-// 	--ls--inner--flowGap--Qxs: var(--ls--inner--flowGap--Qsm);
+// 	--inner--flowGap: var(--ls--flowGap);
+// 	--inner--flowGap--Qsm: var(--inner--flowGap);
+// 	--inner--flowGap--Qxs: var(--inner--flowGap--Qsm);
 
 // 	> * + * {
-// 		margin-block-start: var(--ls--inner--flowGap);
+// 		margin-block-start: var(--inner--flowGap);
 // 		@container (max-width: 720px) {
-// 			margin-block-start: var(--ls--inner--flowGap--Qsm);
+// 			margin-block-start: var(--inner--flowGap--Qsm);
 // 		}
 // 		@container (max-width: 440px) {
-// 			margin-block-start: var(--ls--inner--flowGap--Qxs);
+// 			margin-block-start: var(--inner--flowGap--Qxs);
 // 		}
 // 	}
 // }
@@ -28,24 +28,24 @@
 
 	// ※1: "--flowGap:" ではなく "--flowGap" (:なし} にしているのは意図的。
 	//　--Qxxのみの指定でも mbs 上書き可能にしている。( ただし、これによりネスト時に影響受けてしまうので、※2 で調整 ）
-	&[style*="--ls--inner--flowGap"] > * + *{
-		margin-block-start: var(--ls--inner--flowGap, var(--ls--flowGap) );
+	&[style*="--inner--flowGap"] > * + *{
+		margin-block-start: var(--inner--flowGap, var(--ls--flowGap) );
 	}
 
 	// ※2: --Qxx に対してのみ上書き指定がある場合、noQの時の値をセット
-	&[style*="--ls--inner--flowGap--"]:not([style*="--ls--inner--flowGap:"]) {
-		--ls--inner--flowGap: var(--ls--flowGap);
+	&[style*="--inner--flowGap--"]:not([style*="--inner--flowGap:"]) {
+		--inner--flowGap: var(--ls--flowGap);
 	}
 
 	@container (max-width: 720px) {
-		&[style*="--ls--inner--flowGap--Qsm:"] {
-			--ls--inner--flowGap: var(--ls--inner--flowGap--Qsm) !important;
+		&[style*="--inner--flowGap--Qsm:"] {
+			--inner--flowGap: var(--inner--flowGap--Qsm) !important;
 		}
 	}
 	
 	@container (max-width: 440px) {
-		&[style*="--ls--inner--flowGap--Qxs:"] { 
-			--ls--inner--flowGap: var(--ls--inner--flowGap--Qxs) !important;
+		&[style*="--inner--flowGap--Qxs:"] { 
+			--inner--flowGap: var(--inner--flowGap--Qxs) !important;
 		}
 	}
 	
@@ -71,6 +71,6 @@
 
 // [data-box-flowGap="s"]{
 // 	&.is--flow > * {
-// 		--ls--gap: var(--ls--space--30);
+// 		--gap: var(--ls--space--30);
 // 	}
 // }

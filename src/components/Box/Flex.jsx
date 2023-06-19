@@ -2,23 +2,16 @@ import React from 'react';
 import {
 	//isEmptyObj, filterEmptyFromObj,
 	// getFlexClasses,""
-	separateStyleProps,
+	getCommonProps,
 } from '../../lib';
 import classnames from 'classnames';
 // import { useRef, forwardRef, useEffect } from "react";
 
-export default function Flex({
-	children,
-	tag,
-	className,
-	fxw,
-	// flexOption,
-	...prps
-}) {
-	const { classNames, styles, attrs } = separateStyleProps(prps, { flex: true });
+export default function Flex({ children, tag, className, fxw, ...props }) {
+	const { classNames, styles, attrs } = getCommonProps({ ...props, isFlex: true });
 
 	const blockProps = {
-		className: classnames('l--flex is--flex', className, classNames),
+		className: classnames('l--flex', className, classNames),
 		style: styles,
 		'data-fxw': fxw,
 		...attrs,

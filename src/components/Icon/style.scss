@@ -35,9 +35,10 @@
 
 
 .l--iconBox{
-	--ls--gap: var(--ls--space--10);
-	display: flex;
-	align-items: center;
+	--gap: var(--ls--space--10);
+	--ai: center;
+	// display: flex;
+	// align-items: center;
 
 	> .e--icon{
 		flex: 0 0 auto;

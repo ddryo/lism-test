@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { filterEmptyFromObj, separateStyleProps } from '../../lib';
+import { filterEmptyFromObj, getCommonProps } from '../../lib';
 
 export default function Layer({
 	children,
@@ -19,7 +19,7 @@ export default function Layer({
 	// style = {},
 	...props
 }) {
-	const { classNames, styles, attrs } = separateStyleProps(props, { flow: isFlow });
+	const { classNames, styles, attrs } = getCommonProps(props, { flow: isFlow });
 
 	const blockProps = {
 		className: classnames(

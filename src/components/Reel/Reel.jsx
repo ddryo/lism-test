@@ -1,38 +1,23 @@
 import React from 'react';
-import { getGapStyles, getPaddingStyles, isEmptyObj } from '../../lib';
+import { getCommonProps } from '../../lib';
 import classnames from 'classnames';
 
-export default function Reel({
-	children,
-	className,
-	itemWidth,
-	gap,
-	gaps,
-	padding,
-	paddings,
-	style = {},
-	...attrs
-}) {
+export default function Reel({ children, className, itemWidth, ...props }) {
 	// const Tag = tag;
+	const { classNames, styles, attrs } = getCommonProps({ ...props, isFlex: true });
 
-	// { flex: true }
+	if (undefined !== itemWidth) {
+		styles['--item--width'] = itemWidth;
+	}
 
-	const paddingStyles = getPaddingStyles(padding, paddings);
-	const hasPadding = !isEmptyObj(paddingStyles);
-
-	style = {
-		...style,
-		...getGapStyles(gap, gaps),
-		...paddingStyles,
-		'--ls--item--width': itemWidth,
+	const blockProps = {
+		className: classnames('l--reel', className, classNames),
+		style: styles,
+		...attrs,
 	};
 
-	const theClass = classnames('l--reel is--flex', className, {
-		'has--padding': hasPadding || false,
-	});
-
 	return (
-		<div className={theClass} tabIndex='0' style={style} {...attrs}>
+		<div {...blockProps} tabIndex='0'>
 			{children}
 		</div>
 	);

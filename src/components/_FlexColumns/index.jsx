@@ -1,5 +1,5 @@
 import React from 'react';
-import { filterEmptyFromObj, separateStyleProps } from '../../lib';
+import { filterEmptyFromObj, getCommonProps } from '../../lib';
 
 import classnames from 'classnames';
 
@@ -37,7 +37,7 @@ export default function FlexColumns({
 	itemProps = {},
 	...props
 }) {
-	const { classNames, styles, attrs } = separateStyleProps(props);
+	const { classNames, styles, attrs } = getCommonProps(props);
 
 	const blockProps = {
 		className: classnames('l--flexColumns has--gap', className, classNames),

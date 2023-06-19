@@ -49,8 +49,8 @@
 
 		// .e--delimiter 自身にネガティブマージンつけると辺にスクロール発生しやすくなるのでbeforeにつける
 		&::before {
-			margin-right: calc(0px - var(--ls--gap) / 2);
-			margin-left: calc(0px - var(--ls--gap) / 2);
+			margin-right: calc(0px - var(--colmg) / 2);
+			margin-left: calc(0px - var(--colmg) / 2);
 		}
 	}
 }
@@ -125,12 +125,12 @@
 // b-- にして内部で .l--mainSub 使う？
 // --------------------
 .l--mediaContent {
-	--ls--gap: var(--ls--space--50);
+	--gap: var(--ls--space--50);
 	--ls--content--minW: 24em;
 	--ls--media--width: 50%;
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--ls--gap);
+	gap: var(--gap);
 	align-items: center; // デフォルトで中央揃えにする
 }
 

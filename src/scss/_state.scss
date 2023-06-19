@@ -85,11 +85,24 @@
 
 
 
+.is--flex, .is--grid{
+	--ai: normal;
+	--ac: normal;
+	--jc: normal;
+	--ji: legacy;
+
+	align-items: var( --ai );
+	align-content: var(--ac);
+	justify-content: var( --jc );
+	justify-items: var(--ji);
+}
+
 
 // l--flex, l--stack, l--reel, ...
 .is--flex{
 	--fxw: nowrap;
 	--fxd: row;
+
 	display: flex;
 	flex-direction: var(--fxd);
 	flex-wrap: var(--fxw);
@@ -137,3 +150,111 @@
 		overflow-wrap: anywhere;
 	}
 }
+
+
+
+// is--itemにする必要あるか...？
+:where(.is--grid, .is--flex) > .is--item{
+	--as: auto;
+	--js: auto;
+	align-self: var(--as);
+	justify-self: var(--js);
+}
+
+
+// area, column, row でそれぞれ指定可能にするとコンポーネント側で処理が必要になってくるので、 grid-area で一括指定してもらうようにする
+:where(.is--grid) > .is--item {
+	--ga: auto;
+	grid-area: var(--ga);
+}
+
+// --fx だけでいいかも？
+:where(.is--flex) > .is--item{
+	--fxb: auto;
+	--fxg: 0;
+	--fxsh: 1;
+	--fx: var(--fxg) var(--fxb) var(--fxsh);
+	flex: var(--fx);
+}
+
+// is--item で使われる。u--ga:hoge のほうがいいか...？
+// .is--item[data-ga="left"]{ --ga: left;}
+// .is--item[data-ga="right"]{ --ga: right;}
+// .is--item[data-ga="top"]{ --ga: top;}
+// .is--item[data-ga="bottom"]{ --ga: bottom;}
+// .is--item[data-ga="center"]{ --ga: center;}
+// .is--item[data-ga="header"]{ --ga: header;}
+// .is--item[data-ga="footer"]{ --ga: footer;}
+// .is--item[data-ga="body"]{ --ga: body;}
+// .is--item[data-ga="aside"]{ --ga: aside;}
+// .is--item[data-ga="main"]{ --ga: main;}
+// .is--item[data-ga="fix"]{ --ga: fix;}
+// .is--item[data-ga="fluid"]{ --ga: fluid;}
+
+
+
+
+// .u--fxw\:w{
+// 	flex-wrap:wrap !important;
+// }
+// .u--fxw\:n{
+// 	flex-wrap:nowrap !important;
+// }
+
+// align-items
+// [class*="u--ai:"],
+// [style*="--ls--ai:"]{
+// 	align-items: var( --ls--ai ) !important;
+// }
+// .u--ai\:c{
+// 	align-items:center !important;
+// }
+// .u--ai\:fe{
+// 	align-items:flex-end !important;
+// }
+// .u--ai\:fs{
+// 	align-items:flex-start !important;
+// }
+// .u--ai\:s{
+// 	align-items:stretch !important;
+// }
+
+// justify-content
+// [class*="u--jc:"],
+// [style*="--ls--jc:"]{
+// 	justify-content: var( --ls--jc ) !important;
+// }
+// .u--jc\:c{
+// 	justify-content:center !important;
+// }
+// .u--jc\:fe{
+// 	justify-content:flex-end !important;
+// }
+// .u--jc\:fs{
+// 	justify-content:flex-start !important;
+// }
+// .u--jc\:sb{
+// 	justify-content:space-between !important;
+// }
+
+
+// .u--jc\:sa{
+// 	justify-content:space-around !important;
+// }
+
+// [style*="--fxw:"]{
+// 	flex-wrap: var(--fxw) !important;
+// }
+// [style*="--ai:"]{
+// 	align-items: var(--ai) !important;
+// }
+// [style*="--jc:"]{
+// 	justify-content: var(--jc) !important;
+// }
+
+// [style*="--as:"]{
+// 	align-self: var(--as) !important;
+// }
+// [style*="--js:"]{
+// 	justify-self: var(--js) !important;
+// }

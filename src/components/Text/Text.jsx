@@ -1,11 +1,11 @@
 import React from 'react';
-import classnames from "classnames";
-import { separateStyleProps, filterEmptyFromObj } from "../../lib";
+import classnames from 'classnames';
+import { getCommonProps, filterEmptyFromObj } from '../../lib';
 
 // R ?
 // const fzSets = ["6L", "5L", "4L", "3L", "2L", "L", "M", "S", "2S"];
 // const lhSets = ["1", "1.2", "1.4", "1.5", "1.6", "1.8", "2"];
-const taSets = ["center", "left", "right", "c", "r", "l"];
+const taSets = ['center', 'left', 'right', 'c', 'r', 'l'];
 
 // const taProp = ["center", "left", "right"];
 
@@ -13,7 +13,7 @@ const taSets = ["center", "left", "right", "c", "r", "l"];
 export default function Text({
 	children,
 	tag,
-	className = "",
+	className = '',
 	// fz,
 	// lh,
 	// bgc,
@@ -25,7 +25,7 @@ export default function Text({
 }) {
 	// 省略しててもOK
 
-	const { classNames, styles, attrs } = separateStyleProps(props);
+	const { classNames, styles, attrs } = getCommonProps(props);
 
 	// ta から1文字目を取得
 	if (ta && taSets.includes(ta)) {
@@ -69,6 +69,6 @@ export default function Text({
 	// };
 
 	// console.log("attrs", attrs);
-	const Tag = tag || "p";
+	const Tag = tag || 'p';
 	return <Tag {...blockProps}>{children}</Tag>;
 }

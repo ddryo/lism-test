@@ -1,1 +1,1 @@
-export { default as LinkBox } from "./LinkBox";
+export { default as LinkBox } from './LinkBox';

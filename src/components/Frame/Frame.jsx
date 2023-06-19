@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { Layer } from '../index';
-import { separateStyleProps } from '../../lib';
+import { getCommonProps } from '../../lib';
 // import { getMediaLayer, getFilterLayer } from '../helper';
 
 const RATIO_PRESETS = ['16:9', '4:3', '3:2', '2:1', '1:1', 'golden', 'silver', 'bronze', 'ogp'];
@@ -20,7 +20,7 @@ export default function Frame({
 	forwardedRef,
 	...props
 }) {
-	const { classNames, styles, attrs } = separateStyleProps(props);
+	const { classNames, styles, attrs } = getCommonProps(props);
 
 	const blockProps = {
 		className: classnames('l--frame', className, classNames),

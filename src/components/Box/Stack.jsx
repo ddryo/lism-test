@@ -2,7 +2,7 @@ import React from 'react';
 import {
 	//isEmptyObj, filterEmptyFromObj,
 	// getFlexClasses,""
-	separateStyleProps,
+	getCommonProps,
 } from '../../lib';
 import classnames from 'classnames';
 // import { useRef, forwardRef, useEffect } from "react";
@@ -12,12 +12,12 @@ export default function Stack({
 	tag,
 	className,
 	// flexOption,
-	...prps
+	...props
 }) {
-	const { classNames, styles, attrs } = separateStyleProps(prps, { flex: true });
+	const { classNames, styles, attrs } = getCommonProps({ ...props, isFlex: true });
 
 	const blockProps = {
-		className: classnames('l--stack is--flex', className, classNames),
+		className: classnames('l--stack', className, classNames),
 		style: styles,
 		...attrs,
 	};

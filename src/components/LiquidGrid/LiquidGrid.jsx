@@ -1,5 +1,5 @@
 import React from 'react';
-import { separateStyleProps } from '../../lib';
+import { getCommonProps } from '../../lib';
 import classnames from 'classnames';
 
 export default function LiquidGrid({
@@ -10,7 +10,7 @@ export default function LiquidGrid({
 	// itemProps = {},
 	...props
 }) {
-	const { classNames, styles, attrs } = separateStyleProps(props, { grid: true });
+	const { classNames, styles, attrs } = getCommonProps({ ...props, isGrid: true });
 
 	const blockProps = {
 		className: classnames('l--liquidGrid is--grid', className, classNames),

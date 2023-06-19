@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import setEvent from './setEvent';
-import { separateStyleProps } from '../../lib';
+import { getCommonProps } from '../../lib';
 
 // duration: [s]
 export default function Accordion({ children, className, duration = 0.3, ...props }) {
@@ -12,7 +12,7 @@ export default function Accordion({ children, className, duration = 0.3, ...prop
 		return setEvent(ref.current, duration);
 	}, [duration]);
 
-	const { classNames, styles, attrs } = separateStyleProps(props);
+	const { classNames, styles, attrs } = getCommonProps(props);
 	const blockProps = {
 		ref,
 		className: classnames('l--accordion', className, classNames),

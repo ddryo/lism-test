@@ -1,11 +1,11 @@
-import classnames from "classnames";
-import { separateStyleProps, filterEmptyFromObj } from "../../lib";
+import classnames from 'classnames';
+import { getCommonProps, filterEmptyFromObj } from '../../lib';
 
 // 特定のクラスなどがない単純なdivなどを作るときに使う
 export default function PlaneBox({ children, tag, className, ...props }) {
 	// 省略しててもOK
 
-	const { classNames, styles, attrs } = separateStyleProps(props);
+	const { classNames, styles, attrs } = getCommonProps(props);
 
 	const blockProps = {
 		className: classnames(className, classNames),
@@ -14,6 +14,6 @@ export default function PlaneBox({ children, tag, className, ...props }) {
 	};
 
 	// console.log("attrs", attrs);
-	const Tag = tag || "div";
+	const Tag = tag || 'div';
 	return <Tag {...blockProps}>{children}</Tag>;
 }

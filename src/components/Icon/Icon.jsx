@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { Box, Text } from '../index';
-import { separateStyleProps } from '../../lib';
+import { getCommonProps } from '../../lib';
 
 const getIconElement = (icon, props) => {
 	const { width, height, label, className, ...attrs } = props;
@@ -30,7 +30,7 @@ const getIconElement = (icon, props) => {
 
 // align: full, wide, ''
 function Icon({ icon, label, size = '1em', width, height, className, ...props }) {
-	const { classNames, styles, attrs } = separateStyleProps(props);
+	const { classNames, styles, attrs } = getCommonProps(props);
 
 	const svgProps = {
 		className: 'e--icon', // l--icon__svg
@@ -52,7 +52,7 @@ function Icon({ icon, label, size = '1em', width, height, className, ...props })
 }
 
 export const InlineIcon = ({ icon, label, size = '1em', width, height, className, ...props }) => {
-	const { classNames, styles, attrs } = separateStyleProps(props);
+	const { classNames, styles, attrs } = getCommonProps(props);
 
 	// console.log(color);
 	const svgProps = {
@@ -83,7 +83,7 @@ export const IconText = ({
 	bodyProps = {},
 	...props
 }) => {
-	const { classNames, styles, attrs } = separateStyleProps(props);
+	const { classNames, styles, attrs } = getCommonProps({ ...props, isFlex: true });
 
 	// if (iconColor) {
 	// 	styles.color = iconColor;
@@ -95,7 +95,7 @@ export const IconText = ({
 
 	const blockProps = {
 		// xmlns:"http://www.w3.org/2000/svg",
-		className: classnames('l--iconBox has--gap', className, classNames),
+		className: classnames('l--iconBox', className, classNames),
 		style: styles,
 		// tag: tag || ParentTag,
 		...attrs,

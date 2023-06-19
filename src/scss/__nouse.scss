@@ -31,13 +31,13 @@
 // switcher
 // --------------------
 .l--switcher {
-	--ls--gap: var(--ls--space--50);
+	--gap: var(--ls--space--50);
 
 	/* --threshold に px を使うと計算できない */
 	--ls--threshold: 40em;
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--ls--gap);
+	gap: var(--gap);
 	// container-name: switcher;
 
 	&[data-switch-by="parent"] > * {

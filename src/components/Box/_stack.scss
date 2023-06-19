@@ -3,15 +3,9 @@
 // 縦並び（Stack）
 // --------------------
 
-// l--flex--stack ?
 // .is--stack,
 .l--stack {
-	// --ls--gap: var(--ls--space--40);
-	// gap: var(--ls--gap);
-
-	// display: flex;
 	--fxd: column;
-	// flex-direction: column;
 
 	> * {
 		margin-top: 0;

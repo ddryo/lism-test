@@ -1,23 +1,13 @@
 import React from 'react';
-import { separateStyleProps, filterEmptyFromObj } from '../../lib';
+import { getCommonProps } from '../../lib';
 import classnames from 'classnames';
 // import { Box } from '../index';
 
 // grid-template-areas: none
 // ,grid-template-columns, grid-template-rows: none,
 // gta, gtc, gtr
-export default function Grid({
-	tag = 'div',
-	className,
-	children,
-	modifier,
-	gta,
-	gtc,
-	gtr,
-
-	...props
-}) {
-	const { classNames, styles, attrs } = separateStyleProps(props, { gap: true });
+export default function Grid({ tag = 'div', className, children, modifier, ...props }) {
+	const { classNames, styles, attrs } = getCommonProps({ ...props, isGrid: true });
 
 	let gridClass = 'l--grid';
 	if (modifier) {
@@ -25,13 +15,8 @@ export default function Grid({
 	}
 
 	const blockProps = {
-		className: classnames(gridClass, 'is--grid', className, classNames),
-		style: filterEmptyFromObj({
-			...styles,
-			'--gta': gta || null,
-			'--gtc': gtc || null,
-			'--gtr': gtr || null,
-		}),
+		className: classnames(gridClass, className, classNames),
+		style: styles,
 		...attrs,
 	};
 

@@ -1,5 +1,5 @@
-import maybeGetSpaceVar from "./maybeGetSpaceVar";
-import filterEmptyFromObj from "./filterEmptyFromObj";
+import maybeGetSpaceVar from './maybeGetSpaceVar';
+import filterEmptyFromObj from './filterEmptyFromObj';
 
 /* eslint eqeqeq: 0 */
 // ↑ 0 の時の判定を考慮して 「null != hoge」を使用している。
@@ -14,7 +14,7 @@ function sortPaddingData(padding, modifier) {
 	if (null == padding) return {};
 
 	// 数値 or 文字列指定のときはそのままセット
-	if (typeof padding === "number" || typeof padding === "string") {
+	if (typeof padding === 'number' || typeof padding === 'string') {
 		return {
 			[`--ls--padding${modifier}`]: maybeGetSpaceVar(padding) || null,
 		};
@@ -33,7 +33,12 @@ function sortPaddingData(padding, modifier) {
 	}
 
 	// 全方向に指定がある場合、 --ls--padding にセット
-	if (null != padding?.top && null != padding?.right && null != padding?.bottom && null != padding?.left) {
+	if (
+		null != padding?.top &&
+		null != padding?.right &&
+		null != padding?.bottom &&
+		null != padding?.left
+	) {
 		return {
 			[`--ls--padding${modifier}`]:
 				`${maybeGetSpaceVar(padding.top)} ` +
@@ -60,15 +65,13 @@ function sortPaddingData(padding, modifier) {
  * @return {Object} style
  */
 export default function getPaddingStyles(padding, paddings = {}) {
-	if (typeof padding === "number" || typeof padding === "string") {
-		paddings._ = padding;
-	} else if (typeof padding === "object") {
+	if (undefined !== padding) {
 		paddings._ = padding;
 	}
 
 	return {
-		...sortPaddingData(paddings._, ""),
-		...sortPaddingData(paddings.sm, "--Qsm"),
-		...sortPaddingData(paddings.xs, "--Qxs"),
+		...sortPaddingData(paddings._, ''),
+		...sortPaddingData(paddings.sm, '--Qsm'),
+		...sortPaddingData(paddings.xs, '--Qxs'),
 	};
 }

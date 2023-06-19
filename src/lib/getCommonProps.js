@@ -1,6 +1,7 @@
 import {
 	filterEmptyFromObj,
 	getGapStyles,
+	getFlowGapStyles,
 	getPaddingStyles,
 	getMarginStyles,
 	getWidthStyles,
@@ -22,14 +23,13 @@ import { isFzPresetValue } from './maybeGetFzVar.js';
  */
 
 // styleを生成するための共通処理
-export default function separateStyleProps(props, options = {}) {
-	let {
+export default function getCommonProps(props) {
+	const {
 		padding,
 		paddings,
 		margin,
 		margins,
 		mT,
-
 		bgc,
 		color,
 		fz,
@@ -51,9 +51,17 @@ export default function separateStyleProps(props, options = {}) {
 		// js, //justify-self,
 		alignfull,
 		alignwide,
+		isFlow,
+		isFlex,
+		isGrid,
+		isItem,
+		// isFlex,
+		// isGrid,
 		style = {},
 		...others
 	} = props;
+
+	let otherProps = others;
 
 	const classNames = [];
 	let styles = {
@@ -75,43 +83,41 @@ export default function separateStyleProps(props, options = {}) {
 	// const flexClass = getFlexClasses({ ai, jc, fxw, fxb, as, js });
 	// if (flexClass) classNames.push(flexClass);
 
-	// if (options.flex) {
+	// if (isFlex) {
 	// 	if (undefined !== fxw) styles['--ls--fxw'] = fxw;
 	// }
 
-	if (options.flow) {
+	if (isFlow) {
+		classNames.push('is--flow');
 		if (undefined !== gap || undefined !== gaps) {
-			styles = { ...styles, ...getGapStyles(gap, gaps, 'inner--flowGap') };
+			styles = { ...styles, ...getFlowGapStyles(gap, gaps) };
 		}
 	}
 
-	if (options.flex || options.grid) {
-		const { rowGap, rowGaps, colGap, colGaps, ai, jc, ..._o } = others;
-		others = _o;
+	// hasLayer → has--layer ??
 
-		if (undefined !== ai) styles['--ls--ai'] = ai;
-		if (undefined !== jc) styles['--ls--jc'] = jc;
+	// isFlex,
+	// isGrid,
 
+	if (isFlex || isGrid) {
 		if (undefined !== gap || undefined !== gaps) {
-			styles = { ...styles, ...getGapStyles(gap, gaps, options.gapName || 'gap') };
+			styles = { ...styles, ...getGapStyles(gap, gaps) };
 		}
-		if (undefined !== rowGap || undefined !== rowGaps) {
-			styles = { ...styles, ...getGapStyles(rowGap, rowGaps, 'rowGap') };
-		}
-		if (undefined !== colGap || undefined !== colGaps) {
-			styles = { ...styles, ...getGapStyles(colGap, colGaps, 'colGap') };
-		}
+
+		// その他の flex, grid 用の props を取得
+		const flexGridProps = getFlexGlidProps(otherProps, isFlex, isGrid);
+
+		otherProps = flexGridProps.others;
+		classNames.push(...flexGridProps.classNames);
+		styles = { ...styles, ...flexGridProps.styles };
 	}
 
-	// Box, Textなど子要素? → FlexItem, GridItem を作ってそっちで。
-	// if (options.child) {
-	// if (undefined !== fxw) styles['--ls--fxb'] = fxw;
-	// if (undefined !== as) styles['--ls--as'] = as;
-	// if (undefined !== js) styles['--ls--js'] = js;
-	// }
+	if (isItem) {
+		classNames.push('is--item');
 
-	if (undefined !== mT) {
-		classNames.push(`u--mT:${mT}`);
+		const itemProps = getItemProps(otherProps);
+		otherProps = itemProps.others;
+		styles = { ...styles, ...itemProps.styles };
 	}
 
 	if (undefined !== width || undefined !== widths) {
@@ -123,6 +129,9 @@ export default function separateStyleProps(props, options = {}) {
 		styles = { ...styles, ...getHeightStyles(height, heights) };
 	}
 
+	if (undefined !== mT) {
+		classNames.push(`u--mT:${mT}`);
+	}
 	if (undefined !== padding || undefined !== paddings) {
 		styles = { ...styles, ...getPaddingStyles(padding, paddings) };
 	}
@@ -195,4 +204,52 @@ export default function separateStyleProps(props, options = {}) {
 		styles,
 		attrs: others,
 	};
+}
+
+function getFlexGlidProps(props, isFlex, isGrid) {
+	const { gta, gtc, gtr, fxw, ai, ac, jc, ji, ...others } = props;
+	let styles = {};
+	const classNames = [];
+
+	if (isFlex) {
+		classNames.push('is--flex');
+		if (undefined !== fxw) styles['--fxw'] = fxw;
+	}
+
+	if (isGrid) {
+		classNames.push('is--grid');
+
+		if (undefined !== gta) styles['--gta'] = gta;
+		if (undefined !== gtc) styles['--gtc'] = gtc;
+		if (undefined !== gtr) styles['--gtr'] = gtr;
+	}
+
+	// 共通処理
+	// justify-items, align-items, justify-content, align-content
+	if (undefined !== ai) styles['--ai'] = ai;
+	if (undefined !== ac) styles['--ac'] = ac;
+	if (undefined !== jc) styles['--jc'] = jc;
+	if (undefined !== ji) styles['--ji'] = ji;
+
+	return { styles, classNames, others };
+}
+
+function getItemProps(props) {
+	const { fxb, fxg, fxsh, fx, ga, gr, gc, as, js, ...others } = props;
+	// let styles = {};
+
+	// const gridAreaStyles = getGridAreaStyles();
+	const styles = filterEmptyFromObj({
+		'--ga': ga || null,
+		'--gr': gr || null,
+		'--gc': gc || null,
+		'--as': as || null,
+		'--js': js || null,
+		'--fxb': fxb || null,
+		'--fxg': fxg || null,
+		'--fxsh': fxsh || null,
+		'--fx': fx || null,
+	});
+
+	return { styles, others };
 }

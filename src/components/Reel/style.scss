@@ -4,18 +4,19 @@
 // --------------------
 .l--reel {
 	// --ls--height: auto;
-	--ls--item--width: 25ch; // 要検討
-	--ls--scrollbar--thumb-color: #fff;
-	--ls--scrollbar--track-color: #000;
-	--ls--scrollbar--height: 1rem;
-	display: flex;
+	--item--width: 25ch; // 要検討
+	--scrollbar--thumb-color: #fff;
+	--scrollbar--track-color: #000;
+	--scrollbar--height: 1rem;
+	
+	// display: flex;
 	overflow-x: auto;
 	overflow-y: hidden;
 	// height: var(--ls--height);
 
 	// 以下、 Firefox用
-	scrollbar-color: var(--ls--scrollbar--thumb-color) var(--ls--scrollbar--track-color);
-	scrollbar-width: var(--ls--scrollbar--height);
+	scrollbar-color: var(--scrollbar--thumb-color) var(--scrollbar--track-color);
+	scrollbar-width: var(--scrollbar--height);
 
 	&:not(.no-bar) {
 		padding-bottom: var(--ls--space--4S); // JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい。
@@ -26,24 +27,24 @@
 	}
 
 	&::-webkit-scrollbar {
-		height: var(--ls--scrollbar--height);
+		height: var(--scrollbar--height);
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background-color: var(--ls--scrollbar--thumb-color);
-		background-image: linear-gradient(var(--ls--scrollbar--track-color) 0, var(--ls--scrollbar--track-color) .25rem, var(--ls--scrollbar--thumb-color) .25rem, var(--ls--scrollbar--thumb-color) .75rem, var(--ls--scrollbar--track-color) .75rem);
+		background-color: var(--scrollbar--thumb-color);
+		background-image: linear-gradient(var(--scrollbar--track-color) 0, var(--scrollbar--track-color) .25rem, var(--scrollbar--thumb-color) .25rem, var(--scrollbar--thumb-color) .75rem, var(--scrollbar--track-color) .75rem);
 	}
 
 	&::-webkit-scrollbar-track {
-		background-color: var(--ls--scrollbar--track-color);
+		background-color: var(--scrollbar--track-color);
 	}
 
 	> * {
-		flex: 0 0 var(--ls--item--width);
+		flex: 0 0 var(--item--width);
 	}
 
 	> img {
-		width: var(--ls--item--width);
+		width: var(--item--width);
 		height: auto;
 	}
 

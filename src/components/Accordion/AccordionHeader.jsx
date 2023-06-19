@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { separateStyleProps } from '../../lib';
+import { getCommonProps } from '../../lib';
 
 export default function AccordionHeader({ children, className, icon = 'caret', ...props }) {
-	const { classNames, styles, attrs } = separateStyleProps(props);
+	const { classNames, styles, attrs } = getCommonProps(props);
 	const blockProps = {
 		className: classnames('l--accordion__header', className, classNames),
 		style: styles,

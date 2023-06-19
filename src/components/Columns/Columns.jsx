@@ -1,5 +1,5 @@
 import React from 'react';
-import { filterEmptyFromObj, separateStyleProps } from '../../lib';
+import { filterEmptyFromObj, getCommonProps } from '../../lib';
 
 import classnames from 'classnames';
 
@@ -31,10 +31,10 @@ export default function Columns({
 	// itemProps = {},
 	...props
 }) {
-	const { classNames, styles, attrs } = separateStyleProps(props, { grid: true });
+	const { classNames, styles, attrs } = getCommonProps({ ...props, isGrid: true });
 
 	const blockProps = {
-		className: classnames('l--columns is--grid', className, classNames),
+		className: classnames('l--columns', className, classNames),
 		style: {
 			...styles,
 			...getColumnsStyles({ _: col, sm, xs, ...cols }),

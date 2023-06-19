@@ -1,4 +1,5 @@
 // import React from 'react';
+export { Base } from './Base';
 export { Box, Flex, Stack } from './Box';
 export { Frame, FrameContent } from './Frame';
 export { Layer, MediaLayer, FilterLayer } from './Layer';
@@ -7,12 +8,12 @@ export { LinkBox } from './LinkBox';
 export { LiquidGrid } from './LiquidGrid';
 export { RatioGrid } from './RatioGrid';
 export { Reel } from './Reel';
-export { SideFix } from './SideFix';
+export { SideFix, SideFixGrid } from './SideFix';
 export { Divider } from './Divider';
 export { Icon, InlineIcon, IconText } from './Icon';
 export { Grid } from './Grid';
 export { AreaGrid } from './AreaGrid';
-export { GridItem, FlexItem } from './Item';
+export { Item } from './Item';
 
 // appルーターで use client がいるもの
 export { Accordion, AccordionHeader, AccordionBody } from './Accordion';

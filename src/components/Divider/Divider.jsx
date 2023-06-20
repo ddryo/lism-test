@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 // import Image from "next/image";
 // import { Box, Stack, Layer, MediaLayer, FilterLayer } from '../index';
-import { filterEmptyFromObj } from '../../lib';
+import { filterEmptyObj } from '../../lib';
 
 import DividerSVG from './svg';
 
@@ -29,7 +29,7 @@ function Divider({
 }) {
 	const blockProps = {
 		className: classnames('l--divider', className, {}),
-		style: filterEmptyFromObj({
+		style: filterEmptyObj({
 			...style,
 			'--ls--height': height || null,
 			'--ls--color': color || null,

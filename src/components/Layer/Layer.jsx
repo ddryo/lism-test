@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { filterEmptyFromObj, getCommonProps } from '../../lib';
+import { filterEmptyObj, getCommonProps } from '../../lib';
 
 export default function Layer({
 	children,
@@ -30,7 +30,7 @@ export default function Layer({
 		),
 		style: {
 			...styles,
-			...filterEmptyFromObj({
+			...filterEmptyObj({
 				zIndex: undefined !== z ? String(z) : null,
 				top: top || null,
 				bottom: bottom || null,

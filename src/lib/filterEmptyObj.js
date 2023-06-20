@@ -1,7 +1,7 @@
 // isEmptyObj;
 import isEmptyObj from './isEmptyObj';
 
-export default function filterEmptyFromObj(obj) {
+export default function filterEmptyObj(obj) {
 	for (const key in obj) {
 		if (obj[key] === '' || null === obj[key] || undefined === obj[key]) {
 			delete obj[key];

@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { getCommonProps, filterEmptyFromObj } from '../../lib';
+import { getCommonProps, filterEmptyObj } from '../../lib';
 
 // R ?
 // const fzSets = ["6L", "5L", "4L", "3L", "2L", "L", "M", "S", "2S"];
@@ -36,7 +36,7 @@ export default function Text({
 		className: classnames(className, classNames),
 		style: {
 			...styles,
-			...filterEmptyFromObj({
+			...filterEmptyObj({
 				letterSpacing: lts,
 				fontWeight: fw,
 			}),
@@ -64,7 +64,7 @@ export default function Text({
 	// });
 
 	// attrs = {
-	// 	...filterEmptyFromObj({ className: className.trim(), style }),
+	// 	...filterEmptyObj({ className: className.trim(), style }),
 	// 	...attrs,
 	// };
 

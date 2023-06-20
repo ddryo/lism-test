@@ -1,6 +1,7 @@
 @use 'state/padding';
 @use 'state/margin';
 @use 'state/gap';
+@use 'state/size';
 
 
 .alignfull + .alignfull{
@@ -46,40 +47,15 @@
 
 
 // .has-global-padding はコア以外の要素で使うと想像した結果にならないことがあるので同じようなことをするクラスを作る
-// .has--gutter?　has--sideSpace?
+// .has--ls--gutter?　has--sideSpace?
 .has--sidePadding {
-	padding-right: var(--ls--space--side);
-	padding-left: var(--ls--space--side);
+	padding-right: var(--ls--gutter);
+	padding-left: var(--ls--gutter);
 
 	> .alignfull {
-		// --pl, --pr > --padding > --ls--space--side
-		margin-right: calc(var(--ls--space--side) * -1);
-		margin-left: calc(var(--ls--space--side) * -1);
-	}
-}
-
-[style*="--ls--height:"]{
-	height: var(--ls--height) !important;
-}
-[style*="--ls--width:"]{
-	width: var(--ls--width) !important;
-}
-
-@container (max-width: 720px) {
-	[style*="--ls--width--Qsm:"]{
-		width: var(--ls--width--Qsm) !important;
-	}
-	[style*="--ls--height--Qsm:"]{
-		height: var(--ls--height--Qsm) !important;
-	}
-}
-
-@container (max-width: 440px) {
-	[style*="--ls--width--Qxs:"]{
-		width: var(--ls--width--Qxs) !important;
-	}
-	[style*="--ls--height--Qxs:"]{
-		height: var(--ls--height--Qxs) !important;
+		// --pl, --pr > --padding > --ls--gutter
+		margin-right: calc(var(--ls--gutter) * -1);
+		margin-left: calc(var(--ls--gutter) * -1);
 	}
 }
 
@@ -95,7 +71,16 @@
 	align-content: var(--ac);
 	justify-content: var( --jc );
 	justify-items: var(--ji);
+
+	// 予期せぬカラム落ちを防ぐ
+	// > *
+	> :is(div, main, aside, section, article, p){
+		overflow-wrap: anywhere;
+	}
+
 }
+
+
 
 
 // l--flex, l--stack, l--reel, ...
@@ -106,11 +91,6 @@
 	display: flex;
 	flex-direction: var(--fxd);
 	flex-wrap: var(--fxw);
-
-	> * {
-		// 予期せぬカラム落ちを防ぐ
-		overflow-wrap: anywhere;
-	}
 }
 
 .is--grid{
@@ -144,52 +124,60 @@
 		grid-template-columns: var(--gtc--Qxs);
 		grid-template-rows: var(--gtr--Qxs);
 	}
-
-	> * {
-		// 予期せぬカラム落ちを防ぐ
-		overflow-wrap: anywhere;
-	}
 }
 
 
 
-// is--itemにする必要あるか...？
-:where(.is--grid, .is--flex) > .is--item{
-	--as: auto;
-	--js: auto;
-	align-self: var(--as);
-	justify-self: var(--js);
+
+.is--item{
+	// --a-self, --j--self ?
+	--a-self: auto;
+	--j-self: auto;
+	align-self: var(--a-self);
+	justify-self: var(--j-self);
 }
 
 
 // area, column, row でそれぞれ指定可能にするとコンポーネント側で処理が必要になってくるので、 grid-area で一括指定してもらうようにする
-:where(.is--grid) > .is--item {
-	--ga: auto;
-	grid-area: var(--ga);
-}
+// :where(.is--grid) > .is--item {
+// 	--gr: auto;
+// 	--gc: auto;
+// 	grid-row: var(--gr);
+// 	grid-column: var(--gc);
+// }
 
-// --fx だけでいいかも？
-:where(.is--flex) > .is--item{
-	--fxb: auto;
+// コンポーネント側で --fx 一つにまとめる？
+:where(.is--flex > .is--item){
 	--fxg: 0;
 	--fxsh: 1;
-	--fx: var(--fxg) var(--fxb) var(--fxsh);
+	--fxb: auto;
+	--fx: var(--fxg) var(--fxsh) var(--fxb);
+	// --fx: 0 1 auto;
 	flex: var(--fx);
 }
 
-// is--item で使われる。u--ga:hoge のほうがいいか...？
-// .is--item[data-ga="left"]{ --ga: left;}
-// .is--item[data-ga="right"]{ --ga: right;}
-// .is--item[data-ga="top"]{ --ga: top;}
-// .is--item[data-ga="bottom"]{ --ga: bottom;}
-// .is--item[data-ga="center"]{ --ga: center;}
-// .is--item[data-ga="header"]{ --ga: header;}
-// .is--item[data-ga="footer"]{ --ga: footer;}
-// .is--item[data-ga="body"]{ --ga: body;}
-// .is--item[data-ga="aside"]{ --ga: aside;}
-// .is--item[data-ga="main"]{ --ga: main;}
-// .is--item[data-ga="fix"]{ --ga: fix;}
-// .is--item[data-ga="fluid"]{ --ga: fluid;}
+// .is--item[data-grid-area],
+:where(.is--grid > .is--item) {
+	--g-area: auto;
+	grid-area: var(--g-area);
+}
+
+// [data-grid-row]{
+// }
+
+// is--item で使われる。u--g-area:hoge のほうがいいか...？
+// .is--item[data-ga="left"]{ --g-area: left;}
+// .is--item[data-ga="right"]{ --g-area: right;}
+// .is--item[data-ga="top"]{ --g-area: top;}
+// .is--item[data-ga="bottom"]{ --g-area: bottom;}
+// .is--item[data-ga="center"]{ --g-area: center;}
+// .is--item[data-ga="header"]{ --g-area: header;}
+// .is--item[data-ga="footer"]{ --g-area: footer;}
+// .is--item[data-ga="body"]{ --g-area: body;}
+// .is--item[data-ga="aside"]{ --g-area: aside;}
+// .is--item[data-ga="main"]{ --g-area: main;}
+// .is--item[data-ga="fix"]{ --g-area: fix;}
+// .is--item[data-ga="fluid"]{ --g-area: fluid;}
 
 
 
@@ -252,9 +240,9 @@
 // 	justify-content: var(--jc) !important;
 // }
 
-// [style*="--as:"]{
-// 	align-self: var(--as) !important;
+// [style*="--a-self:"]{
+// 	align-self: var(--a-self) !important;
 // }
-// [style*="--js:"]{
-// 	justify-self: var(--js) !important;
+// [style*="--j-self:"]{
+// 	justify-self: var(--j-self) !important;
 // }

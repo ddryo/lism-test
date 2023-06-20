@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-	//isEmptyObj, filterEmptyFromObj,
+	//isEmptyObj, filterEmptyObj,
 	// getFlexClasses,""
 	getCommonProps,
 } from '../../lib';

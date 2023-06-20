@@ -31,7 +31,7 @@
 // switcher
 // --------------------
 .l--switcher {
-	--gap: var(--ls--space--50);
+	--gap: var(--s--50);
 
 	/* --threshold に px を使うと計算できない */
 	--ls--threshold: 40em;

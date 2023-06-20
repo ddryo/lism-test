@@ -33,18 +33,20 @@
 		height: 100%;
 	}
 	.b--section__header{
-		--ga: header;
+		--g-area: header;
 		// grid-area: header;
 	}
 	.b--section__body{
 		// grid-area: body;
 		// align-self: center;
-		--as: center;
-		--ga: body;
+		--pt: var(--s--50);
+		--pb: var(--s--50);
+		--a-self: center;
+		--g-area: body;
 		height: auto; // 100% にしない
 	}
 	.b--section__footer{
-		--ga: footer;
+		--g-area: footer;
 		// grid-area: footer;
 	}
 
@@ -60,11 +62,6 @@
 		position: relative;
 		z-index: 1;
 	}
-
-	// &:not(.has--padding){
-	// 	--ls--padding: var(--ls--space--50) 0;
-	// 	padding: var(--ls--padding);
-	// }
 
 	// data-height
 	// &[data-height="auto"] {

@@ -1,36 +1,24 @@
 :root {
 
-	// スペース変数
-	// --ls--ratio--space: 1.5;
-	// --ls--space--4S: calc(var(--ls--space--3S) / var(--ls--ratio--space));
-	// --ls--space--3S: calc(var(--ls--space--2S) / var(--ls--ratio--space));
-	// --ls--space--2S: calc(var(--ls--space--40) / var(--ls--ratio--space));
-	// --ls--space--40: calc(var(--ls--space--50) / var(--ls--ratio--space));
-	// --ls--space--50: 2rem;
-	// --ls--space--60: calc(var(--ls--space--50) * var(--ls--ratio--space));
-	// --ls--space--70: calc(var(--ls--space--60) * var(--ls--ratio--space));
-	// --ls--space--80: calc(var(--ls--space--70) * var(--ls--ratio--space));
-	// --ls--space--90: calc(var(--ls--space--80) * var(--ls--ratio--space));
-
 	// フィボナッチ数列 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89,
 	// 0 .25rem, .5rem, .75rem, 1.25rem, M:(8):2rem, 3.25rem, 5.25rem, 8.5rem
-	--ls--space--0: 0rem;
-	--ls--space--10: .25rem;
-	--ls--space--20: .5rem;
-	--ls--space--30: .75rem;
-	--ls--space--40: 1.25rem; // S
-	--ls--space--50: 2rem; // M
-	--ls--space--60: 3.25rem; // L
-	--ls--space--70: 5.25rem;
-	--ls--space--80: 8.5rem;
-	--ls--space--90: 13.75rem;
-	--ls--space--100: 22.25rem;
+	--s--0: 0rem;
+	--s--10: .25rem;
+	--s--20: .5rem;
+	--s--30: .75rem;
+	--s--40: 1.25rem; // S
+	--s--50: 2rem; // M
+	--s--60: 3.25rem; // L
+	--s--70: 5.25rem;
+	--s--80: 8.5rem;
+	--s--90: 13.75rem;
+	--s--100: 22.25rem;
 
 	// is--flow, is-layout-[flow|constrained] > * + * の blockGap 管理用変数
-	--ls--flowGap: var(--ls--space--50);
-	--ls--flowGap--heading: var(--ls--space--60);
+	--ls--flowGap: var(--s--50);
+	--ls--flowGap--heading: var(--s--60);
 
 	// コンテンツの左右の余白
-	--ls--space--side: clamp(1.5rem, 4vw, 2rem); // var(--space-50) とかを使うべきか？
+	--ls--gutter: clamp(1.5rem, 4vw, 2rem); // var(--space-50) とかを使うべきか？
 }
 

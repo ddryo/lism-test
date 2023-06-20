@@ -1,18 +1,14 @@
-import {
-	filterEmptyFromObj,
-	getGapStyles,
-	getFlowGapStyles,
-	getPaddingStyles,
-	getMarginStyles,
-	getWidthStyles,
-	getHeightStyles,
-	// getFlexClasses,
-} from './index.js';
-// import maybeGetSpaceVar from "./maybeGetSpaceVar.js";
-import { isColorPresetValue } from './maybeGetColorVar.js';
-import { isRadiusPresetValue } from './maybeGetRadiusVar.js';
-import { isShadowPresetValue } from './maybeGetShadowVar.js';
-import { isFzPresetValue } from './maybeGetFzVar.js';
+import { filterEmptyObj, isPresetValue } from '../index.js';
+import { getPaddingProps, getMarginProps } from './getSpacingProps';
+import { getGapStyles, getFlowGapStyles } from './getGapStyles';
+import { getWidthCSS, getHeightCSS } from './getSizeCSS';
+
+// import { default as getFlexClasses } from './getFlexClasses';
+import { getGridAreaStyles } from './getGridAreaStyles';
+
+// import getMaybeSpaceVar from "./getMaybeSpaceVar.js";
+// import { isShadowPresetValue } from './getMaybeShadowVar.js';
+// import { isFzPresetValue } from './getMaybeFzVar.js';
 
 /**
  * props から styleに変換する要素 と その他 に分離する
@@ -23,6 +19,9 @@ import { isFzPresetValue } from './maybeGetFzVar.js';
  */
 
 // styleを生成するための共通処理
+// 一括していpropは、 "prop", "props" で分けて指定する。 padding:{X:20,Y:20} paddingQs:{sm:10,md:20} みたいな
+// それ以外は、"prop" にオブジェクトを渡すとクエリ指定できる。 w:{_:'100%',sm:'50%'} みたいな
+// or, "propQs" として統一する？ wQs, gapQs, paddingQs, marginQs...
 export default function getCommonProps(props) {
 	const {
 		padding,
@@ -35,9 +34,9 @@ export default function getCommonProps(props) {
 		fz,
 		lh,
 		width,
-		widths,
+		// widths,
 		height,
-		heights,
+		// heights,
 		radius, //bdrs,
 		border,
 		shadow, // bxsh
@@ -66,14 +65,8 @@ export default function getCommonProps(props) {
 	const classNames = [];
 	let styles = {
 		...style,
-		...filterEmptyFromObj({
+		...filterEmptyObj({
 			border,
-			// boxShadow: shadow,
-			// borderRadius: bdrs,
-			// color: maybeGetColorVar(color),
-			// backgroundColor: maybeGetColorVar(bgc),
-			// height,
-			// width,
 		}),
 	};
 
@@ -120,27 +113,35 @@ export default function getCommonProps(props) {
 		styles = { ...styles, ...itemProps.styles };
 	}
 
-	if (undefined !== width || undefined !== widths) {
-		// classNames.push(`has--width`);
-		styles = { ...styles, ...getWidthStyles(width, widths) };
+	if (undefined !== width) {
+		classNames.push(`has--w`);
+		styles = { ...styles, ...getWidthCSS(width) };
 	}
-	if (undefined !== height || undefined !== heights) {
-		// classNames.push(`has--height`);
-		styles = { ...styles, ...getHeightStyles(height, heights) };
+	if (undefined !== height) {
+		classNames.push(`has--h`);
+		styles = { ...styles, ...getHeightCSS(height) };
 	}
 
 	if (undefined !== mT) {
 		classNames.push(`u--mT:${mT}`);
 	}
+
 	if (undefined !== padding || undefined !== paddings) {
-		styles = { ...styles, ...getPaddingStyles(padding, paddings) };
+		const paddingProps = getPaddingProps(padding, paddings);
+
+		styles = { ...styles, ...paddingProps.styles };
+		classNames.push(...paddingProps.classNames);
 	}
+
 	if (undefined !== margin || undefined !== margins) {
-		styles = { ...styles, ...getMarginStyles(margin, margins) };
+		const marginProps = getMarginProps(margin, margins);
+
+		styles = { ...styles, ...marginProps.styles };
+		classNames.push(...marginProps.classNames);
 	}
 
 	if (undefined !== color) {
-		if (isColorPresetValue(color)) {
+		if (isPresetValue('color', color)) {
 			classNames.push(`u--c:${color}`);
 		} else {
 			styles.color = color;
@@ -148,7 +149,7 @@ export default function getCommonProps(props) {
 	}
 
 	if (undefined !== bgc) {
-		if (isColorPresetValue(bgc)) {
+		if (isPresetValue('color', bgc)) {
 			classNames.push(`u--bgc:${bgc}`);
 		} else {
 			styles.backgroundColor = bgc;
@@ -156,7 +157,7 @@ export default function getCommonProps(props) {
 	}
 
 	if (undefined !== radius) {
-		if (isRadiusPresetValue(radius)) {
+		if (isPresetValue('radius', radius)) {
 			classNames.push(`u--bdrs:${radius}`);
 		} else {
 			styles.borderRadius = radius;
@@ -164,7 +165,7 @@ export default function getCommonProps(props) {
 	}
 
 	if (undefined !== shadow) {
-		if (isShadowPresetValue(shadow)) {
+		if (isPresetValue('shadow', shadow)) {
 			classNames.push(`u--bxsh:${shadow}`);
 		} else {
 			styles.boxShadow = shadow;
@@ -172,7 +173,7 @@ export default function getCommonProps(props) {
 	}
 
 	if (undefined !== fz) {
-		if (isFzPresetValue(fz)) {
+		if (isPresetValue('fz', fz)) {
 			classNames.push(`u--fz:${fz}`);
 		} else {
 			styles.fontSize = fz;
@@ -234,22 +235,34 @@ function getFlexGlidProps(props, isFlex, isGrid) {
 	return { styles, classNames, others };
 }
 
+// grid: { area, row, col } ?
+// gArea
 function getItemProps(props) {
-	const { fxb, fxg, fxsh, fx, ga, gr, gc, as, js, ...others } = props;
+	const { fxb, fxg, fxsh, fx, gridArea, gridAreas, alignSelf, justifySelf, ...others } = props;
+	// const classNames = [];
 	// let styles = {};
 
 	// const gridAreaStyles = getGridAreaStyles();
-	const styles = filterEmptyFromObj({
-		'--ga': ga || null,
-		'--gr': gr || null,
-		'--gc': gc || null,
-		'--as': as || null,
-		'--js': js || null,
+	let styles = filterEmptyObj({
+		// '--ga': gridArea || null,
+		// '--gr': gr || null,
+		// '--gc': gc || null,
+		'--a-self': alignSelf || null,
+		'--j-self': justifySelf || null,
 		'--fxb': fxb || null,
 		'--fxg': fxg || null,
 		'--fxsh': fxsh || null,
-		'--fx': fx || null,
+		'--fx': fx || null, //
 	});
+
+	// gaがあればdata属性にもそれをセットする
+	if (undefined !== gridArea || undefined !== gridAreas) {
+		styles = { ...styles, ...getGridAreaStyles(gridArea, gridAreas) };
+		// others['data-grid-area'] = ga;
+	}
+
+	// flex系をクエリ対応するなら、fx=文字列 or {fxg, fxsh, fxb} 形式にする？
+	// styles = { ...styles, ...getFlexStyles({fx, fxb,fxg,fxsh}) };
 
 	return { styles, others };
 }

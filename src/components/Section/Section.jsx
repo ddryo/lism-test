@@ -11,7 +11,7 @@ import {
 	// MediaLayer,
 	// FilterLayer,
 } from '../index';
-import { filterEmptyFromObj } from '../../lib';
+import { filterEmptyObj } from '../../lib';
 import { getMediaLayer, getFilterLayer } from '../helper';
 
 // align: full, wide, ''
@@ -37,7 +37,7 @@ export default function Section({
 
 	const blockProps = {
 		className: classnames('b--section', className),
-		style: filterEmptyFromObj({
+		style: filterEmptyObj({
 			...style,
 			'--ls--mih': mih || null,
 		}),
@@ -66,10 +66,10 @@ export const SectionBody = ({ children, className, ...props }) => {
 		<Box
 			isFlow
 			isItem
-			padding={{ Y: 50 }}
+			// padding={{ Y: 50 }}
 			isConstrained
 			hasSidePadding
-			className={classnames('b--section__body', className)}
+			className={classnames('b--section__body', className, 'has--pt has--pb')}
 			{...props}
 		>
 			{children}

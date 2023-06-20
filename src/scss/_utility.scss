@@ -200,37 +200,37 @@
 // もしくは、mBs, m-bs とか...？
 // --------------------
 .u--mT\:0 {
-	margin-block-start: var(--ls--space--0) !important;
+	margin-block-start: var(--s--0) !important;
 }
 .u--mT\:10 {
-	margin-block-start: var(--ls--space--10) !important;
+	margin-block-start: var(--s--10) !important;
 }
 .u--mT\:20 {
-	margin-block-start: var(--ls--space--20) !important;
+	margin-block-start: var(--s--20) !important;
 }
 .u--mT\:30 {
-	margin-block-start: var(--ls--space--30) !important;
+	margin-block-start: var(--s--30) !important;
 }
 .u--mT\:40 {
-	margin-block-start: var(--ls--space--40) !important;
+	margin-block-start: var(--s--40) !important;
 }
 .u--mT\:50 {
-	margin-block-start: var(--ls--space--50) !important;
+	margin-block-start: var(--s--50) !important;
 }
 .u--mT\:60 {
-	margin-block-start: var(--ls--space--60) !important;
+	margin-block-start: var(--s--60) !important;
 }
 .u--mT\:70 {
-	margin-block-start: var(--ls--space--70) !important;
+	margin-block-start: var(--s--70) !important;
 }
 .u--mT\:80 {
-	margin-block-start: var(--ls--space--80) !important;
+	margin-block-start: var(--s--80) !important;
 }
 .u--mT\:90 {
-	margin-block-start: var(--ls--space--90) !important;
+	margin-block-start: var(--s--90) !important;
 }
 .u--mT\:100 {
-	margin-block-start: var(--ls--space--100) !important;
+	margin-block-start: var(--s--100) !important;
 }
 
 
@@ -241,109 +241,95 @@
 // [data-lism-pX:10]とかでもいいかも?
 // .u--pX\:s10, みたいに 数値がプリセット値であることは s をつけて明示的に指定する？
 // .u--pY\:0 {
-// 	padding-top: var(--ls--space--0) !important;
-// 	padding-bottom: var(--ls--space--0) !important;
+// 	padding-top: var(--s--0) !important;
+// 	padding-bottom: var(--s--0) !important;
 // }
 // .u--pY\:10 {
-// 	padding-top: var(--ls--space--10) !important;
-// 	padding-bottom: var(--ls--space--10) !important;
+// 	padding-top: var(--s--10) !important;
+// 	padding-bottom: var(--s--10) !important;
 // }
 // .u--pY\:20 {
-// 	padding-top: var(--ls--space--20) !important;
-// 	padding-bottom: var(--ls--space--20) !important;
+// 	padding-top: var(--s--20) !important;
+// 	padding-bottom: var(--s--20) !important;
 // }
 // .u--pY\:30 {
-// 	padding-top: var(--ls--space--30) !important;
-// 	padding-bottom: var(--ls--space--30) !important;
+// 	padding-top: var(--s--30) !important;
+// 	padding-bottom: var(--s--30) !important;
 // }
 // .u--pY\:40 {
-// 	padding-top: var(--ls--space--40) !important;
-// 	padding-bottom: var(--ls--space--40) !important;
+// 	padding-top: var(--s--40) !important;
+// 	padding-bottom: var(--s--40) !important;
 // }
 // .u--pY\:50 {
-// 	padding-top: var(--ls--space--50) !important;
-// 	padding-bottom: var(--ls--space--50) !important;
+// 	padding-top: var(--s--50) !important;
+// 	padding-bottom: var(--s--50) !important;
 // }
 // .u--pY\:60 {
-// 	padding-top: var(--ls--space--60) !important;
-// 	padding-bottom: var(--ls--space--60) !important;
+// 	padding-top: var(--s--60) !important;
+// 	padding-bottom: var(--s--60) !important;
 // }
 // .u--pY\:70 {
-// 	padding-top: var(--ls--space--70) !important;
-// 	padding-bottom: var(--ls--space--70) !important;
+// 	padding-top: var(--s--70) !important;
+// 	padding-bottom: var(--s--70) !important;
 // }
 // .u--pY\:80 {
-// 	padding-top: var(--ls--space--80) !important;
-// 	padding-bottom: var(--ls--space--80) !important;
+// 	padding-top: var(--s--80) !important;
+// 	padding-bottom: var(--s--80) !important;
 // }
 // .u--pY\:90 {
-// 	padding-top: var(--ls--space--90) !important;
-// 	padding-bottom: var(--ls--space--90) !important;
+// 	padding-top: var(--s--90) !important;
+// 	padding-bottom: var(--s--90) !important;
 // }
 // .u--pY\:100 {
-// 	padding-top: var(--ls--space--100) !important;
-// 	padding-bottom: var(--ls--space--100) !important;
+// 	padding-top: var(--s--100) !important;
+// 	padding-bottom: var(--s--100) !important;
 // }
 
 // .u--pX\:0 {
-// 	padding-left: var(--ls--space--0) !important;
-// 	padding-right: var(--ls--space--0) !important;
+// 	padding-left: var(--s--0) !important;
+// 	padding-right: var(--s--0) !important;
 // }
 // .u--pX\:10 {
-// 	padding-left: var(--ls--space--10) !important;
-// 	padding-right: var(--ls--space--10) !important;
+// 	padding-left: var(--s--10) !important;
+// 	padding-right: var(--s--10) !important;
 // }
 // .u--pX\:20 {
-// 	padding-left: var(--ls--space--20) !important;
-// 	padding-right: var(--ls--space--20) !important;
+// 	padding-left: var(--s--20) !important;
+// 	padding-right: var(--s--20) !important;
 // }
 // .u--pX\:30 {
-// 	padding-left: var(--ls--space--30) !important;
-// 	padding-right: var(--ls--space--30) !important;
+// 	padding-left: var(--s--30) !important;
+// 	padding-right: var(--s--30) !important;
 // }
 // .u--pX\:40 {
-// 	padding-left: var(--ls--space--40) !important;
-// 	padding-right: var(--ls--space--40) !important;
+// 	padding-left: var(--s--40) !important;
+// 	padding-right: var(--s--40) !important;
 // }
 // .u--pX\:50 {
-// 	padding-left: var(--ls--space--50) !important;
-// 	padding-right: var(--ls--space--50) !important;
+// 	padding-left: var(--s--50) !important;
+// 	padding-right: var(--s--50) !important;
 // }
 // .u--pX\:60 {
-// 	padding-left: var(--ls--space--60) !important;
-// 	padding-right: var(--ls--space--60) !important;
+// 	padding-left: var(--s--60) !important;
+// 	padding-right: var(--s--60) !important;
 // }
 // .u--pX\:70 {
-// 	padding-left: var(--ls--space--70) !important;
-// 	padding-right: var(--ls--space--70) !important;
+// 	padding-left: var(--s--70) !important;
+// 	padding-right: var(--s--70) !important;
 // }
 // .u--pX\:80 {
-// 	padding-left: var(--ls--space--80) !important;
-// 	padding-right: var(--ls--space--80) !important;
+// 	padding-left: var(--s--80) !important;
+// 	padding-right: var(--s--80) !important;
 // }
 // .u--pX\:90 {
-// 	padding-left: var(--ls--space--90) !important;
-// 	padding-right: var(--ls--space--90) !important;
+// 	padding-left: var(--s--90) !important;
+// 	padding-right: var(--s--90) !important;
 // }
 // .u--pX\:100 {
-// 	padding-left: var(--ls--space--100) !important;
-// 	padding-right: var(--ls--space--100) !important;
+// 	padding-left: var(--s--100) !important;
+// 	padding-right: var(--s--100) !important;
 // }
 
-
-
-// --ls系style ?
-// [style*="--ls--padding:"] {
-// 	padding: var(--ls--padding);
-// }
-
-// [style*="--ls--margin:"] {
-// 	margin: var(--ls--margin);
-// }
-
-// [style*="--ls--border:"] {
-// 	border: var(--ls--border);
-// }
 
 
 // --------------------

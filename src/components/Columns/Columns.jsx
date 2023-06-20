@@ -1,5 +1,5 @@
 import React from 'react';
-import { filterEmptyFromObj, getCommonProps } from '../../lib';
+import { filterEmptyObj, getCommonProps } from '../../lib';
 
 import classnames from 'classnames';
 
@@ -10,7 +10,7 @@ function getColumnsStyles(cols) {
 	if (baseCols <= 8) {
 		baseCols = null;
 	}
-	return filterEmptyFromObj({
+	return filterEmptyObj({
 		'--cols': baseCols || null,
 		'--cols--Qsm': cols.sm || null,
 		'--cols--Qxs': cols.xs || null,

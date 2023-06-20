@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 // import { Box } from '../index';
-import { getCommonProps, filterEmptyFromObj } from '../../lib';
+import { getCommonProps, filterEmptyObj } from '../../lib';
 // import "./style.scss";
 
 function SideFix({ children, className, fixWidth, fluidMiw, fix = 'last', ...props }) {
@@ -11,7 +11,7 @@ function SideFix({ children, className, fixWidth, fluidMiw, fix = 'last', ...pro
 		className: classnames(`l--sideFix`, className, classNames),
 		style: {
 			...styles,
-			...filterEmptyFromObj({
+			...filterEmptyObj({
 				'--fluid--miw': fluidMiw,
 				'--fix--w': fixWidth,
 			}),

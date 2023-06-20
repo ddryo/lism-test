@@ -19,7 +19,7 @@
 	scrollbar-width: var(--scrollbar--height);
 
 	&:not(.no-bar) {
-		padding-bottom: var(--ls--space--4S); // JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい。
+		padding-bottom: var(--s--4S); // JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい。
 	}
 
 	&.no-bar {

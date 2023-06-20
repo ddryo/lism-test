@@ -8,8 +8,8 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: var(--ls--space--40);
-			gap: var(--ls--space--30);
+			padding: var(--s--40);
+			gap: var(--s--30);
 			background: var(--ls--color--gray, #f7f7f7);
 			cursor: pointer;
 		
@@ -35,7 +35,7 @@
 	grid-template-rows: 1fr;
 	transition-property: padding, opacity, grid-template-rows;
 	transition-duration: var(--duration);
-	padding: var(--ls--space--40);
+	padding: var(--s--40);
 	border: solid 2px var(--ls--color--gray);
 	border-top: none;
 

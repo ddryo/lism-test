@@ -125,7 +125,7 @@
 // b-- にして内部で .l--mainSub 使う？
 // --------------------
 .l--mediaContent {
-	--gap: var(--ls--space--50);
+	--gap: var(--s--50);
 	--ls--content--minW: 24em;
 	--ls--media--width: 50%;
 	display: flex;

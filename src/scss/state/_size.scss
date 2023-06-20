@@ -1,0 +1,51 @@
+
+.has--w{
+	--w: auto;
+	--w--Qsm: var(--w);
+	--w--Qxs: var(--w--Qsm);
+
+	width: var(--w) !important;
+	@container (max-width: 720px) {
+		width: var(--w--Qsm) !important;
+	}
+	@container (max-width: 440px) {
+		width: var(--w--Qxs) !important;
+	}
+}
+
+.has--h{
+	--h: auto;
+	--h--Qsm: var(--h);
+	--h--Qxs: var(--h--Qsm);
+
+	height: var(--h) !important;
+	@container (max-width: 720px) {
+		height: var(--h--Qsm) !important;
+	}
+	@container (max-width: 440px) {
+		height: var(--h--Qxs) !important;
+	}
+}
+// [style*="--h:"]{
+// 	height: var(--h) !important;
+// }
+// [style*="---w:"]{
+// 	width: var(---w) !important;
+// }
+// @container (max-width: 720px) {
+// 	[style*="---w--Qsm:"]{
+// 		width: var(---w--Qsm) !important;
+// 	}
+// 	[style*="--h--Qsm:"]{
+// 		height: var(--h--Qsm) !important;
+// 	}
+// }
+// @container (max-width: 440px) {
+// 	[style*="---w--Qxs:"]{
+// 		width: var(---w--Qxs) !important;
+// 	}
+// 	[style*="--h--Qxs:"]{
+// 		height: var(--h--Qxs) !important;
+// 	}
+// }
+

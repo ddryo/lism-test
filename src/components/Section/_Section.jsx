@@ -10,7 +10,7 @@ import {
 	FilterLayer,
 } from '../index';
 import {
-	filterEmptyFromObj,
+	filterEmptyObj,
 	// isEmptyObj,
 	// getPaddingStyles,
 } from '../../lib';
@@ -38,7 +38,7 @@ function Section({
 
 	const blockProps = {
 		className: classnames('b--section', className),
-		style: filterEmptyFromObj({
+		style: filterEmptyObj({
 			...style,
 			'--ls--mih': mih || null,
 		}),

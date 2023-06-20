@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 // import { DynamicCSS } from '../index';
-import { getCommonProps, filterEmptyFromObj } from '../../lib';
+import { getCommonProps, filterEmptyObj } from '../../lib';
 // import "./style.scss";
 
 // 子コンポーネントに side, main クラスを付与する?
@@ -73,7 +73,7 @@ function SideFixGrid({
 		className: classnames(`l--sideFix`, className, classNames),
 		style: {
 			...styles,
-			...filterEmptyFromObj({
+			...filterEmptyObj({
 				'--fix--w': fixWidth,
 			}),
 		},

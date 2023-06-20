@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { getCommonProps, filterEmptyFromObj } from '../../lib';
+import { getCommonProps, filterEmptyObj } from '../../lib';
 
 // 特定のクラスなどがない単純なdivなどを作るときに使う
 export default function PlaneBox({ children, tag, className, ...props }) {

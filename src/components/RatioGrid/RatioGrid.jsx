@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { filterEmptyFromObj, getCommonProps } from '../../lib';
+import { filterEmptyObj, getCommonProps } from '../../lib';
 // import { DynamicCSS } from '../index';
 
 // 1:2:3 → 1fr 2fr 3fr に変換
@@ -15,7 +15,7 @@ function ratioToFr(ratio) {
 }
 
 function getRatioStyles(ratios) {
-	return filterEmptyFromObj({
+	return filterEmptyObj({
 		'--gtc': ratioToFr(ratios._) || null,
 		'--gtc--Qsm': ratioToFr(ratios.sm) || null,
 		'--gtc--Qxs': ratioToFr(ratios.xs) || null,

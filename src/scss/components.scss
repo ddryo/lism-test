@@ -7,7 +7,7 @@
 @forward '../components/Columns/style.scss';
 @forward '../components/AreaGrid/style.scss';
 @forward '../components/RatioGrid/style.scss';
-@forward '../components/LiquidGrid/style.scss';
+@forward '../components/TileGrid/style.scss';
 @forward '../components/SideFix/style.scss';
 @forward '../components/Layer/style.scss';
 @forward '../components/Frame/style.scss';
@@ -15,6 +15,8 @@
 @forward '../components/Divider/style.scss';
 @forward '../components/Tab/style.scss';
 @forward '../components/Icon/style.scss';
+@forward '../components/Delimiter/style.scss';
+// @forward '../components/PinGallery/style.scss';
 
 // block module?
 @forward '../components/LinkBox/style.scss';
@@ -26,35 +28,6 @@
 
 // _
 // @forward '../components/FlexColumns/style.scss';
-
-.e--delimiter {
-
-	&[type="/"] {
-
-		&::before {
-			content: "/";
-		}
-	}
-
-	&[type="|"] {
-
-		&::before {
-			content: "|";
-		}
-	}
-
-	.is--flex > & {
-		--ls--miw: 1em;
-		text-align: center;
-
-		// .e--delimiter 自身にネガティブマージンつけると辺にスクロール発生しやすくなるのでbeforeにつける
-		&::before {
-			margin-right: calc(0px - var(--colmg) / 2);
-			margin-left: calc(0px - var(--colmg) / 2);
-		}
-	}
-}
-
 
 
 // test
@@ -101,22 +74,6 @@
 		}
 	 }
  }
-
-
- .container-breakinside {
-	column-count: 3; /* こいつが肝 */
-	// height: auto !important; /* 検証として高さは可変（auto）に設定しているだけです。実際は不要です。 */
-}
-.container-breakinside > div {
-	// height: auto !important; /* 検証として高さは可変（auto）に設定しているだけです。実際は不要です。 */
-	// break-inside: avoid; /* こいつが肝 */
-	break-inside: avoid; // auto だとコンテンツが途中で改行されてしまう。
-	margin: 0 0 10px;
-	background-color: #333;
-	color: #FFF;
-	padding: 0.5em 1em;
-}
-
 
 
 // --------------------

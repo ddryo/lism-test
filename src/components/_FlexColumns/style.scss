@@ -3,12 +3,12 @@
 // flexカラム
 // --------------------
 
-// memo: [style*="--item--fxb--Qsm"] などをつかってクエリ上書きしていないので、ネスト時にCSS変数が意図せず親から継承されてしまう可能性がある。
+// memo: [style*="--item--fxb_Qsm"] などをつかってクエリ上書きしていないので、ネスト時にCSS変数が意図せず親から継承されてしまう可能性がある。
 // data-columnsがなくカスタムで値を指定する場合、各クエリ用の変数がセットされるように注意すべき...？
 .l--flexColumns {
 	--ls--fxb: 50%;
-	--ls--fxb--Qsm: var(--ls--fxb);
-	--ls--fxb--Qxs: var(--ls--fxb--Qsm);
+	--ls--fxb_Qsm: var(--ls--fxb);
+	--ls--fxb_Qxs: var(--ls--fxb_Qsm);
 
 	// container-type: inline-size;
 	display: flex;
@@ -17,42 +17,42 @@
 	// 16.6, 33.3 などはちょっと小さくても grow があれば問題ないので端数切り下げで指定。
 	// &[data-columns="8"] {
 	// 	--item--fxb: 12.5%;
-	// 	--item--fxb--Qsm: 25%;
-	// 	--item--fxb--Qxs: 50%;
+	// 	--item--fxb_Qsm: 25%;
+	// 	--item--fxb_Qxs: 50%;
 	// }
 
 	// &[data-columns="7"] {
 	// 	--item--fxb: 14%;
-	// 	--item--fxb--Qsm: 25%;
-	// 	--item--fxb--Qxs: 50%;
+	// 	--item--fxb_Qsm: 25%;
+	// 	--item--fxb_Qxs: 50%;
 	// }
 
 	// &[data-columns="6"] {
 	// 	--item--fxb: 16%;
-	// 	--item--fxb--Qsm: 33%;
-	// 	--item--fxb--Qxs: 50%;
+	// 	--item--fxb_Qsm: 33%;
+	// 	--item--fxb_Qxs: 50%;
 	// }
 
 	// &[data-columns="5"] {
 	// 	--item--fxb: 20%;
-	// 	--item--fxb--Qsm: 33%;
-	// 	--item--fxb--Qxs: 100%;
+	// 	--item--fxb_Qsm: 33%;
+	// 	--item--fxb_Qxs: 100%;
 	// }
 
 	// &[data-columns="4"] {
 	// 	--item--fxb: 25%;
-	// 	--item--fxb--Qsm: 50%;
-	// 	--item--fxb--Qxs: 100%;
+	// 	--item--fxb_Qsm: 50%;
+	// 	--item--fxb_Qxs: 100%;
 	// }
 
 	// &[data-columns="3"] {
 	// 	--item--fxb: 33%;
-	// 	--item--fxb--Qxs: 100%;
+	// 	--item--fxb_Qxs: 100%;
 	// }
 
 	// &[data-columns="2"] {
 	// 	--item--fxb: 50%;
-	// 	--item--fxb--Qxs: 100%;
+	// 	--item--fxb_Qxs: 100%;
 	// }
 
 	// &[data-columns="1"] {
@@ -61,14 +61,14 @@
 
 
 	// @container (max-width: 720px) {
-	// 	&[style*="--ls--fxb--Qsm:"]{
-	// 		--ls--fxb: var(--ls--fxb--Qsm) !important;
+	// 	&[style*="--ls--fxb_Qsm:"]{
+	// 		--ls--fxb: var(--ls--fxb_Qsm) !important;
 	// 	}
 	// }
 
 	// @container (max-width: 440px) {
-	// 	&[style*="--ls--fxb--Qxs:"]{
-	// 		--ls--fxb: var(--ls--fxb--Qxs) !important;
+	// 	&[style*="--ls--fxb_Qxs:"]{
+	// 		--ls--fxb: var(--ls--fxb_Qxs) !important;
 	// 	}
 	// }
 
@@ -77,16 +77,16 @@
 
 	--item--fxb: calc(var(--ls--fxb) - var(--colmg));
 	@container (max-width: 720px) {
-		--item--fxb: calc(var(--ls--fxb--Qsm) - var(--colmg--Qsm));
+		--item--fxb: calc(var(--ls--fxb_Qsm) - var(--colmg_Qsm));
 	}
 	@container (max-width: 440px) {
-		--item--fxb: calc(var(--ls--fxb--Qxs) - var(--colmg--Qxs));
+		--item--fxb: calc(var(--ls--fxb_Qxs) - var(--colmg_Qxs));
 	}
 
 	> * {
 		flex-basis: var(--item--fxb);
 		flex-grow: 1; // gap分の余白が右端にできるのを防ぐ
-		overflow-wrap: anywhere;//予期せぬカラム落ちを防ぐ
+		// overflow-wrap: anywhere;//予期せぬカラム落ちを防ぐ
 	}
 
 }

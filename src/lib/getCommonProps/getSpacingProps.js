@@ -1,7 +1,4 @@
-import {
-	//filterEmptyObj,
-	getMaybeSpaceVar,
-} from '../index.js';
+import { isSpacePresetValue, getMaybeSpaceVar } from '../index.js';
 
 /* eslint eqeqeq: 0 */
 // ↑ 0 の時の判定を考慮して 「null != hoge」を使用している。
@@ -35,22 +32,24 @@ function getAnalyzedTrblData(data) {
 		data[key] = getMaybeSpaceVar(data[key]);
 	});
 
+	// preset値 0~100 は、dataにセットして削除
+
 	// X, Y 両方ある場合
-	if (null != data.X && null != data.Y) {
-		return { all: `${data.Y} ${data.X}` };
-	}
+	// if (null != data.X && null != data.Y) {
+	// 	return { all: `${data.Y} ${data.X}` };
+	// }
 
-	// X がある場合 top, bottom に分解
-	if (null != data.X) {
-		data.left = data.X;
-		data.right = data.X;
-	}
+	// // X がある場合 top, bottom に分解
+	// if (null != data.X) {
+	// 	data.left = data.X;
+	// 	data.right = data.X;
+	// }
 
-	// Y がある場合 top, bottom に分解
-	if (null != data.Y) {
-		data.top = data.Y;
-		data.bottom = data.Y;
-	}
+	// // Y がある場合 top, bottom に分解
+	// if (null != data.Y) {
+	// 	data.top = data.Y;
+	// 	data.bottom = data.Y;
+	// }
 
 	// 最後の結合処理をスキップする場合はここでそのまま返す
 	if (false === data.join) {
@@ -76,38 +75,121 @@ function getAnalyzedTrblData(data) {
 function getTheQueryData(n, data, Q = '') {
 	if (null == data) return {};
 
-	const Qvar = Q.replace('@', '--Q');
+	// const dataProps = [];
+	const classNames = [];
+	const styles = {};
+
+	// プリセット値はユーティリティクラス化 (paddingのみ)
+	if (n === 'p') {
+		// 文字列指定のときは スペースで分解しておく
+		// if (typeof data === 'string') {
+		// 	const strs = data.trim().split(' ');
+		// 	if (strs.length === 2) {
+		// 		data = {
+		// 			Y: strs[0],
+		// 			X: strs[1],
+		// 		};
+		// 	} else if (strs.length === 3) {
+		// 		data = {
+		// 			top: strs[0],
+		// 			X: strs[1],
+		// 			bottom: strs[2],
+		// 		};
+		// 	} else if (strs.length === 4) {
+		// 		data = {
+		// 			top: strs[0],
+		// 			right: strs[1],
+		// 			bottom: strs[2],
+		// 			left: strs[3],
+		// 		};
+		// 	}
+		// }
+
+		// 使用頻度少なそうなものだけ
+		const presetList = ['0', '10', '20', '30', '40', '50'];
+
+		if (typeof data === 'object') {
+			// X,Y成分のみチェック
+			if (isSpacePresetValue(data.X, presetList)) {
+				classNames.push(`-${n}X${Q}:${data.X}`);
+				delete data.X;
+			}
+			if (isSpacePresetValue(data.Y, presetList)) {
+				classNames.push(`-${n}Y${Q}:${data.Y}`);
+				delete data.Y;
+			}
+		} else if (isSpacePresetValue(data, presetList)) {
+			classNames.push(`-${n}${Q}:${data}`);
+			// data が オブジェクトではなくそのままpreset値ならこの時点で解析終了
+			return {
+				classNames,
+			};
+		}
+	} else if (n === 'm') {
+		// marginはX,Yを分解しておく？
+
+		// X がある場合 top, bottom に分解
+		if (null != data.X) {
+			data.left = data.X;
+			data.right = data.X;
+			delete data.X;
+		}
+
+		// Y がある場合 top, bottom に分解
+		if (null != data.Y) {
+			data.top = data.Y;
+			data.bottom = data.Y;
+
+			delete data.Y;
+		}
+
+		if ('' === Q && typeof data === 'object') {
+			// "auto"だけユーティリティがある
+			['top', 'right', 'bottom', 'left'].forEach((direction) => {
+				if (data[direction] === 'auto') {
+					classNames.push(`-m${direction[0]}:auto`);
+					delete data[direction];
+				}
+			});
+		}
+	}
 
 	// {all, top, right, bottom, left} の成分に整理して返す
 	const space = getAnalyzedTrblData(data);
 
-	// それ以外は個別プロパティにセット
-	const classNames = [];
-	const styles = {};
-
+	const Qvar = Q.replace('@', '_Q');
 	if (space.all) {
-		classNames.push(`has--${n}${Q}`);
+		classNames.push(`-${n}${Q}:`);
 		styles[`--${n}${Qvar}`] = space.all;
 	} else {
+		if (space.X) {
+			classNames.push(`-${n}X${Q}:`);
+			styles[`--${n}X${Qvar}`] = space.X;
+		}
+		if (space.Y) {
+			classNames.push(`-${n}Y${Q}:`);
+			styles[`--${n}Y${Qvar}`] = space.Y;
+		}
 		if (space.top) {
-			classNames.push(`has--${n}t${Q}`);
+			classNames.push(`-${n}t${Q}:`);
 			styles[`--${n}t${Qvar}`] = space.top;
 		}
 		if (space.bottom) {
-			classNames.push(`has--${n}b${Q}`);
+			classNames.push(`-${n}b${Q}:`);
 			styles[`--${n}b${Qvar}`] = space.bottom;
 		}
 		if (space.right) {
-			classNames.push(`has--${n}r${Q}`);
+			classNames.push(`-${n}r${Q}:`);
 			styles[`--${n}r${Qvar}`] = space.right;
 		}
 		if (space.left) {
-			classNames.push(`has--${n}t${Q}`);
+			classNames.push(`-${n}l${Q}:`);
 			styles[`--${n}l${Qvar}`] = space.left;
 		}
 	}
 	return {
 		classNames,
+		// dataProps,
 		styles,
 	};
 }
@@ -134,6 +216,11 @@ export function getPaddingProps(padding, paddings = {}) {
 			...(pDataQsm?.classNames || []),
 			...(pDataQxs?.classNames || []),
 		],
+		// dataProps: [
+		// 	...(pData?.dataProps || []),
+		// 	...(pDataQsm?.dataProps || []),
+		// 	...(pDataQxs?.dataProps || []),
+		// ],
 		styles: {
 			...(pData?.styles || {}),
 			...(pDataQsm?.styles || {}),

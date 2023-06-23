@@ -1,93 +1,121 @@
 
 // ulタグなど、デフォルトで一方向にpaddingがついているような要素でも使えるように、各方向で分離している
 
-// p:50, @s{X:30} みたいにクエリ条件下で各部位のみ指定された時を考えて、 has--p@s,,,とかが個別に必要。
-// [data-lism-padding] みたいにデータ属性でもいいか?
-// [data-lism-spacing="-p,-pt,-pr,-pb,-pl,-p@sm,-pt@xs"] とかでもいいか？
-.has--p {
+// p:50, @s{X:30} みたいにクエリ条件下で各部位のみ指定された時を考えて、 has--p@sm みたいなのが個別に必要。
+// クラス名で処理した方が絶対に軽いが、ソースがごちゃつきすぎるので一旦data属性。
+
+
+// [data-props~="-p"],
+[class*="-p:"] {
 	padding: var(--p) !important;
 }
-.has--pt {
+
+// [data-props*="-pX:"], 
+// [data-props~="-pX"],
+[class*="-pX:"]{
+	padding-left: var(--pX) !important;
+	padding-right: var(--pX) !important;
+}
+
+// [data-props*="-pY:"], 
+// [data-props~="-pY" ],
+[class*="-pY:"]{
+	padding-top: var(--pY) !important;
+	padding-bottom: var(--pY) !important;
+}
+[class*="-pt:"] {
 	padding-top: var(--pt) !important;
 }
-.has--pb {
+[class*="-pb:"] {
 	padding-bottom: var(--pb) !important;
 }
-.has--pl {
+[class*="-pl:"] {
 	padding-left: var(--pl) !important;
 }
-.has--pr {
+[class*="-pr:"] {
 	padding-right: var(--pr) !important;
 }
 
+// [data-padding="p@_, pt@sm "]
 @container (max-width: 720px) {
-	.has--p\@sm { padding: var(--p--Qsm) !important;}
-	.has--pt\@sm { padding-top: var(--pt--Qsm) !important;}
-	.has--pr\@sm { padding-right: var(--pr--Qsm) !important;}
-	.has--pb\@sm { padding-bottom: var(--pb--Qsm) !important;}
-	.has--pl\@sm { padding-left: var(--pl--Qsm) !important;}
+	[class*="-p@sm:"]{
+		padding: var(--p_Qsm) !important;
+	}
+
+	[class*="-pX@sm:"]{
+		padding-left: var(--pX_Qsm) !important;
+		padding-right: var(--pX_Qsm) !important;
+	}
+
+	[class*="-pY@sm:"]{
+		padding-top: var(--pY_Qsm) !important;
+		padding-bottom: var(--pY_Qsm) !important;
+	}
+
+	[class*="-pt@sm:"] { padding-top: var(--pt_Qsm) !important;}
+	[class*="-pr@sm:"] { padding-right: var(--pr_Qsm) !important;}
+	[class*="-pb@sm:"] { padding-bottom: var(--pb_Qsm) !important;}
+	[class*="-pl@sm:"] { padding-left: var(--pl_Qsm) !important;}
 }
 
 @container (max-width: 440px) {
-	.has--p\@xs { padding: var(--p--Qxs) !important;}
-	.has--pt\@xs { padding-top: var(--pt--Qxs) !important;}
-	.has--pr\@xs { padding-right: var(--pr--Qxs) !important;}
-	.has--pb\@xs { padding-bottom: var(--pb--Qxs) !important;}
-	.has--pl\@xs { padding-left: var(--pl--Qxs) !important;}
+	[class*="-p@xs:"]{
+		padding: var(--p_Qxs) !important;
+	}
+
+	[class*="-pX@xs:"]{
+		padding-left: var(--pX_Qxs) !important;
+		padding-right: var(--pX_Qxs) !important;
+	}
+
+	[class*="-pY@xs:"]{
+		padding-top: var(--pY_Qxs) !important;
+		padding-bottom: var(--pY_Qxs) !important;
+	}
+
+	[class*="-pt@xs:"] { padding-top: var(--pt_Qxs) !important;}
+	[class*="-pr@xs:"] { padding-right: var(--pr_Qxs) !important;}
+	[class*="-pb@xs:"] { padding-bottom: var(--pb_Qxs) !important;}
+	[class*="-pl@xs:"] { padding-left: var(--pl_Qxs) !important;}
+
 }
 
+// -p:, -pX:, -pY: にのみユーティリティクラスを用意。
+// (でかくて使用頻度がおそらく低いであろう 90,100 は 用意しない)
+@for $i from 0 through 6 {
+	.-p\:#{$i * 10} {
+		--p: var(--s--#{$i * 10});
+	}
+	.-pX\:#{$i * 10} {
+		--pX: var(--s--#{$i * 10});
+	}
+	.-pY\:#{$i * 10} {
+		--pY: var(--s--#{$i * 10});
+	}
 
+	.-p\@sm\:#{$i * 10} {
+		--p_Qsm: var(--s--#{$i * 10});
+	}
+	.-pX\@sm\:#{$i * 10} {
+		--pX_Qsm: var(--s--#{$i * 10});
+	}
+	.-pY\@sm\:#{$i * 10} {
+		--pY_Qsm: var(--s--#{$i * 10});
+	}
 
-// 以下の方式だと、セレクタ負荷が高すぎる。かつ、CSSファイルから --p 系の初期セットなどもできない。
-// [style*="--pt:"]{
-// 	padding-top: var(--pt) !important;
-// }
-// [style*="--pr:"]{
-// 	padding-right: var(--pr) !important;
-// }
-// [style*="--pb:"]{
-// 	padding-bottom: var(--pb) !important;
-// }
-// [style*="--pl:"]{
-// 	padding-left: var(--pl) !important;
-// }
-// [style*="--p:"]{
-// 	padding: var(--p) !important;
-// }
+	.-p\@xs\:#{$i * 10} {
+		--p_Qxs: var(--s--#{$i * 10});
+	}
+	.-pX\@xs\:#{$i * 10} {
+		--pX_Qxs: var(--s--#{$i * 10});
+	}
+	.-pY\@xs\:#{$i * 10} {
+		--pY_Qxs: var(--s--#{$i * 10});
+	}
+}
 
-// @container (max-width: 720px) {
-	
-// 	[style*="--pt--Qsm:"]{
-// 		padding-top: var(--pt--Qsm) !important;
-// 	}
-// 	[style*="--pr--Qsm:"]{
-// 		padding-right: var(--pr--Qsm) !important;
-// 	}
-// 	[style*="--pb--Qsm:"]{
-// 		padding-bottom: var(--pb--Qsm) !important;
-// 	}
-// 	[style*="--pl--Qsm:"]{
-// 		padding-left: var(--pl--Qsm) !important;
-// 	}
-// 	[style*="--p--Qsm:"]{
-// 		padding: var(--p--Qsm) !important;
-// 	}
-// }
-
-// @container (max-width: 440px) {
-// 	[style*="--pt--Qxs:"]{
-// 		padding-top: var(--pt--Qxs) !important;
-// 	}
-// 	[style*="--pr--Qxs:"]{
-// 		padding-right: var(--pr--Qxs) !important;
-// 	}
-// 	[style*="--pb--Qxs:"]{
-// 		padding-bottom: var(--pb--Qxs) !important;
-// 	}
-// 	[style*="--pl--Qxs:"]{
-// 		padding-left: var(--pl--Qxs) !important;
-// 	}
-// 	[style*="--p--Qxs:"]{
-// 		padding: var(--p--Qxs) !important;
+// @for $i from 0 through 10 {
+// 	[data-props~="-p:#{10*$i}"] {
+// 		--p:var(--s--#{10*$i});
 // 	}
 // }

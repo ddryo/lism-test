@@ -1,59 +1,43 @@
 import React from 'react';
-import { filterEmptyObj, getCommonProps } from '../../lib';
+import { Grid } from '../Grid';
+// import { filterEmptyObj, getCommonProps } from '../../lib';
+// import classnames from 'classnames';
 
-import classnames from 'classnames';
-
-function getColumnsStyles(cols) {
+function getColumnsVars(cols) {
 	let baseCols = cols._ || 2;
 
 	// ~8のときは省略したい
 	if (baseCols <= 8) {
 		baseCols = null;
 	}
-	return filterEmptyObj({
+
+	return {
 		'--cols': baseCols || null,
-		'--cols--Qsm': cols.sm || null,
-		'--cols--Qxs': cols.xs || null,
-		// "--cols--Qlg": cols.lg || null,
-		// "--cols--Qxl": cols.xl || null,
-	});
+		'--cols_Qsm': cols.sm || null,
+		'--cols_Qxs': cols.xs || null,
+		// "--cols_Qlg": cols.lg || null,
+		// "--cols_Qxl": cols.xl || null,
+	};
 }
 
 export default function Columns({
 	children,
-	tag = 'div',
-	className,
+	// className,
 	col,
-	cols = {},
 	sm,
 	xs,
+	cols = {},
+	style = {},
 	// customQuery,
-	// itemProps = {},
 	...props
 }) {
-	const { classNames, styles, attrs } = getCommonProps({ ...props, isGrid: true });
-
-	const blockProps = {
-		className: classnames('l--columns', className, classNames),
-		style: {
-			...styles,
-			...getColumnsStyles({ _: col, sm, xs, ...cols }),
-		},
-		...attrs,
+	style = {
+		...style,
+		...getColumnsVars({ _: col, sm, xs, ...cols }),
 	};
-
-	// let customQueryCSS = "";
-	// if (Array.isArray(customQuery)) {
-	// 	customQuery.forEach((_query) => {
-	// 		customQueryCSS += setCustomQueryCSS(_query);
-	// 		blockProps[`data-point-${_query?.size || ""}`] = _query?.ratio || "";
-	// 	});
-	// }
-
-	const Tag = tag;
 	return (
-		<Tag {...blockProps} data-cols={col || cols._ || 2}>
+		<Grid name='columns' data-cols={col || cols._ || 2} {...props} style={style}>
 			{children}
-		</Tag>
+		</Grid>
 	);
 }

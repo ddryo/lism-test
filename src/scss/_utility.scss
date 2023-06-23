@@ -5,8 +5,8 @@
 	--ls--shadow--sm: 0 3px 8px -1px rgba(20, 20, 20, .1);
 	--ls--shadow--md: 0 5px 13px -3px rgba(20, 20, 20, .1), 0 5px 8px -3px rgba(20, 20, 20, .05);
 	--ls--shadow--lg: 0 5px 34px -8px rgba(20, 20, 20, .12), 0 5px 8px -3px rgba(20, 20, 20, .05);
-	--ls--shadow--lg--hover: 0 5px 34px -5px rgba(20, 20, 20, .15), 0 8px 13px -5px rgba(20, 20, 20, .05);
-	--ls--shadow--linkBox--hover: 0 8px 21px -5px rgba(20, 20, 20, 0.15), 0 8px 13px -5px rgba(20, 20, 20, .05);
+	--ls--shadow--hover--lg: 0 5px 34px -5px rgba(20, 20, 20, .15), 0 8px 13px -5px rgba(20, 20, 20, .05);
+	--ls--shadow--hover: 0 8px 21px -5px rgba(20, 20, 20, 0.15), 0 8px 13px -5px rgba(20, 20, 20, .05);
 
 	// border-radius
 	--ls--bdrs--xs: 2px; // or 1
@@ -55,11 +55,8 @@
 	box-shadow: var(--shadow) !important;
 
 	// linkboxホバー時、基本のホバーシャドウだと小さくなるのでlgは別途定義
-	--shadow--hover: var(--ls--shadow--lg--hover);
+	--shadow--hover: var(--ls--shadow--hover--lg);
 }
-// [class*="u--bxsh\:"].is--linkBox[data-hover="shadow"]{
-// 	box-shadow: var(--shadow--hover);
-// }
 
 // display
 .u--d\:n{
@@ -191,145 +188,6 @@
 // }
 
 
-// --------------------
-// .u--mt 系
-//   --ls--flowGap をいじると内部にも影響でてしまうので margin を直接上書き。
-//   ツールバーから使う用でもあるので、block-start 方向に指定したい。
-//  mt では 規則的に margin-top になるべきなので、どうするか。
-//  mT でもいいか...。 （mB は margin-block-end）
-// もしくは、mBs, m-bs とか...？
-// --------------------
-.u--mT\:0 {
-	margin-block-start: var(--s--0) !important;
-}
-.u--mT\:10 {
-	margin-block-start: var(--s--10) !important;
-}
-.u--mT\:20 {
-	margin-block-start: var(--s--20) !important;
-}
-.u--mT\:30 {
-	margin-block-start: var(--s--30) !important;
-}
-.u--mT\:40 {
-	margin-block-start: var(--s--40) !important;
-}
-.u--mT\:50 {
-	margin-block-start: var(--s--50) !important;
-}
-.u--mT\:60 {
-	margin-block-start: var(--s--60) !important;
-}
-.u--mT\:70 {
-	margin-block-start: var(--s--70) !important;
-}
-.u--mT\:80 {
-	margin-block-start: var(--s--80) !important;
-}
-.u--mT\:90 {
-	margin-block-start: var(--s--90) !important;
-}
-.u--mT\:100 {
-	margin-block-start: var(--s--100) !important;
-}
-
-
-// --------------------
-// padding
-// p-X系、p-Y系は、ユーティリティクラスを用意。
-// --------------------
-// [data-lism-pX:10]とかでもいいかも?
-// .u--pX\:s10, みたいに 数値がプリセット値であることは s をつけて明示的に指定する？
-// .u--pY\:0 {
-// 	padding-top: var(--s--0) !important;
-// 	padding-bottom: var(--s--0) !important;
-// }
-// .u--pY\:10 {
-// 	padding-top: var(--s--10) !important;
-// 	padding-bottom: var(--s--10) !important;
-// }
-// .u--pY\:20 {
-// 	padding-top: var(--s--20) !important;
-// 	padding-bottom: var(--s--20) !important;
-// }
-// .u--pY\:30 {
-// 	padding-top: var(--s--30) !important;
-// 	padding-bottom: var(--s--30) !important;
-// }
-// .u--pY\:40 {
-// 	padding-top: var(--s--40) !important;
-// 	padding-bottom: var(--s--40) !important;
-// }
-// .u--pY\:50 {
-// 	padding-top: var(--s--50) !important;
-// 	padding-bottom: var(--s--50) !important;
-// }
-// .u--pY\:60 {
-// 	padding-top: var(--s--60) !important;
-// 	padding-bottom: var(--s--60) !important;
-// }
-// .u--pY\:70 {
-// 	padding-top: var(--s--70) !important;
-// 	padding-bottom: var(--s--70) !important;
-// }
-// .u--pY\:80 {
-// 	padding-top: var(--s--80) !important;
-// 	padding-bottom: var(--s--80) !important;
-// }
-// .u--pY\:90 {
-// 	padding-top: var(--s--90) !important;
-// 	padding-bottom: var(--s--90) !important;
-// }
-// .u--pY\:100 {
-// 	padding-top: var(--s--100) !important;
-// 	padding-bottom: var(--s--100) !important;
-// }
-
-// .u--pX\:0 {
-// 	padding-left: var(--s--0) !important;
-// 	padding-right: var(--s--0) !important;
-// }
-// .u--pX\:10 {
-// 	padding-left: var(--s--10) !important;
-// 	padding-right: var(--s--10) !important;
-// }
-// .u--pX\:20 {
-// 	padding-left: var(--s--20) !important;
-// 	padding-right: var(--s--20) !important;
-// }
-// .u--pX\:30 {
-// 	padding-left: var(--s--30) !important;
-// 	padding-right: var(--s--30) !important;
-// }
-// .u--pX\:40 {
-// 	padding-left: var(--s--40) !important;
-// 	padding-right: var(--s--40) !important;
-// }
-// .u--pX\:50 {
-// 	padding-left: var(--s--50) !important;
-// 	padding-right: var(--s--50) !important;
-// }
-// .u--pX\:60 {
-// 	padding-left: var(--s--60) !important;
-// 	padding-right: var(--s--60) !important;
-// }
-// .u--pX\:70 {
-// 	padding-left: var(--s--70) !important;
-// 	padding-right: var(--s--70) !important;
-// }
-// .u--pX\:80 {
-// 	padding-left: var(--s--80) !important;
-// 	padding-right: var(--s--80) !important;
-// }
-// .u--pX\:90 {
-// 	padding-left: var(--s--90) !important;
-// 	padding-right: var(--s--90) !important;
-// }
-// .u--pX\:100 {
-// 	padding-left: var(--s--100) !important;
-// 	padding-right: var(--s--100) !important;
-// }
-
 
 
 // --------------------
@@ -341,8 +199,6 @@
 // .u--lh--20{
 // 	line-height: 2;
 // }
-
-
 
 // その他
 .u--lis\:n{

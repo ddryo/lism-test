@@ -4,6 +4,7 @@
 	--ls--n: 1; // 高さ
 	position: relative;
 	height: fit-content; // grid系直下においた時などに、align-items: strech; の影響で引き伸ばされないようにする
+	overflow: hidden; // radiusが見えるように
 
 	// ::before でやらないのは、ブロックエディターを考慮しているため
 	>.l--frame__placeholder{

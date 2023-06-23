@@ -48,6 +48,16 @@ export default function Layer({
 
 export function MediaLayer({ children, media, ...props }) {
 	if (children) {
+		// クラスを付与
+		if (React.isValidElement(children)) {
+			const mediaProps = children?.props || {};
+			const { className: mediaClassName, ...mediaAttrs } = mediaProps;
+
+			children = React.cloneElement(children, {
+				className: classnames('l--layer__media', mediaClassName),
+				...mediaAttrs,
+			});
+		}
 		return (
 			<Layer modifier='media' {...props}>
 				{children}
@@ -67,9 +77,7 @@ export function MediaLayer({ children, media, ...props }) {
 	// next/image の Image とかは自分で渡してもらう
 	const MediaTag = tag; //"img" === type ? "img" : "video";
 
-	mediaContent = (
-		<MediaTag className='l--layer--media__item' src={src} alt={alt || ''} {...media} />
-	);
+	mediaContent = <MediaTag className='l--layer__media' src={src} alt={alt || ''} {...media} />;
 
 	return (
 		<Layer modifier='media' {...props}>

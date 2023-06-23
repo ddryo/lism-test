@@ -32,29 +32,19 @@
 		flex-grow: 1;
 		height: 100%;
 	}
-	.b--section__header{
-		--g-area: header;
-		// grid-area: header;
-	}
+	// .b--section__header{
+	// 	// --area: header;
+	// }
 	.b--section__body{
-		// grid-area: body;
-		// align-self: center;
+		// --area: body;
 		--pt: var(--s--50);
 		--pb: var(--s--50);
 		--a-self: center;
-		--g-area: body;
 		height: auto; // 100% にしない
 	}
-	.b--section__footer{
-		--g-area: footer;
-		// grid-area: footer;
-	}
-
-
-	&:not(.b--section2) .b--section__content{
-		margin-top: auto;
-		margin-bottom: auto;
-	}
+	// .b--section__footer{
+	// 	// --area: footer;
+	// }
 
 	.b--section__content {
 		// flex-grow: 1; // height:100% が効くように

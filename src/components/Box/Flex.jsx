@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-	//isEmptyObj, filterEmptyObj,
-	// getFlexClasses,""
-	getCommonProps,
-} from '../../lib';
+import { getCommonProps } from '../../lib';
 import classnames from 'classnames';
-// import { useRef, forwardRef, useEffect } from "react";
 
 export default function Flex({ children, tag, className, fxw, ...props }) {
 	const { classNames, styles, attrs } = getCommonProps({ ...props, isFlex: true });
@@ -18,12 +13,5 @@ export default function Flex({ children, tag, className, fxw, ...props }) {
 	};
 
 	const Tag = tag || 'div';
-	return (
-		<Tag
-			//ref={forwardedRef}
-			{...blockProps}
-		>
-			{children}
-		</Tag>
-	);
+	return <Tag {...blockProps}>{children}</Tag>;
 }

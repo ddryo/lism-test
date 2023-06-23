@@ -1,7 +1,6 @@
 import React from 'react';
-import classnames from 'classnames';
-import { filterEmptyObj, getCommonProps } from '../../lib';
-// import { DynamicCSS } from '../index';
+import { Grid } from '../Grid';
+// import { DynamicCSS } from '../DynamicCSS';
 
 // 1:2:3 → 1fr 2fr 3fr に変換
 function ratioToFr(ratio) {
@@ -14,60 +13,45 @@ function ratioToFr(ratio) {
 	return result.trim();
 }
 
-function getRatioStyles(ratios) {
-	return filterEmptyObj({
-		'--gtc': ratioToFr(ratios._) || null,
-		'--gtc--Qsm': ratioToFr(ratios.sm) || null,
-		'--gtc--Qxs': ratioToFr(ratios.xs) || null,
-		// "--gtc--Qlg": ratioToFr(ratios.lg) || null,
-		// "--gtc--Qxl": ratioToFr(ratios.xl) || null,
-	});
-}
-
-function setCustomQueryCSS({ size, ratio }) {
-	return `@container (max-width: ${size}) {
-		.l--ratioGrid[data-point-${size}="${ratio}"] {
-			grid-template-columns: ${ratioToFr(ratio)};
-		}
-	}`;
-}
+// function setCustomQueryCSS({ size, ratio }) {
+// 	return `@container (max-width: ${size}) {
+// 		.l--ratioGrid[data-point-${size}="${ratio}"] {
+// 			grid-template-columns: ${ratioToFr(ratio)};
+// 		}
+// 	}`;
+// }
 
 export default function RatioGrid({
 	children,
-	tag = 'div',
-	className,
+	// tag = 'div',
+	// className,
 	ratio,
-	ratios = {},
 	sm,
 	xs,
+	ratios = {}, // 一応 ratios でも受け付ける？
+	style = {},
 	customQuery,
-	// itemProps = {},
 	...props
 }) {
-	const { classNames, styles, attrs } = getCommonProps({ ...props, isGrid: true });
+	// const { classNames, styles, attrs } = getCommonProps({ ...props, isGrid: true });
 
-	const blockProps = {
-		className: classnames('l--ratioGrid', className, classNames),
-		style: {
-			...styles,
-			...getRatioStyles({ _: ratio, sm, xs, ...ratios }),
+	ratios = { _: ratio, sm, xs, ...ratios };
+
+	style = {
+		...style,
+		...{
+			'--gtc': ratioToFr(ratios._) || null,
+			'--gtc_Qsm': ratioToFr(ratios.sm) || null,
+			'--gtc_Qxs': ratioToFr(ratios.xs) || null,
+			// "--gtc_Qlg": ratioToFr(ratios.lg) || null,
+			// "--gtc_Qxl": ratioToFr(ratios.xl) || null,
 		},
-		...attrs,
 	};
 
-	// let customQueryCSS = '';
-	// if (Array.isArray(customQuery)) {
-	// 	customQuery.forEach((_query) => {
-	// 		customQueryCSS += setCustomQueryCSS(_query);
-	// 		blockProps[`data-point-${_query?.size || ''}`] = _query?.ratio || '';
-	// 	});
-	// }
-
-	const Tag = tag;
 	return (
-		<Tag {...blockProps}>
+		<Grid modifier='ratio' {...props} style={style}>
 			{/* {customQueryCSS && <style jsx>{customQueryCSS}</style>} */}
 			{children}
-		</Tag>
+		</Grid>
 	);
 }

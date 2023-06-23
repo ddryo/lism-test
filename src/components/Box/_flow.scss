@@ -1,54 +1,15 @@
-// これじゃだめ
-// .is--flow {
-// 	--inner--flowGap: var(--ls--flowGap);
-// 	--inner--flowGap--Qsm: var(--inner--flowGap);
-// 	--inner--flowGap--Qxs: var(--inner--flowGap--Qsm);
-
-// 	> * + * {
-// 		margin-block-start: var(--inner--flowGap);
-// 		@container (max-width: 720px) {
-// 			margin-block-start: var(--inner--flowGap--Qsm);
-// 		}
-// 		@container (max-width: 440px) {
-// 			margin-block-start: var(--inner--flowGap--Qxs);
-// 		}
-// 	}
-// }
-
 .is--flow {
 	> * {
 		margin-block-start: 0;
 		margin-block-end: 0;
 	}
 
-	> * + * {
-		margin-block-start: var(--ls--flowGap);
+	// > * + *
+	> *:not(:first-child) {
+		margin-block-start: var(--ls--flowGap); // global な値
 		margin-block-end: 0;
 	}
 
-	// ※1: "--flowGap:" ではなく "--flowGap" (:なし} にしているのは意図的。
-	//　--Qxxのみの指定でも mbs 上書き可能にしている。( ただし、これによりネスト時に影響受けてしまうので、※2 で調整 ）
-	&[style*="--inner--flowGap"] > * + *{
-		margin-block-start: var(--inner--flowGap, var(--ls--flowGap) );
-	}
-
-	// ※2: --Qxx に対してのみ上書き指定がある場合、noQの時の値をセット
-	&[style*="--inner--flowGap--"]:not([style*="--inner--flowGap:"]) {
-		--inner--flowGap: var(--ls--flowGap);
-	}
-
-	@container (max-width: 720px) {
-		&[style*="--inner--flowGap--Qsm:"] {
-			--inner--flowGap: var(--inner--flowGap--Qsm) !important;
-		}
-	}
-	
-	@container (max-width: 440px) {
-		&[style*="--inner--flowGap--Qxs:"] { 
-			--inner--flowGap: var(--inner--flowGap--Qxs) !important;
-		}
-	}
-	
 
 	> .alignleft {
 		float: left;
@@ -69,8 +30,19 @@
 
 }
 
-// [data-box-flowGap="s"]{
-// 	&.is--flow > * {
-// 		--gap: var(--s--30);
-// 	}
+
+// flowGap はクエリ調整不可。
+// クエリ調整必要な場合はStack使ってもらう。
+
+// .-flowGap\:10{
+// 	--ls--flowGap: var(--s--10);
 // }
+[class*="-flowGap:"] > *:not(:first-child) {
+	margin-block-start: var(--flowGap);
+}
+// ※ .-flowGap:s > * に対してスタイルを当てればネスト時の影響を無くせるが、ユニバーサルセレクタ増えすぎてしまう
+@for $i from 0 through 6 {
+	.-flowGap\:#{$i * 10} {
+		--flowGap: var(--s--#{$i * 10});
+	}
+}

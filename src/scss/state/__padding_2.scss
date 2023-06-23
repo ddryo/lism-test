@@ -1,0 +1,92 @@
+
+// ulタグなど、デフォルトで一方向にpaddingがついているような要素でも使えるように、各方向で分離している
+
+// p:50, @s{X:30} みたいにクエリ条件下で各部位のみ指定された時を考えて、 has--p@s,,,とかが個別に必要。
+// [data-lism-padding] みたいにデータ属性でもいいか?
+.has--p {
+	padding: var(--p) !important;
+}
+.has--pt {
+	padding-top: var(--pt) !important;
+}
+.has--pb {
+	padding-bottom: var(--pb) !important;
+}
+.has--pl {
+	padding-left: var(--pl) !important;
+}
+.has--pr {
+	padding-right: var(--pr) !important;
+}
+
+@container (max-width: 720px) {
+	.has--p\@sm { padding: var(--p_Qsm) !important;}
+	.has--pt\@sm { padding-top: var(--pt_Qsm) !important;}
+	.has--pr\@sm { padding-right: var(--pr_Qsm) !important;}
+	.has--pb\@sm { padding-bottom: var(--pb_Qsm) !important;}
+	.has--pl\@sm { padding-left: var(--pl_Qsm) !important;}
+}
+
+@container (max-width: 440px) {
+	.has--p\@xs { padding: var(--p_Qxs) !important;}
+	.has--pt\@xs { padding-top: var(--pt_Qxs) !important;}
+	.has--pr\@xs { padding-right: var(--pr_Qxs) !important;}
+	.has--pb\@xs { padding-bottom: var(--pb_Qxs) !important;}
+	.has--pl\@xs { padding-left: var(--pl_Qxs) !important;}
+}
+
+
+
+// 以下の方式だと、セレクタ負荷が高すぎる。かつ、CSSファイルから --p 系の初期セットなどもできない。
+// [style*="--pt:"]{
+// 	padding-top: var(--pt) !important;
+// }
+// [style*="--pr:"]{
+// 	padding-right: var(--pr) !important;
+// }
+// [style*="--pb:"]{
+// 	padding-bottom: var(--pb) !important;
+// }
+// [style*="--pl:"]{
+// 	padding-left: var(--pl) !important;
+// }
+// [style*="--p:"]{
+// 	padding: var(--p) !important;
+// }
+
+// @container (max-width: 720px) {
+	
+// 	[style*="--pt_Qsm:"]{
+// 		padding-top: var(--pt_Qsm) !important;
+// 	}
+// 	[style*="--pr_Qsm:"]{
+// 		padding-right: var(--pr_Qsm) !important;
+// 	}
+// 	[style*="--pb_Qsm:"]{
+// 		padding-bottom: var(--pb_Qsm) !important;
+// 	}
+// 	[style*="--pl_Qsm:"]{
+// 		padding-left: var(--pl_Qsm) !important;
+// 	}
+// 	[style*="--p_Qsm:"]{
+// 		padding: var(--p_Qsm) !important;
+// 	}
+// }
+
+// @container (max-width: 440px) {
+// 	[style*="--pt_Qxs:"]{
+// 		padding-top: var(--pt_Qxs) !important;
+// 	}
+// 	[style*="--pr_Qxs:"]{
+// 		padding-right: var(--pr_Qxs) !important;
+// 	}
+// 	[style*="--pb_Qxs:"]{
+// 		padding-bottom: var(--pb_Qxs) !important;
+// 	}
+// 	[style*="--pl_Qxs:"]{
+// 		padding-left: var(--pl_Qxs) !important;
+// 	}
+// 	[style*="--p_Qxs:"]{
+// 		padding: var(--p_Qxs) !important;
+// 	}
+// }

@@ -1,7 +1,7 @@
-import { filterEmptyObj, isPresetValue } from '../index.js';
+import { filterEmptyObj, isPresetValue, isSpacePresetValue, getMaybeSpaceVar } from '../index.js';
 import { getPaddingProps, getMarginProps } from './getSpacingProps';
-import { getGapStyles, getFlowGapStyles } from './getGapStyles';
-import { getWidthCSS, getHeightCSS } from './getSizeCSS';
+import { getGapStyles } from './getGapStyles';
+import { getWidthProps, getHeightProps } from './getSizeProps';
 
 // import { default as getFlexClasses } from './getFlexClasses';
 import { getGridAreaStyles } from './getGridAreaStyles';
@@ -54,20 +54,20 @@ export default function getCommonProps(props) {
 		isFlex,
 		isGrid,
 		isItem,
-		// isFlex,
-		// isGrid,
 		style = {},
+		forwardedRef,
 		...others
 	} = props;
 
 	let otherProps = others;
 
+	// const dataProps = []; // data-lism-props
 	const classNames = [];
 	let styles = {
 		...style,
-		...filterEmptyObj({
+		...{
 			border,
-		}),
+		},
 	};
 
 	if (alignfull) classNames.push('alignfull');
@@ -82,8 +82,14 @@ export default function getCommonProps(props) {
 
 	if (isFlow) {
 		classNames.push('is--flow');
-		if (undefined !== gap || undefined !== gaps) {
-			styles = { ...styles, ...getFlowGapStyles(gap, gaps) };
+
+		if (undefined !== gap) {
+			if (isSpacePresetValue(gap, ['0', '10', '20', '30', '40', '50', '60'])) {
+				classNames.push(`-flowGap:${gap}`);
+			} else {
+				classNames.push(`-flowGap:`);
+				styles['--flowGap'] = getMaybeSpaceVar(gap);
+			}
 		}
 	}
 
@@ -94,7 +100,11 @@ export default function getCommonProps(props) {
 
 	if (isFlex || isGrid) {
 		if (undefined !== gap || undefined !== gaps) {
-			styles = { ...styles, ...getGapStyles(gap, gaps) };
+			const gapProps = getGapStyles(gap, gaps);
+
+			styles = { ...styles, ...gapProps.styles };
+			classNames.push(...gapProps.classNames);
+			// dataProps.push(...gapProps.dataProps);
 		}
 
 		// その他の flex, grid 用の props を取得
@@ -113,17 +123,23 @@ export default function getCommonProps(props) {
 		styles = { ...styles, ...itemProps.styles };
 	}
 
-	if (undefined !== width) {
-		classNames.push(`has--w`);
-		styles = { ...styles, ...getWidthCSS(width) };
-	}
-	if (undefined !== height) {
-		classNames.push(`has--h`);
-		styles = { ...styles, ...getHeightCSS(height) };
-	}
-
 	if (undefined !== mT) {
 		classNames.push(`u--mT:${mT}`);
+	}
+
+	if (undefined !== width) {
+		// classNames.push(`has--w`);
+
+		const widthProps = getWidthProps(width);
+		styles = { ...styles, ...widthProps.styles };
+		classNames.push(...widthProps.classNames);
+	}
+	if (undefined !== height) {
+		// classNames.push(`has--h`);
+
+		const heightProps = getHeightProps(height);
+		styles = { ...styles, ...heightProps.styles };
+		classNames.push(...heightProps.classNames);
 	}
 
 	if (undefined !== padding || undefined !== paddings) {
@@ -131,6 +147,7 @@ export default function getCommonProps(props) {
 
 		styles = { ...styles, ...paddingProps.styles };
 		classNames.push(...paddingProps.classNames);
+		// dataProps.push(...paddingProps.dataProps);
 	}
 
 	if (undefined !== margin || undefined !== margins) {
@@ -200,26 +217,36 @@ export default function getCommonProps(props) {
 	// 	styles.fontSize = fz;
 	// }
 
+	// if (dataProps.length > 0) {
+	// 	otherProps['data-props'] = dataProps.join(' ');
+	// }
+
+	// ref
+	if (undefined !== forwardedRef) {
+		otherProps.ref = forwardedRef;
+	}
 	return {
 		classNames,
-		styles,
-		attrs: others,
+		styles: filterEmptyObj(styles), // filterEmptyObj は最後にかける
+		attrs: otherProps,
 	};
 }
 
 function getFlexGlidProps(props, isFlex, isGrid) {
-	const { gta, gtc, gtr, fxw, ai, ac, jc, ji, ...others } = props;
+	const { gta, gtc, gtr, fxd, fxw, ai, ac, jc, ji, ...others } = props;
 	let styles = {};
 	const classNames = [];
 
 	if (isFlex) {
 		classNames.push('is--flex');
 		if (undefined !== fxw) styles['--fxw'] = fxw;
+		if (undefined !== fxd) styles['--fxd'] = fxd;
 	}
 
 	if (isGrid) {
 		classNames.push('is--grid');
 
+		// ~クエリ対応~
 		if (undefined !== gta) styles['--gta'] = gta;
 		if (undefined !== gtc) styles['--gtc'] = gtc;
 		if (undefined !== gtr) styles['--gtr'] = gtr;
@@ -238,13 +265,13 @@ function getFlexGlidProps(props, isFlex, isGrid) {
 // grid: { area, row, col } ?
 // gArea
 function getItemProps(props) {
-	const { fxb, fxg, fxsh, fx, gridArea, gridAreas, alignSelf, justifySelf, ...others } = props;
+	const { fxb, fxg, fxsh, fx, area, areas, alignSelf, justifySelf, ...others } = props;
 	// const classNames = [];
 	// let styles = {};
 
-	// const gridAreaStyles = getGridAreaStyles();
-	let styles = filterEmptyObj({
-		// '--ga': gridArea || null,
+	// const areaStyles = getGridAreaStyles();
+	let styles = {
+		// '--ga': area || null,
 		// '--gr': gr || null,
 		// '--gc': gc || null,
 		'--a-self': alignSelf || null,
@@ -253,11 +280,11 @@ function getItemProps(props) {
 		'--fxg': fxg || null,
 		'--fxsh': fxsh || null,
 		'--fx': fx || null, //
-	});
+	};
 
 	// gaがあればdata属性にもそれをセットする
-	if (undefined !== gridArea || undefined !== gridAreas) {
-		styles = { ...styles, ...getGridAreaStyles(gridArea, gridAreas) };
+	if (undefined !== area || undefined !== areas) {
+		styles = { ...styles, ...getGridAreaStyles(area, areas) };
 		// others['data-grid-area'] = ga;
 	}
 

@@ -1,0 +1,39 @@
+.l--gallery{
+	--cols: 3;
+	--cols_Qsm: var(--cols);
+	--cols_Qxs: var(--cols_Qsm);
+
+	column-count: var(--cols);
+	@container (max-width: 720px) {
+		column-count: var(--cols_Qsm);
+	}
+
+	@container (max-width: 440px) {
+		column-count: var(--cols_Qxs);
+	}
+}
+
+// 横方向のgapはコントロールできない？
+.l--gallery > div{
+	break-inside: avoid; // auto だとコンテンツが途中で改行されてしまう。
+	margin-bottom: 10px;
+	background-color: #333;
+	color: #FFF;
+	// padding: 0.5em 1em;
+}
+
+// .container-breakinside {
+// 	column-count: 3; /* こいつが肝 */
+// 	// height: auto !important; /* 検証として高さは可変（auto）に設定しているだけです。実際は不要です。 */
+// }
+// .container-breakinside > div {
+// 	// height: auto !important; /* 検証として高さは可変（auto）に設定しているだけです。実際は不要です。 */
+// 	// break-inside: avoid; /* こいつが肝 */
+// 	break-inside: avoid; // auto だとコンテンツが途中で改行されてしまう。
+// 	margin: 0 0 10px;
+// 	background-color: #333;
+// 	color: #FFF;
+// 	padding: 0.5em 1em;
+// }
+
+

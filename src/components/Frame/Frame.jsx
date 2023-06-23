@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Layer } from '../index';
+import { Layer } from '../Layer';
 import { getCommonProps } from '../../lib';
 // import { getMediaLayer, getFilterLayer } from '../helper';
 
@@ -11,7 +11,7 @@ export default function Frame({
 	children,
 	tag,
 	className,
-	ratio,
+	ratio = '16:9',
 	isPortrait,
 	// media,
 	// filter,

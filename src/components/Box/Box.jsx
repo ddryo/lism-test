@@ -15,9 +15,7 @@ export default function Box({
 	// isItem,
 	// isFlow,
 	isConstrained,
-	hasSidePadding,
-	forwardedRef,
-
+	hasGutter,
 	...props
 }) {
 	let boxClass = 'l--box';
@@ -32,9 +30,8 @@ export default function Box({
 			boxClass,
 			className,
 			{
-				// 'is--container': isContainer || false,
 				'is--constrained': isConstrained || false,
-				'has--sidePadding': hasSidePadding || false,
+				'has--gutter': hasGutter || false,
 				// "has--layer": hasLayer || false,
 			},
 			classNames
@@ -44,9 +41,5 @@ export default function Box({
 	};
 
 	const Tag = tag || 'div';
-	return (
-		<Tag ref={forwardedRef} {...blockProps}>
-			{children}
-		</Tag>
-	);
+	return <Tag {...blockProps}>{children}</Tag>;
 }

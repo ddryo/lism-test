@@ -1,22 +1,7 @@
 
 .b--banner {
-	// --ls--d: 1; // 幅
-	// --ls--n: 1; // 高さ
 	position: relative;
-	// padding-bottom: calc(var(--ls--n) / var(--ls--d) * 100%);
 
-	// > .l--layer--media{
-
-	// 	> img,
-	// 	> video {
-	// 		width: 100%;
-	// 		height: 100%;
-	// 		object-fit: cover;
-	// 		display: block;
-	// 	}
-	// }
-
-	// .b--banner__content:not(.l--layer),
 	> .l--box{
 		position: relative;
 		z-index: 1;

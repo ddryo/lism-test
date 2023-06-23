@@ -1,0 +1,33 @@
+.has--m {
+	margin: var(--m) !important;
+}
+.has--mt {
+	margin-top: var(--mt) !important;
+}
+.has--mb {
+	margin-bottom: var(--mb) !important;
+}
+.has--ml {
+	margin-left: var(--ml) !important;
+}
+.has--mr {
+	margin-right: var(--mr) !important;
+}
+
+@container (max-width: 720px) {
+	.has--m\@sm { margin: var(--m_Qsm) !important;}
+	.has--mt\@sm { margin-top: var(--mt_Qsm) !important;}
+	.has--mr\@sm { margin-right: var(--mr_Qsm) !important;}
+	.has--mb\@sm { margin-bottom: var(--mb_Qsm) !important;}
+	.has--ml\@sm { margin-left: var(--ml_Qsm) !important;}
+}
+
+@container (max-width: 440px) {
+	.has--m\@xs { margin: var(--m_Qxs) !important;}
+	.has--mt\@xs { margin-top: var(--mt_Qxs) !important;}
+	.has--mr\@xs { margin-right: var(--mr_Qxs) !important;}
+	.has--mb\@xs { margin-bottom: var(--mb_Qxs) !important;}
+	.has--ml\@xs { margin-left: var(--ml_Qxs) !important;}
+}
+
+

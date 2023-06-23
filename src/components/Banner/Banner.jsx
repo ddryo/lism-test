@@ -1,17 +1,18 @@
 import React from 'react';
 import classnames from 'classnames';
-// import Image from "next/image";
-import { Box, Frame, FrameContent, LinkBox } from '../index';
+import { Frame, FrameContent } from '../Frame';
+import { LinkBox } from '../LinkBox';
+import { Box } from '../Box';
 // import { getCommonProps } from '../../lib';
 import { getMediaLayer, getFilterLayer } from '../helper';
 
 // "Banner" (b--banner) にする
-function Banner({
+export default function Banner({
 	children,
 	className,
 	ratio,
 	media,
-	medias,
+	// medias,
 	href,
 	filter,
 	padding,
@@ -24,24 +25,18 @@ function Banner({
 
 	// ratio の有無、href の有無でコンポーネントを分岐していく
 	if (ratio) {
-		// ratioがある → Frame を使う
-		// blockProps.ratio = ratio;
-		// const frameProps = {
-		// 	ratio,
-		// };
-
 		// ratioあり、hrefあり
 		if (href) {
 			blockProps.href = href;
 			return (
-				<LinkBox href={href} {...blockProps}>
-					<Frame ratio={ratio}>
-						{getMediaLayer(media)}
-						{getFilterLayer(filter)}
-						<FrameContent className='b--banner__content' {...paddingProps}>
-							{children}
-						</FrameContent>
-					</Frame>
+				<LinkBox href={href} {...blockProps} component={Frame} ratio={ratio}>
+					{/* <Frame ratio={ratio}> */}
+					{getMediaLayer(media)}
+					{getFilterLayer(filter)}
+					<FrameContent className='b--banner__content' {...paddingProps}>
+						{children}
+					</FrameContent>
+					{/* </Frame> */}
 				</LinkBox>
 			);
 		}
@@ -88,4 +83,4 @@ function Banner({
 // 	);
 // };
 
-export default Banner;
+// export default Banner;

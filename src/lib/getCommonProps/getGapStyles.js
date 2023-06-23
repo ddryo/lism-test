@@ -1,7 +1,74 @@
-import { filterEmptyObj, getMaybeSpaceVar } from '../index.js';
+import { getMaybeSpaceVar, isSpacePresetValue } from '../index.js';
 
 /* eslint eqeqeq: 0 */
 // ↑ 0 の時の判定を考慮して 「null != hoge」を使用している。
+
+const spaceUtilityList = ['0', '10', '20', '30', '40', '50', '60'];
+
+/**
+ *
+ * @param {number | string | Object} gap
+ * @param {string}                   Q
+ * @return {Object} styles
+ */
+function sortGapData(gap, Q = '') {
+	if (null == gap) return {};
+
+	// const dataProps = [];
+	const classNames = [];
+	const styles = {};
+
+	/*
+	 * --gap に文字列で col/row 渡ってきていたら先に分解しておく
+	 */
+	if (typeof gap === 'string') {
+		const gapStrArr = gap.split(' ');
+
+		if (gapStrArr.length > 1) {
+			gap = {
+				row: gapStrArr[0],
+				col: gapStrArr[1],
+			};
+		}
+	}
+
+	// ユーティリティクラス化できるかどうか
+	if (typeof gap === 'object') {
+		// 各成分のチェック
+		if (isSpacePresetValue(gap.row, spaceUtilityList)) {
+			classNames.push(`-rowg${Q}:${gap.row}`);
+			delete gap.row;
+		}
+		if (isSpacePresetValue(gap.col, spaceUtilityList)) {
+			classNames.push(`-colmg${Q}:${gap.col}`);
+			delete gap.col;
+		}
+	} else if (isSpacePresetValue(gap, spaceUtilityList)) {
+		classNames.push(`-gap${Q}:${gap}`);
+		// gap が オブジェクトではなくそのままpreset値ならこの時点で解析終了
+		return {
+			classNames,
+		};
+	}
+
+	// 以下、ユーティリティクラスにできない値の時の処理
+	const Qvar = Q.replace('@', '_Q');
+
+	// 数値指定の時はCSS変数に変換
+	if (typeof gap === 'number' || typeof gap === 'string') {
+		styles[`--gap${Qvar}`] = getMaybeSpaceVar(gap) || null;
+	} else {
+		// {row, col} 形式の時
+		if (null != gap?.row) {
+			styles[`--rowg${Qvar}`] = getMaybeSpaceVar(gap.row);
+		}
+		if (null != gap?.col) {
+			styles[`--colmg${Qvar}`] = getMaybeSpaceVar(gap.col);
+		}
+	}
+
+	return { styles, classNames };
+}
 
 /**
  * gap用のstyleオブジェクトを生成して返す
@@ -15,77 +82,38 @@ export function getGapStyles(gap, gaps = {}) {
 		gaps._ = gap;
 	}
 
+	// return {
+	const gapData = sortGapData(gaps._);
+	const gapDataQsm = sortGapData(gaps.sm, '@sm');
+	const gapDataQxs = sortGapData(gaps.xs, '@xs');
+	// };
+
 	return {
-		...sortGapData(gaps._, ''),
-		...sortGapData(gaps.sm, '--Qsm'),
-		...sortGapData(gaps.xs, '--Qxs'),
+		classNames: [
+			...(gapData?.classNames || []),
+			...(gapDataQsm?.classNames || []),
+			...(gapDataQxs?.classNames || []),
+		],
+		styles: {
+			...(gapData?.styles || {}),
+			...(gapDataQsm?.styles || {}),
+			...(gapDataQxs?.styles || {}),
+		},
 	};
 }
 
 /**
- *
- * @param {number | string | Object} gap
- * @param {string}                   modifier
- * @return {Object} styles
- */
-function sortGapData(gap, modifier) {
-	if (null == gap) return {};
-
-	// 数値指定の時はCSS変数に変換
-	if (typeof gap === 'number') {
-		return {
-			[`--gap${modifier}`]: getMaybeSpaceVar(gap) || null,
-		};
-	}
-
-	/*
-	 * --gap は 単一の値のみ使用可能なので、文字列のときはスペースで分割処理が必要
-	 *    OK: --gap: 1rem
-	 *    OK: --gap: var(--s{X});
-	 *    NG: --gap: 1rem 2rem → --rowg, --colmg に分割する
-	 */
-	if (typeof gap === 'string') {
-		const gapStrArr = gap.split(' ');
-
-		if (gapStrArr.length > 1) {
-			return {
-				[`--rowg${modifier}`]: gapStrArr[0],
-				[`--colmg${modifier}`]: gapStrArr[1],
-			};
-		}
-
-		return {
-			[`--gap${modifier}`]: gap,
-		};
-	}
-
-	// {row, col} 形式の時
-	const gapStyles = {};
-	if (null != gap?.row) {
-		gapStyles[`--rowg${modifier}`] = getMaybeSpaceVar(gap.row);
-	}
-	if (null != gap?.col) {
-		gapStyles[`--colmg${modifier}`] = getMaybeSpaceVar(gap.col);
-	}
-	return gapStyles;
-}
-
-/**
- * isFlow 用の。
+ * isFlow 用のgap。プリセット値のみ受け付ける。
  * @param {number | string | object} gap
  * @param {Object}                   gaps
- * @return {Object} styles
+ * @return {string} クラス
  */
-export function getFlowGapStyles(gap, gaps = {}) {
-	if (undefined !== gap) {
-		gaps._ = gap;
-	}
+// export function getFlowGapStyles(gap, gaps = {}) {
+// 	// if (undefined !== gap) {
+// 	// 	gaps._ = gap;
+// 	// }
 
-	return filterEmptyObj({
-		[`--inner--flowGap`]: getMaybeSpaceVar(gaps?._) || null,
-		[`--inner--flowGap--Qsm`]: getMaybeSpaceVar(gaps?.sm) || null,
-		[`--inner--flowGap--Qxs`]: getMaybeSpaceVar(gaps?.xs) || null,
-		[`--inner--flowGap--Qlg`]: getMaybeSpaceVar(gaps?.lg) || null,
-		[`--inner--flowGap--Qxl`]: getMaybeSpaceVar(gaps?.xl) || null,
-	});
-}
+// 	if (isSpacePresetValue(gap, spaceUtilityList)) {
+// 		return `-flowGap:${gap}`;
+// 	}
+// }

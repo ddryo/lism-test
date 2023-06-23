@@ -1,0 +1,29 @@
+
+
+.has--w{
+	--w: auto;
+	--w_Qsm: var(--w);
+	--w_Qxs: var(--w_Qsm);
+
+	width: var(--w) !important;
+	@container (max-width: 720px) {
+		width: var(--w_Qsm) !important;
+	}
+	@container (max-width: 440px) {
+		width: var(--w_Qxs) !important;
+	}
+}
+
+.has--h{
+	--h: auto;
+	--h_Qsm: var(--h);
+	--h_Qxs: var(--h_Qsm);
+
+	height: var(--h) !important;
+	@container (max-width: 720px) {
+		height: var(--h_Qsm) !important;
+	}
+	@container (max-width: 440px) {
+		height: var(--h_Qxs) !important;
+	}
+}

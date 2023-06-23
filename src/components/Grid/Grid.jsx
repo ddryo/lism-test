@@ -6,10 +6,17 @@ import classnames from 'classnames';
 // grid-template-areas: none
 // ,grid-template-columns, grid-template-rows: none,
 // gta, gtc, gtr
-export default function Grid({ tag = 'div', className, children, modifier, ...props }) {
+export default function Grid({
+	tag = 'div',
+	className,
+	children,
+	name = 'grid',
+	modifier,
+	...props
+}) {
 	const { classNames, styles, attrs } = getCommonProps({ ...props, isGrid: true });
 
-	let gridClass = 'l--grid';
+	let gridClass = `l--${name}`;
 	if (modifier) {
 		gridClass += `--${modifier}`;
 	}

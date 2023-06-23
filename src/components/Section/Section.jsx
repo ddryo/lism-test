@@ -1,16 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
 // import Image from "next/image";
-import {
-	// Base,
-	Box,
-	Grid,
-	Stack,
-	// Layer,
-	Divider,
-	// MediaLayer,
-	// FilterLayer,
-} from '../index';
+import { Box, Stack } from '../Box';
+import { Item } from '../Item';
+import { Grid } from '../Grid';
+// import { Stack } from '../Stack';
+import { Divider } from '../Divider';
 import { filterEmptyObj } from '../../lib';
 import { getMediaLayer, getFilterLayer } from '../helper';
 
@@ -63,32 +58,31 @@ export default function Section({
 
 export const SectionBody = ({ children, className, ...props }) => {
 	return (
-		<Box
+		<Item
+			area='body'
 			isFlow
-			isItem
-			// padding={{ Y: 50 }}
 			isConstrained
-			hasSidePadding
+			hasGutter
 			className={classnames('b--section__body', className, 'has--pt has--pb')}
 			{...props}
 		>
 			{children}
-		</Box>
+		</Item>
 	);
 };
 
 export const SectionHeader = ({ children, className, ...props }) => {
 	return (
-		<Box isItem className={classnames('b--section__header', className)} {...props}>
+		<Item area='header' className={classnames('b--section__header', className)} {...props}>
 			{children}
-		</Box>
+		</Item>
 	);
 };
 
 export const SectionFooter = ({ children, className, ...props }) => {
 	return (
-		<Box isItem className={classnames('b--section__footer', className)} {...props}>
+		<Item area='footer' className={classnames('b--section__footer', className)} {...props}>
 			{children}
-		</Box>
+		</Item>
 	);
 };

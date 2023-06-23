@@ -1,0 +1,195 @@
+
+.is--flex, .is--grid{
+	--ai: normal;
+	--ac: normal;
+	--jc: normal;
+	--ji: legacy;
+
+	align-items: var( --ai );
+	align-content: var(--ac);
+	justify-content: var( --jc );
+	justify-items: var(--ji);
+
+	// 予期せぬカラム落ちを防ぐ→ユーティリティで必要なとこだけに指定してもらう
+	// > *
+	// > :is(div, main, aside, section, article, p){
+	// 	overflow-wrap: anywhere;
+	// }
+}
+
+// グリッドには使用していたほうがよさそう。
+.is--grid > .is--item {
+	overflow-wrap: anywhere;
+}
+
+
+// l--flex, l--stack, l--reel, ...
+.is--flex{
+	--fxw: nowrap;
+	--fxd: row;
+
+	display: flex;
+	flex-direction: var(--fxd);
+	flex-wrap: var(--fxw);
+}
+
+.is--grid{
+	--gta: none;
+	--gtc: none;
+	--gtr: none;
+
+	// @sm
+	--gta_Qsm: var(--gta);
+	--gtc_Qsm: var(--gtc);
+	--gtr_Qsm: var(--gtr);
+
+	// @xs
+	--gta_Qxs: var(--gta_Qsm);
+	--gtc_Qxs: var(--gtc_Qsm);
+	--gtr_Qxs: var(--gtr_Qsm);
+
+	display: grid;
+	grid-template-areas: var(--gta);
+	grid-template-columns: var(--gtc);
+	grid-template-rows: var(--gtr);
+
+	@container (max-width: 720px) {
+		grid-template-areas: var(--gta_Qsm);
+		grid-template-columns: var(--gtc_Qsm);
+		grid-template-rows: var(--gtr_Qsm);
+	}
+
+	@container (max-width: 440px) {
+		grid-template-areas: var(--gta_Qxs);
+		grid-template-columns: var(--gtc_Qxs);
+		grid-template-rows: var(--gtr_Qxs);
+	}
+}
+
+
+.is--item{
+	// --a-self, --j--self ?
+	--a-self: auto;
+	--j-self: auto;
+	align-self: var(--a-self);
+	justify-self: var(--j-self);
+}
+
+// コンポーネント側で --fx 一つにまとめる？
+:where(.is--flex > .is--item) {
+	--fxg: 0;
+	--fxsh: 1;
+	--fxb: auto;
+	--fx: var(--fxg) var(--fxsh) var(--fxb);
+	// --fx: 0 1 auto;
+	flex: var(--fx);
+}
+
+
+// area, row/column の指定バランスをどうするか。
+
+// 基本は grid-row/column で指定する。
+// :where(.is--grid > .is--item):not([data-grid-area]) {
+// 	--gr: auto;
+// 	--gc: auto;
+// 	grid-row: var(--gr);
+// 	grid-column: var(--gc);
+// }
+
+// --area にまとめて指定
+:where(.is--grid > .is--item) {
+	--area: auto;
+	--area_Qsm: var(--area);
+	--area_Qxs: var(--area_Qsm);
+
+	grid-area: var(--area);
+
+	@container (max-width: 720px) {
+		grid-area: var(--area_Qsm);
+	}
+	@container (max-width: 440px) {
+		grid-area: var(--area_Qxs);
+	}
+}
+
+.is--item[data-area="fluid"]{
+	--area: fluid;
+}
+.is--item[data-area="fix"]{
+	--area: fix;
+}
+.is--item[data-area="header"]{
+	--area: header;
+}
+.is--item[data-area="footer"]{
+	--area: footer;
+}
+.is--item[data-area="body"]{
+	--area: body;
+}
+
+
+// .u--fxw\:w{
+// 	flex-wrap:wrap !important;
+// }
+// .u--fxw\:n{
+// 	flex-wrap:nowrap !important;
+// }
+
+// align-items
+// [class*="u--ai:"],
+// [style*="--ls--ai:"]{
+// 	align-items: var( --ls--ai ) !important;
+// }
+// .u--ai\:c{
+// 	align-items:center !important;
+// }
+// .u--ai\:fe{
+// 	align-items:flex-end !important;
+// }
+// .u--ai\:fs{
+// 	align-items:flex-start !important;
+// }
+// .u--ai\:s{
+// 	align-items:stretch !important;
+// }
+
+// justify-content
+// [class*="u--jc:"],
+// [style*="--ls--jc:"]{
+// 	justify-content: var( --ls--jc ) !important;
+// }
+// .u--jc\:c{
+// 	justify-content:center !important;
+// }
+// .u--jc\:fe{
+// 	justify-content:flex-end !important;
+// }
+// .u--jc\:fs{
+// 	justify-content:flex-start !important;
+// }
+// .u--jc\:sb{
+// 	justify-content:space-between !important;
+// }
+
+
+// .u--jc\:sa{
+// 	justify-content:space-around !important;
+// }
+
+// [style*="--fxw:"]{
+// 	flex-wrap: var(--fxw) !important;
+// }
+// [style*="--ai:"]{
+// 	align-items: var(--ai) !important;
+// }
+// [style*="--jc:"]{
+// 	justify-content: var(--jc) !important;
+// }
+
+// [style*="--a-self:"]{
+// 	align-self: var(--a-self) !important;
+// }
+// [style*="--j-self:"]{
+// 	justify-self: var(--j-self) !important;
+// }

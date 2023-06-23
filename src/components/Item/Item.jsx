@@ -1,37 +1,36 @@
 import React from 'react';
-import { Box } from '../index';
+import { Box } from '../Box';
 
-// 主要なキーワードはdata属性で出力
-const gridAreaPresets = [
-	'left',
-	'right',
-	'top',
-	'bottom',
-	'center',
+// 主要な areaキーワード はdata属性で出力
+const areaPresets = [
+	// 'left',
+	// 'right',
+	// 'top',
+	// 'bottom',
+	// 'center',
 	'header',
 	'footer',
 	'body',
-	'aside',
-	'main',
-	'sub',
-	// 'side',
-	// 'content',
-	// 'nav',
-	// 'fix',
-	// 'fluid',
+	// 'aside',
+	// 'main',
+	'fix',
+	'fluid',
 ];
 
 // import classnames from "classnames";
 // function Item({}) {}
-export function Item({ children, ga, ...props }) {
+export function Item({ children, area, ...props }) {
 	// as align-self: start;
 	// js justify-self: center;
 
-	if (ga && gridAreaPresets.includes(ga)) {
-		props['data-ga'] = ga;
-	} else if (ga) {
-		props.ga = ga; // propsへ戻す
+	if (area && areaPresets.includes(area)) {
+		// presetキーワードの場合はdata属性で出力
+		console.log('area', area);
+		props['data-area'] = area;
+	} else if (area) {
+		props.area = area;
 	}
+
 	return (
 		<Box isItem {...props}>
 			{children}

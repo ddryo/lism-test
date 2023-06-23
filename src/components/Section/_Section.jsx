@@ -60,7 +60,7 @@ function Section({
 			{divider.top && <Divider {...divider.top} flip='xy'></Divider>}
 			{mediaLayer}
 			{undefined !== filter && <FilterLayer {...filter}></FilterLayer>}
-			{/* <Stack className='b--section__body' {...innerProps} hasSidePadding> */}
+			{/* <Stack className='b--section__body' {...innerProps} hasGutter> */}
 			{children}
 			{/* </Stack>/ */}
 			{divider.bottom && <Divider {...divider.bottom}></Divider>}
@@ -74,7 +74,7 @@ export const SectionContent = ({ children, className, ...props }) => {
 			isFlow
 			padding={{ Y: 50 }}
 			isConstrained
-			hasSidePadding
+			hasGutter
 			className={classnames('b--section__content', className)}
 			{...props}
 		>

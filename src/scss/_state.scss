@@ -2,7 +2,8 @@
 @use 'state/margin';
 @use 'state/gap';
 @use 'state/size';
-
+@use 'state/grid_flex';
+@use 'state/hover';
 
 .alignfull + .alignfull{
 	margin-block-start: 0;
@@ -47,8 +48,8 @@
 
 
 // .has-global-padding はコア以外の要素で使うと想像した結果にならないことがあるので同じようなことをするクラスを作る
-// .has--ls--gutter?　has--sideSpace?
-.has--sidePadding {
+// .has--ls--gutter?　has--gutter?
+.has--gutter {
 	padding-right: var(--ls--gutter);
 	padding-left: var(--ls--gutter);
 
@@ -59,190 +60,3 @@
 	}
 }
 
-
-
-.is--flex, .is--grid{
-	--ai: normal;
-	--ac: normal;
-	--jc: normal;
-	--ji: legacy;
-
-	align-items: var( --ai );
-	align-content: var(--ac);
-	justify-content: var( --jc );
-	justify-items: var(--ji);
-
-	// 予期せぬカラム落ちを防ぐ
-	// > *
-	> :is(div, main, aside, section, article, p){
-		overflow-wrap: anywhere;
-	}
-
-}
-
-
-
-
-// l--flex, l--stack, l--reel, ...
-.is--flex{
-	--fxw: nowrap;
-	--fxd: row;
-
-	display: flex;
-	flex-direction: var(--fxd);
-	flex-wrap: var(--fxw);
-}
-
-.is--grid{
-	--gta: none;
-	--gtc: none;
-	--gtr: none;
-
-	// @sm
-	--gta--Qsm: var(--gta);
-	--gtc--Qsm: var(--gtc);
-	--gtr--Qsm: var(--gtr);
-
-	// @xs
-	--gta--Qxs: var(--gta--Qsm);
-	--gtc--Qxs: var(--gtc--Qsm);
-	--gtr--Qxs: var(--gtr--Qsm);
-
-	display: grid;
-	grid-template-areas: var(--gta);
-	grid-template-columns: var(--gtc);
-	grid-template-rows: var(--gtr);
-
-	@container (max-width: 720px) {
-		grid-template-areas: var(--gta--Qsm);
-		grid-template-columns: var(--gtc--Qsm);
-		grid-template-rows: var(--gtr--Qsm);
-	}
-
-	@container (max-width: 440px) {
-		grid-template-areas: var(--gta--Qxs);
-		grid-template-columns: var(--gtc--Qxs);
-		grid-template-rows: var(--gtr--Qxs);
-	}
-}
-
-
-
-
-.is--item{
-	// --a-self, --j--self ?
-	--a-self: auto;
-	--j-self: auto;
-	align-self: var(--a-self);
-	justify-self: var(--j-self);
-}
-
-
-// area, column, row でそれぞれ指定可能にするとコンポーネント側で処理が必要になってくるので、 grid-area で一括指定してもらうようにする
-// :where(.is--grid) > .is--item {
-// 	--gr: auto;
-// 	--gc: auto;
-// 	grid-row: var(--gr);
-// 	grid-column: var(--gc);
-// }
-
-// コンポーネント側で --fx 一つにまとめる？
-:where(.is--flex > .is--item){
-	--fxg: 0;
-	--fxsh: 1;
-	--fxb: auto;
-	--fx: var(--fxg) var(--fxsh) var(--fxb);
-	// --fx: 0 1 auto;
-	flex: var(--fx);
-}
-
-// .is--item[data-grid-area],
-:where(.is--grid > .is--item) {
-	--g-area: auto;
-	grid-area: var(--g-area);
-}
-
-// [data-grid-row]{
-// }
-
-// is--item で使われる。u--g-area:hoge のほうがいいか...？
-// .is--item[data-ga="left"]{ --g-area: left;}
-// .is--item[data-ga="right"]{ --g-area: right;}
-// .is--item[data-ga="top"]{ --g-area: top;}
-// .is--item[data-ga="bottom"]{ --g-area: bottom;}
-// .is--item[data-ga="center"]{ --g-area: center;}
-// .is--item[data-ga="header"]{ --g-area: header;}
-// .is--item[data-ga="footer"]{ --g-area: footer;}
-// .is--item[data-ga="body"]{ --g-area: body;}
-// .is--item[data-ga="aside"]{ --g-area: aside;}
-// .is--item[data-ga="main"]{ --g-area: main;}
-// .is--item[data-ga="fix"]{ --g-area: fix;}
-// .is--item[data-ga="fluid"]{ --g-area: fluid;}
-
-
-
-
-// .u--fxw\:w{
-// 	flex-wrap:wrap !important;
-// }
-// .u--fxw\:n{
-// 	flex-wrap:nowrap !important;
-// }
-
-// align-items
-// [class*="u--ai:"],
-// [style*="--ls--ai:"]{
-// 	align-items: var( --ls--ai ) !important;
-// }
-// .u--ai\:c{
-// 	align-items:center !important;
-// }
-// .u--ai\:fe{
-// 	align-items:flex-end !important;
-// }
-// .u--ai\:fs{
-// 	align-items:flex-start !important;
-// }
-// .u--ai\:s{
-// 	align-items:stretch !important;
-// }
-
-// justify-content
-// [class*="u--jc:"],
-// [style*="--ls--jc:"]{
-// 	justify-content: var( --ls--jc ) !important;
-// }
-// .u--jc\:c{
-// 	justify-content:center !important;
-// }
-// .u--jc\:fe{
-// 	justify-content:flex-end !important;
-// }
-// .u--jc\:fs{
-// 	justify-content:flex-start !important;
-// }
-// .u--jc\:sb{
-// 	justify-content:space-between !important;
-// }
-
-
-// .u--jc\:sa{
-// 	justify-content:space-around !important;
-// }
-
-// [style*="--fxw:"]{
-// 	flex-wrap: var(--fxw) !important;
-// }
-// [style*="--ai:"]{
-// 	align-items: var(--ai) !important;
-// }
-// [style*="--jc:"]{
-// 	justify-content: var(--jc) !important;
-// }
-
-// [style*="--a-self:"]{
-// 	align-self: var(--a-self) !important;
-// }
-// [style*="--j-self:"]{
-// 	justify-self: var(--j-self) !important;
-// }

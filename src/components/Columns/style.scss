@@ -4,58 +4,58 @@
 // --------------------
 .l--columns {
 	--cols: 2;
-	--cols--Qsm: var(--cols);
-	--cols--Qxs: var(--cols--Qsm);
+	--cols_Qsm: 1;
+	--cols_Qxs: 1;
 
 	// minmax() を使わないと、カラムのバランスが崩れることがある
 	--gtc: repeat(var(--cols), minmax(0,1fr));
-	--gtc--Qsm: repeat(var(--cols--Qsm), minmax(0,1fr));
-	--gtc--Qxs: repeat(var(--cols--Qxs), minmax(0,1fr));
+	--gtc_Qsm: repeat(var(--cols_Qsm), minmax(0,1fr));
+	--gtc_Qxs: repeat(var(--cols_Qxs), minmax(0,1fr));
 
 
 
 	// 16.6, 33.3 などはちょっと小さくても grow があれば問題ないので端数切り下げで指定。
 	&[data-cols="8"] {
 		--cols: 8;
-		--cols--Qsm: 4;
-		--cols--Qxs: 2;
+		--cols_Qsm: 4;
+		--cols_Qxs: 2;
 	}
 
 	&[data-cols="7"] {
 		--cols: 7;
-		--cols--Qsm: 4;
-		--cols--Qxs: 2;
+		--cols_Qsm: 4;
+		--cols_Qxs: 2;
 	}
 
 	&[data-cols="6"] {
 		--cols: 6;
-		--cols--Qsm: 3;
-		--cols--Qxs: 2;
+		--cols_Qsm: 3;
+		--cols_Qxs: 2;
 	}
 	
 
 	&[data-cols="5"] {
 		--cols: 5;
-		--cols--Qsm: 3;
-		--cols--Qxs: 1;
+		--cols_Qsm: 3;
+		--cols_Qxs: 1;
 	}
 
 	&[data-cols="4"] {
 		--cols: 4;
-		--cols--Qsm: 2;
-		--cols--Qxs: 1;
+		--cols_Qsm: 2;
+		--cols_Qxs: 1;
 	}
 
 	&[data-cols="3"] {
 		--cols: 3;
-		--cols--Qsm: 1;
-		// --cols--Qxs: 1;
+		--cols_Qsm: 1;
+		// --cols_Qxs: 1;
 	}
 
 	&[data-cols="2"] {
 		--cols: 2;
-		--cols--Qsm: 1;
-		// --cols--Qxs: 1;
+		--cols_Qsm: 1;
+		// --cols_Qxs: 1;
 	}
 
 	&[data-cols="1"] {

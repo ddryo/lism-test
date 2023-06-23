@@ -1,0 +1,21 @@
+.e--delimiter {
+
+	&[data-type="/"] {
+
+		&::before {
+			content: "/";
+		}
+	}
+
+	&[data-type="|"] {
+
+		&::before {
+			content: "|";
+		}
+	}
+
+	.is--flex > & {
+		// --ls--miw: 1em;
+		text-align: center;
+	}
+}

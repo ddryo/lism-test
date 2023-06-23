@@ -1,0 +1,77 @@
+// これじゃだめ
+// .is--flow {
+// 	--inner--flowGap: var(--ls--flowGap);
+// 	--inner--flowGap_Qsm: var(--inner--flowGap);
+// 	--inner--flowGap_Qxs: var(--inner--flowGap_Qsm);
+
+// 	> * + * {
+// 		margin-block-start: var(--inner--flowGap);
+// 		@container (max-width: 720px) {
+// 			margin-block-start: var(--inner--flowGap_Qsm);
+// 		}
+// 		@container (max-width: 440px) {
+// 			margin-block-start: var(--inner--flowGap_Qxs);
+// 		}
+// 	}
+// }
+
+.is--flow {
+	> * {
+		margin-block-start: 0;
+		margin-block-end: 0;
+	}
+
+	> * + * {
+		margin-block-start: var(--ls--flowGap);
+		margin-block-end: 0;
+	}
+
+	
+	// ※1: "--flowGap:" ではなく "--flowGap" (:なし} にしているのは意図的。
+	//　_Q{x} のみの指定でも mbs 上書き可能にしている。( ただし、これによりネスト時に影響受けてしまうので、※2 で調整 ）
+	&[style*="--inner--flowGap"] > * + *{
+		margin-block-start: var(--inner--flowGap, var(--ls--flowGap) );
+	}
+
+	// ※2: _Q{x} に対してのみ上書き指定がある場合、noQuery の時の値をセット
+	&[style*="--inner--flowGap--"]:not([style*="--inner--flowGap:"]) {
+		--inner--flowGap: var(--ls--flowGap);
+	}
+
+	@container (max-width: 720px) {
+		&[style*="--inner--flowGap_Qsm:"] {
+			--inner--flowGap: var(--inner--flowGap_Qsm) !important;
+		}
+	}
+	
+	@container (max-width: 440px) {
+		&[style*="--inner--flowGap_Qxs:"] { 
+			--inner--flowGap: var(--inner--flowGap_Qxs) !important;
+		}
+	}
+	
+
+	> .alignleft {
+		float: left;
+		margin-inline-start: 0;
+		margin-inline-end: 2em; // ?
+	}
+
+	> .alignright {
+		float: right;
+		margin-inline-start: 2em; // ?
+		margin-inline-end: 0;
+	}
+
+	> .aligncenter {
+		margin-right: auto !important;
+		margin-left: auto !important;
+	}
+
+}
+
+// [data-box-flowGap="s"]{
+// 	&.is--flow > * {
+// 		--gap: var(--s--30);
+// 	}
+// }

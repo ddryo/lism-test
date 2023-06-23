@@ -6,49 +6,49 @@
 // grid-area = grid-row-start / grid-column-start / grid-row-end / grid-column-end
 
 /**
- * gridArea用のstyleオブジェクトを生成して返す
+ * grid-area用のstyleオブジェクトを生成して返す.
+ *    row/col で分割指定できるが、変数化する時にはまとめてセットする.
  *
- *
- * @param {number | string | object} gridArea
- * @param {Object}                   gridAreas
+ * @param {number | string | object} area
+ * @param {Object}                   areas
  * @return {Object} style
  */
-export function getGridAreaStyles(gridArea, gridAreas = {}) {
-	if (undefined !== gridArea) {
-		gridAreas._ = gridArea;
+export function getGridAreaStyles(area, areas = {}) {
+	if (undefined !== area) {
+		areas._ = area;
 	}
 
 	return {
-		...sortAreaData(gridAreas._, ''),
-		...sortAreaData(gridAreas.sm, '--Qsm'),
-		...sortAreaData(gridAreas.xs, '--Qxs'),
+		...sortAreaData(areas._, ''),
+		...sortAreaData(areas.sm, '_Qsm'),
+		...sortAreaData(areas.xs, '_Qxs'),
 	};
 }
 
 /**
  *
- * @param {number | string | Object} gridArea
+ * @param {number | string | Object} area
  * @param {string}                   modifier
  * @return {Object} styles
  */
-function sortAreaData(gridArea, modifier) {
-	if (null == gridArea) return {};
+function sortAreaData(area, modifier) {
+	if (null == area) return {};
 
 	// 数値は受け付けない
-	if (typeof gridArea === 'number') {
+	if (typeof area === 'number') {
 		return {};
 	}
 
 	// 文字列ならそのままセット
-	if (typeof gridArea === 'string') {
+	if (typeof area === 'string') {
 		return {
-			[`--g-area${modifier}`]: gridArea,
+			[`--area${modifier}`]: area,
 		};
 	}
 
 	// 以下、{row, col} 形式の時
-	const row = gridArea?.row || 'auto';
-	const col = gridArea?.col || 'auto';
+	const row = area?.row || 'auto';
+	const col = area?.col || 'auto';
 
 	let rowStart = null;
 	let rowEnd = null;
@@ -75,6 +75,6 @@ function sortAreaData(gridArea, modifier) {
 	}
 
 	return {
-		[`--g-area${modifier}`]: `${rowStart} / ${colStart} / ${rowEnd} / ${colEnd}`,
+		[`--area${modifier}`]: `${rowStart} / ${colStart} / ${rowEnd} / ${colEnd}`,
 	};
 }

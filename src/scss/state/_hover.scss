@@ -1,0 +1,56 @@
+
+// .-hov\: ユーティリティ
+
+[class*=-hov\:]{
+	transition: filter, opacity, box-shadow, transform, border-color;
+	transition-duration: .25s;
+
+	// mediaへのホバー効果
+	.l--layer__media{
+		transition: transform .3s, filter .3s;
+	}
+}
+
+.-hov\:border{
+	border: solid 2px transparent;
+	&:hover{
+		// --color--border--hov を用意しておく？
+		border-color: var(--ls--color--link);
+	}
+}
+
+.-hov\:dark:hover{
+	filter: brightness(.8) contrast(1.2);//grayscale(5%);
+}
+
+.-hov\:opacity:hover {
+	opacity: .75;
+}
+.-hov\:shadow:hover {
+	// ユーティリティに負けないように important
+	box-shadow: var(--shadow--hover, var(--ls--shadow--hover)) !important;
+}
+.-hov\:up:hover {
+	// ユーティリティに負けないように
+	transform: translateY(-3px);
+}
+
+
+// hov:media:
+// .-hov\:mediaZoom:hover .l--layer__media{
+// 	transform: none;
+// 	filter: none;
+// }
+.-hov\:mediaZoom:hover .l--layer__media{
+	transform: scale(1.1);
+}
+// ※ filter どうしは同時使用できないことに注意
+.-hov\:mediaDark:hover .l--layer__media{
+	filter: brightness(.9);
+}
+.-hov\:mediaBright:hover .l--layer__media{
+	filter: brightness(1.1);
+}
+.-hov\:mediaBlur:hover .l--layer__media{
+	filter: blur(4px);
+}

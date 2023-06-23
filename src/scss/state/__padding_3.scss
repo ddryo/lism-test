@@ -1,0 +1,54 @@
+
+// この方式だと、セレクタ負荷が高すぎる。かつ、CSSファイルから --p 系の初期セットなどもできない。
+[style*="--pt:"]{
+	padding-top: var(--pt) !important;
+}
+[style*="--pr:"]{
+	padding-right: var(--pr) !important;
+}
+[style*="--pb:"]{
+	padding-bottom: var(--pb) !important;
+}
+[style*="--pl:"]{
+	padding-left: var(--pl) !important;
+}
+[style*="--p:"]{
+	padding: var(--p) !important;
+}
+
+@container (max-width: 720px) {
+	
+	[style*="--pt_Qsm:"]{
+		padding-top: var(--pt_Qsm) !important;
+	}
+	[style*="--pr_Qsm:"]{
+		padding-right: var(--pr_Qsm) !important;
+	}
+	[style*="--pb_Qsm:"]{
+		padding-bottom: var(--pb_Qsm) !important;
+	}
+	[style*="--pl_Qsm:"]{
+		padding-left: var(--pl_Qsm) !important;
+	}
+	[style*="--p_Qsm:"]{
+		padding: var(--p_Qsm) !important;
+	}
+}
+
+@container (max-width: 440px) {
+	[style*="--pt_Qxs:"]{
+		padding-top: var(--pt_Qxs) !important;
+	}
+	[style*="--pr_Qxs:"]{
+		padding-right: var(--pr_Qxs) !important;
+	}
+	[style*="--pb_Qxs:"]{
+		padding-bottom: var(--pb_Qxs) !important;
+	}
+	[style*="--pl_Qxs:"]{
+		padding-left: var(--pl_Qxs) !important;
+	}
+	[style*="--p_Qxs:"]{
+		padding: var(--p_Qxs) !important;
+	}
+}

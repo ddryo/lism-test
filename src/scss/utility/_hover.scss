@@ -18,23 +18,20 @@
 		border-color: var(--ls--color--link);
 	}
 }
-
 .-hov\:dark:hover{
-	filter: brightness(.8) contrast(1.2);//grayscale(5%);
+	filter: brightness(.8) contrast(1.2); //grayscale(5%);
 }
-
 .-hov\:opacity:hover {
 	opacity: .75;
 }
 .-hov\:shadow:hover {
 	// ユーティリティに負けないように important
-	box-shadow: var(--shadow--hover, var(--ls--shadow--hover)) !important;
+	box-shadow: var(--ls--shadow--hov);
 }
 .-hov\:up:hover {
 	// ユーティリティに負けないように
 	transform: translateY(-3px);
 }
-
 
 // hov:media:
 // .-hov\:mediaZoom:hover .l--layer__media{

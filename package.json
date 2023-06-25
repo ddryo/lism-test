@@ -1,8 +1,9 @@
 {
 	"name": "@loos/lism-test",
-	"version": "1.0.4",
+	"version": "1.0.9",
 	"description": "",
 	"main": "dist/index.js",
+	"module": "dist/index.js",
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
@@ -24,7 +25,9 @@
 		"next"
 	],
 	"exports": {
-		".": "./dist/index.js",
+		".": {
+			"import": "./dist/index.js"
+		},
 		"./next": "./next/index.js",
 		"./scss/*": "./src/scss/*"
 	},

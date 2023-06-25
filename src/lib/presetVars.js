@@ -1,8 +1,9 @@
 export const PRESETS = {
 	color: ['main', 'sub', 'base', 'baseSub', 'accent', 'link', 'text', 'gray', 'white', 'black'],
 	fz: ['6L', '5L', '4L', '3L', '2L', 'L', 'S', '2S', 'R'],
-	radius: ['xs', 'sm', 'md', 'lg', 'xl', 'circle'],
-	shadow: ['solid', 'sm', 'md', 'lg'],
+	ta: ['center', 'left', 'right'],
+	radius: ['xs', 'sm', 'md', 'lg', 'xl', 'round'],
+	shadow: ['-1', '-2', '-3', '-4', '-5', '1', '2', '3', '4', '5'],
 	space: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
 };
 
@@ -59,7 +60,7 @@ export function getMaybeSpaceVar(space) {
 
 // export function getMaybeRadiusVar(bdrs) {
 // 	if (isPresetValue('radius', bdrs)) {
-// 		return 'var(--ls--bdrs--' + bdrs + ')';
+// 		return 'var(--ls--radius--' + bdrs + ')';
 // 	}
 // 	return bdrs;
 // }

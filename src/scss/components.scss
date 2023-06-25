@@ -32,11 +32,10 @@
 
 // test
 .ex-cards{
-	--ls--height: 20em;
-	--ls--fxb--expanded: 60%;
-	// --ls--height: auto;
+	--h: 20em;
+	--fxb--expanded: 60%;
 	display: flex;
-	height: var(--ls--height);
+	height: var(--h);
 	align-items: stretch;
 	
 	.ex-cards__content{
@@ -64,7 +63,7 @@
 		&:hover,
 		&:focus{
 			// flex-grow: var(--ls--fxg--expanded); // 複数開いてしまった時に、grow で管理していたほうがどちらも見える?
-			flex-basis: var(--ls--fxb--expanded);
+			flex-basis: var(--fxb--expanded);
 
 			> .ex-cards__content{
 				visibility: visible;
@@ -73,36 +72,4 @@
 			}
 		}
 	 }
- }
-
-
-// --------------------
-// .l--mediaContent 検討中
-// メディアとコンテンツ。メディアテキストブロックとほぼ同じだが、メディアクエリに依存しない。
-// b-- にして内部で .l--mainSub 使う？
-// --------------------
-.l--mediaContent {
-	--gap: var(--s--50);
-	--ls--content--minW: 24em;
-	--ls--media--width: 50%;
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--gap);
-	align-items: center; // デフォルトで中央揃えにする
-}
-
-.l--mediaContent__content {
-	flex-basis: 0;
-	flex-grow: 999;
-	min-width: min(100%, var(--ls--content--minW));  // このサイズが折り返しポイント
-}
-
-.l--mediaContent__media {
-	flex-basis: var(--ls--media--width);
-	flex-grow: 1;
-
-	img {
-		display: block;
-		width: 1000%;
-	}
 }

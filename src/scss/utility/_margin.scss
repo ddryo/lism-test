@@ -47,7 +47,6 @@
 		margin-top: var(--mY_Qsm) !important;
 		margin-bottom: var(--mY_Qsm) !important;
 	}
-
 }
 
 @container (max-width: 440px) {
@@ -70,43 +69,43 @@
 
 
 // --------------------
-// .u--mt 系
+// .-mt 系
 //   --ls--flowGap をいじると内部にも影響でてしまうので margin を直接上書き。
 //   ツールバーから使う用でもあるので、block-start 方向に指定したい。
 //  mt では 規則的に margin-top になるべきなので、どうするか。
 //  mT でもいいか...。 （mB は margin-block-end）
 // もしくは、mBs, m-bs とか...？
 // --------------------
-.u--mT\:0 {
+.-mT\:0 {
 	margin-block-start: var(--s--0) !important;
 }
-.u--mT\:10 {
+.-mT\:10 {
 	margin-block-start: var(--s--10) !important;
 }
-.u--mT\:20 {
+.-mT\:20 {
 	margin-block-start: var(--s--20) !important;
 }
-.u--mT\:30 {
+.-mT\:30 {
 	margin-block-start: var(--s--30) !important;
 }
-.u--mT\:40 {
+.-mT\:40 {
 	margin-block-start: var(--s--40) !important;
 }
-.u--mT\:50 {
+.-mT\:50 {
 	margin-block-start: var(--s--50) !important;
 }
-.u--mT\:60 {
+.-mT\:60 {
 	margin-block-start: var(--s--60) !important;
 }
-.u--mT\:70 {
+.-mT\:70 {
 	margin-block-start: var(--s--70) !important;
 }
-.u--mT\:80 {
+.-mT\:80 {
 	margin-block-start: var(--s--80) !important;
 }
-// .u--mT\:90 {
+// .-mT\:90 {
 // 	margin-block-start: var(--s--90) !important;
 // }
-// .u--mT\:100 {
+// .-mT\:100 {
 // 	margin-block-start: var(--s--100) !important;
 // }

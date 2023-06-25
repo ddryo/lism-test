@@ -32,11 +32,12 @@ export default function getCommonProps(props) {
 		bgc,
 		color,
 		fz,
+		fw,
 		lh,
+		lts,
+		ta,
 		width,
-		// widths,
 		height,
-		// heights,
 		radius, //bdrs,
 		border,
 		shadow, // bxsh
@@ -67,6 +68,8 @@ export default function getCommonProps(props) {
 		...style,
 		...{
 			border,
+			letterSpacing: lts,
+			fontWeight: fw,
 		},
 	};
 
@@ -124,7 +127,7 @@ export default function getCommonProps(props) {
 	}
 
 	if (undefined !== mT) {
-		classNames.push(`u--mT:${mT}`);
+		classNames.push(`-mT:${mT}`);
 	}
 
 	if (undefined !== width) {
@@ -159,7 +162,7 @@ export default function getCommonProps(props) {
 
 	if (undefined !== color) {
 		if (isPresetValue('color', color)) {
-			classNames.push(`u--c:${color}`);
+			classNames.push(`-c:${color}`);
 		} else {
 			styles.color = color;
 		}
@@ -167,7 +170,7 @@ export default function getCommonProps(props) {
 
 	if (undefined !== bgc) {
 		if (isPresetValue('color', bgc)) {
-			classNames.push(`u--bgc:${bgc}`);
+			classNames.push(`-bgc:${bgc}`);
 		} else {
 			styles.backgroundColor = bgc;
 		}
@@ -175,7 +178,7 @@ export default function getCommonProps(props) {
 
 	if (undefined !== radius) {
 		if (isPresetValue('radius', radius)) {
-			classNames.push(`u--bdrs:${radius}`);
+			classNames.push(`-bdrs:${radius}`);
 		} else {
 			styles.borderRadius = radius;
 		}
@@ -183,18 +186,26 @@ export default function getCommonProps(props) {
 
 	if (undefined !== shadow) {
 		if (isPresetValue('shadow', shadow)) {
-			classNames.push(`u--bxsh:${shadow}`);
+			classNames.push(`-bxsh:${shadow}`);
 		} else {
 			styles.boxShadow = shadow;
 		}
 	}
 
+	if (undefined !== ta) {
+		if (isPresetValue('ta', ta)) {
+			classNames.push(`-ta:${ta}`);
+		} else {
+			styles.textAlign = ta;
+		}
+	}
+
 	if (undefined !== fz) {
 		if (isPresetValue('fz', fz)) {
-			classNames.push(`u--fz:${fz}`);
+			classNames.push(`-fz:${fz}`);
 		} else {
-			styles.fontSize = fz;
 			styles['--fz'] = fz; // ここは em 単位の時限定にすべき
+			// styles.fontSize = fz;
 		}
 	}
 
@@ -206,13 +217,13 @@ export default function getCommonProps(props) {
 	// // lhは --lh にもセットする
 	// // fontSize が fzSets に含まれている場合
 	// if (lhSets.includes(String(lh))) {
-	// 	className += ` u--lh:${lh}`;
+	// 	className += ` -lh:${lh}`;
 	// } else if (lh) {
 	// 	style.lineHeight = lh;
 	// }
 
 	// if (undefined !== fz && FZ_PRESETS.includes(fz)) {
-	// 	className.push(`u--fz:${fz}`);
+	// 	className.push(`-fz:${fz}`);
 	// } else if (fz) {
 	// 	styles.fontSize = fz;
 	// }

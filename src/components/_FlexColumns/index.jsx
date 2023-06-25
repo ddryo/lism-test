@@ -17,11 +17,11 @@ function getColumnsStyles(col, cols = {}) {
 	}
 
 	return filterEmptyObj({
-		'--ls--fxb': getFxb(cols?._) || null,
-		'--ls--fxb_Qsm': getFxb(cols?.sm) || null,
-		'--ls--fxb_Qxs': getFxb(cols?.xs) || null,
-		// "--ls--fxb_Qlg": getFxb(cols?.lg) || null,
-		// "--ls--fxb_Qxl": getFxb(cols?.xl) || null,
+		'--fxb': getFxb(cols?._) || null,
+		'--fxb_Qsm': getFxb(cols?.sm) || null,
+		'--fxb_Qxs': getFxb(cols?.xs) || null,
+		// "--fxb_Qlg": getFxb(cols?.lg) || null,
+		// "--fxb_Qxl": getFxb(cols?.xl) || null,
 	});
 }
 

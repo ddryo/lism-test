@@ -24,12 +24,7 @@ export default function Card({ children, className, href, ...props }) {
 	// 以下、ratio なし
 	if (href) {
 		return (
-			<LinkBox
-				href={href}
-				component={Stack}
-				// hover='mediaDark'
-				{...blockProps}
-			>
+			<LinkBox href={href} component={Stack} {...blockProps}>
 				{children}
 			</LinkBox>
 		);

@@ -1,20 +1,20 @@
 
 .b--noticeBox{
 
-	--ls--bgc: #fffdf5;
-	--ls--bdc: #edbd4d;
+	--bgc: #fffdf5;
+	--bdc: #edbd4d;
 
 	&[data-notice-type="memo"]{
-		--ls--bgc: #f6f6f6;
-		--ls--bdc: #b3b3b3;
+		--bgc: #f6f6f6;
+		--bdc: #b3b3b3;
 	}
 
-	background-color: var(--ls--bgc);
-	border: double 3px var(--ls--bdc);;
+	background-color: var(--bgc);
+	border: double 3px var(--bdc);;
 	border-radius: 4px;
 
 	.b--noticeBox__caption{
-		border-bottom: solid 1px var(--ls--bdc);;
+		border-bottom: solid 1px var(--bdc);;
 		width: fit-content;
 		padding: var(--s--10) var(--s--30);
 		font-size: var(--ls--fz--S);

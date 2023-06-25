@@ -23,7 +23,7 @@
 // :not([style*="font-size"]) にしてても、* によって親要素側で計算されはじめたりするので、多少影響は受ける
 *:not([style*="font-size"]),
 [style*="--fz:"], // --fzでフォントサイズ指定されているもの
-[class*="u--fz\:"], {
+[class*="-fz\:"], {
 
 	--slope: 0.35; // 自動計算用の傾き
 	--base: calc(var(--lh, var(--ls--root--lh)) * 1em); // 計算ように単位をつけておく
@@ -36,7 +36,7 @@
 	);
 }
 
-// .u--fz:などに対して--lh指定されてあった場合に上書きできる位置で
+// .-fz:などに対して--lh指定されてあった場合に上書きできる位置で
 // [style*="--lh:"]{
 // 	line-height: var(--lh);
 // 	--ls--lh--min: min(var(--ls--lh--min), var(--base));
@@ -52,13 +52,13 @@ h4 {--fz: var(--ls--fz--L);}
 h5 {--fz: var(--ls--fz--M);}
 h6 {--fz: var(--ls--fz--S);}
 
-.u--fz\:R {font-size: 1rem;}
-.u--fz\:2S {--fz: var(--ls--fz--2S);}
-.u--fz\:S {--fz: var(--ls--fz--S);}
-.u--fz\:M {--fz: var(--ls--fz--M);}
-.u--fz\:L {--fz: var(--ls--fz--L);}
-.u--fz\:2L {--fz: var(--ls--fz--2L);}
-.u--fz\:3L {--fz: var(--ls--fz--3L);}
-.u--fz\:4L {--fz: var(--ls--fz--4L);}
-.u--fz\:5L {--fz: var(--ls--fz--5L);}
-.u--fz\:6L {--fz: var(--ls--fz--6L);}
+.-fz\:R {font-size: 1rem;}
+.-fz\:2S {--fz: var(--ls--fz--2S);}
+.-fz\:S {--fz: var(--ls--fz--S);}
+.-fz\:M {--fz: var(--ls--fz--M);}
+.-fz\:L {--fz: var(--ls--fz--L);}
+.-fz\:2L {--fz: var(--ls--fz--2L);}
+.-fz\:3L {--fz: var(--ls--fz--3L);}
+.-fz\:4L {--fz: var(--ls--fz--4L);}
+.-fz\:5L {--fz: var(--ls--fz--5L);}
+.-fz\:6L {--fz: var(--ls--fz--6L);}

@@ -22,6 +22,10 @@
 }
 
 
+// [class*="-gap:"]{
+// 	gap: var(--gap) !important;
+// }
+
 [class*="-colmg:"]{
 	column-gap: var(--colmg) !important;
 }

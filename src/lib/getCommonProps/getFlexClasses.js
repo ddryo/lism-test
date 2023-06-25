@@ -3,42 +3,42 @@ import classnames from 'classnames';
 // キーワードがきまっててレイアウト的によく使うものはユーティリティを用意
 export default function getFlexClasses({ ai, jc, fxw, as, js }) {
 	return classnames({
-		'u--fxw:w': 'wrap' === fxw,
-		'u--fxw:n': 'nowrap' === fxw,
+		'-fxw:w': 'wrap' === fxw,
+		'-fxw:n': 'nowrap' === fxw,
 
-		// 'u--ai:b': 'baseline' === ai,
-		'u--ai:c': 'center' === ai,
-		'u--ai:fs': 'flex-start' === ai,
-		'u--ai:fe': 'flex-end' === ai,
-		// 'u--ai:start': 'start' === ai,
-		// 'u--ai:end': 'end' === ai,
-		'u--ai:s': 'strech' === ai, // emmet に ai:s はあるが start とややこしい
+		// '-ai:b': 'baseline' === ai,
+		'-ai:c': 'center' === ai,
+		'-ai:fs': 'flex-start' === ai,
+		'-ai:fe': 'flex-end' === ai,
+		// '-ai:start': 'start' === ai,
+		// '-ai:end': 'end' === ai,
+		'-ai:s': 'strech' === ai, // emmet に ai:s はあるが start とややこしい
 
 		// justify-content:;
-		'u--jc:c': 'center' === jc,
-		'u--jc:fe': 'flex-end' === jc,
-		'u--jc:fs': 'flex-start' === jc,
-		// 'u--jc:start': 'start' === jc,
-		// 'u--jc:end': 'end' === jc,
-		// 'u--jc:s': 'strech' === jc,
-		'u--jc:sb': 'space-between' === jc,
-		// 'u--jc:sa': 'space-around' === jc,
-		// u--js:se? space-evenly
+		'-jc:c': 'center' === jc,
+		'-jc:fe': 'flex-end' === jc,
+		'-jc:fs': 'flex-start' === jc,
+		// '-jc:start': 'start' === jc,
+		// '-jc:end': 'end' === jc,
+		// '-jc:s': 'strech' === jc,
+		'-jc:sb': 'space-between' === jc,
+		// '-jc:sa': 'space-around' === jc,
+		// -js:se? space-evenly
 
 		// as (align-self)
-		// 'u--as:c': 'center' === as,
-		// 'u--as:fs': 'flex-start' === as,
-		// 'u--as:fe': 'flex-end' === as,
-		// 'u--as:start': 'start' === as,
-		// 'u--as:end': 'flex-end' === as,
-		// 'u--as:s': 'strech' === as,
+		// '-as:c': 'center' === as,
+		// '-as:fs': 'flex-start' === as,
+		// '-as:fe': 'flex-end' === as,
+		// '-as:start': 'start' === as,
+		// '-as:end': 'flex-end' === as,
+		// '-as:s': 'strech' === as,
 
 		// js (justify-self)
-		// 'u--js:c': 'center' === js,
-		// 'u--js:fs': 'flex-start' === js,
-		// 'u--js:fe': 'flex-end' === js,
-		// 'u--js:start': 'start' === js,
-		// 'u--js:end': 'flex-end' === js,
-		// 'u--js:s': 'strech' === js,
+		// '-js:c': 'center' === js,
+		// '-js:fs': 'flex-start' === js,
+		// '-js:fe': 'flex-end' === js,
+		// '-js:start': 'start' === js,
+		// '-js:end': 'flex-end' === js,
+		// '-js:s': 'strech' === js,
 	});
 }

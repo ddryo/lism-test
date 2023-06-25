@@ -1,9 +1,6 @@
-@use 'state/padding';
-@use 'state/margin';
+
 @use 'state/gap';
-@use 'state/size';
 @use 'state/grid_flex';
-@use 'state/hover';
 
 .alignfull + .alignfull{
 	margin-block-start: 0;

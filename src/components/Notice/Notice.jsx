@@ -11,7 +11,7 @@ export default function Notice(props) {
 			{...attrs}
 		>
 			{caption && <div className='b--noticeBox__caption'>{caption}</div>}
-			<div className='b--noticeBox__content is--flow u--innerGap--s'>{children}</div>
+			<div className='b--noticeBox__content is--flow -innerGap--s'>{children}</div>
 		</Box>
 	);
 }

@@ -1,185 +1,165 @@
+@use 'utility/size';
+@use 'utility/padding';
+@use 'utility/margin';
+@use 'utility/shadow';
+@use 'utility/hover';
+
 :root{
 	// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
-	// --tim-shadow: 0 8px 26px -4px rgba(20, 20, 20, .15),  0 8px 9px -5px rgba(20, 20, 20, .06);
-	--ls--shadow--solid: 0 1px 5px 0 rgba(20, 20, 20, 0.1), 0 2px 3px 1px rgba(20, 20, 20, 0.05);
-	--ls--shadow--sm: 0 3px 8px -1px rgba(20, 20, 20, .1);
-	--ls--shadow--md: 0 5px 13px -3px rgba(20, 20, 20, .1), 0 5px 8px -3px rgba(20, 20, 20, .05);
-	--ls--shadow--lg: 0 5px 34px -8px rgba(20, 20, 20, .12), 0 5px 8px -3px rgba(20, 20, 20, .05);
-	--ls--shadow--hover--lg: 0 5px 34px -5px rgba(20, 20, 20, .15), 0 8px 13px -5px rgba(20, 20, 20, .05);
-	--ls--shadow--hover: 0 8px 21px -5px rgba(20, 20, 20, 0.15), 0 8px 13px -5px rgba(20, 20, 20, .05);
 
 	// border-radius
-	--ls--bdrs--xs: 2px; // or 1
-	--ls--bdrs--sm: 3px;
-	--ls--bdrs--md: 5px;
-	--ls--bdrs--lg: 8px;
-	--ls--bdrs--xl: 13px;
-	--ls--bdrs--circle: 999px;
+	--ls--radius--xs: 2px;
+	--ls--radius--sm: 5px;
+	--ls--radius--md: 13px;
+	--ls--radius--lg: 21px;
+	--ls--radius--xl: 34px;
+	--ls--radius--round: 999px;
 	// 1,2,4,6,8,12 ... ?
-	// 1,2,3,5,8,13 ... 999px ?
+	// 1,2,3,5,8,13,21, 34, ... 999px ?
 }
 
-.u--bdrs\:xs{
-	border-radius: var(--ls--bdrs--xs) !important;
+.-bdrs\:xs{
+	border-radius: var(--ls--radius--xs) !important;
 }
-.u--bdrs\:sm{
-	border-radius: var(--ls--bdrs--sm) !important;
+.-bdrs\:sm{
+	border-radius: var(--ls--radius--sm) !important;
 }
-.u--bdrs\:md{
-	border-radius: var(--ls--bdrs--md) !important;
+.-bdrs\:md{
+	border-radius: var(--ls--radius--md) !important;
 }
-.u--bdrs\:lg{
-	border-radius: var(--ls--bdrs--lg) !important;
+.-bdrs\:lg{
+	border-radius: var(--ls--radius--lg) !important;
 }
-.u--bdrs\:xl{
-	border-radius: var(--ls--bdrs--xl) !important;
+.-bdrs\:xl{
+	border-radius: var(--ls--radius--xl) !important;
 }
-.u--bdrs\:circle{
-	border-radius: var(--ls--bdrs--circle) !important;
-}
-
-.u--bxsh\:solid{
-	--shadow: var(--ls--shadow--solid);
-	box-shadow: var(--shadow) !important;
-}
-.u--bxsh\:sm{
-	--shadow: var(--ls--shadow--sm);
-	box-shadow: var(--shadow) !important;
-}
-.u--bxsh\:md{
-	--shadow: var(--ls--shadow--md);
-	box-shadow: var(--shadow) !important;
-}
-.u--bxsh\:lg{
-	--shadow: var(--ls--shadow--lg);
-	box-shadow: var(--shadow) !important;
-
-	// linkboxホバー時、基本のホバーシャドウだと小さくなるのでlgは別途定義
-	--shadow--hover: var(--ls--shadow--hover--lg);
+.-bdrs\:round{
+	border-radius: var(--ls--radius--round) !important;
 }
 
 // display
-.u--d\:n{
+.-d\:n{
 	display: none;
 }
-.u--d\:b{
+.-d\:b{
 	display: block;
 }
-.u--d\:i{
+.-d\:i{
 	display: inline;
 }
-.u--d\:if{
+.-d\:if{
 	display: inline-flex;
 }
-.u--d\:ib{
+.-d\:ib{
 	display: inline-block;
 }
 
 @container (max-width: 720px) {
-	.u--d\:n-\@sm{
+	.-d\:n-\@sm{
 		display: none;
 	}
-	.u--d\:b-\@sm{
+	.-d\:b-\@sm{
 		display: block;
 	}
 }
 
 @container (max-width: 440px) {
-	.u--d\:n-\@xs{
+	.-d\:n-\@xs{
 		display: none;
 	}
-	.u--d\:b-\@xs{
+	.-d\:b-\@xs{
 		display: block;
 	}
 }
 
+
 //カラー系
-.u--c\:white{
+.-c\:white{
 	color:#fff;
 }
-.u--c\:black{
+.-c\:black{
 	color:#000;
 }
 
-.u--c\:main{
+.-c\:main{
 	color: var(--ls--color--main);
 }
-.u--c\:sub{
+.-c\:sub{
 	color: var(--ls--color--sub);
 }
-.u--c\:accent{
+.-c\:accent{
 	color: var(--ls--color--accent);
 }
-.u--c\:base{
+.-c\:base{
 	color: var(--ls--color--base);
 }
-.u--c\:bgSub{
+.-c\:bgSub{
 	color: var(--ls--color--bgSub);
 }
-.u--c\:link{
+.-c\:link{
 	color:  var(--ls--color--link);
 }
-.u--c\:text{
+.-c\:text{
 	color:  var(--ls--color--text);
 }
-.u--c\:gray{
+.-c\:gray{
 	color: var(--ls--color--gray);
 }
 
 
-.u--bgc\:main{
+.-bgc\:main{
 	background-color: var(--ls--color--main);
 }
-.u--bgc\:sub{
+.-bgc\:sub{
 	background-color: var(--ls--color--sub);
 }
-.u--bgc\:accent{
+.-bgc\:accent{
 	background-color: var(--ls--color--accent);
 }
-.u--bgc\:base{
+.-bgc\:base{
 	background-color: var(--ls--color--base);
 }
-.u--bgc\:bgSub{
+.-bgc\:bgSub{
 	background-color: var(--ls--color--bgSub);
 }
-.u--bgc\:text{
+.-bgc\:text{
 	background-color:  var(--ls--color--text);
 }
-.u--bgc\:gray{
+.-bgc\:gray{
 	background-color: var(--ls--color--gray);
 }
-.u--bgc\:white{
+.-bgc\:white{
 	background-color:#fff;
 }
-.u--bgc\:black{
+.-bgc\:black{
 	background-color:#000;
 }
 
 
 
 // text-align
-.u--ta\:c {
+.-ta\:c {
 	text-align: center;
 }
-.u--ta\:r {
+.-ta\:r {
 	text-align: right;
 }
-.u--ta\:l {
+.-ta\:l {
 	text-align: left;
 }
 
 
 // line-hegiht
-.u--lh\:1\.2 {
-	line-height: 1.2;
-}
-.u--lh\:1\.5 {
-	line-height: 1.5;
-}
+// .-lh\:1\.2 {
+// 	line-height: 1.2;
+// }
+// .-lh\:1\.5 {
+// 	line-height: 1.5;
+// }
 
 
 // clear float
-// .u--cf::after {
+// .-cf::after {
 // 	display: block;
 // 	clear: both;
 // 	width: 0;
@@ -187,43 +167,30 @@
 // 	content: "";
 // }
 
-
-
-
-// --------------------
-// line-height
-// --------------------
-// .u--lh--10{
-// 	line-height: 1;
-// }
-// .u--lh--20{
-// 	line-height: 2;
-// }
-
 // その他
-.u--lis\:n{
+.-lis\:n{
 	list-style: none;
 }
 
 // Layer の基点を作るためにrelativeにしたいことがある
-.u--pos\:r{
+.-pos\:r{
 	position: relative;
 }
-// .u--pos\:f{
+// .-pos\:f{
 // 	position: fixed;
 // }
-// .u--pos\:a{
+// .-pos\:a{
 // 	position: absolute;
 // }
 
 // 折返し禁止
 // .i--nowrap,
-.u--whs\:nw {
+.-whs\:nw {
 	white-space: nowrap;
 }
 
 // 単語中でも折り返しさせる
 // ※ ovw は emmetの正式定義ではない.
-.u--ovw\:any{
+.-ovw\:any{
 	overflow-wrap: anywhere;
 }

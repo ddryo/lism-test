@@ -25,7 +25,6 @@ export function Item({ children, area, ...props }) {
 
 	if (area && areaPresets.includes(area)) {
 		// presetキーワードの場合はdata属性で出力
-		console.log('area', area);
 		props['data-area'] = area;
 	} else if (area) {
 		props.area = area;

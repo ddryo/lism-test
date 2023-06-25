@@ -27,10 +27,10 @@ body{
 // }
 	
 
-.u--typoCalc, // (仮名) 自動計算対象にするというユーティリティクラス合ったほうが便利かも...？
+.-typoCalc, // (仮名) 自動計算対象にするというユーティリティクラス合ったほうが便利かも...？
 [style*="--fz:"], // --fzでフォントサイズ指定されているもの
 :where(:is(h1, h2, h3, h4, h5, h6, p)):not([style*="font-size"]),
-[class*="u--fz\:"] {
+[class*="-fz\:"] {
 	--slope: 0.35; // 自動計算用の傾き
 	--base: calc(var(--lh) * 1em); // 計算ように単位をつけておく
 
@@ -58,40 +58,40 @@ h4 {--fz: var(--ls--fz--L);}
 h5 {--fz: var(--ls--fz--M);}
 h6 {--fz: var(--ls--fz--S);}
 
-.u--fz\:R {font-size: var(--ls--fz--R, 1rem);} // 単位がremなので --fz にはセットしない
-.u--fz\:2S {
+.-fz\:R {font-size: var(--ls--fz--R, 1rem);} // 単位がremなので --fz にはセットしない
+.-fz\:2S {
 	--fz: var(--ls--fz--2S);
 	// font-size: var(--fz);
 }
-.u--fz\:S {
+.-fz\:S {
 	--fz: var(--ls--fz--S);
 	// font-size: var(--fz);
 }
-.u--fz\:M {
+.-fz\:M {
 	--fz: var(--ls--fz--M);
 	// font-size: var(--fz);
 }
-.u--fz\:L {
+.-fz\:L {
 	--fz: var(--ls--fz--L);
 	// font-size: var(--fz);
 }
-.u--fz\:2L {
+.-fz\:2L {
 	--fz: var(--ls--fz--2L);
 	// font-size: var(--fz);
 }
-.u--fz\:3L {
+.-fz\:3L {
 	--fz: var(--ls--fz--3L);
 	// font-size: var(--fz);
 }
-.u--fz\:4L {
+.-fz\:4L {
 	--fz: var(--ls--fz--4L);
 	// font-size: var(--fz);
 }
-.u--fz\:5L {
+.-fz\:5L {
 	--fz: var(--ls--fz--5L);
 	// font-size: var(--fz);
 }
-.u--fz\:6L {
+.-fz\:6L {
 	--fz: var(--ls--fz--6L);
 	// font-size: var(--fz);
 }

@@ -29,6 +29,7 @@ export default function getCommonProps(props) {
 		margin,
 		margins,
 		mT,
+		opacity,
 		bgc,
 		color,
 		fz,
@@ -67,11 +68,14 @@ export default function getCommonProps(props) {
 	let styles = {
 		...style,
 		...{
+			opacity,
 			border,
 			letterSpacing: lts,
 			fontWeight: fw,
 		},
 	};
+
+	// border = {top, right, bottom, left}
 
 	if (alignfull) classNames.push('alignfull');
 	if (alignwide) classNames.push('alignwide');
@@ -128,6 +132,7 @@ export default function getCommonProps(props) {
 
 	if (undefined !== mT) {
 		classNames.push(`-mT:${mT}`);
+		// キーワード以外の時、styleでmargin-block-start。 or .-mT: で管理
 	}
 
 	if (undefined !== width) {

@@ -41,11 +41,11 @@
 
 
 .l--tab__button {
-	--ls--border-width: 2px;
+	--bdw: 2px;
 	position: relative;
 	display: block;
 	box-sizing: border-box;
-	padding: var(--s--30);
+	padding: var(--space--30);
 	color: inherit;
 	font-size: 13px;
 	line-height: 1;
@@ -62,7 +62,7 @@
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		height: var(--ls--border-width);
+		height: var(--bdw);
 		background-color: currentColor;
 	}
 
@@ -76,7 +76,7 @@
 	&[aria-selected="false"] {
 		// border-bottom-color: currentColor;
 		opacity: .5;
-		--ls--border-width: 1px;
+		--bdw: 1px;
 		// border-bottom: solid 1px currentColor;
 	}
 }

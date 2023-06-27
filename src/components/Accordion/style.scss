@@ -8,9 +8,9 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: var(--s--40);
-			gap: var(--s--30);
-			background: var(--ls--color--gray, #f7f7f7);
+			padding: var(--space--40);
+			gap: var(--space--30);
+			background: var(--color--gray, #f7f7f7);
 			cursor: pointer;
 		
 			/* Safariで表示されるデフォルトの三角形アイコンを消します */
@@ -35,8 +35,8 @@
 	grid-template-rows: 1fr;
 	transition-property: padding, opacity, grid-template-rows;
 	transition-duration: var(--duration);
-	padding: var(--s--40);
-	border: solid 2px var(--ls--color--gray);
+	padding: var(--space--40);
+	border: solid 2px var(--color--gray);
 	border-top: none;
 
 	> .l--accordion__bodyInner{

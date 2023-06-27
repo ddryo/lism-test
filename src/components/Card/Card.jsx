@@ -1,9 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
-import {
-	Frame,
-	//FrameContent
-} from '../Frame';
+import { Frame, FrameContent } from '../Frame';
+import { Layer } from '../Layer';
 import { LinkBox } from '../LinkBox';
 import {
 	//Box,
@@ -17,7 +15,7 @@ export default function Card({ children, className, href, ...props }) {
 	const blockProps = {
 		className: classnames('b--card', className),
 		gap: 0,
-		shadow: 'md',
+		shadow: '1',
 		...props,
 	};
 
@@ -34,15 +32,40 @@ export default function Card({ children, className, href, ...props }) {
 	return <Stack {...blockProps}>{children}</Stack>;
 }
 
-export function CardMedia({ ratio, media, children, ...props }) {
+export function CardMedia({
+	ratio,
+	media,
+	children,
+	padding,
+	paddings,
+	contentProps = {},
+	...props
+}) {
+	const paddingProps = { padding, paddings };
 	return (
 		<Frame ratio={ratio} {...props}>
-			{getMediaLayer(media || children)}
+			{getMediaLayer(media)}
+			<FrameContent {...paddingProps} {...contentProps}>
+				{children}
+			</FrameContent>
 		</Frame>
 	);
 }
 
-export function CardBody({ children, className, ...props }) {
+export function CardBody({ children, className, isLayer, ...props }) {
+	if (isLayer) {
+		return (
+			<Layer
+				position='bottom left'
+				width='100%'
+				className={classnames('b--card__body', className)}
+				padding={40}
+				{...props}
+			>
+				{children}
+			</Layer>
+		);
+	}
 	return (
 		<Stack
 			className={classnames('b--card__body', className)}

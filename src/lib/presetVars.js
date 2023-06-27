@@ -1,9 +1,9 @@
 export const PRESETS = {
-	color: ['main', 'sub', 'base', 'baseSub', 'accent', 'link', 'text', 'gray', 'white', 'black'],
+	color: ['main', 'accent', 'base', 'link', 'text', 'headline', 'gray', 'white', 'black', 'sub'],
 	fz: ['6L', '5L', '4L', '3L', '2L', 'L', 'S', '2S', 'R'],
 	ta: ['center', 'left', 'right'],
-	radius: ['xs', 'sm', 'md', 'lg', 'xl', 'round'],
-	shadow: ['-1', '-2', '-3', '-4', '-5', '1', '2', '3', '4', '5'],
+	radius: ['0', '1', '2', '3', '4', '5'], // 'round'
+	shadow: ['-1', '-2', '-3', '-4', '-5', '0', '1', '2', '3', '4', '5'],
 	space: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
 };
 
@@ -31,7 +31,7 @@ export const isSpacePresetValue = (value, presetList) => {
 export function getMaybeSpaceVar(space) {
 	// spaceが 整数 or 整数を示す文字列 の場合
 	if (isSpacePresetValue(space)) {
-		return `var(--s--${space})`;
+		return `var(--space--${space})`;
 	}
 
 	// オブジェクトで渡ってきてしまっていれば、それを知らせる変数名で返す
@@ -46,28 +46,28 @@ export function getMaybeSpaceVar(space) {
 
 // export function getMaybeColorVar(color) {
 // 	if (isPresetValue('color', color)) {
-// 		return 'var(--ls--color--' + color + ')';
+// 		return 'var(--color--' + color + ')';
 // 	}
 // 	return color;
 // }
 
 // export function getMaybeFzVar(fz) {
 // 	if (isPresetValue('fz', fz)) {
-// 		return 'var(--ls--fz--' + fz + ')';
+// 		return 'var(--fz--' + fz + ')';
 // 	}
 // 	return fz;
 // }
 
-// export function getMaybeRadiusVar(bdrs) {
-// 	if (isPresetValue('radius', bdrs)) {
-// 		return 'var(--ls--radius--' + bdrs + ')';
+// export function getMaybeRadiusVar(radius) {
+// 	if (isPresetValue('radius', radius)) {
+// 		return 'var(--radius--' + radius + ')';
 // 	}
-// 	return bdrs;
+// 	return radius;
 // }
 
 // export function getMaybeShadowVar(shadow) {
 // 	if (isPresetValue('shadow', shadow)) {
-// 		return 'var(--ls--bxsh--' + shadow + ')';
+// 		return 'var(--bxsh--' + shadow + ')';
 // 	}
 // 	return shadow;
 // }

@@ -3,7 +3,7 @@
 // Reel
 // --------------------
 .l--reel {
-	// --ls--height: auto;
+	// --height: auto;
 	--item--width: 25ch; // 要検討
 	--scrollbar--thumb-color: #fff;
 	--scrollbar--track-color: #000;
@@ -12,14 +12,14 @@
 	// display: flex;
 	overflow-x: auto;
 	overflow-y: hidden;
-	// height: var(--ls--height);
+	// height: var(--height);
 
 	// 以下、 Firefox用
 	scrollbar-color: var(--scrollbar--thumb-color) var(--scrollbar--track-color);
 	scrollbar-width: var(--scrollbar--height);
 
 	&:not(.no-bar) {
-		padding-bottom: var(--s--4S); // JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい。
+		padding-bottom: var(--space--4S); // JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい。
 	}
 
 	&.no-bar {

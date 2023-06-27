@@ -15,7 +15,7 @@
 	border: solid 2px transparent;
 	&:hover{
 		// --color--border--hov を用意しておく？
-		border-color: var(--ls--color--link);
+		border-color: var(--color--link);
 	}
 }
 .-hov\:dark:hover{
@@ -26,7 +26,7 @@
 }
 .-hov\:shadow:hover {
 	// ユーティリティに負けないように important
-	box-shadow: var(--ls--shadow--hov);
+	box-shadow: var(--shadow--hov);
 }
 .-hov\:up:hover {
 	// ユーティリティに負けないように

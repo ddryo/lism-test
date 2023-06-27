@@ -2,14 +2,14 @@
  * タイポグラフィ
  */
  :root{
-	--ls--lh--min: 1.3em;
-	--ls--lh--max: 1.9em;
+	--lh--min: 1.3em;
+	--lh--max: 1.9em;
 }
 
 // ---------------------------------------------------------------------
 body{
 	--fz: 1em; // 計算用に --fz の単位をem化しておく
-	--lh: var(--ls--root--lh); // 任意の値
+	--lh: var(--root--lh); // 任意の値
 }
 
 // :where(body *),
@@ -36,9 +36,9 @@ body{
 
 	// 上限値を var(--base) にすることで、フォントサイズが大きい場合にのみ計算を適用することも可能
 	line-height: clamp(
-		min(var(--ls--lh--min), var(--base)),
+		min(var(--lh--min), var(--base)),
 		calc((var(--slope) * 1em) + var(--base) - (var(--slope) * var(--fz)) ),
-		max(var(--ls--lh--max), var(--base))
+		max(var(--lh--max), var(--base))
 	);
 	font-size: var(--fz);
 }
@@ -51,47 +51,47 @@ body{
 // ---------------------------------------------------------------------
 
 
-h1 {--fz: var(--ls--fz--4L);}
-h2 {--fz: var(--ls--fz--3L);}
-h3 {--fz: var(--ls--fz--2L);}
-h4 {--fz: var(--ls--fz--L);}
-h5 {--fz: var(--ls--fz--M);}
-h6 {--fz: var(--ls--fz--S);}
+h1 {--fz: var(--fz--4L);}
+h2 {--fz: var(--fz--3L);}
+h3 {--fz: var(--fz--2L);}
+h4 {--fz: var(--fz--L);}
+h5 {--fz: var(--fz--M);}
+h6 {--fz: var(--fz--S);}
 
-.-fz\:R {font-size: var(--ls--fz--R, 1rem);} // 単位がremなので --fz にはセットしない
+.-fz\:R {font-size: var(--fz--R, 1rem);} // 単位がremなので --fz にはセットしない
 .-fz\:2S {
-	--fz: var(--ls--fz--2S);
-	// font-size: var(--fz);
+	--fz: var(--fz--2S);
+	// font-size: var(--fz); 
 }
 .-fz\:S {
-	--fz: var(--ls--fz--S);
+	--fz: var(--fz--S);
 	// font-size: var(--fz);
 }
 .-fz\:M {
-	--fz: var(--ls--fz--M);
+	--fz: var(--fz--M);
 	// font-size: var(--fz);
 }
 .-fz\:L {
-	--fz: var(--ls--fz--L);
+	--fz: var(--fz--L);
 	// font-size: var(--fz);
 }
 .-fz\:2L {
-	--fz: var(--ls--fz--2L);
+	--fz: var(--fz--2L);
 	// font-size: var(--fz);
 }
 .-fz\:3L {
-	--fz: var(--ls--fz--3L);
+	--fz: var(--fz--3L);
 	// font-size: var(--fz);
 }
 .-fz\:4L {
-	--fz: var(--ls--fz--4L);
+	--fz: var(--fz--4L);
 	// font-size: var(--fz);
 }
 .-fz\:5L {
-	--fz: var(--ls--fz--5L);
+	--fz: var(--fz--5L);
 	// font-size: var(--fz);
 }
 .-fz\:6L {
-	--fz: var(--ls--fz--6L);
+	--fz: var(--fz--6L);
 	// font-size: var(--fz);
 }

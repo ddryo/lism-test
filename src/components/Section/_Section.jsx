@@ -40,7 +40,7 @@ function Section({
 		className: classnames('b--section', className),
 		style: filterEmptyObj({
 			...style,
-			'--ls--mih': mih || null,
+			'--mih': mih || null,
 		}),
 		'data-fullscreen': isFullScreen ? '1' : null,
 		...attrs,
@@ -52,7 +52,7 @@ function Section({
 	}
 
 	// padding は インナー側へ
-	const innerProps = {}; //{ padding, paddings, gap, gaps };
+	// const innerProps = {}; //{ padding, paddings, gap, gaps };
 
 	// console.log(divider.top);
 	return (

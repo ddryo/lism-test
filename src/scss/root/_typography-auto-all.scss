@@ -4,8 +4,8 @@
  	→ 下限・上限を超える値がセットされている時、その値を継承できない。
  */
 :root{
-	--ls--lh--min: 1.3em;
-	--ls--lh--max: 1.9em;
+	--lh--min: 1.3em;
+	--lh--max: 1.9em;
 }
 // ---------------------------------------------------------------------
 
@@ -26,39 +26,39 @@
 [class*="-fz\:"], {
 
 	--slope: 0.35; // 自動計算用の傾き
-	--base: calc(var(--lh, var(--ls--root--lh)) * 1em); // 計算ように単位をつけておく
+	--base: calc(var(--lh, var(--root--lh)) * 1em); // 計算ように単位をつけておく
 
 	// 上限値を var(--base) にすることで、フォントサイズが大きい場合にのみ計算を適用することも可能
 	line-height: clamp(
-		min(var(--ls--lh--min), var(--base)),
+		min(var(--lh--min), var(--base)),
 		calc((var(--slope) * 1em) + var(--base) - (var(--slope) * var(--fz, 1em)) ),
-		max(var(--ls--lh--max), var(--base))
+		max(var(--lh--max), var(--base))
 	);
 }
 
 // .-fz:などに対して--lh指定されてあった場合に上書きできる位置で
 // [style*="--lh:"]{
 // 	line-height: var(--lh);
-// 	--ls--lh--min: min(var(--ls--lh--min), var(--base));
-// 	--ls--lh--max: max(var(--ls--lh--min), var(--base));
+// 	--lh--min: min(var(--lh--min), var(--base));
+// 	--lh--max: max(var(--lh--min), var(--base));
 // }
 
 // ---------------------------------------------------------------------
 
-h1 {--fz: var(--ls--fz--4L);}
-h2 {--fz: var(--ls--fz--3L);}
-h3 {--fz: var(--ls--fz--2L);}
-h4 {--fz: var(--ls--fz--L);}
-h5 {--fz: var(--ls--fz--M);}
-h6 {--fz: var(--ls--fz--S);}
+h1 {--fz: var(--fz--4L);}
+h2 {--fz: var(--fz--3L);}
+h3 {--fz: var(--fz--2L);}
+h4 {--fz: var(--fz--L);}
+h5 {--fz: var(--fz--M);}
+h6 {--fz: var(--fz--S);}
 
 .-fz\:R {font-size: 1rem;}
-.-fz\:2S {--fz: var(--ls--fz--2S);}
-.-fz\:S {--fz: var(--ls--fz--S);}
-.-fz\:M {--fz: var(--ls--fz--M);}
-.-fz\:L {--fz: var(--ls--fz--L);}
-.-fz\:2L {--fz: var(--ls--fz--2L);}
-.-fz\:3L {--fz: var(--ls--fz--3L);}
-.-fz\:4L {--fz: var(--ls--fz--4L);}
-.-fz\:5L {--fz: var(--ls--fz--5L);}
-.-fz\:6L {--fz: var(--ls--fz--6L);}
+.-fz\:2S {--fz: var(--fz--2S);}
+.-fz\:S {--fz: var(--fz--S);}
+.-fz\:M {--fz: var(--fz--M);}
+.-fz\:L {--fz: var(--fz--L);}
+.-fz\:2L {--fz: var(--fz--2L);}
+.-fz\:3L {--fz: var(--fz--3L);}
+.-fz\:4L {--fz: var(--fz--4L);}
+.-fz\:5L {--fz: var(--fz--5L);}
+.-fz\:6L {--fz: var(--fz--6L);}

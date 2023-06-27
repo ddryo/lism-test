@@ -5,31 +5,31 @@
 // divider
 // --------------------
 .l--divider {
-	--ls--color: #000;
-	--ls--height: 2.5vw;
+	--color: #000;
+	--height: 2.5vw;
 	position: relative;
-	height: var(--ls--height);
+	height: var(--height);
 	max-width: 100%; // is--constrainedの影響を受けないようにする
 	overflow: hidden;
-	--ls--rotateX: 0deg;
-	--ls--rotateY: 0deg;
-	--ls--duration: 12s;
+	--rotateX: 0deg;
+	--rotateY: 0deg;
+	--duration: 12s;
 
 	&[data-flip="xy"]{
-		--ls--rotateX: 180deg;
-		--ls--rotateY: 180deg;
+		--rotateX: 180deg;
+		--rotateY: 180deg;
 		margin-top: -.5px; // transform で上下反転させると隙間ができてしまう
 	}
 	&[data-flip="y"]{
-		--ls--rotateX: 180deg;
+		--rotateX: 180deg;
 		margin-top: -.5px; // transform で上下反転させると隙間ができてしまう
 	}
 	&[data-flip="x"]{
-		--ls--rotateY: 180deg;
+		--rotateY: 180deg;
 	}
 
 	.l--divider__svg{
-		color: var(--ls--color);
+		color: var(--color);
 		width: 100%;
 		height: 100%;
 	}
@@ -37,7 +37,7 @@
 	.l--divider__inner{
 		position: absolute;
 		inset: 0;
-		transform: rotateX(var(--ls--rotateX)) rotateY(var(--ls--rotateY));
+		transform: rotateX(var(--rotateX)) rotateY(var(--rotateY));
 	}
 	
 	path{
@@ -63,7 +63,7 @@
 	.l--divider__svg {
 		/* ↓ X 100% にしてるのは translateXのcalc計算で * -1 をしなくていいように。*/
 		transform-origin: 100% 0;
-		animation: LsDividerMove var(--ls--duration) infinite alternate linear;
+		animation: LsDividerMove var(--duration) infinite alternate linear;
 	}
 }
 
@@ -94,7 +94,7 @@
 		flex: 0 0 100%;
 		min-width: 200%;
 		transform-origin: 0 0;
-		animation: LsDividerLoop var(--ls--duration) infinite linear;
+		animation: LsDividerLoop var(--duration) infinite linear;
 		margin: 0 -1.5px;
 		// min-width: 100%;
 		// transform: scaleX(2);

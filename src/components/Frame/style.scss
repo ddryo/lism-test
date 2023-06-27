@@ -1,52 +1,52 @@
 
 .l--frame {
-	--ls--d: 1; // 幅
-	--ls--n: 1; // 高さ
+	--d: 1; // 幅
+	--n: 1; // 高さ
 	position: relative;
 	height: fit-content; // grid系直下においた時などに、align-items: strech; の影響で引き伸ばされないようにする
 	overflow: hidden; // radiusが見えるように
 
 	// ::before でやらないのは、ブロックエディターを考慮しているため
 	>.l--frame__placeholder{
-		padding-bottom: calc(var(--ls--n) / var(--ls--d) * 100%);
+		padding-bottom: calc(var(--n) / var(--d) * 100%);
 	}
 
 	// 縦横比を反転して縦長にする
 	&[data-direction="portrait"] > .l--frame__placeholder{
-		padding-bottom: calc(var(--ls--d) / var(--ls--n) * 100%);
+		padding-bottom: calc(var(--d) / var(--n) * 100%);
 	}
 
 	&[data-ratio="16:9"]{
-		--ls--d: 16;
-		--ls--n: 9;
+		--d: 16;
+		--n: 9;
 	}
 	&[data-ratio="2:1"]{
-		--ls--d: 2;
-		--ls--n: 1;
+		--d: 2;
+		--n: 1;
 	}
 	&[data-ratio="4:3"]{
-		--ls--d: 4;
-		--ls--n: 3;
+		--d: 4;
+		--n: 3;
 	}
 	&[data-ratio="3:2"]{
-		--ls--d: 3;
-		--ls--n: 2;
+		--d: 3;
+		--n: 2;
 	}
 	&[data-ratio="golden"]{
-		--ls--d: 16.18;
-		--ls--n: 10;
+		--d: 16.18;
+		--n: 10;
 	}
 	&[data-ratio="silver"]{
-		--ls--d: 14.14;
-		--ls--n: 10;
+		--d: 14.14;
+		--n: 10;
 	}
 	&[data-ratio="bronze"]{
-		--ls--d: 33.03;
-		--ls--n: 10;
+		--d: 33.03;
+		--n: 10;
 	}
 	&[data-ratio="ogp"]{
-		--ls--d: 1.91;
-		--ls--n: 1;
+		--d: 1.91;
+		--n: 1;
 	}
 
 }

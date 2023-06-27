@@ -18,11 +18,11 @@
 // box専用であれば data-属性化すべきか ?
 // [class^="l--box"][data-has-width],
 // .has--box--maxW {
-// 	--ls--maxW: 30em;
-// 	max-width: var(--ls--maxW);
+// 	--maxW: 30em;
+// 	max-width: var(--maxW);
 // }
 
 // .has--box--minW {
-// 	--ls--miw: 30em;
-// 	min-width: var(--ls--miw);
+// 	--miw: 30em;
+// 	min-width: var(--miw);
 // }

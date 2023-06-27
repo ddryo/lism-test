@@ -4,8 +4,8 @@
 .is--flex,
 .is--grid{
 	// 初期値
-	--rowg: var(--s--50);
-	--colmg: var(--s--50);
+	--rowg: var(--space--50);
+	--colmg: var(--space--50);
 
 	// @
 	--rowg_Qsm: var(--rowg);

@@ -3,38 +3,30 @@
 @use 'utility/margin';
 @use 'utility/shadow';
 @use 'utility/hover';
+@use 'utility/radius';
+@use 'utility/color';
 
 :root{
-	// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 
-	// border-radius
-	--ls--radius--xs: 2px;
-	--ls--radius--sm: 5px;
-	--ls--radius--md: 13px;
-	--ls--radius--lg: 21px;
-	--ls--radius--xl: 34px;
-	--ls--radius--round: 999px;
-	// 1,2,4,6,8,12 ... ?
-	// 1,2,3,5,8,13,21, 34, ... 999px ?
+	// remにすることで、rootのフォントサイズが流体であれば それに合わせて角丸も sp でちょっと小さくなる.
+	// 小さい値は変動しなくていいので、pxで固定。
+
+	// border
+	// キーワードで登録？ ... regular(normal), active, point, emphasis, guide, help, ...
+	// --border--01: solid 1px var(--color--border);
+	// --border--02: solid 2px var(--color--border);
+	// --border--03: dashed 3px var(--color--border);
+	// --border--04: dashed 4px var(--color--border);
+	
 }
 
-.-bdrs\:xs{
-	border-radius: var(--ls--radius--xs) !important;
-}
-.-bdrs\:sm{
-	border-radius: var(--ls--radius--sm) !important;
-}
-.-bdrs\:md{
-	border-radius: var(--ls--radius--md) !important;
-}
-.-bdrs\:lg{
-	border-radius: var(--ls--radius--lg) !important;
-}
-.-bdrs\:xl{
-	border-radius: var(--ls--radius--xl) !important;
-}
-.-bdrs\:round{
-	border-radius: var(--ls--radius--round) !important;
+
+// .-ov\:v{
+// 	overflow: visible;
+// }
+
+.-ov\:h{
+	overflow: hidden;
 }
 
 // display
@@ -55,87 +47,22 @@
 }
 
 @container (max-width: 720px) {
-	.-d\:n-\@sm{
+	.-d\@sm\:n{
 		display: none;
 	}
-	.-d\:b-\@sm{
+	.-d\@sm\:b{
 		display: block;
 	}
 }
 
 @container (max-width: 440px) {
-	.-d\:n-\@xs{
+	.-d\@xs\:n{
 		display: none;
 	}
-	.-d\:b-\@xs{
+	.-d\@xs\:b-{
 		display: block;
 	}
 }
-
-
-//カラー系
-.-c\:white{
-	color:#fff;
-}
-.-c\:black{
-	color:#000;
-}
-
-.-c\:main{
-	color: var(--ls--color--main);
-}
-.-c\:sub{
-	color: var(--ls--color--sub);
-}
-.-c\:accent{
-	color: var(--ls--color--accent);
-}
-.-c\:base{
-	color: var(--ls--color--base);
-}
-.-c\:bgSub{
-	color: var(--ls--color--bgSub);
-}
-.-c\:link{
-	color:  var(--ls--color--link);
-}
-.-c\:text{
-	color:  var(--ls--color--text);
-}
-.-c\:gray{
-	color: var(--ls--color--gray);
-}
-
-
-.-bgc\:main{
-	background-color: var(--ls--color--main);
-}
-.-bgc\:sub{
-	background-color: var(--ls--color--sub);
-}
-.-bgc\:accent{
-	background-color: var(--ls--color--accent);
-}
-.-bgc\:base{
-	background-color: var(--ls--color--base);
-}
-.-bgc\:bgSub{
-	background-color: var(--ls--color--bgSub);
-}
-.-bgc\:text{
-	background-color:  var(--ls--color--text);
-}
-.-bgc\:gray{
-	background-color: var(--ls--color--gray);
-}
-.-bgc\:white{
-	background-color:#fff;
-}
-.-bgc\:black{
-	background-color:#000;
-}
-
-
 
 // text-align
 .-ta\:c {
@@ -194,3 +121,70 @@
 .-ovw\:any{
 	overflow-wrap: anywhere;
 }
+
+// flex, grid系
+
+.-fxw\:w{
+	flex-wrap:wrap !important;
+}
+.-fxw\:n{
+	flex-wrap:nowrap !important;
+}
+
+// align-items
+// [class*="-ai:"],
+// [style*="--ai:"]{
+// 	align-items: var( --ai ) !important;
+// }
+.-ai\:c{
+	align-items:center !important;
+}
+.-ai\:fe{
+	align-items:flex-end !important;
+}
+.-ai\:fs{
+	align-items:flex-start !important;
+}
+.-ai\:s{
+	align-items:stretch !important;
+}
+
+// justify-content
+// [class*="-jc:"],
+// [style*="--jc:"]{
+// 	justify-content: var( --jc ) !important;
+// }
+.-jc\:c{
+	justify-content:center !important;
+}
+.-jc\:fe{
+	justify-content:flex-end !important;
+}
+.-jc\:fs{
+	justify-content:flex-start !important;
+}
+.-jc\:sb{
+	justify-content:space-between !important;
+}
+
+
+// .-jc\:sa{
+// 	justify-content:space-around !important;
+// }
+
+// [style*="--fxw:"]{
+// 	flex-wrap: var(--fxw) !important;
+// }
+// [style*="--ai:"]{
+// 	align-items: var(--ai) !important;
+// }
+// [style*="--jc:"]{
+// 	justify-content: var(--jc) !important;
+// }
+
+// [style*="--a-self:"]{
+// 	align-self: var(--a-self) !important;
+// }
+// [style*="--j-self:"]{
+// 	justify-self: var(--j-self) !important;
+// }

@@ -4,6 +4,7 @@ import { filterEmptyObj, getCommonProps } from '../../lib';
 
 export default function Layer({
 	children,
+	tag,
 	className,
 	modifier = '',
 	position,
@@ -15,16 +16,16 @@ export default function Layer({
 	bottom,
 	left,
 	right,
-	isFlow,
+	// isFlow,
 	// style = {},
 	...props
 }) {
-	const { classNames, styles, attrs } = getCommonProps(props, { flow: isFlow });
+	const { classNames, styles, attrs } = getCommonProps(props);
 
 	const blockProps = {
 		className: classnames(
 			modifier ? `l--layer--${modifier}` : 'l--layer',
-			{ 'is--flow': isFlow },
+			// { 'is--flow': isFlow },
 			className,
 			classNames
 		),
@@ -43,7 +44,8 @@ export default function Layer({
 		...attrs,
 	};
 
-	return <div {...blockProps}>{children}</div>;
+	const Tag = tag || 'div';
+	return <Tag {...blockProps}>{children}</Tag>;
 }
 
 export function MediaLayer({ children, media, ...props }) {
@@ -51,10 +53,10 @@ export function MediaLayer({ children, media, ...props }) {
 		// クラスを付与
 		if (React.isValidElement(children)) {
 			const mediaProps = children?.props || {};
-			const { className: mediaClassName, ...mediaAttrs } = mediaProps;
+			const { className, ...mediaAttrs } = mediaProps;
 
 			children = React.cloneElement(children, {
-				className: classnames('l--layer__media', mediaClassName),
+				className: classnames('l--layer__media', className),
 				...mediaAttrs,
 			});
 		}
@@ -71,13 +73,21 @@ export function MediaLayer({ children, media, ...props }) {
 		// type = 'img',
 		src,
 		alt,
+		className,
 	} = media;
 	let mediaContent = null;
 
 	// next/image の Image とかは自分で渡してもらう
 	const MediaTag = tag; //"img" === type ? "img" : "video";
 
-	mediaContent = <MediaTag className='l--layer__media' src={src} alt={alt || ''} {...media} />;
+	mediaContent = (
+		<MediaTag
+			className={classnames('l--layer__media', className)}
+			src={src}
+			alt={alt || ''}
+			{...media}
+		/>
+	);
 
 	return (
 		<Layer modifier='media' {...props}>

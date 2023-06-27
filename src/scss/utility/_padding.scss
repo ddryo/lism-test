@@ -84,38 +84,38 @@
 // (でかくて使用頻度がおそらく低いであろう 90,100 は 用意しない)
 @for $i from 0 through 6 {
 	.-p\:#{$i * 10} {
-		--p: var(--s--#{$i * 10});
+		--p: var(--space--#{$i * 10});
 	}
 	.-pX\:#{$i * 10} {
-		--pX: var(--s--#{$i * 10});
+		--pX: var(--space--#{$i * 10});
 	}
 	.-pY\:#{$i * 10} {
-		--pY: var(--s--#{$i * 10});
+		--pY: var(--space--#{$i * 10});
 	}
 
 	.-p\@sm\:#{$i * 10} {
-		--p_Qsm: var(--s--#{$i * 10});
+		--p_Qsm: var(--space--#{$i * 10});
 	}
 	.-pX\@sm\:#{$i * 10} {
-		--pX_Qsm: var(--s--#{$i * 10});
+		--pX_Qsm: var(--space--#{$i * 10});
 	}
 	.-pY\@sm\:#{$i * 10} {
-		--pY_Qsm: var(--s--#{$i * 10});
+		--pY_Qsm: var(--space--#{$i * 10});
 	}
 
 	.-p\@xs\:#{$i * 10} {
-		--p_Qxs: var(--s--#{$i * 10});
+		--p_Qxs: var(--space--#{$i * 10});
 	}
 	.-pX\@xs\:#{$i * 10} {
-		--pX_Qxs: var(--s--#{$i * 10});
+		--pX_Qxs: var(--space--#{$i * 10});
 	}
 	.-pY\@xs\:#{$i * 10} {
-		--pY_Qxs: var(--s--#{$i * 10});
+		--pY_Qxs: var(--space--#{$i * 10});
 	}
 }
 
 // @for $i from 0 through 10 {
 // 	[data-props~="-p:#{10*$i}"] {
-// 		--p:var(--s--#{10*$i});
+// 		--p:var(--space--#{10*$i});
 // 	}
 // }

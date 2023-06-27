@@ -21,6 +21,7 @@
 // block module?
 @forward '../components/LinkBox/style.scss';
 @forward '../components/Banner/style.scss';
+@forward '../components/Card/style.scss';
 @forward '../components/Notice/style.scss';
 @forward '../components/Accordion/style.scss';
 @forward '../components/Section/style.scss';
@@ -62,7 +63,7 @@
 		// height: 100%;
 		&:hover,
 		&:focus{
-			// flex-grow: var(--ls--fxg--expanded); // 複数開いてしまった時に、grow で管理していたほうがどちらも見える?
+			// flex-grow: var(--fxg--expanded); // 複数開いてしまった時に、grow で管理していたほうがどちらも見える?
 			flex-basis: var(--fxb--expanded);
 
 			> .ex-cards__content{

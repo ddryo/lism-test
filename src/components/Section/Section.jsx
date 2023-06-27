@@ -34,7 +34,7 @@ export default function Section({
 		className: classnames('b--section', className),
 		style: filterEmptyObj({
 			...style,
-			'--ls--mih': mih || null,
+			'--mih': mih || null,
 		}),
 		'data-fullscreen': isFullScreen ? '1' : null,
 		...attrs,

@@ -2,23 +2,23 @@
  * タイポグラフィ
  */
 :root{
-	--ls--root--ff: sans-serif;
-	--ls--root--fz: clamp(14px, 4vw, 1rem); // 1rem: ブラウザ標準はほぼ16px
-	--ls--root--lh: 1.75;
+	--root--ff: sans-serif;
+	--root--fz: clamp(14px, 4vw, 1rem); // 1rem: ブラウザ標準はほぼ16px
+	--root--lh: 1.75;
 
 	// font-size 変数
-	--ls--fz--M: 1em;
-	--ls--fz--R: 1rem;
+	--fz--M: 1em;
+	--fz--R: 1rem;
 
 	// 倍音列(分子8) での計算値
-	--ls--fz--6L: 4em; //calc(1em * 8 / 2);
-	--ls--fz--5L: 2.667em; // calc(1em * 8 / 3);
-	--ls--fz--4L: 2em; //calc(1em * 8 / 4);
-	--ls--fz--3L: 1.6em; //calc(1em * 8 / 5);
-	--ls--fz--2L: 1.333em; //calc(1em * 8 / 6);
-	--ls--fz--L: 1.143em; //calc(1em * 8 / 7);
-	--ls--fz--S: 0.889em; // calc(1em * 8 / 9);
-	--ls--fz--2S: 0.80em; //calc(1em * 8 / 10);
+	--fz--6L: 4em; //calc(1em * 8 / 2);
+	--fz--5L: 2.667em; // calc(1em * 8 / 3);
+	--fz--4L: 2em; //calc(1em * 8 / 4);
+	--fz--3L: 1.6em; //calc(1em * 8 / 5);
+	--fz--2L: 1.333em; //calc(1em * 8 / 6);
+	--fz--L: 1.143em; //calc(1em * 8 / 7);
+	--fz--S: 0.889em; // calc(1em * 8 / 9);
+	--fz--2S: 0.80em; //calc(1em * 8 / 10);
 
 	// line-height 変数
 	// --ls--lh--contents: 1.8;
@@ -27,33 +27,6 @@
 
 // ---------------------------------------------------------------------
 
-
-.-setFz.-setFz{
-	font-size: 1.2em;
-}
-.-setFzVar.-setFzVar{
-	--fz: 1.2em;
-}
-.-setLh.-setLh{
-	line-height: 1.2;
-}
-.-setLhVar.-setLhVar{
-	--lh: 1.2;
-}
-.setLhParent{
-	--lh: 1.2;
-	line-height: 1.2;
-	// --ls--lh--min: 1em;//下限も下げる
-}
-.setLhParent--onlyVar{
-	--lh: 1.2;
-	// --ls--lh--min: 1em;//下限も下げる
-}
-.setLhParent--onlyProp{
-	line-height: 1.2;
-}
-
-// ---------------------------------------------------------------------
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;

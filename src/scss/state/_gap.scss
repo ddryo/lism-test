@@ -7,7 +7,7 @@
 // cssファイルからCSS変数指定だけでクエリ対応できるように gap はここで定義しておく。
 .is--flex,
 .is--grid{
-	--gap: var(--s--50); // ここで初期値与えるべきかは要検討
+	--gap: var(--space--50); // ここで初期値与えるべきかは要検討
 	// --gap_Qsm: var(--gap);
 	// --gap_Qxs: var(--gap_Qsm);
 	gap: var(--gap);
@@ -63,32 +63,32 @@
 
 @for $i from 0 through 5 {
 	.-gap\:#{$i * 10} {
-		--gap: var(--s--#{$i * 10});
+		--gap: var(--space--#{$i * 10});
 	}
 	.-colmg\:#{$i * 10} {
-		--colmg: var(--s--#{$i * 10});
+		--colmg: var(--space--#{$i * 10});
 	}
 	.-rowg\:#{$i * 10} {
-		--rowg: var(--s--#{$i * 10});
+		--rowg: var(--space--#{$i * 10});
 	}
 
 	.-gap\@sm\:#{$i * 10} {
-		--gap_Qsm: var(--s--#{$i * 10});
+		--gap_Qsm: var(--space--#{$i * 10});
 	}
 	.-colmg\@sm\:#{$i * 10} {
-		--colmg_Qsm: var(--s--#{$i * 10});
+		--colmg_Qsm: var(--space--#{$i * 10});
 	}
 	.-rowg\@sm\:#{$i * 10} {
-		--rowg_Qsm: var(--s--#{$i * 10});
+		--rowg_Qsm: var(--space--#{$i * 10});
 	}
 
 	.-gap\@xs\:#{$i * 10} {
-		--gap_Qxs: var(--s--#{$i * 10});
+		--gap_Qxs: var(--space--#{$i * 10});
 	}
 	.-colmg\@xs\:#{$i * 10} {
-		--colmg_Qxs: var(--s--#{$i * 10});
+		--colmg_Qxs: var(--space--#{$i * 10});
 	}
 	.-rowg\@xs\:#{$i * 10} {
-		--rowg_Qxs: var(--s--#{$i * 10});
+		--rowg_Qxs: var(--space--#{$i * 10});
 	}
 }

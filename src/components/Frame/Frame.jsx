@@ -39,8 +39,8 @@ export default function Frame({
 		blockProps.style = {
 			...blockProps.style,
 			...{
-				'--ls--d': d || null,
-				'--ls--n': n || null,
+				'--d': d || null,
+				'--n': n || null,
 			},
 		};
 	}

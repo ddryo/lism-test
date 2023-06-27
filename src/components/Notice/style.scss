@@ -16,11 +16,11 @@
 	.b--noticeBox__caption{
 		border-bottom: solid 1px var(--bdc);;
 		width: fit-content;
-		padding: var(--s--10) var(--s--30);
-		font-size: var(--ls--fz--S);
+		padding: var(--space--10) var(--space--30);
+		font-size: var(--fz--S);
 		font-weight: bold;
 	}
 	.b--noticeBox__content{
-		padding: var(--s--40) var(--s--30);
+		padding: var(--space--40) var(--space--30);
 	}
 }

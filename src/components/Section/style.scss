@@ -1,7 +1,7 @@
 .b--section {
-	--ls--mih: auto;
+	--mih: auto;
 	position: relative;
-	min-height: var(--ls--mih);
+	min-height: var(--mih);
 
 	// display: flex;
 	// --fxd: column;
@@ -37,8 +37,8 @@
 	// }
 	.b--section__body{
 		// --area: body;
-		--pt: var(--s--50);
-		--pb: var(--s--50);
+		--pt: var(--space--50);
+		--pb: var(--space--50);
 		--a-self: center;
 		height: auto; // 100% にしない
 	}
@@ -55,7 +55,7 @@
 
 	// data-height
 	// &[data-height="auto"] {
-	// 	--ls--mih: 0;
+	// 	--mih: 0;
 	// }
 
 	// .b--section__bg {
@@ -82,7 +82,7 @@
 
 
 	&[data-fullscreen="1"] {
-		--ls--mih: 100vh;
+		--mih: 100vh;
 		// min-height: 100vh;
 	}
 

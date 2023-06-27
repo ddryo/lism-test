@@ -31,8 +31,8 @@ function Divider({
 		className: classnames('l--divider', className, {}),
 		style: filterEmptyObj({
 			...style,
-			'--ls--height': height || null,
-			'--ls--color': color || null,
+			'--height': height || null,
+			'--color': color || null,
 		}),
 		'data-type': type,
 		'data-flip': flip || null,

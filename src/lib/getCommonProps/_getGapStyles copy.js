@@ -17,8 +17,8 @@ export function getGapStyles(gap, gaps = {}) {
 
 	return {
 		...sortGapData(gaps._, ''),
-		...sortGapData(gaps.sm, '_Qsm'),
-		...sortGapData(gaps.xs, '_Qxs'),
+		...sortGapData(gaps.sm, '--sm'),
+		...sortGapData(gaps.xs, '--xs'),
 	};
 }
 
@@ -83,9 +83,9 @@ export function getFlowGapStyles(gap, gaps = {}) {
 
 	return filterEmptyObj({
 		[`--flowGap`]: getMaybeSpaceVar(gaps?._) || null,
-		[`--flowGap_Qsm`]: getMaybeSpaceVar(gaps?.sm) || null,
-		[`--flowGap_Qxs`]: getMaybeSpaceVar(gaps?.xs) || null,
-		[`--flowGap_Qlg`]: getMaybeSpaceVar(gaps?.lg) || null,
-		[`--flowGap_Qxl`]: getMaybeSpaceVar(gaps?.xl) || null,
+		[`--flowGap--sm`]: getMaybeSpaceVar(gaps?.sm) || null,
+		[`--flowGap--xs`]: getMaybeSpaceVar(gaps?.xs) || null,
+		[`--flowGap--lg`]: getMaybeSpaceVar(gaps?.lg) || null,
+		[`--flowGap--xl`]: getMaybeSpaceVar(gaps?.xl) || null,
 	});
 }

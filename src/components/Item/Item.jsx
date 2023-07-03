@@ -1,38 +1,93 @@
 import React from 'react';
 import { Box } from '../Box';
+import { isPresetValue } from '../../lib';
+// import { getGridAreaStyles } from './getGridAreaStyles';
+import classnames from 'classnames';
 
-// 主要な areaキーワード はdata属性で出力
-const areaPresets = [
-	// 'left',
-	// 'right',
-	// 'top',
-	// 'bottom',
-	// 'center',
-	'header',
-	'footer',
-	'body',
-	// 'aside',
-	// 'main',
-	'fix',
-	'fluid',
-];
+// itemsのpropsはここでのみ受け付ける → クラスの順番気持ち悪い？
+export function Item({ children, component, className, style, ...props }) {
+	const { classNames, styles, attrs } = getItemProps(props);
 
-// import classnames from "classnames";
-// function Item({}) {}
-export function Item({ children, area, ...props }) {
-	// as align-self: start;
-	// js justify-self: center;
+	// const { classNames, styles, attrs } = getCommonProps(props);?
+	const blockProps = {
+		className: classnames(className, 'is--item', classNames),
+		style: {
+			...style,
+			...styles,
+		},
+		...attrs,
+	};
+	const Comp = component || Box;
+	return <Comp {...blockProps}>{children}</Comp>;
+}
 
-	if (area && areaPresets.includes(area)) {
-		// presetキーワードの場合はdata属性で出力
-		props['data-area'] = area;
-	} else if (area) {
-		props.area = area;
+function getItemProps(props) {
+	// fx,fxs,?
+	const { as, js, flex, fxg, fxsh, fxb, ga, gc, gr, ...others } = props;
+	const classNames = [];
+	let styles = {};
+
+	// fxb, fxg, fxsh は 単体指定可能だが、クエリ指定不可
+	if (undefined !== fxg) styles['--fxg'] = fxg;
+	if (undefined !== fxsh) styles['--fxsh'] = fxsh;
+	if (undefined !== fxb) styles['--fxb'] = fxb;
+
+	// fxg, fxsh は 0,1 のみユーティリティあり
+
+	// flex='1' とか flex='1 1 0%' とかで指定。クエリ指定可能。
+	// flex="20%" のように単位付き文字列→flex-basis単体指定とほぼ同じ
+	if (undefined !== flex) {
+		if (typeof flex === 'string') {
+			styles['--fx'] = flex;
+		} else if (typeof flex === 'object') {
+			if (flex._) styles['--fx'] = flex._;
+			if (flex.sm) styles['--fx--sm'] = flex.sm;
+			if (flex.xs) styles['--fx--xs'] = flex.xs;
+		}
 	}
 
-	return (
-		<Box isItem {...props}>
-			{children}
-		</Box>
-	);
+	// align-self, justify-self
+	if (undefined !== as) {
+		// styles.alignSelf = as;
+		// classNames.push(`-as:`);
+		styles[`--as`] = as;
+	}
+	if (undefined !== js) {
+		// styles.justifySelf = js;
+		// classNames.push(`-js:`);
+		styles[`--js`] = js;
+	}
+
+	// ga (grid-area) はクエリ指定不可。utilityを持つ。
+	if (undefined !== ga) {
+		// styles = { ...styles, ...getGridAreaStyles(area, areas) };
+		if (isPresetValue('ga', ga)) {
+			classNames.push(`-ga:${ga}`);
+		} else {
+			styles['--ga'] = ga;
+		}
+	}
+
+	// grid-row, grid-column は String | Obj でクエリ指定可能
+	if (undefined !== gc) {
+		if (typeof gc === 'string') {
+			styles['--gc'] = gc;
+		} else if (typeof gc === 'object') {
+			if (gc._) styles['--gc'] = gc._;
+			if (gc.sm) styles['--gc--sm'] = gc.sm;
+			if (gc.xs) styles['--gc--xs'] = gc.xs;
+		}
+	}
+
+	if (undefined !== gr) {
+		if (typeof gr === 'string') {
+			styles['--gr'] = gr;
+		} else if (typeof gr === 'object') {
+			if (gr._) styles['--gr'] = gr._;
+			if (gr.sm) styles['--gr--sm'] = gr.sm;
+			if (gr.xs) styles['--gr--xs'] = gr.xs;
+		}
+	}
+
+	return { styles, classNames, attrs: others };
 }

@@ -1,0 +1,64 @@
+
+.b--mediaText {
+}
+
+
+.b--mediaText__media{
+	> img,video{
+		display: block;
+	}
+}
+
+// .-pos\@sm\:{
+// 	position: var(--pos);
+// }
+
+
+// mih
+
+.b--balloon{
+	--iconW: 4rem;
+}
+
+.b--balloon__body{
+	margin-top: 32px;
+	
+	// box-shadow: var(--shadow--1);
+	// filter: drop-shadow(1px 2px 4px rgba(0,0,0,.1));
+}
+.b--balloon__content{
+	border: solid 2px #d9e3e9;
+	background: #e8f0f4;
+	
+	border-radius: 0 var(--radius--3) var(--radius--3) !important;
+}
+
+.b--balloon__decorator{
+	// background-color: inherit;
+	z-index: 1;
+	top: 0;
+	left: -20px;
+	// width: 1.5em;
+	// height: 1.5em;
+	// display: none;
+}
+.b--balloon__decorator.-a{
+	// top: 0;
+	// left: -1.5em;
+	border-color: transparent;
+	border-style: solid;
+	border-right-color: #d9e3e9;
+	border-width: 0px 10px 16px 10px;
+	// box-shadow: var(--shadow--1);
+}
+.b--balloon__decorator.-b{
+	// background-color: inherit;
+	border-color: transparent;
+	border-style: solid;
+	border-right-color: #e8f0f4;
+	border-width: 0px 10px 16px 10px;
+	// transform: translate(1px 1px);
+	transform: translate(4px, 2px);
+}
+
+// border: solid 2px #d9e3e9;

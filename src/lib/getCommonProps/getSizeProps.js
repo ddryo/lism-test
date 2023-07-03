@@ -24,11 +24,11 @@ export function getWidthProps(width) {
 	}
 	if (Ws.sm) {
 		classNames.push('-w@sm:');
-		styles['--w_Qsm'] = Ws.sm;
+		styles['--w--sm'] = Ws.sm;
 	}
 	if (Ws.xs) {
 		classNames.push('-w@xs:');
-		styles['--w_Qxs'] = Ws.xs;
+		styles['--w--xs'] = Ws.xs;
 	}
 	return {
 		classNames,
@@ -62,11 +62,11 @@ export function getHeightProps(height) {
 	}
 	if (Hs.sm) {
 		classNames.push('-h@sm:');
-		styles['--h_Qsm'] = Hs.sm;
+		styles['--h--sm'] = Hs.sm;
 	}
 	if (Hs.xs) {
 		classNames.push('-h@xs:');
-		styles['--h_Qxs'] = Hs.xs;
+		styles['--h--xs'] = Hs.xs;
 	}
 	return {
 		classNames,

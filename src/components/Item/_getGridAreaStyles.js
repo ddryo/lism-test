@@ -20,8 +20,8 @@ export function getGridAreaStyles(area, areas = {}) {
 
 	return {
 		...sortAreaData(areas._, ''),
-		...sortAreaData(areas.sm, '_Qsm'),
-		...sortAreaData(areas.xs, '_Qxs'),
+		...sortAreaData(areas.sm, '--sm'),
+		...sortAreaData(areas.xs, '--xs'),
 	};
 }
 

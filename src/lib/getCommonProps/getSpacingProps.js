@@ -106,24 +106,26 @@ function getTheQueryData(n, data, Q = '') {
 		// }
 
 		// 使用頻度少なそうなものだけ
-		const presetList = ['0', '10', '20', '30', '40', '50'];
+		// const presetList = ['0', '10', '20', '30', '40', '50'];
 
-		if (typeof data === 'object') {
-			// X,Y成分のみチェック
-			if (isSpacePresetValue(data.X, presetList)) {
-				classNames.push(`-${n}X${Q}:${data.X}`);
-				delete data.X;
+		if ('' === Q) {
+			if (typeof data === 'object') {
+				// X,Y成分のみチェック
+				if (isSpacePresetValue(data.X)) {
+					classNames.push(`-${n}X${Q}:${data.X}`);
+					delete data.X;
+				}
+				if (isSpacePresetValue(data.Y)) {
+					classNames.push(`-${n}Y${Q}:${data.Y}`);
+					delete data.Y;
+				}
+			} else if (isSpacePresetValue(data)) {
+				classNames.push(`-${n}${Q}:${data}`);
+				// data が オブジェクトではなくそのままpreset値ならこの時点で解析終了
+				return {
+					classNames,
+				};
 			}
-			if (isSpacePresetValue(data.Y, presetList)) {
-				classNames.push(`-${n}Y${Q}:${data.Y}`);
-				delete data.Y;
-			}
-		} else if (isSpacePresetValue(data, presetList)) {
-			classNames.push(`-${n}${Q}:${data}`);
-			// data が オブジェクトではなくそのままpreset値ならこの時点で解析終了
-			return {
-				classNames,
-			};
 		}
 	} else if (n === 'm') {
 		// marginはX,Yを分解しておく？
@@ -157,7 +159,7 @@ function getTheQueryData(n, data, Q = '') {
 	// {all, top, right, bottom, left} の成分に整理して返す
 	const space = getAnalyzedTrblData(data);
 
-	const Qvar = Q.replace('@', '_Q');
+	const Qvar = Q.replace('@', '--');
 	if (space.all) {
 		classNames.push(`-${n}${Q}:`);
 		styles[`--${n}${Qvar}`] = space.all;

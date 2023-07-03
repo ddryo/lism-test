@@ -59,11 +59,11 @@ export default function Section({
 export const SectionBody = ({ children, className, ...props }) => {
 	return (
 		<Item
-			area='body'
+			ga='body'
 			isFlow
 			isConstrained
 			hasGutter
-			className={classnames('b--section__body', className, 'has--pt has--pb')}
+			className={classnames('b--section__body', className)}
 			{...props}
 		>
 			{children}
@@ -73,7 +73,7 @@ export const SectionBody = ({ children, className, ...props }) => {
 
 export const SectionHeader = ({ children, className, ...props }) => {
 	return (
-		<Item area='header' className={classnames('b--section__header', className)} {...props}>
+		<Item ga='header' className={classnames('b--section__header', className)} {...props}>
 			{children}
 		</Item>
 	);
@@ -81,7 +81,7 @@ export const SectionHeader = ({ children, className, ...props }) => {
 
 export const SectionFooter = ({ children, className, ...props }) => {
 	return (
-		<Item area='footer' className={classnames('b--section__footer', className)} {...props}>
+		<Item ga='footer' className={classnames('b--section__footer', className)} {...props}>
 			{children}
 		</Item>
 	);

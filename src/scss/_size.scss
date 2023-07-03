@@ -7,11 +7,11 @@
 }
 
 @container (max-width: 720px) {
-	[class*="-w\@sm:"] { width: var(--w_Qsm) !important;}
-	[class*="-h\@sm:"] { height: var(--h_Qsm) !important;}
+	[class*="-w\@sm:"] { width: var(--w--sm) !important;}
+	[class*="-h\@sm:"] { height: var(--h--sm) !important;}
 }
 
 @container (max-width: 440px) {
-	[class*="-w\@xs:"] { width: var(--w_Qxs) !important;}
-	[class*="-h\@xs:"] { height: var(--h_Qxs) !important;}
+	[class*="-w\@xs:"] { width: var(--w--xs) !important;}
+	[class*="-h\@xs:"] { height: var(--h--xs) !important;}
 }

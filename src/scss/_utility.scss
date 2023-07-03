@@ -76,15 +76,26 @@
 }
 
 
-// line-hegiht
-// .-lh\:1\.2 {
-// 	line-height: 1.2;
-// }
-// .-lh\:1\.5 {
-// 	line-height: 1.5;
-// }
+// position
+
+// Layer の基点を作るためにrelativeにしたいことがある
+.-pos\:r{
+	position: relative;
+}
+.-pos\:f{
+	position: fixed;
+}
+.-pos\:a{
+	position: absolute;
+}
 
 
+// .bgc\:
+
+
+// --------------------
+// その他
+// --------------------
 // clear float
 // .-cf::after {
 // 	display: block;
@@ -94,21 +105,9 @@
 // 	content: "";
 // }
 
-// その他
 .-lis\:n{
 	list-style: none;
 }
-
-// Layer の基点を作るためにrelativeにしたいことがある
-.-pos\:r{
-	position: relative;
-}
-// .-pos\:f{
-// 	position: fixed;
-// }
-// .-pos\:a{
-// 	position: absolute;
-// }
 
 // 折返し禁止
 // .i--nowrap,
@@ -121,70 +120,3 @@
 .-ovw\:any{
 	overflow-wrap: anywhere;
 }
-
-// flex, grid系
-
-.-fxw\:w{
-	flex-wrap:wrap !important;
-}
-.-fxw\:n{
-	flex-wrap:nowrap !important;
-}
-
-// align-items
-// [class*="-ai:"],
-// [style*="--ai:"]{
-// 	align-items: var( --ai ) !important;
-// }
-.-ai\:c{
-	align-items:center !important;
-}
-.-ai\:fe{
-	align-items:flex-end !important;
-}
-.-ai\:fs{
-	align-items:flex-start !important;
-}
-.-ai\:s{
-	align-items:stretch !important;
-}
-
-// justify-content
-// [class*="-jc:"],
-// [style*="--jc:"]{
-// 	justify-content: var( --jc ) !important;
-// }
-.-jc\:c{
-	justify-content:center !important;
-}
-.-jc\:fe{
-	justify-content:flex-end !important;
-}
-.-jc\:fs{
-	justify-content:flex-start !important;
-}
-.-jc\:sb{
-	justify-content:space-between !important;
-}
-
-
-// .-jc\:sa{
-// 	justify-content:space-around !important;
-// }
-
-// [style*="--fxw:"]{
-// 	flex-wrap: var(--fxw) !important;
-// }
-// [style*="--ai:"]{
-// 	align-items: var(--ai) !important;
-// }
-// [style*="--jc:"]{
-// 	justify-content: var(--jc) !important;
-// }
-
-// [style*="--a-self:"]{
-// 	align-self: var(--a-self) !important;
-// }
-// [style*="--j-self:"]{
-// 	justify-self: var(--j-self) !important;
-// }

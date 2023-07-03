@@ -20,3 +20,11 @@
 	// --wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height, 0px);
 	// headerに付けたときはadmin-bar だけを考慮すればいいが、 a--main内部のときはhedderの高さ（headerが固定されていれば）も考慮する
 }
+
+//html系
+
+// dl{}
+// dt{}
+dd{
+	margin-inline-start: var(--space--50);;
+}

@@ -8,16 +8,16 @@
 .is--flex,
 .is--grid{
 	--gap: var(--space--50); // ここで初期値与えるべきかは要検討
-	// --gap_Qsm: var(--gap);
-	// --gap_Qxs: var(--gap_Qsm);
+	// --gap--sm: var(--gap);
+	// --gap--xs: var(--gap--sm);
 	gap: var(--gap);
 
 	// @container (max-width: 720px) {
-	// 	gap: var(--gap_Qsm);
+	// 	gap: var(--gap--sm);
 	// }
 
 	// @container (max-width: 440px) {
-	// 	gap: var(--gap_Qxs);
+	// 	gap: var(--gap--xs);
 	// }
 }
 
@@ -37,26 +37,26 @@
 // [data-padding="p@_, pt@sm "]
 @container (max-width: 720px) {
 
-	[class*="-gap@sm:"]{
-		gap: var(--gap_Qsm) !important;
+	.-gap\@sm\:{
+		gap: var(--gap--sm) !important;
 	}
-	[class*="-colmg@sm:"]{
-		column-gap: var(--colmg_Qsm) !important;
+	.-colmg\@sm\: {
+		column-gap: var(--colmg--sm) !important;
 	}
-	[class*="-rowg@sm:"]{
-		row-gap: var(--rowg_Qsm) !important;
+	.-rowg\@sm\: {
+		row-gap: var(--rowg--sm) !important;
 	}
 }
 
 @container (max-width: 440px) {
-	[class*="-gap@xs:"]{
-		gap: var(--gap_Qxs) !important;
+	.-gap\@xs\: {
+		gap: var(--gap--xs) !important;
 	}
-	[class*="-colmg@xs:"]{
-		column-gap: var(--colmg_Qxs) !important;
+	.-colmg\@xs\: {
+		column-gap: var(--colmg--xs) !important;
 	}
-	[class*="-rowg@xs:"]{
-		row-gap: var(--rowg_Qxs) !important;
+	.-rowg\@xs\: {
+		row-gap: var(--rowg--xs) !important;
 	}
 }
 
@@ -72,23 +72,23 @@
 		--rowg: var(--space--#{$i * 10});
 	}
 
-	.-gap\@sm\:#{$i * 10} {
-		--gap_Qsm: var(--space--#{$i * 10});
-	}
-	.-colmg\@sm\:#{$i * 10} {
-		--colmg_Qsm: var(--space--#{$i * 10});
-	}
-	.-rowg\@sm\:#{$i * 10} {
-		--rowg_Qsm: var(--space--#{$i * 10});
-	}
+	// .-gap\@sm\:#{$i * 10} {
+	// 	--gap--sm: var(--space--#{$i * 10});
+	// }
+	// .-colmg\@sm\:#{$i * 10} {
+	// 	--colmg--sm: var(--space--#{$i * 10});
+	// }
+	// .-rowg\@sm\:#{$i * 10} {
+	// 	--rowg--sm: var(--space--#{$i * 10});
+	// }
 
-	.-gap\@xs\:#{$i * 10} {
-		--gap_Qxs: var(--space--#{$i * 10});
-	}
-	.-colmg\@xs\:#{$i * 10} {
-		--colmg_Qxs: var(--space--#{$i * 10});
-	}
-	.-rowg\@xs\:#{$i * 10} {
-		--rowg_Qxs: var(--space--#{$i * 10});
-	}
+	// .-gap\@xs\:#{$i * 10} {
+	// 	--gap--xs: var(--space--#{$i * 10});
+	// }
+	// .-colmg\@xs\:#{$i * 10} {
+	// 	--colmg--xs: var(--space--#{$i * 10});
+	// }
+	// .-rowg\@xs\:#{$i * 10} {
+	// 	--rowg--xs: var(--space--#{$i * 10});
+	// }
 }

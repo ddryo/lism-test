@@ -1,16 +1,16 @@
 // これじゃだめ
 // .is--flow {
 // 	--inner--flowGap: var(--ls--flowGap);
-// 	--inner--flowGap_Qsm: var(--inner--flowGap);
-// 	--inner--flowGap_Qxs: var(--inner--flowGap_Qsm);
+// 	--inner--flowGap--sm: var(--inner--flowGap);
+// 	--inner--flowGap--xs: var(--inner--flowGap--sm);
 
 // 	> * + * {
 // 		margin-block-start: var(--inner--flowGap);
 // 		@container (max-width: 720px) {
-// 			margin-block-start: var(--inner--flowGap_Qsm);
+// 			margin-block-start: var(--inner--flowGap--sm);
 // 		}
 // 		@container (max-width: 440px) {
-// 			margin-block-start: var(--inner--flowGap_Qxs);
+// 			margin-block-start: var(--inner--flowGap--xs);
 // 		}
 // 	}
 // }
@@ -39,14 +39,14 @@
 	}
 
 	@container (max-width: 720px) {
-		&[style*="--inner--flowGap_Qsm:"] {
-			--inner--flowGap: var(--inner--flowGap_Qsm) !important;
+		&[style*="--inner--flowGap--sm:"] {
+			--inner--flowGap: var(--inner--flowGap--sm) !important;
 		}
 	}
 	
 	@container (max-width: 440px) {
-		&[style*="--inner--flowGap_Qxs:"] { 
-			--inner--flowGap: var(--inner--flowGap_Qxs) !important;
+		&[style*="--inner--flowGap--xs:"] { 
+			--inner--flowGap: var(--inner--flowGap--xs) !important;
 		}
 	}
 	

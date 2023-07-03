@@ -15,19 +15,19 @@
 }
 
 @container (max-width: 720px) {
-	.has--m\@sm { margin: var(--m_Qsm) !important;}
-	.has--mt\@sm { margin-top: var(--mt_Qsm) !important;}
-	.has--mr\@sm { margin-right: var(--mr_Qsm) !important;}
-	.has--mb\@sm { margin-bottom: var(--mb_Qsm) !important;}
-	.has--ml\@sm { margin-left: var(--ml_Qsm) !important;}
+	.has--m\@sm { margin: var(--m--sm) !important;}
+	.has--mt\@sm { margin-top: var(--mt--sm) !important;}
+	.has--mr\@sm { margin-right: var(--mr--sm) !important;}
+	.has--mb\@sm { margin-bottom: var(--mb--sm) !important;}
+	.has--ml\@sm { margin-left: var(--ml--sm) !important;}
 }
 
 @container (max-width: 440px) {
-	.has--m\@xs { margin: var(--m_Qxs) !important;}
-	.has--mt\@xs { margin-top: var(--mt_Qxs) !important;}
-	.has--mr\@xs { margin-right: var(--mr_Qxs) !important;}
-	.has--mb\@xs { margin-bottom: var(--mb_Qxs) !important;}
-	.has--ml\@xs { margin-left: var(--ml_Qxs) !important;}
+	.has--m\@xs { margin: var(--m--xs) !important;}
+	.has--mt\@xs { margin-top: var(--mt--xs) !important;}
+	.has--mr\@xs { margin-right: var(--mr--xs) !important;}
+	.has--mb\@xs { margin-bottom: var(--mb--xs) !important;}
+	.has--ml\@xs { margin-left: var(--ml--xs) !important;}
 }
 
 

@@ -1,15 +1,15 @@
 .l--gallery{
 	--cols: 3;
-	--cols_Qsm: var(--cols);
-	--cols_Qxs: var(--cols_Qsm);
+	--cols--sm: var(--cols);
+	--cols--xs: var(--cols--sm);
 
 	column-count: var(--cols);
 	@container (max-width: 720px) {
-		column-count: var(--cols_Qsm);
+		column-count: var(--cols--sm);
 	}
 
 	@container (max-width: 440px) {
-		column-count: var(--cols_Qxs);
+		column-count: var(--cols--xs);
 	}
 }
 

@@ -13,10 +13,10 @@ function getColumnsVars(cols) {
 
 	return {
 		'--cols': baseCols || null,
-		'--cols_Qsm': cols.sm || null,
-		'--cols_Qxs': cols.xs || null,
-		// "--cols_Qlg": cols.lg || null,
-		// "--cols_Qxl": cols.xl || null,
+		'--cols--sm': cols.sm || null,
+		'--cols--xs': cols.xs || null,
+		// "--cols--lg": cols.lg || null,
+		// "--cols--xl": cols.xl || null,
 	};
 }
 

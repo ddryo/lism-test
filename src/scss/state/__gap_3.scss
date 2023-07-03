@@ -8,20 +8,20 @@
 	--colmg: var(--space--50);
 
 	// @
-	--rowg_Qsm: var(--rowg);
-	--colmg_Qsm: var(--colmg);
-	--rowg_Qxs: var(--rowg_Qsm);
-	--colmg_Qxs: var(--colmg_Qsm);
+	--rowg--sm: var(--rowg);
+	--colmg--sm: var(--colmg);
+	--rowg--xs: var(--rowg--sm);
+	--colmg--xs: var(--colmg--sm);
 
 
 	gap: var(--rowg) var(--colmg);
 
 	@container (max-width: 720px) {
-		gap: var(--rowg_Qsm) var(--colmg_Qsm);
+		gap: var(--rowg--sm) var(--colmg--sm);
 	}
 
 	@container (max-width: 440px) {
-		gap: var(--rowg_Qxs) var(--colmg_Qxs);
+		gap: var(--rowg--xs) var(--colmg--xs);
 	}
 }
 

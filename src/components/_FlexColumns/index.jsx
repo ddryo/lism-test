@@ -18,10 +18,10 @@ function getColumnsStyles(col, cols = {}) {
 
 	return filterEmptyObj({
 		'--fxb': getFxb(cols?._) || null,
-		'--fxb_Qsm': getFxb(cols?.sm) || null,
-		'--fxb_Qxs': getFxb(cols?.xs) || null,
-		// "--fxb_Qlg": getFxb(cols?.lg) || null,
-		// "--fxb_Qxl": getFxb(cols?.xl) || null,
+		'--fxb--sm': getFxb(cols?.sm) || null,
+		'--fxb--xs': getFxb(cols?.xs) || null,
+		// "--fxb--lg": getFxb(cols?.lg) || null,
+		// "--fxb--xl": getFxb(cols?.xl) || null,
 	});
 }
 

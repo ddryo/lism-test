@@ -2,27 +2,13 @@
 	--mih: auto;
 	position: relative;
 	min-height: var(--mih);
-
-	// display: flex;
-	// --fxd: column;
 	gap: 0;
 
-	// --jc: center;
-	// flex-direction: column;
-	// justify-content: center;
 
 	.l--divider{
 		z-index: 1;
 	}
 
-	// ここは stack
-	// .b--section__body{
-	// 	// margin: auto 0;
-	// 	flex-grow: 1; // height:100% が効くように
-	// 	height: 100%;
-	// 	position: relative;
-	// 	z-index: 1;
-	// }
 
 	.b--section__inner{
 		// display: grid;
@@ -33,17 +19,17 @@
 		height: 100%;
 	}
 	// .b--section__header{
-	// 	// --area: header;
+	// 	// --ga: header;
 	// }
 	.b--section__body{
-		// --area: body;
+		// --ga: body;
 		--pt: var(--space--50);
 		--pb: var(--space--50);
-		--a-self: center;
+		--as: center;
 		height: auto; // 100% にしない
 	}
 	// .b--section__footer{
-	// 	// --area: footer;
+	// 	// --ga: footer;
 	// }
 
 	.b--section__content {

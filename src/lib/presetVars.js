@@ -2,9 +2,14 @@ export const PRESETS = {
 	color: ['main', 'accent', 'base', 'link', 'text', 'headline', 'gray', 'white', 'black', 'sub'],
 	fz: ['6L', '5L', '4L', '3L', '2L', 'L', 'S', '2S', 'R'],
 	ta: ['center', 'left', 'right'],
-	radius: ['0', '1', '2', '3', '4', '5'], // 'round'
+
+	// align-content
+	// "space-between"
+	radius: ['0', '1', '2', '3', '4', '5', '99'], // 'round'
 	shadow: ['-1', '-2', '-3', '-4', '-5', '0', '1', '2', '3', '4', '5'],
 	space: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+	// 主要な areaキーワード はdata属性で出力
+	ga: ['header', 'footer', 'body', 'fix', 'fluid'],
 };
 
 // function isNumStr(val) {
@@ -33,9 +38,6 @@ export function getMaybeSpaceVar(space) {
 	if (isSpacePresetValue(space)) {
 		return `var(--space--${space})`;
 	}
-
-	// オブジェクトで渡ってきてしまっていれば、それを知らせる変数名で返す
-	if (typeof space === 'object') return 'var(--error--objectPassed)';
 
 	/* eslint-disable-next-line  eqeqeq */
 	// if (null == space) return false;

@@ -20,19 +20,19 @@
 }
 
 @container (max-width: 720px) {
-	.has--p\@sm { padding: var(--p_Qsm) !important;}
-	.has--pt\@sm { padding-top: var(--pt_Qsm) !important;}
-	.has--pr\@sm { padding-right: var(--pr_Qsm) !important;}
-	.has--pb\@sm { padding-bottom: var(--pb_Qsm) !important;}
-	.has--pl\@sm { padding-left: var(--pl_Qsm) !important;}
+	.has--p\@sm { padding: var(--p--sm) !important;}
+	.has--pt\@sm { padding-top: var(--pt--sm) !important;}
+	.has--pr\@sm { padding-right: var(--pr--sm) !important;}
+	.has--pb\@sm { padding-bottom: var(--pb--sm) !important;}
+	.has--pl\@sm { padding-left: var(--pl--sm) !important;}
 }
 
 @container (max-width: 440px) {
-	.has--p\@xs { padding: var(--p_Qxs) !important;}
-	.has--pt\@xs { padding-top: var(--pt_Qxs) !important;}
-	.has--pr\@xs { padding-right: var(--pr_Qxs) !important;}
-	.has--pb\@xs { padding-bottom: var(--pb_Qxs) !important;}
-	.has--pl\@xs { padding-left: var(--pl_Qxs) !important;}
+	.has--p\@xs { padding: var(--p--xs) !important;}
+	.has--pt\@xs { padding-top: var(--pt--xs) !important;}
+	.has--pr\@xs { padding-right: var(--pr--xs) !important;}
+	.has--pb\@xs { padding-bottom: var(--pb--xs) !important;}
+	.has--pl\@xs { padding-left: var(--pl--xs) !important;}
 }
 
 
@@ -56,37 +56,37 @@
 
 // @container (max-width: 720px) {
 	
-// 	[style*="--pt_Qsm:"]{
-// 		padding-top: var(--pt_Qsm) !important;
+// 	[style*="--pt--sm:"]{
+// 		padding-top: var(--pt--sm) !important;
 // 	}
-// 	[style*="--pr_Qsm:"]{
-// 		padding-right: var(--pr_Qsm) !important;
+// 	[style*="--pr--sm:"]{
+// 		padding-right: var(--pr--sm) !important;
 // 	}
-// 	[style*="--pb_Qsm:"]{
-// 		padding-bottom: var(--pb_Qsm) !important;
+// 	[style*="--pb--sm:"]{
+// 		padding-bottom: var(--pb--sm) !important;
 // 	}
-// 	[style*="--pl_Qsm:"]{
-// 		padding-left: var(--pl_Qsm) !important;
+// 	[style*="--pl--sm:"]{
+// 		padding-left: var(--pl--sm) !important;
 // 	}
-// 	[style*="--p_Qsm:"]{
-// 		padding: var(--p_Qsm) !important;
+// 	[style*="--p--sm:"]{
+// 		padding: var(--p--sm) !important;
 // 	}
 // }
 
 // @container (max-width: 440px) {
-// 	[style*="--pt_Qxs:"]{
-// 		padding-top: var(--pt_Qxs) !important;
+// 	[style*="--pt--xs:"]{
+// 		padding-top: var(--pt--xs) !important;
 // 	}
-// 	[style*="--pr_Qxs:"]{
-// 		padding-right: var(--pr_Qxs) !important;
+// 	[style*="--pr--xs:"]{
+// 		padding-right: var(--pr--xs) !important;
 // 	}
-// 	[style*="--pb_Qxs:"]{
-// 		padding-bottom: var(--pb_Qxs) !important;
+// 	[style*="--pb--xs:"]{
+// 		padding-bottom: var(--pb--xs) !important;
 // 	}
-// 	[style*="--pl_Qxs:"]{
-// 		padding-left: var(--pl_Qxs) !important;
+// 	[style*="--pl--xs:"]{
+// 		padding-left: var(--pl--xs) !important;
 // 	}
-// 	[style*="--p_Qxs:"]{
-// 		padding: var(--p_Qxs) !important;
+// 	[style*="--p--xs:"]{
+// 		padding: var(--p--xs) !important;
 // 	}
 // }

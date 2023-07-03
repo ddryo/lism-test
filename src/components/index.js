@@ -2,7 +2,7 @@
 // import '../scss/components.scss';
 
 // import React from 'react';
-export { Base } from './Base';
+export { Lism } from './Lism';
 export { Box, Flex, Stack } from './Box';
 export { Frame, FrameContent } from './Frame';
 export { Layer, MediaLayer, FilterLayer } from './Layer';
@@ -18,6 +18,7 @@ export { RatioGrid } from './RatioGrid';
 export { AreaGrid } from './AreaGrid';
 // export { PinGallery } from './PinGallery';
 
+export { Spacer } from './Spacer';
 export { Item } from './Item';
 
 // appルーターで use client がいるもの
@@ -28,8 +29,9 @@ export { DynamicCSS } from './DynamicCSS';
 // Blocks
 export { Banner } from './Banner';
 export { Card, CardMedia, CardBody } from './Card';
-
 export { Section, SectionBody, SectionHeader, SectionFooter } from './Section';
+export { Glossary, GlossaryItem } from './Glossary';
+// export { MediaText } from './MediaText';
 
 // Lismにいれるかは未定
 export { Text } from './Text';

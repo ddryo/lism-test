@@ -2,11 +2,11 @@ import React from 'react';
 import { getCommonProps } from '../../lib';
 import classnames from 'classnames';
 
-export default function Stack({ children, tag, className, ...props }) {
+export default function Stack({ children, tag, ...props }) {
 	const { classNames, styles, attrs } = getCommonProps({ ...props, isFlex: true });
 
 	const blockProps = {
-		className: classnames('l--stack', className, classNames),
+		className: classnames('l--stack', classNames),
 		style: styles,
 		...attrs,
 	};

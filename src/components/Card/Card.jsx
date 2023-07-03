@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { Frame, FrameContent } from '../Frame';
 import { Layer } from '../Layer';
 import { LinkBox } from '../LinkBox';
+import { Item } from '../Item';
 import {
 	//Box,
 	Stack,
@@ -67,15 +68,15 @@ export function CardBody({ children, className, isLayer, ...props }) {
 		);
 	}
 	return (
-		<Stack
+		<Item
+			component={Stack}
 			className={classnames('b--card__body', className)}
 			padding={40}
 			gap={40}
-			fxg='1'
-			isItem
+			// fxg='1'
 			{...props}
 		>
 			{children}
-		</Stack>
+		</Item>
 	);
 }

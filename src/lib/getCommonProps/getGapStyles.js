@@ -3,7 +3,7 @@ import { getMaybeSpaceVar, isSpacePresetValue } from '../index.js';
 /* eslint eqeqeq: 0 */
 // ↑ 0 の時の判定を考慮して 「null != hoge」を使用している。
 
-const spaceUtilityList = ['0', '10', '20', '30', '40', '50', '60'];
+// const spaceUtilityList = ['0', '10', '20', '30', '40', '50', '60'];
 
 /**
  *
@@ -33,36 +33,41 @@ function sortGapData(gap, Q = '') {
 	}
 
 	// ユーティリティクラス化できるかどうか
-	if (typeof gap === 'object') {
-		// 各成分のチェック
-		if (isSpacePresetValue(gap.row, spaceUtilityList)) {
-			classNames.push(`-rowg${Q}:${gap.row}`);
-			delete gap.row;
+	if ('' === Q) {
+		if (typeof gap === 'object') {
+			// 各成分のチェック
+			if (isSpacePresetValue(gap.row)) {
+				classNames.push(`-rowg${Q}:${gap.row}`);
+				delete gap.row;
+			}
+			if (isSpacePresetValue(gap.col)) {
+				classNames.push(`-colmg${Q}:${gap.col}`);
+				delete gap.col;
+			}
+		} else if (isSpacePresetValue(gap)) {
+			classNames.push(`-gap${Q}:${gap}`);
+			// gap が オブジェクトではなくそのままpreset値ならこの時点で解析終了
+			return {
+				classNames,
+			};
 		}
-		if (isSpacePresetValue(gap.col, spaceUtilityList)) {
-			classNames.push(`-colmg${Q}:${gap.col}`);
-			delete gap.col;
-		}
-	} else if (isSpacePresetValue(gap, spaceUtilityList)) {
-		classNames.push(`-gap${Q}:${gap}`);
-		// gap が オブジェクトではなくそのままpreset値ならこの時点で解析終了
-		return {
-			classNames,
-		};
 	}
 
 	// 以下、ユーティリティクラスにできない値の時の処理
-	const Qvar = Q.replace('@', '_Q');
+	const Qvar = Q.replace('@', '--');
 
 	// 数値指定の時はCSS変数に変換
 	if (typeof gap === 'number' || typeof gap === 'string') {
+		classNames.push(`-gap${Q}:`);
 		styles[`--gap${Qvar}`] = getMaybeSpaceVar(gap) || null;
 	} else {
 		// {row, col} 形式の時
 		if (null != gap?.row) {
+			classNames.push(`-rowg${Q}:`);
 			styles[`--rowg${Qvar}`] = getMaybeSpaceVar(gap.row);
 		}
 		if (null != gap?.col) {
+			classNames.push(`-colmg${Q}:`);
 			styles[`--colmg${Qvar}`] = getMaybeSpaceVar(gap.col);
 		}
 	}

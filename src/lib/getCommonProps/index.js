@@ -2,13 +2,28 @@ import { filterEmptyObj, isPresetValue, isSpacePresetValue, getMaybeSpaceVar } f
 import { getPaddingProps, getMarginProps } from './getSpacingProps';
 import { getGapStyles } from './getGapStyles';
 import { getWidthProps, getHeightProps } from './getSizeProps';
+import classnames from 'classnames';
 
 // import { default as getFlexClasses } from './getFlexClasses';
-import { getGridAreaStyles } from './getGridAreaStyles';
 
 // import getMaybeSpaceVar from "./getMaybeSpaceVar.js";
 // import { isShadowPresetValue } from './getMaybeShadowVar.js';
 // import { isFzPresetValue } from './getMaybeFzVar.js';
+
+const UTILITIES = {
+	layout: {
+		center: 'c',
+		strech: 's',
+		// 'flex-start': 'fs',
+		// 'flex-end': 'fe',
+		'space-between': 'sb',
+	},
+	fxw: { wrap: 'w', nowrap: 'n' },
+};
+
+const getLayoutUtility = (key, value) => {
+	return UTILITIES[key][value] || false;
+};
 
 /**
  * props から styleに変換する要素 と その他 に分離する
@@ -24,6 +39,8 @@ import { getGridAreaStyles } from './getGridAreaStyles';
 // or, "propQs" として統一する？ wQs, gapQs, paddingQs, marginQs...
 export default function getCommonProps(props) {
 	const {
+		blockClass,
+		className,
 		padding,
 		paddings,
 		margin,
@@ -39,6 +56,10 @@ export default function getCommonProps(props) {
 		ta,
 		width,
 		height,
+		miw,
+		mih,
+		maw,
+		mah,
 		radius, //bdrs,
 		border,
 		shadow, // bxsh
@@ -83,10 +104,6 @@ export default function getCommonProps(props) {
 	// const flexClass = getFlexClasses({ ai, jc, fxw, fxb, as, js });
 	// if (flexClass) classNames.push(flexClass);
 
-	// if (isFlex) {
-	// 	if (undefined !== fxw) styles['--ls--fxw'] = fxw;
-	// }
-
 	if (isFlow) {
 		classNames.push('is--flow');
 
@@ -123,15 +140,20 @@ export default function getCommonProps(props) {
 	}
 
 	if (isItem) {
-		classNames.push('is--item');
-
-		const itemProps = getItemProps(otherProps);
-		otherProps = itemProps.others;
-		styles = { ...styles, ...itemProps.styles };
+		// classNames.push('is--item');
+		// const itemProps = getItemProps(otherProps);
+		// otherProps = itemProps.others;
+		// classNames.push(...itemProps.classNames);
+		// styles = { ...styles, ...itemProps.styles };
 	}
 
 	if (undefined !== mT) {
-		classNames.push(`-mT:${mT}`);
+		if (isSpacePresetValue(mT)) {
+			classNames.push(`-mT:${mT}`);
+		} else {
+			styles.marginBlockStart = mT;
+		}
+
 		// キーワード以外の時、styleでmargin-block-start。 or .-mT: で管理
 	}
 
@@ -148,6 +170,19 @@ export default function getCommonProps(props) {
 		const heightProps = getHeightProps(height);
 		styles = { ...styles, ...heightProps.styles };
 		classNames.push(...heightProps.classNames);
+	}
+
+	if (undefined !== miw) {
+		styles.minWidth = miw;
+	}
+	if (undefined !== mih) {
+		styles.minHeight = mih;
+	}
+	if (undefined !== maw) {
+		styles.maxWidth = maw;
+	}
+	if (undefined !== mah) {
+		styles.maxHeight = mah;
 	}
 
 	if (undefined !== padding || undefined !== paddings) {
@@ -199,7 +234,7 @@ export default function getCommonProps(props) {
 
 	if (undefined !== ta) {
 		if (isPresetValue('ta', ta)) {
-			classNames.push(`-ta:${ta}`);
+			classNames.push(`-ta:${ta[0]}`);
 		} else {
 			styles.textAlign = ta;
 		}
@@ -242,70 +277,68 @@ export default function getCommonProps(props) {
 		otherProps.ref = forwardedRef;
 	}
 	return {
+		className: classnames(blockClass, className, classNames),
 		classNames,
 		styles: filterEmptyObj(styles), // filterEmptyObj は最後にかける
 		attrs: otherProps,
 	};
 }
 
+// gta, gtasにして を {col, row} に分ける?
+// gta,gtas,gtc,gtcs, gtr,gtrs ?
 function getFlexGlidProps(props, isFlex, isGrid) {
-	const { gta, gtc, gtr, fxd, fxw, ai, ac, jc, ji, ...others } = props;
+	const { fxd, fxw, ...others } = props;
 	let styles = {};
 	const classNames = [];
 
 	if (isFlex) {
 		classNames.push('is--flex');
-		if (undefined !== fxw) styles['--fxw'] = fxw;
+		if (undefined !== fxw) {
+			const util = getLayoutUtility('fxw', fxw);
+			if (util) {
+				classNames.push(`-fxw:${util}`);
+			} else {
+				styles.flexWrap = fxw;
+			}
+		}
+
 		if (undefined !== fxd) styles['--fxd'] = fxd;
 	}
 
 	if (isGrid) {
 		classNames.push('is--grid');
 
-		// ~クエリ対応~
-		if (undefined !== gta) styles['--gta'] = gta;
-		if (undefined !== gtc) styles['--gtc'] = gtc;
-		if (undefined !== gtr) styles['--gtr'] = gtr;
+		// gta,gtr,gtc は String || {_,sm,xs} でクエリ対応
+		['gta', 'gtc', 'gtr'].forEach((propName) => {
+			const propData = others[propName];
+			if (undefined === propData) return;
+			delete others[propName];
+
+			if (typeof propData === 'string') {
+				styles[`--${propName}`] = propData;
+			} else if (typeof propData === 'object') {
+				if (propData._) styles[`--${propName}`] = propData._;
+				if (propData.sm) styles[`--${propName}--sm`] = propData.sm;
+				if (propData.xs) styles[`--${propName}--xs`] = propData.xs;
+			}
+		});
 	}
 
 	// 共通処理
-	// justify-items, align-items, justify-content, align-content
-	if (undefined !== ai) styles['--ai'] = ai;
-	if (undefined !== ac) styles['--ac'] = ac;
-	if (undefined !== jc) styles['--jc'] = jc;
-	if (undefined !== ji) styles['--ji'] = ji;
+	// align-items, align-content,justify-content, justify-items
+	['ai', 'ac', 'jc', 'ji'].forEach((propName) => {
+		const propData = others[propName];
+		if (undefined === propData) return;
+		delete others[propName];
+
+		const util = getLayoutUtility('layout', propData);
+		if (util) {
+			classNames.push(`-${propName}:${util}`);
+		} else {
+			// classNames.push(`-${propName}:`);
+			styles[`--${propName}`] = propData;
+		}
+	});
 
 	return { styles, classNames, others };
-}
-
-// grid: { area, row, col } ?
-// gArea
-function getItemProps(props) {
-	const { fxb, fxg, fxsh, fx, area, areas, alignSelf, justifySelf, ...others } = props;
-	// const classNames = [];
-	// let styles = {};
-
-	// const areaStyles = getGridAreaStyles();
-	let styles = {
-		// '--ga': area || null,
-		// '--gr': gr || null,
-		// '--gc': gc || null,
-		'--a-self': alignSelf || null,
-		'--j-self': justifySelf || null,
-		'--fxb': fxb || null,
-		'--fxg': fxg || null,
-		'--fxsh': fxsh || null,
-		'--fx': fx || null, //
-	};
-
-	// gaがあればdata属性にもそれをセットする
-	if (undefined !== area || undefined !== areas) {
-		styles = { ...styles, ...getGridAreaStyles(area, areas) };
-		// others['data-grid-area'] = ga;
-	}
-
-	// flex系をクエリ対応するなら、fx=文字列 or {fxg, fxsh, fxb} 形式にする？
-	// styles = { ...styles, ...getFlexStyles({fx, fxb,fxg,fxsh}) };
-
-	return { styles, others };
 }

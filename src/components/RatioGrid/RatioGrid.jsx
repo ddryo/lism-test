@@ -41,10 +41,10 @@ export default function RatioGrid({
 		...style,
 		...{
 			'--gtc': ratioToFr(ratios._) || null,
-			'--gtc_Qsm': ratioToFr(ratios.sm) || null,
-			'--gtc_Qxs': ratioToFr(ratios.xs) || null,
-			// "--gtc_Qlg": ratioToFr(ratios.lg) || null,
-			// "--gtc_Qxl": ratioToFr(ratios.xl) || null,
+			'--gtc--sm': ratioToFr(ratios.sm) || null,
+			'--gtc--xs': ratioToFr(ratios.xs) || null,
+			// "--gtc--lg": ratioToFr(ratios.lg) || null,
+			// "--gtc--xl": ratioToFr(ratios.xl) || null,
 		},
 	};
 

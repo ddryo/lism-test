@@ -4,23 +4,12 @@
 
 // .is--flex,
 .l--flex {
-	--fxw: wrap;
+	// --fxw: wrap;
 
 	> * {
 		margin: 0;
 		// overflow-wrap: anywhere; // 要素が横にはみ出すのを防ぐ → ユーティリティで必要な文章にだけ適用する
 	}
-
-	// &[data-fxw="wrap"]{
-	// 	--fxw: wrap;
-	// }
-	&[data-fxw="nowrap"]{
-		--fxw: nowrap;
-	}
-	&[data-fxw="reverse"]{
-		--fxw: wrap-reverse;
-	}
-	
 
 	// 一括横幅指定？
 	// --item-miw: 1em;

@@ -12,9 +12,5 @@ export default function Base({ children, tag, className, ...props }) {
 	};
 
 	const Tag = tag || 'div';
-	return (
-		<Tag {...blockProps} data-lism-component>
-			{children}
-		</Tag>
-	);
+	return <Tag {...blockProps}>{children}</Tag>;
 }

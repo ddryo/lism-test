@@ -1,9 +1,9 @@
 import React from 'react';
 import { LayoutContext } from '../contexts';
-import { Base } from '../Base';
+import { Lism } from '../Lism';
 
 const LismProvider = ({ component, itemProps, children, ...props }) => {
-	const Component = component || Base;
+	const Component = component || Lism;
 	return (
 		<Component {...props}>
 			<LayoutContext.Provider value={itemProps}>{children}</LayoutContext.Provider>

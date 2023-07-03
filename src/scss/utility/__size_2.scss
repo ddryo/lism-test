@@ -2,28 +2,28 @@
 
 .has--w{
 	--w: auto;
-	--w_Qsm: var(--w);
-	--w_Qxs: var(--w_Qsm);
+	--w--sm: var(--w);
+	--w--xs: var(--w--sm);
 
 	width: var(--w) !important;
 	@container (max-width: 720px) {
-		width: var(--w_Qsm) !important;
+		width: var(--w--sm) !important;
 	}
 	@container (max-width: 440px) {
-		width: var(--w_Qxs) !important;
+		width: var(--w--xs) !important;
 	}
 }
 
 .has--h{
 	--h: auto;
-	--h_Qsm: var(--h);
-	--h_Qxs: var(--h_Qsm);
+	--h--sm: var(--h);
+	--h--xs: var(--h--sm);
 
 	height: var(--h) !important;
 	@container (max-width: 720px) {
-		height: var(--h_Qsm) !important;
+		height: var(--h--sm) !important;
 	}
 	@container (max-width: 440px) {
-		height: var(--h_Qxs) !important;
+		height: var(--h--xs) !important;
 	}
 }

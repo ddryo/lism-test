@@ -1,5 +1,5 @@
 import React from 'react';
-import { Base } from '../Base';
+import { Lism } from '../Lism';
 // import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 // import { Box } from '../index';
@@ -14,10 +14,10 @@ function getColumnsVars(cols) {
 
 	return {
 		'--cols': cols._ || null,
-		'--cols_Qsm': cols.sm || null,
-		'--cols_Qxs': cols.xs || null,
-		// "--cols_Qlg": cols.lg || null,
-		// "--cols_Qxl": cols.xl || null,
+		'--cols--sm': cols.sm || null,
+		'--cols--xs': cols.xs || null,
+		// "--cols--lg": cols.lg || null,
+		// "--cols--xl": cols.xl || null,
 	};
 }
 
@@ -37,8 +37,8 @@ export default function Columns({
 		...getColumnsVars({ _: col, sm, xs, ...cols }),
 	};
 	return (
-		<Base className='l--gallery' {...props} style={style}>
+		<Lism className='l--gallery' {...props} style={style}>
 			{children}
-		</Base>
+		</Lism>
 	);
 }

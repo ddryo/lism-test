@@ -1,19 +1,20 @@
+.l--sideFix{
+	--fix--w: 16rem; // 初期値
+}
 .l--sideFix.is--flex {
-	--fxw: wrap;
-	--fix--w: 16rem;
 	--fluid--miw: 55%;
 
 	// side
 	&[data-fix="first"] > .is--item:first-child,
 	&[data-fix="last"] > .is--item:last-child{
-		flex-basis: var(--fix--w);
-		flex-grow: 1;
+		--fxb: var(--fix--w);
+		--fxg: 1;
 	}
 
 	&[data-fix="first"] > .is--item:last-child,
 	&[data-fix="last"] > .is--item:first-child{
-		flex-basis: var(--fluid--miw); // EL のように 0 にするとsubがでかくなりやすいので、最低限miw分は比率として指定しておく
-		flex-grow: 100000; // できるだけ sub 側を 指定値ピッタリに近づける
+		--fxb: var(--fluid--miw); // EL のように 0 にするとsubがでかくなりやすいので、最低限miw分は比率として指定しておく
+		--fxg: 100000; // できるだけ sub 側を 指定値ピッタリに近づける
 		min-width: min(100%, var(--fluid--miw));  // このサイズが折り返しポイント
 
 		// 折り返しが効かない長い文字列があった場合にバグるのを防ぐ
@@ -22,9 +23,8 @@
 	}
 }
 
-.l--sideFix.is--grid {
-	--fix--w: 16rem;
-}
+// .l--sideFix.is--grid {
+// }
 
 .l--sideFix{
 
@@ -40,25 +40,26 @@
 	}
 
 
+	// .-gtc@sm:
 	&[data-break="sm"]{
-		--gtc_Qsm: 100%;
+		--gtc--sm: 100%;
 
 		&[data-fix$="up"]{
-			--gta_Qsm: "fix" "fluid";
+			--gta--sm: "fix" "fluid";
 		}
 		&[data-fix$="down"]{
-			--gta_Qsm: "fluid" "fix";
+			--gta--sm: "fluid" "fix";
 		}
 	}
 
 	&[data-break="xs"]{
-		--gtc_Qxs: 100%;
+		--gtc--xs: 100%;
 
 		&[data-fix$="up"]{
-			--gta_Qxs: "fix" "fluid";
+			--gta--xs: "fix" "fluid";
 		}
 		&[data-fix$="down"]{
-			--gta_Qxs: "fluid" "fix";
+			--gta--xs: "fluid" "fix";
 		}
 	}
 

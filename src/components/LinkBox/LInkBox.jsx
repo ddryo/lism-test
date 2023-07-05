@@ -1,9 +1,11 @@
 import React from 'react';
 import { Box } from '../Box';
-import classnames from 'classnames';
 import setEvent from './setEvent';
-// import { getCommonProps } from '../../lib';
+// import classnames from 'classnames';
 
+/**
+ * linkbox用のスクリプトどう読み込ませる？？
+ */
 // const setLinkboxScript = () => {
 // 	const script = document.createElement("script");
 // 	script.src = "./linkbox.js";
@@ -16,24 +18,8 @@ import setEvent from './setEvent';
 // 	};
 // };
 
-// ref を 投げる要素は forwardRef でrefを受け取れるようにしておかないとコンソールエラーが出る
-// forwardRef はちゃんと props として引数をセットしないとだめなことに注意
-// const RefBox = forwardRef((props, ref) => {
-// 	const { component, ...attrs } = props;
-// 	const Comp = component || Box;
-// 	return <Comp {...attrs} forwardedRef={ref} />;
-// });
-
-function getHovClass(hover) {
-	if (typeof hover === 'string') return `-hov:${hover}`;
-	if (Array.isArray(hover)) {
-		return hover.map((h) => `-hov:${h}`).join(' ');
-	}
-
-	return '';
-}
-
 // .l--box.is--linkBox にする？
+// blockClass: 'b--linkBox' ?
 export default function LinkBox({
 	href,
 	target,
@@ -42,9 +28,8 @@ export default function LinkBox({
 	ariaLabel,
 	isDiv,
 	component,
-	className,
+	hover,
 	children,
-	hover = 'opacity',
 	...props
 }) {
 	const ref = React.useRef(null);
@@ -55,13 +40,11 @@ export default function LinkBox({
 		return setEvent(ref.current);
 	}, [isDiv]);
 
-	// const { classNames, styles, attrs } = getCommonProps(props);
-
 	const blockProps = {
 		forwardedRef: ref,
-		className: classnames(className, 'is--linkBox', getHovClass(hover)),
-		// style: styles,
+		stateClass: 'is--linkBox', // blockClassにすればstateClassは他で使ってないので消せる
 		'aria-label': ariaLabel || null,
+		hover: hover || 'opacity',
 		...props,
 	};
 

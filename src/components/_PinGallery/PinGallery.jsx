@@ -1,6 +1,5 @@
 import React from 'react';
 import { Lism } from '../Lism';
-// import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 // import { Box } from '../index';
 

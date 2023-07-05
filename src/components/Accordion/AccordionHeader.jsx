@@ -1,12 +1,15 @@
 import React from 'react';
-import classnames from 'classnames';
+// import { Lism } from '../Lism';
 import { getCommonProps } from '../../lib';
+// import classnames from 'classnames';
 
-export default function AccordionHeader({ children, className, icon = 'caret', ...props }) {
-	const { classNames, styles, attrs } = getCommonProps(props);
+export default function AccordionHeader({ children, icon = 'caret', ...props }) {
+	const { className, style, attrs } = getCommonProps(props, {
+		lismClass: 'l--accordion__header',
+	});
 	const blockProps = {
-		className: classnames('l--accordion__header', className, classNames),
-		style: styles,
+		className,
+		style,
 		...attrs,
 	};
 

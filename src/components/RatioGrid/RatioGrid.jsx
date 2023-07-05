@@ -23,18 +23,14 @@ function ratioToFr(ratio) {
 
 export default function RatioGrid({
 	children,
-	// tag = 'div',
-	// className,
 	ratio,
 	sm,
 	xs,
 	ratios = {}, // 一応 ratios でも受け付ける？
 	style = {},
-	customQuery,
+	// customQuery,
 	...props
 }) {
-	// const { classNames, styles, attrs } = getCommonProps({ ...props, isGrid: true });
-
 	ratios = { _: ratio, sm, xs, ...ratios };
 
 	style = {

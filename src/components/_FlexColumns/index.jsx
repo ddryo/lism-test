@@ -28,7 +28,6 @@ function getColumnsStyles(col, cols = {}) {
 export default function FlexColumns({
 	children,
 	tag = 'div',
-	className,
 	col,
 	cols = {},
 	sm,
@@ -37,12 +36,12 @@ export default function FlexColumns({
 	itemProps = {},
 	...props
 }) {
-	const { classNames, styles, attrs } = getCommonProps(props);
+	const { className, style, attrs } = getCommonProps(props);
 
 	const blockProps = {
-		className: classnames('l--flexColumns has--gap', className, classNames),
+		className: classnames('l--flexColumns has--gap', className),
 		style: {
-			...styles,
+			...style,
 			...getColumnsStyles(col, cols),
 		},
 		...attrs,

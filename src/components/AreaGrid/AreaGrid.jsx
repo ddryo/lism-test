@@ -9,8 +9,6 @@ export default function AreaGrid({
 	direction, // horizontal, vertical
 	...props
 }) {
-	// const { classNames, styles, attrs } = getCommonProps(props);
-
 	const blockProps = {
 		'data-direction': direction || 'vertical',
 		...props,

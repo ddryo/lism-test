@@ -1,7 +1,5 @@
 import React from 'react';
-import { Grid } from '../Grid';
-// import { filterEmptyObj, getCommonProps } from '../../lib';
-// import classnames from 'classnames';
+import { getCommonProps } from '../../lib';
 
 function getColumnsVars(cols) {
 	let baseCols = cols._ || 2;
@@ -21,23 +19,27 @@ function getColumnsVars(cols) {
 }
 
 export default function Columns({
+	tag,
 	children,
-	// className,
 	col,
 	sm,
 	xs,
 	cols = {},
-	style = {},
 	// customQuery,
 	...props
 }) {
-	style = {
-		...style,
-		...getColumnsVars({ _: col, sm, xs, ...cols }),
+	const { className, style, attrs } = getCommonProps(props, {
+		lismClass: 'l--columns',
+		isGrid: true,
+	});
+
+	const blockProps = {
+		className,
+		style: { ...style, ...getColumnsVars({ _: col, sm, xs, ...cols }) },
+		'data-cols': col || cols._ || 2,
+		...attrs,
 	};
-	return (
-		<Grid name='columns' data-cols={col || cols._ || 2} {...props} style={style}>
-			{children}
-		</Grid>
-	);
+
+	const Tag = tag || 'div';
+	return <Tag {...blockProps}>{children}</Tag>;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { getCommonProps } from '../../lib';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 // import { Box } from '../index';
 
 // grid-template-areas: none
@@ -8,22 +8,26 @@ import classnames from 'classnames';
 // gta, gtc, gtr
 export default function Grid({
 	tag = 'div',
-	className,
+	// className,
 	children,
 	name = 'grid',
+	lismClass,
 	modifier,
 	...props
 }) {
-	const { classNames, styles, attrs } = getCommonProps({ ...props, isGrid: true });
-
-	let gridClass = `l--${name}`;
+	let gridClass = lismClass || `l--${name}`;
 	if (modifier) {
 		gridClass += `--${modifier}`;
 	}
 
+	const { className, style, attrs } = getCommonProps(props, {
+		lismClass: gridClass,
+		isGrid: true,
+	});
+
 	const blockProps = {
-		className: classnames(gridClass, className, classNames),
-		style: styles,
+		className,
+		style,
 		...attrs,
 	};
 

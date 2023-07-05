@@ -1,24 +1,26 @@
 import React from 'react';
-import { Box } from '../Box';
+import { Lism } from '../Lism';
 import { isPresetValue } from '../../lib';
-// import { getGridAreaStyles } from './getGridAreaStyles';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 
 // itemsのpropsはここでのみ受け付ける → クラスの順番気持ち悪い？
-export function Item({ children, component, className, style, ...props }) {
+export function Item({ children, component, style, ...props }) {
 	const { classNames, styles, attrs } = getItemProps(props);
 
-	// const { classNames, styles, attrs } = getCommonProps(props);?
 	const blockProps = {
-		className: classnames(className, 'is--item', classNames),
+		utilityClass: classNames,
 		style: {
 			...style,
 			...styles,
 		},
 		...attrs,
 	};
-	const Comp = component || Box;
-	return <Comp {...blockProps}>{children}</Comp>;
+	const Comp = component || Lism;
+	return (
+		<Comp isItem {...blockProps}>
+			{children}
+		</Comp>
+	);
 }
 
 function getItemProps(props) {

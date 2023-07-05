@@ -1,25 +1,29 @@
 import React from 'react';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 // import { Flex } from '../Box';
-import { getCommonProps, filterEmptyObj } from '../../lib';
+import { getCommonProps } from '../../lib';
 // import "./style.scss";
 
-function SideFix({ children, className, fixWidth, fluidMiw, fix = 'last', ...props }) {
-	const { classNames, styles, attrs } = getCommonProps({ ...props, isFlex: true, fxw: 'wrap' });
+export default function SideFix({ children, fixWidth, fluidMiw, fix = 'last', ...props }) {
+	const { className, style, attrs } = getCommonProps(props, {
+		lismClass: 'l--sideFix',
+		isFlex: true,
+		fxw: 'wrap',
+	});
+
+	if (undefined !== fluidMiw) {
+		style['--fluid--miw'] = fluidMiw;
+	}
+	if (undefined !== fixWidth) {
+		style['--fix--w'] = fixWidth;
+	}
 
 	const blockProps = {
-		className: classnames(`l--sideFix`, className, classNames),
-		style: {
-			...styles,
-			...filterEmptyObj({
-				'--fluid--miw': fluidMiw,
-				'--fix--w': fixWidth,
-			}),
-		},
+		className,
+		style,
 		'data-fix': 'first' === fix ? 'first' : 'last', // 必ず first か last になるように,
 		...attrs,
 	};
 
 	return <div {...blockProps}>{children}</div>;
 }
-export default SideFix;

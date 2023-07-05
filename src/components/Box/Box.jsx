@@ -1,42 +1,18 @@
 import React from 'react';
-import {
-	//isEmptyObj, filterEmptyObj,
-	// getFlexClasses,""
-	getCommonProps,
-} from '../../lib';
-import classnames from 'classnames';
+import { getCommonProps } from '../../lib';
+// import classnames from 'classnames';
 // import { useRef, forwardRef, useEffect } from "react";
 
-export default function Box({
-	children,
-	modifier,
-	tag,
-	className,
-	// isItem,
-	// isFlow,
-	isConstrained,
-	hasGutter,
-	...props
-}) {
-	let boxClass = 'l--box';
+export default function Box({ children, modifier, tag, ...props }) {
+	let lismClass = 'l--box';
 	if (modifier) {
-		boxClass += `--${modifier}`;
+		lismClass += `--${modifier}`;
 	}
 
-	const { classNames, styles, attrs } = getCommonProps(props);
-
+	const { className, style, attrs } = getCommonProps(props, { lismClass });
 	const blockProps = {
-		className: classnames(
-			boxClass,
-			className,
-			{
-				'is--constrained': isConstrained || false,
-				'has--gutter': hasGutter || false,
-				// "has--layer": hasLayer || false,
-			},
-			classNames
-		),
-		style: styles,
+		className,
+		style,
 		...attrs,
 	};
 

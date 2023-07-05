@@ -1,20 +1,16 @@
 import React from 'react';
 import { getCommonProps } from '../../lib';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 
-export default function MediaText({ children, tag, className, ...props }) {
-	const { classNames, styles, attrs } = getCommonProps(props);
+export default function MediaText({ children, tag, ...props }) {
+	const { className, style, attrs } = getCommonProps(props, { blockClass: 'b--mediaText' });
 
 	const blockProps = {
-		className: classnames(className, classNames),
-		style: styles,
+		className,
+		style: style,
 		...attrs,
 	};
 
 	const Tag = tag || 'div';
-	return (
-		<Tag {...blockProps} data-lism-component>
-			{children}
-		</Tag>
-	);
+	return <Tag {...blockProps}>{children}</Tag>;
 }

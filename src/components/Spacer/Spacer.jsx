@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 // 縦書きの時どうする？
 export default function Spacer({ className, width, height, style = {}, ...props }) {
-	// const { classNames, styles, attrs } = getCommonProps(props);
+	// const { className, style, attrs } = getCommonProps(props);
 
 	let classNames = ['l--spacer'];
 

@@ -46,12 +46,12 @@ export function getMaybeSpaceVar(space) {
 	return space;
 }
 
-// export function getMaybeColorVar(color) {
-// 	if (isPresetValue('color', color)) {
-// 		return 'var(--color--' + color + ')';
-// 	}
-// 	return color;
-// }
+export function getMaybeColorVar(color) {
+	if (isPresetValue('color', color)) {
+		return 'var(--color--' + color + ')';
+	}
+	return color;
+}
 
 // export function getMaybeFzVar(fz) {
 // 	if (isPresetValue('fz', fz)) {
@@ -67,9 +67,9 @@ export function getMaybeSpaceVar(space) {
 // 	return radius;
 // }
 
-// export function getMaybeShadowVar(shadow) {
-// 	if (isPresetValue('shadow', shadow)) {
-// 		return 'var(--bxsh--' + shadow + ')';
-// 	}
-// 	return shadow;
-// }
+export function getMaybeShadowVar(shadow) {
+	if (isPresetValue('shadow', shadow)) {
+		return 'var(--shadow--' + shadow.replace('-', 'i') + ')';
+	}
+	return shadow;
+}

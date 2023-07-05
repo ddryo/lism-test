@@ -1,4 +1,11 @@
-import { filterEmptyObj, isPresetValue, isSpacePresetValue, getMaybeSpaceVar } from '../index.js';
+import {
+	filterEmptyObj,
+	isPresetValue,
+	isSpacePresetValue,
+	getMaybeSpaceVar,
+	getMaybeColorVar,
+	getMaybeShadowVar,
+} from '../index.js';
 import { getPaddingProps, getMarginProps } from './getSpacingProps';
 import { getGapStyles } from './getGapStyles';
 import { getWidthProps, getHeightProps } from './getSizeProps';
@@ -37,10 +44,10 @@ const getLayoutUtility = (key, value) => {
 // 一括していpropは、 "prop", "props" で分けて指定する。 padding:{X:20,Y:20} paddingQs:{sm:10,md:20} みたいな
 // それ以外は、"prop" にオブジェクトを渡すとクエリ指定できる。 w:{_:'100%',sm:'50%'} みたいな
 // or, "propQs" として統一する？ wQs, gapQs, paddingQs, marginQs...
-export default function getCommonProps(props) {
+export default function getCommonProps(props, options = {}) {
 	const {
-		blockClass,
-		className,
+		blockClass = '',
+		className = '',
 		padding,
 		paddings,
 		margin,
@@ -63,6 +70,7 @@ export default function getCommonProps(props) {
 		radius, //bdrs,
 		border,
 		shadow, // bxsh
+		hover,
 		gap,
 		gaps,
 		// ai,
@@ -77,15 +85,33 @@ export default function getCommonProps(props) {
 		isFlex,
 		isGrid,
 		isItem,
+		isConstrained,
+		hasGutter,
 		style = {},
 		forwardedRef,
+		lismClass = '',
+		stateClass = '',
+		utilityClass = '',
 		...others
-	} = props;
+	} = { ...options, ...props }; // options:初期値などが渡ってくる
 
+	// isFlexなどは options からも渡される
+	// let { lismClass = '', isFlex, isGrid, ...otherProps } = { ...others, ...options };
 	let otherProps = others;
 
 	// const dataProps = []; // data-lism-props
-	const classNames = [];
+	// const classNames = [];
+	const utilityClasses = [utilityClass];
+	const stateClasses = classnames(stateClass, {
+		'is--flex': isFlex || false,
+		'is--grid': isGrid || false,
+		'is--flow': isFlow || false,
+		'is--item': isItem || false,
+		'is--constrained': isConstrained || false,
+		'has--gutter': hasGutter || false,
+		alignfull,
+		alignwide,
+	});
 	let styles = {
 		...style,
 		...{
@@ -98,20 +124,15 @@ export default function getCommonProps(props) {
 
 	// border = {top, right, bottom, left}
 
-	if (alignfull) classNames.push('alignfull');
-	if (alignwide) classNames.push('alignwide');
-
 	// const flexClass = getFlexClasses({ ai, jc, fxw, fxb, as, js });
 	// if (flexClass) classNames.push(flexClass);
 
 	if (isFlow) {
-		classNames.push('is--flow');
-
 		if (undefined !== gap) {
 			if (isSpacePresetValue(gap, ['0', '10', '20', '30', '40', '50', '60'])) {
-				classNames.push(`-flowGap:${gap}`);
+				utilityClasses.push(`-flowGap:${gap}`);
 			} else {
-				classNames.push(`-flowGap:`);
+				utilityClasses.push(`-flowGap:`);
 				styles['--flowGap'] = getMaybeSpaceVar(gap);
 			}
 		}
@@ -121,13 +142,14 @@ export default function getCommonProps(props) {
 
 	// isFlex,
 	// isGrid,
+	// options.isFlex
 
 	if (isFlex || isGrid) {
 		if (undefined !== gap || undefined !== gaps) {
 			const gapProps = getGapStyles(gap, gaps);
 
 			styles = { ...styles, ...gapProps.styles };
-			classNames.push(...gapProps.classNames);
+			utilityClasses.push(...gapProps.classNames);
 			// dataProps.push(...gapProps.dataProps);
 		}
 
@@ -135,21 +157,22 @@ export default function getCommonProps(props) {
 		const flexGridProps = getFlexGlidProps(otherProps, isFlex, isGrid);
 
 		otherProps = flexGridProps.others;
-		classNames.push(...flexGridProps.classNames);
+		utilityClasses.push(...flexGridProps.classNames);
 		styles = { ...styles, ...flexGridProps.styles };
 	}
 
-	if (isItem) {
-		// classNames.push('is--item');
-		// const itemProps = getItemProps(otherProps);
-		// otherProps = itemProps.others;
-		// classNames.push(...itemProps.classNames);
-		// styles = { ...styles, ...itemProps.styles };
+	if (hover) {
+		const hovProps = getHoverProps(hover);
+
+		utilityClasses.push(...hovProps.classNames);
+		styles = { ...styles, ...hovProps.styles };
 	}
+
+	// if (isItem) {}
 
 	if (undefined !== mT) {
 		if (isSpacePresetValue(mT)) {
-			classNames.push(`-mT:${mT}`);
+			utilityClasses.push(`-mT:${mT}`);
 		} else {
 			styles.marginBlockStart = mT;
 		}
@@ -158,18 +181,14 @@ export default function getCommonProps(props) {
 	}
 
 	if (undefined !== width) {
-		// classNames.push(`has--w`);
-
 		const widthProps = getWidthProps(width);
 		styles = { ...styles, ...widthProps.styles };
-		classNames.push(...widthProps.classNames);
+		utilityClasses.push(...widthProps.classNames);
 	}
 	if (undefined !== height) {
-		// classNames.push(`has--h`);
-
 		const heightProps = getHeightProps(height);
 		styles = { ...styles, ...heightProps.styles };
-		classNames.push(...heightProps.classNames);
+		utilityClasses.push(...heightProps.classNames);
 	}
 
 	if (undefined !== miw) {
@@ -189,7 +208,7 @@ export default function getCommonProps(props) {
 		const paddingProps = getPaddingProps(padding, paddings);
 
 		styles = { ...styles, ...paddingProps.styles };
-		classNames.push(...paddingProps.classNames);
+		utilityClasses.push(...paddingProps.classNames);
 		// dataProps.push(...paddingProps.dataProps);
 	}
 
@@ -197,12 +216,12 @@ export default function getCommonProps(props) {
 		const marginProps = getMarginProps(margin, margins);
 
 		styles = { ...styles, ...marginProps.styles };
-		classNames.push(...marginProps.classNames);
+		utilityClasses.push(...marginProps.classNames);
 	}
 
 	if (undefined !== color) {
 		if (isPresetValue('color', color)) {
-			classNames.push(`-c:${color}`);
+			utilityClasses.push(`-c:${color}`);
 		} else {
 			styles.color = color;
 		}
@@ -210,7 +229,7 @@ export default function getCommonProps(props) {
 
 	if (undefined !== bgc) {
 		if (isPresetValue('color', bgc)) {
-			classNames.push(`-bgc:${bgc}`);
+			utilityClasses.push(`-bgc:${bgc}`);
 		} else {
 			styles.backgroundColor = bgc;
 		}
@@ -218,7 +237,7 @@ export default function getCommonProps(props) {
 
 	if (undefined !== radius) {
 		if (isPresetValue('radius', radius)) {
-			classNames.push(`-bdrs:${radius}`);
+			utilityClasses.push(`-bdrs:${radius}`);
 		} else {
 			styles.borderRadius = radius;
 		}
@@ -226,7 +245,7 @@ export default function getCommonProps(props) {
 
 	if (undefined !== shadow) {
 		if (isPresetValue('shadow', shadow)) {
-			classNames.push(`-bxsh:${shadow}`);
+			utilityClasses.push(`-bxsh:${shadow}`);
 		} else {
 			styles.boxShadow = shadow;
 		}
@@ -234,7 +253,7 @@ export default function getCommonProps(props) {
 
 	if (undefined !== ta) {
 		if (isPresetValue('ta', ta)) {
-			classNames.push(`-ta:${ta[0]}`);
+			utilityClasses.push(`-ta:${ta[0]}`);
 		} else {
 			styles.textAlign = ta;
 		}
@@ -242,7 +261,7 @@ export default function getCommonProps(props) {
 
 	if (undefined !== fz) {
 		if (isPresetValue('fz', fz)) {
-			classNames.push(`-fz:${fz}`);
+			utilityClasses.push(`-fz:${fz}`);
 		} else {
 			styles['--fz'] = fz; // ここは em 単位の時限定にすべき
 			// styles.fontSize = fz;
@@ -257,13 +276,13 @@ export default function getCommonProps(props) {
 	// // lhは --lh にもセットする
 	// // fontSize が fzSets に含まれている場合
 	// if (lhSets.includes(String(lh))) {
-	// 	className += ` -lh:${lh}`;
+	// 	utilityClasses += ` -lh:${lh}`;
 	// } else if (lh) {
 	// 	style.lineHeight = lh;
 	// }
 
 	// if (undefined !== fz && FZ_PRESETS.includes(fz)) {
-	// 	className.push(`-fz:${fz}`);
+	// 	utilityClasses.push(`-fz:${fz}`);
 	// } else if (fz) {
 	// 	styles.fontSize = fz;
 	// }
@@ -277,9 +296,8 @@ export default function getCommonProps(props) {
 		otherProps.ref = forwardedRef;
 	}
 	return {
-		className: classnames(blockClass, className, classNames),
-		classNames,
-		styles: filterEmptyObj(styles), // filterEmptyObj は最後にかける
+		className: classnames(className, blockClass, lismClass, stateClasses, utilityClasses),
+		style: filterEmptyObj(styles), // filterEmptyObj は最後にかける
 		attrs: otherProps,
 	};
 }
@@ -292,7 +310,6 @@ function getFlexGlidProps(props, isFlex, isGrid) {
 	const classNames = [];
 
 	if (isFlex) {
-		classNames.push('is--flex');
 		if (undefined !== fxw) {
 			const util = getLayoutUtility('fxw', fxw);
 			if (util) {
@@ -306,8 +323,6 @@ function getFlexGlidProps(props, isFlex, isGrid) {
 	}
 
 	if (isGrid) {
-		classNames.push('is--grid');
-
 		// gta,gtr,gtc は String || {_,sm,xs} でクエリ対応
 		['gta', 'gtc', 'gtr'].forEach((propName) => {
 			const propData = others[propName];
@@ -341,4 +356,43 @@ function getFlexGlidProps(props, isFlex, isGrid) {
 	});
 
 	return { styles, classNames, others };
+}
+
+function getHoverClass(hover) {
+	// let classNames = [];
+	// let styles = {};
+	if (typeof hover === 'string') {
+		return `-hov:${hover}`;
+	} else if (Array.isArray(hover)) {
+		return hover.map((h) => `-hov:${h}`).join(' ');
+	}
+}
+function getHoverProps(hover) {
+	let classNames = [];
+	let styles = {};
+	if (typeof hover === 'string' || Array.isArray(hover)) {
+		classNames.push(getHoverClass(hover));
+	} else if (typeof hover === 'object') {
+		if (hover.utility) {
+			classNames.push(getHoverClass(hover.utility));
+		}
+		if (hover.c) {
+			classNames.push('-hov:c:');
+			styles['--hov--c'] = getMaybeColorVar(hover.c);
+		}
+		if (hover.bgc) {
+			classNames.push('-hov:bgc:');
+			styles['--hov--bgc'] = getMaybeColorVar(hover.bgc);
+		}
+		if (hover.bdc) {
+			classNames.push('-hov:bdc:');
+			styles['--hov--bdc'] = getMaybeColorVar(hover.bdc);
+		}
+		if (hover.shadow) {
+			classNames.push('-hov:shadow:');
+			styles['--hov--shadow'] = getMaybeShadowVar(hover.shadow);
+		}
+	}
+
+	return { classNames, styles };
 }

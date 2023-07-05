@@ -1,18 +1,21 @@
 import React from 'react';
 import { getCommonProps } from '../../lib';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 
-export default function Reel({ children, className, itemWidth, ...props }) {
+export default function Reel({ children, itemWidth, ...props }) {
 	// const Tag = tag;
-	const { classNames, styles, attrs } = getCommonProps({ ...props, isFlex: true });
+	const { className, style, attrs } = getCommonProps(props, {
+		lismClass: 'l--reel',
+		isFlex: true,
+	});
 
 	if (undefined !== itemWidth) {
-		styles['--item--width'] = itemWidth;
+		style['--item--width'] = itemWidth;
 	}
 
 	const blockProps = {
-		className: classnames('l--reel', className, classNames),
-		style: styles,
+		className,
+		style,
 		...attrs,
 	};
 

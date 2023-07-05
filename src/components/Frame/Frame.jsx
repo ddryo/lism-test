@@ -10,23 +10,22 @@ const RATIO_PRESETS = ['16:9', '4:3', '3:2', '2:1', '1:1', 'golden', 'silver', '
 export default function Frame({
 	children,
 	tag,
-	className,
 	ratio = '16:9',
 	isPortrait,
 	// media,
 	// filter,
 	// padding,
 	// paddings,
-	forwardedRef,
+	// forwardedRef,
 	...props
 }) {
-	const { classNames, styles, attrs } = getCommonProps(props);
+	const { className, style, attrs } = getCommonProps(props, { lismClass: 'l--frame' });
 
 	const blockProps = {
-		className: classnames('l--frame', className, classNames),
-		style: styles,
+		className,
+		style,
 		'data-direction': isPortrait ? 'portrait' : null,
-		ref: forwardedRef,
+		// ref: forwardedRef,
 		...attrs,
 	};
 

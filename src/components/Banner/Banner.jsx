@@ -1,15 +1,14 @@
 import React from 'react';
-import classnames from 'classnames';
 import { Frame, FrameContent } from '../Frame';
 import { LinkBox } from '../LinkBox';
 import { Box } from '../Box';
-// import { getCommonProps } from '../../lib';
 import { getMediaLayer, getFilterLayer } from '../helper';
+// import { getCommonProps } from '../../lib';
+// import classnames from 'classnames';
 
 // "Banner" (b--banner) にする
 export default function Banner({
 	children,
-	className,
 	ratio,
 	media,
 	// medias,
@@ -21,7 +20,7 @@ export default function Banner({
 	...attrs
 }) {
 	// let bannerContents = null;
-	const blockProps = { className: classnames('b--banner', className), ...attrs };
+	const blockProps = { blockClass: 'b--banner', ...attrs };
 	const paddingProps = { padding, paddings };
 
 	// ratio の有無、href の有無でコンポーネントを分岐していく

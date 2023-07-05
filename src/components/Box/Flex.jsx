@@ -1,13 +1,17 @@
 import React from 'react';
 import { getCommonProps } from '../../lib';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 
-export default function Flex({ children, tag, className, fxw = 'wrap', ...props }) {
-	const { classNames, styles, attrs } = getCommonProps({ ...props, isFlex: true, fxw });
+export default function Flex({ children, tag, ...props }) {
+	const { className, style, attrs } = getCommonProps(props, {
+		lismClass: 'l--flex',
+		isFlex: true,
+		fxw: 'wrap',
+	});
 
 	const blockProps = {
-		className: classnames('l--flex', className, classNames),
-		style: styles,
+		className,
+		style,
 		...attrs,
 	};
 

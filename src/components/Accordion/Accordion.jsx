@@ -1,10 +1,10 @@
 import React from 'react';
-import classnames from 'classnames';
 import setEvent from './setEvent';
 import { getCommonProps } from '../../lib';
+// import classnames from 'classnames';
 
 // duration: [s]
-export default function Accordion({ children, className, duration = 0.3, ...props }) {
+export default function Accordion({ children, duration = 0.3, ...props }) {
 	const ref = React.useRef(null);
 
 	React.useEffect(() => {
@@ -12,12 +12,12 @@ export default function Accordion({ children, className, duration = 0.3, ...prop
 		return setEvent(ref.current, duration);
 	}, [duration]);
 
-	const { classNames, styles, attrs } = getCommonProps(props);
+	const { className, style, attrs } = getCommonProps(props, { lismClass: 'l--accordion' });
 	const blockProps = {
 		ref,
-		className: classnames('l--accordion', className, classNames),
+		className,
 		style: {
-			...styles,
+			...style,
 			'--duration': `${duration}s`,
 		},
 		...attrs,

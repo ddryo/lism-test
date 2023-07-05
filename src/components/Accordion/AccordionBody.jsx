@@ -1,20 +1,15 @@
 import React from 'react';
-import { Box } from '../index';
-import classnames from 'classnames';
-import { getCommonProps } from '../../lib';
+import { Lism } from '../Lism';
+// import { getCommonProps } from '../../lib';
+// import classnames from 'classnames';
 
-export default function AccordionBody({ children, className, ...props }) {
-	const { classNames, styles, attrs } = getCommonProps(props);
-	const blockProps = {
-		className: classnames('l--accordion__body', className, classNames),
-		style: styles,
-		...attrs,
-	};
+export default function AccordionBody({ children, ...props }) {
+	// gapなどをbodyInnerに流す？
 	return (
-		<div {...blockProps}>
-			<Box isFlow className='l--accordion__bodyInner'>
+		<Lism lismClass='l--accordion__body' {...props}>
+			<Lism isFlow lismClass='l--accordion__bodyInner'>
 				{children}
-			</Box>
-		</div>
+			</Lism>
+		</Lism>
 	);
 }

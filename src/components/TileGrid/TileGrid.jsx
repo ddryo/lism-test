@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid } from '../Grid';
-// import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 
 export default function TileGrid({ children, itemMiw, style = {}, ...props }) {

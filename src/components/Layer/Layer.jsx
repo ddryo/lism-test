@@ -5,32 +5,23 @@ import { filterEmptyObj, getCommonProps } from '../../lib';
 export default function Layer({
 	children,
 	tag,
-	className,
 	modifier = '',
 	position,
-	// width,
-	// height,
 	isContain,
 	z,
 	top,
 	bottom,
 	left,
 	right,
-	// isFlow,
-	// style = {},
 	...props
 }) {
-	const { classNames, styles, attrs } = getCommonProps(props);
+	const lismClass = modifier ? `l--layer--${modifier}` : 'l--layer';
+	const { className, style, attrs } = getCommonProps(props, { lismClass });
 
 	const blockProps = {
-		className: classnames(
-			modifier ? `l--layer--${modifier}` : 'l--layer',
-			// { 'is--flow': isFlow },
-			className,
-			classNames
-		),
+		className,
 		style: {
-			...styles,
+			...style,
 			...filterEmptyObj({
 				zIndex: undefined !== z ? String(z) : null,
 				top: top || null,

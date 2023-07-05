@@ -29,8 +29,8 @@ const getIconElement = (icon, props) => {
 };
 
 // align: full, wide, ''
-function Icon({ icon, label, size = '1em', width, height, className, ...props }) {
-	const { classNames, styles, attrs } = getCommonProps(props);
+function Icon({ icon, label, size = '1em', width, height, ...props }) {
+	const { className, style, attrs } = getCommonProps(props, { lismClass: 'l--icon' });
 
 	const svgProps = {
 		className: 'e--icon', // l--icon__svg
@@ -43,24 +43,24 @@ function Icon({ icon, label, size = '1em', width, height, className, ...props })
 	// const childrenWithProps = Children.map(icon, (child) => {});
 
 	const blockProps = {
-		className: classnames('l--icon', className, classNames),
-		style: styles,
+		className,
+		style,
 		...attrs,
 	};
 
 	return <div {...blockProps}>{iconElem}</div>;
 }
 
-export const InlineIcon = ({ icon, label, size = '1em', width, height, className, ...props }) => {
-	const { classNames, styles, attrs } = getCommonProps(props);
+export const InlineIcon = ({ icon, label, size = '1em', width, height, ...props }) => {
+	const { className, style, attrs } = getCommonProps(props, { lismClass: 'e--icon' });
 
 	// console.log(color);
 	const svgProps = {
-		className: classnames('e--icon', className, classNames),
+		className,
 		label,
 		width: width || size,
 		height: height || size,
-		style: styles,
+		style,
 		// color,
 		...attrs,
 	};
@@ -75,7 +75,6 @@ export const IconText = ({
 	label,
 	size,
 	position,
-	className,
 	// iconColor,
 	children,
 	// tag,
@@ -83,7 +82,10 @@ export const IconText = ({
 	bodyProps = {},
 	...props
 }) => {
-	const { classNames, styles, attrs } = getCommonProps({ ...props, isFlex: true });
+	const { className, style, attrs } = getCommonProps(props, {
+		lismClass: 'l--iconBox', // blockClassでは?
+		isFlex: true,
+	});
 
 	// if (iconColor) {
 	// 	styles.color = iconColor;
@@ -95,8 +97,8 @@ export const IconText = ({
 
 	const blockProps = {
 		// xmlns:"http://www.w3.org/2000/svg",
-		className: classnames('l--iconBox', className, classNames),
-		style: styles,
+		className,
+		style,
 		// tag: tag || ParentTag,
 		...attrs,
 	};
@@ -110,7 +112,7 @@ export const IconText = ({
 
 	const bodyAttrs = {
 		tag: hasText ? 'span' : 'div',
-		className: 'l--iconBox__body',
+		className: 'l--iconBox__body', // blockClassでは
 		...bodyProps,
 	};
 

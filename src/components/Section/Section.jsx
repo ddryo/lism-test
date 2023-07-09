@@ -1,18 +1,15 @@
 import React from 'react';
-import classnames from 'classnames';
-// import Image from "next/image";
-import { Box, Stack } from '../Box';
+import { Stack } from '../Box';
 import { Item } from '../Item';
 import { Grid } from '../Grid';
-// import { Stack } from '../Stack';
 import { Divider } from '../Divider';
 import { filterEmptyObj } from '../../lib';
 import { getMediaLayer, getFilterLayer } from '../helper';
+// import classnames from 'classnames';
 
 // align: full, wide, ''
 export default function Section({
 	children,
-	className,
 	mih,
 	// bgc,
 	media,
@@ -31,7 +28,7 @@ export default function Section({
 	// const hasPadding = !isEmptyObj(paddingStyles);
 
 	const blockProps = {
-		className: classnames('b--section', className),
+		blockClass: 'b--section',
 		style: filterEmptyObj({
 			...style,
 			'--mih': mih || null,
@@ -48,7 +45,7 @@ export default function Section({
 			{divider.top && <Divider {...divider.top} flip='xy'></Divider>}
 			{getMediaLayer(media)}
 			{getFilterLayer(filter)}
-			<Grid className='b--section__inner' {...innerProps}>
+			<Grid blockClass='b--section__inner' {...innerProps}>
 				{children}
 			</Grid>
 			{divider.bottom && <Divider {...divider.bottom}></Divider>}
@@ -56,32 +53,25 @@ export default function Section({
 	);
 }
 
-export const SectionBody = ({ children, className, ...props }) => {
+export const SectionBody = ({ children, ...props }) => {
 	return (
-		<Item
-			ga='body'
-			isFlow
-			isConstrained
-			hasGutter
-			className={classnames('b--section__body', className)}
-			{...props}
-		>
+		<Item blockClass='b--section__body' ga='body' isFlow isConstrained hasGutter {...props}>
 			{children}
 		</Item>
 	);
 };
 
-export const SectionHeader = ({ children, className, ...props }) => {
+export const SectionHeader = ({ children, ...props }) => {
 	return (
-		<Item ga='header' className={classnames('b--section__header', className)} {...props}>
+		<Item blockClass='b--section__header' ga='header' {...props}>
 			{children}
 		</Item>
 	);
 };
 
-export const SectionFooter = ({ children, className, ...props }) => {
+export const SectionFooter = ({ children, ...props }) => {
 	return (
-		<Item ga='footer' className={classnames('b--section__footer', className)} {...props}>
+		<Item blockClass='b--section__footer' ga='footer' {...props}>
 			{children}
 		</Item>
 	);

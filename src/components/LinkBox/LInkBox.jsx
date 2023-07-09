@@ -18,8 +18,6 @@ import setEvent from './setEvent';
 // 	};
 // };
 
-// .l--box.is--linkBox にする？
-// blockClass: 'b--linkBox' ?
 export default function LinkBox({
 	href,
 	target,
@@ -42,7 +40,7 @@ export default function LinkBox({
 
 	const blockProps = {
 		forwardedRef: ref,
-		stateClass: 'is--linkBox', // blockClassにすればstateClassは他で使ってないので消せる
+		blockClass: 'b--linkBox',
 		'aria-label': ariaLabel || null,
 		hover: hover || 'opacity',
 		...props,

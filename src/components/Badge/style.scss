@@ -1,0 +1,14 @@
+.e--badge{
+	line-height: 1.5;
+	--badge--c: var(--color--main);
+	
+}
+.e--badge[data-variant="outline"]{
+	color: var(--badge--c);
+	border: solid 1px var(--badge--c);
+}
+.e--badge[data-variant="fill"]{
+	color: #fff;
+	background-color: var(--badge--c);
+	border: solid 1px var(--badge--c);
+}

@@ -1,1 +1,2 @@
-export { default as Icon, IconText, InlineIcon } from './Icon';
+export { default as Icon } from './Icon';
+export { default as InlineIcon } from './InlineIcon';

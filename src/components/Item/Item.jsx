@@ -8,7 +8,7 @@ export function Item({ children, component, style, ...props }) {
 	const { classNames, styles, attrs } = getItemProps(props);
 
 	const blockProps = {
-		utilityClass: classNames,
+		_utility: classNames,
 		style: {
 			...style,
 			...styles,

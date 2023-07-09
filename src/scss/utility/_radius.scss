@@ -2,10 +2,11 @@
 	// border-radius
 	// fibo: 1,2,3,5,8,13,21,34,55, ...  ?
 	--radius--1: 2px;
-	--radius--2: .5rem; // 5px
-	--radius--3: 1rem; //13px;
-	--radius--4: 2rem; //21px;
-	--radius--5: 3rem; //34px;
+	--radius--2: 5px;
+	--radius--3: 8px;
+	--radius--4: 0.75rem; //13px;
+	--radius--5: 1.5rem; //21px;
+	--radius--6: 3rem; //34px;
 	--radius--99: 999px;
 }
 
@@ -26,6 +27,9 @@
 }
 .-bdrs\:5{
 	border-radius: var(--radius--5) !important;
+}
+.-bdrs\:6{
+	border-radius: var(--radius--6) !important;
 }
 .-bdrs\:99{
 	border-radius: var(--radius--99) !important;

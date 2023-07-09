@@ -1,0 +1,81 @@
+.l--button{
+	// --gap: .25em;
+	--btn--c: var(--color--main);
+	--icon-scale: 1.25;
+	--icon-offset: 25%;
+	--gap--default: .25em;
+
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	gap: var(--gap);
+	text-decoration: none;
+	min-width: 2em;
+    position: relative;
+    text-decoration: none;
+}
+
+.l--button[data-variant="fill"]{
+	--bgc: var(--btn--c);
+	--c: #fff;
+	background-color: var(--bgc);
+	border: solid 1px var(--btn--c); // reverse用
+	color: var(--c);
+}
+.l--button[data-variant="outline"]{
+	--bgc: transparent;
+	--c: var(--btn--c);
+	background-color: var(--bgc);
+	border: solid 1px var(--btn--c); // reverse用
+	color: var(--c);
+
+	&.-hov\:reverse:hover{
+		--bgc: #fff;
+	}
+}
+
+.l--button[data-variant="text"]{
+	--c: var(--btn--c);
+	color: var(--c);
+
+	&.-hov\:reverse:hover{
+		--bgc: #fff;
+	}
+}
+
+.l--button__text {
+    min-width: 1em;
+    // z-index: 0;
+	overflow-wrap: anywhere;
+}
+
+.l--button[data-icon-position="edge"] {
+	display: grid;
+	grid-template-areas: "l c r";
+	grid-template-columns: 1em 1fr 1em;
+	> .l--button__icon[data-position="left"] {
+		grid-area: l;
+	}
+	> .l--button__icon[data-position="right"] {
+		grid-area: r;
+	}
+	> .l--button__text {
+		grid-area: c;
+		justify-self: center;
+		// margin-inline: auto;
+	}
+}
+
+.l--button__icon {
+    flex-shrink: 0;
+
+	&[data-position="left"] {
+		transform: scale(var(--icon-scale)) translateX(calc(0px - var(--icon-offset)));
+	}
+	&[data-position="right"] {
+		transform: scale(var(--icon-scale)) translateX(var(--icon-offset));
+	}
+}
+.l--button[data-icon-offset="0"]{
+	--icon-offset: 0;
+}

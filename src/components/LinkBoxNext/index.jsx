@@ -23,7 +23,6 @@ const setLinkboxScript = () => {
 	};
 };
 
-// .l--box.is--linkBox にする？
 const LinkBox = ({
 	href,
 	target,
@@ -44,7 +43,7 @@ const LinkBox = ({
 
 	const blockProps = {
 		tag: isDiv ? 'div' : 'a',
-		className: classnames(className, 'is--linkBox'),
+		className: classnames(className, 'b--linkBox'),
 		'data-hover': hover || 'opacity',
 		'data-linkbox': isDiv ? 'div' : 'a',
 		'aria-label': ariaLabel || null,

@@ -29,7 +29,8 @@
 			"import": "./dist/index.js"
 		},
 		"./next": "./next/index.js",
-		"./scss/*": "./src/scss/*"
+		"./scss/*": "./src/scss/*",
+		"./lib": "./src/lib/index.js"
 	},
 	"devDependencies": {
 		"@svgr/rollup": "^8.0.1",

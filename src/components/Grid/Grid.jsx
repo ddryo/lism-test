@@ -6,22 +6,14 @@ import { getCommonProps } from '../../lib';
 // grid-template-areas: none
 // ,grid-template-columns, grid-template-rows: none,
 // gta, gtc, gtr
-export default function Grid({
-	tag = 'div',
-	// className,
-	children,
-	name = 'grid',
-	lismClass,
-	modifier,
-	...props
-}) {
-	let gridClass = lismClass || `l--${name}`;
+export default function Grid({ tag, children, modifier, ...props }) {
+	let lismClass = 'l--grid';
 	if (modifier) {
-		gridClass += `--${modifier}`;
+		lismClass += `--${modifier}`;
 	}
 
 	const { className, style, attrs } = getCommonProps(props, {
-		lismClass: gridClass,
+		lismClass,
 		isGrid: true,
 	});
 
@@ -31,6 +23,6 @@ export default function Grid({
 		...attrs,
 	};
 
-	const Tag = tag;
+	const Tag = tag || 'div';
 	return <Tag {...blockProps}>{children}</Tag>;
 }

@@ -1,0 +1,24 @@
+:where(.b--alert){
+	--icon-c: inherit;
+	--keyColor: var(--color--main);
+}
+.b--alert{
+	--gap--sm: calc(var(--space--30) + var(--space--10));
+	--p--sm: calc(var(--space--30) + var(--space--10));
+}
+.b--alert__icon{
+	color: var(--icon-c);
+	--ls--icon--scale: 1.125;
+}
+
+// .b--alert__body{}
+
+.b--alert[data-variant="fill"] {
+	--color--link: currentColor;
+	background-color: var(--keyColor);
+	color: #fff;
+}
+.b--alert[data-variant="outline"]{
+	--icon-c: var(--keyColor);
+	border: solid 1px var(--keyColor);
+}

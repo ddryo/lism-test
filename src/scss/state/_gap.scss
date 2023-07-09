@@ -5,9 +5,12 @@
 
 // .has--gap,
 // cssファイルからCSS変数指定だけでクエリ対応できるように gap はここで定義しておく。
+:where( .is--flex, .is--grid ) {
+	--gap--default: var(--space--50); // ここで初期値与えるべきかは要検討
+}
 .is--flex,
 .is--grid{
-	--gap: var(--space--50); // ここで初期値与えるべきかは要検討
+	--gap: var(--gap--default); // ここで初期値与えるべきかは要検討
 	// --gap--sm: var(--gap);
 	// --gap--xs: var(--gap--sm);
 	gap: var(--gap);

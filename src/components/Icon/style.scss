@@ -1,57 +1,33 @@
+:root{
+	--ls--icon--scale: 1.125;
+}
+
+// インライン
+.e--icon{
+	vertical-align: -.125em;
+	// margin-inline: 0.25em; // 0.125(16px で 2pxの余白ができる) * 2
+	margin-inline: 0.125em;
+	transform: scale(var(--ls--icon--scale));
+
+	// font-size: 1.125em;
+	// margin-inline: 0.125em;
+	// display: inline-flex;
+	// align-items: baseline;
+}
+
+
 .l--icon{
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: fit-content;
 	height: fit-content;
-	// margin-left: auto;
-	// margin-right: auto;
+	--ls--icon--scale: 1;
 
-	// .l--icon__inner{
-	// 	display: flex;
-	// 	align-items: center;
-	// 	justify-content: center;
-	// 	width: fit-content;
-	// 	height: fit-content;
-	// 	// margin-left: auto;
-	// 	// margin-right: auto;
-	// }
 	> .e--icon{
 		display: block;
+		margin-inline: 0;
 		vertical-align: unset;
+		flex-shrink: 0;
 	}
 }
-
-
-// インライン
-.e--icon{
-	// width: .75em;
-	// height: .75em;
-	vertical-align: -.125em;
-
-	// display: inline-flex;
-	// align-items: baseline;
-}
-
-
-.l--iconBox{
-	--gap: var(--space--10);
-	--ai: center;
-	// display: flex;
-	// align-items: center;
-
-	> .e--icon{
-		flex: 0 0 auto;
-		box-sizing: content-box;
-		vertical-align: unset;
-	}
-
-	// .l--iconBox__body{
-	// 	flex-grow: 1;
-	// }
-}
-
-// span.l--iconBox{
-// 	display: inline-flex;
-// }
-// span,small,i,b,...

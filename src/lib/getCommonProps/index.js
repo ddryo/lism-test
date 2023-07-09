@@ -17,6 +17,19 @@ import classnames from 'classnames';
 // import { isShadowPresetValue } from './getMaybeShadowVar.js';
 // import { isFzPresetValue } from './getMaybeFzVar.js';
 
+const cboxKeywords = [
+	// 'main',
+	// 'accent',
+	'red',
+	'blue',
+	'green',
+	'yellow',
+	'purple',
+	'orange',
+	'pink',
+	'gray',
+];
+
 const UTILITIES = {
 	layout: {
 		center: 'c',
@@ -48,6 +61,8 @@ export default function getCommonProps(props, options = {}) {
 	const {
 		blockClass = '',
 		className = '',
+		_utility = '',
+		utility = '',
 		padding,
 		paddings,
 		margin,
@@ -55,7 +70,11 @@ export default function getCommonProps(props, options = {}) {
 		mT,
 		opacity,
 		bgc,
+		bdc,
 		color,
+		cbox,
+		fillColor,
+		outlineColor,
 		fz,
 		fw,
 		lh,
@@ -91,7 +110,6 @@ export default function getCommonProps(props, options = {}) {
 		forwardedRef,
 		lismClass = '',
 		stateClass = '',
-		utilityClass = '',
 		...others
 	} = { ...options, ...props }; // options:初期値などが渡ってくる
 
@@ -101,7 +119,7 @@ export default function getCommonProps(props, options = {}) {
 
 	// const dataProps = []; // data-lism-props
 	// const classNames = [];
-	const utilityClasses = [utilityClass];
+	const utilityClasses = [utility, _utility];
 	const stateClasses = classnames(stateClass, {
 		'is--flex': isFlex || false,
 		'is--grid': isGrid || false,
@@ -219,19 +237,63 @@ export default function getCommonProps(props, options = {}) {
 		utilityClasses.push(...marginProps.classNames);
 	}
 
+	if (undefined !== cbox) {
+		if (cboxKeywords.includes(cbox)) {
+			utilityClasses.push(`-cbox:${cbox}`);
+		}
+	}
+
+	if (undefined !== fillColor) {
+		if (cboxKeywords.includes(fillColor)) {
+			utilityClasses.push(`-fill:${fillColor}`);
+		} else {
+			utilityClasses.push('-fill:');
+			styles['--bgc'] = getMaybeColorVar(fillColor);
+		}
+	}
+
+	if (undefined !== outlineColor) {
+		if (cboxKeywords.includes(outlineColor)) {
+			utilityClasses.push(`-outline:${outlineColor}`);
+		} else {
+			utilityClasses.push('-outline:');
+			styles['--bdc'] = getMaybeColorVar(outlineColor);
+		}
+	}
+
 	if (undefined !== color) {
 		if (isPresetValue('color', color)) {
 			utilityClasses.push(`-c:${color}`);
+		} else if (isPresetValue('colorPallete', color)) {
+			// パレットカラーもユーティリティ化するかは要検討
+			utilityClasses.push('-c:');
+			styles['--c'] = 'var(--' + color.replace('.', '-') + ')';
 		} else {
-			styles.color = color;
+			styles['--c'] = color;
+			// styles.color = color;
 		}
 	}
 
 	if (undefined !== bgc) {
 		if (isPresetValue('color', bgc)) {
 			utilityClasses.push(`-bgc:${bgc}`);
+		} else if (isPresetValue('colorPallete', bgc)) {
+			utilityClasses.push('-bgc:');
+			styles['--bgc'] = 'var(--' + bgc.replace('.', '-') + ')';
 		} else {
-			styles.backgroundColor = bgc;
+			styles['--bgc'] = bgc;
+			// styles.backgroundColor = bgc;
+		}
+	}
+	if (undefined !== bdc) {
+		if (isPresetValue('color', bdc)) {
+			utilityClasses.push(`-bdc:${bdc}`);
+		} else if (isPresetValue('colorPallete', bdc)) {
+			utilityClasses.push('-bdc:');
+			styles['--bdc'] = 'var(--' + bdc.replace('.', '-') + ')';
+		} else {
+			styles['--bdc'] = bdc;
+			// styles.backgroundColor = bdc;
 		}
 	}
 

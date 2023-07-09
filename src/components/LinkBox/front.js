@@ -1,10 +1,10 @@
-import setEvent from "./setEvent";
+import setEvent from './setEvent';
 
 // console.log("linkbox.js");
 // document.addEventListener("DOMContentLoaded", function () {
 // 	console.log("DOMContentLoaded");
 (function () {
-	const linkBoxs = document.querySelectorAll('.is--linkBox[data-linkbox="div"]');
+	const linkBoxs = document.querySelectorAll('.b--linkBox[data-linkbox="div"]');
 	linkBoxs.forEach((lb) => {
 		setEvent(lb);
 	});

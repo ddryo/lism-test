@@ -1,22 +1,26 @@
 
 
 // is--stackなどがついたときにflexで上書きできるように
-// :where(.l--box--link) {
+// :where(.b--linkBox) {
 // 	display: block;
 // }
 
-// .is--linkBox,
-.is--linkBox {
+
+.b--linkBox {
 	// display: block;
 	color: inherit;
 	text-decoration: none;
+	position: relative;
 	cursor: pointer;
 
 	&:not(.is--flex):not(.is--grid){
 		display: block;
 	}
 
-	[data-linkbox="a"]{
+	> [data-linkbox="a"]{
 		position: absolute;
+		z-index: -1;
+		visibility: hidden;
+		pointer-events: none;
 	}
 }

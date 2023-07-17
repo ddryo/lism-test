@@ -7,18 +7,7 @@ import { getCommonProps } from '../../lib';
 const RATIO_PRESETS = ['16:9', '4:3', '3:2', '2:1', '1:1', 'golden', 'silver', 'bronze', 'ogp'];
 
 // "Frame" (b--banner) にする
-export default function Frame({
-	children,
-	tag,
-	ratio = '16:9',
-	isPortrait,
-	// media,
-	// filter,
-	// padding,
-	// paddings,
-	// forwardedRef,
-	...props
-}) {
+export default function Frame({ children, tag, ratio = '16:9', isPortrait, ...props }) {
 	const { className, style, attrs } = getCommonProps(props, { lismClass: 'l--frame' });
 
 	const blockProps = {

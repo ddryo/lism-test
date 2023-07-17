@@ -1,0 +1,82 @@
+@use "../query" as query;
+
+// :where(.is--item) {
+// 	--as: auto;
+// 	--js: auto;
+// 	align-self: var(--as);
+// 	justify-self: var(--js);
+// }
+
+// コンポーネント側で --fx 一つにまとめる？
+// fxg, fxsh, fxb が ベース で flexの指定があればそっち優先？
+:where(.is--flex > .is--item) {
+	--fxg: 0;
+	--fxsh: 1;
+	--fxb: auto;
+	--fx: var(--fxg) var(--fxsh) var(--fxb);
+	flex: var(--fx);
+}
+
+
+// row/column が基本で、area指定があればそっち優先
+:where(.is--grid > .is--item) {
+	--gc: auto;
+	--gr: auto;
+	grid-row: var(--gr);
+	grid-column: var(--gc);
+
+	// --ga: auto;
+	// grid-area: var(--ga);
+}
+
+// gaあれば上書きする。
+[class*="-ga:"]{
+	grid-area: var(--ga) !important;
+}
+
+
+$gas: fluid, fix, header, footer, body;
+@each $ga in $gas {
+  .-ga\:#{$ga} {--ga: #{$ga};}
+}
+
+
+// -self系 → そこまで使われるものではないのでシンプルにstyle属性で出力.
+// .-as\:{align-self:var(--as) !important;}
+// .-js\:{justify-self:var(--js) !important;}
+
+
+
+// base値がinlineスタイルなので、importantで上書きする必要がある。→ だったら変数上書きではなく普通にプロパティ名　sで指定すべき...？
+@include query.cq('sm'){
+	.-fxg\@sm\: { --fxg: var(--fxg--sm) !important}
+	.-fxsh\@sm\: { --fxsh: var(--fxsh--sm) !important}
+	.-fxb\@sm\: { --fxb: var(--fxb--sm) !important}
+	.-fx\@sm\:{ --fx: var(--fx--sm) !important}
+	.-gc\@sm\: { --gc: var(--gc--sm) !important}
+	.-gr\@sm\: { --gr: var(--gr--sm) !important}
+}
+@include query.cq('md'){
+	.-fxg\@md\: { --fxg: var(--fxg--md) !important}
+	.-fxsh\@md\: { --fxsh: var(--fxsh--md) !important}
+	.-fxb\@md\: { --fxb: var(--fxb--md) !important}
+	.-fx\@md\:{ --fx: var(--fx--md) !important}
+	.-gc\@md\: { --gc: var(--gc--md) !important}
+	.-gr\@md\: { --gr: var(--gr--md) !important}
+}
+@include query.cq('lg'){
+	.-fxg\@lg\: { --fxg: var(--fxg--lg) !important}
+	.-fxsh\@lg\: { --fxsh: var(--fxsh--lg) !important}
+	.-fxb\@lg\: { --fxb: var(--fxb--lg) !important}
+	.-fx\@lg\:{ --fx: var(--fx--lg) !important}
+	.-gc\@lg\: { --gc: var(--gc--lg) !important}
+	.-gr\@lg\: { --gr: var(--gr--lg) !important}
+}
+@include query.cq('xl'){
+	.-fxg\@xl\: { --fxg: var(--fxg--xl) !important}
+	.-fxsh\@xl\: { --fxsh: var(--fxsh--xl) !important}
+	.-fxb\@xl\: { --fxb: var(--fxb--xl) !important}
+	.-fx\@xl\:{ --fx: var(--fx--xl) !important}
+	.-gc\@xl\: { --gc: var(--gc--xl) !important}
+	.-gr\@xl\: { --gr: var(--gr--xl) !important}
+}

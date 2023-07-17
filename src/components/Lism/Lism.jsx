@@ -2,7 +2,7 @@ import React from 'react';
 import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 
-export default function Base({ children, tag, ...props }) {
+export default function Lism({ children, tag, ...props }) {
 	const { className, style, attrs } = getCommonProps(props);
 
 	const blockProps = {

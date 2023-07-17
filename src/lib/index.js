@@ -1,10 +1,13 @@
-export { default as isEmptyObj } from './isEmptyObj';
-export { default as filterEmptyObj } from './filterEmptyObj';
+export { default as isEmptyObj } from './functions/isEmptyObj';
+export { default as filterEmptyObj } from './functions/filterEmptyObj';
+
 export { default as getCommonProps } from './getCommonProps';
+export { default as getPropBpObj } from './getCommonProps/getPropBpObj';
+
 export {
 	PRESETS,
 	isPresetValue,
-	isSpacePresetValue,
+	getUtilVal,
 	getMaybeSpaceVar,
 	getMaybeColorVar,
 	getMaybeShadowVar,

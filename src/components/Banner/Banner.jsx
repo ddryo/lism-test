@@ -14,14 +14,14 @@ export default function Banner({
 	// medias,
 	href,
 	filter,
+	p,
 	padding,
-	paddings,
 	contentProps = {},
 	...attrs
 }) {
 	// let bannerContents = null;
 	const blockProps = { blockClass: 'b--banner', ...attrs };
-	const paddingProps = { padding, paddings };
+	const paddingProps = { p, padding };
 
 	// ratio の有無、href の有無でコンポーネントを分岐していく
 	if (ratio) {

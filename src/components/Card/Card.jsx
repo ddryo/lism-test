@@ -33,16 +33,8 @@ export default function Card({ children, className, href, ...props }) {
 	return <Stack {...blockProps}>{children}</Stack>;
 }
 
-export function CardMedia({
-	ratio,
-	media,
-	children,
-	padding,
-	paddings,
-	contentProps = {},
-	...props
-}) {
-	const paddingProps = { padding, paddings };
+export function CardMedia({ ratio, media, children, padding, p, contentProps = {}, ...props }) {
+	const paddingProps = { padding, p };
 	return (
 		<Frame ratio={ratio} {...props}>
 			{getMediaLayer(media)}

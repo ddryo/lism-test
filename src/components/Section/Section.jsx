@@ -10,7 +10,7 @@ import { getMediaLayer, getFilterLayer } from '../helper';
 // align: full, wide, ''
 export default function Section({
 	children,
-	mih,
+	minH,
 	// bgc,
 	media,
 	medias,
@@ -18,27 +18,23 @@ export default function Section({
 	isFullScreen,
 	divider = {},
 	style = {},
-	padding, // = { Y: 50 },
-	paddings,
+	p,
+	padding,
 	gap = 0,
-	gaps,
 	...attrs
 }) {
-	// const paddingStyles = getPaddingStyles(padding, paddings);
-	// const hasPadding = !isEmptyObj(paddingStyles);
-
 	const blockProps = {
 		blockClass: 'b--section',
 		style: filterEmptyObj({
 			...style,
-			'--mih': mih || null,
+			'--mih': minH || null,
 		}),
 		'data-fullscreen': isFullScreen ? '1' : null,
 		...attrs,
 	};
 
 	// padding, gap は インナー側へ
-	const innerProps = { padding, paddings, gap, gaps };
+	const innerProps = { p, gap, padding };
 
 	return (
 		<Stack alignfull {...blockProps}>

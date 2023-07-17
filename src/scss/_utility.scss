@@ -1,25 +1,31 @@
-@use 'utility/size';
-@use 'utility/padding';
-@use 'utility/margin';
-@use 'utility/shadow';
-@use 'utility/hover';
-@use 'utility/radius';
-@use 'utility/color';
+@use 'utility/display';
+// @use 'utility/padding';
 
 :root{
-
-	// remにすることで、rootのフォントサイズが流体であれば それに合わせて角丸も sp でちょっと小さくなる.
-	// 小さい値は変動しなくていいので、pxで固定。
-
-	// border
-	// キーワードで登録？ ... regular(normal), active, point, emphasis, guide, help, ...
-	// --border--01: solid 1px var(--color--border);
-	// --border--02: solid 2px var(--color--border);
-	// --border--03: dashed 3px var(--color--border);
-	// --border--04: dashed 4px var(--color--border);
-	
 }
 
+
+// .-bdc で上書きできるように border 自体も変数管理
+.-bd\:{
+	border: var(--bd);
+}
+.-bdw\:{
+	border-width: var(--bdw);
+}
+.-bdc\:{
+	border-color: var(--bdc);
+}
+
+// .-td\:n{
+// 	text-decoration: none;
+// }
+
+.-filter\:darker{
+	filter: brightness(0.95);
+}
+.-filter\:lighter{
+	filter: brightness(1.05);
+}
 
 // .-ov\:v{
 // 	overflow: visible;
@@ -27,41 +33,6 @@
 
 .-ov\:h{
 	overflow: hidden;
-}
-
-// display
-.-d\:n{
-	display: none;
-}
-.-d\:b{
-	display: block;
-}
-.-d\:i{
-	display: inline;
-}
-.-d\:if{
-	display: inline-flex;
-}
-.-d\:ib{
-	display: inline-block;
-}
-
-@container (max-width: 720px) {
-	.-d\@sm\:n{
-		display: none;
-	}
-	.-d\@sm\:b{
-		display: block;
-	}
-}
-
-@container (max-width: 440px) {
-	.-d\@xs\:n{
-		display: none;
-	}
-	.-d\@xs\:b-{
-		display: block;
-	}
 }
 
 // text-align

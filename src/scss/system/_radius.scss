@@ -1,0 +1,39 @@
+:root{
+	// border-radius
+	// fibo: 1,2,3,5,8,13,21,34,55, ...  ?
+	--radius--1: 2px;
+	--radius--2: 5px;
+	--radius--3: 8px;
+	--radius--4: 0.75rem; //13px;
+	--radius--5: 1.5rem; //21px;
+	--radius--6: 3rem; //34px;
+	--radius--99: 999px;
+}
+
+[class*="-bdrs:"]{
+	border-radius: var(--bdrs) !important;
+}
+.-bdrs\:0{
+	--bdrs: 0px;
+}
+.-bdrs\:1{
+	--bdrs: var(--radius--1);
+}
+.-bdrs\:2{
+	--bdrs: var(--radius--2);
+}
+.-bdrs\:3{
+	--bdrs: var(--radius--3);
+}
+.-bdrs\:4{
+	--bdrs: var(--radius--4);
+}
+.-bdrs\:5{
+	--bdrs: var(--radius--5);
+}
+.-bdrs\:6{
+	--bdrs: var(--radius--6);
+}
+.-bdrs\:99{
+	--bdrs: var(--radius--99);
+}

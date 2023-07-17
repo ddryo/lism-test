@@ -1,0 +1,60 @@
+@use "../query" as query;
+
+
+[class*="-gap:"]{
+	gap: var(--gap);
+}
+[class*="-colmg:"]{
+	column-gap: var(--colmg) !important;
+}
+[class*="-rowg:"]{
+	row-gap: var(--rowg) !important;
+}
+
+@include query.cq('sm'){
+	.-gap\@sm\: {
+		gap: var(--gap--sm) !important;
+	}
+	.-colmg\@sm\: {
+		column-gap: var(--colmg--sm) !important;
+	}
+	.-rowg\@sm\: {
+		row-gap: var(--rowg--sm) !important;
+	}
+}
+@include query.cq('md'){
+	.-gap\@md\: {
+		gap: var(--gap--md) !important;
+	}
+	.-colmg\@md\: {
+		column-gap: var(--colmg--md) !important;
+	}
+	.-rowg\@md\: {
+		row-gap: var(--rowg--md) !important;
+	}
+}
+@include query.cq('lg'){
+	.-gap\@lg\: {
+		gap: var(--gap--lg) !important;
+	}
+	.-colmg\@lg\: {
+		column-gap: var(--colmg--lg) !important;
+	}
+	.-rowg\@lg\: {
+		row-gap: var(--rowg--lg) !important;
+	}
+}
+
+
+@for $i from 0 through 20 {
+	.-gap\:#{$i * 5} {
+		--gap: var(--space--#{$i * 5});
+	}
+	.-colmg\:#{$i * 5} {
+		--colmg: var(--space--#{$i * 5});
+	}
+	.-rowg\:#{$i * 5} {
+		--rowg: var(--space--#{$i * 5});
+	}
+
+}

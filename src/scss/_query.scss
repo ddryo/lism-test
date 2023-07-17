@@ -1,0 +1,22 @@
+@use "sass:map";
+
+// xs sm md lg xl xxl
+$points: (
+  "sm": "(min-width: 480px)",
+  "md": "(min-width: 720px)",
+  "lg": "(min-width: 960px)",
+  "xl": "(min-width: 1140px)",
+  "xxl": "(min-width: 1400px)",
+) !default;
+
+@mixin cq($size: sm) {
+	@container #{map.get($points, $size)} {
+		@content;
+	}
+}
+
+
+// 600px未満
+// @media not all and (min-width: 600px) {
+// 	@content;
+// }

@@ -1,0 +1,40 @@
+@use "../query" as query;
+
+// [class*="-w:"]
+.-w\: {
+	width: var(--w) !important;
+}
+// [class*="-h:"],
+.-h\: {
+	height: var(--h) !important;
+}
+
+@include query.cq('sm'){
+	.-w\@sm\: { width: var(--w--sm) !important;}
+	.-h\@sm\: { height: var(--h--sm) !important;}
+}
+
+@include query.cq('md'){
+	.-w\@md\: { width: var(--w--md) !important;}
+	.-h\@md\: { height: var(--h--md) !important;}
+}
+@include query.cq('lg'){
+	.-w\@lg\: { width: var(--w--lg) !important;}
+	.-h\@lg\: { height: var(--h--lg) !important;}
+}
+@include query.cq('xl'){
+	.-w\@xl\: { width: var(--w--xl) !important;}
+	.-h\@xl\: { height: var(--h--xl) !important;}
+}
+
+
+// utility、あとで検討
+// .-w\:100{
+// 	--w:100%;
+// }
+// .-h\:100{
+// 	--w:100%;
+// }
+
+// width:slim
+// width:text

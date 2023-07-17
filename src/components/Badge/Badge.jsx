@@ -6,16 +6,25 @@ import { Lism } from '../Lism';
 // import { Icon } from '../Icon';
 
 // variant
-export default function Badge({ icon, label, variant, color, style = {}, children, ...props }) {
+export default function Badge({
+	icon,
+	label,
+	variant = 'fill',
+	color,
+	style = {},
+	children,
+	...props
+}) {
 	if (variant && color) {
 		style['--badge--c'] = getMaybeColorVar(color);
 	}
 
 	const blockProps = {
+		tag: 'span',
 		lismClass: 'e--badge',
 		// className
 		radius: '1',
-		padding: { X: 20, Y: 10 },
+		padding: 10,
 		// lh: 1.5,
 		fz: 'S',
 		fw: '700',

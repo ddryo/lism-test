@@ -4,18 +4,18 @@ import React from 'react';
 import { getCommonProps } from '../../lib';
 // import "./style.scss";
 
-export default function SideFix({ children, fixWidth, fluidMiw, fix = 'last', ...props }) {
+export default function SideFix({ children, fixW, fluidMinW, fix = 'last', ...props }) {
 	const { className, style, attrs } = getCommonProps(props, {
 		lismClass: 'l--sideFix',
 		isFlex: true,
 		fxw: 'wrap',
 	});
 
-	if (undefined !== fluidMiw) {
-		style['--fluid--miw'] = fluidMiw;
+	if (undefined !== fluidMinW) {
+		style['--fluid--miw'] = fluidMinW;
 	}
-	if (undefined !== fixWidth) {
-		style['--fix--w'] = fixWidth;
+	if (undefined !== fixW) {
+		style['--fix--w'] = fixW;
 	}
 
 	const blockProps = {

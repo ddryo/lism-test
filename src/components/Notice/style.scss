@@ -1,7 +1,8 @@
 
+// 一括で上書き調整しやすいように、paddingなどはCSS側で変数指定...？→ ブロックの時はそれでいい。
 .b--notice{
 	--keyColor: var(--color--main);
-	// padding: var(--space--40);
+	// --p--sm: var(--space--40);
 }
 .b--notice__icon{
 	margin-left: -0.125em;
@@ -11,12 +12,10 @@
 	line-height: 1.5;
 }
 
-.b--notice[data-variant="cbox"] {
-	// padding: var(--space--40);
-	// 
-	.b--notice__head{
-		margin-bottom: var(--space--30);
-		color: var(--icon-c);
+:where(.b--notice[data-variant="cbox"]) {
+	> .b--notice__head{
+		margin-bottom: var(--space--40);
+		color: var(--c--icon);
 		font-weight: bold;
 	}
 }
@@ -24,13 +23,13 @@
 .b--notice[data-variant="fill"] {
 	border: solid 1px var(--keyColor);
 
-	.b--notice__head{
+	:where(&) > .b--notice__head{
 		padding: var(--space--30) var(--space--40);
 		background-color: var(--keyColor);
 		color: #fff;
 	}
-	.b--notice__body{
-		padding: var(--space--40);
+	:where(&) .b--notice__body{
+		padding: var(--space--30);
 		// color: var(--color--text);
 	}
 }
@@ -41,7 +40,7 @@
 	padding: var(--space--40);
 	// position: relative;
 
-	.b--notice__head{
+	:where(&) > .b--notice__head{
 		color: var(--keyColor);
 		margin-bottom: var(--space--30);
 		font-weight: bold;
@@ -55,7 +54,7 @@
 	padding: var(--space--40);
 	position: relative;
 
-	.b--notice__head{
+	:where(&) > .b--notice__head{
 		color: var(--keyColor);
 		background-color: var(--color--base);
 		// margin-bottom: var(--space--30);
@@ -68,7 +67,7 @@
 		transform: translateY(-50%);
 	}
 
-	.b--notice__body{
+	:where(&) > .b--notice__body{
 		margin-top: var(--space--20);
 	}
 }

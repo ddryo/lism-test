@@ -1,10 +1,11 @@
 import React from 'react';
 import { Grid } from '../Grid';
+import { getPropBpObj } from '../../lib';
 // import { DynamicCSS } from '../DynamicCSS';
 
 // 1:2:3 → 1fr 2fr 3fr に変換
 function ratioToFr(ratio) {
-	if (!ratio) return false;
+	if (!ratio) return null;
 
 	// ":" で分解し、配列化し、その配列要素に "fr" を付けて連結
 	const splitArray = ratio.split(':');
@@ -25,27 +26,19 @@ export default function RatioGrid({
 	children,
 	ratio,
 	sm,
-	xs,
-	ratios = {}, // 一応 ratios でも受け付ける？
-	style = {},
-	// customQuery,
+	md,
+	lg,
+	xl,
+
+	// xs,
+	// ratios = {}, // 一応 ratios でも受け付ける？
+	customQuery,
 	...props
 }) {
-	ratios = { _: ratio, sm, xs, ...ratios };
-
-	style = {
-		...style,
-		...{
-			'--gtc': ratioToFr(ratios._) || null,
-			'--gtc--sm': ratioToFr(ratios.sm) || null,
-			'--gtc--xs': ratioToFr(ratios.xs) || null,
-			// "--gtc--lg": ratioToFr(ratios.lg) || null,
-			// "--gtc--xl": ratioToFr(ratios.xl) || null,
-		},
-	};
+	const gtcs = getPropBpObj(ratio, { sm, md, lg, xl }, ratioToFr);
 
 	return (
-		<Grid modifier='ratio' {...props} style={style}>
+		<Grid modifier='ratio' gtc={gtcs} {...props}>
 			{/* {customQueryCSS && <style jsx>{customQueryCSS}</style>} */}
 			{children}
 		</Grid>

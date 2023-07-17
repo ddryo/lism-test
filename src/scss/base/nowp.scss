@@ -1,0 +1,17 @@
+// wp使わない時用
+body {
+	// WPでは theme.json 設定によって出力される
+	background-color: var(--color--base); // var(--wp--preset--color--bg-primary);
+	color: var(--color--text); // var(--wp--preset--color--text-normal);
+	font-family: var(--root--ff); //var(--wp--preset--font-family--system-font);
+	font-size: var(--root--fz);
+	line-height: var(--root--lh);
+	margin: 0;
+}
+
+a {
+	color: var(--color--link);
+	text-decoration: underline;
+}
+
+

@@ -25,19 +25,6 @@ import {
 } from './icons/ph';
 // import classnames from 'classnames';
 
-// import {
-// 	// Smiley,
-// 	// Heart,
-// 	Warning,
-// 	WarningCircle,
-// 	Info,
-// 	PencilSimple,
-// 	Check,
-// 	Question,
-// 	Lightbulb,
-// 	// ArrowCircleRight,
-// } from '@phosphor-icons/react';
-
 const AlertPresets = {
 	memo: {
 		icon: LsPen,
@@ -86,7 +73,7 @@ export default function Alert({
 	icon,
 	// label,
 	color,
-	size,
+	// size,
 	preset = 'memo',
 	variant = 'cbox',
 	iconProps = {},
@@ -96,11 +83,13 @@ export default function Alert({
 }) {
 	const blockProps = {
 		blockClass: 'b--alert',
-		// _utility: '-gap@sm:',
-		// className: cboxClass,
-		// lh: 1.5,
-		// radius: '2',
+		gap: 40,
+		padding: 40,
+		ai: 'center',
+		fxw: 'nowrap',
 		'data-variant': variant,
+		// _utils: ['-gap@sm:'],
+		// radius: '2',
 		style,
 		...props,
 	};
@@ -127,23 +116,24 @@ export default function Alert({
 		blockProps.cbox = color;
 	}
 
-	if ('big' === size) {
-		return (
-			<Center {...blockProps} padding={40} gap={30}>
-				{icon && (
-					<Icon icon={icon} blockClass='b--alert__icon' size='2.5em' {...iconProps} />
-				)}
-				<Center blockClass='b--alert__body' gap={30}>
-					{children}
-				</Center>
-			</Center>
-		);
-	}
+	// if()
 
-	blockProps._utility = '-gap@sm: -p@sm:';
+	// if ('big' === size) {
+	// 	return (
+	// 		<Center {...blockProps} padding={40} gap={30}>
+	// 			{icon && (
+	// 				<Icon icon={icon} blockClass='b--alert__icon' size='2.5em' {...iconProps} />
+	// 			)}
+	// 			<Center blockClass='b--alert__body' gap={30}>
+	// 				{children}
+	// 			</Center>
+	// 		</Center>
+	// 	);
+	// }
 
+	blockProps._utils = ['-p@sm:'];
 	return (
-		<Lism {...blockProps} gap={40} padding={40} isFlex ai='center' fxw='nowrap'>
+		<Lism isFlex {...blockProps}>
 			{icon && <Icon icon={icon} blockClass='b--alert__icon' size='1.5em' {...iconProps} />}
 			<Lism blockClass='b--alert__body' isFlow gap={30}>
 				{children}

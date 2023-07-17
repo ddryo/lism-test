@@ -1,14 +1,14 @@
 :where(.b--alert){
-	--icon-c: inherit;
-	--keyColor: var(--color--main);
+	--c--icon: inherit;
 }
 .b--alert{
-	--gap--sm: calc(var(--space--30) + var(--space--10));
-	--p--sm: calc(var(--space--30) + var(--space--10));
+	--keyColor: var(--color--main);
+	--p--sm: var(--space--35);
+	--gap--sm: var(--space--35);
 }
 .b--alert__icon{
-	color: var(--icon-c);
 	--ls--icon--scale: 1.125;
+	color: var(--c--icon);
 }
 
 // .b--alert__body{}
@@ -19,6 +19,6 @@
 	color: #fff;
 }
 .b--alert[data-variant="outline"]{
-	--icon-c: var(--keyColor);
+	--c--icon: var(--keyColor);
 	border: solid 1px var(--keyColor);
 }

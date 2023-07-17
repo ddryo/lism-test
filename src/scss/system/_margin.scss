@@ -1,0 +1,102 @@
+@use "../query" as query;
+
+.-m\: { margin: var(--m) !important; }
+.-mt\: { margin-top: var(--mt) !important; }
+.-mb\: { margin-bottom: var(--mb) !important; }
+.-ml\: { margin-left: var(--ml) !important; }
+.-mr\: { margin-right: var(--mr) !important; }
+.-mX\: {
+	margin-left: var(--mX) !important;
+	margin-right: var(--mX) !important;
+}
+.-mY\: {
+	margin-top: var(--mY) !important;
+	margin-bottom: var(--mY) !important;
+}
+
+.-m\:auto{--m: auto;}
+.-mt\:auto{--mt: auto;}
+.-mb\:auto{--mb: auto;}
+.-ml\:auto{--ml: auto;}
+.-mr\:auto{--mr: auto;}
+.-mX\:auto{--mX: auto;}
+.-mY\:auto{--mY: auto;}
+
+@include query.cq('sm'){
+	.-m\@sm\: { margin: var(--m--sm) !important;}
+	.-mX\@sm\: {
+		margin-left: var(--mX--sm) !important;
+		margin-right: var(--mX--sm) !important;
+	}
+	.-mY\@sm\: {
+		margin-top: var(--mY--sm) !important;
+		margin-bottom: var(--mY--sm) !important;
+	}
+	.-mt\@sm\: { margin-top: var(--mt--sm) !important;}
+	.-mr\@sm\: { margin-right: var(--mr--sm) !important;}
+	.-mb\@sm\: { margin-bottom: var(--mb--sm) !important;}
+	.-ml\@sm\: { margin-left: var(--ml--sm) !important;}
+}
+
+@include query.cq('md'){
+	.-m\@md\: { margin: var(--m--md) !important;}
+	.-mX\@md\: {
+		margin-left: var(--mX--md) !important;
+		margin-right: var(--mX--md) !important;
+	}
+	.-mY\@md\: {
+		margin-top: var(--mY--md) !important;
+		margin-bottom: var(--mY--md) !important;
+	}
+	.-mt\@md\: { margin-top: var(--mt--md) !important;}
+	.-mr\@md\: { margin-right: var(--mr--md) !important;}
+	.-mb\@md\: { margin-bottom: var(--mb--md) !important;}
+	.-ml\@md\: { margin-left: var(--ml--md) !important;}
+}
+
+@include query.cq('lg'){
+	.-m\@lg\: { margin: var(--m--lg) !important;}
+	.-mX\@lg\: {
+		margin-left: var(--mX--lg) !important;
+		margin-right: var(--mX--lg) !important;
+	}
+	.-mY\@lg\: {
+		margin-top: var(--mY--lg) !important;
+		margin-bottom: var(--mY--lg) !important;
+	}
+	.-mt\@lg\: { margin-top: var(--mt--lg) !important;}
+	.-mr\@lg\: { margin-right: var(--mr--lg) !important;}
+	.-mb\@lg\: { margin-bottom: var(--mb--lg) !important;}
+	.-ml\@lg\: { margin-left: var(--ml--lg) !important;}
+}
+
+@include query.cq('xl'){
+	.-m\@xl\: { margin: var(--m--xl) !important;}
+	.-mX\@xl\: {
+		margin-left: var(--mX--xl) !important;
+		margin-right: var(--mX--xl) !important;
+	}
+	.-mY\@xl\: {
+		margin-top: var(--mY--xl) !important;
+		margin-bottom: var(--mY--xl) !important;
+	}
+	.-mt\@xl\: { margin-top: var(--mt--xl) !important;}
+	.-mr\@xl\: { margin-right: var(--mr--xl) !important;}
+	.-mb\@xl\: { margin-bottom: var(--mb--xl) !important;}
+	.-ml\@xl\: { margin-left: var(--ml--xl) !important;}
+}
+
+
+// --------------------
+// .-mt 系
+//   --ls--flowGap をいじると内部にも影響でてしまうので margin を直接上書き。
+//   ツールバーから使う用でもあるので、block-start 方向に指定
+// --------------------
+[class*="-mbs:"]{
+	margin-block-start: var(--mbs) !important;
+}
+@for $i from 0 through 20 {
+	.-mbs\:#{$i * 5} {
+		--mbs: var(--space--#{$i * 5});
+	}
+}

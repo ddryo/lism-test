@@ -1,5 +1,20 @@
 export const PRESETS = {
+	breakPoints: ['sm', 'md', 'lg', 'xl'],
+	fz: ['5xl', '4xl', '3xl', '2xl', 'xl', 'l', 'm', 's', 'xs', 'r'],
+	lh: [],
 	color: ['main', 'accent', 'base', 'link', 'text', 'headline', 'gray', 'white', 'black', 'sub'],
+	cbox: [
+		// 'main',
+		// 'accent',
+		'red',
+		'blue',
+		'green',
+		'yellow',
+		'purple',
+		'orange',
+		'pink',
+		'gray',
+	],
 	colorPallete: [
 		'red.100',
 		'red.200',
@@ -65,16 +80,43 @@ export const PRESETS = {
 		'gray.600',
 		'gray.700',
 	],
-	fz: ['6L', '5L', '4L', '3L', '2L', 'L', 'S', '2S', 'R'],
-	ta: ['center', 'left', 'right'],
 
 	// align-content
 	// "space-between"
 	radius: ['0', '1', '2', '3', '4', '5', '6', '99'], // 'round'
 	shadow: ['-1', '-2', '-3', '-4', '-5', '0', '1', '2', '3', '4', '5'],
-	space: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+	space: [
+		'0',
+		'5',
+		'10',
+		'15',
+		'20',
+		'25',
+		'30',
+		'35',
+		'40',
+		'45',
+		'50',
+		'55',
+		'60',
+		'70',
+		'80',
+		'90',
+		'100',
+	],
 	// 主要な areaキーワード はdata属性で出力
 	ga: ['header', 'footer', 'body', 'fix', 'fluid'],
+};
+
+// 特定のCSSプロパティ用キーワードをユーティリティ化するためのリスト。
+export const UTILITIES = {
+	place: {
+		center: 'c',
+		strech: 's',
+		'space-between': 'sb',
+	},
+	ta: { center: 'c', left: 'l', right: 'r' },
+	wrap: { wrap: 'w', nowrap: 'n' },
 };
 
 // function isNumStr(val) {
@@ -82,25 +124,28 @@ export const PRESETS = {
 // 	return !isNaN(Number(val));
 // }
 
+// プリセット値を配列で定義しているもののチェック
 export const isPresetValue = (key, value) => {
+	const presetValues = PRESETS[key];
+	if (undefined === presetValues) return false;
+
+	// 数値の時は文字列化してから判定
+	if (typeof value === 'number') {
+		return PRESETS[key].includes(`${value}`);
+	}
 	return PRESETS[key].includes(value);
 };
 
-export const isSpacePresetValue = (value, presetList) => {
-	presetList = presetList || PRESETS.space;
-	if (typeof value === 'number') {
-		// 文字列化して判定
-		return presetList.includes(`${value}`);
-	} else if (typeof value === 'string') {
-		return presetList.includes(value);
-	}
-	return false;
+// ユーティリティ化できるキーワードのチェック
+export const getUtilVal = (key, value) => {
+	const utilValues = UTILITIES[key];
+	return utilValues?.[value] || '';
 };
 
 // console.log('Number10%', Number('10%'));
 export function getMaybeSpaceVar(space) {
 	// spaceが 整数 or 整数を示す文字列 の場合
-	if (isSpacePresetValue(space)) {
+	if (isPresetValue('space', space)) {
 		return `var(--space--${space})`;
 	}
 

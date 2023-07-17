@@ -1,0 +1,99 @@
+:root{
+
+	--shadow--color: 0 0 0;
+	--shadow--amount--0: 0.5px 1px 2px 0px;
+	--shadow--amount--1: 0.5px 1px 4px -1px;
+	--shadow--amount--2: 1px 2px 8px -1px;
+	--shadow--amount--3: 2px 4px 16px -1px;
+	--shadow--amount--4: 4px 8px 32px -1px;
+	--shadow--amount--5: 8px 16px 56px -1px;
+	 
+
+	// ポイント:
+	//    x:yのオフセット比率は一定に保つ. 1:2
+	//    [blurサイズ - オフセット] の差は広がっていく
+	//    base(0)のshadowを共通で付ける
+	//    1段階前のshadowを薄めてつける
+
+	--shadow--1:
+		var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--1) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--2:
+		var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--1) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--2) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--3:
+		var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--2) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--3) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--4:
+		var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--3) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--4) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--i1:
+		inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--1) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--i2:
+		inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--1) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--2) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--i3:
+		inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--2) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--3) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--i4:
+		inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--3) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--4) rgb(var(--shadow--color) / 0.1);
+
+	// --shadow--5:
+	// 	var(--shadow--amount--0) rgb(var(--shadow--color) / 0.1), 
+	// 	calc(5px / 2) 5px 8px -1px rgb(var(--shadow--color) / 0.05),
+	// 	var(--shadow--amount--3) rgb(var(--shadow--color) / 0.05),
+	// 	calc(13px / 2) 13px 21px -1px rgb(var(--shadow--color) / 0.05),
+	// 	calc(12px / 2) 21px 34px -1px rgb(var(--shadow--color) / 0.15);
+
+	// 1 にすると押し込むような感じになる
+	--shadow--hov: var(--shadow--4);
+}
+
+[class*="-bxsh:"]{
+	box-shadow: var(--bxsh) !important;
+}
+.-bxsh\:0{
+	--bxsh: none;
+}
+.-bxsh\:1{
+	--bxsh: var(--shadow--1);
+}
+.-bxsh\:2{
+	--bxsh: var(--shadow--2);
+}
+.-bxsh\:3{
+	--bxsh: var(--shadow--3);
+}
+.-bxsh\:4{
+	--bxsh: var(--shadow--4);
+}
+.-bxsh\:5{
+	--bxsh: var(--shadow--5);
+}
+.-bxsh\:-1{
+	--bxsh: var(--shadow--i1);
+}
+.-bxsh\:-2{
+	--bxsh: var(--shadow--i2);
+}
+.-bxsh\:-3{
+	--bxsh: var(--shadow--i3);
+}
+.-bxsh\:-4{
+	--bxsh: var(--shadow--i4);
+}

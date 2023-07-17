@@ -2,10 +2,10 @@ import React from 'react';
 import { Grid } from '../Grid';
 // import classnames from 'classnames';
 
-export default function TileGrid({ children, itemMiw, style = {}, ...props }) {
+export default function TileGrid({ children, itemMinW, style = {}, ...props }) {
 	style = {
 		...style,
-		'--item--miw': itemMiw || null,
+		'--item--miw': itemMinW || null,
 	};
 
 	// Grid

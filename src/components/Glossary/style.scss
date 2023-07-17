@@ -76,68 +76,6 @@
 }
 
 
-[class*="-badge\:"]{
-	--badge--color: #fff;
-	background-color: var(--badge--bg);
-	color: var(--badge--color);
-	display: inline-block;
-	line-height: 1.25;
-}
-
-// .i--badge{}
-// .i--badge[data-type="solid"]{}
-.-badge\:main{ 
-	--badge--bg:var(--color--main);
-}
-.-badge\:accent{
-
-}
-.-badge\:green{
-	--badge--bg:#1f6822;
-}
-.-badge\:blue{
-	--badge--bg:#1f4d68;
-}
-.-badge\:black{
-	--badge--bg:#000;
-	// --badge--color:#fff;
-}
-.-badge\:gray{
-	--badge--bg:var(--color--gray);
-	--badge--color:333;
-}
-
-// box系
-[class*="-box\:"]{
-	// --box--color: #fff;
-	background-color: var(--box--bg);
-	color: var(--box--color);
-	// display: inline-block;
-	// line-height: 1.25;
-}
-
-.-box\:main{ 
-	--box--bg:var(--color--main);
-}
-.-box\:accent{
-
-}
-.-box\:green{
-	--box--bg:#1f6822;
-}
-.-box\:blue{
-	--box--bg:#1f4d68;
-}
-.-box\:black{
-	--box--bg:#000;
-	--box--color:#fff;
-}
-.-box\:gray{
-	--box--bg:var(--color--gray);
-	--box--color:333;
-}
-
-
 
 // --alert-fg: var(--chakra-colors-orange-500);
 // --alert-bg: var(--chakra-colors-orange-100);

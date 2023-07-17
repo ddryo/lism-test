@@ -1,45 +1,58 @@
 import React from 'react';
-import { getCommonProps } from '../../lib';
+import { Lism } from '../Lism';
+import { getPropBpObj } from '../../lib';
 
-function getColumnsVars(cols) {
-	let baseCols = cols._ || 2;
+// function getColumnsVars(cols) {
+// 	let baseCols = cols._ || 2;
 
-	// ~8のときは省略したい
-	if (baseCols <= 8) {
-		baseCols = null;
-	}
+// 	// ~8のときは省略したい
+// 	if (baseCols <= 8) {
+// 		baseCols = null;
+// 	}
 
-	return {
-		'--cols': baseCols || null,
-		'--cols--sm': cols.sm || null,
-		'--cols--xs': cols.xs || null,
-		// "--cols--lg": cols.lg || null,
-		// "--cols--xl": cols.xl || null,
-	};
-}
+// 	return {
+// 		'--cols': baseCols || null,
+// 		'--cols--sm': cols.sm || null,
+// 		'--cols--xs': cols.xs || null,
+// 		// "--cols--lg": cols.lg || null,
+// 		// "--cols--xl": cols.xl || null,
+// 	};
+// }
 
 export default function Columns({
-	tag,
+	// tag,
 	children,
 	col,
 	sm,
-	xs,
-	cols = {},
+	md,
+	lg,
+	xl,
+	// cols = {},
 	// customQuery,
 	...props
 }) {
-	const { className, style, attrs } = getCommonProps(props, {
-		lismClass: 'l--columns',
-		isGrid: true,
+	const cols = getPropBpObj(col, { sm, md, lg, xl });
+	const utils = [];
+	const styles = {};
+	Object.keys(cols).forEach((bp) => {
+		if ('_' === bp) {
+			styles['--cols'] = cols[bp];
+		} else {
+			styles[`--cols--${bp}`] = cols[bp];
+			utils.push(`-gtc@${bp}:`);
+		}
 	});
 
+	// _utile: -gtc@sm, ... をつけておく必要がある。
+
 	const blockProps = {
-		className,
-		style: { ...style, ...getColumnsVars({ _: col, sm, xs, ...cols }) },
-		'data-cols': col || cols._ || 2,
-		...attrs,
+		lismClass: 'l--columns',
+		isGrid: true,
+		_utils: utils,
+		style: styles,
+		// 'data-cols': col || cols._ || 2,
+		...props,
 	};
 
-	const Tag = tag || 'div';
-	return <Tag {...blockProps}>{children}</Tag>;
+	return <Lism {...blockProps}>{children}</Lism>;
 }

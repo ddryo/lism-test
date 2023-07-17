@@ -27,7 +27,7 @@ export default function Button({
 		// color: "white",
 		// bgc: "main",
 		width: 'fit-content',
-		// miw: "3em",
+		// minW: "3em",
 		radius: '1',
 		// shadow: "1",
 		'data-variant': variant,

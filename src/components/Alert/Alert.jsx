@@ -83,12 +83,11 @@ export default function Alert({
 }) {
 	const blockProps = {
 		blockClass: 'b--alert',
-		gap: 40,
-		padding: 40,
+		// gap: 35,
+		// p: 35,
 		ai: 'center',
 		fxw: 'nowrap',
 		'data-variant': variant,
-		// _utils: ['-gap@sm:'],
 		// radius: '2',
 		style,
 		...props,
@@ -131,11 +130,11 @@ export default function Alert({
 	// 	);
 	// }
 
-	blockProps._utils = ['-p@sm:'];
+	blockProps._util = '-p: -gap: -p@sm: -gap@sm:';
 	return (
 		<Lism isFlex {...blockProps}>
 			{icon && <Icon icon={icon} blockClass='b--alert__icon' size='1.5em' {...iconProps} />}
-			<Lism blockClass='b--alert__body' isFlow gap={30}>
+			<Lism blockClass='b--alert__body' isFlow flowGap={30}>
 				{children}
 			</Lism>
 		</Lism>

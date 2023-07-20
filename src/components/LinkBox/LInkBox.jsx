@@ -40,7 +40,8 @@ export default function LinkBox({
 
 	const blockProps = {
 		forwardedRef: ref,
-		blockClass: 'b--linkBox',
+		// blockClass: 'b--linkBox', → b--banner で打ち消される
+		isLinkbox: true,
 		'aria-label': ariaLabel || null,
 		hover: hover || 'opacity',
 		...props,

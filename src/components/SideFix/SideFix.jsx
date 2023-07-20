@@ -15,7 +15,7 @@ export default function SideFix({ children, fixW, fluidMinW, fix = 'last', ...pr
 		style['--fluid--miw'] = fluidMinW;
 	}
 	if (undefined !== fixW) {
-		style['--fix--w'] = fixW;
+		style['--fixW'] = fixW;
 	}
 
 	const blockProps = {

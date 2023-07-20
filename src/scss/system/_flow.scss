@@ -30,7 +30,6 @@
 
 }
 
-
 // flowGap はクエリ調整不可。
 // クエリ調整必要な場合はStack使ってもらう。
 
@@ -39,10 +38,4 @@
 // }
 [class*="-flowGap:"] > *:not(:first-child) {
 	margin-block-start: var(--flowGap);
-}
-// ※ .-flowGap:s > * に対してスタイルを当てればネスト時の影響を無くせるが、ユニバーサルセレクタ増えすぎてしまう
-@for $i from 0 through 20 {
-	.-flowGap\:#{$i * 10} {
-		--flowGap: var(--space--#{$i * 5});
-	}
 }

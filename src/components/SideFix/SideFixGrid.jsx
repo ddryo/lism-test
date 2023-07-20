@@ -1,32 +1,46 @@
 import React from 'react';
+import { Lism } from '../Lism';
 // import { DynamicCSS } from '../index';
-import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 // import "./style.scss";
 
 export default function SideFixGrid({
 	children,
-	fixWidth,
+	fixW,
 	fix = 'right down', // "left up"|"left down"|"right up"|"right down"
-	breakQuery = 'sm',
+	breakPoint = 'sm',
 	customBreakPoint,
+	style = {},
 	...props
 }) {
-	const { className, style, attrs } = getCommonProps(props, {
-		lismClass: 'l--sideFix',
-		isGrid: true,
-	});
+	// --gta--sm
 
-	if (undefined !== fixWidth) {
-		style['--fix--w'] = fixWidth;
+	const gta = {};
+	const gtc = {};
+
+	// fixに "left" が含まれてるかどうか
+	const isFixLeft = -1 !== fix.indexOf('left');
+	if (isFixLeft) {
+		gta[breakPoint] = '"fix fluid"';
+		gtc[breakPoint] = 'var(--fixW) 1fr';
+	} else {
+		gta[breakPoint] = '"fluid fix"';
+		gtc[breakPoint] = '1fr var(--fixW)';
+	}
+
+	if (undefined !== fixW) {
+		style['--fixW'] = fixW;
 	}
 
 	const blockProps = {
-		className,
-		style,
+		lismClass: 'l--sideFix',
 		'data-fix': fix,
-		'data-break': breakQuery,
-		...attrs,
+		isGrid: true,
+		gta,
+		gtc,
+		style,
+		// 'data-bp': breakPoint,
+		...props,
 	};
 
 	if (customBreakPoint) {
@@ -43,11 +57,11 @@ export default function SideFixGrid({
 	// }
 	return (
 		<>
-			<div {...blockProps}>
+			<Lism {...blockProps}>
 				{/* <DynamicCSS css={customQueryCSS} /> */}
 				{/* {sortChildren(children, upper)} */}
 				{children}
-			</div>
+			</Lism>
 		</>
 	);
 }

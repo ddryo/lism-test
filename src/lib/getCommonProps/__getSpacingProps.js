@@ -176,3 +176,54 @@ export function sortSpacingData(initial, data, Q = '') {
 		styles,
 	};
 }
+
+// p {l,b,r,t}
+// p = {_,sm,md,...}
+function splitPaddingData(p, directions) {
+	// const { top, right, bottom, left, X, Y } = directions;
+	let paddings = {
+		all: {},
+		top: {},
+		right: {},
+		bottom: {},
+		left: {},
+		X: {},
+		Y: {},
+		...directions,
+	};
+
+	// pX;
+
+	Object.keys(p).forEach((bp) => {
+		const bpData = p[bp];
+		// bpData: Int or Str or Obj{top,left,...}
+
+		if (typeof bpData === 'number') {
+			paddings.all[bp] = bpData;
+		}
+
+		// pad="20 40 50"
+
+		// 文字列指定のときは スペースで分解して各成分をvar変換してから再結合して返す
+		if (typeof data === 'string') {
+			// ... 2成分→X,Y, 3成分→...と分割処理する？
+			// const strs = data.trim().split(' ');
+
+			// pY,pXなどでも指定できるようにしたので、文字列解析はせずそのままallにセットする。
+			paddings.all[bp] = bpData;
+		}
+
+		// 数値でもなく文字列でもなくオブジェクトでもない場合→おかしいので無視
+		if (typeof data !== 'object') return {};
+
+		// 以下、オブジェクト(top,left,...)の場合、各成分を分解してそれぞれの方向オブジェクトにセット
+		Object.keys(bpData).forEach((d) => {
+			const _v = bpData[d];
+			if (paddings[d] && null != _v) {
+				paddings[d][bp] = _v;
+			}
+		});
+	});
+
+	return paddings;
+}

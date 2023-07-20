@@ -49,9 +49,18 @@ export default function Section({
 	);
 }
 
-export const SectionBody = ({ children, ...props }) => {
+export const SectionBody = ({ children, p = { Y: 50 }, ...props }) => {
 	return (
-		<Item blockClass='b--section__body' ga='body' isFlow isConstrained hasGutter {...props}>
+		<Item
+			blockClass='b--section__body'
+			_util='-ga:'
+			// ga='body'
+			p={p}
+			isFlow
+			isConstrained
+			hasGutter
+			{...props}
+		>
 			{children}
 		</Item>
 	);
@@ -59,7 +68,12 @@ export const SectionBody = ({ children, ...props }) => {
 
 export const SectionHeader = ({ children, ...props }) => {
 	return (
-		<Item blockClass='b--section__header' ga='header' {...props}>
+		<Item
+			blockClass='b--section__header'
+			_util='-ga:'
+			//ga='header'
+			{...props}
+		>
 			{children}
 		</Item>
 	);
@@ -67,7 +81,12 @@ export const SectionHeader = ({ children, ...props }) => {
 
 export const SectionFooter = ({ children, ...props }) => {
 	return (
-		<Item blockClass='b--section__footer' ga='footer' {...props}>
+		<Item
+			blockClass='b--section__footer'
+			_util='-ga:'
+			//ga='footer'
+			{...props}
+		>
 			{children}
 		</Item>
 	);

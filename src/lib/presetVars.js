@@ -85,24 +85,27 @@ export const PRESETS = {
 	// "space-between"
 	radius: ['0', '1', '2', '3', '4', '5', '6', '99'], // 'round'
 	shadow: ['-1', '-2', '-3', '-4', '-5', '0', '1', '2', '3', '4', '5'],
+
+	// ユーティリティ化するもの。（）80~100以降、変数の用意はしている
 	space: [
 		'0',
-		'5',
+		// '5',
 		'10',
-		'15',
+		// '15',
 		'20',
-		'25',
+		// '25',
 		'30',
-		'35',
+		// '35',
 		'40',
-		'45',
+		// '45',
 		'50',
-		'55',
+		// '55',
 		'60',
+		// '65',
 		'70',
-		'80',
-		'90',
-		'100',
+		// '80',
+		// '90',
+		// '100',
 	],
 	// 主要な areaキーワード はdata属性で出力
 	ga: ['header', 'footer', 'body', 'fix', 'fluid'],
@@ -117,12 +120,13 @@ export const UTILITIES = {
 	},
 	ta: { center: 'c', left: 'l', right: 'r' },
 	wrap: { wrap: 'w', nowrap: 'n' },
+	margin: { auto: 'a' },
 };
 
-// function isNumStr(val) {
-// 	if (typeof val !== 'string') return false;
-// 	return !isNaN(Number(val));
-// }
+function isNumStr(val) {
+	if (typeof val !== 'string') return false;
+	return !isNaN(Number(val));
+}
 
 // プリセット値を配列で定義しているもののチェック
 export const isPresetValue = (key, value) => {
@@ -145,7 +149,8 @@ export const getUtilVal = (key, value) => {
 // console.log('Number10%', Number('10%'));
 export function getMaybeSpaceVar(space) {
 	// spaceが 整数 or 整数を示す文字列 の場合
-	if (isPresetValue('space', space)) {
+	// if (isPresetValue('space', space)) {
+	if (typeof space === 'number' || isNumStr(space)) {
 		return `var(--space--${space})`;
 	}
 

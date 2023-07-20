@@ -33,9 +33,11 @@ export { DynamicCSS } from './DynamicCSS';
 export { Alert } from './Alert';
 export { Notice } from './Notice';
 export { Banner } from './Banner';
+export { FAQ } from './FAQ';
 export { Card, CardMedia, CardBody } from './Card';
 export { Section, SectionBody, SectionHeader, SectionFooter } from './Section';
 export { Glossary, GlossaryItem } from './Glossary';
+export { NavMenu, NavMenuItem } from './NavMenu';
 // export { MediaText } from './MediaText';
 
 // Lismにいれるかは未定

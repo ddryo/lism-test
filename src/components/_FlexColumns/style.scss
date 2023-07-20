@@ -17,12 +17,12 @@
 	// 子要素の幅計算
 	// 子要素側で計算するとその子要素がBoxでgapを持っているとき等に計算が狂うので、ここで行う。
 
-	--item--fxb: calc(var(--fxb) - var(--colmg));
+	--item--fxb: calc(var(--fxb) - var(--clmg));
 	@container (max-width: 720px) {
-		--item--fxb: calc(var(--fxb--sm) - var(--colmg--sm));
+		--item--fxb: calc(var(--fxb--sm) - var(--clmg--sm));
 	}
 	@container (max-width: 440px) {
-		--item--fxb: calc(var(--fxb--xs) - var(--colmg--xs));
+		--item--fxb: calc(var(--fxb--xs) - var(--clmg--xs));
 	}
 
 	> * {

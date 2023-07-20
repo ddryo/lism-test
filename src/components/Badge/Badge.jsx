@@ -15,7 +15,7 @@ export default function Badge({
 	children,
 	...props
 }) {
-	if (variant && color) {
+	if ('cbox' !== variant && color) {
 		style['--badge--c'] = getMaybeColorVar(color);
 	}
 
@@ -24,14 +24,20 @@ export default function Badge({
 		lismClass: 'e--badge',
 		// className
 		radius: '1',
-		padding: 10,
+		p: 10,
 		// lh: 1.5,
-		fz: 'S',
+		fz: 's',
 		fw: '700',
 		style,
 		'data-variant': variant,
 		...props,
 	};
+
+	if ('cbox' === variant) {
+		blockProps.cbox = color;
+	} else if ('cbox' !== variant && color) {
+		blockProps.style['--badge--c'] = getMaybeColorVar(color);
+	}
 
 	// if (variant === "cbox") {
 	// 	blockProps.cbox = color || "main";

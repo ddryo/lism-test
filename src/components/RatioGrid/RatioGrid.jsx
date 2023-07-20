@@ -36,6 +36,8 @@ export default function RatioGrid({
 	...props
 }) {
 	const gtcs = getPropBpObj(ratio, { sm, md, lg, xl }, ratioToFr);
+	// デフォルト値の削除
+	if ('1fr 1fr' === gtcs._) delete gtcs._;
 
 	return (
 		<Grid modifier='ratio' gtc={gtcs} {...props}>

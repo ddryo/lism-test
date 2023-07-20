@@ -2,7 +2,7 @@ import React from 'react';
 import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 
-export default function Lism({ children, tag, ...props }) {
+export default function Lism({ children, tag, component, ...props }) {
 	const { className, style, attrs } = getCommonProps(props);
 
 	const blockProps = {
@@ -11,6 +11,6 @@ export default function Lism({ children, tag, ...props }) {
 		...attrs,
 	};
 
-	const Tag = tag || 'div';
+	const Tag = component || tag || 'div';
 	return <Tag {...blockProps}>{children}</Tag>;
 }

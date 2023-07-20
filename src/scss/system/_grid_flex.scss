@@ -57,58 +57,58 @@
 
 @include query.cq('sm'){
 	.-fxd\@sm\:{
-		--fxd: var(--fxd--sm);
+		--fxd: var(--fxd--sm) !important;
 	}
 	.-gta\@sm\:{
-		--gta: var(--gta--sm);
+		--gta: var(--gta--sm) !important;
 	}
 	.-gtc\@sm\:{
-		--gtc: var(--gtc--sm);
+		--gtc: var(--gtc--sm) !important;
 	}
 	.-gtr\@sm\:{
-		--gtr: var(--gtr--sm);
+		--gtr: var(--gtr--sm) !important;
 	}
 }
 @include query.cq('md'){
 	.-fxd\@md\:{
-		--fxd: var(--fxd--md);
+		--fxd: var(--fxd--md) !important;
 	}
 	.-gta\@md\:{
-		--gta: var(--gta--md);
+		--gta: var(--gta--md) !important;
 	}
 	.-gtc\@md\:{
-		--gtc: var(--gtc--md);
+		--gtc: var(--gtc--md) !important;
 	}
 	.-gtr\@md\:{
-		--gtr: var(--gtr--md);
+		--gtr: var(--gtr--md) !important;
 	}
 }
 @include query.cq('lg'){
 	.-fxd\@lg\:{
-		--fxd: var(--fxd--lg);
+		--fxd: var(--fxd--lg) !important;
 	}
 	.-gta\@lg\:{
-		--gta: var(--gta--lg);
+		--gta: var(--gta--lg) !important;
 	}
 	.-gtc\@lg\:{
-		--gtc: var(--gtc--lg);
+		--gtc: var(--gtc--lg) !important;
 	}
 	.-gtr\@lg\:{
-		--gtr: var(--gtr--lg);
+		--gtr: var(--gtr--lg) !important;
 	}
 }
 @include query.cq('xl'){
 	.-fxd\@xl\:{
-		--fxd: var(--fxd--xl);
+		--fxd: var(--fxd--xl) !important;
 	}
 	.-gta\@xl\:{
-		--gta: var(--gta--xl);
+		--gta: var(--gta--xl) !important;
 	}
 	.-gtc\@xl\:{
-		--gtc: var(--gtc--xl);
+		--gtc: var(--gtc--xl) !important;
 	}
 	.-gtr\@xl\:{
-		--gtr: var(--gtr--xl);
+		--gtr: var(--gtr--xl) !important;
 	}
 }
 

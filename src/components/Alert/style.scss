@@ -3,8 +3,10 @@
 }
 .b--alert{
 	--keyColor: var(--color--main);
-	--p--sm: var(--space--35);
-	--gap--sm: var(--space--35);
+	--p: var(--space--35);
+	--gap: var(--space--35);
+	--p--sm: var(--space--40);
+	--gap--sm: var(--space--40);
 }
 .b--alert__icon{
 	--ls--icon--scale: 1.125;

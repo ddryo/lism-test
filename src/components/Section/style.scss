@@ -18,19 +18,19 @@
 		flex-grow: 1;
 		height: 100%;
 	}
-	// .b--section__header{
-	// 	// --ga: header;
-	// }
+	.b--section__header{
+		--ga: header;
+	}
 	.b--section__body{
-		// --ga: body;
-		--pt: var(--space--50);
-		--pb: var(--space--50);
+		--ga: body;
+		// --pt: var(--space--50);
+		// --pb: var(--space--50);
 		align-self: center;
 		height: auto; // 100% にしない
 	}
-	// .b--section__footer{
-	// 	// --ga: footer;
-	// }
+	.b--section__footer{
+		--ga: footer;
+	}
 
 	.b--section__content {
 		// flex-grow: 1; // height:100% が効くように

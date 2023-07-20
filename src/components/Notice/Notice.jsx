@@ -131,7 +131,7 @@ export default function Notice({
 				<span {...captionProps}>{caption}</span>
 			</Lism>
 
-			<Lism blockClass='b--notice__body' isFlow gap={40}>
+			<Lism blockClass='b--notice__body' isFlow flowGap={40}>
 				{children}
 			</Lism>
 		</Box>

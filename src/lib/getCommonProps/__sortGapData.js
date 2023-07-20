@@ -34,7 +34,7 @@ export default function sortGapData(gap, BP = '') {
 		if (gapStrArr.length > 1) {
 			gap = {
 				row: gapStrArr[0],
-				col: gapStrArr[1],
+				clm: gapStrArr[1],
 			};
 		}
 	}
@@ -48,7 +48,7 @@ export default function sortGapData(gap, BP = '') {
 				delete gap.row;
 			}
 			if (isPresetValue('space', gap.col)) {
-				utils.push(`-colmg${BP}:${gap.col}`);
+				utils.push(`-clmg${BP}:${gap.col}`);
 				delete gap.col;
 			}
 		} else if (isPresetValue('space', gap)) {
@@ -76,8 +76,8 @@ export default function sortGapData(gap, BP = '') {
 			styles[`--rowg${Qvar}`] = getMaybeSpaceVar(gap.row);
 		}
 		if (null != gap?.col) {
-			utils.push(`-colmg${BP}:`);
-			styles[`--colmg${Qvar}`] = getMaybeSpaceVar(gap.col);
+			utils.push(`-clmg${BP}:`);
+			styles[`--clmg${Qvar}`] = getMaybeSpaceVar(gap.col);
 		}
 	}
 

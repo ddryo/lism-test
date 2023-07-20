@@ -10,7 +10,7 @@ export default function GlossaryItem({ children, term, ...props }) {
 			<Lism tag='dt' fw='bold' className='b--glossary__dt'>
 				{term}
 			</Lism>
-			<Lism tag='dd' className='b--glossary__dd' margin={{ left: 50 }} isFlow gap={40}>
+			<Lism tag='dd' className='b--glossary__dd' m={{ left: 50 }} isFlow flowGap={40}>
 				{children}
 			</Lism>
 		</Stack>

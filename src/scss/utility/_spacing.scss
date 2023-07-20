@@ -1,0 +1,52 @@
+@use "../query" as query;
+
+
+@for $i from 0 through 7 {
+	.-flowGap\:#{$i * 10} {
+		--flowGap: var(--space--#{$i * 10});
+	}
+
+	.-mbs\:#{$i * 10} {
+		--mbs: var(--space--#{$i * 10});
+	}
+
+	.-gap\:#{$i * 10} {
+		--gap: var(--space--#{$i * 10});
+	}
+	.-clmg\:#{$i * 10} {
+		--clmg: var(--space--#{$i * 10});
+	}
+	.-rowg\:#{$i * 10} {
+		--rowg: var(--space--#{$i * 10});
+	}
+
+
+	.-p\:#{$i * 10} {
+		--p: var(--space--#{$i * 10});
+	}
+	.-pX\:#{$i * 10} {
+		--pX: var(--space--#{$i * 10});
+	}
+	.-pY\:#{$i * 10} {
+		--pY: var(--space--#{$i * 10});
+	}
+	// .-pl\:#{$i * 10} {
+	// 	--pl: var(--space--#{$i * 10});
+	// }
+	// .-pr\:#{$i * 10} {
+	// 	--pr: var(--space--#{$i * 10});
+	// }
+	// .-pt\:#{$i * 10} {
+	// 	--pt: var(--space--#{$i * 10});
+	// }
+	// .-pb\:#{$i * 10} {
+	// 	--pb: var(--space--#{$i * 10});
+	// }
+	
+}
+
+// @for $i from 0 through 10 {
+// 	[data-props~="-p:#{10*$i}"] {
+// 		--p:var(--space--#{10*$i});
+// 	}
+// }

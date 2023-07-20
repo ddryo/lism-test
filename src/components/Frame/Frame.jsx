@@ -1,21 +1,18 @@
 import React from 'react';
-import classnames from 'classnames';
+import { Lism } from '../Lism';
 import { Layer } from '../Layer';
-import { getCommonProps } from '../../lib';
+import classnames from 'classnames';
 // import { getMediaLayer, getFilterLayer } from '../helper';
 
-const RATIO_PRESETS = ['16:9', '4:3', '3:2', '2:1', '1:1', 'golden', 'silver', 'bronze', 'ogp'];
+const RATIO_PRESETS = ['16:9', '4:3', '3:2', '1:1', 'golden', 'silver', 'bronze', 'ogp'];
 
 // "Frame" (b--banner) にする
-export default function Frame({ children, tag, ratio = '16:9', isPortrait, ...props }) {
-	const { className, style, attrs } = getCommonProps(props, { lismClass: 'l--frame' });
-
+export default function Frame({ children, style = {}, ratio = '16:9', isPortrait, ...props }) {
 	const blockProps = {
-		className,
-		style,
+		lismClass: 'l--frame',
 		'data-direction': isPortrait ? 'portrait' : null,
-		// ref: forwardedRef,
-		...attrs,
+		style,
+		...props,
 	};
 
 	if (RATIO_PRESETS.includes(ratio)) {
@@ -23,36 +20,15 @@ export default function Frame({ children, tag, ratio = '16:9', isPortrait, ...pr
 	} else {
 		// ratioを : で分割してd,nに代入
 		const [d, n] = ratio.split(':');
-
-		blockProps.style = {
-			...blockProps.style,
-			...{
-				'--d': d || null,
-				'--n': n || null,
-			},
-		};
+		blockProps.style['--d'] = d || null;
+		blockProps.style['--n'] = n || null;
 	}
 
-	// const filterLayer = undefined !== filter && <FilterLayer {...filter} />;
-
-	// padding は Content側にわたす
-	// const ContentProps = {
-	// 	className: 'l--frame__content',
-	// 	position: 'cover',
-	// 	z: 1,
-	// 	padding,
-	// 	paddings,
-	// };
-
-	const Tag = tag || 'div';
 	return (
-		<Tag {...blockProps}>
+		<Lism {...blockProps}>
 			<div className='l--frame__placeholder' aria-hidden='true'></div>
 			{children}
-			{/* {getMediaLayer(media)}
-			{getFilterLayer(filter)}
-			<Layer {...ContentProps}>{children}</Layer> */}
-		</Tag>
+		</Lism>
 	);
 }
 

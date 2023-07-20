@@ -1,26 +1,41 @@
 @use "../query" as query;
 
+
+// --------------------
+// .-mt 系
+//   --ls--flowGap をいじると内部にも影響でてしまうので margin を直接上書き。
+//   ツールバーから使う用でもあるので、block-start 方向に指定
+// --------------------
+[class*="-mbs:"]{
+	margin-block-start: var(--mbs) !important;
+}
+
+
+// --------------------
+
+// [class*="..."] にする...？
 .-m\: { margin: var(--m) !important; }
 .-mt\: { margin-top: var(--mt) !important; }
 .-mb\: { margin-bottom: var(--mb) !important; }
 .-ml\: { margin-left: var(--ml) !important; }
 .-mr\: { margin-right: var(--mr) !important; }
-.-mX\: {
+
+[class*="-mX\:"] {
 	margin-left: var(--mX) !important;
 	margin-right: var(--mX) !important;
 }
-.-mY\: {
+[class*="-mY\:"] {
 	margin-top: var(--mY) !important;
 	margin-bottom: var(--mY) !important;
 }
 
-.-m\:auto{--m: auto;}
-.-mt\:auto{--mt: auto;}
-.-mb\:auto{--mb: auto;}
-.-ml\:auto{--ml: auto;}
-.-mr\:auto{--mr: auto;}
-.-mX\:auto{--mX: auto;}
-.-mY\:auto{--mY: auto;}
+.-m\:a{margin: auto;}
+.-mt\:a{margin-top: auto;}
+.-mb\:a{margin-bottom: auto;}
+.-ml\:a{margin-left: auto;}
+.-mr\:a{margin-right: auto;}
+.-mX\:a{--mX: auto;}
+.-mY\:a{--mY: auto;}
 
 @include query.cq('sm'){
 	.-m\@sm\: { margin: var(--m--sm) !important;}
@@ -86,17 +101,3 @@
 	.-ml\@xl\: { margin-left: var(--ml--xl) !important;}
 }
 
-
-// --------------------
-// .-mt 系
-//   --ls--flowGap をいじると内部にも影響でてしまうので margin を直接上書き。
-//   ツールバーから使う用でもあるので、block-start 方向に指定
-// --------------------
-[class*="-mbs:"]{
-	margin-block-start: var(--mbs) !important;
-}
-@for $i from 0 through 20 {
-	.-mbs\:#{$i * 5} {
-		--mbs: var(--space--#{$i * 5});
-	}
-}

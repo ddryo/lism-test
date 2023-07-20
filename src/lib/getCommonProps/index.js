@@ -8,8 +8,8 @@ import {
 	getMaybeShadowVar,
 } from '../index.js';
 
-import { sortSpacingData } from './getSpacingProps';
-import sortGapData from './sortGapData';
+// import { sortSpacingData } from './getSpacingProps';
+// import sortGapData from './sortGapData';
 import getPropBpObj from './getPropBpObj';
 import classnames from 'classnames';
 
@@ -25,25 +25,119 @@ import classnames from 'classnames';
 // 'padding',
 // ];
 
+const PROP_LIST = {
+	toStyle: {
+		maxW: 'maxWidth',
+		minW: 'minWidth',
+		maxH: 'maxHeight',
+		minH: 'minHeight',
+		// border: 'border',
+		// bdw: 'borderWidth',
+		opacity: 'opacity',
+		lts: 'letterSpacing', // utilityあってもいい
+		fw: 'fontWeight', // utilityあってもいい
+	},
+
+	// isItem時、toStyle へマージ. 省略型の as, js は分かりづらいので、alignSelf, justifySelf で。
+	selfPlace: {
+		alignSelf: 'alignSelf',
+		justifySelf: 'justifySelf',
+	},
+
+	// クエリ対応なしで、ユーティリティ化し得るもの
+	hasUtil: {
+		mbs: { name: 'mbs', options: { presetCheckKey: 'space' } },
+		// flowGap: { name: 'flowGap', options: { presetCheckKey: 'space' } },
+		radius: { name: 'bdrs', options: { presetCheckKey: 'radius' } },
+		shadow: { name: 'bxsh', options: { presetCheckKey: 'shadow' } },
+		lh: { name: 'lh', options: { presetCheckKey: 'lh' } },
+		fz: { name: 'fz', options: { presetCheckKey: 'fz' } },
+		ta: { name: 'ta', options: { utilCheckKey: 'ta', skipUtil: true, styleKey: 'textAlign' } },
+		// fxw: { name: 'fxw', options: { utilCheckKey: 'wrap' } },
+		ga: { name: 'ga', options: { presetCheckKey: 'ga' } }, // grid-area
+	},
+	place: {
+		ai: {
+			name: 'ai',
+			options: { utilCheckKey: 'place', skipUtil: true, styleKey: 'alignItems' },
+		},
+		ac: {
+			name: 'ac',
+			options: { utilCheckKey: 'place', skipUtil: true, styleKey: 'alignContent' },
+		},
+		ji: {
+			name: 'ji',
+			options: { utilCheckKey: 'place', skipUtil: true, styleKey: 'justifyItems' },
+		},
+		jc: {
+			name: 'jc',
+			options: { utilCheckKey: 'place', skipUtil: true, styleKey: 'justifyContent' },
+		},
+	},
+
+	// クエリ対応するが、ユーティリティ化しないもの
+	hasBp_noUtil: {
+		fxd: 'fxd',
+		gta: 'gta',
+		gtc: 'gtc',
+		gtr: 'gtr',
+	},
+	hasBp_noUtil_isItem: {
+		// flex: 'fx',
+		fx: 'fx',
+		fxg: 'fxg',
+		fxsh: 'fxsh',
+		fxb: 'fxb',
+		gc: 'gc',
+		gr: 'gr',
+	},
+
+	// クエリ対応あり、ユーティリティあり
+};
+
+const propFullNames = {
+	padding: 'p',
+	margin: 'm',
+	border: 'bd',
+	// width: 'w',
+};
+
 class CommonProps {
 	styles = {};
 	utilityClasses = [];
 	props;
 	constructor(props) {
+		// padding, margin, border はフルネームも受け取れるように（あとで消す？）
+		Object.keys(propFullNames).forEach((_name) => {
+			if (null != props[_name]) {
+				props[propFullNames[_name]] = props[_name];
+				delete props[_name];
+			}
+		});
+
 		// 受け取るpropsとそうでないpropsを分ける
 		const {
 			// className = '',
 			// blockClass = '',
 			// _stateClass = '',// Lism内部で使う
-			_utils = [], // Lism内部で使う
+			_util = '', // Lism内部で使う
 			utility = '', // ユーザーがコンポーネントに指定できる
 			forwardedRef,
 			style = {},
+
 			...others
 		} = props;
 
 		this.styles = style;
-		this.utilityClasses = [utility, ..._utils];
+		this.utilityClasses = [utility, _util];
+
+		// padding, margin, border はフルネームも受け取れるように（あとで消す？）
+		Object.keys(propFullNames).forEach((_name) => {
+			if (null != others[_name]) {
+				others[propFullNames[_name]] = others[_name];
+				delete others[_name];
+			}
+		});
 
 		if (undefined !== forwardedRef) {
 			others.ref = forwardedRef;
@@ -100,25 +194,27 @@ class CommonProps {
 	}
 
 	setHoverProps(hover) {
+		if (!hover) return;
+
 		if (typeof hover === 'string' || Array.isArray(hover)) {
 			this.setHoverClass(hover);
 		} else if (typeof hover === 'object') {
-			if (hover.utility) {
+			if (hover?.utility) {
 				this.setHoverClass(hover.utility);
 			}
-			if (hover.c) {
+			if (hover?.c) {
 				this.addUtil('-hov:c:');
 				this.addStyle('--hov--c', getMaybeColorVar(hover.c));
 			}
-			if (hover.bgc) {
+			if (hover?.bgc) {
 				this.addUtil('-hov:bgc:');
 				this.addStyle('--hov--bgc', getMaybeColorVar(hover.bgc));
 			}
-			if (hover.bdc) {
+			if (hover?.bdc) {
 				this.addUtil('-hov:bdc:');
 				this.addStyle('--hov--bdc', getMaybeColorVar(hover.bdc));
 			}
-			if (hover.shadow) {
+			if (hover?.shadow) {
 				this.addUtil('-hov:shadow:');
 				this.addStyle('--hov--shadow', getMaybeShadowVar(hover.shadow));
 			}
@@ -127,36 +223,77 @@ class CommonProps {
 
 	// 方向成分などがなく、値をそのまま処理できるprop.
 	// data: {_, sm, md, ...} 形式で渡ってくる.
-	setAttrsByBpObj(data, name, skipBaseUtil = false) {
+	setAttrsByBpObj(name, data, options = {}) {
+		const {
+			skipBaseUtil = false,
+			presetCheckKey,
+			utilCheckKey,
+			converter,
+			objProcessor,
+		} = options;
+
 		Object.keys(data).forEach((bp) => {
+			const val = data[bp];
+			const switchOption = { presetCheckKey, utilCheckKey, converter };
+
 			if ('_' === bp) {
-				if (!skipBaseUtil) this.addUtil(`-${name}:`);
-				this.addStyle(`--${name}`, data[bp]);
+				if (skipBaseUtil) switchOption.skipUtil = true;
 			} else {
-				this.addUtil(`-${name}@${bp}:`);
-				this.addStyle(`--${name}--${bp}`, data[bp]);
+				switchOption.bp = bp;
+			}
+
+			// 方向成分を持つ場合の処理
+			if (typeof val === 'object') {
+				if (objProcessor) {
+					Object.keys(val).forEach((d) => {
+						const { name, options } = objProcessor(d);
+						this.setSwichUtilStyle(name, val[d], { ...switchOption, ...options });
+					});
+				}
+			} else {
+				this.setSwichUtilStyle(name, val, switchOption);
 			}
 		});
 	}
 
 	// utilクラスを追加するか、styleにセットするかの分岐処理
 	setSwichUtilStyle(name, val, options = {}) {
-		let util = '';
+		if (!name || null == val) return;
 
-		const { presetCheckKey, utilCheckKey, styleName } = options;
-		if (presetCheckKey && isPresetValue(presetCheckKey, val)) {
-			util = val;
-		} else if (utilCheckKey) {
-			util = getUtilVal(utilCheckKey, val);
+		let utilVal = '';
+
+		const { presetCheckKey, utilCheckKey, styleKey, skipUtil, converter, bp } = options;
+		const utilName = bp ? `${name}@${bp}` : name;
+		const styleName = styleKey || (bp ? `--${name}--${bp}` : `--${name}`);
+
+		// '-' : CSSファイル側に任せたいときに使う
+		if ('-' === val) {
+			this.addUtil(`-${utilName}:`);
+			return;
 		}
 
-		if (util) {
-			this.addUtil(`-${name}:${util}`);
-		} else if (styleName) {
+		// @base時、util化できるかチェック
+		if (!bp) {
+			if (presetCheckKey && isPresetValue(presetCheckKey, val)) {
+				utilVal = val;
+			} else if (utilCheckKey) {
+				utilVal = getUtilVal(utilCheckKey, val);
+			}
+
+			if (utilVal) {
+				this.addUtil(`-${utilName}:${utilVal}`);
+				return;
+			}
+		}
+
+		// getMaye...を通す
+		val = converter ? converter(val) : val;
+
+		if (skipUtil) {
 			this.addStyle(styleName, val);
 		} else {
-			this.addUtil(`-${name}:`);
-			this.addStyle(`--${name}`, val);
+			this.addUtil(`-${utilName}:`);
+			this.addStyle(styleName, val);
 		}
 	}
 
@@ -175,61 +312,6 @@ class CommonProps {
 		}
 	}
 }
-
-const PROP_LIST = {
-	toStyle: {
-		maxW: 'maxWidth',
-		minW: 'minWidth',
-		maxH: 'maxHeight',
-		minH: 'minHeight',
-		// border: 'border',
-		// bdw: 'borderWidth',
-		opacity: 'opacity',
-		lts: 'letterSpacing', // utilityあってもいい
-		fw: 'fontWeight', // utilityあってもいい
-	},
-
-	// isItem時、toStyle へマージ. 省略型の as, js は分かりづらいので、alignSelf, justifySelf で。
-	selfPlace: {
-		alignSelf: 'alignSelf',
-		justifySelf: 'justifySelf',
-	},
-
-	// クエリ対応なしで、ユーティリティ化し得るもの
-	hasUtil: {
-		mbs: { name: 'mbs', options: { presetCheckKey: 'space' } },
-		radius: { name: 'bdrs', options: { presetCheckKey: 'radius' } },
-		shadow: { name: 'bxsh', options: { presetCheckKey: 'shadow' } },
-		lh: { name: 'lh', options: { presetCheckKey: 'lh' } },
-		fz: { name: 'fz', options: { presetCheckKey: 'fz' } },
-		ta: { name: 'ta', options: { utilCheckKey: 'ta', styleName: 'textAlign' } },
-		fxw: { name: 'fxw', options: { utilCheckKey: 'wrap' } },
-		ga: { name: 'ga', options: { presetCheckKey: 'ga' } }, // grid-area
-	},
-	place: {
-		ai: { name: 'ai', options: { utilCheckKey: 'place', styleName: 'alignItems' } },
-		ac: { name: 'ac', options: { utilCheckKey: 'place', styleName: 'alignContent' } },
-		ji: { name: 'ji', options: { utilCheckKey: 'place', styleName: 'justifyItems' } },
-		jc: { name: 'jc', options: { utilCheckKey: 'place', styleName: 'justifyContent' } },
-	},
-
-	// クエリ対応するが、ユーティリティ化しないもの
-	hasBp_noUtil: {
-		fxd: 'fxd',
-		gta: 'gta',
-		gtc: 'gtc',
-		gtr: 'gtr',
-	},
-	hasBp_noUtil_isItem: {
-		// flex: 'fx',
-		fx: 'fx',
-		fxg: 'fxg',
-		fxsh: 'fxsh',
-		fxb: 'fxb',
-		gc: 'gc',
-		gr: 'gr',
-	},
-};
 
 /**
  * props から styleに変換する要素 と その他 に分離する
@@ -257,9 +339,11 @@ export default function getCommonProps(props, options = {}) {
 		isFlex,
 		isGrid,
 		isItem,
+		isLinkbox,
 		isConstrained,
 		hasGutter,
 		// style = {},
+		log,
 		...others
 	} = props;
 
@@ -274,66 +358,90 @@ export default function getCommonProps(props, options = {}) {
 		'is--grid': isGrid || false,
 		'is--flow': isFlow || false,
 		'is--item': isItem || false,
+		'is--linkbox': isLinkbox || false,
 		'is--constrained': isConstrained || false,
 		'has--gutter': hasGutter || false,
 		alignfull,
 		alignwide,
 	});
 
-	if (isItem) {
-		PROP_LIST.toStyle = {
-			...PROP_LIST.toStyle,
-			...PROP_LIST.selfPlace,
-		};
-		PROP_LIST.hasBp_noUtil = {
-			...PROP_LIST.hasBp_noUtil,
-			...PROP_LIST.hasBp_noUtil_isItem,
-		};
-	}
+	let PROPS_hasUtil = PROP_LIST.hasUtil;
+	let PROPS_toStyle = PROP_LIST.toStyle;
+	let PROPS_hasBp_noUtil = {};
+
+	//paddingの処理
+	// margePaddingData(p, {top:pt,right:pr,bottom:pb,left:pl})
+
 	if (isFlow) {
-		const flowGap = commonProps.extractProp('flowGap');
-		if (flowGap !== null) {
-			// flowGap: sm, md, lg とかにする？
-			// if (isPresetValue('space', gap)) {commonProps.addUtil(`-flowGap:${gap}`);}
-			commonProps.addUtil(`-flowGap:`);
-			commonProps.addStyle('--flowGap', getMaybeSpaceVar(flowGap));
-		}
+		PROPS_hasUtil.flowGap = { name: 'flowGap', options: { presetCheckKey: 'space' } };
 	} else if (isFlex || isGrid) {
-		PROP_LIST.hasUtil = {
-			...PROP_LIST.hasUtil,
+		PROPS_hasBp_noUtil = PROP_LIST.hasBp_noUtil;
+
+		PROPS_hasUtil = {
+			...PROPS_hasUtil,
 			...PROP_LIST.place,
+			fxw: { name: 'fxw', options: { utilCheckKey: 'wrap' } },
 		};
 
 		// gap
 		const gap = commonProps.extractProp('gap');
 		if (gap !== null) {
-			const gaps = getPropBpObj(gap);
-			Object.keys(gaps).forEach((bp) => {
-				commonProps.addAttrs(sortGapData(gaps[bp], `@${bp}`));
+			// const gaps = getPropBpObj(gap);
+			// Object.keys(gaps).forEach((bp) => {
+			// 	commonProps.addAttrs(sortGapData(gaps[bp], `@${bp}`));
+			// });
+
+			// const propVal = commonProps.extractProp(propName);
+			commonProps.setAttrsByBpObj('gap', getPropBpObj(gap), {
+				presetCheckKey: 'space',
+				converter: getMaybeSpaceVar,
+				// {row, clm} の場合の処理
+				objProcessor: (d) => {
+					return {
+						name: `${d}g`,
+						options: {},
+					};
+				},
 			});
 		}
 	}
 
+	if (isItem) {
+		PROPS_toStyle = {
+			...PROPS_toStyle,
+			...PROP_LIST.selfPlace,
+		};
+
+		// 追加
+		PROPS_hasBp_noUtil = {
+			...PROPS_hasBp_noUtil,
+			...PROP_LIST.hasBp_noUtil_isItem,
+		};
+	}
+
+	// const paddings = {};
+	// const margins = {};
+
 	for (let propName in commonProps.props) {
 		// Object.entries(commonProps.props).forEach(([propName, propVal]) => {
 
-		if (PROP_LIST.toStyle[propName]) {
+		if (PROPS_toStyle[propName]) {
 			const propVal = commonProps.extractProp(propName);
-			commonProps.addStyle(PROP_LIST.toStyle[propName], propVal);
+			commonProps.addStyle(PROPS_toStyle[propName], propVal);
 			continue;
 		}
 
-		if (PROP_LIST.hasUtil[propName]) {
-			const _prop = PROP_LIST.hasUtil[propName];
+		if (PROPS_hasUtil[propName]) {
+			const _prop = PROPS_hasUtil[propName];
 			const propVal = commonProps.extractProp(propName);
 			commonProps.setSwichUtilStyle(_prop.name, propVal, _prop.options);
 			continue;
 		}
 
 		// query対応のprops(一括指定プロパティではないもの)で、ユーティリティ化しないもの、かつ @base時の .-hoge: を出力しないもの
-		if (PROP_LIST.hasBp_noUtil[propName]) {
+		if (PROPS_hasBp_noUtil[propName]) {
 			const propVal = commonProps.extractProp(propName);
-			commonProps.setAttrsByBpObj(getPropBpObj(propVal), propName, true);
+			commonProps.setAttrsByBpObj(propName, getPropBpObj(propVal), { skipBaseUtil: true });
 			continue;
 		}
 
@@ -364,22 +472,89 @@ export default function getCommonProps(props, options = {}) {
 			case 'w':
 			case 'h': {
 				const propVal = commonProps.extractProp(propName);
-				commonProps.setAttrsByBpObj(getPropBpObj(propVal), propName);
+				commonProps.setAttrsByBpObj(propName, getPropBpObj(propVal));
 				break;
 			}
 
-			case 'p':
-			case 'm':
-			case 'padding':
-			case 'margin': {
+			case 'pY':
+			case 'pX': {
 				const propVal = commonProps.extractProp(propName);
-				const spaces = getPropBpObj(propVal);
-				Object.keys(spaces).forEach((bp) => {
-					const _data = sortSpacingData(propName[0], spaces[bp], `@${bp}`);
-					commonProps.addAttrs(_data);
+				commonProps.setAttrsByBpObj(propName, getPropBpObj(propVal), {
+					presetCheckKey: 'space',
+					converter: getMaybeSpaceVar,
 				});
 				break;
 			}
+
+			case 'pl':
+			case 'pr':
+			case 'pt':
+			case 'pb': {
+				const propVal = commonProps.extractProp(propName);
+				commonProps.setAttrsByBpObj(propName, getPropBpObj(propVal), {
+					converter: getMaybeSpaceVar,
+				});
+				break;
+			}
+
+			case 'p': {
+				const propVal = commonProps.extractProp(propName);
+				commonProps.setAttrsByBpObj('p', getPropBpObj(propVal), {
+					presetCheckKey: 'space',
+					converter: getMaybeSpaceVar,
+					// {top,left,...} の場合の処理
+					objProcessor: (d) => {
+						return {
+							name: `p${d[0]}`,
+							options: {
+								presetCheckKey: d === 'X' || d === 'Y' ? 'space' : '',
+							},
+						};
+					},
+				});
+				break;
+			}
+
+			case 'mX':
+			case 'mY':
+			case 'ml':
+			case 'mr':
+			case 'mt':
+			case 'mb': {
+				const propVal = commonProps.extractProp(propName);
+				commonProps.setAttrsByBpObj(propName, getPropBpObj(propVal), {
+					utilCheckKey: 'margin',
+					converter: getMaybeSpaceVar,
+				});
+				break;
+			}
+
+			case 'm': {
+				const propVal = commonProps.extractProp(propName);
+				commonProps.setAttrsByBpObj('m', getPropBpObj(propVal), {
+					// presetCheckKey: 'space',
+					utilCheckKey: 'margin',
+					converter: getMaybeSpaceVar,
+					// {top,left,...} の場合の処理
+					objProcessor: (d) => {
+						return {
+							name: `m${d[0]}`,
+							options: {},
+						};
+					},
+				});
+				break;
+			}
+
+			// case 'm': {
+			// 	const propVal = commonProps.extractProp(propName);
+			// 	const spaces = getPropBpObj(propVal);
+			// 	Object.keys(spaces).forEach((bp) => {
+			// 		const _data = sortSpacingData(propName[0], spaces[bp], `@${bp}`);
+			// 		commonProps.addAttrs(_data);
+			// 	});
+			// 	break;
+			// }
 			case 'cbox': {
 				const propVal = commonProps.extractProp(propName);
 				if (isPresetValue('cbox', propVal)) {

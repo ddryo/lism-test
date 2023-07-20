@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { Frame, FrameContent } from '../Frame';
 import { Layer } from '../Layer';
 import { LinkBox } from '../LinkBox';
@@ -11,10 +10,10 @@ import {
 import { getMediaLayer } from '../helper';
 
 // "Banner" (b--banner) にする
-export default function Card({ children, className, href, ...props }) {
+export default function Card({ children, href, ...props }) {
 	// let bannerContents = null;
 	const blockProps = {
-		className: classnames('b--card', className),
+		blockClass: 'b--card',
 		gap: 0,
 		shadow: '1',
 		...props,
@@ -33,28 +32,30 @@ export default function Card({ children, className, href, ...props }) {
 	return <Stack {...blockProps}>{children}</Stack>;
 }
 
-export function CardMedia({ ratio, media, children, padding, p, contentProps = {}, ...props }) {
-	const paddingProps = { padding, p };
+export function CardMedia({
+	ratio,
+	media,
+	children,
+	// padding,
+	// p,
+	// contentProps = {},
+	...props
+}) {
+	// const paddingProps = { padding, p };
 	return (
 		<Frame ratio={ratio} {...props}>
 			{getMediaLayer(media)}
-			<FrameContent {...paddingProps} {...contentProps}>
-				{children}
-			</FrameContent>
+			{/* <FrameContent {...paddingProps} {...contentProps}> */}
+			{children}
+			{/* </FrameContent> */}
 		</Frame>
 	);
 }
 
-export function CardBody({ children, className, isLayer, ...props }) {
+export function CardBody({ children, isLayer, ...props }) {
 	if (isLayer) {
 		return (
-			<Layer
-				position='bottom left'
-				width='100%'
-				className={classnames('b--card__body', className)}
-				padding={40}
-				{...props}
-			>
+			<Layer blockClass='b--card__body' position='bottom left' w='100%' p={40} {...props}>
 				{children}
 			</Layer>
 		);
@@ -62,8 +63,8 @@ export function CardBody({ children, className, isLayer, ...props }) {
 	return (
 		<Item
 			component={Stack}
-			className={classnames('b--card__body', className)}
-			padding={40}
+			blockClass='b--card__body'
+			p={40}
 			gap={40}
 			// fxg='1'
 			{...props}

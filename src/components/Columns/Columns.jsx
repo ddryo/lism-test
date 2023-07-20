@@ -22,35 +22,23 @@ import { getPropBpObj } from '../../lib';
 export default function Columns({
 	// tag,
 	children,
-	col,
-	sm,
+	clm = 1,
+	sm = 2,
 	md,
 	lg,
 	xl,
-	// cols = {},
 	// customQuery,
 	...props
 }) {
-	const cols = getPropBpObj(col, { sm, md, lg, xl });
-	const utils = [];
-	const styles = {};
-	Object.keys(cols).forEach((bp) => {
-		if ('_' === bp) {
-			styles['--cols'] = cols[bp];
-		} else {
-			styles[`--cols--${bp}`] = cols[bp];
-			utils.push(`-gtc@${bp}:`);
-		}
-	});
+	const clms = getPropBpObj(clm, { sm, md, lg, xl });
 
-	// _utile: -gtc@sm, ... をつけておく必要がある。
+	// デフォルト値の削除
+	if (1 === clms._) delete clms._;
 
 	const blockProps = {
 		lismClass: 'l--columns',
 		isGrid: true,
-		_utils: utils,
-		style: styles,
-		// 'data-cols': col || cols._ || 2,
+		gtc: clms,
 		...props,
 	};
 

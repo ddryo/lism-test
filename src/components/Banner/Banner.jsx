@@ -16,7 +16,7 @@ export default function Banner({
 	filter,
 	p,
 	padding,
-	contentProps = {},
+	// contentProps = {},
 	...attrs
 }) {
 	// let bannerContents = null;
@@ -36,7 +36,7 @@ export default function Banner({
 					<FrameContent
 						className='b--banner__content'
 						{...paddingProps}
-						{...contentProps}
+						// {...contentProps}
 					>
 						{children}
 					</FrameContent>
@@ -50,7 +50,11 @@ export default function Banner({
 			<Frame ratio={ratio} {...blockProps}>
 				{getMediaLayer(media)}
 				{getFilterLayer(filter)}
-				<FrameContent className='b--banner__content' {...paddingProps} {...contentProps}>
+				<FrameContent
+					className='b--banner__content'
+					{...paddingProps}
+					// {...contentProps}
+				>
 					{children}
 				</FrameContent>
 			</Frame>
@@ -70,6 +74,7 @@ export default function Banner({
 	}
 
 	// ratio指定なし、href指定なし
+	console.log('paddingProps', paddingProps);
 	return (
 		<Box {...blockProps} {...paddingProps}>
 			{getMediaLayer(media)}

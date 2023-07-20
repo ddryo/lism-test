@@ -103,7 +103,11 @@ const FILTERS = [
 	'sepia',
 ];
 
-export function FilterLayer({ style = {}, bgc, texture, ...props }) {
+export function FilterLayer({
+	style = {},
+	//texture,
+	...props
+}) {
 	const backdropFilters = [];
 	FILTERS.forEach((filterName) => {
 		if (props[filterName]) {
@@ -111,10 +115,6 @@ export function FilterLayer({ style = {}, bgc, texture, ...props }) {
 			delete props[filterName];
 		}
 	});
-
-	if (bgc) {
-		style.backgroundColor = bgc;
-	}
 
 	if (backdropFilters.length > 0) {
 		style.backdropFilter = backdropFilters.join(' ');

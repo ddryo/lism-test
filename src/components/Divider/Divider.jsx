@@ -29,11 +29,11 @@ function Divider({
 }) {
 	const blockProps = {
 		className: classnames('l--divider', className, {}),
-		style: filterEmptyObj({
+		style: {
 			...style,
 			'--height': height || null,
 			'--color': color || null,
-		}),
+		},
 		'data-type': type,
 		'data-flip': flip || null,
 		...attrs,

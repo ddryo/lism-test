@@ -3,7 +3,7 @@ import React from 'react';
 import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 
-export default function AccordionHeader({ children, icon = 'caret', ...props }) {
+export default function AccordionHeader({ children, iconType = 'caret', before, ...props }) {
 	const { className, style, attrs } = getCommonProps(props, {
 		lismClass: 'l--accordion__header',
 	});
@@ -14,7 +14,8 @@ export default function AccordionHeader({ children, icon = 'caret', ...props }) 
 	};
 
 	return (
-		<summary {...blockProps} data-icon-type={icon}>
+		<summary {...blockProps} data-icon-type={iconType}>
+			{before}
 			<span className='l--accordion__label'>{children}</span>
 			<span className='l--accordion__icon' aria-hidden='true'></span>
 		</summary>

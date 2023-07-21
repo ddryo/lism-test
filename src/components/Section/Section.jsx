@@ -17,24 +17,22 @@ export default function Section({
 	filter,
 	isFullScreen,
 	divider = {},
-	style = {},
 	p,
-	padding,
+	// padding,
 	gap = 0,
 	...attrs
 }) {
 	const blockProps = {
 		blockClass: 'b--section',
-		style: filterEmptyObj({
-			...style,
+		blockStyle: {
 			'--mih': minH || null,
-		}),
+		},
 		'data-fullscreen': isFullScreen ? '1' : null,
 		...attrs,
 	};
 
 	// padding, gap は インナー側へ
-	const innerProps = { p, gap, padding };
+	const innerProps = { p, gap };
 
 	return (
 		<Stack alignfull {...blockProps}>
@@ -49,18 +47,9 @@ export default function Section({
 	);
 }
 
-export const SectionBody = ({ children, p = { Y: 50 }, ...props }) => {
+export const SectionBody = ({ children, pY = 50, ...props }) => {
 	return (
-		<Item
-			blockClass='b--section__body'
-			_util='-ga:'
-			// ga='body'
-			p={p}
-			isFlow
-			isConstrained
-			hasGutter
-			{...props}
-		>
+		<Item blockClass='b--section__body' pY={pY} isFlow isConstrained hasGutter {...props}>
 			{children}
 		</Item>
 	);
@@ -68,12 +57,7 @@ export const SectionBody = ({ children, p = { Y: 50 }, ...props }) => {
 
 export const SectionHeader = ({ children, ...props }) => {
 	return (
-		<Item
-			blockClass='b--section__header'
-			_util='-ga:'
-			//ga='header'
-			{...props}
-		>
+		<Item blockClass='b--section__header' {...props}>
 			{children}
 		</Item>
 	);
@@ -81,12 +65,7 @@ export const SectionHeader = ({ children, ...props }) => {
 
 export const SectionFooter = ({ children, ...props }) => {
 	return (
-		<Item
-			blockClass='b--section__footer'
-			_util='-ga:'
-			//ga='footer'
-			{...props}
-		>
+		<Item blockClass='b--section__footer' {...props}>
 			{children}
 		</Item>
 	);

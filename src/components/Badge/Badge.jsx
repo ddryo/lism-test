@@ -22,7 +22,6 @@ export default function Badge({
 	const blockProps = {
 		tag: 'span',
 		lismClass: 'e--badge',
-		// className
 		radius: '1',
 		p: 10,
 		// lh: 1.5,

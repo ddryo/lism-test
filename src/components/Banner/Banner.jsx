@@ -16,6 +16,7 @@ export default function Banner({
 	filter,
 	p,
 	padding,
+	flowGap,
 	// contentProps = {},
 	...attrs
 }) {
@@ -34,7 +35,9 @@ export default function Banner({
 					{getMediaLayer(media)}
 					{getFilterLayer(filter)}
 					<FrameContent
-						className='b--banner__content'
+						blockClass='b--banner__content'
+						isFlow
+						flowGap={flowGap || 40}
 						{...paddingProps}
 						// {...contentProps}
 					>
@@ -51,7 +54,9 @@ export default function Banner({
 				{getMediaLayer(media)}
 				{getFilterLayer(filter)}
 				<FrameContent
-					className='b--banner__content'
+					blockClass='b--banner__content'
+					isFlow
+					flowGap={flowGap || 40}
 					{...paddingProps}
 					// {...contentProps}
 				>
@@ -68,18 +73,21 @@ export default function Banner({
 			<LinkBox {...blockProps} {...paddingProps}>
 				{getMediaLayer(media)}
 				{getFilterLayer(filter)}
-				<Box className='b--banner__content'>{children}</Box>
+				<Box blockClass='b--banner__content' isFlow flowGap={flowGap || 40}>
+					{children}
+				</Box>
 			</LinkBox>
 		);
 	}
 
 	// ratio指定なし、href指定なし
-	console.log('paddingProps', paddingProps);
 	return (
 		<Box {...blockProps} {...paddingProps}>
 			{getMediaLayer(media)}
 			{getFilterLayer(filter)}
-			<Box className='b--banner__content'>{children}</Box>
+			<Box blockClass='b--banner__content' isFlow flowGap={flowGap || 40}>
+				{children}
+			</Box>
 		</Box>
 	);
 }

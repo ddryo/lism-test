@@ -1,42 +1,53 @@
 import React from 'react';
 import classnames from 'classnames';
-import { filterEmptyObj, getCommonProps } from '../../lib';
+import { Lism } from '../Lism';
 
-export default function Layer({
-	children,
-	tag,
-	modifier = '',
-	position,
-	isContain,
-	z,
-	top,
-	bottom,
-	left,
-	right,
-	...props
-}) {
+export default function Layer({ children, modifier = '', position, size, ...props }) {
+	if (position === 'center' || position === 'center center') {
+		props.left = '50%';
+		props.top = '50%';
+		props.translate = '-50% -50%';
+	} else if (position) {
+		let hasX = false;
+		let hasY = false;
+
+		if (position.indexOf('left') !== -1) {
+			props.left = '0';
+			hasX = true;
+		} else if (position.indexOf('right') !== -1) {
+			props.right = '0';
+			hasX = true;
+		}
+
+		if (position.indexOf('top') !== -1) {
+			props.top = '0';
+			hasY = true;
+		} else if (position.indexOf('bottom') !== -1) {
+			props.bottom = '0';
+			hasY = true;
+		}
+
+		if (position.indexOf('center') !== -1) {
+			if (hasY) {
+				props.left = '50%';
+				props.translate = '-50% 0';
+			} else if (hasX) {
+				props.top = '50%';
+				props.translate = '0 -50%';
+			}
+		}
+	}
+
 	const lismClass = modifier ? `l--layer--${modifier}` : 'l--layer';
-	const { className, style, attrs } = getCommonProps(props, { lismClass });
 
 	const blockProps = {
-		className,
-		style: {
-			...style,
-			...filterEmptyObj({
-				zIndex: undefined !== z ? String(z) : null,
-				top: top || null,
-				bottom: bottom || null,
-				left: left || null,
-				right: right || null,
-			}),
-		},
-		'data-contain': isContain ? '1' : null,
-		'data-position': position,
-		...attrs,
+		lismClass,
+		'data-size': size, // contain or cover
+		...props,
 	};
 
-	const Tag = tag || 'div';
-	return <Tag {...blockProps}>{children}</Tag>;
+	// const Tag = tag || 'div';
+	return <Lism {...blockProps}>{children}</Lism>;
 }
 
 export function MediaLayer({ children, media, ...props }) {

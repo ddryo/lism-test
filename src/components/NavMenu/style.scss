@@ -1,5 +1,5 @@
 .b--navMenu {
-	--bdc: var(--color--border);
+	--bdc: var(--c--border);
 	list-style: none;
 	max-width: 24rem;
 }
@@ -21,7 +21,7 @@
 	border-top-width: 0px;
 }
 .b--navMenu__link {
-	--hov--bgc: var(--color--gray);
+	--hov--bgc: var(--c--lightgray);
 	color: inherit;
 	text-decoration: none;
 	align-items: baseline;

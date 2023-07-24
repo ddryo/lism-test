@@ -2,12 +2,12 @@
 // .-hov\: ユーティリティ
 
 [class*=-hov\:]{
-	transition: filter, opacity, box-shadow, transform, border-color, color, background-color;
+	transition: filter, opacity, box-shadow, translate, scale, border-color, color, background-color;
 	transition-duration: var(--hov--duration);
 
 	// mediaへのホバー効果
 	.l--layer__media{ 
-		transition: filter, transform;
+		transition: filter, scale;
 		transition-duration: var(--hov--duration);
 	}
 }
@@ -35,11 +35,13 @@
 }
 .-hov\:shadow:hover {
 	// ユーティリティに負けないように important
-	box-shadow: var(--shadow--hov); // ?
+	box-shadow: var(--shadow--hov) !important;
 }
 .-hov\:up:hover {
-	// ユーティリティに負けないように
-	transform: translateY(-3px);
+	translate: 0 -3px;
+}
+.-hov\:scale:hover {
+	scale: 1.05;
 }
 
 .-hov\:reverse:hover{
@@ -54,7 +56,7 @@
 // 	filter: none;
 // }
 .-hov\:mediaZoom:hover .l--layer__media{
-	transform: scale(1.1);
+	scale: 1.1;
 }
 // ※ filter どうしは同時使用できないことに注意
 .-hov\:mediaDark:hover .l--layer__media{

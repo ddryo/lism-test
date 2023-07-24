@@ -1,5 +1,8 @@
 import React from 'react';
-import { Frame, FrameContent } from '../Frame';
+import {
+	Frame,
+	//FrameContent
+} from '../Frame';
 import { Layer } from '../Layer';
 import { LinkBox } from '../LinkBox';
 import { Item } from '../Item';
@@ -15,7 +18,7 @@ export default function Card({ children, href, ...props }) {
 	const blockProps = {
 		blockClass: 'b--card',
 		gap: 0,
-		shadow: '1',
+		shadow: '2',
 		...props,
 	};
 

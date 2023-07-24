@@ -5,91 +5,34 @@
 	 *    base:main:accent = 70:25:5の法則 ( https://chot.design/concept-of-design/02d49c79f19a/ )
 	 *    + α
 	 */
-	--color--base: #fdfdfd; // 背景色メイン
-	--color--main: #2F4858; // メインカラー
-	--color--accent: #be3455; // mainと逆の目立つ色
+	--c--bg: #fdfdfd; // 背景色メイン
+	--c--main: #2F4858; // メインカラー
+	--c--accent: #be3455; // mainと逆の目立つ色
 
 	// 確定
-	--color--link: #0c61e4; // リンク色
-	--color--text: #111; // テキスト色
-	--color--headline: #00473e; // 見出しカラー
-	--color--border: #ccc;
+	--c--link: #0c61e4; // リンク色
+	--c--text: #111; // テキスト色
+	--c--headline: #00473e; // 見出しカラー
+	--c--border: #ccc;
 	// --bdc--table: #dcdcdc; 
 	
 	// どうする
-	--color--black: #000;
-	--color--white: #fff;
-	--color--gray: #f5f5f5; // 薄いグレー色? (baseSub)
-	--color--sub: #dde7f0; // main と相性のいい、背景色に使うような薄い色？
-	// bg2 ?
+	--c--sub: #dde7f0; // main と相性のいい、背景色に使うような薄い色？
 
-	// --color--button: #111; // → main
+	--c--black: #000;
+	--c--white: #fff;
+	--c--lightgray: #f5f5f5;
+	// --c--darkgray: ;
 
-	// paret
-	--red-100: #fef2f2;
-	--red-200: #fee2e2;
-	--red-300: #fecaca;
-	--red-400: #ef4444;
-	--red-500: #b91c1c;
-	--red-600: #7f1d1d;
-	--red-700: #450a0a;
-
-	--orange-100: #fff7ed;
-	--orange-200: #ffedd5;
-	--orange-300: #fed7aa;
-	--orange-400: #f97316;
-	--orange-500: #c2410c;
-	--orange-600: #7c2d12;
-	--orange-700: #431407;
-
-	--yellow-100: #fefce8;
-	--yellow-200: #fef9c3;
-	--yellow-300: #ffe251; //#fef08a;
-	--yellow-400: #f1b808; //#eab308
-	--yellow-500: #a16207;
-	--yellow-600: #713f12;
-	--yellow-700: #422006;
-
-	--green-100: #ecfdf5;
-	--green-200: #d1fae5;
-	--green-300: #a7f3d0;
-	--green-400: #10b981;
-	--green-500: #047857;
-	--green-600: #064e3b;
-	--green-700: #022c22;
-
-	--blue-100: #f0f9ff;
-	--blue-200: #e0f2fe;
-	--blue-300: #bae6fd;
-	--blue-400: #0ea5e9;
-	--blue-500: #0369a1;
-	--blue-600: #0c4a6e;
-	--blue-700: #082f49;
-
-	--purple-100: #f5f3ff;
-	--purple-200: #ede9fe;
-	--purple-300: #ddd6fe;
-	--purple-400: #8b5cf6;
-	--purple-500: #6d28d9;
-	--purple-600: #4c1d95;
-	--purple-700: #2e1065;
-
-	--pink-100: #fdf2f8;
-	--pink-200: #fce7f3;
-	--pink-300: #fbcfe8;
-	--pink-400: #ec4899;
-	--pink-500: #be185d;
-	--pink-600: #831843;
-	--pink-700: #500724;
-
-	--gray-100: #f9fafb;
-	--gray-200: #edeff1;
-	--gray-300: #d1d5db; //#e5e7eb;
-	--gray-400: #646b79; // 6b7280
-	--gray-500: #4b5563;
-	--gray-600: #111827;
-	--gray-700: #030712;
-
+	// cbox
+	--c--gray: #646b79;
+	--c--red: #ef4444;
+	--c--orange: #f97316;
+	--c--yellow: #f1b808;
+	--c--green: #10b981;
+	--c--blue: #0ea5e9;
+	--c--purple: #8b5cf6;
+	--c--pink: #ec4899;
 }
 
 
@@ -98,24 +41,25 @@
 	color: var(--c) !important;
 }
 .-c\:base{
-	--c: var(--color--base);
+	--c: var(--c--bg);
 }
 .-c\:main{
-	--c: var(--color--main);
+	--c: var(--c--main);
 }
 .-c\:accent{
-	--c: var(--color--accent);
+	--c: var(--c--accent);
 }
-
 .-c\:link{
-	--c:  var(--color--link);
+	--c:  var(--c--link);
 }
 .-c\:text{
-	--c:  var(--color--text);
+	--c:  var(--c--text);
 }
-
 .-c\:gray{
-	--c: var(--gray);
+	--c: var(--c--gray);
+}
+.-c\:lightgray{
+	--c: var(--c--lightgray);
 }
 .-c\:white{
 	--c: #fff;
@@ -125,31 +69,30 @@
 }
 
 
-
 [class*="-bgc:"]{
 	background-color: var(--bgc) !important;
 }
 
 .-bgc\:base{
-	--bgc: var(--color--base);
+	--bgc: var(--c--bg);
 }
 .-bgc\:main{
-	--bgc: var(--color--main);
+	--bgc: var(--c--main);
 }
-
 .-bgc\:accent{
-	--bgc: var(--color--accent);
+	--bgc: var(--c--accent);
 }
-
 .-bgc\:text{
-	--bgc:  var(--color--text);
+	--bgc:  var(--c--text);
 }
 .-bgc\:link{
-	--bgc:  var(--color--link);
+	--bgc:  var(--c--link);
 }
-
+.-bgc\:lightgray{
+	--bgc: var(--c--lightgray);
+}
 .-bgc\:gray{
-	--bgc: var(--color--gray);
+	--bgc: var(--c--gray);
 }
 .-bgc\:white{
 	--bgc:#fff;
@@ -159,68 +102,65 @@
 }
 
 
+// #wrapper{
+// 	--c--bg: #000; // 背景色メイン
+// 	--c--text: #fff; // メインカラー
+// 	background-color: var(--c--bg);
+// 	color: var(--c--text);
+// }
 
-[class*="-cbox:"]{
-	color: var(--c);
-	background-color: var(--bgc);
+
+[class*="-cbox:"] {
+	--bdc: color-mix(in srgb-linear, var(--cbox), var(--c--bg) 40%);
+	--c--link: color-mix(in srgb-linear, var(--cbox), var(--c--text) 20%);
+
+	color: color-mix(in srgb-linear, var(--cbox), var(--c--text) 92%);
+	background-color: color-mix(in srgb-linear, var(--cbox), var(--c--bg) 96%);
 	border: solid 1px var(--bdc);
+
+	// color: var(--c);
+	// background-color: var(--bgc);
+	
 }
 
+// -cbox: --cを使う?
+
+
+// [class*="-cbox:"]{
+// 	color: var(--c);
+// 	background-color: var(--bgc);
+// 	border: solid 1px var(--bdc);
+// }
+
+// [data-cbox="outline"]{
+// }
+
+.-cbox\:main{
+	--cbox: var(--c--main);
+}
 .-cbox\:gray{
-	--c: var(--gray-700);
-	--bgc: var(--gray-100);
-	--bdc: var(--gray-300);
-	--c--icon: var(--gray-400);
-	--color--link: var(--gray-500);
+	--cbox: var(--c--gray);
 }
 .-cbox\:red{
-	--c: var(--red-700);
-	--bgc: var(--red-100);
-	--bdc: var(--red-300);
-	--c--icon: var(--red-400);
-	--color--link: var(--red-500);
+	--cbox: var(--c--red);
 }
 .-cbox\:orange{
-	--c: var(--orange-700);
-	--bgc: var(--orange-100);
-	--bdc: var(--orange-300);
-	--c--icon: var(--orange-400);
-	--color--link: var(--orange-500);
+	--cbox: var(--c--orange);
 }
 .-cbox\:yellow{
-	--c: var(--yellow-700);
-	--bgc: var(--yellow-100);
-	--bdc: var(--yellow-300);
-	--c--icon: var(--yellow-400);
-	--color--link: var(--yellow-500);
+	--cbox: var(--c--yellow);
 }
 .-cbox\:green{
-	--c: var(--green-700);
-	--bgc: var(--green-100);
-	--bdc: var(--green-300);
-	--c--icon: var(--green-400);
-	--color--link: var(--green-500);
+	--cbox: var(--c--green);
 }
 .-cbox\:blue{
-	--c: var(--blue-700);
-	--bgc: var(--blue-100);
-	--bdc: var(--blue-300);
-	--c--icon: var(--blue-400);
-	--color--link: var(--blue-500);
+	--cbox: var(--c--blue);
 }
 .-cbox\:purple{
-	--c: var(--purple-700);
-	--bgc: var(--purple-100);
-	--bdc: var(--purple-300);
-	--c--icon: var(--purple-400);
-	--color--link: var(--purple-500);
+	--cbox: var(--c--purple);
 }
 .-cbox\:pink{
-	--c: var(--pink-700);
-	--bgc: var(--pink-100);
-	--bdc: var(--pink-300);
-	--c--icon: var(--pink-400);
-	--color--link: var(--pink-500);
+	--cbox: var(--c--pink);
 }
 
 
@@ -228,14 +168,14 @@
 // 	--c: #fff; // reverse用に定義
 // 	// --bdc: var(--bgc);
 // 	--c--icon: currentColor;
-// 	--color--link: currentColor;
+// 	--c--link: currentColor;
 // 	color: var(--c);
 // 	background-color: var(--bgc);
 // 	border: solid 1px var(--bgc);
 // }
 
 // .-fill\:main{
-// 	--bgc: var(--color--main);
+// 	--bgc: var(--c--main);
 // }
 // .-fill\:red{
 // 	--bgc: var(--red-400);

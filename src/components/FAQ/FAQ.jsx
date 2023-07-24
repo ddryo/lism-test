@@ -1,17 +1,18 @@
 import React from 'react';
-import { Stack, Flex } from '../Box';
-import { Item } from '../Item';
-import { Badge } from '../Badge';
-import { Center } from '../Center';
+import { Stack } from '../Box';
+// import { Item } from '../Item';
+import { BlockIcon } from '../Icon';
+// import { Badge } from '../Badge';
+// import { Center } from '../Center';
 import { Lism } from '../Lism';
 import { Accordion, AccordionHeader, AccordionBody } from '../Accordion';
 
 export default function FAQ({
 	title,
-	titleProps = {},
-	badgeSize,
-	qBadgeProps = {},
-	aBadgeProps = {},
+	// titleProps = {},
+	// iconSize,
+	qIconProps = {},
+	aIconProps = {},
 	children,
 	flowGap,
 	isAccordion,
@@ -21,65 +22,46 @@ export default function FAQ({
 	// style = {},
 	...props
 }) {
-	const blockProps = {
-		blockClass: 'b--faq',
-		blockStyle: {
-			'--badge--size': badgeSize || null,
-		},
+	qIconProps = {
+		icon: qIcon,
+		radius: '99', // '-'にする ?
+		p: 20,
+		...qIconProps,
 	};
 
-	const badgeProps = {
-		blockClass: 'b--faq__badge',
-		tag: 'div',
-		// color: 'blue.400',
-		radius: '99',
-		// isItem: true,
-		// fxsh: '0',
-		fw: null,
-		p: 0,
-		fz: '',
-	};
-
-	const badgeQ = (
-		<Badge color='blue.400' {...badgeProps} {...qBadgeProps}>
-			<Center fz='-' w='100%' h='100%'>
-				{qIcon}
-			</Center>
-		</Badge>
-	);
+	const Qmark = <BlockIcon variant='fill' color='main' {...qIconProps} />;
+	const Qtag = 'span';
 
 	if (isAccordion) {
 		return (
-			<Accordion {...blockProps} {...props}>
-				<AccordionHeader icon='caret' before={badgeQ}>
+			<Accordion blockClass='b--faq' {...props}>
+				<AccordionHeader blockClass='b--faq__q' before={Qmark} tag={Qtag}>
 					{title}
 				</AccordionHeader>
-				<AccordionBody>{children}</AccordionBody>
+				<AccordionBody blockClass='b--faq__a'>{children}</AccordionBody>
 			</Accordion>
 		);
 	}
 
-	const badgeA = (
-		<Badge color='red.400' {...badgeProps} {...aBadgeProps}>
-			<Center fz='-' w='100%' h='100%'>
-				{aIcon}
-			</Center>
-		</Badge>
-	);
+	aIconProps = {
+		icon: aIcon,
+		radius: '99', // '-'にする ?
+		p: 20,
+		...aIconProps,
+	};
+	const Amark = <BlockIcon variant='outline' color='main' {...aIconProps} />;
 
 	return (
-		<Stack {...blockProps} gap={40} {...props}>
+		<Stack blockClass='b--faq' gap={40} {...props}>
 			<Lism isGrid blockClass='b--faq__q' gap={['-', '-']}>
-				{badgeQ}
-				<Item blockClass='b--faq__qText' {...titleProps}>
-					{title}
-				</Item>
+				{Qmark}
+				<Qtag className='b--faq__title'>{title}</Qtag>
 			</Lism>
 			<Lism isGrid blockClass='b--faq__a' gap={['-', '-']}>
-				{badgeA}
-				<Item blockClass='b--faq__aText' isFlow flowGap={flowGap || 40}>
+				{Amark}
+				<Lism blockClass='b--faq__body' isFlow flowGap={flowGap || 40}>
 					{children}
-				</Item>
+				</Lism>
 			</Lism>
 		</Stack>
 	);

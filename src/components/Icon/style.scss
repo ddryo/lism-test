@@ -1,33 +1,47 @@
-:root{
-	--ls--icon--scale: 1.125;
-}
-
 // インライン
-.e--icon{
+.e--inlineIcon{
 	vertical-align: -.125em;
-	// margin-inline: 0.25em; // 0.125(16px で 2pxの余白ができる) * 2
-	margin-inline: 0.125em;
-	transform: scale(var(--ls--icon--scale));
-
-	// font-size: 1.125em;
-	// margin-inline: 0.125em;
-	// display: inline-flex;
-	// align-items: baseline;
+	margin-inline: 0.125em; // 0.125 = 16px で 2pxの余白ができる
+	transform: scale(1.125);
 }
 
-
-.l--icon{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: fit-content;
-	height: fit-content;
-	--ls--icon--scale: 1;
-
-	> .e--icon{
-		display: block;
-		margin-inline: 0;
-		vertical-align: unset;
-		flex-shrink: 0;
-	}
+:where(.e--icon[data-css-icon]){
+	--size: 1em;
 }
+.e--icon[data-css-icon]{
+	text-align: center;
+	line-height: 1;
+	width: var(--size);
+	height: var(--size);
+	display: inline-block;
+}
+
+.e--icon[data-css-icon="triangle"]{
+	background-color: currentColor;
+	clip-path: polygon(50% 76%, 10% 24%, 90% 24%);
+}
+
+// .e--icon[data-css-icon="caret"]{
+// 	position: relative;
+// }
+
+:where(.b--icon){
+	--color: currentColor;
+	// width: fit-content;
+	// height: fit-content;
+}
+
+// fill, outline も　ユーティリティ化？
+.b--icon[data-variant="fill"]{
+	background-color: var(--color);
+	// color: #fff;
+	color: var(--c--bg); //color-mix(in srgb-linear, var(--color), var(--c--bg) 40%);
+	// > .e--icon{color: #fff;}
+}
+.b--icon[data-variant="outline"]{
+	color: var(--color);
+	border: solid 1px var(--color);
+}
+
+// .-fill:...
+// .-outline:...

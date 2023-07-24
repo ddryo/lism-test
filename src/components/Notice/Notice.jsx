@@ -1,6 +1,6 @@
 import React from 'react';
 import { getMaybeColorVar } from '../../lib';
-import { Box } from '../index';
+import { Box, Stack } from '../Box';
 import { Lism } from '../Lism';
 import { Icon } from '../Icon';
 
@@ -67,9 +67,9 @@ export default function Notice({
 }) {
 	// --keyColor
 
-	if ('cbox' === variant) {
-		preset = preset || 'memo';
-	}
+	// if ('cbox' === variant) {
+	// 	preset = preset || 'memo';
+	// }
 	let presetColor;
 	let presetIcon;
 
@@ -82,21 +82,13 @@ export default function Notice({
 	}
 
 	icon = icon || presetIcon;
-
-	if ('cbox' === variant) {
-		color = color || presetColor;
-	} else if (color) {
-		style['--keyColor'] = getMaybeColorVar(color);
-	} else if (presetColor) {
-		style['--keyColor'] = getMaybeColorVar(`${presetColor}.400`);
-	}
+	color = color || presetColor || 'main';
 
 	// border = bd
-	const blockProps = {
+	const boxProps = {
 		blockClass: 'b--notice',
-		// radius: '1',
+		gap: 0,
 		'data-variant': variant,
-		// maxW: "60em",
 		style,
 		...defaultProps.Notice,
 		...props,
@@ -105,35 +97,68 @@ export default function Notice({
 	const headProps = {
 		blockClass: 'b--notice__head',
 		gap: 20,
-		// className: 'b--notice__head -gap:20 -ai:c ...',
+	};
+
+	const bodyProps = {
+		blockClass: 'b--notice__body',
+		flowGap: 40,
 	};
 
 	const captionProps = {
 		className: 'b--notice__caption',
 	};
 
-	if ('fill' !== variant) {
-		blockProps.padding = 45;
-		// blockProps._utility = '-p@sm:';
+	// colorの調整
+	if ('cbox' === variant) {
+		boxProps.cbox = color;
+		headProps.c = color;
+		headProps.fw = 700;
+		// captionProps.className += ' -filter:darker';
+		// style['--keyColor'] = getMaybeColorVar(color);
+	} else if ('fill' === variant) {
+		boxProps.bdc = color;
+		headProps.bgc = color;
+		headProps.c = 'white';
+	} else {
+		// outline, onbd
+		boxProps.bdc = color;
+		headProps.c = color;
+		headProps.fw = 700;
 	}
 
-	if ('online' === variant) {
-		headProps.padding = { X: 20 };
-	} else if ('cbox' === variant) {
-		blockProps.cbox = color;
-		captionProps.className += ' -filter:darker';
+	// else if (color) {
+	// 	boxProps.style['--keyColor'] = getMaybeColorVar(color);
+	// } else if (presetColor) {
+	// 	boxProps.style['--keyColor'] = getMaybeColorVar(presetColor);
+	// }
+
+	// paddingの調整
+	if ('fill' === variant) {
+		bodyProps.p = ['-', '-'];
+		headProps.p = ['-', '-'];
+		headProps.pY = ['-', '-'];
+	} else if ('onbd' === variant) {
+		boxProps.p = ['-', '-'];
+		headProps.pX = 20;
+	} else {
+		boxProps.p = ['-', '-'];
+		boxProps.gap = 40;
+	}
+
+	if ('onbd' === variant) {
+		headProps.pX = 20;
 	}
 
 	return (
-		<Box {...blockProps}>
+		<Stack {...boxProps}>
 			<Lism {...headProps} isFlex ai='center' fxw='nowrap'>
 				{icon && <Icon icon={icon} blockClass='b--notice__icon' size='1.5em' />}
 				<span {...captionProps}>{caption}</span>
 			</Lism>
 
-			<Lism blockClass='b--notice__body' isFlow flowGap={40}>
+			<Lism isFlow {...bodyProps}>
 				{children}
 			</Lism>
-		</Box>
+		</Stack>
 	);
 }

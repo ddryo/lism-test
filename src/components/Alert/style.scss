@@ -1,26 +1,29 @@
-:where(.b--alert){
-	--c--icon: inherit;
-}
-.b--alert{
-	--keyColor: var(--color--main);
+:where(.b--alert) {
+	--icon-c: inherit;
 	--p: var(--space--35);
 	--gap: var(--space--35);
 	--p--sm: var(--space--40);
 	--gap--sm: var(--space--40);
 }
-.b--alert__icon{
-	--ls--icon--scale: 1.125;
-	color: var(--c--icon);
-}
 
+// .-scale: で上書きできる詳細度で
+:where(.b--alert__icon > .e--icon){
+	scale: 1.125;
+}
+// .b--alert{}
 // .b--alert__body{}
 
+.b--alert__icon{
+	color: var(--icon-c);
+}
+.b--alert[data-variant="cbox"]{
+	--icon-c: var(--cbox);
+}
 .b--alert[data-variant="fill"] {
-	--color--link: currentColor;
-	background-color: var(--keyColor);
-	color: #fff;
+	--c--link: currentColor;
 }
 .b--alert[data-variant="outline"]{
-	--c--icon: var(--keyColor);
-	border: solid 1px var(--keyColor);
+	--icon-c: var(--bdc);
+	border: solid 1px var(--bdc);
+	// color: color-mix(in srgb-linear, var(--bdc), var(--c--text) 90%);
 }

@@ -1,30 +1,46 @@
 import React from 'react';
 import { getCommonProps } from '../../lib';
-import { InlineIcon } from './index';
-// import classnames from 'classnames';
+import classnames from 'classnames';
 
-// align: full, wide, ''
-function Icon({ icon, label, size = '1em', width, height, ...props }) {
-	const { className, style, attrs } = getCommonProps(props, { lismClass: 'l--icon' });
+export default function Icon({ icon, label, size = '1em', scale, width, height, ...props }) {
+	const { className, style, attrs } = getCommonProps(props, { lismClass: 'e--icon' });
 
-	const blockProps = {
-		className,
+	// label の有無でaria属性を変える
+	const iconProps = {
+		// className: classnames(className, icon?.props?.className),
 		style,
+		...(label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true }),
 		...attrs,
 	};
 
-	const iconProps = {
-		icon,
-		label,
-		width: width || size,
-		height: height || size,
-	};
+	if (scale) {
+		iconProps.style['--scale'] = scale;
+	}
 
-	return (
-		<div {...blockProps}>
-			<InlineIcon {...iconProps} />
-		</div>
-	);
+	// cssでアイコンを描画する場合
+	if (typeof icon === 'string') {
+		if ('1em' !== size) iconProps.style['--size'] = size;
+		return <span className={className} data-css-icon={icon} {...iconProps}></span>;
+	}
+
+	//以下、普通にsvg
+	// label の有無でaria属性を変える
+	iconProps.width = width || size;
+	iconProps.height = height || size;
+
+	// iconがすでにReactElementの場合は、クローンしてprops調整
+	if (React.isValidElement(icon)) {
+		return React.cloneElement(icon, {
+			className: classnames(className, icon?.props?.className),
+			...iconProps,
+		});
+	}
+
+	// component関数が渡されてきた場合は、それを使う
+	if (typeof icon === 'function' || typeof icon === 'object') {
+		const TheIcon = icon;
+		return <TheIcon className={className} {...iconProps} />;
+	}
+
+	return null;
 }
-
-export default Icon;

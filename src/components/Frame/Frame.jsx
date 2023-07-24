@@ -1,6 +1,8 @@
 import React from 'react';
 import { Lism } from '../Lism';
 import { Layer } from '../Layer';
+import { Center } from '../Center';
+
 import classnames from 'classnames';
 // import { getMediaLayer, getFilterLayer } from '../helper';
 
@@ -32,12 +34,18 @@ export default function Frame({ children, style = {}, ratio = '16:9', isPortrait
 	);
 }
 
-export const FrameContent = ({ children, className, ...props }) => {
+export const FrameContent = ({ children, ...props }) => {
 	const ContentProps = {
-		className: classnames('l--frame__content', className),
-		position: 'cover',
+		// className: classnames('l--frame__content', className),
+		size: 'cover',
+		z: 1,
+		p: 40,
 		...props,
 	};
 
-	return <Layer {...ContentProps}>{children}</Layer>;
+	return (
+		<Layer {...ContentProps}>
+			<Center data-fit='parent'>{children}</Center>
+		</Layer>
+	);
 };

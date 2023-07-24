@@ -1,10 +1,11 @@
 import { getMaybeSpaceVar, getMaybeColorVar, getMaybeShadowVar } from '../index.js';
 
-// ユーティリティ化し得るもの: utilCheckKey or presetCheckKey を指定する
-// onlyStyle: ユーティリティ化できない時に、単純にスタイルにだけ出力するかどうか
+// ユーティリティ化し得るもの: utilKeys or presets を指定する
+// onlyStyle: ユーティリティ化できない時に、単純にスタイルにだけ出力するかどうか.
+//    → skipEmpUtil ?
 
-const mgOption = { utilCheckKey: 'margin', converter: getMaybeSpaceVar };
-const pdOption = { presetCheckKey: 'space', converter: getMaybeSpaceVar };
+const mgOption = { utilKeys: 'margin', converter: getMaybeSpaceVar };
+const pdOption = { presets: 'space', converter: getMaybeSpaceVar };
 
 export default {
 	common: {
@@ -13,48 +14,83 @@ export default {
 		maxH: { styleKey: 'maxHeight' },
 		minH: { styleKey: 'minHeight' },
 		opacity: { styleKey: 'opacity' },
-		lts: { styleKey: 'letterSpacing' }, // utilityあってもいい
-		fw: { styleKey: 'fontWeight' }, // utilityあってもいい
 		bd: { options: {} },
 		bdw: { options: {} },
 
-		mbs: { name: 'mbs', options: { presetCheckKey: 'space' } },
-		radius: { name: 'bdrs', options: { presetCheckKey: 'radius' } },
-		shadow: { name: 'bxsh', options: { presetCheckKey: 'shadow' } },
-		lh: { name: 'lh', options: { presetCheckKey: 'lh' } },
-		fz: { name: 'fz', options: { presetCheckKey: 'fz' } },
-		ta: { name: 'ta', options: { utilCheckKey: 'ta', onlyStyle: 1, styleKey: 'textAlign' } },
-		ga: { name: 'ga', options: { presetCheckKey: 'ga' } }, // grid-area
+		c: { options: { presets: 'color', converter: getMaybeColorVar } },
+		bgc: { options: { presets: 'color', converter: getMaybeColorVar } },
+		bdc: { options: { converter: getMaybeColorVar } },
+
+		//transform
+		translate: {
+			options: { utilKeys: 'translate', onlyStyle: 1, styleKey: 'translate' },
+		},
+		scale: { options: {} },
+
+		// position
+		inset: { options: { presets: 'inset', onlyStyle: 1, styleKey: 'inset' } },
+		top: {
+			name: 't',
+			options: { presets: 'inset', utilKeys: 'insets', onlyStyle: 1, styleKey: 'top' },
+		},
+		left: {
+			name: 'l',
+			options: { presets: 'inset', utilKeys: 'insets', onlyStyle: 1, styleKey: 'left' },
+		},
+		right: {
+			name: 'r',
+			options: { presets: 'inset', utilKeys: 'insets', onlyStyle: 1, styleKey: 'right' },
+		},
+		bottom: {
+			name: 'b',
+			options: { presets: 'inset', utilKeys: 'insets', onlyStyle: 1, styleKey: 'bottom' },
+		},
+		z: { options: { presets: 'z', onlyStyle: 1, styleKey: 'zIndex' } },
+
+		mbs: { name: 'mbs', options: { presets: 'space' } },
+		radius: { name: 'bdrs', options: { presets: 'radius' } },
+		shadow: { name: 'bxsh', options: { presets: 'shadow' } },
+		lh: { options: { presets: 'lh' } },
+		fz: { options: { presets: 'fz' } },
+		lts: { styleKey: 'letterSpacing' }, // utilityあってもいい
+		fw: {
+			options: {
+				presets: 'fw',
+				utilKeys: 'fw',
+				onlyStyle: 1,
+				styleKey: 'fontWeight',
+			},
+		},
+		ta: { options: { utilKeys: 'ta', onlyStyle: 1, styleKey: 'textAlign' } },
+		// pos: { options: { utilKeys: 'pos', onlyStyle: 1, styleKey: 'position' } },
 
 		// BP対応
-		w: { name: 'w', BP: 1, options: {} },
-		h: { name: 'h', BP: 1, options: {} },
-		pl: { name: 'pl', BP: 1, options: { converter: getMaybeSpaceVar } },
-		pr: { name: 'pr', BP: 1, options: { converter: getMaybeSpaceVar } },
-		pt: { name: 'pt', BP: 1, options: { converter: getMaybeSpaceVar } },
-		pb: { name: 'pb', BP: 1, options: { converter: getMaybeSpaceVar } },
-		pX: { name: 'pX', BP: 1, options: pdOption },
-		pY: { name: 'pY', BP: 1, options: pdOption },
-		ml: { name: 'ml', BP: 1, options: mgOption },
-		mr: { name: 'mr', BP: 1, options: mgOption },
-		mt: { name: 'mt', BP: 1, options: mgOption },
-		mb: { name: 'mb', BP: 1, options: mgOption },
-		mX: { name: 'mX', BP: 1, options: mgOption },
-		mY: { name: 'mY', BP: 1, options: mgOption },
+		w: { BP: 1, options: { utilKeys: 'size' } },
+		h: { BP: 1, options: { utilKeys: 'size' } },
+		pl: { BP: 1, options: { converter: getMaybeSpaceVar } },
+		pr: { BP: 1, options: { converter: getMaybeSpaceVar } },
+		pt: { BP: 1, options: { converter: getMaybeSpaceVar } },
+		pb: { BP: 1, options: { converter: getMaybeSpaceVar } },
+		pX: { BP: 1, options: pdOption },
+		pY: { BP: 1, options: pdOption },
+		ml: { BP: 1, options: mgOption },
+		mr: { BP: 1, options: mgOption },
+		mt: { BP: 1, options: mgOption },
+		mb: { BP: 1, options: mgOption },
+		mX: { BP: 1, options: mgOption },
+		mY: { BP: 1, options: mgOption },
 		p: {
-			name: 'p',
 			BP: 1,
 			options: {
 				...pdOption,
 				objProcessor: (d) => {
 					// {top,left,...} の場合の処理
-					const presetCheckKey = d === 'X' || d === 'Y' ? 'space' : '';
-					return { name: `p${d[0]}`, options: { presetCheckKey } };
+					const presets = d === 'X' || d === 'Y' ? 'space' : '';
+					return { name: `p${d[0]}`, options: { presets } };
 				},
 			},
 		},
 		m: {
-			name: 'm',
 			BP: 1,
 			options: {
 				...mgOption,
@@ -62,33 +98,25 @@ export default {
 				objProcessor: (d) => ({ name: `m${d[0]}` }),
 			},
 		},
+
+		// isItem
+		ga: { options: { utilKeys: 'ga' } }, // grid-area
+		fxg: { BP: 1, styleKey: '--fxg' },
+		fxsh: { BP: 1, styleKey: '--fxsh' },
 	},
 	isFlow: {
-		flowGap: { name: 'flowGap', BP: 0, options: { presetCheckKey: 'space' } },
+		flowGap: { BP: 0, options: { presets: 'space' } },
 	},
 	// isFlex & isGrid
 	isFlexGrid: {
-		ai: {
-			name: 'ai',
-			options: { utilCheckKey: 'place', onlyStyle: 1, styleKey: 'alignItems' },
-		},
-		ac: {
-			name: 'ac',
-			options: { utilCheckKey: 'place', onlyStyle: 1, styleKey: 'alignContent' },
-		},
-		ji: {
-			name: 'ji',
-			options: { utilCheckKey: 'place', onlyStyle: 1, styleKey: 'justifyItems' },
-		},
-		jc: {
-			name: 'jc',
-			options: { utilCheckKey: 'place', onlyStyle: 1, styleKey: 'justifyContent' },
-		},
+		ai: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignItems' } },
+		ac: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignContent' } },
+		ji: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyItems' } },
+		jc: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyContent' } },
 		gap: {
-			name: 'gap',
 			BP: 1,
 			options: {
-				presetCheckKey: 'space',
+				presets: 'space',
 				converter: getMaybeSpaceVar,
 				// {row, clm} の場合の処理
 				objProcessor: (d) => ({ name: `${d}g` }),
@@ -96,19 +124,16 @@ export default {
 		},
 	},
 	isGrid: {
-		gta: { name: 'gta', BP: 1, options: { skipBaseUtil: 1 } },
-		gtc: { name: 'gtc', BP: 1, options: { skipBaseUtil: 1 } },
-		gtr: { name: 'gtr', BP: 1, options: { skipBaseUtil: 1 } },
+		gta: { BP: 1, options: { skipBaseUtil: 1 } },
+		gtc: { BP: 1, options: { skipBaseUtil: 1 } },
+		gtr: { BP: 1, options: { skipBaseUtil: 1 } },
 	},
 	isFlex: {
-		fxw: { name: 'fxw', options: { utilCheckKey: 'wrap' } },
-		fxd: { name: 'fxd', BP: 1, options: { skipBaseUtil: 1 } },
+		fxw: { options: { utilKeys: 'wrap' } },
+		fxd: { BP: 1, options: { skipBaseUtil: 1 } },
 	},
 	isItem: {
-		// flex: 'fx',
 		fx: { BP: 1, styleKey: '--fx' },
-		fxg: { BP: 1, styleKey: '--fxg' },
-		fxsh: { BP: 1, styleKey: '--fxsh' },
 		fxb: { BP: 1, styleKey: '--fxb' },
 		gc: { BP: 1, styleKey: '--gc' },
 		gr: { BP: 1, styleKey: '--gr' },

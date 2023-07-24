@@ -17,6 +17,13 @@
 	flex: var(--fx);
 }
 
+// isItem使わず直接クラス指定できるように変数にはしていない
+.-fxg\:1{flex-grow: 1;}
+.-fxg\:0{flex-grow: 0;}
+.-fxsh\:1{flex-shrink: 1;}
+.-fxsh\:0{flex-shrink: 0;}
+
+
 
 // row/column が基本で、area指定があればそっち優先
 :where(.is--grid > .is--item) {
@@ -35,17 +42,19 @@
 }
 
 
-$gas: fluid, fix, header, footer, body;
-@each $ga in $gas {
-  .-ga\:#{$ga} {--ga: #{$ga};}
-}
+.-ga\:fix{--ga: fix;}
+// .-ga\:header{--ga: header;}
+// .-ga\:footer{--ga: footer;}
+// .-ga\:body{--ga: body;}
+
+.-ga\:l{--ga: left;}
+.-ga\:r{--ga: right;}
+.-ga\:c{--ga: center;}
 
 
 // -self系 → そこまで使われるものではないのでシンプルにstyle属性で出力.
 // .-as\:{align-self:var(--as) !important;}
 // .-js\:{justify-self:var(--js) !important;}
-
-
 
 // base値がinlineスタイルなので、importantで上書きする必要がある。→ だったら変数上書きではなく普通にプロパティ名　sで指定すべき...？
 @include query.cq('sm'){

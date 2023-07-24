@@ -1,81 +1,55 @@
-.l--button{
-	// --gap: .25em;
-	--btn--c: var(--color--main);
-	--icon-scale: 1.25;
+:where(.l--button){
+	--p: var(--space--30) var(--space--40);
+	--icon-scale: 1.25; // offsetとバランス合わせる
 	--icon-offset: 25%;
-	--gap--default: .25em;
-
-	align-items: center;
-	display: flex;
-	justify-content: center;
-	gap: var(--gap);
+	--bdrs: var(--radius--1);
+}
+.l--button{
+	line-height: 1.5;
 	text-decoration: none;
-	min-width: 2em;
-    position: relative;
-    text-decoration: none;
+	width: fit-content;
+	// min-width: 2em;
 }
 
-.l--button[data-variant="fill"]{
-	--bgc: var(--btn--c);
-	--c: #fff;
-	background-color: var(--bgc);
-	border: solid 1px var(--btn--c); // reverse用
-	color: var(--c);
-}
-.l--button[data-variant="outline"]{
-	--bgc: transparent;
-	--c: var(--btn--c);
-	background-color: var(--bgc);
-	border: solid 1px var(--btn--c); // reverse用
-	color: var(--c);
-
-	&.-hov\:reverse:hover{
-		--bgc: #fff;
-	}
+:where(.l--button[data-variant="fill"]) {
+	border: solid 1px var(--bgc); // reverse用
 }
 
-.l--button[data-variant="text"]{
-	--c: var(--btn--c);
-	color: var(--c);
+// .-hov\:reverse
+:where(.l--button[data-variant="outline"]) {
+	border: solid 1px var(--c); // reverse用
+	--bgc: #fff; // reverse用
+}
 
-	&.-hov\:reverse:hover{
-		--bgc: #fff;
-	}
+:where(.l--button[data-variant="text"]) {
+	--bgc: #fff; // reverse用
 }
 
 .l--button__text {
-    min-width: 1em;
-    // z-index: 0;
 	overflow-wrap: anywhere;
 }
 
-.l--button[data-icon-position="edge"] {
-	display: grid;
-	grid-template-areas: "l c r";
-	grid-template-columns: 1em 1fr 1em;
-	> .l--button__icon[data-position="left"] {
-		grid-area: l;
-	}
-	> .l--button__icon[data-position="right"] {
-		grid-area: r;
-	}
-	> .l--button__text {
-		grid-area: c;
-		justify-self: center;
-		// margin-inline: auto;
-	}
+
+// .l--button[data-icon-position="edge"],
+.l--button.is--grid {
+	--gta: "left center right";
+	--gtc: 1em 1fr 1em;
 }
+.is--grid > .l--button__text {
+	justify-self: center;
+}
+
+// .l--button[data-icon-offset="0"]{
+// 	--icon-offset: 0;
+// }
 
 .l--button__icon {
-    flex-shrink: 0;
-
+	scale: var(--icon-scale);
 	&[data-position="left"] {
-		transform: scale(var(--icon-scale)) translateX(calc(0px - var(--icon-offset)));
+		translate: calc(0px - var(--icon-offset));
 	}
 	&[data-position="right"] {
-		transform: scale(var(--icon-scale)) translateX(var(--icon-offset));
+		translate: var(--icon-offset);
 	}
 }
-.l--button[data-icon-offset="0"]{
-	--icon-offset: 0;
-}
+

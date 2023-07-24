@@ -6,16 +6,6 @@
 	height: fit-content; // grid系直下においた時などに、align-items: strech; の影響で引き伸ばされないようにする
 	overflow: hidden; // radiusが見えるように
 
-	// ::before でやらないのは、ブロックエディターを考慮しているため
-	>.l--frame__placeholder{
-		padding-bottom: calc(var(--n) / var(--d) * 100%);
-	}
-
-	// 縦横比を反転して縦長にする
-	&[data-direction="portrait"] > .l--frame__placeholder{
-		padding-bottom: calc(var(--d) / var(--n) * 100%);
-	}
-
 	&[data-ratio="16:9"]{
 		--d: 16;
 		--n: 9;
@@ -51,10 +41,20 @@
 
 }
 
-// MediaLayer などとともに使われることを想定
-.l--frame__content{
-	z-index: 1;
+// ::before でやらないのは、ブロックエディターを考慮しているため
+.l--frame__placeholder{
+	padding-bottom: calc(var(--n) / var(--d) * 100%);
 }
+
+// 縦横比を反転して縦長にする
+[data-direction="portrait"] > .l--frame__placeholder{
+	padding-bottom: calc(var(--d) / var(--n) * 100%);
+}
+
+// MediaLayer などとともに使われることを想定
+// .l--frame__content{
+// 	z-index: 1;
+// }
 
 // utility化する？
 // .l--frame__media{

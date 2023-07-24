@@ -123,19 +123,6 @@
 	--fxw: nowrap !important;
 }
 
-.-fxg\:1{
-	--fxg: 1;
-}
-.-fxg\:0{
-	--fxg: 0;
-}
-.-fxsh\:1{
-	--fxsh: 1;
-}
-.-fxsh\:0{
-	--fxsh: 0;
-}
-
 // align-items
 .-ai\:{
 	align-items: var(--ai) !important;

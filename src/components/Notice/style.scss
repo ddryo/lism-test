@@ -1,73 +1,61 @@
 
 // 一括で上書き調整しやすいように、paddingなどはCSS側で変数指定...？→ ブロックの時はそれでいい。
-.b--notice{
-	--keyColor: var(--color--main);
-	// --p--sm: var(--space--40);
+:where(.b--notice){
+	// --keyColor: var(--c--main);
+	--p: var(--space--40);
+	--p--sm: var(--space--45);
 }
 .b--notice__icon{
 	margin-left: -0.125em;
 }
 
 .b--notice__head{
-	line-height: 1.5;
+	line-height: 1.625;
 }
 
 :where(.b--notice[data-variant="cbox"]) {
 	> .b--notice__head{
-		margin-bottom: var(--space--40);
-		color: var(--c--icon);
-		font-weight: bold;
+		// margin-bottom: var(--p);
+		// color: var(--cbox);
+		// font-weight: bold;
 	}
 }
 
 .b--notice[data-variant="fill"] {
-	border: solid 1px var(--keyColor);
+	border: solid 1px var(--bdc);
 
 	:where(&) > .b--notice__head{
-		padding: var(--space--30) var(--space--40);
-		background-color: var(--keyColor);
-		color: #fff;
+		--pY: var(--space--30);
+		--pY--sm: var(--space--30);
 	}
-	:where(&) .b--notice__body{
-		padding: var(--space--30);
-		// color: var(--color--text);
-	}
+
 }
 
 
 .b--notice[data-variant="outline"] {
-	border: solid 1px var(--keyColor);
-	padding: var(--space--40);
-	// position: relative;
-
-	:where(&) > .b--notice__head{
-		color: var(--keyColor);
-		margin-bottom: var(--space--30);
-		font-weight: bold;
-	}
-
+	border: solid 1px var(--bdc);
 }
 
 
-.b--notice[data-variant="online"] {
-	border: solid 1px var(--keyColor);
-	padding: var(--space--40);
+.b--notice[data-variant="onbd"] {
+	border: solid 1px var(--bdc);
 	position: relative;
 
 	:where(&) > .b--notice__head{
-		color: var(--keyColor);
-		background-color: var(--color--base);
+		color: var(--bdc);
+		background-color: var(--c--bg);
 		// margin-bottom: var(--space--30);
 		font-weight: bold;
 
 		position: absolute;
 		top: 0;
 		left: 0;
-		margin-inline: var(--space--30);
+		margin-inline: var(--space--40);
 		transform: translateY(-50%);
 	}
 
 	:where(&) > .b--notice__body{
-		margin-top: var(--space--20);
+		translate: 0 var(--space--10);
+		// margin-top: var(--space--10);
 	}
 }

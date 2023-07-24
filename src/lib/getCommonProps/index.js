@@ -35,6 +35,7 @@ const propFullNames = {
 	margin: 'm',
 	border: 'bd',
 	// width: 'w',
+	// height: 'h',
 };
 
 class CommonProps {
@@ -51,7 +52,8 @@ class CommonProps {
 			className,
 			blockClass,
 			lismClass,
-			utility, // ユーザーがコンポーネントに指定できる?
+			_util,
+			// utility, // ユーザーがコンポーネントに指定できる?
 			blockStyle = {},
 			style = {},
 
@@ -71,14 +73,6 @@ class CommonProps {
 
 		this.styles = { ...blockStyle, ...style };
 
-		// padding, margin, border はフルネームも受け取れるように（あとで消す？）
-		// Object.keys(propFullNames).forEach((_name) => {
-		// 	if (null != others[_name]) {
-		// 		others[propFullNames[_name]] = others[_name];
-		// 		delete others[_name];
-		// 	}
-		// });
-
 		this.className = classnames(
 			blockClass, // b--
 			lismClass, // l--
@@ -96,11 +90,20 @@ class CommonProps {
 				alignfull,
 				alignwide,
 			},
-			utility
+			_util
+			// utility
 		);
 
 		// propsの処理
 		if (others) {
+			// padding, margin, border はフルネームも受け取れるように
+			Object.keys(propFullNames).forEach((_name) => {
+				if (null != others[_name]) {
+					others[propFullNames[_name]] = others[_name];
+					delete others[_name];
+				}
+			});
+
 			this.attrs = others;
 
 			// propリストのセット
@@ -140,14 +143,14 @@ class CommonProps {
 				const propVal = this.extractProp(propName);
 				this.setHoverProps(propVal);
 				return;
-			} else if ('c' === propName || 'bgc' === propName) {
+			} else if ('cbox' === propName) {
 				const propVal = this.extractProp(propName);
-				this.setColorProps(propName, propVal, true);
-				return;
-			} else if ('bdc' === propName) {
-				const propVal = this.extractProp(propName);
-				this.setColorProps(propName, propVal, false);
-				return;
+				if (isPresetValue('cbox', propVal)) {
+					this.addUtil(`-cbox:${propVal}`);
+				} else {
+					this.addUtil(`-cbox:`);
+					this.addStyle('--cbox', propVal);
+				}
 			}
 
 			if (propFullNames[propName]) propName = propFullNames[propName];
@@ -161,10 +164,10 @@ class CommonProps {
 			const propVal = this.attrs[propName];
 			delete this.attrs[propName];
 
-			const { styleKey, BP, options, name } = propData;
+			const { name, styleKey, BP, options } = propData;
 
 			// styleへの出力のみ
-			if (styleKey) {
+			if (styleKey && !options) {
 				// BP対応あり/なしで分岐
 				if (BP) {
 					const propVals = getPropBpObj(propVal);
@@ -261,11 +264,11 @@ class CommonProps {
 	// 方向成分などがなく、値をそのまま処理できるprop.
 	// data: {_, sm, md, ...} 形式で渡ってくる.
 	setAttrsByBpObj(name, data, options = {}) {
-		const { skipBaseUtil, presetCheckKey, utilCheckKey, converter, objProcessor } = options;
+		const { skipBaseUtil, presets, utilKeys, converter, objProcessor } = options;
 
 		Object.keys(data).forEach((bp) => {
 			const val = data[bp];
-			const switchOption = { presetCheckKey, utilCheckKey, converter, skipBaseUtil };
+			const switchOption = { presets, utilKeys, converter, skipBaseUtil };
 
 			// 方向成分を持つ場合の処理
 			if (typeof val === 'object') {
@@ -298,8 +301,7 @@ class CommonProps {
 	swichAttrs(name, val, options = {}) {
 		if (!name || null == val) return;
 
-		const { presetCheckKey, utilCheckKey, styleKey, onlyStyle, skipBaseUtil, converter } =
-			options;
+		const { presets, utilKeys, styleKey, onlyStyle, skipBaseUtil, converter } = options;
 		const styleName = styleKey || `--${name}`;
 		const utilName = `-${name}:`;
 
@@ -311,11 +313,12 @@ class CommonProps {
 
 		// util化できるかチェック
 		let utilVal = '';
-		if (presetCheckKey && isPresetValue(presetCheckKey, val)) {
+		if (presets && isPresetValue(presets, val)) {
 			this.addUtil(`${utilName}${val}`);
 			return;
-		} else if (utilCheckKey) {
-			utilVal = getUtilVal(utilCheckKey, val);
+		}
+		if (utilKeys) {
+			utilVal = getUtilVal(utilKeys, val);
 			if (utilVal) {
 				this.addUtil(`${utilName}${utilVal}`);
 				return;
@@ -351,21 +354,6 @@ class CommonProps {
 		this.addUtil(utilName);
 		this.addStyle(styleName, val);
 	}
-
-	setColorProps(name, val, useUtil = true) {
-		if (useUtil && isPresetValue('color', val)) {
-			this.addUtil(`-${name}:${val}`);
-		} else if (isPresetValue('colorPallete', val)) {
-			// パレットカラーもユーティリティ化するかは要検討
-			const palleteColor = val.replace('.', '-');
-			this.addStyle(`--${name}`, `var(--${palleteColor})`);
-			this.addUtil(`-${name}:`);
-		} else {
-			this.addStyle(`--${name}`, getMaybeColorVar(val));
-			this.addUtil(`-${name}:`);
-			// styles.color = color;
-		}
-	}
 }
 
 /**
@@ -380,8 +368,9 @@ class CommonProps {
 // 一括していpropは、 "prop", "props" で分けて指定する。 padding:{X:20,Y:20} paddingQs:{sm:10,md:20} みたいな
 // それ以外は、"prop" にオブジェクトを渡すとクエリ指定できる。 w:{_:'100%',sm:'50%'} みたいな
 // or, "propQs" として統一する？ wQs, gapQs, paddingQs, marginQs...
+
 export default function getCommonProps(props, options = {}) {
-	const beforeMethod = performance.now();
+	// const beforeMethod = performance.now();
 
 	props = { ...options, ...props }; // options:初期値などが渡ってくる
 
@@ -395,9 +384,11 @@ export default function getCommonProps(props, options = {}) {
 
 	const CP = new CommonProps(props);
 
-	const afterMethod = performance.now();
-	const theTime = afterMethod - beforeMethod;
-	console.log('TIME ' + theTime + ' ms');
+	// const afterMethod = performance.now();
+	// const theTime = afterMethod - beforeMethod;
+	// if (theTime > 0) {
+	// console.log('TIME ' + theTime + ' ms');
+	// }
 
 	return {
 		className: classnames(CP.className, CP.utilityClasses),

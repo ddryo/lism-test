@@ -12,7 +12,7 @@ export { LinkBox } from './LinkBox';
 export { Reel } from './Reel';
 export { SideFix, SideFixGrid } from './SideFix';
 export { Divider } from './Divider';
-export { Icon, InlineIcon } from './Icon';
+export { Icon, InlineIcon, BlockIcon } from './Icon';
 export { Grid } from './Grid';
 export { TileGrid } from './TileGrid';
 export { RatioGrid } from './RatioGrid';

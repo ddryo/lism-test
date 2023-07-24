@@ -2,6 +2,35 @@
 	position: relative;
 }
 
+.-inset\:0{
+	inset: 0;
+}
+.-t\:0{top: 0;}
+.-t\:50{top: 50%;}
+.-t\:100{top:100%;}
+.-l\:0{left: 0;}
+.-l\:50{left: 50%;}
+.-l\:100{left:100%;}
+.-r\:0{right: 0;}
+.-r\:50{right: 50%;}
+.-r\:100{right:100%;}
+.-b\:0{bottom: 0;}
+.-b\:50{bottom: 50%;}
+.-b\:100{bottom:100%;}
+
+.-z\:0{z-index: 0;}
+.-z\:1{z-index: 1;}
+
+
+// transform
+// trf:t-50
+// trf:tx-50
+// trf:ty-50
+
+.-translate\:XY\:-50{translate: -50% -50%;}
+.-translate\:X\:-50{translate: -50% 0;}
+.-translate\:Y\:-50{translate: 0 -50%;}
+
 // --------------------
 // Layer
 // --------------------
@@ -18,80 +47,74 @@
 	// 	position: fixed;
 	// }
 
-	&[data-position="top left"] {
-		top: 0;
-		left: 0;
-	}
-	&[data-position="top right"] {
-		top: 0;
-		right: 0;
-	}
-	&[data-position="top center"] {
-		top: 0;
-		left: 50%;
-		transform: translate(-50%, 0);
-	}
-	&[data-position="bottom left"] {
-		bottom: 0;
-		left: 0;
-	}
-	&[data-position="bottom right"] {
-		bottom: 0;
-		right: 0;
-	}
-	&[data-position="bottom center"] {
-		bottom: 0;
-		left: 50%;
-		transform: translate(-50%, 0);
-	}
-	&[data-position="center left"] {
-		top: 50%;
-		left: 0;
-		transform: translate(0, -50%);
-	}
-	&[data-position="center right"] {
-		top: 50%;
-		right: 0;
-		transform: translate(0, -50%);
-	}
-	&[data-position="center"] {
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-	
-	// 親要素のサイズを超えないようにする設定
-	&[data-position="cover"] {
-		inset: 0;
-		overflow-y: auto;
-
-		// コンテンツを上下中央に寄せる
-		display: flex;
-		flex-direction: column;
-		// align-items: center;
-		// justify-content: center;
-	
-		> :first-child{
-			margin-top: auto;
-		}
-		> :last-child{
-			margin-bottom: auto;
-		}
-
-
-	}
-
-	// &[data-fit="center"] {
+	// &[data-position="top left"] {
+	// 	top: 0;
+	// 	left: 0;
+	// }
+	// &[data-position="top right"] {
+	// 	top: 0;
+	// 	right: 0;
+	// }
+	// &[data-position="top center"] {
+	// 	top: 0;
+	// 	left: 50%;
+	// 	transform: translate(-50%, 0);
+	// }
+	// &[data-position="bottom left"] {
+	// 	bottom: 0;
+	// 	left: 0;
+	// }
+	// &[data-position="bottom right"] {
+	// 	bottom: 0;
+	// 	right: 0;
+	// }
+	// &[data-position="bottom center"] {
+	// 	bottom: 0;
+	// 	left: 50%;
+	// 	transform: translate(-50%, 0);
+	// }
+	// &[data-position="center left"] {
+	// 	top: 50%;
+	// 	left: 0;
+	// 	transform: translate(0, -50%);
+	// }
+	// &[data-position="center right"] {
+	// 	top: 50%;
+	// 	right: 0;
+	// 	transform: translate(0, -50%);
+	// }
+	// &[data-position="center"] {
 	// 	top: 50%;
 	// 	left: 50%;
-	// 　--width: max-content;
-	// 	max-width: 100%;
 	// 	transform: translate(-50%, -50%);
 	// }
+	
+	// 親要素のサイズを超えないようにする設定
+	&[data-size="cover"] {
+		inset: 0;
+		// overflow-y: auto;
+
+		// // コンテンツを上下中央に寄せる
+		// display: flex;
+		// flex-direction: column;
+		// // align-items: center;
+		// // justify-content: center;
+	
+		// > :first-child{
+		// 	margin-top: auto;
+		// }
+		// > :last-child{
+		// 	margin-bottom: auto;
+		// }
+
+	}
+
+	// data-size = cover,fit,contain
+
 
 
 	// 親要素をはみ出さないようにする. cover のときには不要
-	&[data-contain="1"] {
+	&[data-size="contain"] {
 		max-width: 100%;
 		max-height: 100%;
 		// overflow-y: auto;
@@ -108,23 +131,17 @@
 	// }
 }
 
-.l--layer--media {
-	position: absolute;
-	inset: 0;
-	overflow: hidden;
-	// overflow-y: auto;
-
-	// media
-	> img,
-	> video {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-	}
-}
-
+.l--layer--media,
 .l--layer--filter {
 	position: absolute;
 	inset: 0;
+	overflow: hidden;
+}
+
+.l--layer--media > img,
+.l--layer--media > video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
 }

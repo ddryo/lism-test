@@ -1,0 +1,39 @@
+@use "../query" as query;
+
+// memo: Tree Shakingを考えて、クエリ関連はバラすべき
+:where(.is--grid){
+	--gta: none;
+	--gtc: none;
+	--gtr: none;
+
+	display: grid;
+	grid-template-areas: var(--gta);
+	grid-template-columns: var(--gtc);
+	grid-template-rows: var(--gtr);
+}
+
+// グリッドには適用していたおいたほうがよさそう . ?
+:where(.is--grid > .is--item) {
+	overflow-wrap: anywhere;
+}
+
+@include query.cq('sm'){
+	.-gta\@sm\:{--gta: var(--gta--sm) !important;}
+	.-gtc\@sm\:{--gtc: var(--gtc--sm) !important;}
+	.-gtr\@sm\:{--gtr: var(--gtr--sm) !important;}
+}
+@include query.cq('md'){
+	.-gta\@md\:{--gta: var(--gta--md) !important;}
+	.-gtc\@md\:{--gtc: var(--gtc--md) !important;}
+	.-gtr\@md\:{--gtr: var(--gtr--md) !important;}
+}
+@include query.cq('lg'){
+	.-gta\@lg\:{--gta: var(--gta--lg) !important;}
+	.-gtc\@lg\:{--gtc: var(--gtc--lg) !important;}
+	.-gtr\@lg\:{--gtr: var(--gtr--lg) !important;}
+}
+@include query.cq('xl'){
+	.-gta\@xl\:{--gta: var(--gta--xl) !important;}
+	.-gtc\@xl\:{--gtc: var(--gtc--xl) !important;}
+	.-gtr\@xl\:{--gtr: var(--gtr--xl) !important;}
+}

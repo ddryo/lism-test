@@ -1,28 +1,43 @@
 :where(.l--button){
+	// --keycolor: var(--c--main);
 	--p: var(--space--30) var(--space--40);
 	--icon-scale: 1.25; // offsetとバランス合わせる
 	--icon-offset: 25%;
 	--bdrs: var(--radius--1);
+	// --c: var(--keycolor);
+	--bdc: transparent;
+	// --bgc: transparent;
 }
 .l--button{
 	line-height: 1.5;
 	text-decoration: none;
 	width: fit-content;
+	color: var(--c);
+	background-color: var(--bgc);
+	border: solid 1px var(--bdc); // アウトラインと並べたときにサイズに差がでないように
 	// min-width: 2em;
 }
 
-:where(.l--button[data-variant="fill"]) {
-	border: solid 1px var(--bgc); // reverse用
+.l--button[data-variant="fill"] {
+	// --keycolor: var(--c--main);
+	--bdc: var(--bgc); // reverse用
+	// --bgc: var(--keycolor);
+	--c: #fff;
 }
 
-// .-hov\:reverse
-:where(.l--button[data-variant="outline"]) {
-	border: solid 1px var(--c); // reverse用
-	--bgc: #fff; // reverse用
+
+.l--button[data-variant="outline"]{
+	--bdc: var(--keycolor);
+	--c: var(--bdc); // bdc上書きするだけで --c も変わる
+
+	// reverse用
+	--rev--bgc: var(--bdc);
+	--rev--c: #fff;
 }
 
-:where(.l--button[data-variant="text"]) {
-	--bgc: #fff; // reverse用
+.l--button[data-variant="text"]{
+	// color: var(--keycolor);
+	--rev--c: #fff; // reverse用
 }
 
 .l--button__text {

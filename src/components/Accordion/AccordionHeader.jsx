@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Lism } from '../Lism';
-import { InlineIcon, Icon } from '../Icon';
+import { Icon } from '../Icon';
 import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 

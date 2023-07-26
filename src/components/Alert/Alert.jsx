@@ -1,5 +1,5 @@
 import React from 'react';
-import { getMaybeColorVar } from '../../lib';
+// import { getMaybeColorVar } from '../../lib';
 import { Lism } from '../Lism';
 import { BlockIcon } from '../Icon';
 // import { Center } from '../Center';
@@ -106,17 +106,18 @@ export default function Alert({
 	}
 
 	icon = icon || presetIcon;
-	color = color || presetColor;
+	color = color || presetColor || 'main';
+	blockProps.keycolor = color;
 
-	if ('fill' === variant) {
-		blockProps.c = 'white';
-		blockProps.bgc = color;
-	} else if ('outline' === variant) {
-		blockProps.bdc = color;
-	} else if ('cbox' === variant) {
-		color = color || presetColor;
-		blockProps.cbox = color;
-	}
+	// if ('fill' === variant) {
+	// 	// blockProps.c = 'white';
+	// 	blockProps.bgc = color;
+	// } else if ('outline' === variant) {
+	// 	blockProps.bdc = color;
+	// } else if ('cbox' === variant) {
+	// 	color = color || presetColor;
+	// 	blockProps.cbox = color;
+	// }
 
 	// iconProps を渡すことを考えると、アイコンは BlockIcon がいい
 	return (

@@ -33,6 +33,11 @@
 	--c--blue: #0ea5e9;
 	--c--purple: #8b5cf6;
 	--c--pink: #ec4899;
+
+	--mixPercent--bg: 95%;
+	--mixPercent--bdc: 40%;
+
+	// シアンとかも？
 }
 
 
@@ -40,24 +45,28 @@
 [class*="-c:"]{
 	color: var(--c) !important;
 }
-.-c\:base{
-	--c: var(--c--bg);
-}
+
 .-c\:main{
 	--c: var(--c--main);
 }
 .-c\:accent{
 	--c: var(--c--accent);
 }
-.-c\:link{
-	--c:  var(--c--link);
-}
-.-c\:text{
-	--c:  var(--c--text);
-}
-.-c\:gray{
-	--c: var(--c--gray);
-}
+
+// .-c\:bg{
+// 	--c: var(--c--bg);
+// }
+// .-c\:text{
+// 	--c:  var(--c--text);
+// }
+// .-c\:link{
+// 	--c:  var(--c--link);
+// }
+
+
+// .-c\:gray{
+// 	--c: var(--c--gray);
+// }
 .-c\:lightgray{
 	--c: var(--c--lightgray);
 }
@@ -73,26 +82,28 @@
 	background-color: var(--bgc) !important;
 }
 
-.-bgc\:base{
-	--bgc: var(--c--bg);
-}
+
 .-bgc\:main{
 	--bgc: var(--c--main);
 }
 .-bgc\:accent{
 	--bgc: var(--c--accent);
 }
-.-bgc\:text{
-	--bgc:  var(--c--text);
-}
-.-bgc\:link{
-	--bgc:  var(--c--link);
-}
+// .-bgc\:bg{
+// 	--bgc: var(--c--bg);
+// }
+// .-bgc\:text{
+// 	--bgc:  var(--c--text);
+// }
+// .-bgc\:link{
+// 	--bgc:  var(--c--link);
+// }
+
+// .-bgc\:gray{
+// 	--bgc: var(--c--gray);
+// }
 .-bgc\:lightgray{
 	--bgc: var(--c--lightgray);
-}
-.-bgc\:gray{
-	--bgc: var(--c--gray);
 }
 .-bgc\:white{
 	--bgc:#fff;
@@ -103,6 +114,8 @@
 
 
 // #wrapper{
+// 	--mixPercent--bg: 90%;
+// 	--mixPercent--bdc: 40%;
 // 	--c--bg: #000; // 背景色メイン
 // 	--c--text: #fff; // メインカラー
 // 	background-color: var(--c--bg);
@@ -110,136 +123,76 @@
 // }
 
 
-[class*="-cbox:"] {
-	--bdc: color-mix(in srgb-linear, var(--cbox), var(--c--bg) 40%);
-	--c--link: color-mix(in srgb-linear, var(--cbox), var(--c--text) 20%);
+// keycolor
+:where([data-variant="cbox"]){
+	border: solid 1px var(--keycolor);
+	// --icon-c: var(--keycolor);
+}
 
-	color: color-mix(in srgb-linear, var(--cbox), var(--c--text) 92%);
-	background-color: color-mix(in srgb-linear, var(--cbox), var(--c--bg) 96%);
-	border: solid 1px var(--bdc);
-
-	// color: var(--c);
-	// background-color: var(--bgc);
+// color-mixのサポートチェック
+@supports (color: color-mix(in srgb, #000, #fff)) {
+	:where([class*="-keycolor:"][data-variant="cbox"]) {
+		--bdc: color-mix(in srgb, var(--keycolor), var(--c--bg) var(--mixPercent--bdc));
+		--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) 20%);
 	
+		// color: color-mix(in srgb, var(--keycolor), var(--c--text) 90%);
+		background-color: color-mix(in srgb, var(--keycolor), var(--c--bg) var(--mixPercent--bg));
+		border: solid 1px var(--bdc);
+	}
 }
 
 // -cbox: --cを使う?
 
-
-// [class*="-cbox:"]{
-// 	color: var(--c);
-// 	background-color: var(--bgc);
-// 	border: solid 1px var(--bdc);
-// }
-
+// .is-style-outline
 // [data-cbox="outline"]{
 // }
 
-.-cbox\:main{
-	--cbox: var(--c--main);
+// --keycolor : 1つのカラーをもとにスタイリングしたいときに活用する。 cbox,outline,fillなどで使っている
+// .-keycolor\:{&}
+.-keycolor\:main{
+	--keycolor: var(--c--main);
 }
-.-cbox\:gray{
-	--cbox: var(--c--gray);
+.-keycolor\:accent{
+	--keycolor: var(--c--accent);
 }
-.-cbox\:red{
-	--cbox: var(--c--red);
+.-keycolor\:gray{
+	--keycolor: var(--c--gray);
 }
-.-cbox\:orange{
-	--cbox: var(--c--orange);
+.-keycolor\:red{
+	--keycolor: var(--c--red);
 }
-.-cbox\:yellow{
-	--cbox: var(--c--yellow);
+.-keycolor\:orange{
+	--keycolor: var(--c--orange);
 }
-.-cbox\:green{
-	--cbox: var(--c--green);
+.-keycolor\:yellow{
+	--keycolor: var(--c--yellow);
 }
-.-cbox\:blue{
-	--cbox: var(--c--blue);
+.-keycolor\:green{
+	--keycolor: var(--c--green);
 }
-.-cbox\:purple{
-	--cbox: var(--c--purple);
+.-keycolor\:blue{
+	--keycolor: var(--c--blue);
 }
-.-cbox\:pink{
-	--cbox: var(--c--pink);
+.-keycolor\:purple{
+	--keycolor: var(--c--purple);
+}
+.-keycolor\:pink{
+	--keycolor: var(--c--pink);
 }
 
 
-// [class*="-fill:"]{
-// 	--c: #fff; // reverse用に定義
-// 	// --bdc: var(--bgc);
-// 	--c--icon: currentColor;
+// [data-variant="fill"]{
 // 	--c--link: currentColor;
-// 	color: var(--c);
+// 	color: var(--c--bg); // #fff
 // 	background-color: var(--bgc);
-// 	border: solid 1px var(--bgc);
 // }
 
-// .-fill\:main{
-// 	--bgc: var(--c--main);
-// }
-// .-fill\:red{
-// 	--bgc: var(--red-400);
-// }
-// .-fill\:orange{
-// 	--bgc: var(--orange-400);
-// }
-// .-fill\:yellow{
-// 	--bgc: var(--yellow-400);
-// }
-// .-fill\:green{
-// 	--bgc: var(--green-400);
-// }
-// .-fill\:blue{
-// 	--bgc: var(--blue-400);
-// }
-// .-fill\:purple{
-// 	--bgc: var(--purple-400);
-// }
-// .-fill\:pink{
-// 	--bgc: var(--pink-400);
-// }
-// .-fill\:gray{
-// 	--bgc: var(--gray-400);
-// }
-
-// ※ outlineプロパティに対するユーティリティを作る場合は .-ol:
-// outline? olbox? linebox?
-// [class*="-outline:"]{
-// 	--c: var(--bdc); // reverse用に定義
-// 	--c--icon: var(--bdc);
-// 	color: var(--c);
+// [data-variant="outline"]{
 // 	border: solid 1px var(--bdc);
+// 	--icon-c: var(--bdc); // Alert,Notice用
 
-// 	&.-hov\:reverse:hover{
+// 	 // reverse用
+// 	&.-hov\:reverse{
 // 		--bgc:#fff;
 // 	}
-
-// 	&.b--alert{
-// 		color: inherit;
-// 	}
-// }
-
-// .-outline\:red{
-// 	--bdc: var(--red-400);
-// }
-// .-outline\:orange{
-// 	--bdc: var(--orange-400);
-// }
-// .-outline\:yellow{
-// 	--bdc: var(--yellow-400);
-// }
-// .-outline\:green{
-// 	--bdc: var(--green-400);
-// }
-// .-outline\:blue{
-// 	--bdc: var(--blue-400);
-// }
-// .-outline\:purple{
-// 	--bdc: var(--purple-400);
-// }
-// .-outline\:pink{
-// 	--bdc: var(--pink-400);
-// }
-// .-outline\:gray{
-// 	--bdc: var(--gray-400);
 // }

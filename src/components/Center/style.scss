@@ -1,10 +1,5 @@
-// 役割がはっきりしているので、is--flex なし。
+// 役割がはっきりしているので、is--grid なし ?
 .l--center {
-	// --fxd: column;
-	// display: flex;
-	// flex-direction: column;
-	// align-items: center;
-	
 	display: grid;
 	justify-items: center;
 

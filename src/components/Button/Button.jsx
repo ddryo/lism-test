@@ -55,15 +55,22 @@ export default function Button({
 		blockProps.style['--icon-offset'] = iconOffset;
 	}
 
-	if ('fill' === variant) {
-		blockProps.bgc = color;
-		blockProps.c = 'white';
-	} else if ('outline' === variant) {
-		blockProps.c = color;
-		blockProps.bdc = color;
-	} else {
-		blockProps.c = color;
-		// blockProps.bdc = color;
+	if (color) {
+		// blockProps.keycolor = color;
+
+		if ('fill' === variant) {
+			blockProps.bgc = color;
+			// blockProps.c = 'white';
+		} else if ('outline' === variant) {
+			blockProps.keycolor = color;
+			// blockProps.c = color;
+			// blockProps.bdc = color;
+		} else if ('text' === variant) {
+			// test
+			blockProps.c = color;
+		} else {
+			blockProps.keycolor = color;
+		}
 	}
 
 	// if (undefined !== leftIcon || undefined !== rightIcon) {

@@ -17,12 +17,11 @@
 	flex: var(--fx);
 }
 
-// isItem使わず直接クラス指定できるように変数にはしていない
+// ※ isItem使わず直接クラス指定できるように変数にはしていない
 .-fxg\:1{flex-grow: 1;}
 .-fxg\:0{flex-grow: 0;}
 .-fxsh\:1{flex-shrink: 1;}
 .-fxsh\:0{flex-shrink: 0;}
-
 
 
 // row/column が基本で、area指定があればそっち優先
@@ -36,20 +35,22 @@
 	// grid-area: var(--ga);
 }
 
+// is--grid.has--area > .is--item とかにする...?
+
 // gaあれば上書きする。
-[class*="-ga:"]{
+.-ga\:{
 	grid-area: var(--ga) !important;
 }
+// ga@sm..?
 
-
-.-ga\:fix{--ga: fix;}
+// ※ isItem使わず直接クラス指定できるように変数にはしていない
+.-ga\:fix{grid-area: fix;}
+.-ga\:l{grid-area: left;}
+.-ga\:r{grid-area: right;}
+.-ga\:c{grid-area: center;}
 // .-ga\:header{--ga: header;}
 // .-ga\:footer{--ga: footer;}
 // .-ga\:body{--ga: body;}
-
-.-ga\:l{--ga: left;}
-.-ga\:r{--ga: right;}
-.-ga\:c{--ga: center;}
 
 
 // -self系 → そこまで使われるものではないのでシンプルにstyle属性で出力.

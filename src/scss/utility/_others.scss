@@ -1,0 +1,110 @@
+
+// .-bdc で上書きできるように border 自体も変数管理
+.-bd\:{
+	border: var(--bd);
+}
+.-bdw\:{
+	border-width: var(--bdw);
+}
+.-bdc\:{
+	border-color: var(--bdc);
+}
+
+.-inset\:0{inset: 0;}
+.-t\:0{top: 0;}
+.-t\:50{top: 50%;}
+.-t\:100{top:100%;}
+.-l\:0{left: 0;}
+.-l\:50{left: 50%;}
+.-l\:100{left:100%;}
+.-r\:0{right: 0;}
+.-r\:50{right: 50%;}
+.-r\:100{right:100%;}
+.-b\:0{bottom: 0;}
+.-b\:50{bottom: 50%;}
+.-b\:100{bottom:100%;}
+
+.-z\:0{z-index: 0;}
+.-z\:1{z-index: 1;}
+
+
+// transform
+.-trnslt\:XY\:-50{translate: -50% -50%;}
+.-trnslt\:X\:-50{translate: -50% 0;}
+.-trnslt\:Y\:-50{translate: 0 -50%;}
+
+// .-td\:n{
+// 	text-decoration: none;
+// }
+
+
+// .-filter\:darker{
+// 	filter: brightness(0.95);
+// }
+// .-filter\:lighter{
+// 	filter: brightness(1.05);
+// }
+
+// overflow
+// .-ov\:v{
+// 	overflow: visible;
+// }
+// .-ov\:h{
+// 	overflow: hidden;
+// }
+
+// text-align
+.-ta\:c{text-align: center;}
+.-ta\:r{text-align: right;}
+.-ta\:l{text-align: left;}
+
+.-fw\:100{font-weight: 100;}
+.-fw\:300{font-weight: 300;}
+.-fw\:400{font-weight: 400;}
+.-fw\:500{font-weight: 500;}
+.-fw\:700{font-weight: 700;}
+.-fw\:900{font-weight: 900;}
+
+// prop: pos
+// Layer の基点を作るためにrelativeにしたいことがある
+.-pos\:s{position: static;}
+.-pos\:r{position: relative;}
+.-pos\:a{position: absolute;}
+.-pos\:f{position: fixed;}
+
+
+// prop: ovw
+// ※ ovw は emmetの正式定義ではない.
+.-ovw\:any{
+	// 単語中でも折り返しさせる
+	overflow-wrap: anywhere;
+}
+
+.-lis\:n{
+	list-style: none;
+}
+
+// --------------------
+// その他
+// --------------------
+// clear float
+// .-cf::after {
+// 	display: block;
+// 	clear: both;
+// 	width: 0;
+// 	height: 0;
+// 	content: "";
+// }
+
+
+// 折返し禁止
+// .i--nowrap,
+// .-whs\:nw {
+// 	white-space: nowrap;
+// }
+// .-whs\:p{
+// 	white-space: pre;
+// }
+// .-whs\:pw{
+// 	white-space: pre-wrap;
+// }

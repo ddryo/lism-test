@@ -1,18 +1,16 @@
 :where(.e--badge){
-	line-height: 1.5;
 	--p: var(--space--10) var(--space--15);
-	// --keyColor: var(--c--main);
+	line-height: 1.5;
 }
 .e--badge[data-variant="outline"]{
-	// color: var(--keyColor);
-	border: solid 1px var(--bdc);
+	border: solid 1px var(--keycolor);
+	color: var(--keycolor);
 }
-// .e--badge[data-variant="fill"]{
-// 	color: #fff;
-// 	background-color: var(--keyColor);
-// 	border: solid 1px var(--keyColor);
-// }
+.e--badge[data-variant="fill"]{
+	color: #fff;
+	border: solid 1px var(--bgc); // サイズ揃えるため
+}
 
 .e--badge[data-variant="cbox"]{
-	color: color-mix(in srgb-linear, var(--cbox), var(--c--text) 50%);
+	color: color-mix(in srgb-linear, var(--keycolor), var(--c--text) 50%);
 }

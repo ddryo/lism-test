@@ -139,19 +139,21 @@ class CommonProps {
 		const attrKeys = Object.keys(attrs);
 
 		attrKeys.forEach((propName) => {
+			// 特殊系
 			if (propName === 'hover') {
 				const propVal = this.extractProp(propName);
 				this.setHoverProps(propVal);
 				return;
-			} else if ('cbox' === propName) {
-				const propVal = this.extractProp(propName);
-				if (isPresetValue('cbox', propVal)) {
-					this.addUtil(`-cbox:${propVal}`);
-				} else {
-					this.addUtil(`-cbox:`);
-					this.addStyle('--cbox', propVal);
-				}
 			}
+			//  else if ('keycolor' === propName) {
+			// 	const propVal = this.extractProp(propName);
+			// 	if (isPresetValue('keycolor', propVal)) {
+			// 		this.addUtil(`-keycolor:${propVal}`);
+			// 	} else {
+			// 		this.addUtil(`-keycolor:`);
+			// 		this.addStyle('--keycolor', propVal);
+			// 	}
+			// }
 
 			if (propFullNames[propName]) propName = propFullNames[propName];
 
@@ -389,6 +391,8 @@ export default function getCommonProps(props, options = {}) {
 	// if (theTime > 0) {
 	// console.log('TIME ' + theTime + ' ms');
 	// }
+
+	// CP.attrs['data-lism-prop'] = CP.utilityClasses;
 
 	return {
 		className: classnames(CP.className, CP.utilityClasses),

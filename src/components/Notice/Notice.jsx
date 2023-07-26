@@ -1,6 +1,5 @@
 import React from 'react';
-import { getMaybeColorVar } from '../../lib';
-import { Box, Stack } from '../Box';
+import { Stack } from '../Box';
 import { Lism } from '../Lism';
 import { Icon } from '../Icon';
 
@@ -65,8 +64,6 @@ export default function Notice({
 	children,
 	...props
 }) {
-	// --keyColor
-
 	// if ('cbox' === variant) {
 	// 	preset = preset || 'memo';
 	// }
@@ -87,8 +84,8 @@ export default function Notice({
 	// border = bd
 	const boxProps = {
 		blockClass: 'b--notice',
-		gap: 0,
 		'data-variant': variant,
+		gap: 0,
 		style,
 		...defaultProps.Notice,
 		...props,
@@ -109,49 +106,49 @@ export default function Notice({
 	};
 
 	// colorの調整
-	if ('cbox' === variant) {
-		boxProps.cbox = color;
-		headProps.c = color;
-		headProps.fw = 700;
-		// captionProps.className += ' -filter:darker';
-		// style['--keyColor'] = getMaybeColorVar(color);
-	} else if ('fill' === variant) {
-		boxProps.bdc = color;
-		headProps.bgc = color;
-		headProps.c = 'white';
-	} else {
-		// outline, onbd
-		boxProps.bdc = color;
-		headProps.c = color;
+	boxProps.keycolor = color;
+
+	if ('fill' !== variant) {
 		headProps.fw = 700;
 	}
-
-	// else if (color) {
-	// 	boxProps.style['--keyColor'] = getMaybeColorVar(color);
-	// } else if (presetColor) {
-	// 	boxProps.style['--keyColor'] = getMaybeColorVar(presetColor);
-	// }
 
 	// paddingの調整
 	if ('fill' === variant) {
+		// boxのpaddingを継承する
 		bodyProps.p = ['-', '-'];
 		headProps.p = ['-', '-'];
+
+		// Y方向は別途指定
 		headProps.pY = ['-', '-'];
 	} else if ('onbd' === variant) {
 		boxProps.p = ['-', '-'];
-		headProps.pX = 20;
+		Object.assign(headProps, {
+			lismClass: 'l--layer',
+			pX: 20,
+			top: 0,
+			left: 0,
+			translate: '0 -50%',
+		});
 	} else {
 		boxProps.p = ['-', '-'];
-		boxProps.gap = 40;
+		boxProps.gap = '-';
 	}
 
-	if ('onbd' === variant) {
-		headProps.pX = 20;
+	if (icon) {
+		Object.assign(headProps, {
+			isFlex: true,
+			ai: 'center',
+		});
 	}
+
+	// if ('onbd' === variant) {
+	// 	headProps.lismClass = 'l--layer';
+	// 	headProps._util = '-t:0 -l:0 -translate:Y:-50';
+	// }
 
 	return (
 		<Stack {...boxProps}>
-			<Lism {...headProps} isFlex ai='center' fxw='nowrap'>
+			<Lism {...headProps}>
 				{icon && <Icon icon={icon} blockClass='b--notice__icon' size='1.5em' />}
 				<span {...captionProps}>{caption}</span>
 			</Lism>

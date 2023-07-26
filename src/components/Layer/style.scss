@@ -2,35 +2,6 @@
 	position: relative;
 }
 
-.-inset\:0{
-	inset: 0;
-}
-.-t\:0{top: 0;}
-.-t\:50{top: 50%;}
-.-t\:100{top:100%;}
-.-l\:0{left: 0;}
-.-l\:50{left: 50%;}
-.-l\:100{left:100%;}
-.-r\:0{right: 0;}
-.-r\:50{right: 50%;}
-.-r\:100{right:100%;}
-.-b\:0{bottom: 0;}
-.-b\:50{bottom: 50%;}
-.-b\:100{bottom:100%;}
-
-.-z\:0{z-index: 0;}
-.-z\:1{z-index: 1;}
-
-
-// transform
-// trf:t-50
-// trf:tx-50
-// trf:ty-50
-
-.-translate\:XY\:-50{translate: -50% -50%;}
-.-translate\:X\:-50{translate: -50% 0;}
-.-translate\:Y\:-50{translate: 0 -50%;}
-
 // --------------------
 // Layer
 // --------------------

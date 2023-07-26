@@ -1,5 +1,5 @@
 import React from 'react';
-import { getMaybeColorVar } from '../../lib';
+// import { getMaybeColorVar } from '../../lib';
 import { Lism } from '../Lism';
 // import { InlineIcon } from '../Icon';
 // import { Flex } from '../Flex';
@@ -28,14 +28,12 @@ export default function Badge({
 		...props,
 	};
 
-	if ('cbox' === variant) {
-		blockProps.cbox = color;
-	} else if ('fill' === variant) {
-		blockProps.bgc = color;
-		blockProps.c = 'white';
-	} else if ('outline' === variant) {
-		blockProps.c = color;
-		blockProps.bdc = color;
+	if (color) {
+		if ('fill' === variant) {
+			blockProps.bgc = color;
+		} else {
+			blockProps.keycolor = color;
+		}
 	}
 
 	// if (variant === "cbox") {

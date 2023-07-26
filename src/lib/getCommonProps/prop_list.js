@@ -20,9 +20,18 @@ export default {
 		c: { options: { presets: 'color', converter: getMaybeColorVar } },
 		bgc: { options: { presets: 'color', converter: getMaybeColorVar } },
 		bdc: { options: { converter: getMaybeColorVar } },
+		keycolor: {
+			options: {
+				presets: 'keycolor',
+				converter: getMaybeColorVar,
+				onlyStyle: 1,
+				styleKey: '--keycolor',
+			},
+		},
 
 		//transform
 		translate: {
+			name: 'trnslt',
 			options: { utilKeys: 'translate', onlyStyle: 1, styleKey: 'translate' },
 		},
 		scale: { options: {} },
@@ -52,7 +61,6 @@ export default {
 		shadow: { name: 'bxsh', options: { presets: 'shadow' } },
 		lh: { options: { presets: 'lh' } },
 		fz: { options: { presets: 'fz' } },
-		lts: { styleKey: 'letterSpacing' }, // utilityあってもいい
 		fw: {
 			options: {
 				presets: 'fw',
@@ -62,9 +70,18 @@ export default {
 			},
 		},
 		ta: { options: { utilKeys: 'ta', onlyStyle: 1, styleKey: 'textAlign' } },
-		// pos: { options: { utilKeys: 'pos', onlyStyle: 1, styleKey: 'position' } },
+		ovw: { options: { utilKeys: 'ovw', onlyStyle: 1, styleKey: 'overflowWrap' } },
+		pos: { options: { utilKeys: 'pos', onlyStyle: 1, styleKey: 'position' } },
+		lis: { options: { utilKeys: 'lis', onlyStyle: 1, styleKey: 'listStyle' } },
+
+		// utilityに未対応
+		whs: { styleKey: 'whiteSpace' },
+		lts: { styleKey: 'letterSpacing' }, // utilityあってもいい
+		td: { styleKey: 'textDecoration' },
+		ov: { styleKey: 'overflow' },
 
 		// BP対応
+		d: { BP: 1, options: { utilKeys: 'display' } },
 		w: { BP: 1, options: { utilKeys: 'size' } },
 		h: { BP: 1, options: { utilKeys: 'size' } },
 		pl: { BP: 1, options: { converter: getMaybeSpaceVar } },
@@ -129,16 +146,16 @@ export default {
 		gtr: { BP: 1, options: { skipBaseUtil: 1 } },
 	},
 	isFlex: {
-		fxw: { options: { utilKeys: 'wrap' } },
-		fxd: { BP: 1, options: { skipBaseUtil: 1 } },
+		fxw: { BP: 1, options: { utilKeys: 'fxw', skipBaseUtil: 1 } },
+		fxd: { BP: 1, options: { utilKeys: 'fxd', skipBaseUtil: 1 } },
 	},
 	isItem: {
-		fx: { BP: 1, styleKey: '--fx' },
-		fxb: { BP: 1, styleKey: '--fxb' },
-		gc: { BP: 1, styleKey: '--gc' },
-		gr: { BP: 1, styleKey: '--gr' },
-		alignSelf: { styleKey: 'alignSelf' },
-		justifySelf: { styleKey: 'justifySelf' },
+		fx: { BP: 1, onlyStyle: 1 },
+		fxb: { BP: 1, onlyStyle: 1 },
+		gc: { BP: 1, onlyStyle: 1 },
+		gr: { BP: 1, onlyStyle: 1 },
+		alignSelf: { onlyStyle: 1, styleKey: 'alignSelf' },
+		justifySelf: { onlyStyle: 1, styleKey: 'justifySelf' },
 	},
 
 	// クエリ対応あり、ユーティリティあり

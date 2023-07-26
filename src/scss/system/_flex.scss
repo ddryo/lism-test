@@ -1,0 +1,41 @@
+@use "../query" as query;
+
+
+
+// l--flex, l--stack, l--reel, ...
+:where(.is--flex){
+	--fxw: nowrap;
+	--fxd: row;
+
+	display: flex;
+	flex-wrap: var(--fxw);
+	flex-direction: var(--fxd);
+}
+
+// flex-wrapはクエリ対応いらないか
+.-fxw\:w{--fxw: wrap;}
+.-fxw\:nw{--fxw: nowrap;}
+
+.-fxd\:c{--fxd: column;}
+.-fxd\:cr{--fxd: column-reverse;}
+.-fxd\:r{--fxd: row;}
+.-fxd\:rr{--fxd: row-reverse;}
+
+@include query.cq('sm'){
+	.-fxw\@sm\:{--fxw: var(--fxw--sm) !important;}
+	.-fxd\@sm\:{--fxd: var(--fxd--sm) !important;}
+}
+@include query.cq('md'){
+	.-fxw\@md\:{--fxw: var(--fxw--md) !important;}
+	.-fxd\@md\:{--fxd: var(--fxd--md) !important;}
+}
+@include query.cq('lg'){
+	.-fxw\@lg\:{--fxw: var(--fxw--lg) !important;}
+	.-fxd\@lg\:{--fxd: var(--fxd--lg) !important;}
+}
+@include query.cq('xl'){
+	.-fxw\@xl\:{--fxw: var(--fxw--xl) !important;}
+	.-fxd\@xl\:{--fxd: var(--fxd--xl) !important;}
+}
+
+

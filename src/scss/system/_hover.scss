@@ -44,9 +44,13 @@
 	scale: 1.05;
 }
 
+.-hov\:reverse{
+	--rev--bgc: var(--c);
+	--rev--c: var(--bgc);
+}
 .-hov\:reverse:hover{
-	background-color: var(--c) !important;
-	color: var(--bgc) !important;
+	background-color: var(--rev--bgc) !important;
+	color: var(--rev--c) !important;
 }
 
 

@@ -1,5 +1,7 @@
+// Alert は --keycolor が常に渡ってくる
 :where(.b--alert) {
-	--icon-c: inherit;
+	// --keycolor: var(--c--main);
+	--icon-c: var(--keycolor);
 	--p: var(--space--35);
 	--gap: var(--space--35);
 	--p--sm: var(--space--40);
@@ -12,18 +14,19 @@
 }
 // .b--alert{}
 // .b--alert__body{}
+// .b--alert[data-variant="cbox"]{}
+:where(.b--alert[data-variant="fill"]) {
+	--c--link: currentColor;
+	--icon-c: currentColor;
+	color: #fff;
+	background-color: var(--keycolor);
+}
+
+:where(.b--alert[data-variant="outline"]){
+	border: solid 1px var(--keycolor);
+	// color: color-mix(in srgb, var(--keycolor), var(--c--text) 90%);
+}
 
 .b--alert__icon{
 	color: var(--icon-c);
-}
-.b--alert[data-variant="cbox"]{
-	--icon-c: var(--cbox);
-}
-.b--alert[data-variant="fill"] {
-	--c--link: currentColor;
-}
-.b--alert[data-variant="outline"]{
-	--icon-c: var(--bdc);
-	border: solid 1px var(--bdc);
-	// color: color-mix(in srgb-linear, var(--bdc), var(--c--text) 90%);
 }

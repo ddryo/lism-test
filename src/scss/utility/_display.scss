@@ -2,31 +2,24 @@
 
 
 // display
-.-d\:n{
-	display: none !important;
-}
-.-d\:b{
-	display: block !important;
-}
-.-d\:i{
-	display: inline !important;
-}
-.-d\:if{
-	display: inline-flex !important;
-}
-.-d\:ib{
-	display: inline-block !important;
-}
+
+.-d\:{display: var(--d) !important;}
+.-d\:n{display: none !important;}
+.-d\:b{display: block !important;}
+// .-d\:i{ display: inline !important; }
+// .-d\:if{ display: inline-flex !important; }
+// .-d\:ib{ display: inline-block !important; }
+
 
 @include query.cq('sm'){
-	.-d\@sm\: { display: var(--d--sm) !important;}
+	.-d\@sm\:{display: var(--d--sm) !important;}
 }
 @include query.cq('md'){
-	.-d\@md\: { display: var(--d--md) !important;}
+	.-d\@md\:{display: var(--d--md) !important;}
 }
 @include query.cq('lg'){
-	.-d\@lg\: { display: var(--d--lg) !important;}
+	.-d\@lg\:{display: var(--d--lg) !important;}
 }
 @include query.cq('xl'){
-	.-d\@xl\: { display: var(--d--xl) !important;}
+	.-d\@xl\:{display: var(--d--xl) !important;}
 }

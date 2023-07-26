@@ -1,57 +1,51 @@
 
-// 一括で上書き調整しやすいように、paddingなどはCSS側で変数指定...？→ ブロックの時はそれでいい。
+// Notice は --keycolor が常に渡ってくる
 :where(.b--notice){
-	// --keyColor: var(--c--main);
+	// --keycolor: var(--c--main);
 	--p: var(--space--40);
 	--p--sm: var(--space--45);
+	--gap: var(--space--40);
+	--head-c: var(--keycolor);
+	position: relative;
+	border: solid 1px var(--keycolor);
 }
 .b--notice__icon{
 	margin-left: -0.125em;
 }
-
 .b--notice__head{
 	line-height: 1.625;
+	color: var(--head-c);
 }
 
-:where(.b--notice[data-variant="cbox"]) {
-	> .b--notice__head{
-		// margin-bottom: var(--p);
-		// color: var(--cbox);
-		// font-weight: bold;
-	}
-}
+// fill
+// .b--notice[data-variant="fill"] {border: solid 1px var(--keycolor);}
 
-.b--notice[data-variant="fill"] {
-	border: solid 1px var(--bdc);
-
-	:where(&) > .b--notice__head{
-		--pY: var(--space--30);
-		--pY--sm: var(--space--30);
-	}
-
+[data-variant="fill"] > .b--notice__head{
+	--head-c:#fff;
+	--pY: var(--space--30);
+	--pY--sm: var(--space--30);
+	background-color: var(--keycolor);
 }
 
 
-.b--notice[data-variant="outline"] {
-	border: solid 1px var(--bdc);
-}
+// outline
+// .b--notice[data-variant="outline"] {border: solid 1px var(--keycolor);}
 
 
+// obbd
 .b--notice[data-variant="onbd"] {
-	border: solid 1px var(--bdc);
-	position: relative;
+	// border: solid 1px var(--keycolor);
+	// position: relative;
 
 	:where(&) > .b--notice__head{
-		color: var(--bdc);
+		--pX: var(--space--20);
+		// color: var(--keycolor);
 		background-color: var(--c--bg);
-		// margin-bottom: var(--space--30);
-		font-weight: bold;
-
-		position: absolute;
-		top: 0;
-		left: 0;
+		// position: absolute;
+		// top: 0;
+		// left: 0;
+		// translate: 0 -50%;
 		margin-inline: var(--space--40);
-		transform: translateY(-50%);
 	}
 
 	:where(&) > .b--notice__body{

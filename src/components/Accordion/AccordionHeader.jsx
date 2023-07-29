@@ -1,7 +1,11 @@
 import React from 'react';
-// import { Lism } from '../Lism';
+import { Lism } from '../Lism';
+import { Center } from '../Center';
+
 import { Icon } from '../Icon';
 import { getCommonProps } from '../../lib';
+import { AccContext } from './context';
+
 // import classnames from 'classnames';
 
 const caretSvg = (
@@ -15,10 +19,12 @@ export default function AccordionHeader({
 	icon,
 	openIcon,
 	closeIcon,
-	iconSize = '1.25em',
+	iconSize,
 	iconPosition = 'right',
-	before,
-	tag,
+	labelBefore,
+	labelAfter,
+	labelTag,
+	labelProps = {},
 	...props
 }) {
 	const { className, style, attrs } = getCommonProps(props, {
@@ -30,48 +36,65 @@ export default function AccordionHeader({
 		p: 40,
 		gap: 30,
 	});
+
 	const blockProps = {
 		className,
 		style,
 		...attrs,
 	};
 
-	// if (typeof icon === 'string') {
-	// 	blockProps['data-icon'] = icon;
-	// 	// icon = <span className={`e--icon--${icon}`} aria-hidden='true'></span>;
-	// } else {
-	// 	blockProps['data-icon'] = 'svg';
-	// }
+	const iconProps = {
+		tag: 'span',
+		className: 'l--accordion__icon',
+		isItem: true,
+		// isGrid: true,
+		// _util: '-fxsh:0',
+		// className: 'l--accordion__icon is--item is--grid -fxsh:0',
+	};
 
-	let icons = null;
+	// clickable=iconなら、iconをbuttunに
+	const { clickable } = React.useContext(AccContext);
+	if (clickable) {
+		iconProps.tag = 'button';
+		iconProps._util = '-bgc: -p: -bd:';
+		iconSize = iconSize || '1em';
+	} else {
+		iconProps['aria-hidden'] = 'true';
+		iconSize = iconSize || '1.25em';
+	}
+
+	let Icons = null;
 	if (openIcon && closeIcon) {
-		icons = (
-			<span className='l--accordion__icon is--item is--grid -fxsh:0' aria-hidden='true'>
-				<Icon tag='span' icon={openIcon} size={iconSize} _util='-open' />
-				<Icon tag='span' icon={closeIcon} size={iconSize} _util='-close' />
-			</span>
+		Icons = (
+			<Center {...iconProps}>
+				<Icon tag='span' icon={openIcon} size={iconSize} data-to='open' />
+				<Icon tag='span' icon={closeIcon} size={iconSize} data-to='close' />
+			</Center>
 		);
 	} else {
-		icons = (
-			<span className='l--accordion__icon is--item is--grid -fxsh:0' aria-hidden='true'>
-				<Icon
-					tag='span'
-					icon={icon || caretSvg}
-					size={iconSize}
-					//_util='-d:b'
-				/>
-			</span>
+		Icons = (
+			<Center {...iconProps}>
+				<Icon icon={icon || caretSvg} size={iconSize} />
+			</Center>
 		);
 	}
 
-	const LavelTag = tag || 'span';
+	labelProps = {
+		tag: labelTag || 'span',
+		lismClass: 'l--accordion__label',
+		isItem: true,
+		_util: '-fxg:1 -ovw:any',
+		...labelProps,
+	};
+
 	// before: Q&Aアイコン入れれるように。
 	return (
 		<summary {...blockProps}>
-			{before}
-			{iconPosition !== 'right' && icons}
-			<LavelTag className='l--accordion__label is--item -ovw:any -fxg:1'>{children}</LavelTag>
-			{iconPosition === 'right' && icons}
+			{iconPosition !== 'right' && Icons}
+			{labelBefore}
+			<Lism {...labelProps}>{children}</Lism>
+			{labelAfter}
+			{iconPosition === 'right' && Icons}
 		</summary>
 	);
 }

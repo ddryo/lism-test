@@ -44,6 +44,10 @@
 	scale: 1.05;
 }
 
+.-hov\:bgc\:lightgray:hover{
+	background-color: var(--c--lightgray) !important;
+}
+
 .-hov\:reverse{
 	--rev--bgc: var(--c);
 	--rev--c: var(--bgc);

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Lism } from '../Lism';
 import { Layer } from '../Layer';
-import { Center } from '../Center';
-
-import classnames from 'classnames';
+// import { Center } from '../Center';
+// import classnames from 'classnames';
 // import { getMediaLayer, getFilterLayer } from '../helper';
 
 const RATIO_PRESETS = ['16:9', '4:3', '3:2', '1:1', 'golden', 'silver', 'bronze', 'ogp'];
@@ -43,9 +42,5 @@ export const FrameContent = ({ children, ...props }) => {
 		...props,
 	};
 
-	return (
-		<Layer {...ContentProps}>
-			<Center data-fit='parent'>{children}</Center>
-		</Layer>
-	);
+	return <Layer {...ContentProps}>{children}</Layer>;
 };

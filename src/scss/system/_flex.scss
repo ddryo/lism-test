@@ -6,7 +6,8 @@
 :where(.is--flex){
 	--fxw: nowrap;
 	--fxd: row;
-
+}
+.is--flex{
 	display: flex;
 	flex-wrap: var(--fxw);
 	flex-direction: var(--fxd);

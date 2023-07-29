@@ -7,6 +7,7 @@ const DELAY = 5;
 const clickedEvent = (e, details, animationTime) => {
 	// すぐに open 属性が切り替わらないようにする
 	e.preventDefault();
+	// console.log(e.target, e.currentTarget);
 
 	if (details.dataset.animating) return;
 	details.dataset.animating = '1';
@@ -36,6 +37,7 @@ const clickedEvent = (e, details, animationTime) => {
 
 const toggleEvent = (e, details) => {
 	// e.preventDefault();
+	console.log('toggleEvent', e.target, e.currentTarget);
 
 	const hasOpen = details.open;
 	const hasOpenedClass = details.classList.contains('-opened');
@@ -50,9 +52,9 @@ const toggleEvent = (e, details) => {
 	}
 };
 
-const setEvent = (currentRef, animationTime) => {
+const setEvent = (currentRef, animationTime, clickable) => {
 	const details = currentRef;
-	const header = details.querySelector('.l--accordion__header');
+	const clickBtn = details.querySelector(`.l--accordion__${clickable}`);
 
 	const _clickedEvent = (e) => {
 		clickedEvent(e, details, animationTime);
@@ -62,14 +64,14 @@ const setEvent = (currentRef, animationTime) => {
 	};
 
 	// <summary> 'click' イベント
-	header.addEventListener('click', _clickedEvent);
+	clickBtn.addEventListener('click', _clickedEvent);
 
 	// <details> の'toggle' イベントで、ページ内検索時にも開閉されるようにする
 	details.addEventListener('toggle', _toggleEvent);
 
 	// アンマウントされた時にremoveEventListenerしないと2重でイベントが登録してしまう。
 	return () => {
-		header.removeEventListener('click', _clickedEvent);
+		clickBtn.removeEventListener('click', _clickedEvent);
 		details.removeEventListener('toggle', _toggleEvent);
 	};
 };

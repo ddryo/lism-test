@@ -50,6 +50,7 @@ export const UTILITIES = {
 	pos: { static: 's', relative: 'r', absolute: 'a', fixed: 'f' },
 	ovw: { anywhere: 'any' },
 	lis: { none: 'n' },
+	// lts:{},
 	display: { none: 'n', block: 'b' },
 };
 

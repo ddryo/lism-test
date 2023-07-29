@@ -35,7 +35,7 @@ export default function FAQ({
 	if (isAccordion) {
 		return (
 			<Accordion blockClass='b--faq' {...props}>
-				<AccordionHeader blockClass='b--faq__q' before={Qmark} tag={Qtag}>
+				<AccordionHeader blockClass='b--faq__q' labelBefore={Qmark} tag={Qtag}>
 					{title}
 				</AccordionHeader>
 				<AccordionBody blockClass='b--faq__a'>{children}</AccordionBody>

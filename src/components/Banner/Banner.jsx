@@ -31,7 +31,6 @@ export default function Banner({
 			blockProps.href = href;
 			return (
 				<LinkBox href={href} {...blockProps} component={Frame} ratio={ratio}>
-					{/* <Frame ratio={ratio}> */}
 					{getMediaLayer(media)}
 					{getFilterLayer(filter)}
 					<FrameContent
@@ -43,7 +42,6 @@ export default function Banner({
 					>
 						{children}
 					</FrameContent>
-					{/* </Frame> */}
 				</LinkBox>
 			);
 		}

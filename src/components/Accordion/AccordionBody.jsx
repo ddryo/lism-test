@@ -11,7 +11,7 @@ export default function AccordionBody({ children, flowGap, ...props }) {
 	// gapなどをbodyInnerに流す？
 	return (
 		<Lism lismClass='l--accordion__body' {...blockProps} {...props}>
-			<Lism isFlow flowGap={flowGap || 40} lismClass='l--accordion__bodyInner' _util='-ov:h'>
+			<Lism isFlow flowGap={flowGap || 40} lismClass='l--accordion__bodyInner'>
 				{children}
 			</Lism>
 		</Lism>

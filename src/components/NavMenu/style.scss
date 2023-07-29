@@ -1,29 +1,70 @@
-.b--navMenu {
+:where(.b--navMenu:not([data-nest-level])) {
 	--bdc: var(--c--border);
-	list-style: none;
-	max-width: 24rem;
+	--item-py: var(--space--30);
+	--item-px: var(--space--30);
+	// --item-pl: var(--item-px);
+	--item-ml: 0;
+	--level: 0;
+	--bd: solid 1px var(--bdc);
 }
-.b--navMenu[data-variant="box"] {
-	border: solid 1px var(--bdc);
+
+// ネストされている時はpX継承できるように
+:where(.b--navMenu[data-variant="simple"]:not([data-nest-level])) {
+	--item-px: var(--space--20);
 }
-.b--navMenu[data-variant="bdY"] {
-	border-top: solid 1px var(--bdc);
-	border-bottom: solid 1px var(--bdc);
+:where(.b--navMenu[data-variant="simple"]) {
+	--item-py: var(--space--20);
+	--bd: none;
 }
+
+// :where(.b--navMenu[data-nest-level]) {
+// 	--item-px: var(--item-px);
+// }
+
+:where(.b--navMenu[data-variant="box"]) {
+	border: var(--bd);
+}
+:where(.b--navMenu[data-variant="border"]) {
+	border-top: var(--bd);
+	border-bottom: var(--bd);
+}
+
+// <li>
 .b--navMenu__item {
-	list-style: none;
 	line-height: 1.5;
+	margin-left: var(--item-ml);
+	--hov--bgc: var(--c--lightgray);
 }
 .b--navMenu__item + .b--navMenu__item {
-	border-top: solid 1px var(--bdc);
+	border-top: var(--bd);
 }
-.__b--navMenu__item:first-child {
-	border-top-width: 0px;
+
+// <a> or <span>
+:where(.b--navMenu__text){
+	display: block;
 }
-.b--navMenu__link {
-	--hov--bgc: var(--c--lightgray);
+.b--navMenu__text {
+	padding: var(--item-py) var(--item-px);
 	color: inherit;
 	text-decoration: none;
-	align-items: baseline;
-	justify-content: space-between;
+	// align-items: baseline;
+	// justify-content: space-between;
+}
+
+
+// 子項目の余白をpaddingで調整する場合
+// .b--navMenu[data-nest-level]{
+// 	--item-pl: calc(var(--item-px) + (var(--level) * 1.25em));
+// }
+
+// 子項目の余白をmarginで調整する場合
+.b--navMenu[data-nest-level] {
+	--item-ml: calc(var(--level) * 1em);
+	border-top: var(--bd);
+}
+
+.b--navMenu__acc > .l--accordion__header{
+	padding-right: var(--item-px);
+	--pY: var(--item-py); // __text 用
+	--pl: var(--item-px); // __text 用
 }

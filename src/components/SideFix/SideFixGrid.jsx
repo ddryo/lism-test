@@ -21,10 +21,10 @@ export default function SideFixGrid({
 	// fixに "left" が含まれてるかどうか
 	const isFixLeft = -1 !== fix.indexOf('left');
 	if (isFixLeft) {
-		gta[breakPoint] = '"fix fluid"';
+		gta[breakPoint] = '"fix ."';
 		gtc[breakPoint] = 'var(--fixW) 1fr';
 	} else {
-		gta[breakPoint] = '"fluid fix"';
+		gta[breakPoint] = '". fix"';
 		gtc[breakPoint] = '1fr var(--fixW)';
 	}
 

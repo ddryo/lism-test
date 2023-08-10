@@ -2,10 +2,10 @@
 
 // root定義
 @forward './base/root';
-@forward './base/elements';
+// @forward './base/elements';
 @forward './base/nowp';
-@forward './system';
-@forward './utility';
+// @forward './system';
+// @forward './utility';
 
 
 // adminbarの高さ,ヘッダー要素などの高さを考慮してstickyさせる。

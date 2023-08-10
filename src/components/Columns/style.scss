@@ -36,6 +36,7 @@
 
 .l--columns {
 	--gtc: 1;
+	// --gap--default: var(--space--40);
 	// minmax() を使わないと、カラムのバランスが崩れることがある
 	grid-template-columns: repeat(var(--gtc), minmax(0,1fr));
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack } from '../Box';
+import { Stack } from '../Stack';
 import { Lism } from '../Lism';
 import { Icon } from '../Icon';
 
@@ -55,13 +55,15 @@ const defaultProps = {
 export default function Notice({
 	icon,
 	caption,
-	variant = 'cbox',
+	variant,
 	preset,
 	color,
 	// boxColor,
 	// iconColor,
 	style = {},
 	children,
+	// headProps,
+	// bodyProps,
 	...props
 }) {
 	// if ('cbox' === variant) {
@@ -81,11 +83,12 @@ export default function Notice({
 	icon = icon || presetIcon;
 	color = color || presetColor || 'main';
 
-	// border = bd
 	const boxProps = {
 		blockClass: 'b--notice',
 		'data-variant': variant,
-		gap: 0,
+		p: '-',
+		gap: '-',
+		// radius: '-',
 		style,
 		...defaultProps.Notice,
 		...props,
@@ -114,25 +117,27 @@ export default function Notice({
 
 	// paddingの調整
 	if ('fill' === variant) {
-		// boxのpaddingを継承する
-		bodyProps.p = ['-', '-'];
-		headProps.p = ['-', '-'];
+		boxProps.gap = 0;
+		boxProps.p = null; // boxで --p を使わない（0にもしないように注意）
+		boxProps.ov = 'hidden'; // radiusつけたときに fill部分がはみ出さないように
 
-		// Y方向は別途指定
-		headProps.pY = ['-', '-'];
-	} else if ('onbd' === variant) {
-		boxProps.p = ['-', '-'];
+		// --p を継承する
+		bodyProps.p = '-';
+
+		// X方向は親の --p を引き継ぎ、Y方向は別途指定
+		headProps.pX = '-';
+		headProps.pY = 20;
+	} else if ('cap-onbd' === variant) {
+		// borderの上に重ねる
 		Object.assign(headProps, {
-			lismClass: 'l--layer',
+			pos: 'absolute',
 			pX: 20,
 			top: 0,
 			left: 0,
 			translate: '0 -50%',
 		});
-	} else {
-		boxProps.p = ['-', '-'];
-		boxProps.gap = '-';
 	}
+	// else {}
 
 	if (icon) {
 		Object.assign(headProps, {
@@ -140,11 +145,6 @@ export default function Notice({
 			ai: 'center',
 		});
 	}
-
-	// if ('onbd' === variant) {
-	// 	headProps.lismClass = 'l--layer';
-	// 	headProps._util = '-t:0 -l:0 -translate:Y:-50';
-	// }
 
 	return (
 		<Stack {...boxProps}>

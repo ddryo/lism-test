@@ -1,7 +1,7 @@
 @use "../query" as query;
 
 :where( .is--flex, .is--grid ) {
-	--gap--default: var(--space--40); // ここで初期値与えるべきかは要検討。rootで定義すべきか...？
+	--gap--default: 0; // ここで初期値与えるべきかは要検討。rootで定義すべきか...？
 	--gap: var(--gap--default); // ここで初期値与えるべきかは要検討
 	gap: var(--gap);
 

@@ -1,27 +1,38 @@
 import React from 'react';
-import { getCommonProps } from '../../lib';
+import { Lism } from '../Lism';
+// import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 
-export default function Reel({ children, itemW, ...props }) {
-	// const Tag = tag;
-	const { className, style, attrs } = getCommonProps(props, {
-		lismClass: 'l--reel',
-		isFlex: true,
-	});
+export default function Reel({
+	children,
+	// onlySmall,
+	componentForWide,
+	itemW,
+	style = {},
+	...props
+}) {
+	let lismProps;
+	let ReelComponent = Lism;
 
-	if (undefined !== itemW) {
-		style['--item--w'] = itemW;
+	if (componentForWide) {
+		ReelComponent = componentForWide;
+		lismProps = {
+			className: 'is--reel@max-md',
+		};
+	} else {
+		lismProps = {
+			lismClass: 'l--reel',
+			isGrid: true,
+		};
 	}
 
-	const blockProps = {
-		className,
-		style,
-		...attrs,
-	};
+	if (undefined !== itemW) {
+		style['--item-w'] = itemW;
+	}
 
 	return (
-		<div {...blockProps} tabIndex='0'>
+		<ReelComponent {...lismProps} style={style} {...props} tabIndex='0'>
 			{children}
-		</div>
+		</ReelComponent>
 	);
 }

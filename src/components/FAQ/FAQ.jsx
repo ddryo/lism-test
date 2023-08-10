@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack } from '../Box';
+import { Stack } from '../Stack';
 // import { Item } from '../Item';
 import { BlockIcon } from '../Icon';
 // import { Badge } from '../Badge';

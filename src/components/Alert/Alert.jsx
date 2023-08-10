@@ -68,6 +68,14 @@ const AlertIcons = {
 	info: PhInfo,
 };
 
+// memo: 'U+2712', //PhPencilSimple,
+// error: 'U+1F6AB', //PhWarningCircle,
+// warning: 'U+26A0', //PhWarning,
+// success: 'U+2705', // PhCheck,
+// question: 'U+2754', //PhQuestion,
+// point: 'U+1F4A1', // PhLightbulb,
+// info: 'U+2139', // PhInfo,
+
 // variant='red,blue', ...? or alert, warning, info, success, danger
 export default function Alert({
 	icon,
@@ -75,7 +83,7 @@ export default function Alert({
 	color,
 	// size,
 	preset = 'memo',
-	variant = 'cbox',
+	variant,
 	iconProps = {},
 	style = {},
 	children,
@@ -83,12 +91,12 @@ export default function Alert({
 }) {
 	const blockProps = {
 		blockClass: 'b--alert',
-		// gap: 35,
-		// p: 35,
 		ai: 'center',
 		fxw: 'nowrap',
+		radius: '-',
+		p: ['-', '-'],
+		gap: ['-', '-'],
 		'data-variant': variant,
-		// radius: '2',
 		style,
 		...props,
 	};
@@ -109,19 +117,9 @@ export default function Alert({
 	color = color || presetColor || 'main';
 	blockProps.keycolor = color;
 
-	// if ('fill' === variant) {
-	// 	// blockProps.c = 'white';
-	// 	blockProps.bgc = color;
-	// } else if ('outline' === variant) {
-	// 	blockProps.bdc = color;
-	// } else if ('cbox' === variant) {
-	// 	color = color || presetColor;
-	// 	blockProps.cbox = color;
-	// }
-
 	// iconProps を渡すことを考えると、アイコンは BlockIcon がいい
 	return (
-		<Lism isFlex p={['-', '-']} gap={['-', '-']} {...blockProps}>
+		<Lism isFlex {...blockProps}>
 			{icon && (
 				// b--icon を打ち消していることに留意
 				<BlockIcon blockClass='b--alert__icon' icon={icon} size='1.5em' {...iconProps} />

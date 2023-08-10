@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 // import Image from "next/image";
 // import { Box, Stack, Layer, MediaLayer, FilterLayer } from '../index';
-import { filterEmptyObj } from '../../lib';
+// import { filterEmptyObj } from '../../lib';
 
 import DividerSVG from './svg';
 

@@ -3,51 +3,51 @@
 // Reel
 // --------------------
 .l--reel {
-	// --height: auto;
-	--item--w: 25ch; // 要検討
+	--item-w: 16em; // 初期値要検討
+	--gap--default: var(--space--20);
+
+	// display: flex;
+	overflow-x: auto;
+	// overflow-y: hidden;
+
+	// display: grid !important;
+	grid-auto-flow: column;
+	grid-auto-columns: var(--item-w);
+    // grid-template-columns: unset;
+    // grid-template-rows: unset;
+}
+
+// .l--reel.is--flex {
+// 	> .is--item {
+// 		flex: 0 0 var(--item-w);
+// 	}
+// }
+
+
+.l--reel[data-scbar="show"]{
 	--scrollbar--thumb-color: #fff;
 	--scrollbar--track-color: #000;
 	--scrollbar--height: 1rem;
-	
-	// display: flex;
-	overflow-x: auto;
-	overflow-y: hidden;
-	// height: var(--height);
 
 	// 以下、 Firefox用
 	scrollbar-color: var(--scrollbar--thumb-color) var(--scrollbar--track-color);
 	scrollbar-width: var(--scrollbar--height);
 
-	// &:not(.no-bar) {
-	// 	padding-bottom: var(--space--10); // JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい?
-	// }
+	&:not(.no-bar) {
+		padding-bottom: var(--space--10); // JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい?
+	}
 
 	&.no-bar {
 		scrollbar-width: none;
 	}
-
 	&::-webkit-scrollbar {
 		height: var(--scrollbar--height);
 	}
-
 	&::-webkit-scrollbar-thumb {
 		background-color: var(--scrollbar--thumb-color);
 		background-image: linear-gradient(var(--scrollbar--track-color) 0, var(--scrollbar--track-color) .25rem, var(--scrollbar--thumb-color) .25rem, var(--scrollbar--thumb-color) .75rem, var(--scrollbar--track-color) .75rem);
 	}
-
 	&::-webkit-scrollbar-track {
 		background-color: var(--scrollbar--track-color);
 	}
-
-	> * {
-		flex: 0 0 var(--item--w);
-	}
-
-	> img {
-		width: var(--item--w);
-		height: auto;
-	}
-
 }
-
-

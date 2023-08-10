@@ -20,6 +20,15 @@ export default function Icon({ icon, label, size = '1em', scale, width, height, 
 	// cssでアイコンを描画する場合
 	if (typeof icon === 'string') {
 		if ('1em' !== size) iconProps.style['--size'] = size;
+
+		if (icon.startsWith('U+')) {
+			const emoji = String.fromCodePoint(parseInt(icon.replace('U+', ''), 16));
+			return (
+				<span className={className} data-emoji={emoji} {...iconProps}>
+					{emoji}
+				</span>
+			);
+		}
 		return <span className={className} data-css-icon={icon} {...iconProps}></span>;
 	}
 

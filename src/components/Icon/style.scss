@@ -5,7 +5,7 @@
 	transform: scale(1.125);
 }
 
-:where(.e--icon[data-css-icon]){
+:where(.e--icon){
 	--size: 1em;
 }
 .e--icon[data-css-icon]{
@@ -13,6 +13,16 @@
 	line-height: 1;
 	width: var(--size);
 	height: var(--size);
+	display: inline-block;
+}
+
+.e--icon[data-emoji]{
+	text-align: center;
+	line-height: 1;
+	font-family: var(--ls--ff--emoji);
+	font-size: var(--size);
+	width: 1em;
+	height: 1em;
 	display: inline-block;
 }
 

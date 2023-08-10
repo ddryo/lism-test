@@ -6,10 +6,7 @@ import {
 import { Layer } from '../Layer';
 import { LinkBox } from '../LinkBox';
 import { Item } from '../Item';
-import {
-	//Box,
-	Stack,
-} from '../Box';
+import { Stack } from '../Stack';
 import { getMediaLayer } from '../helper';
 
 // "Banner" (b--banner) にする

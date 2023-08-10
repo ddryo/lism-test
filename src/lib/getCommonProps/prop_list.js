@@ -73,12 +73,12 @@ export default {
 		ovw: { options: { utilKeys: 'ovw', onlyStyle: 1, styleKey: 'overflowWrap' } },
 		pos: { options: { utilKeys: 'pos', onlyStyle: 1, styleKey: 'position' } },
 		lis: { options: { utilKeys: 'lis', onlyStyle: 1, styleKey: 'listStyle' } },
+		ov: { styleKey: 'overflow', options: { utilKeys: 'ov' } },
 
 		// utilityに未対応
 		whs: { styleKey: 'whiteSpace' },
 		lts: { styleKey: 'letterSpacing' }, // utilityあってもいい
 		td: { styleKey: 'textDecoration' },
-		ov: { styleKey: 'overflow' },
 
 		// BP対応
 		d: { BP: 1, options: { utilKeys: 'display' } },
@@ -116,20 +116,7 @@ export default {
 			},
 		},
 
-		// isItem
-		ga: { options: { utilKeys: 'ga' } }, // grid-area
-		fxg: { BP: 1, styleKey: '--fxg' },
-		fxsh: { BP: 1, styleKey: '--fxsh' },
-	},
-	isFlow: {
-		flowGap: { BP: 0, options: { presets: 'space' } },
-	},
-	// isFlex & isGrid
-	isFlexGrid: {
-		ai: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignItems' } },
-		ac: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignContent' } },
-		ji: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyItems' } },
-		jc: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyContent' } },
+		// Centerでも使いたい
 		gap: {
 			BP: 1,
 			options: {
@@ -139,6 +126,22 @@ export default {
 				objProcessor: (d) => ({ name: `${d}g` }),
 			},
 		},
+
+		// isItem
+		ga: { options: { utilKeys: 'ga' } }, // grid-area
+		fxg: { BP: 1, styleKey: '--fxg' },
+		fxsh: { BP: 1, styleKey: '--fxsh' },
+	},
+
+	isFlow: {
+		flowGap: { BP: 0, options: { presets: 'space' } },
+	},
+	// isFlex & isGrid
+	isFlexGrid: {
+		ai: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignItems' } },
+		ac: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignContent' } },
+		ji: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyItems' } },
+		jc: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyContent' } },
 	},
 	isGrid: {
 		gta: { BP: 1, options: { skipBaseUtil: 1 } },

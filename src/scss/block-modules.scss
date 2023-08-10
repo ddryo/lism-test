@@ -1,40 +1,13 @@
-// State
-// @forward './state.scss';
-
-// コンポーネント
-@forward '../components/Box/style.scss';
-@forward '../components/Center/style.scss';
-
-@forward '../components/Grid/style.scss';
-@forward '../components/Columns/style.scss';
-@forward '../components/AreaGrid/style.scss';
-@forward '../components/RatioGrid/style.scss';
-@forward '../components/TileGrid/style.scss';
-@forward '../components/SideFix/style.scss';
-@forward '../components/Layer/style.scss';
-@forward '../components/Frame/style.scss';
-@forward '../components/Reel/style.scss';
-@forward '../components/Divider/style.scss';
-@forward '../components/Tab/style.scss';
-@forward '../components/Icon/style.scss';
-@forward '../components/Button/style.scss';
-@forward '../components/Delimiter/style.scss';
-// @forward '../components/PinGallery/style.scss';
-
 @forward '../components/Alert/style.scss';
 @forward '../components/Notice/style.scss';
-@forward '../components/Badge/style.scss';
-
-// block module?
-@forward '../components/LinkBox/style.scss';
 @forward '../components/Banner/style.scss';
 @forward '../components/Card/style.scss';
-@forward '../components/Accordion/style.scss';
 @forward '../components/Section/style.scss';
 @forward '../components/MediaText/style.scss';
 @forward '../components/FAQ/style.scss';
 @forward '../components/Glossary/style.scss';
 @forward '../components/NavMenu/style.scss';
+
 
 
 // _

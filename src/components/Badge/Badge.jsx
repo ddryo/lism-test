@@ -7,8 +7,8 @@ import { Lism } from '../Lism';
 
 // variant
 export default function Badge({
-	icon,
-	label,
+	// icon,
+	// label,
 	variant = 'fill',
 	color = 'main',
 	style = {},
@@ -22,18 +22,13 @@ export default function Badge({
 		p: '-',
 		// lh: 1.5,
 		fz: 's',
-		fw: '700',
 		style,
 		'data-variant': variant,
 		...props,
 	};
 
 	if (color) {
-		if ('fill' === variant) {
-			blockProps.bgc = color;
-		} else {
-			blockProps.keycolor = color;
-		}
+		blockProps.keycolor = color;
 	}
 
 	// if (variant === "cbox") {

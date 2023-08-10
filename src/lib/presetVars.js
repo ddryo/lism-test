@@ -3,7 +3,7 @@ export const PRESETS = {
 	fz: ['5xl', '4xl', '3xl', '2xl', 'xl', 'l', 'm', 's', 'xs', 'r'],
 	lh: [],
 	// utility化するカラー
-	color: ['main', 'accent', 'lightgray', 'white', 'black'],
+	color: ['main', 'accent', 'lightgray', 'darkgray', 'gray', 'white', 'black'],
 	keycolor: [
 		'main',
 		'accent',
@@ -15,6 +15,8 @@ export const PRESETS = {
 		'orange',
 		'pink',
 		'gray',
+		'lightgray',
+		'darkgray',
 	],
 
 	// align-content
@@ -49,6 +51,7 @@ export const UTILITIES = {
 	ga: { fix: 'fix', left: 'l', right: 'r', center: 'c' },
 	pos: { static: 's', relative: 'r', absolute: 'a', fixed: 'f' },
 	ovw: { anywhere: 'any' },
+	ov: { hidden: 'h' },
 	lis: { none: 'n' },
 	// lts:{},
 	display: { none: 'n', block: 'b' },

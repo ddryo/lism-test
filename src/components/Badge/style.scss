@@ -1,16 +1,27 @@
 :where(.e--badge){
 	--p: var(--space--5) var(--space--10);
+	--c: #fff;
+	--bgc: var(--keycolor);
+	--bdc: transparent;
 	line-height: 1.5;
-}
-.e--badge[data-variant="outline"]{
-	border: solid 1px var(--keycolor);
-	color: var(--keycolor);
-}
-.e--badge[data-variant="fill"]{
-	color: #fff;
-	border: solid 1px var(--bgc); // サイズ揃えるため
+	border: solid 1px var(--bdc); // サイズ揃えるため,常につける
+	color: var(--c);
+	background-color: var(--bgc);
 }
 
-.e--badge[data-variant="cbox"]{
-	color: color-mix(in srgb-linear, var(--keycolor), var(--c--text) 50%);
+// fill=default
+// .e--badge[data-variant="fill"]{}
+
+.e--badge[data-variant="outline"]{
+	--bdc: var(--keycolor);
+	--bgc: transparent;
+	--c: var(--keycolor);
 }
+
+.e--badge[data-variant="subtle"]{
+	@supports (color: color-mix(in srgb, #000, #fff)) {
+		--c: color-mix(in srgb, var(--keycolor), var(--c--text) var(--colorMixPercent--link));
+		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
+	}
+}
+

@@ -2,31 +2,46 @@
 :where(.b--alert) {
 	// --keycolor: var(--c--main);
 	--icon-c: var(--keycolor);
-	--p: var(--space--35);
-	--gap: var(--space--35);
-	--p--sm: var(--space--40);
-	--gap--sm: var(--space--40);
+	--bdc: var(--keycolor);
+	--bgc: transparent;
+	--p: var(--space--30);
+	--gap: var(--space--30);
+	--p--sm: var(--space--35);
+	--gap--sm: var(--space--35);
+	--bdrs: var(--radius--1);
 }
 
-// .-scale: で上書きできる詳細度で
-:where(.b--alert__icon > .e--icon){
-	scale: 1.125;
-}
-// .b--alert{}
-// .b--alert__body{}
-// .b--alert[data-variant="cbox"]{}
-:where(.b--alert[data-variant="fill"]) {
-	--c--link: currentColor;
-	--icon-c: currentColor;
-	color: #fff;
-	background-color: var(--keycolor);
-}
 
-:where(.b--alert[data-variant="outline"]){
-	border: solid 1px var(--keycolor);
-	// color: color-mix(in srgb, var(--keycolor), var(--c--text) 90%);
+.b--alert{
+	background-color: var(--bgc);
+	border: solid 1px var(--bdc);
 }
-
 .b--alert__icon{
 	color: var(--icon-c);
 }
+
+// .-scale: で上書きできる詳細度で
+// :where(.b--alert__icon > .e--icon){
+// 	scale: 1.125;
+// }
+
+// default
+.b--alert:where(:not([data-variant])){
+	
+	// color-mixのサポートチェック
+	@supports (color: color-mix(in srgb, #000, #fff)) {
+		--bdc: color-mix(in srgb, var(--keycolor), transparent 75%);
+		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
+		--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) var(--colorMixPercent--link));
+	}
+}
+
+.b--alert:where([data-variant="fill"]) {
+	--c--link: currentColor;
+	--icon-c: currentColor;
+	--bgc: var(--keycolor);
+	color: #fff;
+}
+
+// :where(.b--alert[data-variant="outline"]){}
+

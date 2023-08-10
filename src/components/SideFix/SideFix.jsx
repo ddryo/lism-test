@@ -1,6 +1,5 @@
 import React from 'react';
 // import classnames from 'classnames';
-// import { Flex } from '../Box';
 import { getCommonProps } from '../../lib';
 // import "./style.scss";
 

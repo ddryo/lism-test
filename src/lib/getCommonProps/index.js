@@ -39,13 +39,20 @@ const propFullNames = {
 };
 
 class CommonProps {
-	propList = {};
-	styles = {};
-	className = '';
-	utilityClasses = []; // props解析処理で追加される
-	attrs = {};
+	// propList = {};
+	// styles = {};
+	// className = '';
+	// utilityClasses = []; // props解析処理で追加される
+	// attrs = {};
 
 	constructor(props) {
+		// 初期化
+		this.propList = {};
+		this.styles = {};
+		this.className = '';
+		this.utilityClasses = []; // props解析処理で追加される
+		this.attrs = {};
+
 		// 受け取るpropsとそうでないpropsを分ける
 		const {
 			forwardedRef,
@@ -68,6 +75,7 @@ class CommonProps {
 			isConstrained,
 			hasGutter,
 			hasLayer,
+			useLog,
 			...others
 		} = props;
 
@@ -107,7 +115,14 @@ class CommonProps {
 			this.attrs = others;
 
 			// propリストのセット
-			this.setPropList(isFlow, isFlex, isGrid, isItem);
+			if (useLog) {
+				console.log('this.propList before', this.propList);
+			}
+			this.setPropList(isFlow, isFlex, isGrid, isItem, useLog);
+			if (useLog) {
+				console.log('this.propList after', this.propList, PROP_LIST.common);
+				// console.log(isFlow, isFlex, isGrid, isItem);
+			}
 
 			// props処理
 			this.analyzeProps(others);
@@ -119,20 +134,38 @@ class CommonProps {
 		}
 	}
 
-	setPropList(isFlow, isFlex, isGrid, isItem) {
+	setPropList(isFlow, isFlex, isGrid, isItem, useLog) {
+		let thePropList = {};
+
 		if (isFlow) {
-			this.propList = Object.assign(PROP_LIST.common, PROP_LIST.isFlow);
+			thePropList = Object.assign({}, PROP_LIST.common, PROP_LIST.isFlow);
 		} else if (isFlex) {
-			this.propList = Object.assign(PROP_LIST.common, PROP_LIST.isFlexGrid, PROP_LIST.isFlex);
+			thePropList = Object.assign(
+				{},
+				PROP_LIST.common,
+				PROP_LIST.isFlexGrid,
+				PROP_LIST.isFlex
+			);
 		} else if (isGrid) {
-			this.propList = Object.assign(PROP_LIST.common, PROP_LIST.isFlexGrid, PROP_LIST.isGrid);
+			thePropList = Object.assign(
+				{},
+				PROP_LIST.common,
+				PROP_LIST.isFlexGrid,
+				PROP_LIST.isGrid
+			);
 		} else {
-			this.propList = PROP_LIST.common;
+			thePropList = Object.assign({}, PROP_LIST.common);
 		}
 
 		if (isItem) {
-			this.propList = Object.assign(this.propList, PROP_LIST.isItem);
+			thePropList = Object.assign({}, thePropList, PROP_LIST.isItem);
 		}
+
+		if (useLog) {
+			console.log('thePropList', thePropList);
+		}
+
+		this.propList = thePropList;
 	}
 
 	analyzeProps(attrs) {

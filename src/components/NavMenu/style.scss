@@ -6,6 +6,7 @@
 	--item-ml: 0;
 	--level: 0;
 	--bd: solid 1px var(--bdc);
+	--hov--bgc: var(--c--lightgray);
 }
 
 // ネストされている時はpX継承できるように
@@ -33,7 +34,6 @@
 .b--navMenu__item {
 	line-height: 1.5;
 	margin-left: var(--item-ml);
-	--hov--bgc: var(--c--lightgray);
 }
 .b--navMenu__item + .b--navMenu__item {
 	border-top: var(--bd);

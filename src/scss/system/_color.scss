@@ -9,11 +9,12 @@
 	--c--main: #2F4858; // メインカラー
 	--c--accent: #be3455; // mainと逆の目立つ色
 
+	--hs--gray: 215,4%;
+
 	// 確定
 	--c--link: #0c61e4; // リンク色
 	--c--text: #111; // テキスト色
 	--c--headline: #00473e; // 見出しカラー
-	--c--border: #ccc;
 	// --bdc--table: #dcdcdc; 
 	
 	// どうする
@@ -21,21 +22,32 @@
 
 	--c--black: #000;
 	--c--white: #fff;
-	--c--lightgray: #f5f5f5;
-	// --c--darkgray: ;
+	--c--lightgray: hsl(var(--hs--gray), 96%);//#f5f5f5;
+	--c--darkgray: hsl(var(--hs--gray), 24%);
+
+	--c--border: hsl(var(--hs--gray), 88%);
 
 	// cbox
-	--c--gray: #626771; // #646b79
-	--c--red: #ef4444;
-	--c--orange: #f97316;
-	--c--yellow: #f1b808;
-	--c--green: #10b981;
-	--c--blue: #0ea5e9;
-	--c--purple: #8b5cf6;
-	--c--pink: #ec4899;
+	--c--gray: hsl(var(--hs--gray), 52%); // #646b79
+	--c--red: hsl(5, 72%, 56%); // #ef4444
+	--c--orange: hsl(32, 88%, 52%); // #f97316
+	--c--yellow: hsl(48, 88%, 48%); //#f1b808
+	--c--green: hsl(156, 80%, 44%); //#10b981
+	--c--blue: hsl(200, 80%, 52%); //#0ea5e9
+	--c--purple: hsl(255, 72%, 56%); //#8b5cf6
+	--c--pink: hsl(330, 76%, 56%); //#ec4899
 
-	--mixPercent--bg: 95%;
-	--mixPercent--bdc: 40%;
+	// --c--red: hsl(0, 80%, 60%); // #ef4444
+	// --c--orange: hsl(30, 80%, 60%); // #f97316
+	// --c--yellow: hsl(45, 80%, 60%); //#f1b808
+	// --c--green: hsl(155, 60%, 60%); //#10b981
+	// --c--blue: hsl(200, 80%, 60%); //#0ea5e9
+	// --c--purple: hsl(260, 80%, 60%); //#8b5cf6
+	// --c--pink: hsl(330, 80%, 60%); //#ec4899
+
+	--colorMixPercent--bg: 94%;
+	--colorMixPercent--link: 12%;
+	// --colorMixPercent--bdc: 80%;
 
 	// シアンとかも？
 }
@@ -64,11 +76,14 @@
 // }
 
 
-// .-c\:gray{
-// 	--c: var(--c--gray);
-// }
+.-c\:gray{
+	--c: var(--c--gray);
+}
 .-c\:lightgray{
 	--c: var(--c--lightgray);
+}
+.-c\:darkgray{
+	--c: var(--c--darkgray);
 }
 .-c\:white{
 	--c: #fff;
@@ -82,13 +97,13 @@
 	background-color: var(--bgc) !important;
 }
 
-
 .-bgc\:main{
 	--bgc: var(--c--main);
 }
 .-bgc\:accent{
 	--bgc: var(--c--accent);
 }
+
 // .-bgc\:bg{
 // 	--bgc: var(--c--bg);
 // }
@@ -99,11 +114,14 @@
 // 	--bgc:  var(--c--link);
 // }
 
-// .-bgc\:gray{
-// 	--bgc: var(--c--gray);
-// }
+.-bgc\:gray{
+	--bgc: var(--c--gray);
+}
 .-bgc\:lightgray{
 	--bgc: var(--c--lightgray);
+}
+.-bgc\:darkgray{
+	--bgc: var(--c--darkgray);
 }
 .-bgc\:white{
 	--bgc:#fff;
@@ -112,9 +130,15 @@
 	--bgc:#000;
 }
 
+// .-bgc\:keycolor-light{
+// 	--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) var(--colorMixPercent--link));
+// 	--bgc: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
+// }
 
+
+// Darkモード
 // #wrapper{
-// 	--mixPercent--bg: 90%;
+// 	--colorMixPercent--bg: 90%;
 // 	--mixPercent--bdc: 40%;
 // 	--c--bg: #000; // 背景色メイン
 // 	--c--text: #fff; // メインカラー
@@ -122,29 +146,23 @@
 // 	color: var(--c--text);
 // }
 
+// #wrapper{
+// 	--c--bg: hsl(273, 30%, 95%);
+// 	--c--text: rgb(69, 66, 87);
+// 	background-color: var(--c--bg);
+// 	color: var(--c--text);
+// }
 
-// keycolor
-:where([data-variant="cbox"]){
-	border: solid 1px var(--keycolor);
-	// --icon-c: var(--keycolor);
-}
-
-// color-mixのサポートチェック
-@supports (color: color-mix(in srgb, #000, #fff)) {
-	:where([class*="-keycolor:"][data-variant="cbox"]) {
-		--bdc: color-mix(in srgb, var(--keycolor), var(--c--bg) var(--mixPercent--bdc));
-		--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) 20%);
+// cbox color-mix
+// @supports (color: color-mix(in srgb, #000, #fff)) {
+// 	:where([class*="-keycolor:"])[data-variant="cbox"] {
+// 		--bdc: color-mix(in srgb, var(--keycolor), transparent var(--mixPercent--bdc));
+// 		--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) 20%);
 	
-		// color: color-mix(in srgb, var(--keycolor), var(--c--text) 90%);
-		background-color: color-mix(in srgb, var(--keycolor), var(--c--bg) var(--mixPercent--bg));
-		border: solid 1px var(--bdc);
-	}
-}
-
-// -cbox: --cを使う?
-
-// .is-style-outline
-// [data-cbox="outline"]{
+// 		// color: color-mix(in srgb, var(--keycolor), var(--c--text) 90%);
+// 		background-color: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
+// 		border: solid 1px var(--bdc);
+// 	}
 // }
 
 // --keycolor : 1つのカラーをもとにスタイリングしたいときに活用する。 cbox,outline,fillなどで使っている

@@ -27,8 +27,7 @@ export default function BlockIcon({
 	const iconProps = {
 		icon,
 		label,
-		width: width || size,
-		height: height || size,
+		size,
 	};
 
 	if (color) {

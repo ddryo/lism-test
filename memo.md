@@ -45,13 +45,19 @@ import React from 'react';
 ### ローカル開発時
 
 next.js の pages を使用していて、かつ npm link で当パッケージを使用する場合、
-`npm link ../your-product/node_modules/react`
+
+```
+npm link ../your-product/node_modules/react
+```
+
 する必要あり。(`Module not found: Can't resolve 'react'` エラーになる。)
 
 ```
 npm link ../demo-project/my-app/node_modules/react
 
 npm link ../../Test/next_js/test/node_modules/react
+
+npm link ../../Library/Lism/lism-docs/node_modules/react
 ```
 
 devDependencies に react を含めてしまうと、peer に書いていても本番パッケージでバグってしまう。

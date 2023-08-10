@@ -1,55 +1,61 @@
 
 // Notice は --keycolor が常に渡ってくる
 :where(.b--notice){
-	// --keycolor: var(--c--main);
 	--p: var(--space--40);
-	--p--sm: var(--space--45);
-	--gap: var(--space--40);
+	--gap: var(--space--35);
 	--head-c: var(--keycolor);
+	--bdc: var(--keycolor);
+	// --bdrs: var(--radius--1);
 	position: relative;
-	border: solid 1px var(--keycolor);
 }
 .b--notice__icon{
 	margin-left: -0.125em;
 }
 .b--notice__head{
-	line-height: 1.625;
 	color: var(--head-c);
 }
 
-// fill
-// .b--notice[data-variant="fill"] {border: solid 1px var(--keycolor);}
-
-[data-variant="fill"] > .b--notice__head{
-	--head-c:#fff;
-	--pY: var(--space--30);
-	--pY--sm: var(--space--30);
-	background-color: var(--keycolor);
+// default以外
+:where(.b--notice[data-variant]){
+	border: solid 1px var(--bdc);
 }
 
+
+// default
+.b--notice:not([data-variant]){
+	border-inline-start: solid 4px var(--bdc);
+	
+	// color-mixのサポートチェック
+	@supports (color: color-mix(in srgb, #000, #fff)) {
+		--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) var(--colorMixPercent--link));
+		--head-c: var(--c--link);
+		background-color: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
+	}
+}
+
+
+// fill
+// [data-variant="fill"]{
+// 	overflow: hidden; // border-radiusつけたときに fill部分がはみ出さないように
+// }
+[data-variant="fill"] > .b--notice__head{
+	--head-c:#fff;
+	--pX: var(--p);
+	background-color: var(--keycolor);
+}
 
 // outline
 // .b--notice[data-variant="outline"] {border: solid 1px var(--keycolor);}
 
-
 // obbd
-.b--notice[data-variant="onbd"] {
-	// border: solid 1px var(--keycolor);
-	// position: relative;
+.b--notice[data-variant="cap-onbd"] {
 
 	:where(&) > .b--notice__head{
-		--pX: var(--space--20);
-		// color: var(--keycolor);
 		background-color: var(--c--bg);
-		// position: absolute;
-		// top: 0;
-		// left: 0;
-		// translate: 0 -50%;
 		margin-inline: var(--space--40);
 	}
 
 	:where(&) > .b--notice__body{
-		translate: 0 var(--space--10);
-		// margin-top: var(--space--10);
+		margin-top: var(--space--20);
 	}
 }

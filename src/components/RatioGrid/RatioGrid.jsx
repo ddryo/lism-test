@@ -40,7 +40,7 @@ export default function RatioGrid({
 	if ('1fr 1fr' === gtcs._) delete gtcs._;
 
 	return (
-		<Grid modifier='ratio' gtc={gtcs} {...props}>
+		<Grid lismClass='l--ratioGrid' gtc={gtcs} {...props}>
 			{/* {customQueryCSS && <style jsx>{customQueryCSS}</style>} */}
 			{children}
 		</Grid>

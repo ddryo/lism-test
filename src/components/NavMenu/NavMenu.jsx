@@ -1,12 +1,13 @@
 import React from 'react';
 import { Lism } from '../Lism';
-// import { Accordion, AccordionHeader, AccordionBody } from '../Accordion';
-// import classnames from 'classnames';
+// import { getMaybeColorVar } from '../../lib';
 
 export default function NavMenu({
 	children,
 	variant,
 	nestLevel,
+	// hovBgc,
+	// hovColor,
 	// itemP,
 	style = {},
 	...props
@@ -30,6 +31,12 @@ export default function NavMenu({
 		style['--level'] = parseInt(nestLevel);
 		ulProps['data-nest-level'] = nestLevel;
 	}
+	// if (hovBgc) {
+	// 	style['--hov--bgc'] = getMaybeColorVar(hovBgc);
+	// }
+	// if (hovColor) {
+	// 	style['--hov--c'] = getMaybeColorVar(hovColor);
+	// }
 
 	return (
 		<Lism {...ulProps} style={style}>

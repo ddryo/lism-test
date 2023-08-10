@@ -1,5 +1,6 @@
 .l--sideFix{
 	--fixW: 16rem; // 初期値
+	--gap--default: var(--space--20);
 }
 
 // fxgの比率を 1:でかい数 にして、fix側を広がらないようにする。
@@ -35,10 +36,10 @@
 	--gtc: 100%;
 
 	&[data-fix~="up"]{
-		--gta: "fix" "fluid";
+		--gta: "fix" ".";
 	}
 	&[data-fix~="down"]{
-		--gta: "fluid" "fix";
+		--gta: "." "fix";
 	}
 
 

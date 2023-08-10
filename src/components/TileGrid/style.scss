@@ -2,8 +2,9 @@
 // --------------------
 // TileGrid
 // --------------------
-.l--grid--tile {
-	--item--miw: 20em;
+.l--tileGrid {
+	--item--miw: 20rem;
+	--gap--default: var(--space--40);
 
 	/* auto-fill or auto-fit : 親の幅に対してアイテムが少ない時に、引き伸ばすか、伸ばさないか */
 	--gtc: repeat(auto-fit, minmax(min(var(--item--miw), 100%), 1fr));

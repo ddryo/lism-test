@@ -1,29 +1,29 @@
 .is--flow {
-	> * {
+	:where(&) > * {
 		margin-block-start: 0;
 		margin-block-end: 0;
 	}
 
 	// > * + *
-	> *:not(:first-child) {
+	:where(&) > *:not(:first-child) {
 		margin-block-start: var(--ls--flowGap); // global な値
 		margin-block-end: 0;
 	}
 
 
-	> .alignleft {
+	:where(&) > .alignleft {
 		float: left;
 		margin-inline-start: 0;
 		margin-inline-end: 2em; // ?
 	}
 
-	> .alignright {
+	:where(&) > .alignright {
 		float: right;
 		margin-inline-start: 2em; // ?
 		margin-inline-end: 0;
 	}
 
-	> .aligncenter {
+	:where(&) > .aligncenter {
 		margin-right: auto !important;
 		margin-left: auto !important;
 	}

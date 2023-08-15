@@ -7,17 +7,8 @@ import { getMaybeColorVar } from '../../lib';
 // import classnames from 'classnames';
 
 // align: full, wide, ''
-export default function BlockIcon({
-	variant,
-	color,
-	icon,
-	label,
-	size = '2em',
-	width,
-	height,
-	style = {},
-	...props
-}) {
+export default function BlockIcon({ variant, color, icon, label, size = '2em', ...props }) {
+	const lismStyle = {};
 	const blockProps = {
 		// lismClass: 'l--icon',
 		blockClass: 'b--icon',
@@ -30,16 +21,10 @@ export default function BlockIcon({
 		size,
 	};
 
-	if (color) {
-		style['--color'] = getMaybeColorVar(color);
-	}
-	// if (variant === 'full') {
-	// 	style['--color'] = color;
-	// } else if (variant === 'outline') {
-	// }
+	if (color) lismStyle['--color'] = getMaybeColorVar(color);
 
 	return (
-		<Center {...blockProps} {...props} style={style}>
+		<Center {...blockProps} {...props} lismStyle={lismStyle}>
 			<Icon {...iconProps} />
 		</Center>
 	);

@@ -44,21 +44,3 @@
 // }
 
 // ---------------------------------------------------------------------
-
-h1 {--fz: var(--fz--3xl);}
-h2 {--fz: var(--fz--2xl);}
-h3 {--fz: var(--fz--xl);}
-h4 {--fz: var(--fz--l);}
-h5 {--fz: var(--fz--m);}
-h6 {--fz: var(--fz--s);}
-
-.-fz\:r {font-size: 1rem;}
-.-fz\:xs {--fz: var(--fz--xs);}
-.-fz\:s {--fz: var(--fz--s);}
-.-fz\:m {--fz: var(--fz--m);}
-.-fz\:l {--fz: var(--fz--l);}
-.-fz\:xl {--fz: var(--fz--xl);}
-.-fz\:2xl {--fz: var(--fz--2xl);}
-.-fz\:3xl {--fz: var(--fz--3xl);}
-.-fz\:4xl {--fz: var(--fz--4xl);}
-.-fz\:5xl {--fz: var(--fz--5xl);}

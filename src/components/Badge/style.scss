@@ -3,10 +3,15 @@
 	--c: #fff;
 	--bgc: var(--keycolor);
 	--bdc: transparent;
+	--gap: .2em; // em 単位で指定したいので --space--5 は使わない
+	--bdrs: var(--radius--1);
+}
+
+.e--badge{
 	line-height: 1.5;
-	border: solid 1px var(--bdc); // サイズ揃えるため,常につける
 	color: var(--c);
 	background-color: var(--bgc);
+	border: solid 1px var(--bdc); // サイズ揃えるため,常につける
 }
 
 // fill=default

@@ -26,6 +26,7 @@ export default function FAQ({
 		icon: qIcon,
 		radius: '99', // '-'にする ?
 		p: 20,
+		size: '1em',
 		...qIconProps,
 	};
 
@@ -47,6 +48,7 @@ export default function FAQ({
 		icon: aIcon,
 		radius: '99', // '-'にする ?
 		p: 20,
+		size: '1em',
 		...aIconProps,
 	};
 	const Amark = <BlockIcon variant='outline' color='main' {...aIconProps} />;

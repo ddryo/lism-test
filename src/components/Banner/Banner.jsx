@@ -11,7 +11,6 @@ export default function Banner({
 	children,
 	ratio,
 	media,
-	// medias,
 	href,
 	filter,
 	p,

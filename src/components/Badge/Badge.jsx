@@ -11,6 +11,7 @@ export default function Badge({
 	// label,
 	variant = 'fill',
 	color = 'main',
+	hasIcon,
 	style = {},
 	children,
 	...props
@@ -18,21 +19,30 @@ export default function Badge({
 	const blockProps = {
 		tag: 'span',
 		lismClass: 'e--badge',
-		radius: '1',
+		keycolor: color,
+		radius: '-',
 		p: '-',
-		// lh: 1.5,
 		fz: 's',
 		style,
 		'data-variant': variant,
 		...props,
 	};
 
-	if (color) {
-		blockProps.keycolor = color;
+	if (hasIcon) {
+		blockProps.d = 'inline-flex';
+		blockProps.ai = 'center';
+		blockProps.gap = '-';
 	}
 
-	// if (variant === "cbox") {
-	// 	blockProps.cbox = color || "main";
+	// if (color) {
+	// 	blockProps.keycolor = color;
+	// }
+	// if (variant === 'fill') {
+	// 	blockProps.bgc = 'main';
+	// } else if (variant === 'outline') {
+	// 	blockProps.bdc = 'main';
+	// } else {
+	// 	blockProps.keycolor = color;
 	// }
 
 	return <Lism {...blockProps}>{children}</Lism>;

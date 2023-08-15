@@ -61,7 +61,7 @@ class CommonProps {
 			lismClass,
 			_util,
 			// utility, // ユーザーがコンポーネントに指定できる?
-			blockStyle = {},
+			lismStyle = {},
 			style = {},
 
 			// state
@@ -79,7 +79,7 @@ class CommonProps {
 			...others
 		} = props;
 
-		this.styles = { ...blockStyle, ...style };
+		this.styles = { ...lismStyle, ...style };
 
 		this.className = classnames(
 			blockClass, // b--
@@ -143,14 +143,14 @@ class CommonProps {
 			thePropList = Object.assign(
 				{},
 				PROP_LIST.common,
-				PROP_LIST.isFlexGrid,
+				// PROP_LIST.isFlexGrid,
 				PROP_LIST.isFlex
 			);
 		} else if (isGrid) {
 			thePropList = Object.assign(
 				{},
 				PROP_LIST.common,
-				PROP_LIST.isFlexGrid,
+				// PROP_LIST.isFlexGrid,
 				PROP_LIST.isGrid
 			);
 		} else {

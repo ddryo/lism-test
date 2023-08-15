@@ -11,9 +11,8 @@ const RATIO_PRESETS = ['16:9', '4:3', '3:2', '1:1', 'golden', 'silver', 'bronze'
 export default function Frame({ children, style = {}, ratio = '16:9', isPortrait, ...props }) {
 	const blockProps = {
 		lismClass: 'l--frame',
+		lismStyle: {},
 		'data-direction': isPortrait ? 'portrait' : null,
-		style,
-		...props,
 	};
 
 	if (RATIO_PRESETS.includes(ratio)) {
@@ -21,12 +20,12 @@ export default function Frame({ children, style = {}, ratio = '16:9', isPortrait
 	} else {
 		// ratioを : で分割してd,nに代入
 		const [d, n] = ratio.split(':');
-		blockProps.style['--d'] = d || null;
-		blockProps.style['--n'] = n || null;
+		blockProps.lismStyle['--d'] = d || null;
+		blockProps.lismStyle['--n'] = n || null;
 	}
 
 	return (
-		<Lism {...blockProps}>
+		<Lism {...blockProps} {...props}>
 			<div className='l--frame__placeholder' aria-hidden='true'></div>
 			{children}
 		</Lism>

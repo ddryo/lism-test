@@ -7,6 +7,7 @@ export default function Spacer({ className, width, height, style = {}, ...props 
 	// const { className, style, attrs } = getCommonProps(props);
 
 	let classNames = ['l--spacer'];
+	// const lismStyle = {};
 
 	if (undefined !== height) {
 		classNames.push('-h:');

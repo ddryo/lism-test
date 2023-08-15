@@ -4,32 +4,43 @@
 // --------------------
 // divider
 // --------------------
+:where(.l--divider){
+	--c: var(--c--bg);
+}
 .l--divider {
-	--color: #000;
-	--height: 2.5vw;
-	position: relative;
-	height: var(--height);
-	max-width: 100%; // is--constrainedの影響を受けないようにする
-	overflow: hidden;
+	--level: 2.5;
 	--rotateX: 0deg;
 	--rotateY: 0deg;
 	--duration: 12s;
+	--offset: 0;
+	--stretch: 1;
+
+	position: relative;
+	height: calc(1vw * var(--level)); // .-h:で上書きできるかあとでチェック
+	max-width: 100%; // is--constrainedの影響を受けないようにする
+	overflow: hidden;
+	color: var(--c);
+
 
 	&[data-flip="xy"]{
 		--rotateX: 180deg;
 		--rotateY: 180deg;
-		margin-top: -.5px; // transform で上下反転させると隙間ができてしまう
+		top: -.5px; // transform で上下反転させると隙間ができてしまう
 	}
 	&[data-flip="y"]{
 		--rotateX: 180deg;
-		margin-top: -.5px; // transform で上下反転させると隙間ができてしまう
+		top: -.5px; // transform で上下反転させると隙間ができてしまう
 	}
 	&[data-flip="x"]{
 		--rotateY: 180deg;
+		bottom: -.5px; // transform で上下反転させると隙間ができてしまう
+	}
+	&:not([data-flip]){
+		bottom: -.5px; // transform で上下反転させると隙間ができてしまう
 	}
 
 	.l--divider__svg{
-		color: var(--color);
+		color: inherit;
 		width: 100%;
 		height: 100%;
 	}
@@ -37,6 +48,8 @@
 	.l--divider__inner{
 		position: absolute;
 		inset: 0;
+		scale: var(--stretch) 1;
+		translate: var(--offset);
 		transform: rotateX(var(--rotateX)) rotateY(var(--rotateY));
 	}
 	
@@ -87,7 +100,6 @@
 		display: flex;
 		gap: 0;
 	}
-
 
 	.l--divider__svg {
 		display: block;

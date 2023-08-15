@@ -4,7 +4,7 @@ import { Stack } from '../Stack';
 
 export default function Glossary({ children, ...props }) {
 	return (
-		<Stack tag='dl' blockClass='b--glossary' gap={40} {...props}>
+		<Stack tag='dl' blockClass='b--glossary' gap={50} {...props}>
 			{children}
 		</Stack>
 	);

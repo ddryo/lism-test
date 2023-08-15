@@ -10,7 +10,6 @@ export default function SideFixGrid({
 	fix = 'right down', // "left up"|"left down"|"right up"|"right down"
 	breakPoint = 'sm',
 	customBreakPoint,
-	style = {},
 	...props
 }) {
 	// --gta--sm
@@ -28,8 +27,9 @@ export default function SideFixGrid({
 		gtc[breakPoint] = '1fr var(--fixW)';
 	}
 
+	const lismStyle = {};
 	if (undefined !== fixW) {
-		style['--fixW'] = fixW;
+		lismStyle['--fixW'] = fixW;
 	}
 
 	const blockProps = {
@@ -38,9 +38,6 @@ export default function SideFixGrid({
 		isGrid: true,
 		gta,
 		gtc,
-		style,
-		// 'data-bp': breakPoint,
-		...props,
 	};
 
 	if (customBreakPoint) {
@@ -57,7 +54,7 @@ export default function SideFixGrid({
 	// }
 	return (
 		<>
-			<Lism {...blockProps}>
+			<Lism {...blockProps} {...props} lismStyle={lismStyle}>
 				{/* <DynamicCSS css={customQueryCSS} /> */}
 				{/* {sortChildren(children, upper)} */}
 				{children}

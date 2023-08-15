@@ -13,22 +13,16 @@ export default function Button({
 	color = 'main',
 	children,
 	iconPosition,
-	style = {},
 	...props
 }) {
 	const blockProps = {
 		lismClass: 'l--button',
+		lismStyle: {},
 		gap: 10,
-		// isFlex: true,
 		p: '-',
-		// lh: 1.5,
-		// w: 'fit-content',
 		radius: '-',
 		ai: 'center',
-		// jc: 'center',
-		// shadow: "1",
 		'data-variant': variant,
-		style,
 	};
 
 	const utils = {
@@ -52,7 +46,7 @@ export default function Button({
 	}
 
 	if (iconOffset) {
-		blockProps.style['--icon-offset'] = iconOffset;
+		blockProps.lismStyle['--icon-offset'] = iconOffset;
 	}
 
 	if (color) {

@@ -3,6 +3,12 @@
 .-bd\:{
 	border: var(--bd);
 }
+.-bd\:gray{
+	border: solid 1px var(--c--gray);
+}
+.-bd\:current{
+	border: solid 1px currentColor;
+}
 .-bdw\:{
 	border-width: var(--bdw);
 }

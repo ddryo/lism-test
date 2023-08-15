@@ -1,6 +1,7 @@
 import React from 'react';
 import { Stack } from '../Stack';
-import { Item } from '../Item';
+import { Lism } from '../Lism';
+// import { Item } from '../Item';
 import { Grid } from '../Grid';
 import { Divider } from '../Divider';
 // import { filterEmptyObj } from '../../lib';
@@ -11,62 +12,57 @@ import { getMediaLayer, getFilterLayer } from '../helper';
 export default function Section({
 	children,
 	minH,
-	// bgc,
 	media,
-	medias,
 	filter,
 	isFullScreen,
 	divider = {},
-	p,
-	// padding,
-	gap = 0,
+	// p,
+	// gap = 0,
+	innerProps = {},
 	...attrs
 }) {
 	const blockProps = {
 		blockClass: 'b--section',
-		blockStyle: {
+		lismStyle: {
 			'--mih': minH || null,
 		},
 		'data-fullscreen': isFullScreen ? '1' : null,
 		...attrs,
 	};
 
-	// padding, gap は インナー側へ
-	const innerProps = { p, gap };
-
 	return (
 		<Stack alignfull {...blockProps}>
-			{divider.top && <Divider {...divider.top} flip='xy'></Divider>}
+			{divider.top && <Divider {...divider.top} flip='xy' />}
 			{getMediaLayer(media)}
 			{getFilterLayer(filter)}
 			<Grid blockClass='b--section__inner' {...innerProps}>
 				{children}
 			</Grid>
-			{divider.bottom && <Divider {...divider.bottom}></Divider>}
+			{divider.bottom && <Divider {...divider.bottom} />}
 		</Stack>
 	);
 }
 
-export const SectionBody = ({ children, pY = 50, ...props }) => {
+export const SectionBody = ({ children, ...props }) => {
 	return (
-		<Item blockClass='b--section__body' pY={pY} isFlow isConstrained hasGutter {...props}>
+		<Lism blockClass='b--section__body' ga='-' isFlow isConstrained hasGutter {...props}>
 			{children}
-		</Item>
+		</Lism>
 	);
 };
 
 export const SectionHeader = ({ children, ...props }) => {
 	return (
-		<Item blockClass='b--section__header' {...props}>
+		<Lism blockClass='b--section__header' ga='-' {...props}>
 			{children}
-		</Item>
+		</Lism>
 	);
 };
 
 export const SectionFooter = ({ children, ...props }) => {
 	return (
-		<Item blockClass='b--section__footer' {...props}>
+		<Lism blockClass='b--section__footer' ga='-' {...props}>
 			{children}
-		</Item>
+		</Lism>
 	);
 };

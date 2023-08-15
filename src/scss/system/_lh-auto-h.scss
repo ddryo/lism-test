@@ -43,55 +43,9 @@ body{
 	font-size: var(--fz);
 }
 
-// --lh指定されている要素自身はその値で上書き。
+// --lh指定されている要素自身はその値で上書き。→ .-lh: 使ってもらう?
 [style*="--lh:"]{
 	line-height: var(--lh);
 }
 
 // ---------------------------------------------------------------------
-
-
-h1 {--fz: var(--fz--3xl);}
-h2 {--fz: var(--fz--2xl);}
-h3 {--fz: var(--fz--xl);}
-h4 {--fz: var(--fz--l);}
-h5 {--fz: var(--fz--m);}
-h6 {--fz: var(--fz--s);}
-
-.-fz\:r {font-size: var(--fz--r, 1rem);} // 単位がremなので --fz にはセットしない
-.-fz\:xs {
-	--fz: var(--fz--xs);
-	// font-size: var(--fz); 
-}
-.-fz\:s {
-	--fz: var(--fz--s);
-	// font-size: var(--fz);
-}
-.-fz\:m {
-	--fz: var(--fz--m);
-	// font-size: var(--fz);
-}
-.-fz\:l {
-	--fz: var(--fz--l);
-	// font-size: var(--fz);
-}
-.-fz\:xl {
-	--fz: var(--fz--xl);
-	// font-size: var(--fz);
-}
-.-fz\:2xl {
-	--fz: var(--fz--2xl);
-	// font-size: var(--fz);
-}
-.-fz\:3xl {
-	--fz: var(--fz--3xl);
-	// font-size: var(--fz);
-}
-.-fz\:4xl {
-	--fz: var(--fz--4xl);
-	// font-size: var(--fz);
-}
-.-fz\:5xl {
-	--fz: var(--fz--5xl);
-	// font-size: var(--fz);
-}

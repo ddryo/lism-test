@@ -4,7 +4,9 @@ import { Stack } from '../Stack';
 // import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 
-export default function GlossaryItem({ children, term, ...props }) {
+// titleProps(termProps), descriptionProps,
+// dtProps, ddProps
+export default function GlossaryItem({ children, term, dtProps, ddProps, ...props }) {
 	return (
 		<Stack gap={20} blockClass='b--glossary__item' {...props}>
 			<Lism tag='dt' fw='bold' className='b--glossary__dt'>

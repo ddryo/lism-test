@@ -38,8 +38,42 @@
 
 // ---------------------------------------------------------------------
 
+.-lh\:{
+	line-height: var(--lh);
+}
+// [class*="-lh:"]{
+// 	line-height: var(--lh);
+// }
+
+[class*="-fz:"]{
+	font-size: var(--fz);
+	line-height: var(--lh, inherit);
+}
+
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;
+	font-size: var(--fz);
+	line-height: var(--lh);
 	--ls--flowGap: var(--ls--flowGap--heading); // Flowレイアウト直下の見出しの上部余白は少しだけ広くする. CSS変数を上書きしてるだけなので、 .is--flow 直下にのみ影響する
 }
+
+h1 {--fz: var(--fz--3xl);}
+h2 {--fz: var(--fz--2xl);}
+h3 {--fz: var(--fz--xl);}
+h4 {--fz: var(--fz--l);}
+h5 {--fz: var(--fz--m);}
+h6 {--fz: var(--fz--s);}
+
+.-fz\:r {font-size: 1rem;} // 自動lh計算を考慮し、--fz 使わない
+
+// .-fz\:2xs {--fz: var(--fz--2xs);} 
+.-fz\:xs {--fz: var(--fz--xs);}
+.-fz\:s {--fz: var(--fz--s);}
+.-fz\:m {--fz: var(--fz--m);}
+.-fz\:l {--fz: var(--fz--l);}
+.-fz\:xl {--fz: var(--fz--xl);}
+.-fz\:2xl {--fz: var(--fz--2xl);}
+.-fz\:3xl {--fz: var(--fz--3xl);}
+.-fz\:4xl {--fz: var(--fz--4xl);}
+.-fz\:5xl {--fz: var(--fz--5xl);}

@@ -6,6 +6,12 @@ import { getMaybeSpaceVar, getMaybeColorVar, getMaybeShadowVar } from '../index.
 
 const mgOption = { utilKeys: 'margin', converter: getMaybeSpaceVar };
 const pdOption = { presets: 'space', converter: getMaybeSpaceVar };
+const insetsOption = {
+	presets: 'inset',
+	utilKeys: 'insets',
+	onlyStyle: 1,
+	converter: getMaybeSpaceVar,
+};
 
 export default {
 	common: {
@@ -14,7 +20,7 @@ export default {
 		maxH: { styleKey: 'maxHeight' },
 		minH: { styleKey: 'minHeight' },
 		opacity: { styleKey: 'opacity' },
-		bd: { options: {} },
+		bd: { options: { presets: 'border' } },
 		bdw: { options: {} },
 
 		c: { options: { presets: 'color', converter: getMaybeColorVar } },
@@ -38,22 +44,10 @@ export default {
 
 		// position
 		inset: { options: { presets: 'inset', onlyStyle: 1, styleKey: 'inset' } },
-		top: {
-			name: 't',
-			options: { presets: 'inset', utilKeys: 'insets', onlyStyle: 1, styleKey: 'top' },
-		},
-		left: {
-			name: 'l',
-			options: { presets: 'inset', utilKeys: 'insets', onlyStyle: 1, styleKey: 'left' },
-		},
-		right: {
-			name: 'r',
-			options: { presets: 'inset', utilKeys: 'insets', onlyStyle: 1, styleKey: 'right' },
-		},
-		bottom: {
-			name: 'b',
-			options: { presets: 'inset', utilKeys: 'insets', onlyStyle: 1, styleKey: 'bottom' },
-		},
+		top: { name: 't', options: { styleKey: 'top', ...insetsOption } },
+		left: { name: 'l', options: { styleKey: 'left', ...insetsOption } },
+		right: { name: 'r', options: { styleKey: 'right', ...insetsOption } },
+		bottom: { name: 'b', options: { styleKey: 'bottom', ...insetsOption } },
 		z: { options: { presets: 'z', onlyStyle: 1, styleKey: 'zIndex' } },
 
 		mbs: { name: 'mbs', options: { presets: 'space' } },
@@ -127,6 +121,12 @@ export default {
 			},
 		},
 
+		// isFlex & isGrid
+		ai: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignItems' } },
+		ac: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignContent' } },
+		ji: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyItems' } },
+		jc: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyContent' } },
+
 		// isItem
 		ga: { options: { utilKeys: 'ga' } }, // grid-area
 		fxg: { BP: 1, styleKey: '--fxg' },
@@ -137,12 +137,12 @@ export default {
 		flowGap: { BP: 0, options: { presets: 'space' } },
 	},
 	// isFlex & isGrid
-	isFlexGrid: {
-		ai: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignItems' } },
-		ac: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignContent' } },
-		ji: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyItems' } },
-		jc: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyContent' } },
-	},
+	// isFlexGrid: {
+	// 	ai: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignItems' } },
+	// 	ac: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'alignContent' } },
+	// 	ji: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyItems' } },
+	// 	jc: { options: { utilKeys: 'place', onlyStyle: 1, styleKey: 'justifyContent' } },
+	// },
 	isGrid: {
 		gta: { BP: 1, options: { skipBaseUtil: 1 } },
 		gtc: { BP: 1, options: { skipBaseUtil: 1 } },

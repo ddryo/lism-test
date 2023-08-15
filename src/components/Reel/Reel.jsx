@@ -8,11 +8,11 @@ export default function Reel({
 	// onlySmall,
 	componentForWide,
 	itemW,
-	style = {},
 	...props
 }) {
 	let lismProps;
 	let ReelComponent = Lism;
+	const lismStyle = {};
 
 	if (componentForWide) {
 		ReelComponent = componentForWide;
@@ -27,11 +27,11 @@ export default function Reel({
 	}
 
 	if (undefined !== itemW) {
-		style['--item-w'] = itemW;
+		lismStyle['--item-w'] = itemW;
 	}
 
 	return (
-		<ReelComponent {...lismProps} style={style} {...props} tabIndex='0'>
+		<ReelComponent {...lismProps} {...props} lismStyle={lismStyle} tabIndex='0'>
 			{children}
 		</ReelComponent>
 	);

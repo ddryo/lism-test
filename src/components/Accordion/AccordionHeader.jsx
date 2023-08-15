@@ -79,20 +79,28 @@ export default function AccordionHeader({
 		);
 	}
 
-	labelProps = {
-		tag: labelTag || 'span',
+	let baseLabelProps = {
+		tag: 'span', // div?
 		lismClass: 'l--accordion__label',
 		isItem: true,
-		_util: '-fxg:1 -ovw:any',
-		...labelProps,
+		_util: '-fxg:1 -ovw:any', // 要検討
 	};
+
+	// -f:inhert みたいにフォント関連を一括で継承するクラス作る？
+	if (baseLabelProps) {
+		baseLabelProps.tag = labelTag;
+		baseLabelProps.fz = 'm';
+		baseLabelProps.fw = '400';
+	}
 
 	// before: Q&Aアイコン入れれるように。
 	return (
 		<summary {...blockProps}>
 			{iconPosition !== 'right' && Icons}
 			{labelBefore}
-			<Lism {...labelProps}>{children}</Lism>
+			<Lism {...baseLabelProps} {...labelProps}>
+				{children}
+			</Lism>
 			{labelAfter}
 			{iconPosition === 'right' && Icons}
 		</summary>

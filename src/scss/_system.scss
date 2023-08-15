@@ -14,15 +14,15 @@
 @use 'system/size';
 @use 'system/space';
 @use 'system/typography';
-@use 'system/typography-manual';
+@use 'system/lh-manual';
 @use 'system/reel';
 
 // @use './system/typography-auto-h';
 
 
-.alignfull + .alignfull{
-	margin-block-start: 0;
-}
+// .alignfull + .alignfull{
+// 	margin-block-start: 0;
+// }
 
 
 // コンテナクエリの基点とする要素
@@ -73,4 +73,5 @@
 		margin-left: calc(var(--ls--gutter) * -1);
 	}
 }
+
 

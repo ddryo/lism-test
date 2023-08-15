@@ -9,11 +9,12 @@ export default function NavMenu({
 	// hovBgc,
 	// hovColor,
 	// itemP,
-	style = {},
+	// style = {},
 	...props
 }) {
 	// p:0→ ulにデフォルトで付いてくる可能性の高いpaddingを削除
 
+	const lismStyle = {};
 	const ulProps = {
 		tag: 'ul',
 		blockClass: 'b--navMenu',
@@ -28,18 +29,18 @@ export default function NavMenu({
 	}
 
 	if (nestLevel) {
-		style['--level'] = parseInt(nestLevel);
+		lismStyle['--level'] = parseInt(nestLevel);
 		ulProps['data-nest-level'] = nestLevel;
 	}
 	// if (hovBgc) {
-	// 	style['--hov--bgc'] = getMaybeColorVar(hovBgc);
+	// 	lismStyle['--hov--bgc'] = getMaybeColorVar(hovBgc);
 	// }
 	// if (hovColor) {
-	// 	style['--hov--c'] = getMaybeColorVar(hovColor);
+	// 	lismStyle['--hov--c'] = getMaybeColorVar(hovColor);
 	// }
 
 	return (
-		<Lism {...ulProps} style={style}>
+		<Lism {...ulProps} lismStyle={lismStyle}>
 			{children}
 		</Lism>
 	);

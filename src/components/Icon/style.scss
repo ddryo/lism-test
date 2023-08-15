@@ -1,5 +1,6 @@
 // インライン
 .e--inlineIcon{
+	display: inline;
 	vertical-align: -.125em;
 	margin-inline: 0.125em; // 0.125 = 16px で 2pxの余白ができる
 	transform: scale(1.125);
@@ -8,12 +9,17 @@
 :where(.e--icon){
 	--size: 1em;
 }
+
 .e--icon[data-css-icon]{
 	text-align: center;
 	line-height: 1;
-	width: var(--size);
-	height: var(--size);
-	display: inline-block;
+	font-size: var(--size);
+	width: 1em;
+	height: 1em;
+	// display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .e--icon[data-emoji]{

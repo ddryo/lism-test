@@ -6,9 +6,20 @@
 // --------------------
 :where(.l--divider){
 	--c: var(--c--bg);
+	// 20px - (500 * 0.04 = 20px) = 0px
+	// 20px - (300 * 0.04 = 12px) = 8px
+
+	// 300:8px ~ 500:0px
+	// clamp(-0.5rem, -1.25rem + 4vw, 0rem)	
+	// --levelOffset: clamp(0px, 20px - 4cqw, 8px);
+
+	// 400:8px ~ 600:0px
+	// --levelOffset: clamp(0px, 24px - 4cqw, 8px);
 }
+
+ // heightが.-h:で上書きできるかあとでチェック
 .l--divider {
-	--level: 2.5;
+	--level: 5;
 	--rotateX: 0deg;
 	--rotateY: 0deg;
 	--duration: 12s;
@@ -16,27 +27,22 @@
 	--stretch: 1;
 
 	position: relative;
-	height: calc(1vw * var(--level)); // .-h:で上書きできるかあとでチェック
+	height: clamp( calc(6px * var(--level)), calc( 1cqw * var(--level) ), calc(12px * var(--level)) ); // 600px時点を最小値, 1200px時点を最大値にする
+	// height: calc(1cqw * var(--level) + var(--levelOffset)); // 小さい領域では高さをプラスする?
 	max-width: 100%; // is--constrainedの影響を受けないようにする
 	overflow: hidden;
 	color: var(--c);
 
 
-	&[data-flip="xy"]{
-		--rotateX: 180deg;
+	&[data-flip~="y"]{
 		--rotateY: 180deg;
-		top: -.5px; // transform で上下反転させると隙間ができてしまう
 	}
-	&[data-flip="y"]{
+	&[data-flip~="x"]{
 		--rotateX: 180deg;
 		top: -.5px; // transform で上下反転させると隙間ができてしまう
 	}
-	&[data-flip="x"]{
-		--rotateY: 180deg;
-		bottom: -.5px; // transform で上下反転させると隙間ができてしまう
-	}
-	&:not([data-flip]){
-		bottom: -.5px; // transform で上下反転させると隙間ができてしまう
+	&:not([data-flip~="x"]){
+		bottom: -.5px;
 	}
 
 	.l--divider__svg{

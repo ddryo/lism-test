@@ -207,7 +207,7 @@ class CommonProps {
 				if (BP) {
 					const propVals = getPropBpObj(propVal);
 					Object.keys(propVals).forEach((bp) => {
-						const styleName = isBaseBP(bp) ? `--${styleKey}` : `--${styleKey}--${bp}`;
+						const styleName = isBaseBP(bp) ? `${styleKey}` : `${styleKey}--${bp}`;
 						this.addStyle(styleName, propVals[bp]);
 					});
 				} else {

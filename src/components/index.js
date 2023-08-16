@@ -4,7 +4,7 @@
 // import React from 'react';
 export { Lism } from './Lism';
 
-export { Box} from './Box';
+export { Box } from './Box';
 export { Flow } from './Flow';
 export { Flex } from './Flex';
 export { Grid } from './Grid';
@@ -18,7 +18,6 @@ export { Center } from './Center';
 export { Frame, FrameContent } from './Frame';
 export { Layer, MediaLayer, FilterLayer } from './Layer';
 export { Reel } from './Reel';
-
 
 export { Divider } from './Divider';
 export { Icon, InlineIcon, BlockIcon } from './Icon';
@@ -45,6 +44,7 @@ export { Alert } from './Alert';
 export { Notice } from './Notice';
 export { Banner } from './Banner';
 export { FAQ } from './FAQ';
+export { ChatBubble } from './ChatBubble';
 export { Card, CardMedia, CardBody } from './Card';
 export { Section, SectionBody, SectionHeader, SectionFooter } from './Section';
 export { Glossary, GlossaryItem } from './Glossary';

@@ -21,7 +21,8 @@ function Divider({
 	// children,
 	className,
 	type = 'Wave1',
-	flip,
+	position = 'bottom',
+	// flip,
 	isAnimation,
 	// height,
 	level, // -10~10?
@@ -32,19 +33,38 @@ function Divider({
 	// style = {},
 	...attrs
 }) {
+	let flipXaxis = 'bottom' !== position; // 垂直方向の反転 ↕
+	let flipYaxis = 'bottom' !== position; // 水平方向の反転 ↔
+
 	let _TYPE = type.charAt(0).toUpperCase() + type.slice(1); // 1文字目を大文字にする
 
 	if (level === 0) {
 		return null;
 	} else if (level < 0) {
 		level = level * -1;
-		_TYPE += '_R';
+
+		// type が "Circle", "Arrow" で始まるかどうか
+		if (_TYPE.match(/^(Circle|Arrow)/)) {
+			_TYPE += '_R';
+		} else {
+			// それ以外は左右反転するだけでOK
+			flipYaxis = !flipYaxis;
+		}
 	}
+
+	const SVG = DividerSVG[_TYPE] || null;
+
+	if (!SVG) return null;
+
+	const dataFlip = classnames({
+		x: flipXaxis,
+		y: flipYaxis,
+	});
 
 	const blockProps = {
 		className: classnames('l--divider', className, {}),
 		'data-type': type,
-		'data-flip': flip || null,
+		'data-flip': dataFlip || null,
 		...attrs,
 	};
 
@@ -63,12 +83,6 @@ function Divider({
 		preserveAspectRatio: 'none',
 		style: {},
 	};
-
-	const SVG = DividerSVG[_TYPE] || null;
-
-	if (!SVG) {
-		return null;
-	}
 
 	const animationType = 'lr'; //animationTypes[svgType] || 'lr';
 

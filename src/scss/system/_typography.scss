@@ -18,6 +18,7 @@
 	--fz--l: 1.143em; //calc(1em * 8 / 7);
 	--fz--s: 0.889em; // calc(1em * 8 / 9);
 	--fz--xs: 0.80em; //calc(1em * 8 / 10);
+	--fz--2xs: 0.727em; //calc(1em * 8 / 11);
 
 	--ls--ff--emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Android Emoji", "EmojiSymbols";
 
@@ -67,7 +68,7 @@ h6 {--fz: var(--fz--s);}
 
 .-fz\:r {font-size: 1rem;} // 自動lh計算を考慮し、--fz 使わない
 
-// .-fz\:2xs {--fz: var(--fz--2xs);} 
+.-fz\:2xs {--fz: var(--fz--2xs);} 
 .-fz\:xs {--fz: var(--fz--xs);}
 .-fz\:s {--fz: var(--fz--s);}
 .-fz\:m {--fz: var(--fz--m);}

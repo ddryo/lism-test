@@ -1,6 +1,6 @@
 export const PRESETS = {
 	breakPoints: ['sm', 'md', 'lg', 'xl'],
-	fz: ['5xl', '4xl', '3xl', '2xl', 'xl', 'l', 'm', 's', 'xs', 'r'],
+	fz: ['5xl', '4xl', '3xl', '2xl', 'xl', 'l', 'm', 's', 'xs', '2xs', 'r'],
 	lh: [],
 	// utility化するカラー
 	color: ['main', 'accent', 'lightgray', 'darkgray', 'gray', 'white', 'black'],

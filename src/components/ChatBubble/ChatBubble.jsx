@@ -17,53 +17,31 @@ export default function ChatBubble({
 	iconFrameProps = {},
 	...props
 }) {
-	// right up
-
 	let decorators = null;
-	let iconName = null;
-	const fxd = 'left' === direction ? null : 'row-reverse';
+	// const fxd = 'left' === direction ? null : 'row-reverse';
 
-	let _chatBoxProps = {};
+	let _chatBoxProps = {
+		isGrid: true,
+		gap: '-',
+	};
 	let _iconProps = {};
 	let _iconFrameProps = { radius: '99' };
 	let _bodyProps = {
 		pos: 'relative',
-		maxW: '45em',
-		mt: ['-'],
+		mt: '-',
+	};
+	let _contentProps = {
+		isFlow: true,
+		flowGap: 30,
+		radius: '-',
+		p: ['-', '-'],
 	};
 	if ('box' === variant) {
-		_chatBoxProps = { pos: 'relative', isFlex: true, fxd };
-		_iconProps = {
-			pos: 'absolute',
-			isFlex: true,
-			fxd,
-			pX: 10,
-		};
+		_chatBoxProps.gap = 0;
+		_contentProps.radius = 1;
+		_iconProps.pX = 10;
 		_iconFrameProps.shadow = 1;
-		// _bodyProps.mt = ['-'];
-		// _bodyProps[`m${direction[0]}`] = [null, '-'];
-		iconName = name && (
-			<Lism blockClass='b--chatBubble__name' fz='2xs'>
-				{name}
-			</Lism>
-		);
 	} else {
-		_chatBoxProps = {
-			isFlex: true,
-			fxd,
-			gap: '-',
-			pX: { sm: '-' },
-		};
-		_iconProps = {
-			isItem: true,
-			fxsh: '0',
-		};
-		// _bodyProps.mt = ['-'];
-		iconName = name && (
-			<Lism blockClass='b--chatBubble__name' fz='2xs' ta='center' mbs={10}>
-				{name}
-			</Lism>
-		);
 		decorators =
 			'box' === variant ? null : (
 				<>
@@ -89,21 +67,21 @@ export default function ChatBubble({
 			{..._chatBoxProps}
 			{...props}
 		>
-			<Lism blockClass='b--chatBubble__icon' {..._iconProps}>
-				<Frame ratio='1:1' {..._iconFrameProps} {...iconFrameProps}>
-					<MediaLayer>{img}</MediaLayer>
-				</Frame>
-				{iconName}
-			</Lism>
+			{img && (
+				<Lism blockClass='b--chatBubble__icon' {..._iconProps}>
+					<Frame ratio='1:1' {..._iconFrameProps} {...iconFrameProps}>
+						<MediaLayer>{img}</MediaLayer>
+					</Frame>
+				</Lism>
+			)}
+
+			{name && (
+				<Lism blockClass='b--chatBubble__name' fz='2xs' p={10} mt='-'>
+					{name}
+				</Lism>
+			)}
 			<Lism blockClass='b--chatBubble__body' {..._bodyProps}>
-				<Lism
-					blockClass='b--chatBubble__content'
-					isFlow
-					radius='-'
-					p={['-', '-']}
-					flowGap={30}
-					{...contentProps}
-				>
+				<Lism blockClass='b--chatBubble__content' {..._contentProps} {...contentProps}>
 					{children}
 				</Lism>
 				{decorators}

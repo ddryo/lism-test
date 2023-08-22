@@ -18,26 +18,31 @@ export default function SideFixGrid({
 	const gtc = {};
 
 	// fixに "left" が含まれてるかどうか
-	const isFixLeft = -1 !== fix.indexOf('left');
-	if (isFixLeft) {
-		gta[breakPoint] = '"fix ."';
-		gtc[breakPoint] = 'var(--fixW) 1fr';
-	} else {
-		gta[breakPoint] = '". fix"';
-		gtc[breakPoint] = '1fr var(--fixW)';
-	}
+	// const isFixLeft = -1 !== fix.indexOf('left');
 
-	const lismStyle = {};
-	if (undefined !== fixW) {
-		lismStyle['--fixW'] = fixW;
+	if (breakPoint) {
+		gta[breakPoint] = '-';
+		gtc[breakPoint] = '-';
 	}
+	//  else {
+	// 	gta._ = '-';
+	// }
+
+	// const lismStyle = {};
+	// if (undefined !== fixW) {
+	// 	// lismStyle['--fixW'] = fixW;
+	// 	lismProp = fixW;
+	// }
 
 	const blockProps = {
 		lismClass: 'l--sideFix',
 		'data-fix': fix,
 		isGrid: true,
+		gap: 20, // 初期値
 		gta,
 		gtc,
+		hasLismVar: true,
+		lismVar: fixW,
 	};
 
 	if (customBreakPoint) {
@@ -54,7 +59,7 @@ export default function SideFixGrid({
 	// }
 	return (
 		<>
-			<Lism {...blockProps} {...props} lismStyle={lismStyle}>
+			<Lism {...blockProps} {...props}>
 				{/* <DynamicCSS css={customQueryCSS} /> */}
 				{/* {sortChildren(children, upper)} */}
 				{children}

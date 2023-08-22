@@ -1,0 +1,82 @@
+.l--sideFix{
+	--fixW: 16rem; // 初期値
+	--gap--default: var(--space--20);
+}
+
+// fxgの比率を 1:でかい数 にして、fix側を広がらないようにする。
+.l--sideFix.is--flex {
+	--fluid--miw: 55%;
+
+	// flex-grow は 変数指定だと挙動が変だった。
+	// side
+	&[data-fix="first"] > .is--item:first-child,
+	&[data-fix="last"] > .is--item:last-child{
+		--fxb: var(--fixW);
+		flex-grow: 1; // fxg を 0 にすると、折り返されたときに広がらないので 1 にする必要がある
+	}
+
+	&[data-fix="first"] > .is--item:last-child,
+	&[data-fix="last"] > .is--item:first-child{
+		--fxb: 0;
+		flex-grow: 9999999; // できるだけ fix側を 指定値ピッタリに近づける
+		min-width: min(100%, var(--fluid--miw));  // このサイズが折り返しポイント
+
+		// 折り返しが効かない長い文字列があった場合にバグるのを防ぐ
+		// word-wrap: break-word;
+		// overflow-wrap: break-word;
+	}
+}
+
+// .l--sideFix.is--grid {
+// }
+
+.l--sideFix{
+
+	// 折返ししないケースはflexモードでできるので考慮していない。
+	--gtc: 100%;
+
+	&[data-fix~="up"]{
+		--gta: "fix" ".";
+	}
+	&[data-fix~="down"]{
+		--gta: "." "fix";
+	}
+
+
+	// data-fix: "left up" || "left down" || "right up" || "right down"
+	// &[data-fix~="left"]{
+	// 	--gta: "fix fluid";
+	// 	--gtc: var(--fixW) 1fr;
+	// }
+
+	// &[data-fix~="right"]{
+	// 	--gta: "fluid fix";
+	// 	--gtc: 1fr var(--fixW);
+	// }
+
+
+	// .-gtc@sm:
+	// &[data-break="sm"]{
+	// 	--gtc--sm: 100%;
+
+	// 	&[data-fix~="up"]{
+	// 		--gta--sm: "fix" "fluid";
+	// 	}
+	// 	&[data-fix~="down"]{
+	// 		--gta--sm: "fluid" "fix";
+	// 	}
+	// }
+
+	// &[data-break="xs"]{
+	// 	--gtc--xs: 100%;
+
+	// 	&[data-fix~="up"]{
+	// 		--gta--xs: "fix" "fluid";
+	// 	}
+	// 	&[data-fix~="down"]{
+	// 		--gta--xs: "fluid" "fix";
+	// 	}
+	// }
+
+}
+

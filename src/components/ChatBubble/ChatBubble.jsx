@@ -1,20 +1,36 @@
 import React from 'react';
 import { Lism } from '../Lism';
-import { Center } from '../Center';
+// import { Center } from '../Center';
 // import { Text } from '../Text';
-import { Layer } from '../Layer';
+// import { Layer } from '../Layer';
+import { Decorator } from '../Decorator';
+
 // import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { MediaLayer } from '../Layer';
 
+const DECORATOR_PROPS = {
+	// chat: {
+	left: {
+		// rtl言語を考慮してleftも明示的にセット
+		top: 0,
+		right: '100%',
+	},
+	right: {
+		top: 0,
+		left: '100%',
+	},
+	// },
+};
+
 export default function ChatBubble({
 	name,
 	img,
+	variant = 'chat',
 	direction = 'left',
 	contentProps = {},
-	children,
-	variant = 'chat',
 	iconFrameProps = {},
+	children,
 	...props
 }) {
 	let decorators = null;
@@ -42,28 +58,32 @@ export default function ChatBubble({
 		_iconProps.pX = 10;
 		_iconFrameProps.shadow = 1;
 	} else {
-		decorators =
-			'box' === variant ? null : (
-				<>
-					<Layer
-						className='b--chatBubble__decorator'
-						data-key={`${variant}-a`}
-						aria-hidden='true'
-					></Layer>
-					<Layer
-						className='b--chatBubble__decorator'
-						data-key={`${variant}-b`}
-						aria-hidden='true'
-					></Layer>
-				</>
-			);
+		console.log('DECORATOR_PROPS[direction]', DECORATOR_PROPS[direction]);
+		decorators = (
+			<>
+				<Decorator
+					type={variant}
+					direction={direction}
+					index='1'
+					bgc='-'
+					{...DECORATOR_PROPS[direction]}
+				/>
+				<Decorator
+					type={variant}
+					direction={direction}
+					index='2'
+					bgc='-'
+					{...DECORATOR_PROPS[direction]}
+				/>
+			</>
+		);
 	}
 
 	return (
 		<Lism
 			blockClass='b--chatBubble'
-			data-variant={variant || null}
-			data-direction={direction || null}
+			data-variant={variant}
+			data-direction={direction}
 			{..._chatBoxProps}
 			{...props}
 		>

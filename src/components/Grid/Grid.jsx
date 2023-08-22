@@ -1,19 +1,11 @@
 import React from 'react';
 import { getCommonProps } from '../../lib';
-// import classnames from 'classnames';
-// import { Box } from '../index';
+// import { getLismClass } from '../../lib';
 
-// grid-template-areas: none
-// ,grid-template-columns, grid-template-rows: none,
-// gta, gtc, gtr
-export default function Grid({ tag, children, modifier, ...props }) {
-	let lismClass = 'l--grid';
-	if (modifier) {
-		lismClass += `--${modifier}`;
-	}
-
+export default function Grid({ as, children, modifier, ...props }) {
 	const { className, style, attrs } = getCommonProps(props, {
-		lismClass,
+		lismClass: 'l--grid',
+		lismModifier: modifier && 'l--grid--' + modifier,
 		isGrid: true,
 	});
 
@@ -23,6 +15,8 @@ export default function Grid({ tag, children, modifier, ...props }) {
 		...attrs,
 	};
 
-	const Tag = tag || 'div';
-	return <Tag {...blockProps}>{children}</Tag>;
+	// is--grid は削除したい
+
+	const Grid = as || 'div';
+	return <Grid {...blockProps}>{children}</Grid>;
 }

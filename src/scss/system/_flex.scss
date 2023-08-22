@@ -1,7 +1,5 @@
 @use "../query" as query;
 
-
-
 // l--flex, l--stack, l--reel, ...
 :where(.is--flex){
 	--fxw: nowrap;
@@ -13,15 +11,18 @@
 	flex-direction: var(--fxd);
 }
 
-// flex-wrapはクエリ対応いらないか
+// flex-wrap
 .-fxw\:w{--fxw: wrap;}
 .-fxw\:nw{--fxw: nowrap;}
 
+// flex-direction
 .-fxd\:c{--fxd: column;}
 .-fxd\:cr{--fxd: column-reverse;}
 .-fxd\:r{--fxd: row;}
 .-fxd\:rr{--fxd: row-reverse;}
 
+
+// --prop の上書きには importantが必要
 @include query.cq('sm'){
 	.-fxw\@sm\:{--fxw: var(--fxw--sm) !important;}
 	.-fxd\@sm\:{--fxd: var(--fxd--sm) !important;}

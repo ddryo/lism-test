@@ -1,19 +1,24 @@
-// 役割がはっきりしているので、is--flex なし ?
+// 役割がはっきりしているので、is--flex なし。
 .l--center {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
-	&[data-fit="parent"]{
-		width: 100%;
-		height: 100%;
-	}
-	&[data-fit="content"]{
-		width: fit-content;
-		height: fit-content;
-		margin-inline: auto;
-	}
-
 	>:first-child{margin-top: auto;}
 	>:last-child{margin-bottom: auto;}
+
+	// data-zie?
+	&[data-size="cover"]{
+		width: 100%;
+		height: 100%;
+		overflow-y: auto;
+	}
+
 }
+
+// 自分自身をセンター寄せ？
+// .l--center--self {
+// 	width: fit-content;
+// 	height: fit-content;
+// 	margin-inline: auto;
+// }

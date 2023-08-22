@@ -65,7 +65,7 @@
 }
 
 [class*="-bxsh:"]{
-	box-shadow: var(--bxsh) !important;
+	box-shadow: var(--bxsh);
 }
 .-bxsh\:0{
 	--bxsh: none;

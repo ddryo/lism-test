@@ -91,6 +91,9 @@
 .-c\:black{
 	--c: #000;
 }
+.-c\:current{
+	--c: currentColor;
+}
 
 
 [class*="-bgc:"]{
@@ -128,6 +131,10 @@
 }
 .-bgc\:black{
 	--bgc:#000;
+}
+.-bgc\:current{
+	// 疑似要素とかで使える
+	--bgc: currentColor;
 }
 
 // .-bgc\:keycolor-light{
@@ -167,6 +174,9 @@
 
 // --keycolor : 1つのカラーをもとにスタイリングしたいときに活用する。 cbox,outline,fillなどで使っている
 // .-keycolor\:{&}
+.-keycolor\:current{
+	--keycolor: currentColor;
+}
 .-keycolor\:main{
 	--keycolor: var(--c--main);
 }

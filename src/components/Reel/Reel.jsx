@@ -23,6 +23,7 @@ export default function Reel({
 		lismProps = {
 			lismClass: 'l--reel',
 			isGrid: true,
+			gap: 20,
 		};
 	}
 

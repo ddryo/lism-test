@@ -1,43 +1,85 @@
 @use "../query" as query;
 
 // [class*="-w:"]
-.-w\: {
-	width: var(--w) !important;
-}
+.-w\: {width: var(--w);}
+
 // [class*="-h:"],
-.-h\: {
-	height: var(--h) !important;
-}
+.-h\: {height: var(--h);}
+
+// max, min
+.-maxW\: {max-width: var(--maxW);}
+.-maxH\: {min-height: var(--maxH);}
+.-minW\: {max-width: var(--minW);}
+.-minH\: {min-height: var(--minH);}
 
 @include query.cq('sm'){
-	.-w\@sm\: { width: var(--w--sm) !important;}
-	.-h\@sm\: { height: var(--h--sm) !important;}
+	.-w\@sm\: { width: var(--w--sm);}
+	.-h\@sm\: { height: var(--h--sm);}
 }
 
 @include query.cq('md'){
-	.-w\@md\: { width: var(--w--md) !important;}
-	.-h\@md\: { height: var(--h--md) !important;}
+	.-w\@md\: { width: var(--w--md);}
+	.-h\@md\: { height: var(--h--md);}
 }
 @include query.cq('lg'){
-	.-w\@lg\: { width: var(--w--lg) !important;}
-	.-h\@lg\: { height: var(--h--lg) !important;}
+	.-w\@lg\: { width: var(--w--lg);}
+	.-h\@lg\: { height: var(--h--lg);}
 }
 @include query.cq('xl'){
-	.-w\@xl\: { width: var(--w--xl) !important;}
-	.-h\@xl\: { height: var(--h--xl) !important;}
+	.-w\@xl\: { width: var(--w--xl);}
+	.-h\@xl\: { height: var(--h--xl);}
 }
-
 
 // utility、あとで検討
-.-w\:100{
-	width: 100%;
-}
-.-h\:100{
-	height: 100%;
-}
+.-w\:100{width: 100%;}
+.-h\:100{height: 100%;}
+
+.-maxW\:100{max-width: 100%;}
+.-maxH\:100{max-height: 100%;}
+
 // .-w\:text{
 // 	width: 35em;
 // }
 
 // width:slim
 // width:text
+
+
+
+// メディアクエリ対応の変数 --size を扱うためのクラス
+// .-size\:{
+// 	--size--sm: var(--size--xs);
+// 	--size--md: var(--size--sm);
+// 	--size--lg: var(--size--md);
+// 	--size--xl: var(--size--lg);
+
+// 	--size: var(--size--xs);
+// 	@include query.cq('sm'){
+// 		--size: var(--size--sm);
+// 	}
+// 	@include query.cq('md'){
+// 		--size: var(--size--md);
+// 	}
+// 	@include query.cq('lg'){
+// 		--size: var(--size--lg);
+// 	}
+// 	@include query.cq('xl'){
+// 		--size: var(--size--xl);
+// 	}
+// }
+
+// メディアクエリ対応の変数 --lism を扱うためのクラス
+// .-lism\:{
+// 	@include query.cq('sm'){
+// 		--lism: var(--lism--sm);
+// 	}
+// 	@include query.cq('md'){
+// 		--lism: var(--lism--md);
+// 	}
+// 	@include query.cq('lg'){
+// 		--lism: var(--lism--lg);
+// 	}
+// 	@include query.cq('xl'){
+// 		--lism: var(--lism--xl);
+// 	}
+// }

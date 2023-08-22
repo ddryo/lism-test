@@ -16,7 +16,7 @@ export { Cluster } from './Cluster';
 export { Center } from './Center';
 
 export { Frame, FrameContent } from './Frame';
-export { Layer, MediaLayer, FilterLayer } from './Layer';
+export { Layer, MediaLayer, FilterLayer, ContentLayer } from './Layer';
 export { Reel } from './Reel';
 
 export { Divider } from './Divider';
@@ -26,13 +26,14 @@ export { Columns } from './Columns';
 export { TileGrid } from './TileGrid';
 export { RatioGrid } from './RatioGrid';
 export { AreaGrid } from './AreaGrid';
-export { SideFix, SideFixGrid } from './SideFix';
+export { SideFixGrid } from './SideFix';
 // export { PinGallery } from './PinGallery';
 
 export { Spacer } from './Spacer';
 export { Item } from './Item';
 export { Button } from './Button';
 export { Badge } from './Badge';
+export { Decorator } from './Decorator';
 
 // appルーターで use client がいるもの
 export { Accordion, AccordionHeader, AccordionBody } from './Accordion';

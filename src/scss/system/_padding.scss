@@ -37,6 +37,9 @@
 	padding-right: var(--pr) !important;
 }
 
+// p-is inline-start
+// p-bs block-start
+
 
 @include query.cq('sm'){
 	.-p\@sm\:{

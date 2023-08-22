@@ -2,10 +2,25 @@
 // --------------------
 // TileGrid
 // --------------------
-.l--tileGrid {
-	--item--miw: 20rem;
-	--gap--default: var(--space--40);
+// .l--tileGrid {
+// 	// --lism:
+// 	--item-minW: 20rem;
+// 	// --tileW:
 
-	/* auto-fill or auto-fit : 親の幅に対してアイテムが少ない時に、引き伸ばすか、伸ばさないか */
-	--gtc: repeat(auto-fit, minmax(min(var(--item--miw), 100%), 1fr));
+
+// 	&.-lism\:{
+// 		--lism: 20rem;
+// 		--item-minW: var(--lismVal);
+// 	}
+
+// 	// auto-fill or auto-fit : 親の幅に対してアイテムが少ない時に、引き伸ばすか、伸ばさないか
+// 	--gtc: repeat(auto-fit, minmax(min(var(--item-minW), 100%), 1fr));
+// }
+
+
+.l--grid--tile {
+	--lism: 20rem;
+
+	// auto-fill or auto-fit : 親の幅に対してアイテムが少ない時に、引き伸ばすか、伸ばさないか
+	--gtc: repeat(auto-fit, minmax(min(var(--lismVal), 100%), 1fr));
 }

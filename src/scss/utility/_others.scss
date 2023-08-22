@@ -1,35 +1,28 @@
 
-// .-bdc で上書きできるように border 自体も変数管理
-.-bd\:{
-	border: var(--bd);
-}
-.-bd\:gray{
-	border: solid 1px var(--c--gray);
-}
-.-bd\:current{
-	border: solid 1px currentColor;
-}
-.-bdw\:{
-	border-width: var(--bdw);
-}
-.-bdc\:{
-	border-color: var(--bdc);
-}
+.-bg\:{background: var(--bg);}
+.-bg\:n{background:none}
+
+// .-bg\:stripe{background:}
+// .-bg\:grid{background:}
 
 .-inset\:0{inset: 0;}
 .-t\:0{top: 0;}
 .-t\:50{top: 50%;}
 .-t\:100{top:100%;}
+
 .-l\:0{left: 0;}
 .-l\:50{left: 50%;}
 .-l\:100{left:100%;}
+
 .-r\:0{right: 0;}
 .-r\:50{right: 50%;}
 .-r\:100{right:100%;}
+
 .-b\:0{bottom: 0;}
 .-b\:50{bottom: 50%;}
 .-b\:100{bottom:100%;}
 
+.-z\:-1{z-index: -1;}
 .-z\:0{z-index: 0;}
 .-z\:1{z-index: 1;}
 
@@ -38,6 +31,22 @@
 .-trnslt\:XY\:-50{translate: -50% -50%;}
 .-trnslt\:X\:-50{translate: -50% 0;}
 .-trnslt\:Y\:-50{translate: 0 -50%;}
+.-trnslt\:XY\:-100{translate: -100% -100%;}
+.-trnslt\:X\:-100{translate: -100% 0;}
+.-trnslt\:Y\:-100{translate: 0 -100%;}
+
+.-rotate\:45{rotate: 45deg}
+.-rotate\:-45{rotate: -45deg}
+.-rotate\:90{rotate: 90deg}
+.-rotate\:-90{rotate: -90deg}
+.-rotate\:180{rotate: 180deg}
+
+
+.-trso\:c{transform-origin: center;}
+.-trso\:lt{transform-origin: left top;}
+.-trso\:rt{transform-origin: right top;}
+.-trso\:lb{transform-origin: left bottom;}
+.-trso\:rb{transform-origin: right bottom;}
 
 // .-td\:n{
 // 	text-decoration: none;
@@ -52,12 +61,18 @@
 // }
 
 // overflow
-// .-ov\:v{
-// 	overflow: visible;
-// }
-.-ov\:h{
-	overflow: hidden;
-}
+.-ov\:v{overflow: visible;}
+.-ov\:h{overflow: hidden;}
+.-ov\:a{overflow: auto;}
+.-ov\:c{overflow: clip;}
+// .-ov\:s{overflow: scroll;}
+
+// x,yは auto, clip のみutil化
+.-ovy\:a{overflow-y: auto;}
+.-ovy\:c{overflow-y: clip;}
+.-ovx\:a{overflow-x: auto;}
+.-ovx\:c{overflow-x: clip;}
+
 
 // text-align
 .-ta\:c{text-align: center;}
@@ -80,11 +95,9 @@
 
 
 // prop: ovw
-// ※ ovw は emmetの正式定義ではない.
-.-ovw\:any{
-	// 単語中でも折り返しさせる
-	overflow-wrap: anywhere;
-}
+// 単語中でも折り返しさせる
+.-ovw\:any{overflow-wrap: anywhere;} // ※ ovw は emmetの正式定義ではない.
+// .-wob\:bw{word-break: break-word;} // 非推奨. -ovw:any と同じ
 
 .-lis\:n{
 	list-style: none;

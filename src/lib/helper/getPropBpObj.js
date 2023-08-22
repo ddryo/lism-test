@@ -1,7 +1,5 @@
-import filterEmptyObj from '../functions/filterEmptyObj';
-import { PRESETS } from '../presetVars';
-
-const BREAK_POINTS = PRESETS.breakPoints;
+import filterEmptyObj from './filterEmptyObj';
+import { BREAK_POINTS } from '../config';
 const BREAK_POINTS_ALL = ['_', ...BREAK_POINTS];
 
 function hasKeys(object, keys) {
@@ -16,8 +14,8 @@ function hasBpKeys(data) {
 
 // クエリ対応プロパティの型を調べて規格化したObjを返す
 // string, array, obj → {_, sm, md, ...} の型に変換
-export default function getPropBpObj(propVal, bpData = {}, filter = null) {
-	let returnObj = bpData; // {sm,md,...}
+export default function getPropBpObj(propVal) {
+	let returnObj = {}; // {sm,md,...}
 
 	if (typeof propVal === 'string' || typeof propVal === 'number') {
 		returnObj._ = propVal;
@@ -32,14 +30,6 @@ export default function getPropBpObj(propVal, bpData = {}, filter = null) {
 		} else {
 			returnObj._ = propVal;
 		}
-	}
-
-	// 中身に filter() を適用
-	if (null !== filter) {
-		returnObj = Object.entries(returnObj).reduce((newObj, [key, r]) => {
-			newObj[key] = filter(r);
-			return newObj;
-		}, {});
 	}
 
 	return filterEmptyObj(returnObj);

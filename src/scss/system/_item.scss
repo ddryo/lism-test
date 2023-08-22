@@ -7,41 +7,39 @@
 // 	justify-self: var(--js);
 // }
 
-// コンポーネント側で --fx 一つにまとめる？
-// fxg, fxsh, fxb が ベース で flexの指定があればそっち優先？
-:where(.is--flex > .is--item) {
-	--fxg: 0;
-	--fxsh: 1;
-	--fxb: auto;
-	--fx: var(--fxg) var(--fxsh) var(--fxb);
-	flex: var(--fx);
-}
+// :where(.is--flex > .is--item) {
+// 	--fxg: 0;
+// 	--fxsh: 1;
+// 	--fxb: auto;
+// 	--fx: var(--fxg) var(--fxsh) var(--fxb);
+// 	flex: var(--fx);
+// }
 
 // ※ isItem使わず直接クラス指定できるように変数にはしていない
-.-fxg\:1{flex-grow: 1;}
-.-fxg\:0{flex-grow: 0;}
-.-fxsh\:1{flex-shrink: 1;}
-.-fxsh\:0{flex-shrink: 0;}
+.-fxg\:{flex-grow:var(--fxg)}
+.-fxg\:1{flex-grow:1}
+.-fxg\:0{flex-grow:0}
+
+.-fxsh\:{flex-shrink:var(--fxsh)}
+.-fxsh\:1{flex-shrink:1}
+.-fxsh\:0{flex-shrink:0}
+
+.-fxb\: {flex-basis:var(--fxb)}
+// .-fxb\:100 {flex-basis:100%}
+// .-fxb\:a {flex-basis:auto}
 
 
 // row/column が基本で、area指定があればそっち優先
-:where(.is--grid > .is--item) {
-	--gc: auto;
-	--gr: auto;
-	grid-row: var(--gr);
-	grid-column: var(--gc);
+// :where(.is--grid > .is--item) {
+// 	--gc: auto;
+// 	--gr: auto;
+// 	grid-row: var(--gr);
+// 	grid-column: var(--gc);
+// }
 
-	// --ga: auto;
-	// grid-area: var(--ga);
-}
-
-// is--grid.has--area > .is--item とかにする...?
-
-// gaあれば上書きする。
-.-ga\:{
-	grid-area: var(--ga) !important;
-}
-// ga@sm..?
+.-ga\:{grid-area: var(--ga)}
+.-gc\:{grid-column: var(--gc)}
+.-gr\:{grid-row: var(--gr)}
 
 // ※ isItem使わず直接クラス指定できるように変数にはしていない
 .-ga\:fix{grid-area: fix;}
@@ -57,36 +55,36 @@
 // .-as\:{align-self:var(--as) !important;}
 // .-js\:{justify-self:var(--js) !important;}
 
-// base値がinlineスタイルなので、importantで上書きする必要がある。→ だったら変数上書きではなく普通にプロパティ名　sで指定すべき...？
+
 @include query.cq('sm'){
-	.-fxg\@sm\: { --fxg: var(--fxg--sm) !important}
-	.-fxsh\@sm\: { --fxsh: var(--fxsh--sm) !important}
-	.-fxb\@sm\: { --fxb: var(--fxb--sm) !important}
-	.-fx\@sm\:{ --fx: var(--fx--sm) !important}
-	.-gc\@sm\: { --gc: var(--gc--sm) !important}
-	.-gr\@sm\: { --gr: var(--gr--sm) !important}
+	.-fxg\@sm\: { flex-grow: var(--fxg--sm)}
+	.-fxsh\@sm\: { flex-shrink: var(--fxsh--sm)}
+	.-fxb\@sm\: { flex-basis: var(--fxb--sm)}
+	.-fx\@sm\:{ flex: var(--fx--sm)}
+	.-gc\@sm\: { grid-column: var(--gc--sm)}
+	.-gr\@sm\: { grid-row: var(--gr--sm)}
 }
 @include query.cq('md'){
-	.-fxg\@md\: { --fxg: var(--fxg--md) !important}
-	.-fxsh\@md\: { --fxsh: var(--fxsh--md) !important}
-	.-fxb\@md\: { --fxb: var(--fxb--md) !important}
-	.-fx\@md\:{ --fx: var(--fx--md) !important}
-	.-gc\@md\: { --gc: var(--gc--md) !important}
-	.-gr\@md\: { --gr: var(--gr--md) !important}
+	.-fxg\@md\: { flex-grow: var(--fxg--md)}
+	.-fxsh\@md\: { flex-shrink: var(--fxsh--md)}
+	.-fxb\@md\: { flex-basis: var(--fxb--md)}
+	.-fx\@md\:{ flex: var(--fx--md)}
+	.-gc\@md\: { grid-column: var(--gc--md)}
+	.-gr\@md\: { grid-row: var(--gr--md)}
 }
 @include query.cq('lg'){
-	.-fxg\@lg\: { --fxg: var(--fxg--lg) !important}
-	.-fxsh\@lg\: { --fxsh: var(--fxsh--lg) !important}
-	.-fxb\@lg\: { --fxb: var(--fxb--lg) !important}
-	.-fx\@lg\:{ --fx: var(--fx--lg) !important}
-	.-gc\@lg\: { --gc: var(--gc--lg) !important}
-	.-gr\@lg\: { --gr: var(--gr--lg) !important}
+	.-fxg\@lg\: { flex-grow: var(--fxg--lg)}
+	.-fxsh\@lg\: { flex-shrink: var(--fxsh--lg)}
+	.-fxb\@lg\: { flex-basis: var(--fxb--lg)}
+	.-fx\@lg\:{ flex: var(--fx--lg)}
+	.-gc\@lg\: { grid-column: var(--gc--lg)}
+	.-gr\@lg\: { grid-row: var(--gr--lg)}
 }
 @include query.cq('xl'){
-	.-fxg\@xl\: { --fxg: var(--fxg--xl) !important}
-	.-fxsh\@xl\: { --fxsh: var(--fxsh--xl) !important}
-	.-fxb\@xl\: { --fxb: var(--fxb--xl) !important}
-	.-fx\@xl\:{ --fx: var(--fx--xl) !important}
-	.-gc\@xl\: { --gc: var(--gc--xl) !important}
-	.-gr\@xl\: { --gr: var(--gr--xl) !important}
+	.-fxg\@xl\: { flex-grow: var(--fxg--xl)}
+	.-fxsh\@xl\: { flex-shrink: var(--fxsh--xl)}
+	.-fxb\@xl\: { flex-basis: var(--fxb--xl)}
+	.-fx\@xl\:{ flex: var(--fx--xl)}
+	.-gc\@xl\: { grid-column: var(--gc--xl)}
+	.-gr\@xl\: { grid-row: var(--gr--xl)}
 }

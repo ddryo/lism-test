@@ -1,6 +1,6 @@
 import React from 'react';
-import { Lism } from '../Lism';
-import { getPropBpObj } from '../../lib';
+import { Grid } from '../Grid';
+import { getLismMainProp } from '../../lib';
 
 // function getColumnsVars(cols) {
 // 	let baseCols = cols._ || 2;
@@ -23,24 +23,29 @@ export default function Columns({
 	// tag,
 	children,
 	clm = 1,
-	sm = 2,
+	sm,
 	md,
 	lg,
 	xl,
 	// customQuery,
 	...props
 }) {
-	const clms = getPropBpObj(clm, { sm, md, lg, xl });
+	const clms = getLismMainProp(clm, { sm, md, lg, xl });
+
+	// filter = null
 
 	// デフォルト値の削除
-	if (1 === clms._) delete clms._;
+	// if (1 === clms._) delete clms._;
 
 	const blockProps = {
-		lismClass: 'l--columns',
-		isGrid: true,
-		gtc: clms,
+		// lismClass: 'l--columns',
+		// isGrid: true,
+		modifier: 'columns',
+		gap: 20, // 初期値
+		// hasLismVar: true,
+		lismVar: clms,
 		...props,
 	};
 
-	return <Lism {...blockProps}>{children}</Lism>;
+	return <Grid {...blockProps}>{children}</Grid>;
 }

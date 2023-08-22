@@ -1,0 +1,32 @@
+@use "../query" as query;
+
+
+// align-items
+// .-ai\:{align-items: var(--ai);}
+.-ai\:c{align-items: center;}
+.-ai\:s{align-items: start;}
+.-ai\:e{align-items: end;}
+.-ai\:str{align-items: stretch;}
+
+// justify-items
+// .-ji\:{justify-items: var(--ji);}
+.-ji\:c{justify-items: center;}
+.-ji\:s{justify-items: start;}
+.-ji\:e{justify-items: end;}
+.-ji\:str{justify-items: stretch;}
+// .-ji\:str
+
+// justify-content
+// .-jc\:{justify-content: var(--jc);}
+.-jc\:c{justify-content: center;}
+.-jc\:s{justify-content: start;}
+.-jc\:e{justify-content: end;}
+.-jc\:sb{justify-content: space-between;}
+
+// align-content
+// .-ac\:{align-content: var(--ac);}
+.-ac\:c{align-content: center;}
+.-ac\:s{align-content: start;}
+.-ac\:e{align-content: end;}
+.-ac\:sb{align-content: space-between;}
+

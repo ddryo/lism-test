@@ -1,0 +1,82 @@
+@use "../query" as query;
+
+// .hoge.-lism\:{
+// 	padding: var(--lismVal);
+// 	// --lism--sm: 16px;
+// 	--lism--md: 40px;
+// }
+ 
+
+
+// data-lism: columns grid , cluster flex, data-lism-layout...
+// data→emmet展開しずらい
+
+
+// lism: 使いたいやつ
+// → columns, sidefix, tileGrid reel, ratioGrid? frame?
+
+// 子要素に適用させたいものがある時、 --lism でバッティングがおきないか?
+// → -item:, -size: -self: -layout: など何種類か用意する?
+
+// size: ?
+
+// @bp系のクラスなしでクエリ対応可能な lism変数
+// [class*="l--"], // → xxl--xxx とかのクラスにも反応してしまう...
+// .has--lismVar
+// *="l--grid--"
+// [data-lism=flex,grid,...]
+
+// [class*="l--grid--"]
+.l--grid,
+.l--frame,
+.-lism\:{
+	--lism: unset;
+	--lism--sm: var(--lism);
+	--lism--md: var(--lism--sm);
+	--lism--lg: var(--lism--md);
+	--lism--xl: var(--lism--lg);
+
+	// 実際に扱う値.
+	--lismVal: var(--lism);
+
+	@include query.cq('sm'){
+		--lismVal: var(--lism--sm) !important;
+	}
+	@include query.cq('md'){
+		--lismVal: var(--lism--md) !important;
+	}
+	@include query.cq('lg'){
+		--lismVal: var(--lism--lg) !important;
+	}
+	@include query.cq('xl'){
+		--lismVal: var(--lism--xl) !important;
+	}
+}
+
+
+.-custom\:{
+	--custom--xs: unset;
+	--custom--sm: var(--custom--xs);
+	--custom--md: var(--custom--sm);
+	--custom--lg: var(--custom--md);
+	--custom--xl: var(--custom--lg);
+
+	// 実際に扱う値.
+	--custom: var(--custom);
+
+	@include query.cq('sm'){
+		--custom: var(--custom--sm) !important;
+	}
+	@include query.cq('md'){
+		--custom: var(--custom--md) !important;
+	}
+	@include query.cq('lg'){
+		--custom: var(--custom--lg) !important;
+	}
+	@include query.cq('xl'){
+		--custom: var(--custom--xl) !important;
+	}
+}
+
+
+// .@sm:, .@md:, -@lg:

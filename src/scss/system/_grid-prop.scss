@@ -1,0 +1,43 @@
+@use "../query" as query;
+
+
+// .is--grid → .-grid にしたほうがスッキリするが、統一感がなくなる。
+.is--grid,
+.l--grid{
+	display: grid;
+}
+
+
+// .-d\:g{display: grid;}
+// .-gta\:{grid-template-areas: var(--gta)}
+
+// グリッドには適用していたおいたほうがよさそう . ?
+// :where(.is--grid > .is--item) {
+// 	overflow-wrap: anywhere;
+// }
+
+.-gta\:{grid-template-areas: var(--gta);}
+.-gtc\:{grid-template-columns: var(--gtc);}
+.-gtr\:{grid-template-rows: var(--gtr);}
+
+// 特定のポイント以降のみ指定することはないので、--prop上書きの形式で文字数も省略する
+@include query.cq('sm'){
+	.-gta\@sm\:{grid-template-areas: var(--gta--sm);}
+	.-gtc\@sm\:{grid-template-columns: var(--gtc--sm);}
+	.-gtr\@sm\:{grid-template-rows: var(--gtr--sm);}
+}
+@include query.cq('md'){
+	.-gta\@md\:{grid-template-areas: var(--gta--md);}
+	.-gtc\@md\:{grid-template-columns: var(--gtc--md);}
+	.-gtr\@md\:{grid-template-rows: var(--gtr--md);}
+}
+@include query.cq('lg'){
+	.-gta\@lg\:{grid-template-areas: var(--gta--lg);}
+	.-gtc\@lg\:{grid-template-columns: var(--gtc--lg);}
+	.-gtr\@lg\:{grid-template-rows: var(--gtr--lg);}
+}
+@include query.cq('xl'){
+	.-gta\@xl\:{grid-template-areas: var(--gta--xl);}
+	.-gtc\@xl\:{grid-template-columns: var(--gtc--xl);}
+	.-gtr\@xl\:{grid-template-rows: var(--gtr--xl);}
+}

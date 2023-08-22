@@ -1,30 +1,14 @@
 import {
-	// PRESETS,
 	filterEmptyObj,
 	isPresetValue,
-	getUtilVal,
-	getMaybeSpaceVar,
 	getMaybeColorVar,
 	getMaybeShadowVar,
+	// getMaybeSpaceVar,
 } from '../index.js';
 
-// import { sortSpacingData } from './getSpacingProps';
-// import sortGapData from './sortGapData';
-import getPropBpObj from './getPropBpObj';
-import classnames from 'classnames';
-
 import PROP_LIST from './prop_list';
-// import { default as getFlexClasses } from './getFlexClasses';
-
-// import getMaybeSpaceVar from "./getMaybeSpaceVar.js";
-// import { isShadowPresetValue } from './getMaybeShadowVar.js';
-// import { isFzPresetValue } from './getMaybeFzVar.js';
-
-// const BREAK_POINTS = PRESETS.breakPoints;
-
-// const commonPropNames=[
-// 'padding',
-// ];
+import getPropBpObj from '../helper/getPropBpObj';
+import classnames from 'classnames';
 
 const isBaseBP = (bp) => {
 	return '_' === bp;
@@ -33,7 +17,7 @@ const isBaseBP = (bp) => {
 const propFullNames = {
 	padding: 'p',
 	margin: 'm',
-	border: 'bd',
+	// border: 'bd',
 	// width: 'w',
 	// height: 'h',
 };
@@ -59,6 +43,8 @@ class CommonProps {
 			className,
 			blockClass,
 			lismClass,
+			lismModifier,
+			// modifier,
 			_util,
 			// utility, // ユーザーがコンポーネントに指定できる?
 			lismStyle = {},
@@ -75,6 +61,7 @@ class CommonProps {
 			isConstrained,
 			hasGutter,
 			hasLayer,
+			hasLismVar,
 			useLog,
 			...others
 		} = props;
@@ -84,45 +71,43 @@ class CommonProps {
 		this.className = classnames(
 			blockClass, // b--
 			lismClass, // l--
-			className, // ユーザー指定
+			lismModifier,
 			{
-				'is--flex': isFlex || false,
-				'is--grid': isGrid || false,
+				'is--flex': isFlex && 'l--flex' !== lismClass,
+				'is--grid': isGrid && 'l--grid' !== lismClass,
 				'is--flow': isFlow || false,
 				'is--item': isItem || false,
 				'is--linkbox': isLinkbox || false,
 				'is--constrained': isConstrained || false,
 				'has--gutter': hasGutter || false,
 				'has--layer': hasLayer || false,
+				'-lism:': hasLismVar || false,
+				// 'has--lismVar': hasLismVar || false,
 
 				alignfull,
 				alignwide,
 			},
+			className, // ユーザー指定
 			_util
 			// utility
 		);
 
 		// propsの処理
 		if (others) {
-			// padding, margin, border はフルネームも受け取れるように
-			Object.keys(propFullNames).forEach((_name) => {
-				if (null != others[_name]) {
-					others[propFullNames[_name]] = others[_name];
-					delete others[_name];
-				}
-			});
+			// padding, margin, border はフルネームも受け取れるように？
+			// Object.keys(propFullNames).forEach((_name) => {
+			// 	if (null != others[_name]) {
+			// 		others[propFullNames[_name]] = others[_name];
+			// 		delete others[_name];
+			// 	}
+			// });
 
 			this.attrs = others;
 
 			// propリストのセット
-			if (useLog) {
-				console.log('this.propList before', this.propList);
-			}
+			// if (useLog) console.log('this.propList before', this.propList);
 			this.setPropList(isFlow, isFlex, isGrid, isItem, useLog);
-			if (useLog) {
-				console.log('this.propList after', this.propList, PROP_LIST.common);
-				// console.log(isFlow, isFlex, isGrid, isItem);
-			}
+			// if (useLog) console.log('this.propList after', this.propList, PROP_LIST.common);
 
 			// props処理
 			this.analyzeProps(others);
@@ -157,17 +142,17 @@ class CommonProps {
 			thePropList = Object.assign({}, PROP_LIST.common);
 		}
 
+		// なくす？
 		if (isItem) {
 			thePropList = Object.assign({}, thePropList, PROP_LIST.isItem);
 		}
 
-		if (useLog) {
-			console.log('thePropList', thePropList);
-		}
+		// if (useLog) console.log('thePropList', thePropList);
 
 		this.propList = thePropList;
 	}
 
+	// prop解析
 	analyzeProps(attrs) {
 		const attrKeys = Object.keys(attrs);
 
@@ -178,19 +163,20 @@ class CommonProps {
 				this.setHoverProps(propVal);
 				return;
 			}
-			//  else if ('keycolor' === propName) {
-			// 	const propVal = this.extractProp(propName);
-			// 	if (isPresetValue('keycolor', propVal)) {
-			// 		this.addUtil(`-keycolor:${propVal}`);
-			// 	} else {
-			// 		this.addUtil(`-keycolor:`);
-			// 		this.addStyle('--keycolor', propVal);
-			// 	}
-			// }
+
+			if (propName === 'lismVar') {
+				const propVal = this.extractProp(propName);
+				const data = getPropBpObj(propVal);
+				Object.keys(data).forEach((bp) => {
+					const styleName = isBaseBP(bp) ? '--lism' : `--lism--${bp}`;
+					this.addStyle(styleName, data[bp]);
+				});
+				return;
+			}
 
 			if (propFullNames[propName]) propName = propFullNames[propName];
 
-			// Lismで処理する prop 以外はスキップ
+			// Lismで処理する prop 以外はここでスキップ
 			if (!this.propList[propName]) return;
 
 			const propData = this.propList[propName] || {};
@@ -199,24 +185,13 @@ class CommonProps {
 			const propVal = this.attrs[propName];
 			delete this.attrs[propName];
 
-			const { name, styleKey, BP, options } = propData;
+			// const { BP, ...options } = propData;
 
-			// styleへの出力のみ
-			if (styleKey && !options) {
-				// BP対応あり/なしで分岐
-				if (BP) {
-					const propVals = getPropBpObj(propVal);
-					Object.keys(propVals).forEach((bp) => {
-						const styleName = isBaseBP(bp) ? `${styleKey}` : `${styleKey}--${bp}`;
-						this.addStyle(styleName, propVals[bp]);
-					});
-				} else {
-					this.addStyle(styleKey, propVal);
-				}
-			} else if (BP) {
-				this.setAttrsByBpObj(name || propName, getPropBpObj(propVal), options);
+			// BP対応あり/なしで分岐
+			if (propData.BP) {
+				this.setAttrsByBpObj(propName, getPropBpObj(propVal), propData);
 			} else {
-				this.swichAttrs(name || propName, propVal, options);
+				this.swichAttrs(propName, propVal, propData);
 			}
 		});
 	}
@@ -296,37 +271,36 @@ class CommonProps {
 		}
 	}
 
-	// 方向成分などがなく、値をそのまま処理できるprop.
+	// data: 事前に getPropBpObjしている
 	// data: {_, sm, md, ...} 形式で渡ってくる.
 	setAttrsByBpObj(name, data, options = {}) {
-		const { skipBaseUtil, presets, utilKeys, converter, objProcessor } = options;
+		//testing
+
+		// objProcessorはここで剥がしておく
+		const { objProcessor, ...propData } = options;
 
 		Object.keys(data).forEach((bp) => {
 			const val = data[bp];
-			const switchOption = { presets, utilKeys, converter, skipBaseUtil };
 
-			// 方向成分を持つ場合の処理
+			// 方向成分を持つ場合の特殊処理
 			if (typeof val === 'object') {
-				if (objProcessor) {
-					Object.keys(val).forEach((d) => {
-						const { name, options } = objProcessor(d);
-						const _options = options
-							? Object.assign(switchOption, options)
-							: switchOption;
+				if (!objProcessor) return;
 
-						if (isBaseBP(bp)) {
-							this.swichAttrs(name, val[d], _options);
-						} else {
-							this.swichAttrsAtBP(name, val[d], bp, _options);
-						}
-					});
-				}
+				Object.keys(val).forEach((d) => {
+					const _options = Object.assign(propData, objProcessor(d));
+
+					if (isBaseBP(bp)) {
+						this.swichAttrs(name, val[d], _options);
+					} else {
+						this.swichAttrsAtBP(name, val[d], bp, _options);
+					}
+				});
 			} else {
 				// this.setSwichUtilStyle(name, val, switchOption);
 				if (isBaseBP(bp)) {
-					this.swichAttrs(name, val, switchOption);
+					this.swichAttrs(name, val, propData);
 				} else {
-					this.swichAttrsAtBP(name, val, bp, switchOption);
+					this.swichAttrsAtBP(name, val, bp, propData);
 				}
 			}
 		});
@@ -334,36 +308,52 @@ class CommonProps {
 
 	// utilクラスを追加するか、styleにセットするかの分岐処理 @base
 	swichAttrs(name, val, options = {}) {
-		if (!name || null == val) return;
+		if (null == val) return;
 
-		const { presets, utilKeys, styleKey, onlyStyle, skipBaseUtil, converter } = options;
-		const styleName = styleKey || `--${name}`;
-		const utilName = `-${name}:`;
+		const {
+			presets,
+			utilKey,
+			utilVals,
+			styleKey,
+			withUtil = 1,
+			// onlyStyle,
+			// skipBaseUtil,
+			converter,
+		} = options;
+
+		const styleName = styleKey || (!withUtil ? name : `--${name}`);
+		const utilName = `-${utilKey || name}:`;
+
+		// 旧
+		// if (options.onlyStyle) withUtil = false;
+		// if (options.skipBaseUtil) withUtil = 'BP';
 
 		// '-' : CSSファイル側に任せたいときに使う
-		if ('-' === val) {
+		if (withUtil && '-' === val) {
 			this.addUtil(utilName);
 			return;
 		}
 
-		// util化できるかチェック
-		let utilVal = '';
+		// util化できるか, presetsとutilValsでチェック.
 		if (presets && isPresetValue(presets, val)) {
 			this.addUtil(`${utilName}${val}`);
 			return;
 		}
-		if (utilKeys) {
-			utilVal = getUtilVal(utilKeys, val);
+
+		if (utilVals) {
+			const utilVal = utilVals?.[val];
+			// utilVal = getUtilVal(utilVals, val);
 			if (utilVal) {
 				this.addUtil(`${utilName}${utilVal}`);
 				return;
 			}
 		}
 
-		// getMaybe...を通す
+		// converter(getMaybe...)があればそれを通す
 		val = converter ? converter(val) : val;
 
-		if (onlyStyle || skipBaseUtil) {
+		// styleのみ or utilクラスも使うかどうか
+		if (!withUtil || 'BP' === withUtil) {
 			this.addStyle(styleName, val);
 		} else {
 			this.addUtil(utilName);
@@ -371,6 +361,7 @@ class CommonProps {
 		}
 	}
 
+	// BP指定のprop。
 	swichAttrsAtBP(name, val, bp, options = {}) {
 		if (!name || null == val) return;
 		const { converter } = options;

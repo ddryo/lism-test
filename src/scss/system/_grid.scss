@@ -1,41 +1,71 @@
 @use "../query" as query;
 
 // memo: Tree Shakingを考えて、クエリ関連はバラすべき
-:where(.is--grid){
+:where(.is--grid, .l--grid){
+	// 初期値セット
 	--gta: none;
 	--gtc: none;
 	--gtr: none;
 }
 
-.is--grid{
+// .is--grid → .-grid にしたほうがスッキリするが、統一感がなくなる。
+.is--grid,
+.l--grid{
 	display: grid;
 	grid-template-areas: var(--gta);
 	grid-template-columns: var(--gtc);
 	grid-template-rows: var(--gtr);
+
+	// @include query.cq('sm'){
+	// 	--gta: var(--gta--sm) !important;
+	// 	--gtc: var(--gtc--sm) !important;
+	// 	--gtr: var(--gtr--sm) !important;
+	// }
+	// @include query.cq('md'){
+	// 	--gta: var(--gta--md) !important;
+	// 	--gtc: var(--gtc--md) !important;
+	// 	--gtr: var(--gtr--md) !important;
+	// }
+	// @include query.cq('lg'){
+	// 	--gta: var(--gta--lg) !important;
+	// 	--gtc: var(--gtc--lg) !important;
+	// 	--gtr: var(--gtr--lg) !important;
+	// }
+	// @include query.cq('xl'){
+	// 	--gta: var(--gta--xl) !important;
+	// 	--gtc: var(--gtc--xl) !important;
+	// 	--gtr: var(--gtr--xl) !important;
+	// }
 }
+
+
+// .-d\:g{display: grid;}
+// .-gta\:{grid-template-areas: var(--gta)}
 
 // グリッドには適用していたおいたほうがよさそう . ?
-:where(.is--grid > .is--item) {
-	overflow-wrap: anywhere;
-}
+// :where(.is--grid > .is--item) {
+// 	overflow-wrap: anywhere;
+// }
 
-@include query.cq('sm'){
-	.-gta\@sm\:{--gta: var(--gta--sm) !important;}
-	.-gtc\@sm\:{--gtc: var(--gtc--sm) !important;}
-	.-gtr\@sm\:{--gtr: var(--gtr--sm) !important;}
-}
-@include query.cq('md'){
-	.-gta\@md\:{--gta: var(--gta--md) !important;}
-	.-gtc\@md\:{--gtc: var(--gtc--md) !important;}
-	.-gtr\@md\:{--gtr: var(--gtr--md) !important;}
-}
-@include query.cq('lg'){
-	.-gta\@lg\:{--gta: var(--gta--lg) !important;}
-	.-gtc\@lg\:{--gtc: var(--gtc--lg) !important;}
-	.-gtr\@lg\:{--gtr: var(--gtr--lg) !important;}
-}
-@include query.cq('xl'){
-	.-gta\@xl\:{--gta: var(--gta--xl) !important;}
-	.-gtc\@xl\:{--gtc: var(--gtc--xl) !important;}
-	.-gtr\@xl\:{--gtr: var(--gtr--xl) !important;}
-}
+
+// 特定のポイント以降のみ指定することはないので、--prop上書きの形式で文字数も省略する
+// @include query.cq('sm'){
+// 	.-gta\@sm\:{--gta: var(--gta--sm) !important;}
+// 	.-gtc\@sm\:{--gtc: var(--gtc--sm) !important;}
+// 	.-gtr\@sm\:{--gtr: var(--gtr--sm) !important;}
+// }
+// @include query.cq('md'){
+// 	.-gta\@md\:{--gta: var(--gta--md) !important;}
+// 	.-gtc\@md\:{--gtc: var(--gtc--md) !important;}
+// 	.-gtr\@md\:{--gtr: var(--gtr--md) !important;}
+// }
+// @include query.cq('lg'){
+// 	.-gta\@lg\:{--gta: var(--gta--lg) !important;}
+// 	.-gtc\@lg\:{--gtc: var(--gtc--lg) !important;}
+// 	.-gtr\@lg\:{--gtr: var(--gtr--lg) !important;}
+// }
+// @include query.cq('xl'){
+// 	.-gta\@xl\:{--gta: var(--gta--xl) !important;}
+// 	.-gtc\@xl\:{--gtc: var(--gtc--xl) !important;}
+// 	.-gtr\@xl\:{--gtr: var(--gtr--xl) !important;}
+// }

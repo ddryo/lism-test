@@ -3,7 +3,7 @@ import React from 'react';
 import { getCommonProps } from '../../lib';
 // import "./style.scss";
 
-export default function SideFix({ children, fixW, fluidMinW, fix = 'last', ...props }) {
+export default function SideFixFlex({ children, fixW, fluidMinW, fix = 'last', ...props }) {
 	const { className, style, attrs } = getCommonProps(props, {
 		lismClass: 'l--sideFix',
 		isFlex: true,

@@ -33,15 +33,29 @@
 // }
 
 
+// [data-lism]
+.l--grid--columns{
+	--lism: 1;
+	--gtc: repeat(var(--lismVal), minmax(0,1fr));
+}
 
-.l--columns {
-	--gtc: 1;
-	// --gap--default: var(--space--40);
-	// minmax() を使わないと、カラムのバランスが崩れることがある
-	grid-template-columns: repeat(var(--gtc), minmax(0,1fr));
+.___l--columns {
+	// --colmns: 1;
+
+	// &.-lism\:{
+	// 	--lism: 1;
+	// 	--colmns: var(--lismVal);
+	// }
+
+	// // minmax() を使わないと、カラムのバランスが崩れることがある
+	// --gtc: repeat(var(--colmns), minmax(0,1fr));
+
+	// --lism: 1;
+	// grid-template-columns: repeat(var(--lismVal), minmax(0,1fr));
 
 	// grid-template-columns: var(--gtc);
 }
+
 // .l--columns.-gtc\@sm\:{
 // 	--gtc--sm: repeat(var(--cols--sm), minmax(0,1fr));
 // }

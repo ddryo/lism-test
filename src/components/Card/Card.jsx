@@ -1,18 +1,18 @@
 import React from 'react';
 import { Frame } from '../Frame';
-import { Layer } from '../Layer';
+// import { Layer } from '../Layer';
 import { LinkBox } from '../LinkBox';
-import { Item } from '../Item';
 import { Stack } from '../Stack';
 import { getMediaLayer } from '../helper';
+// import { Item } from '../Item';
 
-// "Banner" (b--banner) にする
 export default function Card({ children, href, ...props }) {
 	// let bannerContents = null;
 	const blockProps = {
 		blockClass: 'b--card',
-		gap: 0,
+		// gap: 0,
 		shadow: '2',
+		radius: '2',
 		...props,
 	};
 
@@ -29,44 +29,20 @@ export default function Card({ children, href, ...props }) {
 	return <Stack {...blockProps}>{children}</Stack>;
 }
 
-export function CardMedia({
-	ratio,
-	media,
-	children,
-	// padding,
-	// p,
-	// contentProps = {},
-	...props
-}) {
-	// const paddingProps = { padding, p };
+export function CardMedia({ ratio, media, children, ...props }) {
 	return (
 		<Frame ratio={ratio} {...props}>
 			{getMediaLayer(media)}
-			{/* <FrameContent {...paddingProps} {...contentProps}> */}
 			{children}
-			{/* </FrameContent> */}
 		</Frame>
 	);
 }
 
-export function CardBody({ children, isLayer, ...props }) {
-	if (isLayer) {
-		return (
-			<Layer blockClass='b--card__body' position='bottom left' w='100%' p={40} {...props}>
-				{children}
-			</Layer>
-		);
-	}
+export function CardBody({ children, as, ...props }) {
+	const Component = as || Stack;
 	return (
-		<Item
-			as={Stack}
-			blockClass='b--card__body'
-			p={40}
-			gap={40}
-			// fxg='1'
-			{...props}
-		>
+		<Component blockClass='b--card__body' p={40} gap={30} {...props}>
 			{children}
-		</Item>
+		</Component>
 	);
 }

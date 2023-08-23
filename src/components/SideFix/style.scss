@@ -46,6 +46,7 @@
 
 // fxgの比率を 1:でかい数 にして、fix側を広がらないようにする。
 .l--sideFix.is--flex {
+	--fxw: wrap;
 	--fixW: auto;
 	--fluid--miw: 20em;
 

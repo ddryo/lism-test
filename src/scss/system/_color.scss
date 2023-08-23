@@ -28,13 +28,13 @@
 	--c--border: hsl(var(--hs--gray), 88%);
 
 	// cbox
-	--c--gray: hsl(var(--hs--gray), 48%); // #646b79
+	--c--gray: hsl(var(--hs--gray), 52%); // #646b79
 	--c--red: hsl(5, 72%, 56%); // #ef4444
 	--c--orange: hsl(32, 88%, 52%); // #f97316
-	--c--yellow: hsl(48, 88%, 48%); //#f1b808
+	--c--yellow: hsl(48, 88%, 52%); //#f1b808
 	--c--green: hsl(156, 80%, 44%); //#10b981
 	--c--blue: hsl(200, 80%, 52%); //#0ea5e9
-	--c--purple: hsl(255, 72%, 56%); //#8b5cf6
+	--c--purple: hsl(255, 72%, 60%); //#8b5cf6
 	--c--pink: hsl(330, 76%, 56%); //#ec4899
 
 	// --c--red: hsl(0, 80%, 60%); // #ef4444
@@ -138,6 +138,11 @@
 	// 疑似要素とかで使える
 	--bgc: currentColor;
 }
+.-bgc\:t{
+	// 疑似要素とかで使える
+	--bgc: transparent;
+}
+
 
 // .-bgc\:keycolor-light{
 // 	--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) var(--colorMixPercent--link));

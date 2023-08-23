@@ -93,8 +93,9 @@
 }
 
 .d--text[data-variant="stripe"]{
-	--grid-color: color-mix(in srgb, currentColor, transparent 92%);
-	background-image: repeating-linear-gradient(-45deg, var(--grid-color), var(--grid-color) 1.5px, transparent 1.5px, transparent 5px);
+	--stripe-color: color-mix(in srgb, currentColor, transparent 92%);
+	--stripe-deg: 60deg;
+	background-image: repeating-linear-gradient(var(--stripe-deg), var(--stripe-color), var(--stripe-color) 1px, transparent 1px, transparent 7px);
 }
 
 

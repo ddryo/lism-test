@@ -128,7 +128,11 @@ export default {
 		borderWidth: { withUtil: 0, styleKey: 'borderWidth' },
 
 		c: { presets: 'color', converter: getMaybeColorVar },
-		bgc: { presets: 'color', converter: getMaybeColorVar },
+		bgc: {
+			presets: 'color',
+			utilVals: { none: 't', transparent: 't' },
+			converter: getMaybeColorVar,
+		},
 		keycolor: {
 			withUtil: 0,
 			styleKey: '--keycolor',

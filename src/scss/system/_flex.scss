@@ -4,6 +4,8 @@
 :where(.is--flex){
 	--fxw: nowrap;
 	--fxd: row;
+	--gap: 0;
+	gap: var(--gap);
 }
 .is--flex{
 	display: flex;

@@ -2,8 +2,9 @@
 .b--card {
 	overflow: hidden; // radius考慮
 	position: relative;
+	background-color: var(--c--bg);
 }
 
 .b--card__body{
-	--fxg: 1;
+	flex-grow: 1;
 }

@@ -1,22 +1,32 @@
 // Alert は --keycolor が常に渡ってくる
+
 :where(.b--alert) {
 	// --keycolor: var(--c--main);
 	--icon-c: var(--keycolor);
 	--bdc: var(--keycolor);
 	--bgc: transparent;
 	--p: var(--space--30);
-	// --p--sm: var(--space--30);
 	--gap: var(--space--30);
-	// --gap--sm: var(--space--30);
 	--bdrs: var(--radius--2);
-	// --c: currentColor
+
+	// --p--sm: var(--space--30);
+	// --gap--sm: var(--space--30);
+	// --c: var(--c--text);
 }
 
+:where(.b--alert){
+	background-color: var(--bgc);
+	border: solid 1px var(--bdc);
+	padding: var(--p);
+	align-items: center;
+	border-radius: var(--bdrs);
+}
 .b--alert{
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc);
-	// color: var(--c)
+	padding: var(--p);
 }
+
 .b--alert__icon{
 	color: var(--icon-c);
 }
@@ -34,7 +44,9 @@
 		// color: color-mix(in srgb, var(--keycolor), var(--c--text) 90%);
 		--bdc: color-mix(in srgb, var(--keycolor), transparent 80%);
 		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
-		--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) var(--colorMixPercent--link));
+
+		// 親でカラー指定があればそれを引き継げるように
+		--c--link: color-mix(in srgb, var(--keycolor), var(--c, var(--c--text)) var(--colorMixPercent--link));
 	}
 }
 

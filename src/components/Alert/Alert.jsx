@@ -93,12 +93,12 @@ export default function Alert({
 }) {
 	const blockProps = {
 		blockClass: 'b--alert',
-		ai: 'center',
+		// ai: 'center',
 		// fxw: 'nowrap',
 		// fxd: ['column', 'row'],
-		radius: '-',
-		p: '-',
-		gap: '-',
+		// radius: '-',
+		// p: '-',
+		// gap: '-',
 		// 'data-variant': variant,
 		style,
 		...props,

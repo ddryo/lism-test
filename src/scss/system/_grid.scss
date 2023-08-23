@@ -6,6 +6,8 @@
 	--gta: none;
 	--gtc: none;
 	--gtr: none;
+	--gap: 0;
+	gap: var(--gap);
 }
 
 // .is--grid → .-grid にしたほうがスッキリするが、統一感がなくなる。

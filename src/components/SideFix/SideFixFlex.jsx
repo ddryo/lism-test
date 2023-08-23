@@ -7,7 +7,6 @@ export default function SideFixFlex({ children, fixW, fluidMinW, fix = 'last', .
 	const { className, style, attrs } = getCommonProps(props, {
 		lismClass: 'l--sideFix',
 		isFlex: true,
-		fxw: 'wrap',
 	});
 
 	if (undefined !== fluidMinW) {

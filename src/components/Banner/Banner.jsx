@@ -3,10 +3,8 @@ import { Frame } from '../Frame';
 import { LinkBox } from '../LinkBox';
 import { Box } from '../Box';
 import { getMediaLayer, getFilterLayer } from '../helper';
-
 // import classnames from 'classnames';
 
-// "Banner" (b--banner) にする
 export default function Banner({
 	children,
 	ratio,

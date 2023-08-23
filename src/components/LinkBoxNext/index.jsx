@@ -72,7 +72,7 @@ const LinkBox = ({
 	// 普通にaタグで囲む
 	return (
 		<Link href={href} passHref legacyBehavior>
-			<RefBox component={component} {...blockProps} {...linkProps}>
+			<RefBox as={component} {...blockProps} {...linkProps}>
 				{children}
 			</RefBox>
 		</Link>

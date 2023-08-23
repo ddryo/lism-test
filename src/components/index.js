@@ -15,7 +15,7 @@ export { Stack } from './Stack';
 export { Cluster } from './Cluster';
 export { Center } from './Center';
 
-export { Frame, FrameContent } from './Frame';
+export { Frame } from './Frame';
 export { Layer, MediaLayer, FilterLayer, ContentLayer } from './Layer';
 export { Reel } from './Reel';
 
@@ -26,7 +26,7 @@ export { Columns } from './Columns';
 export { TileGrid } from './TileGrid';
 export { RatioGrid } from './RatioGrid';
 export { AreaGrid } from './AreaGrid';
-export { SideFixGrid } from './SideFix';
+export { SideFixGrid, SideFixFlex } from './SideFix';
 // export { PinGallery } from './PinGallery';
 
 export { Spacer } from './Spacer';

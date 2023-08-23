@@ -1,7 +1,7 @@
 import React from 'react';
 import { Lism } from '../Lism';
 import { Stack } from '../Stack';
-// import { getCommonProps } from '../../lib';
+
 // import classnames from 'classnames';
 
 // titleProps(termProps), descriptionProps,

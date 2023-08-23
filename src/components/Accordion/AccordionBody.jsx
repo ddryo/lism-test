@@ -1,6 +1,6 @@
 import React from 'react';
 import { Lism } from '../Lism';
-// import { getCommonProps } from '../../lib';
+
 // import classnames from 'classnames';
 
 export default function AccordionBody({ children, flowGap, ...props }) {

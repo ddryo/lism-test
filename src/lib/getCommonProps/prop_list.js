@@ -253,10 +253,19 @@ export default {
 		ji: { withUtil: 0, utilVals: UTILITIES['place'], styleKey: 'justifyItems' },
 		jc: { withUtil: 0, utilVals: UTILITIES['place'], styleKey: 'justifyContent' },
 
+		// isFlowでのみ有効
+		flowGap: { BP: 0, presets: 'space' },
+
 		// isItem 解除したやつ
 		ga: { utilVals: UTILITIES['ga'] }, // grid-area
+		gc: { BP: 1, withUtil: 'BP' },
+		gr: { BP: 1, withUtil: 'BP' },
 		fxg: { BP: 1, withUtil: 'BP', presets: ['0', '1'] },
 		fxsh: { BP: 1, withUtil: 'BP', presets: ['0', '1'] },
+		fx: { BP: 1, withUtil: 'BP' },
+		fxb: { BP: 1, withUtil: 'BP' },
+		alignSelf: { withUtil: 0 },
+		justifySelf: { withUtil: 0 },
 
 		// lismVar
 		// lismVar: { withUtil: 0, BP: 1, styleKey: '--lism' },
@@ -269,9 +278,6 @@ export default {
 		gtr: { BP: 1 },
 	},
 
-	isFlow: {
-		flowGap: { BP: 0, presets: 'space' },
-	},
 	isGrid: {
 		// 上書き
 		gta: { BP: 1, withUtil: 'BP' },
@@ -287,14 +293,7 @@ export default {
 			utilVals: { column: 'c', row: 'r', 'column-reverse': 'cr', 'row-reverse': 'rr' },
 		},
 	},
-	isItem: {
-		fx: { BP: 1, withUtil: 'BP' },
-		fxb: { BP: 1, withUtil: 'BP' },
-		gc: { BP: 1, withUtil: 'BP' },
-		gr: { BP: 1, withUtil: 'BP' },
-		alignSelf: { withUtil: 0 },
-		justifySelf: { withUtil: 0 },
-	},
+	isItem: {},
 
 	// クエリ対応あり、ユーティリティあり
 };

@@ -1,8 +1,10 @@
 import React from 'react';
 // import { getMaybeColorVar } from '../../lib';
 import { Lism } from '../Lism';
-import { BlockIcon } from '../Icon';
-// import { Center } from '../Center';
+import { Flex } from '../Flex';
+import { Icon } from '../Icon';
+import { SideFixFlex } from '../SideFix';
+import { Center } from '../Center';
 
 import {
 	LsAlertOutline,
@@ -83,7 +85,7 @@ export default function Alert({
 	color,
 	// size,
 	preset = 'memo',
-	variant,
+	// variant,
 	iconProps = {},
 	style = {},
 	children,
@@ -92,11 +94,12 @@ export default function Alert({
 	const blockProps = {
 		blockClass: 'b--alert',
 		ai: 'center',
-		fxw: 'nowrap',
+		// fxw: 'nowrap',
+		// fxd: ['column', 'row'],
 		radius: '-',
-		p: ['-', '-'],
-		gap: ['-', '-'],
-		'data-variant': variant,
+		p: '-',
+		gap: '-',
+		// 'data-variant': variant,
 		style,
 		...props,
 	};
@@ -117,16 +120,17 @@ export default function Alert({
 	color = color || presetColor || 'main';
 	blockProps.keycolor = color;
 
-	// iconProps を渡すことを考えると、アイコンは BlockIcon がいい
+	// iconProps を渡すことを考えると、アイコンは BlockIcon がいい ?
 	return (
-		<Lism isFlex {...blockProps}>
+		<SideFixFlex fix='first' {...blockProps}>
 			{icon && (
-				// b--icon を打ち消していることに留意
-				<BlockIcon blockClass='b--alert__icon' icon={icon} size='1.5em' {...iconProps} />
+				<Center className='b--alert__icon'>
+					<Icon icon={icon} size='1.5em' {...iconProps} />
+				</Center>
 			)}
 			<Lism blockClass='b--alert__body' isFlow flowGap={30}>
 				{children}
 			</Lism>
-		</Lism>
+		</SideFixFlex>
 	);
 }

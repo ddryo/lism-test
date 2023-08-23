@@ -188,7 +188,8 @@
 	// <FilterLayer brightness="1.1"/>
 	border-radius: var(--bdrs); 
 
-	text-shadow: .5px 1px rgb(0 0 0 / 4%);
+	// text-shadow: .5px 1px rgb(0 0 0 / 4%);
+	text-shadow: 0.5px 1px rgba(0, 0, 0, .05), 0px -0.5px rgba(255, 255, 255, .05);
 }
 
 .-bg\:glass{

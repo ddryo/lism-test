@@ -2,15 +2,14 @@ import React from 'react';
 import { getCommonProps } from '../../lib';
 // import classnames from 'classnames';
 
-export default function Lism({ children, as, tag, component, ...props }) {
+export default function Lism({ children, as, tag, ...props }) {
 	const { className, style, attrs } = getCommonProps(props);
 
-	const blockProps = {
-		className,
-		style,
-		...attrs,
-	};
+	const Lism = as || tag || 'div';
 
-	const Tag = as || component || tag || 'div';
-	return <Tag {...blockProps}>{children}</Tag>;
+	return (
+		<Lism className={className} style={style} {...attrs}>
+			{children}
+		</Lism>
+	);
 }

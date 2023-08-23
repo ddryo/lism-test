@@ -1,5 +1,5 @@
 .l--sideFix{
-	--fixW: 16rem;
+	--fixW: auto;
 }
 .l--sideFix.-lism\:{
 	--lism: 16rem;
@@ -7,10 +7,6 @@
 }
 
 .l--sideFix{
-
-	// fixSize → lismVar?
-
-	// --lism-val: 
 
 	&[data-fix~="left"]{
 		--gta--horizontal: "fix ...";
@@ -37,7 +33,6 @@
 		--gta: "." "fix";
 	}
 
-
 	// 折返しタイミンを切り替えれるようにしている
 	&.-gta\@sm\:{
 		--gta--sm: var(--gta--horizontal);
@@ -47,36 +42,27 @@
 		--gta--md: var(--gta--horizontal);
 		--gtc--md: var(--gtc--horizontal);
 	}
-	
-	// -gtcとかに @bp クラス不要にした場合
-	// &[data-break="sm"][data-fix~="left"]{
-	// 	--gta--sm: "fix .";
-	// }
-	// ...
-
-
-	// .-gtc@sm:
-	// &[data-break="sm"]{
-	// 	--gtc--sm: 100%;
-
-	// 	&[data-fix~="up"]{
-	// 		--gta--sm: "fix" "fluid";
-	// 	}
-	// 	&[data-fix~="down"]{
-	// 		--gta--sm: "fluid" "fix";
-	// 	}
-	// }
-
-	// &[data-break="xs"]{
-	// 	--gtc--xs: 100%;
-
-	// 	&[data-fix~="up"]{
-	// 		--gta--xs: "fix" "fluid";
-	// 	}
-	// 	&[data-fix~="down"]{
-	// 		--gta--xs: "fluid" "fix";
-	// 	}
-	// }
-
 }
+
+// fxgの比率を 1:でかい数 にして、fix側を広がらないようにする。
+.l--sideFix.is--flex {
+	--fixW: auto;
+	--fluid--miw: 20em;
+
+	// flex-grow は 変数指定だと挙動が変だった。
+	// side
+	&[data-fix="first"] > :first-child,
+	&[data-fix="last"] > :last-child{
+		flex-basis: var(--fixW);
+		flex-grow: 1; // fxg を 0 にすると、折り返されたときに広がらないので 1 にする必要がある
+	}
+
+	&[data-fix="first"] > :last-child,
+	&[data-fix="last"] > :first-child{
+		flex-basis: 0;
+		flex-grow: 9999999; // できるだけ fix側を 指定値ピッタリに近づける
+		min-width: min(100%, var(--fluid--miw));  // このサイズが折り返しポイント
+	}
+}
+
 

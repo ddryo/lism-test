@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-// import { getCommonProps } from '../../lib';
 
 // 省略可能にするかどうかは、要検討
 export default function Delimiter({ type, className = '' }) {

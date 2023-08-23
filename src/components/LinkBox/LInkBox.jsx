@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '../Box';
+import { Lism } from '../Lism';
 import setEvent from './setEvent';
 // import classnames from 'classnames';
 
@@ -19,13 +20,13 @@ import setEvent from './setEvent';
 // };
 
 export default function LinkBox({
+	as,
+	tag = 'a',
 	href,
 	target,
 	openNewTab,
 	rel,
 	ariaLabel,
-	isDiv,
-	component,
 	hover,
 	children,
 	...props
@@ -33,14 +34,13 @@ export default function LinkBox({
 	const ref = React.useRef(null);
 
 	React.useEffect(() => {
-		if (!isDiv) return;
+		if (tag === 'a') return;
 		if (!ref.current) return;
 		return setEvent(ref.current);
-	}, [isDiv]);
+	}, [tag]);
 
 	const blockProps = {
 		forwardedRef: ref,
-		// blockClass: 'b--linkBox', → b--banner で打ち消される
 		isLinkbox: true,
 		'aria-label': ariaLabel || null,
 		hover: hover || 'opacity',
@@ -53,24 +53,23 @@ export default function LinkBox({
 		target: target || openNewTab ? '_blank' : null,
 	};
 
-	const Comp = component || Box;
-
-	// divをリンク化する場合
-	if (isDiv) {
+	const Component = as || Box;
+	// aタグ以外をリンク化する場合
+	if (tag !== 'a') {
 		return (
-			<Comp data-linkbox='div' tabIndex='0' role='link' {...blockProps}>
+			<Component tag={tag} data-linkbox='div' tabIndex='0' role='link' {...blockProps}>
 				{children}
 				<a {...linkProps} data-linkbox='a' aria-hidden='true'>
 					{ariaLabel || ''}
 				</a>
-			</Comp>
+			</Component>
 		);
 	}
 
 	// 普通にaタグで囲む
 	return (
-		<Comp tag='a' data-linkbox='a' {...blockProps} {...linkProps}>
+		<Component tag='a' data-linkbox='a' {...blockProps} {...linkProps}>
 			{children}
-		</Comp>
+		</Component>
 	);
 }

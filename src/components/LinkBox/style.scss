@@ -1,5 +1,4 @@
 
-
 // is--stackなどがついたときにflexで上書きできるように
 :where(.is--linkbox) {
 	display: block;
@@ -16,11 +15,11 @@
 	// &:not(.is--flex):not(.is--grid){
 	// 	display: block;
 	// }
+}
 
-	> [data-linkbox="a"]{
-		position: absolute;
-		z-index: -1;
-		visibility: hidden;
-		pointer-events: none;
-	}
+[data-linkbox="div"] > [data-linkbox="a"]{
+	position: absolute;
+	z-index: -1;
+	visibility: hidden;
+	pointer-events: none;
 }

@@ -1,6 +1,4 @@
 import React from 'react';
-// import { getCommonProps } from '../../lib';
-// import classnames from 'classnames';
 import { Grid } from '../index';
 
 export default function AreaGrid({

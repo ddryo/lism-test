@@ -1,5 +1,7 @@
 import React from 'react';
 import { Lism } from '../Lism';
+import { Text } from '../Text';
+
 // import { Icon } from '../Icon';
 // import { Badge } from '../Badge';
 import { Accordion, AccordionHeader, AccordionBody } from '../Accordion';
@@ -24,20 +26,14 @@ export default function NavMenuItem({
 	// const Link = component || Lism;
 
 	let menuText = null;
-	let textProps = {};
+	let textProps = { as: 'span', blockClass: 'b--navMenu__text' };
 
 	if (href) {
 		textProps = {
-			tag: 'a',
+			as: linkComponent || 'a',
 			blockClass: 'b--navMenu__text',
 			href,
 			hover,
-			component: linkComponent || undefined,
-		};
-	} else {
-		textProps = {
-			tag: 'span',
-			blockClass: 'b--navMenu__text',
 		};
 	}
 
@@ -62,11 +58,11 @@ export default function NavMenuItem({
 		}
 
 		menuText = (
-			<Lism {...linkProps}>
+			<Text {...linkProps}>
 				{icon}
 				{children}
 				{badge}
-			</Lism>
+			</Text>
 		);
 		return (
 			<Lism tag='li' blockClass='b--navMenu__item' {...props}>

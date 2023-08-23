@@ -1,12 +1,7 @@
 import React from 'react';
-import { getCommonProps } from '../../lib';
+import { Lism } from '../Lism';
 
-export default function Box({ children, tag, ...props }) {
-	const { className, style, attrs } = getCommonProps(props, { lismClass: 'l--box' });
-	const Tag = tag || 'div';
-	return (
-		<Tag className={className} style={style} {...attrs}>
-			{children}
-		</Tag>
-	);
+// Box の as は htmlタグのみ受付可能。文字列チェックは <Lism> 側にて。
+export default function Box({ ...props }) {
+	return <Lism lismClass='l--box' {...props} />;
 }

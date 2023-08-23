@@ -40,15 +40,3 @@ export default function Frame({ children, ratio = '16/9', isPortrait, ...props }
 		</Lism>
 	);
 }
-
-export const FrameContent = ({ children, ...props }) => {
-	const ContentProps = {
-		// className: classnames('l--frame__content', className),
-		size: 'cover',
-		z: 1,
-		p: 40,
-		...props,
-	};
-	return children;
-	// return <Layer {...ContentProps}>{children}</Layer>;
-};

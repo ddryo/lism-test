@@ -10,7 +10,7 @@ import { getCommonProps } from '../../lib';
 // const taProp = ["center", "left", "right"];
 
 // 省略可能にするかどうかは、要検討
-export default function Text({ children, tag, ...props }) {
+export default function Text({ children, as, tag, ...props }) {
 	// 省略しててもOK
 
 	const { className, style, attrs } = getCommonProps(props);
@@ -25,30 +25,6 @@ export default function Text({ children, tag, ...props }) {
 		style,
 		...attrs,
 	};
-
-	// // fontSize が fzSets に含まれている場合
-	// if (fzSets.includes(fz)) {
-	// 	className += ` -fz:${fz}`;
-	// } else if (fz) {
-	// 	style.fontSize = fz;
-	// }
-
-	// // fontSize が fzSets に含まれている場合
-	// if (lhSets.includes(String(lh))) {
-	// 	className += ` -lh:${lh}`;
-	// } else if (lh) {
-	// 	style.lineHeight = lh;
-	// }
-
-	// className = classnames(className, {
-	// 	[`-fz:${fz}`]: fzSets.includes(fz),
-	// 	[`-ta:${ta[0]}`]: ["center", "left", "right"].includes(ta),
-	// });
-
-	// attrs = {
-	// 	...filterEmptyObj({ className: className.trim(), style }),
-	// 	...attrs,
-	// };
 
 	// console.log("attrs", attrs);
 	const Tag = tag || 'p';

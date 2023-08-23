@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-	Frame,
-	//FrameContent
-} from '../Frame';
+import { Frame } from '../Frame';
 import { Layer } from '../Layer';
 import { LinkBox } from '../LinkBox';
 import { Item } from '../Item';
@@ -22,7 +19,7 @@ export default function Card({ children, href, ...props }) {
 	// 以下、ratio なし
 	if (href) {
 		return (
-			<LinkBox href={href} component={Stack} {...blockProps}>
+			<LinkBox href={href} as={Stack} {...blockProps}>
 				{children}
 			</LinkBox>
 		);
@@ -62,7 +59,7 @@ export function CardBody({ children, isLayer, ...props }) {
 	}
 	return (
 		<Item
-			component={Stack}
+			as={Stack}
 			blockClass='b--card__body'
 			p={40}
 			gap={40}

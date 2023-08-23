@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Lism } from '../Lism';
 import { Center } from '../Center';
-// import { getCommonProps } from '../../lib';
+
 import { Icon } from './index';
 import { getMaybeColorVar } from '../../lib';
 // import classnames from 'classnames';

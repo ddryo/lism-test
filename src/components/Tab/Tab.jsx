@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Lism } from '../Lism';
 import { v4 as uuidv4 } from 'uuid';
 import { TabContext } from './context';
-// import { getCommonProps } from '../../lib';
+
 // import classnames from 'classnames';
 // import setEvent from "./setEvent";
 

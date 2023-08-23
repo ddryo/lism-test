@@ -5,16 +5,17 @@
 	--bdc: var(--keycolor);
 	--bgc: transparent;
 	--p: var(--space--30);
+	// --p--sm: var(--space--30);
 	--gap: var(--space--30);
-	--p--sm: var(--space--35);
-	--gap--sm: var(--space--35);
-	--bdrs: var(--radius--1);
+	// --gap--sm: var(--space--30);
+	--bdrs: var(--radius--2);
+	// --c: currentColor
 }
-
 
 .b--alert{
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc);
+	// color: var(--c)
 }
 .b--alert__icon{
 	color: var(--icon-c);
@@ -25,23 +26,24 @@
 // 	scale: 1.125;
 // }
 
-// default
-.b--alert:where(:not([data-variant])){
+.b--alert{
 	
 	// color-mixのサポートチェック
+	// srgb-linear
 	@supports (color: color-mix(in srgb, #000, #fff)) {
-		--bdc: color-mix(in srgb, var(--keycolor), transparent 75%);
+		// color: color-mix(in srgb, var(--keycolor), var(--c--text) 90%);
+		--bdc: color-mix(in srgb, var(--keycolor), transparent 80%);
 		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
 		--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) var(--colorMixPercent--link));
 	}
 }
 
-.b--alert:where([data-variant="fill"]) {
-	--c--link: currentColor;
-	--icon-c: currentColor;
-	--bgc: var(--keycolor);
-	color: #fff;
-}
+// .b--alert:where([data-variant="fill"]) {
+// 	--c--link: currentColor;
+// 	--icon-c: currentColor;
+// 	--bgc: var(--keycolor);
+// 	color: #fff;
+// }
 
 // :where(.b--alert[data-variant="outline"]){}
 

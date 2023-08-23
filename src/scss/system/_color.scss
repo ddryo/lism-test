@@ -9,7 +9,7 @@
 	--c--main: #2F4858; // メインカラー
 	--c--accent: #be3455; // mainと逆の目立つ色
 
-	--hs--gray: 215,4%;
+	--hs--gray: 215, 8%;
 
 	// 確定
 	--c--link: #0c61e4; // リンク色
@@ -20,15 +20,15 @@
 	// どうする
 	--c--sub: #dde7f0; // main と相性のいい、背景色に使うような薄い色？
 
-	--c--black: #000;
-	--c--white: #fff;
+	// --c--black: #000;
+	// --c--white: #fff;
 	--c--lightgray: hsl(var(--hs--gray), 96%);//#f5f5f5;
 	--c--darkgray: hsl(var(--hs--gray), 24%);
 
 	--c--border: hsl(var(--hs--gray), 88%);
 
 	// cbox
-	--c--gray: hsl(var(--hs--gray), 52%); // #646b79
+	--c--gray: hsl(var(--hs--gray), 48%); // #646b79
 	--c--red: hsl(5, 72%, 56%); // #ef4444
 	--c--orange: hsl(32, 88%, 52%); // #f97316
 	--c--yellow: hsl(48, 88%, 48%); //#f1b808
@@ -45,7 +45,7 @@
 	// --c--purple: hsl(260, 80%, 60%); //#8b5cf6
 	// --c--pink: hsl(330, 80%, 60%); //#ec4899
 
-	--colorMixPercent--bg: 94%;
+	--colorMixPercent--bg: 92%;
 	--colorMixPercent--link: 12%;
 	// --colorMixPercent--bdc: 80%;
 
@@ -85,10 +85,12 @@
 .-c\:darkgray{
 	--c: var(--c--darkgray);
 }
-.-c\:white{
+.-c\:white,
+.-c\:fff{
 	--c: #fff;
 }
-.-c\:black{
+.-c\:black,
+.-c\:000{
 	--c: #000;
 }
 .-c\:current{

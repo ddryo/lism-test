@@ -60,6 +60,7 @@ export function MediaLayer({ children, media, ...props }) {
 	if (undefined === media) return null;
 
 	const {
+		as,
 		tag = 'img',
 		// type = 'img',
 		src,
@@ -71,7 +72,7 @@ export function MediaLayer({ children, media, ...props }) {
 	let mediaContent = null;
 
 	// next/image の Image とかは自分で渡してもらう
-	const MediaTag = tag; //"img" === type ? "img" : "video";
+	const MediaTag = as || tag; //"img" === type ? "img" : "video";
 
 	mediaContent = (
 		<MediaTag

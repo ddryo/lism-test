@@ -1,9 +1,9 @@
 
 .b--banner {
 	position: relative;
-
-	> .l--box{
-		position: relative;
-		z-index: 1;
-	}
+}
+.b--banner__content{
+	position: relative;
+	z-index: 1;
+	height: 100%;
 }

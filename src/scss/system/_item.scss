@@ -15,33 +15,27 @@
 // 	flex: var(--fx);
 // }
 
-// ※ isItem使わず直接クラス指定できるように変数にはしていない
+
+.-fx\:{ flex: var(--fx)}
 .-fxg\:{flex-grow:var(--fxg)}
+.-fxsh\:{flex-shrink:var(--fxsh)}
+.-fxb\: {flex-basis:var(--fxb)}
+
 .-fxg\:1{flex-grow:1}
 .-fxg\:0{flex-grow:0}
 
-.-fxsh\:{flex-shrink:var(--fxsh)}
 .-fxsh\:1{flex-shrink:1}
 .-fxsh\:0{flex-shrink:0}
 
-.-fxb\: {flex-basis:var(--fxb)}
 // .-fxb\:100 {flex-basis:100%}
 // .-fxb\:a {flex-basis:auto}
 
-
-// row/column が基本で、area指定があればそっち優先
-// :where(.is--grid > .is--item) {
-// 	--gc: auto;
-// 	--gr: auto;
-// 	grid-row: var(--gr);
-// 	grid-column: var(--gc);
-// }
 
 .-ga\:{grid-area: var(--ga)}
 .-gc\:{grid-column: var(--gc)}
 .-gr\:{grid-row: var(--gr)}
 
-// ※ isItem使わず直接クラス指定できるように変数にはしていない
+
 .-ga\:fix{grid-area: fix;}
 .-ga\:l{grid-area: left;}
 .-ga\:r{grid-area: right;}

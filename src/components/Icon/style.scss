@@ -49,16 +49,14 @@
 
 
 // fill, outline も　ユーティリティ化？
-.b--icon[data-variant="fill"]{
-	background-color: var(--color);
-	// color: #fff;
-	color: var(--c--bg); //color-mix(in srgb-linear, var(--color), var(--c--bg) 40%);
-	// > .e--icon{color: #fff;}
-}
-.b--icon[data-variant="outline"]{
-	color: var(--color);
-	border: solid 1px var(--color);
-}
+// .b--icon[data-variant="fill"]{
+// 	background-color: var(--color);
+// 	color: var(--c--bg); //color-mix(in srgb-linear, var(--color), var(--c--bg) 40%);
+// }
+// .b--icon[data-variant="outline"]{
+// 	color: var(--color);
+// 	border: solid 1px var(--color);
+// }
 
 // .-fill:...
 // .-outline:...

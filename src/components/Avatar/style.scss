@@ -1,0 +1,13 @@
+.e--avatar {
+	aspect-ratio: 1/1;
+	--lism: 80px;
+	width: var(--lismVal);
+	height: auto;
+	overflow: hidden;
+
+	> img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}

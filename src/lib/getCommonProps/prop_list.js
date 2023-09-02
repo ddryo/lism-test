@@ -2,6 +2,13 @@ import { getMaybeSpaceVar, getMaybeColorVar } from '../index.js';
 
 // 特定のCSSプロパティ用キーワードをユーティリティ化するためのリスト。
 const UTILITIES = {
+	// color: {
+	// 	gray: 'gray50',
+	// 	lightgray: 'gray50',
+	// 	darkgray: 'gray50',
+	// 	dimgray: 'gray50',
+	// 	whitesmoke: 'gray50',
+	// },
 	place: {
 		center: 'c',
 		strech: 'str',
@@ -18,13 +25,33 @@ const UTILITIES = {
 	// insets: { '0%': '0', '50%': '50', '100%': '100' },
 	size: { '100%': '100', text: 'text' },
 	ga: { fix: 'fix', left: 'l', right: 'r', center: 'c' },
+	border: {
+		// left: 'l',
+		// right: 'r',
+		// top: 't',
+		// bottom: 'b',
+		// inline: 'inline',
+		// block: 'block',
+		'inline-start': 'in-s',
+		'inline-end': 'in-e',
+		'block-start': 'bl-s',
+		'block-end': 'bl-e',
+	},
 
 	// pos: { static: 's', relative: 'r', absolute: 'a', fixed: 'f' },
 	// ovw: { anywhere: 'any' },
 	// ov: { hidden: 'h' },
 	// lis: { none: 'n' },
 	// lts:{},
-	// display: { none: 'n', block: 'b' },
+	display: {
+		none: 'n',
+		block: 'b',
+		flex: 'f',
+		grid: 'g',
+		inline: 'i',
+		'inline-flex': 'if',
+		'inline-block': 'ib',
+	},
 	// rotate: { '45deg': '45', '-45deg': '-45', '90deg': '90', '-90deg': '-90', '180deg': '180' },
 	origin: {
 		center: 'c',
@@ -104,7 +131,7 @@ options.styleKey → options.onlyStyle が true の場合に、プリセット�
 */
 export default {
 	common: {
-		d: { BP: 1, utilVals: { none: 'n', block: 'b' } },
+		d: { BP: 1, utilVals: UTILITIES['display'] },
 		w: { BP: 1, utilVals: UTILITIES['size'] },
 		h: { BP: 1, utilVals: UTILITIES['size'] },
 		maxW: { utilVals: UTILITIES['size'] },
@@ -115,22 +142,42 @@ export default {
 		bg: { presets: 'bg', utilVals: { none: 'n' } },
 		opacity: { withUtil: 0, styleKey: 'opacity' },
 
-		bd: { presets: 'border' },
-		bdl: {},
-		bdr: {},
-		bdt: {},
-		bdb: {},
+		bd: { presets: 'border', utilVals: UTILITIES['border'] },
+		bdl: { withUtil: 0, styleKey: 'borderLeft' },
+		bdr: { withUtil: 0, styleKey: 'borderRight' },
+		bdt: { withUtil: 0, styleKey: 'borderTop' },
+		bdb: { withUtil: 0, styleKey: 'borderBottom' },
+
 		// bd="l,r,is"
 		bdw: { withUtil: 0, styleKey: '--bdw' }, // --bdw のみ
 		bds: { withUtil: 0, styleKey: '--bds' }, // --bds のみ
-		bdc: { withUtil: 0, styleKey: '--bdc', converter: getMaybeColorVar },
+		bdc: {
+			withUtil: 0,
+			styleKey: '--bdc',
+			presets: 'color',
+			utilVals: {
+				none: 't',
+				transparent: 't',
+				border: 'border',
+			},
+			converter: getMaybeColorVar,
+		},
 		borderSolid: { withUtil: 0, styleKey: 'borderSolid' },
 		borderWidth: { withUtil: 0, styleKey: 'borderWidth' },
 
-		c: { presets: 'color', converter: getMaybeColorVar },
+		c: {
+			presets: 'color',
+			// utilVals: {},
+			converter: getMaybeColorVar,
+		},
 		bgc: {
 			presets: 'color',
-			utilVals: { none: 't', transparent: 't' },
+			utilVals: {
+				none: 't',
+				transparent: 't',
+				current: 'cc',
+				currentColor: 'cc',
+			},
 			converter: getMaybeColorVar,
 		},
 		keycolor: {
@@ -175,8 +222,8 @@ export default {
 		z: { withUtil: 0, presets: ['-1', '0', '1'], styleKey: 'zIndex' },
 
 		mbs: { presets: 'space' },
-		radius: { utilKey: 'bdrs', presets: 'radius' },
-		shadow: { utilKey: 'bxsh', presets: 'shadow' },
+		radius: { utilKey: 'bdrs', styleKey: '--bdrs', presets: 'radius' },
+		shadow: { utilKey: 'bxsh', styleKey: '--bxsh', presets: 'shadow' },
 		lh: { presets: 'lh' },
 		fz: { presets: 'fz' },
 		fw: {
@@ -273,7 +320,9 @@ export default {
 
 		// lismVar
 		// lismVar: { withUtil: 0, BP: 1, styleKey: '--lism' },
+	},
 
+	isGrid: {
 		gta: {
 			BP: 1,
 			// utilVals: UTILITIES['gta']
@@ -281,19 +330,11 @@ export default {
 		gtc: { BP: 1 },
 		gtr: { BP: 1 },
 	},
-
-	isGrid: {
-		// 上書き
-		gta: { BP: 1, withUtil: 'BP' },
-		gtc: { BP: 1, withUtil: 'BP' },
-		gtr: { BP: 1, withUtil: 'BP' },
-	},
 	isFlex: {
 		// nowrap → nw にすべき？(whs と揃える)
-		fxw: { BP: 1, withUtil: 'BP', utilVals: { wrap: 'w', nowrap: 'nw' } },
+		fxw: { BP: 1, utilVals: { wrap: 'w', nowrap: 'nw' } },
 		fxd: {
 			BP: 1,
-			withUtil: 'BP',
 			utilVals: { column: 'c', row: 'r', 'column-reverse': 'cr', 'row-reverse': 'rr' },
 		},
 	},

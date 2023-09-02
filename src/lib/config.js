@@ -3,8 +3,18 @@ export const BREAK_POINTS = ['sm', 'md', 'lg', 'xl'];
 export const PRESETS = {
 	fz: ['5xl', '4xl', '3xl', '2xl', 'xl', 'l', 'm', 's', 'xs', '2xs', 'r'],
 	lh: [],
-	// utility化するカラー
-	color: ['main', 'accent', 'lightgray', 'darkgray', 'gray', 'white', 'black', 'current'],
+	// c,bgc,bdc 共通でutility化 & --c--xxx で管理するカラー
+	color: [
+		'main',
+		'accent',
+		'gray',
+		'lightgray',
+		'darkgray',
+		'dimgray',
+		'whitesmoke',
+		'white',
+		'black',
+	],
 	keycolor: [
 		'main',
 		'accent',
@@ -16,8 +26,8 @@ export const PRESETS = {
 		'orange',
 		'pink',
 		'gray',
-		'lightgray',
-		'darkgray',
+		// 'lightgray',
+		// 'darkgray',
 	],
 
 	// ユーティリティ化するもの。（）80~100以降、変数の用意はしている
@@ -27,7 +37,8 @@ export const PRESETS = {
 	// "space-between"
 	radius: ['0', '1', '2', '3', '4', '5', '6', '99'], // 'round'
 	shadow: ['-1', '-2', '-3', '-4', '-5', '0', '1', '2', '3', '4', '5'],
-	border: ['gray', 'current', 'guide'],
+	border: ['guide', 'transparent', 'top', 'left', 'right', 'bottom', 'block', 'inline'], // dashed?
+	//bds: dashed, solid, double, dotted,
 	bg: ['glass'],
 	// inset: ['0'], // inset用
 	// fw: ['100', '300', '400', '500', '700', '900'],

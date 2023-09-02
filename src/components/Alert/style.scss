@@ -37,7 +37,6 @@
 // }
 
 .b--alert{
-	
 	// color-mixのサポートチェック
 	// srgb-linear
 	@supports (color: color-mix(in srgb, #000, #fff)) {

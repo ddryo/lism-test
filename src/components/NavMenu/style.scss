@@ -1,49 +1,35 @@
+// ネストされている時はpX継承できるように
 :where(.b--navMenu:not([data-nest-level])) {
-	--bdc: var(--c--border);
-	--item-py: var(--space--30);
+	--item-py: var(--space--20);
 	--item-px: var(--space--30);
 	// --item-pl: var(--item-px);
 	--item-ml: 0;
 	--level: 0;
-	--bd: solid 1px var(--bdc);
-	--hov--bgc: var(--c--lightgray);
+	--hov--bgc: var(--c--whitesmoke);
+
+	// --bdc: var(--c--border);
+	// --bd: solid 1px var(--bdc);
 }
 
-// ネストされている時はpX継承できるように
-:where(.b--navMenu[data-variant="simple"]:not([data-nest-level])) {
-	--item-px: var(--space--20);
-}
-:where(.b--navMenu[data-variant="simple"]) {
-	--item-py: var(--space--20);
-	--bd: none;
-}
-
-// :where(.b--navMenu[data-nest-level]) {
-// 	--item-px: var(--item-px);
-// }
-
-:where(.b--navMenu[data-variant="box"]) {
-	border: var(--bd);
-}
-:where(.b--navMenu[data-variant="border"]) {
-	border-top: var(--bd);
-	border-bottom: var(--bd);
-}
 
 // <li>
 .b--navMenu__item {
 	line-height: 1.5;
 	margin-left: var(--item-ml);
+
+
 }
-.b--navMenu__item + .b--navMenu__item {
-	border-top: var(--bd);
+.l--accordion__bodyInner > .b--navMenu{
+	// アウトラインが ov:hiddenによって 見えなく鳴るのを防ぐ?
+	// padding: 2px;
+	outline-offset: -2px;
 }
 
 // <a> or <span>
-:where(.b--navMenu__text){
-	display: block;
-}
 .b--navMenu__text {
+	display: flex;
+	align-items: center;
+	gap: var(--space--20);
 	padding: var(--item-py) var(--item-px);
 	color: inherit;
 	text-decoration: none;
@@ -59,12 +45,18 @@
 
 // 子項目の余白をmarginで調整する場合
 .b--navMenu[data-nest-level] {
-	--item-ml: calc(var(--level) * 1em);
-	border-top: var(--bd);
+	--item-ml: var(--space--40);
 }
 
 .b--navMenu__acc > .l--accordion__header{
-	padding-right: var(--item-px);
-	--pY: var(--item-py); // __text 用
-	--pl: var(--item-px); // __text 用
+	--p: 0 var(--item-px) 0 0;
+}
+
+.b--navMenu.l--cluster{
+	.b--navMenu[data-nest-level]{
+		--item-ml: 0;
+	}
+	.l--accordion__body{
+		position: absolute;
+	}
 }

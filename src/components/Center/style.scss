@@ -14,11 +14,10 @@
 		overflow-y: auto;
 	}
 
+	// 自分自身をセンター寄せ
+	&[data-size="content"]{
+		width: fit-content;
+		height: fit-content;
+		margin-inline: auto;
+	}
 }
-
-// 自分自身をセンター寄せ？
-// .l--center--self {
-// 	width: fit-content;
-// 	height: fit-content;
-// 	margin-inline: auto;
-// }

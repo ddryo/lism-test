@@ -2,69 +2,8 @@
 // --------------------
 // カラム
 // --------------------
-// .l--columns {
-// 	--cols: 2;
-// 	--cols--sm: 1;
-// 	--cols--md: 1;
-// 	--cols--lg: 1;
-// 	--cols--xl: 1;
-
-// 	--gtc: repeat(var(--cols), minmax(0,1fr));
-// 	--gtc--sm: repeat(var(--cols--sm), minmax(0,1fr));
-// 	--gtc--md: repeat(var(--cols--md), minmax(0,1fr));
-// 	--gtc--lg: repeat(var(--cols--lg), minmax(0,1fr));
-// 	--gtc--xl: repeat(var(--cols--xl), minmax(0,1fr));
-// }
-
-// @include query.cq('sm'){
-// 	.l--columns.-col\@sm\:{
-// 		--cols: var(--cols--sm);
-// 	}
-// }
-// @include query.cq('md'){
-// 	.l--columns.-col\@md\:{
-// 		--cols: var(--cols--md);
-// 	}
-// }
-// @include query.cq('lg'){
-// 	.l--columns.-col\@lg\:{
-// 		--cols: var(--cols--lg);
-// 	}
-// }
-
-
-// [data-lism]
-.l--grid--columns{
+.l--columns{
 	--lism: 1;
-	--gtc: repeat(var(--lismVal), minmax(0,1fr));
+	display: grid;
+	grid-template-columns: repeat(var(--lismVal), minmax(0,1fr));
 }
-
-.___l--columns {
-	// --colmns: 1;
-
-	// &.-lism\:{
-	// 	--lism: 1;
-	// 	--colmns: var(--lismVal);
-	// }
-
-	// // minmax() を使わないと、カラムのバランスが崩れることがある
-	// --gtc: repeat(var(--colmns), minmax(0,1fr));
-
-	// --lism: 1;
-	// grid-template-columns: repeat(var(--lismVal), minmax(0,1fr));
-
-	// grid-template-columns: var(--gtc);
-}
-
-// .l--columns.-gtc\@sm\:{
-// 	--gtc--sm: repeat(var(--cols--sm), minmax(0,1fr));
-// }
-// .l--columns.-gtc\@md\:{
-// 	--gtc--md: repeat(var(--cols--md), minmax(0,1fr));
-// }
-// .l--columns.-gtc\@lg\:{
-// 	--gtc--lg: repeat(var(--cols--lg), minmax(0,1fr));
-// }
-// .l--columns.-gtc\@xl\:{
-// 	--gtc--xl: repeat(var(--cols--xl), minmax(0,1fr));
-// }

@@ -6,8 +6,8 @@ import { Lism } from '../Lism';
 import { Decorator } from '../Decorator';
 
 // import { Flex } from '../Flex';
-import { Frame } from '../Frame';
-import { MediaLayer } from '../Layer';
+import { Avatar } from '../Avatar';
+// import { MediaLayer } from '../Layer';
 
 const DECORATOR_PROPS = {
 	// chat: {
@@ -29,7 +29,7 @@ export default function ChatBubble({
 	variant = 'chat',
 	direction = 'left',
 	contentProps = {},
-	iconFrameProps = {},
+	avatarProps = {},
 	children,
 	...props
 }) {
@@ -40,8 +40,7 @@ export default function ChatBubble({
 		isGrid: true,
 		gap: '-',
 	};
-	let _iconProps = {};
-	let _iconFrameProps = { radius: '99' };
+	let _avatarProps = { radius: '99' };
 	let _bodyProps = {
 		pos: 'relative',
 		mt: '-',
@@ -55,8 +54,7 @@ export default function ChatBubble({
 	if ('box' === variant) {
 		_chatBoxProps.gap = 0;
 		_contentProps.radius = 1;
-		_iconProps.pX = 10;
-		_iconFrameProps.shadow = 1;
+		_avatarProps.shadow = 1;
 	} else {
 		console.log('DECORATOR_PROPS[direction]', DECORATOR_PROPS[direction]);
 		decorators = (
@@ -88,11 +86,9 @@ export default function ChatBubble({
 			{...props}
 		>
 			{img && (
-				<Lism blockClass='b--chatBubble__icon' {..._iconProps}>
-					<Frame ratio='1:1' {..._iconFrameProps} {...iconFrameProps}>
-						<MediaLayer>{img}</MediaLayer>
-					</Frame>
-				</Lism>
+				<Avatar blockClass='b--chatBubble__icon' {..._avatarProps} {...avatarProps}>
+					{img}
+				</Avatar>
 			)}
 
 			{name && (

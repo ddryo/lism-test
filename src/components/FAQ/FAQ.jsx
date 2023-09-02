@@ -1,10 +1,12 @@
 import React from 'react';
 import { Stack } from '../Stack';
 // import { Item } from '../Item';
-import { BlockIcon } from '../Icon';
+import { Icon } from '../Icon';
 // import { Badge } from '../Badge';
-// import { Center } from '../Center';
+import { Flex } from '../Flex';
 import { Lism } from '../Lism';
+// import { Grid } from '../Grid';
+
 import { Accordion, AccordionHeader, AccordionBody } from '../Accordion';
 
 export default function FAQ({
@@ -16,27 +18,36 @@ export default function FAQ({
 	children,
 	flowGap,
 	isAccordion,
-	qIcon = 'Q',
-	aIcon = 'A',
 	// iconType,
 	// style = {},
 	...props
 }) {
-	qIconProps = {
-		icon: qIcon,
-		radius: '99', // '-'にする ?
-		p: 20,
-		size: '1em',
-		...qIconProps,
-	};
+	const Qmark = (
+		<Flex
+			blockClass='b--faq__icon'
+			c='white'
+			bgc='main'
+			p={20}
+			bd='-'
+			bdc='transparent'
+			radius='99'
+			{...qIconProps}
+		>
+			<Icon icon='Q' />
+		</Flex>
+	);
 
-	const Qmark = <BlockIcon variant='fill' color='main' {...qIconProps} />;
 	const Qtag = 'span';
 
 	if (isAccordion) {
 		return (
 			<Accordion blockClass='b--faq' {...props}>
-				<AccordionHeader blockClass='b--faq__q' labelBefore={Qmark} tag={Qtag}>
+				<AccordionHeader
+					blockClass='b--faq__q'
+					labelProps={{ blockClass: 'b--faq__title' }}
+					labelBefore={Qmark}
+					tag={Qtag}
+				>
 					{title}
 				</AccordionHeader>
 				<AccordionBody blockClass='b--faq__a'>{children}</AccordionBody>
@@ -44,27 +55,24 @@ export default function FAQ({
 		);
 	}
 
-	aIconProps = {
-		icon: aIcon,
-		radius: '99', // '-'にする ?
-		p: 20,
-		size: '1em',
-		...aIconProps,
-	};
-	const Amark = <BlockIcon variant='outline' color='main' {...aIconProps} />;
+	const Amark = (
+		<Flex c='main' p={20} bd='-' radius='99' {...aIconProps}>
+			<Icon icon='A' />
+		</Flex>
+	);
 
 	return (
 		<Stack blockClass='b--faq' gap={40} {...props}>
-			<Lism isGrid blockClass='b--faq__q' gap={['-', '-']}>
+			<Flex blockClass='b--faq__q'>
 				{Qmark}
 				<Qtag className='b--faq__title'>{title}</Qtag>
-			</Lism>
-			<Lism isGrid blockClass='b--faq__a' gap={['-', '-']}>
+			</Flex>
+			<Flex blockClass='b--faq__a'>
 				{Amark}
 				<Lism blockClass='b--faq__body' isFlow flowGap={flowGap || 40}>
 					{children}
 				</Lism>
-			</Lism>
+			</Flex>
 		</Stack>
 	);
 }

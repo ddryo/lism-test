@@ -14,6 +14,7 @@
 	// --decorator-size: clamp(16px, 0.5rem + 2cqw, 20pxrem); //20px;
 	// --decorator-size: clamp(12px, 4px + 2cqw, 16px); //400:12px~600:16px
 	--decorator-size: clamp(14px, 10px + 1cqw, 16px); //400:14px~600:16px
+
 	--icon-bdc: var(--bgc);
 	--chat-mt: calc(var(--icon-size) * 0.6);
 
@@ -34,13 +35,17 @@
 .b--chatBubble__icon{
 	grid-area: icon;
 	z-index: 2;
-}
 
-.b--chatBubble__icon > .l--frame{
 	background-color: var(--c--bg);
 	border: solid 2px var(--icon-bdc);
 	width: var(--icon-size);
 }
+
+// .b--chatBubble__icon > .l--frame{
+// 	background-color: var(--c--bg);
+// 	border: solid 2px var(--icon-bdc);
+// 	width: var(--icon-size);
+// }
 
 .b--chatBubble__body{
 	--mt: var(--chat-mt);
@@ -66,6 +71,9 @@
 :where([data-variant="box"] > div > .b--chatBubble__content) {
 	--p: var(--space--40);
 	--p--sm: var(--space--45);
+}
+:where([data-variant="box"]) > .b--chatBubble__icon{
+	margin: 0 var(--space--10);
 }
 
 .b--chatBubble__content{

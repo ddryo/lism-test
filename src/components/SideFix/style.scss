@@ -1,21 +1,17 @@
 .l--sideFix{
-	--fixW: auto;
-}
-.l--sideFix.-lism\:{
 	--lism: 16rem;
-	--fixW: var(--lismVal);
 }
 
 .l--sideFix{
 
 	&[data-fix~="left"]{
 		--gta--horizontal: "fix ...";
-		--gtc--horizontal: var(--fixW) 1fr;
+		--gtc--horizontal: var(--lismVal) 1fr;
 	}
 
 	&[data-fix~="right"]{
 		--gta--horizontal: ". fix"; // .-gta@sm: あれば 有効になる
-		--gtc--horizontal: 1fr var(--fixW);
+		--gtc--horizontal: 1fr var(--lismVal);
 	}
 
 	// 折返しなし
@@ -47,7 +43,7 @@
 // fxgの比率を 1:でかい数 にして、fix側を広がらないようにする。
 .l--sideFix.is--flex {
 	--fxw: wrap;
-	--fixW: auto;
+	--fixW: auto; // 16em
 	--fluid--miw: 20em;
 
 	// flex-grow は 変数指定だと挙動が変だった。

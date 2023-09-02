@@ -1,6 +1,6 @@
 import React from 'react';
 import { Lism } from '../Lism';
-import { Center } from '../Center';
+// import { Center } from '../Center';
 
 import { Icon } from '../Icon';
 import { getCommonProps } from '../../lib';
@@ -28,13 +28,8 @@ export default function AccordionHeader({
 	...props
 }) {
 	const { className, style, attrs } = getCommonProps(props, {
-		isFlex: true,
 		lismClass: 'l--accordion__header',
-		ai: 'center',
-		jc: 'space-between',
-		bgc: 'lightgray',
-		p: 40,
-		gap: 30,
+		bgc: 'whitesmoke',
 	});
 
 	const blockProps = {
@@ -45,49 +40,45 @@ export default function AccordionHeader({
 
 	const iconProps = {
 		tag: 'span',
-		className: 'l--accordion__icon',
-		isItem: true,
-		// isGrid: true,
-		// _util: '-fxsh:0',
-		// className: 'l--accordion__icon is--item is--grid -fxsh:0',
+		lismClass: 'l--accordion__icon',
 	};
 
 	// clickable=iconなら、iconをbuttunに
 	const { clickable } = React.useContext(AccContext);
-	if (clickable) {
+	if (clickable === 'icon') {
 		iconProps.tag = 'button';
-		iconProps._util = '-bgc: -p: -bd:';
-		iconSize = iconSize || '1em';
+		// iconProps.bd = 'current';
+		// iconProps.p = '-';
+		// iconProps.radius = '1';
+		// iconSize = iconSize || '1em';
 	} else {
 		iconProps['aria-hidden'] = 'true';
-		iconSize = iconSize || '1.25em';
+		// iconSize = iconSize || '1.25em';
 	}
 
 	let Icons = null;
 	if (openIcon && closeIcon) {
 		Icons = (
-			<Center {...iconProps}>
+			<Lism {...iconProps}>
 				<Icon tag='span' icon={openIcon} size={iconSize} data-to='open' />
 				<Icon tag='span' icon={closeIcon} size={iconSize} data-to='close' />
-			</Center>
+			</Lism>
 		);
 	} else {
 		Icons = (
-			<Center {...iconProps}>
+			<Lism {...iconProps}>
 				<Icon icon={icon || caretSvg} size={iconSize} />
-			</Center>
+			</Lism>
 		);
 	}
 
 	let baseLabelProps = {
 		tag: 'span', // div?
 		lismClass: 'l--accordion__label',
-		isItem: true,
-		_util: '-fxg:1 -ovw:any', // 要検討
 	};
 
 	// -f:inhert みたいにフォント関連を一括で継承するクラス作る？
-	if (baseLabelProps) {
+	if (labelTag) {
 		baseLabelProps.tag = labelTag;
 		baseLabelProps.fz = 'm';
 		baseLabelProps.fw = '400';

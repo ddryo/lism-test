@@ -59,6 +59,9 @@ class CommonProps {
 			isItem,
 			isLinkbox,
 			isConstrained,
+			useFlexProps,
+			useGridProps,
+			useItemProps,
 			hasGutter,
 			hasLayer,
 			hasLismVar,
@@ -68,15 +71,16 @@ class CommonProps {
 
 		this.styles = { ...lismStyle, ...style };
 
+		// use=['layout', 'color', 'bd' ...]とかで使うprop指定?
 		this.className = classnames(
 			blockClass, // b--
 			lismClass, // l--
 			lismModifier,
 			{
-				'is--flex': isFlex && 'l--flex' !== lismClass,
-				'is--grid': isGrid && 'l--grid' !== lismClass,
+				'is--flex': isFlex,
+				'is--grid': isGrid,
 				'is--flow': isFlow || false,
-				'is--item': isItem || false,
+				// 'is--item': isItem || false,
 				'is--linkbox': isLinkbox || false,
 				'is--constrained': isConstrained || false,
 				'has--gutter': hasGutter || false,
@@ -106,7 +110,13 @@ class CommonProps {
 
 			// propリストのセット
 			// if (useLog) console.log('this.propList before', this.propList);
-			this.setPropList(isFlow, isFlex, isGrid, isItem, useLog);
+			this.setPropList(
+				isFlow,
+				isFlex || useFlexProps,
+				isGrid || useGridProps,
+				useItemProps,
+				useLog
+			);
 			// if (useLog) console.log('this.propList after', this.propList, PROP_LIST.common);
 
 			// props処理

@@ -3,7 +3,6 @@ import { Lism } from '../Lism';
 
 // variantで受け取り、modifierにセット。→セットせずそのままmodifierのみでもいいか
 export default function Decorator({ type, index, direction, pos = 'absolute', ...props }) {
-	// isGrid?
 	return (
 		<Lism
 			tag='span'

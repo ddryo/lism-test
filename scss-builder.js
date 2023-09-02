@@ -34,9 +34,12 @@ const COLOR = {
 	// const ignore = ['**/_*.scss'];
 	let files = [];
 	files = [
-		src + '/base.scss',
+		src + '/all.scss',
+		src + '/core-system.scss',
+		src + '/core-modules.scss',
+
 		// src + '/base--wp.scss',
-		src + '/components.scss',
+		// src + '/components.scss',
 	];
 
 	// files = glob.sync(src + '/**/*.scss', { ignore });

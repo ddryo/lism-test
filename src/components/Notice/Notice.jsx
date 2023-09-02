@@ -1,6 +1,7 @@
 import React from 'react';
 import { Stack } from '../Stack';
 import { Lism } from '../Lism';
+import { Flex } from '../Flex';
 import { Icon } from '../Icon';
 
 import {
@@ -139,19 +140,12 @@ export default function Notice({
 	}
 	// else {}
 
-	if (icon) {
-		Object.assign(headProps, {
-			isFlex: true,
-			ai: 'center',
-		});
-	}
-
 	return (
 		<Stack {...boxProps}>
-			<Lism {...headProps}>
+			<Flex {...headProps}>
 				{icon && <Icon icon={icon} blockClass='b--notice__icon' size='1.5em' />}
 				<span {...captionProps}>{caption}</span>
-			</Lism>
+			</Flex>
 
 			<Lism isFlow {...bodyProps}>
 				{children}

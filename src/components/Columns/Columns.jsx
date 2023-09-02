@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '../Grid';
+import { Lism } from '../Lism';
 import { getLismMainProp } from '../../lib';
 
 // function getColumnsVars(cols) {
@@ -38,14 +38,16 @@ export default function Columns({
 	// if (1 === clms._) delete clms._;
 
 	const blockProps = {
-		// lismClass: 'l--columns',
-		// isGrid: true,
-		modifier: 'columns',
+		lismClass: 'l--columns',
+		useGridProps: true,
+		// modifier: 'columns',
 		gap: 20, // 初期値
-		// hasLismVar: true,
 		lismVar: clms,
-		...props,
 	};
 
-	return <Grid {...blockProps}>{children}</Grid>;
+	return (
+		<Lism {...blockProps} {...props}>
+			{children}
+		</Lism>
+	);
 }

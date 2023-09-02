@@ -7,26 +7,33 @@ import { Text } from '../Text';
 import { Accordion, AccordionHeader, AccordionBody } from '../Accordion';
 // import classnames from 'classnames';
 export default function NavMenuItem({
-	children,
-	childMenu,
 	linkComponent,
-	// padding系、gap系は、aタグ側に流す
 	href,
+	text,
 	hover = 'bgc:',
 	linkProps = {},
-	badge = null,
-	icon = null,
-
+	before = null,
+	after = null,
 	isAccordion,
 	accordionProps = {},
 	accordionBodyProps = {},
 	accordionHeaderProps = {},
+	children,
 	...props
 }) {
 	// const Link = component || Lism;
 
-	let menuText = null;
+	let menuText = (
+		<>
+			{before}
+			{text}
+			{after}
+		</>
+	);
 	let textProps = { as: 'span', blockClass: 'b--navMenu__text' };
+	// if (after || before) {
+	// 	textProps = Object.assign(textProps, { d: 'flex', gap: 20, ai: 'center' });
+	// }
 
 	if (href) {
 		textProps = {
@@ -37,17 +44,13 @@ export default function NavMenuItem({
 		};
 	}
 
-	if (badge || icon) {
-		// jc: 'space-between'
-		textProps = { ...textProps, ...{ isFlex: 1, gap: 20, ai: 'center' } };
-	}
-
 	linkProps = { ...textProps, ...linkProps };
 
+	// アコーディオンモード
 	if (isAccordion) {
-		linkProps.pr = 0;
-		linkProps.pl = '-';
-		linkProps.pY = '-';
+		// linkProps.pr = 0;
+		// linkProps.pl = '-';
+		// linkProps.pY = '-';
 
 		if (href) {
 			// hrefがあればアイコンだけをクリック可能に
@@ -57,39 +60,29 @@ export default function NavMenuItem({
 			accordionHeaderProps.hover = hover;
 		}
 
-		menuText = (
-			<Text {...linkProps}>
-				{icon}
-				{children}
-				{badge}
-			</Text>
-		);
 		return (
 			<Lism tag='li' blockClass='b--navMenu__item' {...props}>
 				<Accordion blockClass='b--navMenu__acc' {...accordionProps}>
-					<AccordionHeader p={null} bgc={null} iconSize='1em' {...accordionHeaderProps}>
-						{menuText}
+					<AccordionHeader
+						bgc='transparent'
+						iconSize='1em'
+						labelProps={{ p: 0 }}
+						gap={10}
+						{...accordionHeaderProps}
+					>
+						<Text {...linkProps}>{menuText}</Text>
 					</AccordionHeader>
-					<AccordionBody p={0} {...accordionBodyProps}>
-						{childMenu}
-					</AccordionBody>
+					<AccordionBody {...accordionBodyProps}>{children}</AccordionBody>
 				</Accordion>
 			</Lism>
 		);
 	}
 
-	menuText = (
-		<Lism {...linkProps}>
-			{icon}
-			{children}
-			{badge}
-		</Lism>
-	);
-
+	// NOT アコーディオン
 	return (
 		<Lism tag='li' blockClass='b--navMenu__item' {...props}>
-			{menuText}
-			{childMenu}
+			<Lism {...linkProps}>{menuText}</Lism>
+			{children}
 		</Lism>
 	);
 }

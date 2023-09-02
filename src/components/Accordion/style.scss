@@ -9,11 +9,19 @@
 	}
 }
 
-
-
+:where(.l--accordion__header){
+	--p: 0 var(--space--30);
+	--gap: var(--space--30);
+	--bdrs: var(--radius--1);
+}
 .l--accordion__header {
-	// background: var(--c--lightgray);
 	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--p);
+	gap: var(--gap);
+	border-radius: var(--bdrs);
 	
 	/* Safariで表示されるデフォルトの三角形アイコンを消します */
 	&::-webkit-details-marker {
@@ -21,28 +29,33 @@
 	}
 }
 
-// .l--accordion__label {
-// 	grid-area: label;
-// 	// flex: 1 1 auto;
-// 	// overflow-wrap: anywhere;
-// }
-
-.l--accordion__body {
-	--gtr: 1fr;
-	transition-property: padding, opacity, grid-template-rows;
-	transition-duration: var(--duration);
+.l--accordion__label {
+	flex-grow: 1;
+	overflow-wrap: anywhere;
+	padding: var(--space--30) var(--space--10);
 }
 
-// ※ 正常なanimation に必須
+:where(.l--accordion__body){
+	--p: var(--space--40);
+}
+.l--accordion__body {
+	display: grid;
+	grid-template-rows: 1fr;
+	transition-property: padding, opacity, grid-template-rows;
+	transition-duration: var(--duration);
+	padding: var(--p);
+}
+
 .l--accordion__bodyInner{
-	overflow: hidden;
+	overflow: hidden; // ※ 正常な animation に必須
+	--ls--flowGap: var(--space--40);
 }
 
 // 閉じている時
 .l--accordion:not(.-opened)  {
 	> .l--accordion__body{
 		opacity: 0.1;
-		--gtr: 0fr;
+		grid-template-rows: 0fr;
 		// grid-template-rows: 0fr;
 		padding-top: 0 !important;
 		padding-bottom: 0 !important;
@@ -51,10 +64,7 @@
 
 // アコーディオンブロックのネスト時、別のアイコンタイプにすると表示が崩れるがそこまでは考慮しない。
 .l--accordion__icon {
-	--bgc: none;
-	--p: .5em;
-	--bdc: currentColor;
-	--bd: solid 1px var(--bdc);
+	display: flex;
 	// --gta: "icon";
 
 	// __icon 自体にborderつけたりすると回転が見えてしまうので、 icon自体を回転させる。
@@ -62,7 +72,6 @@
 		// grid-area: icon;
 		transition: rotate .25s;
 		rotate: calc(0deg - var(--isOpened) * 180deg);
-		// transform: scale(1.125);
 	}
 	> .e--icon[data-to="open"]{
 		opacity: calc(1 - var(--isOpened));
@@ -70,15 +79,7 @@
 	> .e--icon[data-to="close"]{
 		opacity: calc(0 + var(--isOpened));
 		position: absolute;
-		// opacity: 0;
-	}
-}
-
-
-
-[data-clickable="icon"]{
-	>.l--accordion__header{
-		pointer-events: none;
+		rotate: calc(180deg - var(--isOpened) * 180deg);
 	}
 }
 
@@ -86,6 +87,20 @@
 .l--accordion__icon{
 	pointer-events: auto;
 }
+
+// [data-clickable="icon"] のとき
+button.l--accordion__icon{
+	padding: .325em;
+	border: solid 1px currentColor;
+	border-radius: var(--radius--1);
+}
+
+[data-clickable="icon"] {
+	>.l--accordion__header{
+		pointer-events: none;
+	}
+}
+
 
 // .-opened > .l--accordion__header > .l--accordion__icon {
 // 	transform: rotate(180deg);

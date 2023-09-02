@@ -4,7 +4,7 @@ import { getLismMainProp } from '../../lib';
 // import { DynamicCSS } from '../DynamicCSS';
 
 // 1:2:3 → 1fr 2fr 3fr に変換
-function ratioToFr(ratio) {
+function getFrGtc(ratio) {
 	if (!ratio) return null;
 
 	// ":" で分解し、配列化し、その配列要素に "fr" を付けて連結
@@ -17,14 +17,14 @@ function ratioToFr(ratio) {
 // function setCustomQueryCSS({ size, ratio }) {
 // 	return `@container (max-width: ${size}) {
 // 		.l--ratioGrid[data-point-${size}="${ratio}"] {
-// 			grid-template-columns: ${ratioToFr(ratio)};
+// 			grid-template-columns: ${getFrGtc(ratio)};
 // 		}
 // 	}`;
 // }
 
-export default function RatioGrid({
+export default function FractiosGrid({
 	children,
-	ratio,
+	fractions,
 	sm,
 	md,
 	lg,
@@ -35,19 +35,28 @@ export default function RatioGrid({
 	customQuery,
 	...props
 }) {
-	let ratios = getLismMainProp(ratio, { sm, md, lg, xl });
+	let frs = getLismMainProp(fractions, { sm, md, lg, xl });
 
-	// objの 中身に ratioToFr() を適用する
-	ratios = Object.entries(ratios).reduce((newObj, [key, r]) => {
-		newObj[key] = ratioToFr(r);
+	// objの 中身に getFrGtc() を適用する
+	frs = Object.entries(frs).reduce((newObj, [key, r]) => {
+		newObj[key] = getFrGtc(r);
 		return newObj;
 	}, {});
 
 	// デフォルト値の削除
 	// if ('1fr 1fr' === gtcs._) delete gtcs._;
 
+	const blockProps = {
+		// lismClass: 'l--ratioGrid',
+		// isGrid: true,
+		modifier: 'fractions',
+		gap: 20, // 初期値
+		gtc: frs,
+		// lismVar: clms,
+	};
+
 	return (
-		<Grid lismClass='l--ratioGrid' gtc={ratios} {...props}>
+		<Grid {...blockProps} {...props}>
 			{/* {customQueryCSS && <style jsx>{customQueryCSS}</style>} */}
 			{children}
 		</Grid>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box } from '../Box';
+import { Lism } from '../Lism';
 
 export default function Cluster(props) {
-	return <Box lismClass='l--cluster' isFlex gap={20} {...props} />;
+	return <Lism useFlexProps lismClass='l--cluster' gap={20} {...props} />;
 }

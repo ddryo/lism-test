@@ -1,12 +1,12 @@
 import React from 'react';
-import { Lism } from '../Lism';
+import { Box } from '../Box';
 // import classnames from 'classnames';
 
-export function Item({ children, component, ...props }) {
-	const Comp = component || Lism;
+export function Item({ children, as, ...props }) {
+	const Item = as || Box;
 	return (
-		<Comp isItem {...props}>
+		<Item useItemProps {...props}>
 			{children}
-		</Comp>
+		</Item>
 	);
 }

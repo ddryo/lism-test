@@ -7,14 +7,24 @@
 	// --c: var(--keycolor);
 	--bdc: transparent;
 	// --bgc: transparent;
+	--w: fit-content;
+	--gap: var(--space--10);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
+
 .l--button{
 	line-height: 1.5;
 	text-decoration: none;
-	width: fit-content;
+	width: var(--w); // .-w: 関連で上書きできるように
 	color: var(--c);
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc); // アウトラインと並べたときにサイズに差がでないように
+	border-radius: var(--bdrs);
+	padding: var(--p);
+	gap: var(--gap);
 	// min-width: 2em;
 }
 
@@ -40,18 +50,20 @@
 	--rev--c: #fff; // reverse用
 }
 
-.l--button__text {
-	overflow-wrap: anywhere;
-}
+// .l--button__text {
+// 	overflow-wrap: anywhere;
+// }
 
 
 // .l--button[data-icon-position="edge"],
+// gta:lcr, tcb
 .l--button.is--grid {
 	--gta: "left center right";
 	--gtc: 1em 1fr 1em;
 }
 .is--grid > .l--button__text {
 	justify-self: center;
+	grid-area: center;
 }
 
 // .l--button[data-icon-offset="0"]{
@@ -60,10 +72,14 @@
 
 .l--button__icon {
 	scale: var(--icon-scale);
+	flex-shrink: 0;
+
 	&[data-position="left"] {
+		grid-area: left;
 		translate: calc(0px - var(--icon-offset));
 	}
 	&[data-position="right"] {
+		grid-area: right;
 		translate: var(--icon-offset);
 	}
 }

@@ -1,3 +1,4 @@
 .l--stack {
-	--fxd: column;
+	display: flex;
+	flex-direction: column;
 }

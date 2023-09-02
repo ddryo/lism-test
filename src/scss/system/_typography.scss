@@ -3,7 +3,8 @@
  */
 :root{
 	--root--ff: sans-serif;
-	--root--fz: clamp(14px, 4vw, 1rem); // 1rem: ブラウザ標準はほぼ16px
+	// --root--fz: clamp(14px, 4vw, 1rem); // 1rem: ブラウザ標準はほぼ16px
+	--root--fz: clamp(0.875rem, 0.625rem + 1vw, 1rem); // 400 - 600
 	--root--lh: 1.75;
 
 	// font-size 変数

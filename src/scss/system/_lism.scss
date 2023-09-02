@@ -27,8 +27,12 @@
 // [data-lism=flex,grid,...]
 
 // [class*="l--grid--"]
-.l--grid,
+// .l--grid,
+.l--grid--tile,
+.l--columns,
 .l--frame,
+.l--sideFix,
+.e--avatar,
 .-lism\:{
 	--lism: unset;
 	--lism--sm: var(--lism);

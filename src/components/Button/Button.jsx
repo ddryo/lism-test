@@ -18,31 +18,16 @@ export default function Button({
 	const blockProps = {
 		lismClass: 'l--button',
 		lismStyle: {},
-		gap: 10,
-		p: '-',
-		radius: '-',
-		ai: 'center',
+		// gap: 10,
+		// p: '-',
+		// radius: '-',
+		// ai: 'center',
 		'data-variant': variant,
-	};
-
-	const utils = {
-		leftIcon: '',
-		text: '',
-		rightIcon: '',
 	};
 
 	if (iconPosition === 'edge') {
 		blockProps.isGrid = true;
-		// blockProps.jc = 'space-between';
 		blockProps['data-icon-position'] = 'edge';
-		utils.leftIcon = '-ga:l';
-		utils.text = '-ga:c';
-		utils.rightIcon = '-ga:r';
-	} else {
-		blockProps.isFlex = true;
-		blockProps.jc = 'center';
-		utils.leftIcon = '-fxsh:0';
-		utils.rightIcon = '-fxsh:0';
 	}
 
 	if (iconOffset) {
@@ -84,21 +69,11 @@ export default function Button({
 	return (
 		<Lism tag='a' {...blockProps} {...props}>
 			{leftIcon && (
-				<Icon
-					icon={leftIcon}
-					lismClass='l--button__icon e--icon'
-					data-position='left'
-					_util={utils.leftIcon}
-				/>
+				<Icon icon={leftIcon} lismClass='l--button__icon e--icon' data-position='left' />
 			)}
-			<span className={`l--button__text ${utils.text}`.trim()}>{children}</span>
+			<span className='l--button__text'>{children}</span>
 			{rightIcon && (
-				<Icon
-					icon={rightIcon}
-					lismClass='l--button__icon e--icon'
-					data-position='right'
-					_util={utils.rightIcon}
-				/>
+				<Icon icon={rightIcon} lismClass='l--button__icon e--icon' data-position='right' />
 			)}
 		</Lism>
 	);

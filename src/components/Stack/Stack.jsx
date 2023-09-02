@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box } from '../Box';
+import { Lism } from '../Lism';
 
 export default function Stack(props) {
-	return <Box isFlex lismClass='l--stack' {...props} />;
+	return <Lism useFlexProps lismClass='l--stack' {...props} />;
 }

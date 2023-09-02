@@ -19,12 +19,13 @@ export { Frame } from './Frame';
 export { Layer, MediaLayer, FilterLayer, ContentLayer } from './Layer';
 export { Reel } from './Reel';
 
+export { Avatar } from './Avatar';
 export { Divider } from './Divider';
 export { Icon, InlineIcon, BlockIcon } from './Icon';
 
 export { Columns } from './Columns';
 export { TileGrid } from './TileGrid';
-export { RatioGrid } from './RatioGrid';
+export { FractiosGrid } from './FractiosGrid';
 export { AreaGrid } from './AreaGrid';
 export { SideFixGrid, SideFixFlex } from './SideFix';
 // export { PinGallery } from './PinGallery';

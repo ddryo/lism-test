@@ -1,7 +1,7 @@
 import React from 'react';
 // import { getMaybeColorVar } from '../../lib';
-import { Lism } from '../Lism';
-import { Flex } from '../Flex';
+import { Flow } from '../Flow';
+// import { Flex } from '../Flex';
 import { Icon } from '../Icon';
 import { SideFixFlex } from '../SideFix';
 import { Center } from '../Center';
@@ -24,6 +24,7 @@ import {
 	PhQuestion,
 	PhLightbulb,
 	PhInfo,
+	PhNotePencil,
 } from './icons/ph';
 // import classnames from 'classnames';
 
@@ -61,7 +62,7 @@ const AlertPresets = {
 
 // phIcons
 const AlertIcons = {
-	memo: PhPencilSimple,
+	memo: PhNotePencil, //PhPencilSimple,
 	error: PhWarningCircle,
 	warning: PhWarning,
 	success: PhCheck,
@@ -120,17 +121,17 @@ export default function Alert({
 	color = color || presetColor || 'main';
 	blockProps.keycolor = color;
 
-	// iconProps を渡すことを考えると、アイコンは BlockIcon がいい ?
+	// Center: 縦並び時にセンター寄せしたい
 	return (
 		<SideFixFlex fix='first' {...blockProps}>
 			{icon && (
-				<Center className='b--alert__icon'>
+				<Center blockClass='b--alert__icon'>
 					<Icon icon={icon} size='1.5em' {...iconProps} />
 				</Center>
 			)}
-			<Lism blockClass='b--alert__body' isFlow flowGap={30}>
+			<Flow blockClass='b--alert__body' flowGap={30}>
 				{children}
-			</Lism>
+			</Flow>
 		</SideFixFlex>
 	);
 }

@@ -1,34 +1,34 @@
-.is--flow {
-	:where(&) > * {
-		margin-block-start: 0;
-		margin-block-end: 0;
-	}
+// .is--flow {}
 
-	// > * + *
-	:where(&) > *:not(:first-child) {
-		margin-block-start: var(--ls--flowGap); // global な値
-		margin-block-end: 0;
-	}
-
-
-	:where(&) > .alignleft {
-		float: left;
-		margin-inline-start: 0;
-		margin-inline-end: 2em; // ?
-	}
-
-	:where(&) > .alignright {
-		float: right;
-		margin-inline-start: 2em; // ?
-		margin-inline-end: 0;
-	}
-
-	:where(&) > .aligncenter {
-		margin-right: auto !important;
-		margin-left: auto !important;
-	}
-
+:is(.l--flow, .is--flow) > * {
+	margin-block-start: 0;
+	margin-block-end: 0;
 }
+
+// > * + *
+:is(.l--flow, .is--flow) > *:not(:first-child) {
+	margin-block-start: var(--ls--flowGap); // global な値
+	margin-block-end: 0;
+}
+
+
+// 後で確認
+// :is(.l--flow, .is--flow) > .alignleft {
+// 	float: left;
+// 	margin-inline-start: 0;
+// 	margin-inline-end: 2em;
+// }
+// :is(.l--flow, .is--flow) > .alignright {
+// 	float: right;
+// 	margin-inline-start: 2em;
+// 	margin-inline-end: 0;
+// }
+// :is(.l--flow, .is--flow) > .aligncenter {
+// 	margin-right: auto !important;
+// 	margin-left: auto !important;
+// }
+
+
 
 // flowGap はクエリ調整不可。
 // クエリ調整必要な場合はStack使ってもらう。

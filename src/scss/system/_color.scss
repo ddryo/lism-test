@@ -20,15 +20,22 @@
 	// どうする
 	--c--sub: #dde7f0; // main と相性のいい、背景色に使うような薄い色？
 
-	// --c--black: #000;
-	// --c--white: #fff;
-	--c--lightgray: hsl(var(--hs--gray), 96%);//#f5f5f5;
-	--c--darkgray: hsl(var(--hs--gray), 24%);
+	--c--black: #000;
+	
+	// gray
+	--c--dimgray: hsl(var(--hs--gray), 20%); // gray 90
+	--c--darkgray: hsl(var(--hs--gray), 32%); // gray 70
+	--c--gray: hsl(var(--hs--gray), 52%); // #646b79 // gray50
+	--c--lightgray: hsl(var(--hs--gray), 80%);//#f5f5f5; // gray30
+	--c--whitesmoke: hsl(var(--hs--gray), 96%); // gray10
+	
+
+	--c--white: #fff;
+
 
 	--c--border: hsl(var(--hs--gray), 88%);
 
 	// cbox
-	--c--gray: hsl(var(--hs--gray), 52%); // #646b79
 	--c--red: hsl(5, 72%, 56%); // #ef4444
 	--c--orange: hsl(32, 88%, 52%); // #f97316
 	--c--yellow: hsl(48, 88%, 52%); //#f1b808
@@ -57,91 +64,30 @@
 [class*="-c:"]{
 	color: var(--c) !important;
 }
-
-.-c\:main{
-	--c: var(--c--main);
-}
-.-c\:accent{
-	--c: var(--c--accent);
-}
-
-// .-c\:bg{
-// 	--c: var(--c--bg);
-// }
-// .-c\:text{
-// 	--c:  var(--c--text);
-// }
-// .-c\:link{
-// 	--c:  var(--c--link);
-// }
-
-
-.-c\:gray{
-	--c: var(--c--gray);
-}
-.-c\:lightgray{
-	--c: var(--c--lightgray);
-}
-.-c\:darkgray{
-	--c: var(--c--darkgray);
-}
-.-c\:white,
-.-c\:fff{
-	--c: #fff;
-}
-.-c\:black,
-.-c\:000{
-	--c: #000;
-}
-.-c\:current{
-	--c: currentColor;
-}
+.-c\:main{--c: var(--c--main);}
+.-c\:accent{--c: var(--c--accent);}
+.-c\:white{--c: var(--c--white);}
+.-c\:black{--c: var(--c--black);}
+.-c\:gray{--c: var(--c--gray);}
+.-c\:lightgray{--c: var(--c--lightgray);}
+.-c\:darkgray{--c: var(--c--darkgray);}
+// .-c\:current{--c: currentColor;}
 
 
 [class*="-bgc:"]{
 	background-color: var(--bgc) !important;
 }
+.-bgc\:main{--bgc: var(--c--main);}
+.-bgc\:accent{--bgc: var(--c--accent);}
+.-bgc\:white{--bgc: var(--c--white);}
+.-bgc\:black{--bgc: var(--c--black);}
+.-bgc\:gray{--bgc: var(--c--gray);}
+.-bgc\:lightgray{--bgc: var(--c--lightgray);}
+.-bgc\:darkgray{--bgc: var(--c--darkgray);}
+.-bgc\:whitesmoke{--bgc: var(--c--whitesmoke);}
 
-.-bgc\:main{
-	--bgc: var(--c--main);
-}
-.-bgc\:accent{
-	--bgc: var(--c--accent);
-}
-
-// .-bgc\:bg{
-// 	--bgc: var(--c--bg);
-// }
-// .-bgc\:text{
-// 	--bgc:  var(--c--text);
-// }
-// .-bgc\:link{
-// 	--bgc:  var(--c--link);
-// }
-
-.-bgc\:gray{
-	--bgc: var(--c--gray);
-}
-.-bgc\:lightgray{
-	--bgc: var(--c--lightgray);
-}
-.-bgc\:darkgray{
-	--bgc: var(--c--darkgray);
-}
-.-bgc\:white{
-	--bgc:#fff;
-}
-.-bgc\:black{
-	--bgc:#000;
-}
-.-bgc\:current{
-	// 疑似要素とかで使える
-	--bgc: currentColor;
-}
-.-bgc\:t{
-	// 疑似要素とかで使える
-	--bgc: transparent;
-}
+.-bgc\:cc{--bgc: currentColor;}
+.-bgc\:t{--bgc: transparent;}
 
 
 // .-bgc\:keycolor-light{

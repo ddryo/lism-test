@@ -47,7 +47,7 @@ export function MediaLayer({ children, media, ...props }) {
 			const { className, ...mediaAttrs } = mediaProps;
 
 			children = React.cloneElement(children, {
-				className: `l--layer__media ${className}`.trim(),
+				className: `l--layer__media ${className || ''}`.trim(),
 				...mediaAttrs,
 			});
 		}

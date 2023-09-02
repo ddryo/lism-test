@@ -1,18 +1,21 @@
 import React from 'react';
-import { Box } from '../Box';
+import { getCommonProps } from '../../lib';
 
-export default function Flex(props) {
-	return <Box isFlex {...props} />;
+export default function Flex({ as, children, modifier, ...props }) {
+	const { className, style, attrs } = getCommonProps(props, {
+		lismClass: 'l--flex',
+		lismModifier: modifier && 'l--flex--' + modifier,
+		useFlexProps: true,
+	});
+
+	// --fxw:, --fxd:, クラスを削除する
+
+	const blockProps = {
+		className,
+		style,
+		...attrs,
+	};
+
+	const Flex = as || 'div';
+	return <Flex {...blockProps}>{children}</Flex>;
 }
-
-// Cluster: is--flexでflex-wrap: wrap;なもの
-// Stack: 縦方向のCluster
-
-// Flow: .l--Box.is--flow
-// Flex: .l--Box.is--flex
-// Grid: .l--Box.is--grid
-
-// smサイズだけreelとか → reel > flex,grid に対して処理するだけで済む？
-// reel > flex → fw: nowrapに
-// reel→ "lgで解除" という考え方？
-// reel.only-sm とかの直下にflexなどをおく。

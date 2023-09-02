@@ -41,7 +41,7 @@ export default function SideFixGrid({
 		gap: 20, // 初期値
 		gta,
 		gtc,
-		hasLismVar: true,
+		// hasLismVar: true,
 		lismVar: fixW,
 	};
 

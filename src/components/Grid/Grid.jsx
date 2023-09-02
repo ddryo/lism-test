@@ -6,16 +6,16 @@ export default function Grid({ as, children, modifier, ...props }) {
 	const { className, style, attrs } = getCommonProps(props, {
 		lismClass: 'l--grid',
 		lismModifier: modifier && 'l--grid--' + modifier,
-		isGrid: true,
+		useGridProps: true,
 	});
+
+	// --gta:, --gtc:, --gtr: クラスを削除する
 
 	const blockProps = {
 		className,
 		style,
 		...attrs,
 	};
-
-	// is--grid は削除したい
 
 	const Grid = as || 'div';
 	return <Grid {...blockProps}>{children}</Grid>;

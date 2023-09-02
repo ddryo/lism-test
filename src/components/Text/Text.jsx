@@ -27,6 +27,7 @@ export default function Text({ children, as, tag, ...props }) {
 	};
 
 	// console.log("attrs", attrs);
-	const Tag = tag || 'p';
+	const Tag = as || tag || 'p';
+	// useTextProps?
 	return <Tag {...blockProps}>{children}</Tag>;
 }

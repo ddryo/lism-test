@@ -1,0 +1,41 @@
+---
+// import languages from '../../i18n/languages';
+// import { useTranslations } from '../../i18n/util';
+import HeadBase from './parts/HeadBase.astro';
+import { getLangFromURL } from '~/util';
+import { normalizeLangTag } from '~/i18n/bcp-normalize';
+import { rtlLanguages } from '~/i18n/languages';
+import { useTranslations } from '~/i18n/util';
+
+// const { lang } = Astro.params;
+const lang = getLangFromURL(Astro.url.pathname);
+const bcpLang = normalizeLangTag(lang);
+const dir = rtlLanguages.has(lang) ? 'rtl' : 'ltr';
+const t = useTranslations(Astro);
+---
+
+<!doctype html>
+<html dir={dir} lang={bcpLang} class='initial'>
+	<head>
+		<meta charset='UTF-8' />
+		<HeadBase />
+		<title>{`${t('404.title')} 🚀 ${t('site.title')}`}</title>
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+			:global(#menu-toggle) {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- <Header /> -->
+		<main class='l--center -p:20' data-size='cover'>
+			<slot />
+		</main>
+		<!-- <Footer /> -->
+	</body>
+</html>

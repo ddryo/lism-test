@@ -1,0 +1,68 @@
+---
+// import type { MarkdownLayoutProps } from 'astro';
+import type { MarkdownHeading } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import HeadBase from './parts/HeadBase.astro';
+import HeadSEO from './parts/HeadSEO.astro';
+import DocsContent from './page-template/docs.astro';
+
+import { getLangFromURL } from '~/util';
+import { normalizeLangTag } from '~/i18n/bcp-normalize';
+import { rtlLanguages } from '~/i18n/languages';
+import { useTranslations } from '~/i18n/util';
+
+interface Props {
+	data: CollectionEntry<'docs'>['data'];
+	headings: MarkdownHeading[];
+}
+// Define frontmatter props here
+// type Props = MarkdownLayoutProps<{
+// 	title: string;
+// 	author: string;
+// 	date: string;
+// 	data: string;
+// 	headings: string[];
+// }>;
+
+// 1. The frontmatter prop gives access to frontmatter and other data
+// const { frontmatter } = Astro.props;
+
+// Now, `frontmatter`, `url`, and other Markdown layout properties
+// are accessible with type safety
+// const { frontmatter, url } = Astro.props;
+const { data, headings } = Astro.props;
+
+// new URL(url, Astro.site).pathname}
+
+// console.log('!Astro.params.', Astro.params);
+// const isFallback = !!Astro.params.fallback;
+
+const currentUrl = Astro.url.pathname;
+// console.log('-==url---=', _url, Astro.url, Astro.site);
+
+const lang = getLangFromURL(currentUrl);
+const direction = rtlLanguages.has(lang) ? 'rtl' : 'ltr';
+const bcpLang = normalizeLangTag(lang);
+
+const t = useTranslations(Astro);
+
+// 末尾にスラッシュがない場合は追加する
+const canonicalURL = new URL(currentUrl.replace(/([^/])$/, '$1/'), Astro.site || Astro.url.origin);
+
+// if (isFallback) canonicalURL.pathname = canonicalURL.pathname.replace(`/${lang}/`, '/en/');
+---
+
+<html dir={direction} lang={bcpLang}>
+	<html>
+		<head>
+			<HeadBase />
+			<HeadSEO content={data} canonicalURL={canonicalURL} />
+		</head>
+		<body>
+			<DocsContent title='a' url={currentUrl}>
+				<slot />
+				<div slot='sidemenu'>menu</div>
+			</DocsContent>
+		</body>
+	</html>
+</html>

@@ -100,3 +100,14 @@ npm publish --access=public
 	"eslint.format.enable": false
 }
 ```
+
+
+
+## モノレポ運用
+
+`package.json`に`workspace`を定義できる。
+→ ここで定義したものは websiteフォルダ内など他のworkspaceからパッケージとして参照したりできる。
+→ rootでpublishしたらワークスペースのパッケージたちも公開される？(未確認)
+
+`pnpm-workspace.yaml`
+→ 初期インストール(`pnpm i`)をしたとき、ここで定義したワークスペース内のpackageも一括でインストールしてきてくれる。

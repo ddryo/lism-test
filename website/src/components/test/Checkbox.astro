@@ -1,0 +1,13 @@
+---
+interface Props {
+	name: string;
+	id: string;
+	value: string;
+}
+const { name, id, value = '' } = Astro.props;
+---
+
+<label for={id}>
+	<input id={id} name={name} value={value} type='checkbox' />
+	<slot />
+</label>

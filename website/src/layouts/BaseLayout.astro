@@ -1,0 +1,29 @@
+---
+import Header from '../components/test/Header.astro';
+import Footer from '../components/test/Footer.astro';
+import HeadBase from './parts/HeadBase.astro';
+
+// 型を定義できる
+export interface Props {
+	title?: string;
+}
+
+const { title = 'hoge' } = Astro.props;
+---
+
+<html lang='en'>
+	<head>
+		<HeadBase />
+		<title>{title}</title>
+	</head>
+	<body>
+		<div id='wrapper'>
+			<Header />
+			<div id='main' class='is--flow'>
+				<slot />
+				<!-- your content is injected here -->
+			</div>
+			<Footer />
+		</div>
+	</body>
+</html>

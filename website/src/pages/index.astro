@@ -1,0 +1,20 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { Box } from '@lism/core';
+import { getCollection } from 'astro:content';
+const blogEntries = await getCollection('docs');
+---
+
+<ul>
+	{
+		blogEntries.map((blogPostEntry) => (
+			<li>
+				<a href={`/docs/${blogPostEntry.slug}`}>{blogPostEntry.data.title}</a>
+			</li>
+		))
+	}
+</ul>
+
+<BaseLayout>
+	<Box p={10}>aaa</Box>
+</BaseLayout>

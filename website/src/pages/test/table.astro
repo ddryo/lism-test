@@ -1,0 +1,188 @@
+---
+import PlainLayout from '~/layouts/PlainLayout.astro';
+import TableDemo from '~/html/table.html';
+---
+
+<PlainLayout>
+	<h1>Table</h1>
+
+	<p>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus ipsam dolorum doloremque
+		exercitationem vel non neque enim recusandae, deleniti porro eum odio numquam cum quae
+		ratione culpa ipsa beatae. Magnam!
+	</p>
+	<table>
+		<tbody>
+			<tr>
+				<th>Division 1</th>
+				<td>Division 2</td>
+				<td>Division 3</td>
+			</tr>
+			<tr>
+				<th>Division 1</th>
+				<td>Division 2</td>
+				<td>Division 3<br />text</td>
+			</tr>
+			<tr>
+				<th>Division 1</th>
+				<td>Division 2</td>
+				<td>...</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>Footer 1</th>
+				<td>Footer 2</td>
+				<td>Footer 3</td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Table Header 1</th>
+				<th>Table Header 2</th>
+				<th>Table Header 3</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>Division 1</th>
+				<td>Division 2</td>
+				<td>Division 3</td>
+			</tr>
+			<tr>
+				<th>Division 1</th>
+				<td>Division 2</td>
+				<td>Division 3<br />text</td>
+			</tr>
+			<tr>
+				<th>Division 1</th>
+				<td>Division 2</td>
+				<td>...</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>Footer 1</th>
+				<td>Footer 2</td>
+				<td>Footer 3</td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<!-- color: var(--c--th, inherit); background-color: var(--bgc--th, transparent); -->
+	<table>
+		<thead style='--c--th:#fff;--bgc--th:black'>
+			<tr>
+				<th>Table Header 1</th>
+				<th>Table Header 2</th>
+				<th>Table Header 3</th>
+			</tr>
+		</thead>
+		<tbody style='--bgc--th:#f8f9fa'>
+			<tr>
+				<th>Division 1</th>
+				<td>Division 2</td>
+				<td>Division 3</td>
+			</tr>
+			<tr>
+				<th>Division 1</th>
+				<td>Division 2</td>
+				<td>Division 3<br />text</td>
+			</tr>
+			<tr>
+				<th>Division 1</th>
+				<td>Division 2</td>
+				<td>...</td>
+			</tr>
+		</tbody>
+		<tfoot style='--c--th:rgb(234, 62, 28);'>
+			<tr>
+				<th>Total</th>
+				<td>Table Header 2</td>
+				<td>Table Header 3</td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<p>↓scroll</p>
+	<figure class='scroll-table'>
+		<TableDemo />
+	</figure>
+
+	<p>↓scroll, fix-1st-row</p>
+	<figure class='scroll-table fix-1st-row'>
+		<TableDemo />
+	</figure>
+
+	<p>↓scroll, fix-thead</p>
+	<figure class='fix-thead'>
+		<TableDemo />
+	</figure>
+
+	<p>↓scroll, fix-1st-row, fix-thead, solid</p>
+	<figure
+		class='scroll-table fix-1st-row fix-thead is-style-table--solid'
+		style='--bgc--th:#f8f9fa'
+	>
+		<TableDemo />
+	</figure>
+
+	<h2>入れ子</h2>
+	<table class='table table-striped table-bordered'>
+		<thead style='--bgc--th:#f8f9fa'>
+			<tr>
+				<th scope='col'>#</th>
+				<th scope='col'>First</th>
+				<th scope='col'>Last</th>
+				<th scope='col'>Handle</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope='row'>1</th>
+				<td>Mark</td>
+				<td>Otto</td>
+				<td>@mdo</td>
+			</tr>
+			<tr>
+				<td colspan='4'>
+					<table class='table mb-0'>
+						<thead>
+							<tr>
+								<th scope='col'>Header</th>
+								<th scope='col'>Header</th>
+								<th scope='col'>Header</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope='row'>A</th>
+								<td>First</td>
+								<td>Last</td>
+							</tr>
+							<tr>
+								<th scope='row'>B</th>
+								<td>First</td>
+								<td>Last</td>
+							</tr>
+							<tr>
+								<th scope='row'>C</th>
+								<td>First</td>
+								<td>Last</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<th scope='row'>3</th>
+				<td>Larry</td>
+				<td>the Bird</td>
+				<td>@twitter</td>
+			</tr>
+		</tbody>
+	</table>
+</PlainLayout>

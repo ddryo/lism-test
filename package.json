@@ -1,6 +1,6 @@
 {
-	"name": "@loos/lism-test",
-	"version": "1.0.9",
+	"name": "lism",
+	"version": "0.0.1",
 	"description": "",
 	"main": "dist/index.js",
 	"module": "dist/index.js",
@@ -10,29 +10,25 @@
 		"build:css": "node scss-builder.js",
 		"preview": "vite preview"
 	},
-	"keywords": [
-		"lism",
-		"framework",
-		"wordpress"
+	"workspaces": [
+		"packages/*"
 	],
+	"keywords": [
+		"framework",
+		"css-framework",
+		"wordpress",
+		"react",
+		"front-end",
+		"design-system"
+	],
+	"private": true,
 	"author": {
-		"name": "Ryo Yamasaki",
+		"name": "ddryo",
 		"url": "https://github.com/ddryo"
 	},
+	"homepage": "https://...",
 	"license": "MIT",
-	"files": [
-		"dist",
-		"src",
-		"next"
-	],
-	"exports": {
-		".": {
-			"import": "./dist/index.js"
-		},
-		"./next": "./next/index.js",
-		"./scss/*": "./src/scss/*",
-		"./lib": "./src/lib/index.js"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"@svgr/rollup": "^8.0.1",
 		"autoprefixer": "^10.4.14",
@@ -43,18 +39,8 @@
 		"eslint-config-standard": "^17.1.0",
 		"eslint-plugin-react": "^7.32.2",
 		"postcss": "^8.4.26",
-		"prettier": "^2.8.8",
-		"rollup-plugin-terser": "^7.0.2",
-		"vite": "^4.3.9",
-		"vite-plugin-svgr": "^3.2.0"
-	},
-	"dependencies": {
-		"classnames": "^2.3.2",
-		"sass": "^1.63.3",
-		"uuid": "^9.0.0"
-	},
-	"peerDependencies": {
-		"react": ">=16.8.0"
-	},
-	"sideEffects": false
+		"prettier": "^3.0.3",
+		"sass": "^1.66.1",
+		"stylelint": "^15.10.3"
+	}
 }

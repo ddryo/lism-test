@@ -1,0 +1,35 @@
+---
+// htmlテスト用
+import Header from '~/components/test/Header.astro';
+import Footer from '~/components/test/Footer.astro';
+
+import '~/styles/global.css';
+import '~/styles/styles.scss';
+
+// 型を定義できる
+export interface Props {
+	title?: string;
+}
+
+const { title = 'Demo page' } = Astro.props;
+---
+
+<html lang='en'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1' />
+		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+		<!-- <meta name="generator" content={Astro.generator} /> -->
+		<title>{title}</title>
+	</head>
+	<body>
+		<div id='wrapper'>
+			<Header />
+			<div id='main' class='is--flow'>
+				<slot />
+				<!-- your content is injected here -->
+			</div>
+			<Footer />
+		</div>
+	</body>
+</html>

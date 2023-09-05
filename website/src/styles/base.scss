@@ -1,0 +1,82 @@
+@layer base {
+	:root {
+		--offset--outline: 1px;
+		--offset--link-underline: 0.2ex;
+
+		--color--focus: revert;
+		--color--hr: currentColor;
+
+		--ff--code: Menlo, Consolas, monaco, monospace;
+		--fz--code: 0.9em;
+		// --color-red
+	}
+
+	// フォーカス要素
+	:where(:focus-visible) {
+		outline-color: var(--color--focus, revert);
+		outline-offset: var(--offset--outline, revert);
+	}
+
+	body {
+		overflow-x: clip;
+		line-height: 1.75;
+		container-type: inline-size;
+	}
+
+	pre {
+		padding: var(--space--40, 1rem);
+		background-color: var(--color--gray, whitesmoke);
+	}
+
+	code {
+		font-size: var(--fz--code);
+		font-family: var(--ff--code);
+	}
+
+	:not(pre) > code {
+		background-color: var(--color--gray, whitesmoke);
+		border: solid 1px lightgray;
+		padding: 0.125em 0.25em;
+		border-radius: 2px;
+	}
+
+	kbd {
+		font-size: var(--fz--code);
+		font-family: var(--ff--code);
+		background-color: var(--color--gray, whitesmoke);
+		border: solid 1px lightgray;
+		padding: 0.25em 0.5em;
+		border-radius: 2px;
+		box-shadow: 0 1px 0 lightgray;
+	}
+
+	/* 下線の上にスペースを追加する */
+	a {
+		text-underline-offset: var(--offset--link-underline);
+	}
+
+	/* hrのスタイリング. currentColor */
+	hr {
+		border: none;
+		border-block-start: 1px solid var(--color--hr, currentColor);
+		color: inherit;
+		block-size: 0;
+		// overflow: visible; ?
+	}
+
+	// small, mark
+	// table,
+
+	blockquote {
+		// background: whitesmoke;
+		border-left: solid 2px currentColor;
+		padding: 1em; // space--40?
+	}
+
+	figcaption {
+		font-size: smaller;
+	}
+	figcaption:last-child {
+		margin-block-start: 0.5em;
+	}
+}

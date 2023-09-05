@@ -1,0 +1,84 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { normalizeLangTag } from '~/i18n/bcp-normalize';
+import languages from '~/i18n/languages';
+import { useTranslations } from '~/i18n/util';
+import { getLangFromURL } from '~/util';
+// import { getOgImageUrl } from '~/util/getOgImageUrl';
+
+export interface Props {
+	content: CollectionEntry<'docs'>['data'];
+	canonicalURL: URL;
+}
+
+const { content, canonicalURL } = Astro.props;
+const t = useTranslations(Astro);
+// const ogImageUrl = getOgImageUrl(canonicalURL.pathname, !!Astro.params.fallback);
+// const imageSrc = ogImageUrl ?? t('site.og.imageSrc');
+// const canonicalImageSrc = new URL(imageSrc, Astro.site);
+// const imageAlt = imageSrc === ogImageUrl ? '' : t('site.og.imageAlt');
+const lang = getLangFromURL(canonicalURL?.pathname || '/');
+const bcpLang = normalizeLangTag(lang);
+const ogLocale = bcpLang.replace(/-/g, '_');
+
+const OPEN_GRAPH = {
+	xID: 'ddryo_loos',
+};
+
+const formatTitle = (title: string) =>
+	content.title ? `${content.title} 🚀 ${t('site.title')}` : t('site.title');
+---
+
+<!-- title -->
+<title set:html={formatTitle(content.title)} />
+
+<!-- Page Metadata -->
+<link rel='canonical' href={canonicalURL} />
+
+{
+	/* Language alternates. See https://developers.google.com/search/docs/advanced/crawling/localized-versions#html */
+}
+{
+	Object.keys(languages).map((altLang) => (
+		<link
+			rel='alternate'
+			href={canonicalURL.href.replace(lang, altLang) || '/'}
+			hreflang={normalizeLangTag(altLang)}
+		/>
+	))
+}
+
+<!-- Algolia docsearch language facet -->
+<meta name='docsearch:language' content={bcpLang} />
+
+<!-- OpenGraph Tags -->
+<meta property='og:title' content={content.title ?? t('site.title')} />
+<meta property='og:type' content='article' />
+<meta property='og:url' content={canonicalURL} />
+<meta property='og:locale' content={ogLocale} />
+<!-- <meta property='og:image' content={canonicalImageSrc} />
+<meta property='og:image:alt' content={imageAlt} /> -->
+<meta
+	name='description'
+	property='og:description'
+	content={content.description ? content.description : t('site.description')}
+/>
+<meta property='og:site_name' content={t('site.title')} />
+
+<!-- Twitter Tags -->
+<meta name='twitter:card' content='summary_large_image' />
+<meta name='twitter:site' content={OPEN_GRAPH.xID} />
+<meta name='twitter:title' content={content.title ?? t('site.title')} />
+<meta
+	name='twitter:description'
+	content={content.description ? content.description : t('site.description')}
+/>
+<!-- <meta name='twitter:image' content={canonicalImageSrc} />
+<meta name='twitter:image:alt' content={imageAlt} /> -->
+
+<!--
+  TODO: Add json+ld data, maybe https://schema.org/APIReference makes sense?
+  Docs: https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data
+  https://www.npmjs.com/package/schema-dts seems like a great resource for implementing this.
+  Even better, there’s a React component that integrates with `schema-dts`: https://github.com/google/react-schemaorg
+-->

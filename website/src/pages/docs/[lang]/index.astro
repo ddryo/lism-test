@@ -1,0 +1,17 @@
+---
+// export しないとgetStaticPaths内で使えない
+export const allLanguages = {
+	en: 'English',
+	ja: '日本語',
+};
+
+export const getStaticPaths = () =>
+	Object.keys(allLanguages).map((lang) => {
+		return { params: { lang } };
+	});
+
+const { lang } = Astro.params;
+---
+
+<!-- "/[lang]" にアクセスされた時はリダイレクトする -->
+<meta http-equiv='refresh' content={`0;url=/docs/${lang}/getting-started/`} />

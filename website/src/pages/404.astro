@@ -1,0 +1,21 @@
+---
+// import languages from '../../i18n/languages';
+// import { useTranslations } from '../../i18n/util';
+import Http404Layout from '~/layouts/Http404Layout.astro';
+
+import { getLangFromURL } from '~/util';
+import { useTranslations } from '~/i18n/util';
+
+// const { lang } = Astro.params;
+const lang = getLangFromURL(Astro.url.pathname);
+const t = useTranslations(Astro);
+---
+
+<Http404Layout>
+	<article>
+		<h1>404</h1>
+		<p>{t('404.content')}</p>
+		<!-- memo: "/docs/"" ルート外は トップへ戻したい -->
+		<a href={`/docs/${lang}/`}>{t('404.linkText')}</a>
+	</article>
+</Http404Layout>

@@ -1,0 +1,42 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+import DocsLayout from '~/layouts/DocsLayout.astro';
+// import DocsLayout from '~/layouts/DocsLayout.astro';
+// 1. コレクションエントリーごとに新しいパスを生成
+// export async function getStaticPaths() {
+// 	const blogEntries = await getCollection('docs');
+// 	return blogEntries.map((entry) => ({
+// 		params: { slug: entry.slug },
+// 		props: { entry },
+// 		lang: entry.lang,
+// 	}));
+// }
+export async function getStaticPaths() {
+	const allDocs = await getCollection('docs');
+	const getLangFromSlug = (slug: String) => slug.split('/')[0];
+	// langディレクトリを除外したパスを返す
+	const stripLangFromSlug = (slug: String) => slug.split('/').slice(1).join('/');
+
+	return allDocs.map((page) => {
+		// page.slug: "content/docs/" 以下のパス
+		const lang = getLangFromSlug(page.slug);
+		const slug = stripLangFromSlug(page.slug);
+
+		// console.log('!!! page.slug !!!', page.slug);
+		// console.log('!!! === lang === !!!', lang, slug);
+		return { params: { lang, slug }, props: page };
+	});
+}
+
+// 2. テンプレートでは、プロパティからエントリーを直接取得できる
+// const doc = Astro.props;
+// const { Content } = await doc.render();
+
+// export type Props = CollectionEntry<'docs'>;
+const { data, render } = Astro.props;
+const { Content, headings } = await render();
+
+// console.log('!!!==== data ====!!!', data);
+---
+
+<DocsLayout {...{ data, headings }}><Content /></DocsLayout>

@@ -1,12 +1,17 @@
 ---
-
+import { Stack, Cluster, Flex, NavMenu, NavMenuItem, Box } from '@lism/core';
 ---
 
-<header>
-	<nav>
-		<a href='/test'>Home</a>
-		<a href='/test/list'>list</a>
-		<a href='/test/table'>table</a>
-		<a href='/test/form'>form</a>
-	</nav>
+<header class='a--header'>
+	<Flex as='nav' class='a--header'>
+		<div class='c--logo'>Lism</div>
+		<Cluster as='nav' class='a--header'>
+			<a href='/'>Home</a>
+			<a href='/docs/ja'>Docs</a>
+			<a href='/test'>Reset CSS</a>
+			<!-- <a href='/test/list'>list</a>
+			<a href='/test/table'>table</a>
+			<a href='/test/form'>form</a> -->
+		</Cluster>
+	</Flex>
 </header>

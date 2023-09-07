@@ -63,7 +63,7 @@ export default defineConfig({
 			formats: ['es'],
 		},
 		rollupOptions: {
-			external: ['react', 'classnames', 'uuid'],
+			external: ['react','classnames'],
 			output: {
 				dir: 'dist',
 				// 外部化された依存関係のために UMD のビルドで使用するグローバル変数を提供します

@@ -28,7 +28,6 @@
 	},
 	"homepage": "https://...",
 	"license": "MIT",
-	"dependencies": {},
 	"devDependencies": {
 		"@svgr/rollup": "^8.0.1",
 		"autoprefixer": "^10.4.14",

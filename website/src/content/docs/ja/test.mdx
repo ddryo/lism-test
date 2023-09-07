@@ -4,6 +4,69 @@ description: description...
 i18n: false
 ---
 
-## aaa
 
-hoge
+import { Box, Tab, TabItem } from '@lism/astro';
+// import TabTest from '~/components/lism-test/Tab.astro';
+// import { Box, Tab, TabItem } from '@lism/core';
+ 
+
+<Box bg="lightgray">boxxxx</Box>
+
+{/* <TabTest label={<i>labeel</i>} />
+<TabTest label={<Box>labeel</Box>} />
+<TabTest label={<img src="https://via.placeholder.com/20x20" width="20" height="20" />} /> */}
+
+
+# Installation
+
+## OK?
+
+{/* <Tab>
+	<TabItem label='string'>
+		...
+	</TabItem>
+	<TabItem label={<span>html-span</span>}>
+		...
+	</TabItem>
+
+	<TabItem label={<Box>simple-react-component</Box>}>
+		...
+	</TabItem>
+	<TabItem label={<Box><span>span in Box</span></Box>}>
+		...
+	</TabItem>
+	<TabItem label={<>Fragment</>}>
+		...
+	</TabItem>
+</Tab> */}
+
+
+## NG?
+<Tab>
+	<TabItem label={<span class="-fz:l">code,span<code>code</code></span>}>
+		...
+	</TabItem>
+	<TabItem label={<Box p={10} bgc="gray">boxtext...<span class="hoge">span in Box</span></Box>}>
+		...
+	</TabItem>
+	<TabItem label={<>Before Text<small style={{'color':'red'}}>small</small>AfterText</>}>
+		...
+	</TabItem>
+</Tab>
+
+{/* <Tab>
+	<TabItem label="Tab1">
+		<p>index:0</p>
+		<Tab>
+			<TabItem label="nest1">
+				<p>nest:0</p>
+			</TabItem>
+			<TabItem label="nest2">
+				<p>nest:1</p>
+			</TabItem>
+		</Tab>
+	</TabItem>
+	<TabItem label="tab2">
+		<p>index:1</p>
+	</TabItem>
+</Tab> */}

@@ -1,0 +1,72 @@
+---
+import crypto from 'node:crypto';
+// import TheTab from './TheTab.astro';}
+
+// slotsについて: https://docs.astro.build/ja/reference/api-reference/#astroslots
+
+export interface Props {
+	items: String[];
+}
+
+const { items } = Astro.props;
+
+const uuid = crypto.randomUUID();
+const defaultIndex = 0;
+// let tabItemsHTML = await Astro.slots.render('default');
+// console.log('Astro.slots', Astro.slots);
+
+// <lism-tabitem-placeholder>　→ div.tabitem へ 変換
+function transformHTML(htmlString) {
+	let index = 0;
+
+	const transformedString = htmlString.replace(
+		/<lism-tabitem-placeholder>(.*?)<\/lism-tabitem-placeholder>/g,
+		function (match, innerContent) {
+			const isActiveBtn = index === defaultIndex;
+
+			return `<div
+			class='l--tab__panel'
+			role='tabpanel'
+			id="${uuid}-${index++}"
+			aria-hidden="${isActiveBtn ? 'false' : 'true'}"
+		>${innerContent}</div>`;
+
+			// return `<div data-index="${uuid}-${index++}">${innerContent}</div>`;
+		}
+	);
+
+	return transformedString;
+}
+
+const tabItemsHTML = transformHTML(await Astro.slots.render('default'));
+
+// tabID を　生成して、navとpanelに渡したい
+---
+
+<lism-tab class='tabs'>
+	<div class='l--tab'>
+		<div class='l--tab__list' role='tablist'>
+			{
+				items.map((title, index) => {
+					const isActiveBtn = index === defaultIndex;
+					// return <div data-tab={`${uuid}--${index}`}>{title}</div>;
+					return (
+						<button
+							role='tab'
+							class='l--tab__button'
+							aria-selected={isActiveBtn ? 'true' : 'false'}
+							aria-controls={`${uuid}-${index}`}
+						>
+							<Fragment set:html={title} />
+						</button>
+					);
+				})
+			}
+		</div>
+	</div>
+	<div class='l--tab__panels'>
+		<Fragment set:html={tabItemsHTML} />
+	</div>
+</lism-tab>
+
+<script src='./script.js'></script>

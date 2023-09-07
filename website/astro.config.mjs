@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 import remarkHtml from 'remark-html';
@@ -17,6 +16,11 @@ import rehypeSlug from 'rehype-slug'; // 見出しに id を付与
 // 	tight: true       // `true` にすると `li` 要素内に `p` 要素を作らないようになる
 //   })
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // https://astro.build/config
 export default defineConfig({
 	// site: 'https://docs.astro.build/',
@@ -31,12 +35,15 @@ export default defineConfig({
 		}),
 		react(),
 	],
-	// vite: {
-	// 	ssr: {
-	// 		noExternal: ['@lism/core'],
-	// 	},
-	// 	resolve: {
-	// 		dedupe: ['@lism/core'],
-	// 	},
-	// },
+	vite: {
+		// ssr: {
+		// 	noExternal: ['@lism/core'],
+		// },
+		resolve: {
+			// dedupe: ['@lism/core'],
+			alias: {
+				react: path.join(__dirname, 'node_modules/react'),
+			},
+		},
+	},
 });

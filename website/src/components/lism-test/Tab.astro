@@ -1,0 +1,31 @@
+---
+// import crypto from 'node:crypto';
+// import { AstroChildren } from 'astro/types';
+// import Wrapper from '../Wrapper.astro';
+// import TheTab from './TheTab.astro';}
+
+import { Code, Debug } from 'astro:components';
+
+// slotsについて: https://docs.astro.build/ja/reference/api-reference/#astroslots
+
+export interface Props {
+	items: any[];
+	label: any;
+}
+
+const { label, items = [] } = Astro.props;
+console.log('====label=====', label);
+
+const hoge = await Astro.slots.render(label);
+console.log('====hoge=====', hoge);
+
+const Label = label.type;
+
+const { children, ...props } = label.props || {};
+---
+
+<div class='l--tab__list' role='tablist'>
+	<button>
+		<Label {...props}>{children}</Label>
+	</button>
+</div>

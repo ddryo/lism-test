@@ -1,11 +1,23 @@
-import React, { useLayoutEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { useStore } from "@nanostores/react";
 import { Lism } from '../Lism';
 import { TabContext } from './context';
+import { theTabID, theActiveIndex } from "./store";
+
+// const useIsomorphicLayoutEffect = 
+//   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
+// useIsomorphicLayoutEffect(() => {
+//   // ...
+// }, [/* dependencies */]);
 
 export default function Item({ title, index, children, ...attrs }) {
-	const { tabId, activeIndex, setTabs } = useContext(TabContext);
+	const { setTabs } = useContext(TabContext);
 
-	useLayoutEffect(() => {
+	const $theTabID = useStore(theTabID);
+	const $theActiveIndex = useStore(theActiveIndex);
+	
+	useEffect(() => {
 		// setTabsの中でtabsを参照できるので、内部で一気に処理する
 		setTabs((tabs) => {
 			const alreadyExists = tabs.some((item) => item.index === index);
@@ -23,8 +35,8 @@ export default function Item({ title, index, children, ...attrs }) {
 		<Lism
 			lismClass='l--tab__panel'
 			role='tabpanel'
-			id={`${tabId}-${index}`}
-			aria-hidden={activeIndex === index ? 'false' : 'true'}
+			id={`${$theTabID}-${index}`}
+			aria-hidden={$theActiveIndex === index ? 'false' : 'true'}
 			{...attrs}
 		>
 			{children}

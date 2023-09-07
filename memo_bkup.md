@@ -34,7 +34,7 @@ transpilePackages: ['@loos/lism-test'],
 
 ## 開発時の注意点
 
-コンポーネントの先頭で react 読み込みは必要 ?
+コンポーネントの先頭で react 読み込みは必要。
 import React from 'react';
 これがないと React が undefined になるっぽい
 
@@ -42,18 +42,29 @@ import React from 'react';
 
 ※ next.js 以外で使われる時に問題が発生するかもしれないから、lism-next とかで next 用 のものだけに使う？
 
-### モノレポ運用
+### ローカル開発時
 
-`package.json`に`workspace`を定義できる。
-→ ここで定義したものは websiteフォルダ内など他のworkspaceからパッケージとして参照したりできる。
-→ rootでpublishしたらワークスペースのパッケージたちも公開される？(未確認)
+next.js の pages を使用していて、かつ npm link で当パッケージを使用する場合、
 
-`pnpm-workspace.yaml`
-→ 初期インストール(`pnpm i`)をしたとき、ここで定義したワークスペース内のpackageも一括でインストールしてきてくれる。
+```
+npm link ../your-product/node_modules/react
+```
 
+する必要あり。(`Module not found: Can't resolve 'react'` エラーになる。)
 
-@lism/core側でreactはdevDependenciesに含めず、作業環境（ドキュメントサイト用プロジェクトなど）側でreactパッケージを使う。
+```
+npm link ../demo-project/my-app/node_modules/react
 
+npm link ../../Test/next_js/test/node_modules/react
+
+npm link ../../Library/Lism/lism-docs/node_modules/react
+```
+
+devDependencies に react を含めてしまうと、peer に書いていても本番パッケージでバグってしまう。
+( `"TypeError: Cannot read properties of null (reading 'useContext')"` みたいになる。）
+
+しかし、devDependencies に react がないと npm link でのローカル開発時に 「Module not found: Can't resolve 'react'」 になってしまう。
+see: https://github.com/nextauthjs/next-auth/issues/181
 
 ## publish
 
@@ -89,3 +100,14 @@ npm publish --access=public
 	"eslint.format.enable": false
 }
 ```
+
+
+
+## モノレポ運用
+
+`package.json`に`workspace`を定義できる。
+→ ここで定義したものは websiteフォルダ内など他のworkspaceからパッケージとして参照したりできる。
+→ rootでpublishしたらワークスペースのパッケージたちも公開される？(未確認)
+
+`pnpm-workspace.yaml`
+→ 初期インストール(`pnpm i`)をしたとき、ここで定義したワークスペース内のpackageも一括でインストールしてきてくれる。

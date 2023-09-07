@@ -1,0 +1,17 @@
+---
+// lism-tab-item を 文字列置換する
+// import { randomUUID } from 'node:crypto';
+
+import AstroJsxRender from '../AstroJsxRender.jsx';
+export interface Props {
+	label: any;
+}
+const { label = '' } = Astro.props;
+---
+
+<lism-placeholder-tabitem>
+	<lism-placeholder-tabitem-label>
+		<AstroJsxRender src={label} />
+	</lism-placeholder-tabitem-label>
+	<slot />
+</lism-placeholder-tabitem>

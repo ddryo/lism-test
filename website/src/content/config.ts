@@ -7,7 +7,7 @@ const docsSchema =
 	z.object({
 		// type: 'content',
 		title: z.string(),
-		description: z.string(),
+		description: z.string().optional(),
 		i18n: z.boolean().default(false),
 		heroImage: z.string().optional(),
 	});

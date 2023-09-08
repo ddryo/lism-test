@@ -18,6 +18,8 @@ import rehypeSlug from 'rehype-slug'; // 見出しに id を付与
 
 import path from 'path';
 import { fileURLToPath } from 'url';
+// import AutoImport from 'astro-auto-import';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -25,8 +27,12 @@ const __dirname = path.dirname(__filename);
 export default defineConfig({
 	// site: 'https://docs.astro.build/',
 	integrations: [
+		// AutoImport({
+		// 	imports: ['./src/components/mdx/DammyText.astro'],
+		// }),
 		mdx({
-			// syntaxHighlight: 'shiki',
+			// 'shiki'（デフォルト）、'prism'、またはハイライトを無効にする場合は false を指定します
+			// syntaxHighlight: 'prism',
 			// shikiConfig: { theme: 'dracula' },
 			remarkPlugins: [remarkHtml, remarkBreaks, remarkToc],
 			rehypePlugins: [rehypeSlug],

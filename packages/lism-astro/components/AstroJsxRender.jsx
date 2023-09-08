@@ -6,7 +6,7 @@ import React from 'react';
 // }
 
 export default function AstroJsxRender({ src = '' }) {
-	console.log('AstroJsxRender', src);
+	// console.log('AstroJsxRender', src);
 
 	// スカラー値をそのまま返す
 	if (typeof src === 'string' || typeof src === 'number') {

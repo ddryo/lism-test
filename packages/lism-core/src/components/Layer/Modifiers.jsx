@@ -40,48 +40,39 @@ export function FilterLayer({
 }
 
 export function MediaLayer({ children, media, ...props }) {
+	let mediaContent = null;
 	if (children) {
 		// クラスを付与
-		if (React.isValidElement(children)) {
-			const mediaProps = children?.props || {};
-			const { className, ...mediaAttrs } = mediaProps;
-
-			children = React.cloneElement(children, {
-				className: `l--layer__media ${className || ''}`.trim(),
-				...mediaAttrs,
-			});
-		}
-		return (
-			<Layer modifier='media' {...props}>
-				{children}
-			</Layer>
-		);
+		// if (React.isValidElement(children)) {
+		// 	const mediaProps = children?.props || {};
+		// 	const { className, ...mediaAttrs } = mediaProps;
+		// 	children = React.cloneElement(children, {
+		// 		className: `l--layer__media ${className || ''}`.trim(),
+		// 		...mediaAttrs,
+		// 	});
+		// }
+		// return (
+		// 	<Layer modifier='media' {...props}>
+		// 		{children}
+		// 	</Layer>
+		// );
+		mediaContent = children;
 	}
-	if (undefined === media) return null;
 
-	const {
-		as,
-		tag = 'img',
-		// type = 'img',
-		src,
-		alt,
-		className = '',
-		...mediaAttrs
-	} = media;
+	if (React.isValidElement(media)) {
+		mediaContent = media;
+	} else if (typeof media === 'object') {
+		const { as, tag = 'img', ...mediaAttrs } = media;
 
-	let mediaContent = null;
-
-	// next/image の Image とかは自分で渡してもらう
-	const MediaTag = as || tag; //"img" === type ? "img" : "video";
-
-	mediaContent = (
-		<MediaTag
-			className={`l--layer__media ${className}`.trim()}
-			src={src}
-			alt={alt || ''}
-			{...mediaAttrs}
-		/>
-	);
+		// next/image の Image とかは自分で渡してもらう
+		const MediaTag = as || tag; //"img" === type ? "img" : "video";
+		if (typeof MediaTag === 'function' && !MediaTag.prototype?.isReactComponent) {
+			console.error('Lism MediaLayer: Invalid Media component passed.');
+			mediaContent = <p data-has-lism-error>Error@MediaLayer: Invalid component passed.</p>;
+		} else {
+			mediaContent = <MediaTag {...mediaAttrs} />;
+		}
+	}
 
 	return (
 		<Layer modifier='media' {...props}>

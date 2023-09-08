@@ -1,22 +1,41 @@
-
 // is--stackなどがついたときにflexで上書きできるように
 :where(.is--linkbox) {
 	display: block;
 }
 
-
 .is--linkbox {
-	// display: block;
 	color: inherit;
 	text-decoration: none;
 	position: relative;
 	cursor: pointer;
-
+	pointer-events: auto;
 }
 
-[data-linkbox="div"] > [data-linkbox="a"]{
-	position: absolute;
-	z-index: -1;
-	visibility: hidden;
+:where(.is--linkbox > *) {
+	position: relative;
+	z-index: 0;
 	pointer-events: none;
 }
+:where(.is--linkbox a:not([data-hidden-link])) {
+	z-index: 1;
+	pointer-events: auto;
+}
+.is--linkbox > [data-hidden-link] {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: auto;
+}
+
+// .is--linkbox {
+// 	color: inherit;
+// 	text-decoration: none;
+// 	position: relative;
+// 	cursor: pointer;
+// }
+// [data-linkbox='div'] > [data-linkbox='a'] {
+// 	position: absolute;
+// 	z-index: -1;
+// 	visibility: hidden;
+// 	pointer-events: none;
+// }

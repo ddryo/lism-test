@@ -36,9 +36,9 @@ function transformHTML(htmlString) {
 				/<lism-placeholder-tabitem-label>(.*?)<\/lism-placeholder-tabitem-label>/s,
 				function (match, innerContent) {
 					// items.push(`${innerContent}`);
-					console.log(`====== match@${uuid} ======`);
-					console.log(innerContent);
-					console.log(`----------------------------`);
+					// console.log(`====== match@${uuid} ======`);
+					// console.log(innerContent);
+					// console.log(`----------------------------`);
 					const ariaSelected = isActiveBtn ? 'true' : 'false';
 					items.push(
 						`<button role="tab" class="l--tab__button"` +

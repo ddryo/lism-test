@@ -1,5 +1,3 @@
-
-//
 .l--frame {
 	// --d: 1; // 幅
 	// --n: 1; // 高さ
@@ -16,7 +14,6 @@
 	height: auto;
 	object-fit: cover;
 
-
 	// > img, video{
 	// 	width: 100%;
 	// 	height: 100%;
@@ -24,42 +21,42 @@
 	// 	display: block;
 	// }
 
-	&[data-ratio="16/9"]{
+	&[data-ratio='16/9'] {
 		--lism: 16/9;
 		// --d: 16;
 		// --n: 9;
 	}
-	&[data-ratio="2/1"]{
+	&[data-ratio='2/1'] {
 		--lism: 2/1;
 		// --d: 2;
 		// --n: 1;
 	}
-	&[data-ratio="4/3"]{
+	&[data-ratio='4/3'] {
 		--lism: 4/3;
 		// --d: 4;
 		// --n: 3;
 	}
-	&[data-ratio="3/2"]{
+	&[data-ratio='3/2'] {
 		--lism: 3/2;
 		// --d: 3;
 		// --n: 2;
 	}
-	&[data-ratio="golden"]{
+	&[data-ratio='golden'] {
 		--lism: 16.18/10;
 		// --d: 16.18;
 		// --n: 10;
 	}
-	&[data-ratio="silver"]{
+	&[data-ratio='silver'] {
 		--lism: 14.14/10;
 		// --d: 14.14;
 		// --n: 10;
 	}
-	&[data-ratio="bronze"]{
+	&[data-ratio='bronze'] {
 		--lism: 33.03/10;
 		// --d: 33.03;
 		// --n: 10;
 	}
-	&[data-ratio="ogp"]{
+	&[data-ratio='ogp'] {
 		--lism: 1.91/1;
 		// --d: 1.91;
 		// --n: 1;
@@ -68,7 +65,13 @@
 	// &[data-direction="portrait"]{
 	// 	aspect-ratio: calc(1 / var(--ratio));
 	// }
+}
 
+.l--frame > :where(img, video) {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
 }
 
 // ::before でやらないのは、ブロックエディターを考慮 しているため

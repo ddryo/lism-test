@@ -44,6 +44,9 @@ importers:
       stylelint:
         specifier: ^15.10.3
         version: 15.10.3
+      stylelint-config-recommended-scss:
+        specifier: ^13.0.0
+        version: 13.0.0(postcss@8.4.26)(stylelint@15.10.3)
 
   demo/nextra:
     dependencies:
@@ -127,6 +130,9 @@ importers:
       '@lism/core':
         specifier: workspace:*
         version: link:../packages/lism-core
+      '@phosphor-icons/react':
+        specifier: ^2.0.10
+        version: 2.0.10(react-dom@18.0.0)(react@18.0.0)
       '@types/react':
         specifier: ^18.0.21
         version: 18.0.21
@@ -136,6 +142,9 @@ importers:
       astro:
         specifier: ^3.0.7
         version: 3.0.7(@types/node@20.5.9)(sass@1.66.1)(sugarss@1.0.1)
+      astro-auto-import:
+        specifier: ^0.3.1
+        version: 0.3.1(astro@3.0.7)
       react:
         specifier: ^18.0.0
         version: 18.0.0
@@ -2551,6 +2560,17 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
 
+  /@phosphor-icons/react@2.0.10(react-dom@18.0.0)(react@18.0.0):
+    resolution: {integrity: sha512-q5ITPNFhmEiYZLZOvEhjo2phlfxoOmit7vE1tBYMxcMqnZX2vdbMw3deDE7wCegpBKM/q/p39BJmhhoPcjZyCg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>= 16.8'
+      react-dom: '>= 16.8'
+    dependencies:
+      react: 18.0.0
+      react-dom: 18.0.0(react@18.0.0)
+    dev: false
+
   /@phosphor-icons/react@2.0.10(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-q5ITPNFhmEiYZLZOvEhjo2phlfxoOmit7vE1tBYMxcMqnZX2vdbMw3deDE7wCegpBKM/q/p39BJmhhoPcjZyCg==}
     engines: {node: '>=10'}
@@ -3029,6 +3049,10 @@ packages:
       '@types/unist': 2.0.8
     dev: false
 
+  /@types/node@18.17.14:
+    resolution: {integrity: sha512-ZE/5aB73CyGqgQULkLG87N9GnyGe5TcQjv34pwS8tfBs1IkCh0ASM69mydb2znqd6v0eX+9Ytvk6oQRqu8T1Vw==}
+    dev: false
+
   /@types/node@20.5.9:
     resolution: {integrity: sha512-PcGNd//40kHAS3sTlzKB9C9XL4K0sTup8nbG5lC14kzEteTNuAFh9u5nA0o5TWnSG2r/JNPRXFVcHJIIeRlmqQ==}
 
@@ -3397,6 +3421,17 @@ packages:
   /astring@1.8.6:
     resolution: {integrity: sha512-ISvCdHdlTDlH5IpxQJIex7BWBywFWgjJSVdwst+/iQCoEYnyOaQ95+X1JGshuBjGp6nxKUy1jMgE3zPqN7fQdg==}
     hasBin: true
+    dev: false
+
+  /astro-auto-import@0.3.1(astro@3.0.7):
+    resolution: {integrity: sha512-4kXZMlZFiq3dqT6fcfPbCjHTABQ279eKbIqZAb6qktBhGlmHwpHr1spOUFj/RQFilaWVgfjzOBmuZnoydZb5Vg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      astro: ^2.0.0 || ^3.0.0-beta
+    dependencies:
+      '@types/node': 18.17.14
+      acorn: 8.10.0
+      astro: 3.0.7(@types/node@20.5.9)(sass@1.66.1)(sugarss@1.0.1)
     dev: false
 
   /astro@3.0.7(@types/node@20.5.9)(sass@1.66.1)(sugarss@1.0.1):
@@ -8877,6 +8912,15 @@ packages:
       postcss: 6.0.23
     dev: true
 
+  /postcss-scss@4.0.7(postcss@8.4.26):
+    resolution: {integrity: sha512-xPv2GseoyXPa58Nro7M73ZntttusuCmZdeOojUFR5PZDz2BR62vfYx1w9TyOnp1+nYFowgOMipsCBhxzVkAEPw==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.4.19
+    dependencies:
+      postcss: 8.4.26
+    dev: true
+
   /postcss-scss@4.0.7(postcss@8.4.29):
     resolution: {integrity: sha512-xPv2GseoyXPa58Nro7M73ZntttusuCmZdeOojUFR5PZDz2BR62vfYx1w9TyOnp1+nYFowgOMipsCBhxzVkAEPw==}
     engines: {node: '>=12.0'}
@@ -10228,6 +10272,22 @@ packages:
       browserslist: 4.21.10
       postcss: 8.4.26
       postcss-selector-parser: 6.0.13
+    dev: true
+
+  /stylelint-config-recommended-scss@13.0.0(postcss@8.4.26)(stylelint@15.10.3):
+    resolution: {integrity: sha512-7AmMIsHTsuwUQm7I+DD5BGeIgCvqYZ4BpeYJJpb1cUXQwrJAKjA+GBotFZgUEGP8lAM+wmd91ovzOi8xfAyWEw==}
+    peerDependencies:
+      postcss: ^8.3.3
+      stylelint: ^15.10.0
+    peerDependenciesMeta:
+      postcss:
+        optional: true
+    dependencies:
+      postcss: 8.4.26
+      postcss-scss: 4.0.7(postcss@8.4.26)
+      stylelint: 15.10.3
+      stylelint-config-recommended: 13.0.0(stylelint@15.10.3)
+      stylelint-scss: 5.1.0(stylelint@15.10.3)
     dev: true
 
   /stylelint-config-recommended-scss@13.0.0(postcss@8.4.29)(stylelint@15.10.3):

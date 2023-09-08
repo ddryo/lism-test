@@ -1,12 +1,11 @@
-
 // .-hov\: ユーティリティ
 
-[class*=-hov\:]{
+[class*='-hov\:'] {
 	transition: filter, opacity, box-shadow, translate, scale, border-color, color, background-color;
 	transition-duration: var(--hov--duration);
 
 	// mediaへのホバー効果
-	.l--layer__media{ 
+	.l--layer__media {
 		transition: filter, scale;
 		transition-duration: var(--hov--duration);
 	}
@@ -14,27 +13,27 @@
 
 // 値指定
 // .-hov\:duration\:{}
-.-hov\:c\::hover{
+.-hov\:c\::hover {
 	color: var(--hov--c) !important;
 }
-.-hov\:bgc\::hover{
+.-hov\:bgc\::hover {
 	background-color: var(--hov--bgc) !important;
 }
-.-hov\:bdc\::hover{
+.-hov\:bdc\::hover {
 	border-color: var(--hov--bdc) !important;
 }
-.-hov\:shadow\::hover{
+.-hov\:shadow\::hover {
 	box-shadow: var(--hov--shadow) !important;
 }
-.-hov\:dark:hover{
-	filter: brightness(.8) contrast(1.2); //grayscale(5%);
+.-hov\:dark:hover {
+	filter: brightness(0.8) contrast(1.2); //grayscale(5%);
 }
 // .-hov\:bright:hover{
 // 	filter: brightness(1.2) contrast(1.2); //grayscale(5%);
 // }
 
 .-hov\:opacity:hover {
-	opacity: .75;
+	opacity: 0.75;
 }
 .-hov\:shadow:hover {
 	// ユーティリティに負けないように important
@@ -47,39 +46,37 @@
 	scale: 1.05;
 }
 
-.-hov\:bgc\:lightgray:hover{
+.-hov\:bgc\:lightgray:hover {
 	background-color: var(--c--lightgray) !important;
 }
 
-.-hov\:reverse{
+.-hov\:reverse {
 	--rev--bgc: var(--c);
 	--rev--c: var(--bgc);
 }
-.-hov\:reverse:hover{
+.-hov\:reverse:hover {
 	background-color: var(--rev--bgc) !important;
 	color: var(--rev--c) !important;
 }
-
 
 // hov:media:
 // .-hov\:mediaZoom:hover .l--layer__media{
 // 	transform: none;
 // 	filter: none;
 // }
-.-hov\:mediaZoom:hover .l--layer__media{
-	scale: 1.1;
+.-hov\:mediaZoom:hover .l--layer--media {
+	--mediaScale: 1.1;
 }
-// ※ filter どうしは同時使用できないことに注意
-.-hov\:mediaDark:hover .l--layer__media{
-	filter: brightness(.9);
+// ※ filter どうしの同時使用はできないことに注意
+.-hov\:mediaDark:hover .l--layer--media {
+	--mediafilter: brightness(0.9);
 }
-.-hov\:mediaBright:hover .l--layer__media{
-	filter: brightness(1.1);
+.-hov\:mediaBright:hover .l--layer--media {
+	--mediafilter: brightness(1.1);
 }
-.-hov\:mediaBlur:hover .l--layer__media{
-	filter: blur(4px);
+.-hov\:mediaBlur:hover .l--layer--media {
+	--mediafilter: blur(4px);
 }
-
 
 // ; transform: trf
 // hov: {c, bgc, bdc, radius, shadow, transform?, filter?}

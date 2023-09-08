@@ -1,4 +1,9 @@
-@forward './html.scss';
+/*
+  resetした上で、 各要素の標準スタイルを定義する
+*/
+@use './base/base.scss';
+
+// @forward './html.scss';
 @forward './core-modules.scss';
 @forward './block-modules.scss';
 @forward './core-system.scss';

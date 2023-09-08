@@ -1,4 +1,3 @@
-
 @forward './system';
 @forward './utility';
 // @import "./utility.scss" layer(lism-utility);
@@ -10,3 +9,9 @@
 // @forward './test2';
 
 // @layer test2, test1;
+
+[data-has-lism-error] {
+	color: red;
+	text-decoration: dashed underline;
+	// border: dotted 1px;
+}

@@ -1,4 +1,8 @@
-// wp使わない時用
+@use './reset';
+@use './elements';
+@use './elements/table';
+@use './elements/list';
+
 body {
 	// WPでは theme.json 設定によって出力される
 	background-color: var(--c--bg); // var(--wp--preset--c--bg-primary);
@@ -6,12 +10,9 @@ body {
 	font-family: var(--root--ff); //var(--wp--preset--font-family--system-font);
 	font-size: var(--root--fz);
 	line-height: var(--root--lh);
-	margin: 0;
 }
 
 a {
 	color: var(--c--link);
 	text-decoration: underline;
 }
-
-

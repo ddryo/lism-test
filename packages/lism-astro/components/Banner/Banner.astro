@@ -1,0 +1,10 @@
+---
+import { Banner as LismBanner } from '@lism/core';
+
+const { media, ...props } = Astro.props || {};
+---
+
+<div>
+	{media}
+	<slot />
+</div>

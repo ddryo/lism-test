@@ -43,7 +43,7 @@ export default function Tab({
 		items.push(
 			<button
 				role='tab'
-				key={controlId}
+				// key={controlId}
 				className='l--tab__button'
 				onClick={() => setActiveIndex(index)}
 				aria-selected={isActive ? 'true' : 'false'}

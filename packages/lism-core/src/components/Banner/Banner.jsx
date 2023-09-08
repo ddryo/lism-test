@@ -1,6 +1,7 @@
 import React from 'react';
 import { Frame } from '../Frame';
 import { LinkBox } from '../LinkBox';
+import { MediaLayer } from '../Layer';
 // import { Box } from '../Box';
 import { Lism } from '../Lism';
 import { getMediaLayer, getFilterLayer } from '../helper';
@@ -32,7 +33,7 @@ export default function Banner({
 			blockProps.href = href;
 			return (
 				<LinkBox href={href} {...blockProps} as={Frame} ratio={ratio}>
-					{getMediaLayer(media)}
+					<MediaLayer media={media} />
 					{getFilterLayer(filter)}
 					{Contents}
 				</LinkBox>

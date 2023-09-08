@@ -1,0 +1,218 @@
+---
+title: 'Banner'
+description: description...
+# i18n: false
+---
+
+import { Banner, Center, Layer } from '@lism/core';
+import {
+	Book,
+	Cat,
+	Baseball,
+} from "@phosphor-icons/react";
+// import Image from 'next/image'
+import Image from 'astro:assets'
+import LipsumText from '~/components/LipsumText.astro';
+
+
+# Icon
+
+バナーコンテンツを作成できるコンポーネントです。
+Box, Frame, LinkBox を組み合わせています。
+
+- Blockクラス: `.b--banner`
+
+
+## 主なprops
+
+- `ratio`: バナーを表示する縦横比率を指定できます。
+	- この指定がある場合、 `<Banner>` は `<Frame>` を使用したコンポーネントになります。指定がなければ `<Box>`ベースのコンポーネントです
+- `href`: バナーのリンク先を指定できます。
+	- この指定がある場合、Banner は `<LinkBox>` を使用します。
+- `media`: バナーの背景に表示するメディアを指定できます。
+	- この指定がある時、`<MediaLayer>`が使われます。
+- `filter`: バナーの背景にフィルターをかけることができます。(`backdrop-filter`と、背景色の指定が可能。+ 何種類かのテクスチャ？)
+	- この指定がある時、`<FilterLayer>`が使われます。
+- 特殊な挙動
+	- `ratio` がある時、`<Banner>`に指定した`flowGap`, `p`系prop は 内部の`<FrameContent>` 側に渡るようになっています。
+
+
+## Import
+
+```js
+import { Banner } from '@lism/core';
+```
+
+
+## Demo
+
+<Demo>
+	<Demo.Title>16:9のバナーリンク</Demo.Title>
+	<Demo.Preview p={40} maxW="40em">
+		<Banner
+			href="#banner-link"
+			ratio="16/9"
+			media={{ tag: 'img', src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+		/>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Banner
+			href="#banner-link"
+			ratio="16/9"
+			media={{ tag: 'img', src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+		/>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>`filter` の活用</Demo.Title>
+	<Demo.Preview p={40} maxW="40em">
+		<Banner
+			href="#banner-link"
+			ratio="16/9"
+			c="white"
+			p={40}
+			media={{ as: Image, src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+			filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
+		>
+			<Center size="cover">
+				<Text fz="2xl" fw="bold">16/9</Text>
+				<LipsumText long />
+			</Center>
+		</Banner>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Banner
+			href="#banner-link"
+			ratio="16/9"
+			c="white"
+			p={40}
+			media={{ as: Image, src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+			filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
+		>
+			<Center size="cover">
+				...
+			</Center>
+		</Banner>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>Long text</Demo.Title>
+	<Demo.Preview p={40} maxW="40em" resize>
+		<Banner
+			href="#banner-link"
+			ratio="16/9"
+			c="white"
+			p={40}
+			media={{ as: Image, src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+			filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
+		>
+			<Center size="cover">
+				<Text fz="2xl" fw="bold">16/9</Text>
+				<LipsumText long />
+			</Center>
+		</Banner>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Banner
+			href="#banner-link"
+			ratio="16/9"
+			c="white"
+			p={40}
+			media={{ as: Image, src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+			filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
+		>
+			<Center size="cover">
+				...
+			</Center>
+		</Banner>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>その他の例</Demo.Title>
+	<Demo.Preview p={40} maxW="40em">
+		<Banner
+			href="#banner-link"
+			ratio="16/9"
+			c="white"
+			p={40}
+			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+			filter={{
+				bgc: "rgba(0, 0, 0, 0.4)",
+				blur: "4px",
+				contrast: "1.4",
+				sepia: "50%",
+			}}
+		>
+			<LipsumText long />
+			<Layer position="bottom right" p={20} fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
+		</Banner>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Banner
+			href="#banner-link"
+			ratio="16/9"
+			c="white"
+			p={40}
+			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+			filter={{
+				bgc: "rgba(0, 0, 0, 0.4)",
+				blur: "4px",
+				contrast: "1.4",
+				sepia: "50%",
+			}}
+		>
+			<LipsumText long />
+			<Layer position="bottom right" p={20} fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
+		</Banner>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### texture
+
+ texture: "dot",
+
+
+### ratio指定なし
+
+<Demo>
+	<Demo.Title>比率指定なしのバナーリンク</Demo.Title>
+	<Demo.Preview p={40} maxW="40em">
+		<Banner
+			href="#banner-link"
+			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+			filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
+			pY={60}
+			pX={50}
+			c="white"
+		>
+			<LipsumTextMiddle />
+		</Banner>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Banner
+			href="#banner-link"
+			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+			filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
+			pY={60}
+			pX={50}
+			c="white"
+		>
+			<p>...</p>
+		</Banner>
+		```
+	</Demo.Code>
+</Demo>

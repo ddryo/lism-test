@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '../Box';
 // import { Lism } from '../Lism';
-// import setEvent from './setEvent';
+import setEvent from './setEvent';
 // import classnames from 'classnames';
 
 /**
@@ -33,17 +33,17 @@ export default function LinkBox({
 }) {
 	const ref = React.useRef(null);
 
-	// React.useEffect(() => {
-	// 	if (tag === 'a') return;
-	// 	if (!ref.current) return;
-	// 	return setEvent(ref.current);
-	// }, [tag]);
+	React.useEffect(() => {
+		if (tag === 'a') return;
+		if (!ref.current) return;
+		return setEvent(ref.current);
+	}, [tag]);
 
 	const blockProps = {
 		forwardedRef: ref,
 		isLinkbox: true,
+		'aria-label': ariaLabel || null,
 		hover: hover || 'opacity',
-		// 'aria-label': ariaLabel || null,
 		...props,
 	};
 
@@ -51,23 +51,24 @@ export default function LinkBox({
 		href,
 		rel,
 		target: target || openNewTab ? '_blank' : null,
-		'aria-label': ariaLabel || null,
 	};
 
 	const Component = as || Box;
 	// aタグ以外をリンク化する場合
 	if (tag !== 'a') {
 		return (
-			<Component tag={tag} {...blockProps}>
-				<a href='/#linkbox' data-hidden-link {...linkProps}></a>
+			<Component tag={tag} data-linkbox='div' tabIndex='0' role='link' {...blockProps}>
 				{children}
+				<a {...linkProps} data-linkbox='a' aria-hidden='true'>
+					{ariaLabel || ''}
+				</a>
 			</Component>
 		);
 	}
 
 	// 普通にaタグで囲む
 	return (
-		<Component tag='a' {...blockProps} {...linkProps}>
+		<Component tag='a' data-linkbox='a' {...blockProps} {...linkProps}>
 			{children}
 		</Component>
 	);

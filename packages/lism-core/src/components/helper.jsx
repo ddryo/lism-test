@@ -8,7 +8,7 @@ export const getFilterLayer = (filter) => {
 export const getMediaLayer = (media) => {
 	if (undefined !== media) {
 		if (media?.src) {
-			return <MediaLayer media={media} />;
+			return <MediaLayer {...media} />;
 		} else if (React.isValidElement(media)) {
 			return <MediaLayer>{media}</MediaLayer>;
 		}

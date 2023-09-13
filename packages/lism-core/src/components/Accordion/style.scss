@@ -1,15 +1,14 @@
-
 .l--accordion {
 	--isOpened: 0;
-	--duration: .25s;
+	--duration: 0.25s;
 
 	// 開いた時
-	&.-opened{
+	&.-opened {
 		--isOpened: 1;
 	}
 }
 
-:where(.l--accordion__header){
+:where(.l--accordion__header) {
 	--p: 0 var(--space--30);
 	--gap: var(--space--30);
 	--bdrs: var(--radius--1);
@@ -22,7 +21,7 @@
 	padding: var(--p);
 	gap: var(--gap);
 	border-radius: var(--bdrs);
-	
+
 	/* Safariで表示されるデフォルトの三角形アイコンを消します */
 	&::-webkit-details-marker {
 		display: none;
@@ -35,7 +34,7 @@
 	padding: var(--space--30) var(--space--10);
 }
 
-:where(.l--accordion__body){
+:where(.l--accordion__body) {
 	--p: var(--space--40);
 }
 .l--accordion__body {
@@ -46,14 +45,14 @@
 	padding: var(--p);
 }
 
-.l--accordion__bodyInner{
+.l--accordion__bodyInner {
 	overflow: hidden; // ※ 正常な animation に必須
 	--ls--flowGap: var(--space--40);
 }
 
 // 閉じている時
-.l--accordion:not(.-opened)  {
-	> .l--accordion__body{
+.l--accordion:not(.-opened) {
+	> .l--accordion__body {
 		opacity: 0.1;
 		grid-template-rows: 0fr;
 		// grid-template-rows: 0fr;
@@ -68,15 +67,15 @@
 	// --gta: "icon";
 
 	// __icon 自体にborderつけたりすると回転が見えてしまうので、 icon自体を回転させる。
-	> .e--icon{
+	> .e--icon {
 		// grid-area: icon;
-		transition: rotate .25s;
+		transition: rotate 0.25s;
 		rotate: calc(0deg - var(--isOpened) * 180deg);
 	}
-	> .e--icon[data-to="open"]{
+	> .e--icon[data-to='open'] {
 		opacity: calc(1 - var(--isOpened));
 	}
-	> .e--icon[data-to="close"]{
+	> .e--icon[data-to='close'] {
 		opacity: calc(0 + var(--isOpened));
 		position: absolute;
 		rotate: calc(180deg - var(--isOpened) * 180deg);
@@ -84,23 +83,22 @@
 }
 
 .l--accordion__label > a,
-.l--accordion__icon{
+.l--accordion__icon {
 	pointer-events: auto;
 }
 
 // [data-clickable="icon"] のとき
-button.l--accordion__icon{
-	padding: .325em;
+button.l--accordion__icon {
+	padding: 0.325em;
 	border: solid 1px currentColor;
 	border-radius: var(--radius--1);
 }
 
-[data-clickable="icon"] {
-	>.l--accordion__header{
+[data-clickable='icon'] {
+	> .l--accordion__header {
 		pointer-events: none;
 	}
 }
-
 
 // .-opened > .l--accordion__header > .l--accordion__icon {
 // 	transform: rotate(180deg);

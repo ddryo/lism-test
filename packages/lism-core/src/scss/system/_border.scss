@@ -1,4 +1,4 @@
-:root{
+:root {
 	// --bd--regular: var(--bdw) var(--bds) var(--c--border);
 	// --bd--current: var(--bdw) var(--bds) currentColor;
 	// --bd--transparent: var(--bdw) var(--bds) transparent;
@@ -9,7 +9,7 @@
 }
 
 // .-bdc で上書きできるように border 自体も変数管理
-[class*="-bd:"]{
+[class*='-bd:'] {
 	--bds: solid;
 	--bdw: 1px;
 	--bdc: currentColor; //var(--c--border);
@@ -17,12 +17,17 @@
 
 // 使用される環境（resetCSS）によって挙動が変わりやすいので 各プロパティを変数で管理する。
 // ブラウザのデフォルト挙動では、bds指定でborder出現してくるが、nextraのresetCSSみたいな特殊な環境だとbdwの指定でborderでてきたりする。
-.-bd\:{
-	border: var(--bdw) var(--bds) var(--bdc);
+.-bd\: {
+	--bd: var(--bdw) var(--bds) var(--bdc);
+	border: var(--bd);
 }
-// .-bd\:current{border: var(--bdw) var(--bds) currentColor;}
-// .-bd\:transparent{border: var(--bdw) var(--bds) transparent;}
-
+.-bd\:current {
+	border: var(--bdw) var(--bds) currentColor;
+	// --bdc: currentColor;
+}
+.-bd\:transparent {
+	border: var(--bdw) var(--bds) transparent;
+}
 
 // regular? default? normal? base?
 // .-bd\:normal{border: var(--bdw) var(--bds) var(--c--border)}
@@ -31,34 +36,51 @@
 // .-bd\:solid{--bd: 1px solid var(--c--border)}
 // .-bd\:dashed{--bd: 1px dashed var(--c--border)}
 
-
 // 方向を分けて使用する場合、 bdw, bdc, bds と併用してもらう？
 // bd='l', bd='l,r',bd='t,b',...コンマ区切り→成分指定
 // bd={{left: , right: ,}} → --bdl, --bdr
 // bdl=, bdr=, → --bdl, --bdr
 
 // 一方向のみborderを出現させたい時
-.-bd\:left{border-left: var(--bdw) var(--bds) var(--bdc)}
-.-bd\:right{border-right: var(--bdw) var(--bds) var(--bdc)}
-.-bd\:top{border-top: var(--bdw) var(--bds) var(--bdc)}
-.-bd\:bottom{border-bottom: var(--bdw) var(--bds) var(--bdc)}
+.-bd\:left {
+	border-left: var(--bdw) var(--bds) var(--bdc);
+}
+.-bd\:right {
+	border-right: var(--bdw) var(--bds) var(--bdc);
+}
+.-bd\:top {
+	border-top: var(--bdw) var(--bds) var(--bdc);
+}
+.-bd\:bottom {
+	border-bottom: var(--bdw) var(--bds) var(--bdc);
+}
 
 // inline-startとかは？
-.-bd\:inline{border-inline: var(--bdw) var(--bds) var(--bdc)}
-.-bd\:block{border-block: var(--bdw) var(--bds) var(--bdc)}
-.-bd\:in-s{border-inline-start: var(--bdw) var(--bds) var(--bdc)}
-.-bd\:in-e{border-inline-end: var(--bdw) var(--bds) var(--bdc)}
-.-bd\:bl-s{border-block-start: var(--bdw) var(--bds) var(--bdc)}
-.-bd\:bl-e{border-block-end: var(--bdw) var(--bds) var(--bdc)}
+.-bd\:inline {
+	border-inline: var(--bdw) var(--bds) var(--bdc);
+}
+.-bd\:block {
+	border-block: var(--bdw) var(--bds) var(--bdc);
+}
+.-bd\:in-s {
+	border-inline-start: var(--bdw) var(--bds) var(--bdc);
+}
+.-bd\:in-e {
+	border-inline-end: var(--bdw) var(--bds) var(--bdc);
+}
+.-bd\:bl-s {
+	border-block-start: var(--bdw) var(--bds) var(--bdc);
+}
+.-bd\:bl-e {
+	border-block-end: var(--bdw) var(--bds) var(--bdc);
+}
 
 // bd:l,bdw:1,bds:ds
-
 
 // .-bdl\:{border-left: var(--bdl);}
 // .-bdr\:{border-right: var(--bdr);}
 // .-bdt\:{border-top: var(--bdt);}
 // .-bdb\:{border-bottom: var(--bdb);}
-
 
 // 2方向以上使う時は使わないものを none してもらう？
 // bdl="none"
@@ -66,8 +88,6 @@
 // .-bdr\:n{border-right: none;}
 // .-bdt\:n{border-top: none;}
 // .-bdb\:n{border-bottom: none;}
-
-
 
 // bdw="1px 1px 0 0" とかでも指定できる
 // .-bdw\:{border-width: var(--bdw);}
@@ -77,29 +97,52 @@
 // .-bdw\:medium{--bdw: var(--bdw--medium)}
 
 // .-bdc\:{border-color: var(--bdc);}
-.-bdc\:main{--bdc: var(--c--main);}
-.-bdc\:accent{--bdc: var(--c--accent);}
-.-bdc\:white{--bdc: var(--c--white);}
-.-bdc\:black{--bdc: var(--c--black);}
-.-bdc\:gray{--bdc: var(--c--gray);}
-.-bdc\:lightgray{--bdc: var(--c--lightgray);}
-.-bdc\:darkgray{--bdc: var(--c--darkgray);}
+.-bdc\:main {
+	--bdc: var(--c--main);
+}
+.-bdc\:accent {
+	--bdc: var(--c--accent);
+}
+.-bdc\:white {
+	--bdc: var(--c--white);
+}
+.-bdc\:black {
+	--bdc: var(--c--black);
+}
+.-bdc\:gray {
+	--bdc: var(--c--gray);
+}
+.-bdc\:lightgray {
+	--bdc: var(--c--lightgray);
+}
+.-bdc\:darkgray {
+	--bdc: var(--c--darkgray);
+}
 
-.-bdc\:t{--bdc: var(--bd--transparent);}
-.-bdc\:border{border-color: var(--c--border);}
-
-
+.-bdc\:t {
+	--bdc: var(--bd--transparent);
+}
+.-bdc\:border {
+	border-color: var(--c--border);
+}
 
 // border-style使うと全方向にborder出てくることに注意。
 // bds→ --bdsのみ出力。 borderStyle→border-style出力
 // .-bds\:{border-style: var(--bds);}
 
-
 // .-bds\:n{border-style:none;}
 // .-bds\:h{border-style:hidden;}
-.-bds\:dt{--bds:dotted;}
-.-bds\:ds{--bds:dashed;}
-.-bds\:s{--bds:solid;}
-.-bds\:db{--bds:double;}
+.-bds\:dt {
+	--bds: dotted;
+}
+.-bds\:ds {
+	--bds: dashed;
+}
+.-bds\:s {
+	--bds: solid;
+}
+.-bds\:db {
+	--bds: double;
+}
 
 // bds,borderSolidで挙動変える？

@@ -1,2 +1,3 @@
 export { default as Layer } from './Layer';
-export { MediaLayer, FilterLayer, ContentLayer } from './Modifiers';
+export { default as MediaLayer } from './MediaLayer';
+export { FilterLayer, ContentLayer } from './Modifiers';

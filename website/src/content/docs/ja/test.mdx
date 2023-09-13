@@ -5,7 +5,7 @@ i18n: false
 ---
 
 import { Image } from 'astro:assets';
-import { LinkBox, Text, Box, Tab, TabItem, Frame, MediaLayer, Banner, Center } from '@lism/astro';
+import { LinkBox, Text, Box, Tab, TabItem, Frame, MediaLayer, FilterLayer, ContentLayer, Banner, Center } from '@lism/astro';
 import LipsumText from '~/components/LipsumText.astro';
 // import TabTest from '~/components/lism-test/Tab.astro';
 // import { Box, Tab, TabItem } from '@lism/core';
@@ -20,38 +20,14 @@ import LipsumText from '~/components/LipsumText.astro';
 	<Text mbs={20} ta="right">More→</Text>
 </LinkBox>
 
-<Banner
-	href="#banner-link"
-	ratio="16/9"
-	c="white"
-	p={40}
-	media={{ tag: 'img', src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
-	filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
->
-	<Center size="cover">
-		<LipsumText long />
-	</Center>
-</Banner>
 
-<Banner
-	href="#banner-link"
-	ratio="16/9"
-	c="white"
-	p={40}
-	filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
->
-	<MediaLayer>
-		<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-	</MediaLayer>
-	<Center size="cover">
-		<LipsumText long />
-	</Center>
-</Banner>
+---
+
 <Box bg="lightgray">boxxxx</Box>
 
 <Frame bd="-" bdc="lime" bdw="2px" as='img' src="/img/demo-img.jpeg" alt="alttext" width="50" height="50"></Frame>
 <Frame bd="current" bdc="aqua" bdw="2px">
-	<MediaLayer media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }} />
+	<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} />
 </Frame>
 <Frame bd="current">
 	<MediaLayer>
@@ -60,7 +36,7 @@ import LipsumText from '~/components/LipsumText.astro';
 </Frame>
 
 ↓ NG
-<Frame bd="current" as={Image} src="/img/demo-img.jpeg" alt="鳥。" width="50" height="50"></Frame>
+{/* <Frame bd="current" as={Image} src="/img/demo-img.jpeg" alt="鳥。" width="50" height="50"></Frame> */}
 
 {/* <TabTest label={<i>labeel</i>} />
 <TabTest label={<Box>labeel</Box>} />

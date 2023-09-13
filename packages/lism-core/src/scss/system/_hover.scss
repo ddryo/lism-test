@@ -22,13 +22,15 @@
 .-hov\:bdc\::hover {
 	border-color: var(--hov--bdc) !important;
 }
+
+// プリセット
 .-hov\:shadow\::hover {
 	box-shadow: var(--hov--shadow) !important;
 }
 .-hov\:dark:hover {
 	filter: brightness(0.8) contrast(1.2); //grayscale(5%);
 }
-// .-hov\:bright:hover{
+// .-hov\:bright:hover {
 // 	filter: brightness(1.2) contrast(1.2); //grayscale(5%);
 // }
 
@@ -45,14 +47,17 @@
 .-hov\:scale:hover {
 	scale: 1.05;
 }
-
 .-hov\:bgc\:lightgray:hover {
 	background-color: var(--c--lightgray) !important;
 }
 
 .-hov\:reverse {
-	--rev--bgc: var(--c);
-	--rev--c: var(--bgc);
+	--rev--c: var(--hov--c, var(--bgc)); // .-hov:c: あれば優先
+	--rev--bgc: var(--hov--bgc, var(--c));
+
+	&.-bd\:current {
+		--bdc: var(--c);
+	}
 }
 .-hov\:reverse:hover {
 	background-color: var(--rev--bgc) !important;
@@ -69,13 +74,13 @@
 }
 // ※ filter どうしの同時使用はできないことに注意
 .-hov\:mediaDark:hover .l--layer--media {
-	--mediafilter: brightness(0.9);
+	--mediaFilter: brightness(0.9);
 }
 .-hov\:mediaBright:hover .l--layer--media {
-	--mediafilter: brightness(1.1);
+	--mediaFilter: brightness(1.1);
 }
 .-hov\:mediaBlur:hover .l--layer--media {
-	--mediafilter: blur(4px);
+	--mediaFilter: blur(4px);
 }
 
 // ; transform: trf

@@ -4,7 +4,7 @@
 	// height: fit-content; // grid系直下においた時などに、align-items: strech; の影響で引き伸ばされないようにする
 	// overflow: hidden; // radiusが見えるように
 
-	--lism: 1/1;
+	--lism: 16/9;
 	aspect-ratio: var(--lismVal);
 
 	display: block;
@@ -21,45 +21,32 @@
 	// 	display: block;
 	// }
 
+	&[data-ratio='1/1'] {
+		--lism: 1/1;
+	}
 	&[data-ratio='16/9'] {
 		--lism: 16/9;
-		// --d: 16;
-		// --n: 9;
 	}
 	&[data-ratio='2/1'] {
 		--lism: 2/1;
-		// --d: 2;
-		// --n: 1;
 	}
 	&[data-ratio='4/3'] {
 		--lism: 4/3;
-		// --d: 4;
-		// --n: 3;
 	}
 	&[data-ratio='3/2'] {
 		--lism: 3/2;
-		// --d: 3;
-		// --n: 2;
 	}
 	&[data-ratio='golden'] {
 		--lism: 16.18/10;
-		// --d: 16.18;
-		// --n: 10;
 	}
 	&[data-ratio='silver'] {
 		--lism: 14.14/10;
-		// --d: 14.14;
-		// --n: 10;
 	}
 	&[data-ratio='bronze'] {
 		--lism: 33.03/10;
-		// --d: 33.03;
-		// --n: 10;
 	}
 	&[data-ratio='ogp'] {
 		--lism: 1.91/1;
-		// --d: 1.91;
-		// --n: 1;
 	}
 
 	// &[data-direction="portrait"]{

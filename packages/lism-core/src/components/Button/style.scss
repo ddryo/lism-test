@@ -1,4 +1,10 @@
-:where(.l--button){
+:root {
+	// fill時のカラーをグローバルに定義？ → .-c:white なエリアでは #000 に反転させたりしておくと便利か。
+	// → .-c:white を用意する意味もでてくる。
+	--lism--c--filled: #fff;
+}
+
+:where(.l--button) {
 	// --keycolor: var(--c--main);
 	--p: var(--space--30) var(--space--40);
 	--icon-scale: 1.25; // offsetとバランス合わせる
@@ -6,7 +12,7 @@
 	--bdrs: var(--radius--1);
 	// --c: var(--keycolor);
 	--bdc: transparent;
-	// --bgc: transparent;
+	--bgc: transparent;
 	--w: fit-content;
 	--gap: var(--space--10);
 
@@ -15,7 +21,7 @@
 	align-items: center;
 }
 
-.l--button{
+.l--button {
 	line-height: 1.5;
 	text-decoration: none;
 	width: var(--w); // .-w: 関連で上書きできるように
@@ -28,40 +34,40 @@
 	// min-width: 2em;
 }
 
-.l--button[data-variant="fill"] {
+.l--button[data-variant='fill'] {
 	// --keycolor: var(--c--main);
 	--bdc: var(--bgc); // reverse用
 	// --bgc: var(--keycolor);
 	--c: #fff;
 }
 
-
-.l--button[data-variant="outline"]{
+.l--button[data-variant='outline'] {
 	--bdc: var(--keycolor);
 	--c: var(--bdc); // bdc上書きするだけで --c も変わる
 
 	// reverse用
-	--rev--bgc: var(--bdc);
-	--rev--c: #fff;
+	--rev--c: var(--hov--c, #fff);
+	// --rev--bgc: var(--bdc);
 }
 
-.l--button[data-variant="text"]{
+.l--button[data-variant='text'] {
 	// color: var(--keycolor);
-	--rev--c: #fff; // reverse用
+	--rev--c: var(--hov--c, #fff); // reverse用
 }
 
 // .l--button__text {
 // 	overflow-wrap: anywhere;
 // }
 
-
 // .l--button[data-icon-position="edge"],
-// gta:lcr, tcb
-.l--button.is--grid {
-	--gta: "left center right";
-	--gtc: 1em 1fr 1em;
+.l--button[data-icon-position='edge'] {
+	display: grid;
+	grid-template-areas: 'left center right';
+	grid-template-columns: 1em 1fr 1em;
+	// --gta: 'left center right';
+	// --gtc: 1em 1fr 1em;
 }
-.is--grid > .l--button__text {
+[data-icon-position='edge'] > .l--button__text {
 	justify-self: center;
 	grid-area: center;
 }
@@ -74,13 +80,12 @@
 	scale: var(--icon-scale);
 	flex-shrink: 0;
 
-	&[data-position="left"] {
+	&[data-position='left'] {
 		grid-area: left;
 		translate: calc(0px - var(--icon-offset));
 	}
-	&[data-position="right"] {
+	&[data-position='right'] {
 		grid-area: right;
 		translate: var(--icon-offset);
 	}
 }
-

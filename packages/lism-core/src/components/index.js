@@ -1,5 +1,7 @@
 // import '../scss/base.scss';
 // import '../scss/components.scss';
+// import { createHooks } from '../hooks';
+// export const lismHooks = createHooks();
 
 // import React from 'react';
 export { Lism } from './Lism';

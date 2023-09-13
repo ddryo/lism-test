@@ -1,6 +1,6 @@
 @use 'system/root';
 @use 'system/color';
-@use "system/flow";
+@use 'system/flow';
 @use 'system/gap';
 @use 'system/flex';
 @use 'system/grid';
@@ -22,22 +22,19 @@
 
 // @use './system/typography-auto-h';
 
-
 // .alignfull + .alignfull{
 // 	margin-block-start: 0;
 // }
-
 
 // コンテナクエリの基点とする要素
 .is--container {
 	container-type: inline-size;
 }
 
-
 // 内部のコンテンツ幅を制御する
 .is--constrained {
 	container-type: inline-size;
-	--maxW: var(--ls--contentSize); // -maxW: で上書きできるように
+	--maxW: min(100%, var(--ls--contentSize)); // -maxW: で上書きできるように
 
 	// 左寄せ・右寄せ・全幅以外の要素に対して、max-widthを設定する?
 	> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
@@ -53,7 +50,6 @@
 }
 
 .is--constrained.-slim {
-
 	> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
 		max-width: var(--ls--contentSize--slim);
 	}
@@ -63,7 +59,6 @@
 		max-width: var(--ls--contentSize);
 	}
 }
-
 
 // .has-global-padding はコア以外の要素で使うと想像した結果にならないことがあるので同じようなことをするクラスを作る
 // .has--ls--gutter?　has--gutter?
@@ -77,5 +72,3 @@
 		margin-left: calc(var(--ls--gutter) * -1);
 	}
 }
-
-

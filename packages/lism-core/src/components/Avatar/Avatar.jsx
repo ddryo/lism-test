@@ -2,10 +2,14 @@ import React from 'react';
 import { Lism } from '../Lism';
 // import { getLismMainProp } from '../../lib';
 
-export default function Avatar({ children, size, ...props }) {
+export default function Avatar({
+	children,
+	//size,
+	...props
+}) {
 	const theProps = {
 		lismClass: 'e--avatar',
-		lismVar: size,
+		// lismVar: size,
 	};
 
 	return (

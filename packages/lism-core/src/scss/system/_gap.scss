@@ -1,17 +1,16 @@
-@use "../query" as query;
+@use '../query' as query;
 
-
-[class*="-gap:"]{
+[class*='-gap:'] {
 	gap: var(--gap);
 }
-[class*="-clmg:"]{
+[class*='-clmg:'] {
 	column-gap: var(--clmg) !important;
 }
-[class*="-rowg:"]{
+[class*='-rowg:'] {
 	row-gap: var(--rowg) !important;
 }
 
-@include query.cq('sm'){
+@include query.cq('sm') {
 	.-gap\@sm\: {
 		gap: var(--gap--sm) !important;
 	}
@@ -22,7 +21,7 @@
 		row-gap: var(--rowg--sm) !important;
 	}
 }
-@include query.cq('md'){
+@include query.cq('md') {
 	.-gap\@md\: {
 		gap: var(--gap--md) !important;
 	}
@@ -33,7 +32,7 @@
 		row-gap: var(--rowg--md) !important;
 	}
 }
-@include query.cq('lg'){
+@include query.cq('lg') {
 	.-gap\@lg\: {
 		gap: var(--gap--lg) !important;
 	}
@@ -44,4 +43,3 @@
 		row-gap: var(--rowg--lg) !important;
 	}
 }
-

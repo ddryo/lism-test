@@ -8,12 +8,12 @@ export default function Lism({ children, as, tag, ...props }) {
 	const { className, style, attrs } = getCommonProps(props);
 
 	let hasError = false;
-	if (typeof as === 'function' && !as.prototype?.isReactComponent) {
-		console.error(
-			'Lism: Invalid component passed. The component passed as "as" could not be recognized as a React component. '
-		);
-		hasError = true;
-	}
+	// if (typeof as === 'function' && !as.prototype?.isReactComponent) {
+	// 	console.error(
+	// 		'Lism: Invalid component passed. The component passed as "as" could not be recognized as a React component. '
+	// 	);
+	// 	hasError = true;
+	// }
 
 	if (tag && typeof tag !== 'string') {
 		console.error(

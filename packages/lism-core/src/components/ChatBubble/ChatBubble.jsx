@@ -1,5 +1,6 @@
 import React from 'react';
 import { Lism } from '../Lism';
+import { Grid } from '../Grid';
 // import { Center } from '../Center';
 // import { Text } from '../Text';
 // import { Layer } from '../Layer';
@@ -25,7 +26,7 @@ const DECORATOR_PROPS = {
 
 export default function ChatBubble({
 	name,
-	img,
+	icon = '',
 	variant = 'chat',
 	direction = 'left',
 	contentProps = {},
@@ -37,26 +38,26 @@ export default function ChatBubble({
 	// const fxd = 'left' === direction ? null : 'row-reverse';
 
 	let _chatBoxProps = {
-		isGrid: true,
-		gap: '-',
+		// isGrid: true,
+		// gap: '-',
 	};
-	let _avatarProps = { radius: '99' };
+	// let _avatarProps = { radius: '99' };
 	let _bodyProps = {
-		pos: 'relative',
-		mt: '-',
+		// pos: 'relative',
+		// mt: '-',
 	};
 	let _contentProps = {
 		isFlow: true,
 		flowGap: 30,
 		radius: '-',
-		p: ['-', '-'],
+		p: '-',
 	};
 	if ('box' === variant) {
 		_chatBoxProps.gap = 0;
 		_contentProps.radius = 1;
-		_avatarProps.shadow = 1;
+		// _avatarProps.shadow = 1;
 	} else {
-		console.log('DECORATOR_PROPS[direction]', DECORATOR_PROPS[direction]);
+		// console.log('DECORATOR_PROPS[direction]', DECORATOR_PROPS[direction]);
 		decorators = (
 			<>
 				<Decorator
@@ -78,21 +79,28 @@ export default function ChatBubble({
 	}
 
 	return (
-		<Lism
+		<Grid
 			blockClass='b--chatBubble'
 			data-variant={variant}
 			data-direction={direction}
 			{..._chatBoxProps}
 			{...props}
 		>
-			{img && (
-				<Avatar blockClass='b--chatBubble__icon' {..._avatarProps} {...avatarProps}>
-					{img}
+			{icon && (
+				<Avatar
+					blockClass='b--chatBubble__icon'
+					radius='99'
+					aria-hidden='true'
+					{...avatarProps}
+				>
+					{/* {icon} */}
+					<img src={icon} alt='' width={60} height={60} loading='lazy' />
 				</Avatar>
 			)}
 
+			{/* aria-label : "name の発言" */}
 			{name && (
-				<Lism blockClass='b--chatBubble__name' fz='2xs' p={10} mt='-'>
+				<Lism blockClass='b--chatBubble__name' fz='2xs' p={10}>
 					{name}
 				</Lism>
 			)}
@@ -102,7 +110,7 @@ export default function ChatBubble({
 				</Lism>
 				{decorators}
 			</Lism>
-		</Lism>
+		</Grid>
 	);
 }
 

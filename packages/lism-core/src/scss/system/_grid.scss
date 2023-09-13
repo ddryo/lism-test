@@ -1,22 +1,35 @@
-@use "../query" as query;
+@use '../query' as query;
 
-// memo: Tree Shakingを考えて、クエリ関連はバラすべき
-:where(.is--grid, .l--grid){
-	// 初期値セット
-	--gta: none;
-	--gtc: none;
-	--gtr: none;
-	--gap: 0;
-	gap: var(--gap);
+@layer lism-initial-value {
+	// .is--grid,
+	.l--grid {
+		// 初期値セット
+		--gta: none;
+		--gtc: none;
+		--gtr: none;
+		--gap: 0;
+		gap: var(--gap);
+	}
 }
 
+// :where(.is--grid, .l--grid) {
+// 	// 初期値セット
+// 	--gta: none;
+// 	--gtc: none;
+// 	--gtr: none;
+// 	--gap: 0;
+// 	gap: var(--gap);
+// }
+
+// memo: Tree Shakingを考えて、クエリ関連はバラすべき
 // .is--grid → .-grid にしたほうがスッキリするが、統一感がなくなる。
 .is--grid,
-.l--grid{
+.l--grid {
 	display: grid;
 	grid-template-areas: var(--gta);
 	grid-template-columns: var(--gtc);
 	grid-template-rows: var(--gtr);
+	gap: var(--gap);
 
 	// @include query.cq('sm'){
 	// 	--gta: var(--gta--sm) !important;
@@ -40,7 +53,6 @@
 	// }
 }
 
-
 // .-d\:g{display: grid;}
 // .-gta\:{grid-template-areas: var(--gta)}
 
@@ -48,7 +60,6 @@
 // :where(.is--grid > .is--item) {
 // 	overflow-wrap: anywhere;
 // }
-
 
 // 特定のポイント以降のみ指定することはないので、--prop上書きの形式で文字数も省略する
 // @include query.cq('sm'){

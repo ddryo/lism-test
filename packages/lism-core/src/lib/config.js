@@ -1,7 +1,22 @@
 export const BREAK_POINTS = ['sm', 'md', 'lg', 'xl'];
 
 export const PRESETS = {
-	fz: ['5xl', '4xl', '3xl', '2xl', 'xl', 'l', 'm', 's', 'xs', '2xs', 'r'],
+	fz: [
+		'5xl',
+		'4xl',
+		'3xl',
+		'2xl',
+		'xl',
+		'l',
+		'm',
+		's',
+		'xs',
+		'2xs',
+		'r',
+		'fluid',
+		'fluid:s',
+		'fluid:l',
+	],
 	lh: [],
 	// c,bgc,bdc 共通でutility化 & --c--xxx で管理するカラー
 	color: [
@@ -37,7 +52,17 @@ export const PRESETS = {
 	// "space-between"
 	radius: ['0', '1', '2', '3', '4', '5', '6', '99'], // 'round'
 	shadow: ['-1', '-2', '-3', '-4', '-5', '0', '1', '2', '3', '4', '5'],
-	border: ['guide', 'transparent', 'top', 'left', 'right', 'bottom', 'block', 'inline'], // dashed?
+	border: [
+		'guide',
+		'current',
+		'transparent',
+		'top',
+		'left',
+		'right',
+		'bottom',
+		'block',
+		'inline',
+	], // dashed?
 	//bds: dashed, solid, double, dotted,
 	bg: ['glass'],
 	// inset: ['0'], // inset用

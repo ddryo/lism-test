@@ -1,0 +1,26 @@
+---
+import { Layer } from '@lism/core';
+
+const { as, tag = 'img', z, ...props } = Astro.props || {};
+
+let MediaTag = null;
+if (!!props) {
+	MediaTag = as || tag;
+}
+// memo: mediaは slot でもOK
+---
+
+{
+	Astro.slots.has('default') && (
+		<Layer modifier='media' z={z} {...props}>
+			<slot />
+		</Layer>
+	)
+}
+{
+	props.src && (
+		<Layer modifier='media' z={z}>
+			<MediaTag {...props} />
+		</Layer>
+	)
+}

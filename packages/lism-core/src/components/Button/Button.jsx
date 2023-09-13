@@ -26,7 +26,7 @@ export default function Button({
 	};
 
 	if (iconPosition === 'edge') {
-		blockProps.isGrid = true;
+		// blockProps.isGrid = true;
 		blockProps['data-icon-position'] = 'edge';
 	}
 

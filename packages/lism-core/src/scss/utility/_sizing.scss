@@ -15,10 +15,10 @@
 	max-width: var(--maxW) !important;
 }
 .-maxH\: {
-	min-height: var(--maxH) !important;
+	max-height: var(--maxH) !important;
 }
 .-minW\: {
-	max-width: var(--minW) !important;
+	min-width: var(--minW) !important;
 }
 .-minH\: {
 	min-height: var(--minH) !important;

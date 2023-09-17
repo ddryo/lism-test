@@ -1,5 +1,10 @@
-
 .l--cluster {
+	--item-minW: 1em;
+
 	display: flex;
 	flex-wrap: wrap;
+}
+
+:where(.l--cluster > :is(div, span, li, p, a, button, input)) {
+	min-width: var(--item-minW);
 }

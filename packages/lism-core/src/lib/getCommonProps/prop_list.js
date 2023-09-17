@@ -338,7 +338,7 @@ export default {
 			utilVals: { column: 'c', row: 'r', 'column-reverse': 'cr', 'row-reverse': 'rr' },
 		},
 	},
-	isItem: {},
+	// isItem: {},
 
 	// クエリ対応あり、ユーティリティあり
 };

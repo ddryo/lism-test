@@ -1,4 +1,4 @@
-:root{
+:root {
 	// 各fzサイズ用のline-height
 	--ls--6L--lh: 1.2;
 	--ls--5L--lh: 1.4;
@@ -20,20 +20,39 @@
 	// 1, 1.25, 1.5. 1.75, 2,  2.5
 }
 
-
-h1 {--lh: var(--ls--4L--lh);}
-h2 {--lh: var(--ls--3L--lh);}
-h3 {--lh: var(--ls--2L--lh);}
-h4 {--lh: var(--ls--L--lh);}
+h1 {
+	--lh: var(--ls--4L--lh);
+}
+h2 {
+	--lh: var(--ls--3L--lh);
+}
+h3 {
+	--lh: var(--ls--2L--lh);
+}
+h4 {
+	--lh: var(--ls--L--lh);
+}
 // h5 {}
 // h6 {}
 
 // .-fz\:xs {}
 // .-fz\:s {}
 // .-fz\:m {}
-.-fz\:l {--lh: var(--ls--L--lh);}
-.-fz\:xl {--lh: var(--ls--2L--lh);}
-.-fz\:2xl {--lh: var(--ls--3L--lh);}
-.-fz\:3xl {--lh: var(--ls--4L--lh);}
-.-fz\:4xl {--lh: var(--ls--5L--lh);}
-.-fz\:5xl {--lh: var(--ls--6L--lh);}
+.-fz\:l {
+	--lh: var(--ls--L--lh);
+}
+.-fz\:xl {
+	--lh: var(--ls--2L--lh);
+}
+.-fz\:2xl {
+	--lh: var(--ls--3L--lh);
+}
+.-fz\:3xl {
+	--lh: var(--ls--4L--lh);
+}
+.-fz\:4xl {
+	--lh: var(--ls--5L--lh);
+}
+.-fz\:5xl {
+	--lh: var(--ls--6L--lh);
+}

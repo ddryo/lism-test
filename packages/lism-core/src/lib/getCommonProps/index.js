@@ -153,9 +153,9 @@ class CommonProps {
 		}
 
 		// なくす？
-		if (isItem) {
-			thePropList = Object.assign({}, thePropList, PROP_LIST.isItem);
-		}
+		// if (isItem) {
+		// 	thePropList = Object.assign({}, thePropList, PROP_LIST.isItem);
+		// }
 
 		// if (useLog) console.log('thePropList', thePropList);
 

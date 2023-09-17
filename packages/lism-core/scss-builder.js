@@ -35,8 +35,8 @@ const COLOR = {
 	let files = [];
 	files = [
 		src + '/all.scss',
-		src + '/core-system.scss',
 		src + '/core-modules.scss',
+		src + '/block-modules.scss',
 
 		// src + '/base--wp.scss',
 		// src + '/components.scss',

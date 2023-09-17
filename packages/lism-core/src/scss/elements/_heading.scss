@@ -1,0 +1,38 @@
+@layer lism-elements {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: 700;
+		font-size: var(--fz);
+		line-height: var(--lh);
+
+		// Flowレイアウト直下の見出しの上部余白は少しだけ広くする. CSS変数を上書きしてるだけなので、 .is--flow 直下にのみ影響する
+		--ls--flowGap: var(--ls--flowGap--heading);
+	}
+
+	h1 {
+		--fz: var(--fz--3xl);
+		--lh: var(--ls--4L--lh);
+	}
+	h2 {
+		--fz: var(--fz--2xl);
+		--lh: var(--ls--3L--lh);
+	}
+	h3 {
+		--fz: var(--fz--xl);
+		--lh: var(--ls--2L--lh);
+	}
+	h4 {
+		--fz: var(--fz--l);
+		--lh: var(--ls--L--lh);
+	}
+	h5 {
+		--fz: var(--fz--m);
+	}
+	h6 {
+		--fz: var(--fz--s);
+	}
+}

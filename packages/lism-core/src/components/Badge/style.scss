@@ -1,13 +1,13 @@
-:where(.e--badge){
+:where(.e--badge) {
 	--p: var(--space--5) var(--space--10);
 	--c: #fff;
 	--bgc: var(--keycolor);
 	--bdc: transparent;
-	--gap: .2em; // em 単位で指定したいので --space--5 は使わない
+	--gap: 0.2em; // em 単位で指定したいので --space--5 は使わない
 	--bdrs: var(--radius--1);
 }
 
-.e--badge{
+.e--badge {
 	line-height: 1.5;
 	color: var(--c);
 	background-color: var(--bgc);
@@ -17,16 +17,15 @@
 // fill=default
 // .e--badge[data-variant="fill"]{}
 
-.e--badge[data-variant="outline"]{
+.e--badge[data-variant='outline'] {
 	--bdc: var(--keycolor);
 	--bgc: transparent;
 	--c: var(--keycolor);
 }
 
-.e--badge[data-variant="subtle"]{
+.e--badge[data-variant='subtle'] {
 	@supports (color: color-mix(in srgb, #000, #fff)) {
 		--c: color-mix(in srgb, var(--keycolor), var(--c--text) var(--colorMixPercent--link));
 		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
 	}
 }
-

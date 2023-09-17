@@ -1,9 +1,17 @@
 /*
   resetした上で、 各要素の標準スタイルを定義する
 */
-@use './base/base.scss';
+@use './base.scss';
+@use './elements.scss';
+@use './system.scss';
 
-// @forward './html.scss';
-@forward './core-modules.scss';
-@forward './block-modules.scss';
-@forward './core-system.scss';
+@use './core-modules.scss';
+@use './block-modules.scss';
+
+@use './utility.scss';
+
+[data-has-lism-error] {
+	color: red;
+	text-decoration: dashed underline;
+	// border: dotted 1px;
+}

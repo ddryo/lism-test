@@ -1,3 +1,19 @@
-@use 'utility/spacing'; 
+@use 'utility/border';
+@use 'utility/color';
 @use 'utility/display';
+@use 'utility/hover';
+@use 'utility/gap';
+@use 'utility/grid-props';
+@use 'utility/flex-props';
+@use 'utility/place';
+@use 'utility/item';
+
+@use 'utility/margin';
+@use 'utility/padding';
+@use 'utility/radius';
+@use 'utility/shadow';
+@use 'utility/sizing';
+@use 'utility/spacing';
+@use 'utility/typography';
+
 @use 'utility/others';

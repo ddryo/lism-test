@@ -1,8 +1,6 @@
-@use "../query" as query;
+@use '../query' as query;
 
-
-// display
-
+/* stylelint-disable */
 .-d\:{display: var(--d) !important;}
 .-d\:n{display: none !important;}
 .-d\:b{display: block !important;}

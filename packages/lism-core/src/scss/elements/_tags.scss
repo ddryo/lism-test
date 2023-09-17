@@ -1,26 +1,8 @@
-@layer base {
-	:root {
-		--offset--outline: 1px;
-		--offset--link-underline: 0.2ex;
-
-		--color--focus: revert;
-		--color--hr: currentColor;
-
-		--ff--code: Menlo, Consolas, monaco, monospace;
-		--fz--code: 0.9em;
-		// --color-red
-	}
-
+@layer lism-elements {
 	// フォーカス要素
 	:where(:focus-visible) {
 		outline-color: var(--color--focus, revert);
 		outline-offset: var(--offset--outline, revert);
-	}
-
-	body {
-		overflow-x: clip;
-		line-height: 1.75;
-		container-type: inline-size;
 	}
 
 	pre {

@@ -1,0 +1,69 @@
+.-lh\: {
+	line-height: var(--lh);
+}
+// [class*="-lh:"]{
+// 	line-height: var(--lh);
+// }
+
+// fzは詳細度高くていいが、lhは詳細度低くていい.
+[class*='-fz:'] {
+	font-size: var(--fz);
+	line-height: var(--lh, inherit);
+}
+
+// 流体サイズ
+.-fz\:fluid {
+	--fz: var(--fz-fluid);
+}
+
+// .-fz\:fluid\:s {
+// 	--fz: var(--fz-fluid--s);
+// }
+// .-fz\:fluid\:l {
+// 	--fz: var(--fz-fluid--l);
+// }
+
+// .-fz\:xs {}
+// .-fz\:s {}
+// .-fz\:m {}
+
+.-fz\:r {
+	font-size: 1rem;
+} // 自動lh計算を考慮し、--fz 使わない
+
+.-fz\:2xs {
+	--fz: var(--fz--2xs);
+}
+.-fz\:xs {
+	--fz: var(--fz--xs);
+}
+.-fz\:s {
+	--fz: var(--fz--s);
+}
+.-fz\:m {
+	--fz: var(--fz--m);
+}
+.-fz\:l {
+	--fz: var(--fz--l);
+	--lh: var(--ls--L--lh);
+}
+.-fz\:xl {
+	--fz: var(--fz--xl);
+	--lh: var(--ls--2L--lh);
+}
+.-fz\:2xl {
+	--fz: var(--fz--2xl);
+	--lh: var(--ls--3L--lh);
+}
+.-fz\:3xl {
+	--fz: var(--fz--3xl);
+	--lh: var(--ls--4L--lh);
+}
+.-fz\:4xl {
+	--fz: var(--fz--4xl);
+	--lh: var(--ls--5L--lh);
+}
+.-fz\:5xl {
+	--fz: var(--fz--5xl);
+	--lh: var(--ls--6L--lh);
+}

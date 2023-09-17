@@ -1,0 +1,271 @@
+/* ------------------------------------------------------------
+	グローバルトークン。
+	特定のセレクタに対する変数: --[target--]prop
+	プリセット変数: --{prop}-{variant}
+	
+	ローカルな変数について
+		自身のプロパティ: --{prop}
+		子要素: --{item}--{prop}
+			--rev--c, --icon--offset, --item--minW
+ ------------------------------------------------------------ */
+:root {
+	/* ------------------------------------------------------------
+	  コンテンツサイズ: ユーザー側で定義が必要
+	    コンテンツサイズは960 ~ 1120 くらいがよさそう.
+	    1080 にしてるのは、 1920 * 1080画像がきれいに配置できるため？
+	 ------------------------------------------------------------ */
+	// コンテンツサイズは960 ~ 1120 くらいがよさそう
+	--ls--contentSize: 1120px; // = --wp--style--global--content-size.
+	--ls--contentSize--wide: 1440px; // = --wp--style--global--wide-size. alignwide で使う.
+	--ls--contentSize--slim: 45rem; // slim幅1カラムテンプレートで使う. fz:16px時 = 720px
+
+	// is--flow, is-layout-[flow|constrained] > * + * の blockGap 管理用変数
+	--ls--flowGap: var(--space--50);
+	--ls--flowGap--heading: var(--space--60);
+
+	// コンテンツの左右の余白
+	--ls--gutter: clamp(1.5rem, 4vw, 2rem); // var(--space-50) とかを使うべきか？
+
+	// ボーダーカラー
+	// --ls--bdc--table: #dcdcdc;
+
+	// hoverユーティリティ用 → --ls--?
+	--hov--duration: 0.3s;
+
+	/* ------------------------------------------------------------
+	    elements
+	------------------------------------------------------------ */
+
+	--offset--outline: 1px;
+	--offset--link-underline: 0.2ex; // // リンクのtext-underline-offset用
+	// --link--underlineOffset:
+
+	--color--focus: revert;
+	--color--hr: currentColor;
+
+	--ff--code: Menlo, Consolas, monaco, monospace;
+	--fz--code: 0.9em;
+
+	// --code--ff, --code--fz, --focus--color, --hr--color, --focus--outlineOffset
+
+	--glass--blur: 20px;
+
+	/* ------------------------------------------------------------
+	    タイポグラフィ
+	------------------------------------------------------------ */
+	--root--ff: sans-serif;
+	// --root--fz: clamp(14px, 4vw, 1rem); // 1rem: ブラウザ標準はほぼ16px
+	--root--fz: clamp(0.875rem, 0.625rem + 1vw, 1rem); // 400 - 600
+	--root--lh: 1.75;
+
+	// font-size 変数
+	--fz--m: 1em;
+	--fz--r: 1rem;
+	// 倍音列(分子8) での計算値
+	--fz--5xl: 4em; //calc(1em * 8 / 2);
+	--fz--4xl: 2.667em; // calc(1em * 8 / 3);
+	--fz--3xl: 2em; //calc(1em * 8 / 4);
+	--fz--2xl: 1.6em; //calc(1em * 8 / 5);
+	--fz--xl: 1.333em; //calc(1em * 8 / 6);
+	--fz--l: 1.143em; //calc(1em * 8 / 7);
+	--fz--s: 0.889em; // calc(1em * 8 / 9);
+	--fz--xs: 0.8em; //calc(1em * 8 / 10);
+	--fz--2xs: 0.727em; //calc(1em * 8 / 11);
+
+	// clampでテキストサイズを変化させたい領域に指定する
+	// --fz-fluid: clamp(0.9rem, 0.8rem + 0.5cqw, 1rem); // 小さい方向のみ. 320: .9rem ~ 640: 1rem
+	--fz-fluid: clamp(0.9rem, 0.75rem + 0.8cqw, 1rem); // 小さい方向のみ. 300: .9rem ~ 500: 1rem
+
+	// --fz-fluid: clamp(0.9rem, 0.8rem + 0.5cqw, 1.1rem); // 上下両方. 320: .9rem ~ 960: 1.1rem
+	// --fz-fluid: clamp(0.9rem, 0.825rem + 0.4cqw, 1.1rem); // 上下両方. 300: .9rem ~ 1100: 1.1rem
+	// --fz-fluid: clamp(0.9rem, 0.85rem + 0.27cqw, 1.05rem); // 上下両方. 300: .9rem ~ 1200: 1.05rem
+	// --fz-fluid--l: clamp(1rem, 0.9rem + 0.25cqw, 1.1rem); // 大きい方向のみ 640: 1rem a~ 960: 1.1rem
+	// clamp(0.9rem, 0.75rem + 0.75vw, 1.2rem); // 上下両方. 320: .9rem ~ 960: 1.2rem
+
+	--ls--ff--emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji',
+		'Android Emoji', 'EmojiSymbols';
+
+	// ------------------------------
+	// line-height 変数
+	// ------------------------------
+	--ls--6L--lh: 1.2;
+	--ls--5L--lh: 1.4;
+	--ls--4L--lh: 1.4;
+	--ls--3L--lh: 1.5;
+	--ls--2L--lh: 1.6;
+	--ls--L--lh: 1.6;
+	// --lh--base: 1.75;
+
+	// 1, xs          sm       md,  lg  xl
+	// 1, 1.25, 1.4, 1.5, 1.6,  1.75, 2,  2.5
+
+	// line-height 変数
+	// --ls--lh--contents: 1.8;
+	// --ls--lh--heading: 1.8;
+
+	// chakra
+	// normal: "normal",
+	// none: 1,
+	// shorter: 1.25,
+	// short: 1.375,
+	// base: 1.5,
+	// tall: 1.625,
+	// taller: "2",
+
+	/* ------------------------------------------------------------
+	  カラー: ユーザー側で定義できる仕組みも必要
+	 ------------------------------------------------------------ */
+	--c--bg: #fdfdfd; // 背景色メイン
+	--c--main: #2f4858; // メインカラー
+	--c--accent: #be3455; // mainと逆の目立つ色
+
+	--hs--gray: 215, 8%;
+
+	// 確定
+	--c--link: #0c61e4; // リンク色
+	--c--text: #111; // テキスト色
+	--c--headline: #00473e; // 見出しカラー
+	// --bdc--table: #dcdcdc;
+
+	// どうする
+	--c--sub: #dde7f0; // main と相性のいい、背景色に使うような薄い色？
+
+	--c--black: #000;
+
+	// gray
+	--c--dimgray: hsl(var(--hs--gray), 20%); // gray 90
+	--c--darkgray: hsl(var(--hs--gray), 32%); // gray 70
+	--c--gray: hsl(var(--hs--gray), 52%); // #646b79 // gray50
+	--c--lightgray: hsl(var(--hs--gray), 80%); //#f5f5f5; // gray30
+	--c--whitesmoke: hsl(var(--hs--gray), 96%); // gray10
+
+	--c--white: #fff;
+
+	--c--border: hsl(var(--hs--gray), 88%);
+
+	// cbox
+	--c--red: hsl(5, 72%, 56%); // #ef4444
+	--c--orange: hsl(32, 88%, 52%); // #f97316
+	--c--yellow: hsl(48, 88%, 52%); //#f1b808
+	--c--green: hsl(156, 80%, 44%); //#10b981
+	--c--blue: hsl(200, 80%, 52%); //#0ea5e9
+	--c--purple: hsl(255, 72%, 60%); //#8b5cf6
+	--c--pink: hsl(330, 76%, 56%); //#ec4899
+
+	// --c--red: hsl(0, 80%, 60%); // #ef4444
+	// --c--orange: hsl(30, 80%, 60%); // #f97316
+	// --c--yellow: hsl(45, 80%, 60%); //#f1b808
+	// --c--green: hsl(155, 60%, 60%); //#10b981
+	// --c--blue: hsl(200, 80%, 60%); //#0ea5e9
+	// --c--purple: hsl(260, 80%, 60%); //#8b5cf6
+	// --c--pink: hsl(330, 80%, 60%); //#ec4899
+
+	--colorMixPercent--bg: 92%;
+	--colorMixPercent--link: 12%;
+	// --colorMixPercent--bdc: 80%;
+
+	/* ------------------------------------------------------------
+	  カラー: ユーザー側で定義できる仕組みも必要
+	 ------------------------------------------------------------ */
+	// フィボナッチ数列 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89,
+	// 0 .25rem, .5rem, .75rem, 1.25rem, M:(8):2rem, 3.25rem, 5.25rem, 8.5rem
+	--space--0: 0rem;
+	--space--5: 0.125rem;
+	--space--10: 0.25rem;
+	--space--15: 0.375rem;
+	--space--20: 0.5rem;
+	--space--25: 0.625rem;
+	--space--30: 0.75rem;
+	--space--35: 1rem;
+	--space--40: 1.25rem;
+	--space--45: 1.625rem;
+	--space--50: 2rem;
+	--space--55: 2.625rem;
+	--space--60: 3.25rem;
+	--space--65: 4.25rem;
+	--space--70: 5.25rem;
+	--space--80: 8.5rem;
+	--space--90: 13.75rem;
+	--space--100: 22.25rem;
+
+	/* ------------------------------------------------------------
+	  radius
+	 ------------------------------------------------------------ */
+	--radius--1: 2px;
+	--radius--2: 5px;
+	--radius--3: 8px;
+	--radius--4: 0.75rem; //13px;
+	--radius--5: 1.5rem; //21px;
+	--radius--6: 3rem; //34px;
+	--radius--99: 999px;
+
+	/* ------------------------------------------------------------
+	  shadow
+	 ------------------------------------------------------------ */
+
+	--shadow--color: 0 0 0;
+	--shadow--amount--0: 0.5px 1px 2px 0px;
+	--shadow--amount--1: 0.5px 1px 4px -1px;
+	--shadow--amount--2: 1px 2px 8px -1px;
+	--shadow--amount--3: 2px 4px 16px -1px;
+	--shadow--amount--4: 4px 8px 32px -1px;
+	--shadow--amount--5: 8px 16px 56px -1px;
+
+	// ポイント:
+	//    x:yのオフセット比率は一定に保つ. 1:2
+	//    [blurサイズ - オフセット] の差は広がっていく
+	//    base(0)のshadowを共通で付ける
+	//    1段階前のshadowを薄めてつける
+
+	--shadow--1: var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--1) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--2: var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--1) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--2) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--3: var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--2) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--3) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--4: var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--3) rgb(var(--shadow--color) / 0.05),
+		var(--shadow--amount--4) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--i1: inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--1) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--i2: inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--1) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--2) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--i3: inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--2) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--3) rgb(var(--shadow--color) / 0.1);
+
+	--shadow--i4: inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--3) rgb(var(--shadow--color) / 0.05),
+		inset var(--shadow--amount--4) rgb(var(--shadow--color) / 0.1);
+
+	// --shadow--5:
+	// 	var(--shadow--amount--0) rgb(var(--shadow--color) / 0.1),
+	// 	calc(5px / 2) 5px 8px -1px rgb(var(--shadow--color) / 0.05),
+	// 	var(--shadow--amount--3) rgb(var(--shadow--color) / 0.05),
+	// 	calc(13px / 2) 13px 21px -1px rgb(var(--shadow--color) / 0.05),
+	// 	calc(12px / 2) 21px 34px -1px rgb(var(--shadow--color) / 0.15);
+
+	// 1 にすると押し込むような感じになる
+	--shadow--hov: var(--shadow--4);
+}
+
+// ↓ space: これでもわりとしっくりくる...？ 2:.25, 3: 0.375
+// 10: .25
+// 20: 0.375
+// 30: 0.625
+// 40: 1
+// 50: 1.625
+// 60: 2.625
+// 70: 4.25
+// 80: 6.875
+// 90: 11.125
+// 100: 18

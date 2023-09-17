@@ -1,12 +1,11 @@
-
-:root{
+:root {
 	/*
 	 * カラー: ユーザー側で定義が必要
 	 *    base:main:accent = 70:25:5の法則 ( https://chot.design/concept-of-design/02d49c79f19a/ )
 	 *    + α
 	 */
 	--color--bg: #fdfdfd; // 背景色メイン
-	--color--main: #2F4858; // メインカラー
+	--color--main: #2f4858; // メインカラー
 	--color--accent: #be3455; // mainと逆の目立つ色
 
 	// 確定
@@ -14,8 +13,8 @@
 	--color--text: #111; // テキスト色
 	--color--headline: #00473e; // 見出しカラー
 	--color--border: #ccc;
-	// --bdc--table: #dcdcdc; 
-	
+	// --bdc--table: #dcdcdc;
+
 	// どうする
 	--color--black: #000;
 	--color--white: #fff;
@@ -89,75 +88,70 @@
 	--gray-500: #4b5563;
 	--gray-600: #111827;
 	--gray-700: #030712;
-
 }
-
 
 //カラー系
-[class*="-c:"]{
+[class*='-c:'] {
 	color: var(--c) !important;
 }
-.-c\:base{
+.-c\:base {
 	--c: var(--color--bg);
 }
-.-c\:main{
+.-c\:main {
 	--c: var(--color--main);
 }
-.-c\:accent{
+.-c\:accent {
 	--c: var(--color--accent);
 }
 
-.-c\:link{
-	--c:  var(--color--link);
+.-c\:link {
+	--c: var(--color--link);
 }
-.-c\:text{
-	--c:  var(--color--text);
+.-c\:text {
+	--c: var(--color--text);
 }
 
-.-c\:gray{
+.-c\:gray {
 	--c: var(--gray);
 }
-.-c\:white{
+.-c\:white {
 	--c: #fff;
 }
-.-c\:black{
+.-c\:black {
 	--c: #000;
 }
 
-
-
-[class*="-bgc:"]{
+[class*='-bgc:'] {
 	background-color: var(--bgc) !important;
 }
 
-.-bgc\:base{
+.-bgc\:base {
 	--bgc: var(--color--bg);
 }
-.-bgc\:main{
+.-bgc\:main {
 	--bgc: var(--color--main);
 }
 
-.-bgc\:accent{
+.-bgc\:accent {
 	--bgc: var(--color--accent);
 }
 
-.-bgc\:text{
-	--bgc:  var(--color--text);
+.-bgc\:text {
+	--bgc: var(--color--text);
 }
-.-bgc\:link{
-	--bgc:  var(--color--link);
+.-bgc\:link {
+	--bgc: var(--color--link);
 }
 
-.-bgc\:gray{
+.-bgc\:gray {
 	--bgc: var(--color--gray);
 }
-.-bgc\:white{
-	--bgc:#fff;
+.-bgc\:white {
+	--bgc: #fff;
 }
-.-bgc\:black{
-	--bgc:#000;
+.-bgc\:black {
+	--bgc: #000;
 }
-
 
 // #wrapper{
 // 	--color--bg: #000; // 背景色メイン
@@ -166,8 +160,7 @@
 // 	color: var(--color--text);
 // }
 
-
-[class*="-cbox:"]{
+[class*='-cbox:'] {
 	--keyColor: currentColor; //var(--color--main);
 	--c: color-mix(in srgb-linear, var(--keyColor), var(--color--text) 96%);
 	--bgc: color-mix(in srgb-linear, var(--keyColor), var(--color--bg) 94%);
@@ -179,74 +172,72 @@
 
 // -cbox: --cを使う?
 
-
 // [class*="-cbox:"]{
 // 	color: var(--c);
 // 	background-color: var(--bgc);
 // 	border: solid 1px var(--bdc);
 // }
 
-.-cbox\:main{
+.-cbox\:main {
 	--keyColor: var(--color--main);
 }
 
-.-cbox\:gray{
+.-cbox\:gray {
 	--keyColor: var(--gray-400);
 	// --c: var(--gray-700);
 	// --bgc: var(--gray-100);
 	// --bdc: var(--gray-300);
 	// --color--link: var(--gray-500);
 }
-.-cbox\:red{
+.-cbox\:red {
 	--keyColor: var(--red-400);
 	// --c: var(--red-700);
 	// --bgc: var(--red-100);
 	// --bdc: var(--red-300);
 	// --color--link: var(--red-500);
 }
-.-cbox\:orange{
+.-cbox\:orange {
 	--keyColor: var(--orange-400);
 	// --c: var(--orange-700);
 	// --bgc: var(--orange-100);
 	// --bdc: var(--orange-300);
 	// --color--link: var(--orange-500);
 }
-.-cbox\:yellow{
+.-cbox\:yellow {
 	--keyColor: var(--yellow-400);
 	// --c: var(--yellow-700);
 	// --bgc: var(--yellow-100);
 	// --bdc: var(--yellow-300);
 	// --color--link: var(--yellow-500);
 }
-.-cbox\:green{
+.-cbox\:green {
 	--keyColor: var(--green-400);
 	// --c: var(--green-700);
 	// --bgc: var(--green-100);
 	// --bdc: var(--green-300);
 	// --color--link: var(--green-500);
 }
-.-cbox\:blue{
+.-cbox\:blue {
 	--keyColor: var(--blue-400);
 	// --c: var(--blue-700);
 	// --bgc: var(--blue-100);
 	// --bdc: var(--blue-300);
 	// --color--link: var(--blue-500);
 }
-.-cbox\:purple{
+.-cbox\:purple {
 	--keyColor: var(--purple-400);
 	// --c: var(--purple-700);
 	// --bgc: var(--purple-100);
 	// --bdc: var(--purple-300);
 	// --color--link: var(--purple-500);
 }
-.-cbox\:pink{
+.-cbox\:pink {
 	--keyColor: var(--pink-400);
 	// --c: var(--pink-700);
 	// --bgc: var(--pink-100);
 	// --bdc: var(--pink-300);
 	// --color--link: var(--pink-500);
 }
-
 
 // [class*="-fill:"]{
 // 	--c: #fff; // reverse用に定義

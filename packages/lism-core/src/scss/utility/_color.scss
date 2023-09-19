@@ -3,29 +3,29 @@
 	color: var(--c) !important;
 }
 .-c\:main {
-	--c: var(--color--main);
+	--c: var(--main);
 }
 .-c\:accent {
-	--c: var(--color--accent);
+	--c: var(--accent);
 }
 .-c\:base {
 	--c: var(--c--base);
 }
 .-c\:pale {
 	--c: var(--c--pale);
-	// opacity: 0.7;
 }
 .-c\:opposite {
 	--c: var(--c--opposite);
-	// opacity: 0.7;
 }
 
-.-c\:white {
-	--c: var(--color--white);
-}
-.-c\:black {
-	--c: var(--color--black);
-}
+// .-c\:white {
+// 	--c: var(--white);
+// 	--c--opposite: var(--black);
+// }
+// .-c\:black {
+// 	--c: var(--black);
+// 	--c--opposite: var(--white);
+// }
 
 // .-c\:current{--c: currentColor;}
 
@@ -33,17 +33,17 @@
 	background-color: var(--bgc) !important;
 }
 .-bgc\:main {
-	--bgc: var(--color--main);
+	--bgc: var(--main);
 }
 .-bgc\:accent {
-	--bgc: var(--color--accent);
+	--bgc: var(--accent);
 }
-.-bgc\:white {
-	--bgc: var(--color--white);
-}
-.-bgc\:black {
-	--bgc: var(--color--black);
-}
+// .-bgc\:white {
+// 	--bgc: var(--white);
+// }
+// .-bgc\:black {
+// 	--bgc: var(--black);
+// }
 .-bgc\:base {
 	--bgc: var(--bg--base);
 }
@@ -52,7 +52,9 @@
 }
 .-bgc\:strong {
 	--bgc: var(--bgc--strong);
-	color: var(--c--opposite);
+}
+.-bgc\:opposite {
+	--bgc: var(--bgc--opposite);
 }
 .-bgc\:cc {
 	--bgc: currentColor;
@@ -62,37 +64,55 @@
 }
 
 // --keycolor : 1つのカラーをもとにスタイリングしたいときに活用する。 cbox,outline,fillなどで使っている
+[class*='-keycolor:'][data-variant='fill'] {
+	--c: var(--keycolor--c, var(--c--filled));
+}
 // .-keycolor\:{&}
-.-keycolor\:current {
+.-keycolor\:cc {
 	--keycolor: currentColor;
 }
 .-keycolor\:main {
-	--keycolor: var(--color--main);
+	--keycolor: var(--main);
+	--keycolor--c: var(--main--c);
 }
 .-keycolor\:accent {
-	--keycolor: var(--color--accent);
+	--keycolor: var(--accent);
+	--keycolor--c: var(--accent--c);
 }
-.-keycolor\:nuetral {
-	--keycolor: var(--color--n300);
+.-keycolor\:gray {
+	--keycolor: var(--gray);
+	--keycolor--c: var(--gray--c);
 }
 .-keycolor\:red {
-	--keycolor: var(--color--red);
+	--keycolor: var(--red);
+	--keycolor--c: var(--red--c);
 }
 .-keycolor\:orange {
-	--keycolor: var(--color--orange);
+	--keycolor: var(--orange);
+	--keycolor--c: var(--orange--c);
 }
 .-keycolor\:yellow {
-	--keycolor: var(--color--yellow);
+	--keycolor: var(--yellow);
+	--keycolor--c: var(--yellow--c);
 }
 .-keycolor\:green {
-	--keycolor: var(--color--green);
+	--keycolor: var(--green);
+	--keycolor--c: var(--green--c);
 }
 .-keycolor\:blue {
-	--keycolor: var(--color--blue);
+	--keycolor: var(--blue);
+	--keycolor--c: var(--blue--c);
 }
 .-keycolor\:purple {
-	--keycolor: var(--color--purple);
+	--keycolor: var(--purple);
+	--keycolor--c: var(--purple--c);
 }
 .-keycolor\:pink {
-	--keycolor: var(--color--pink);
+	--keycolor: var(--pink);
+	--keycolor--c: var(--pink--c);
+}
+
+.-keycolor\:basic {
+	--keycolor: var(--b900);
+	--keycolor--c: var(--b50);
 }

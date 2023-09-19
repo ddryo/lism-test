@@ -5,7 +5,7 @@ import { Flex } from '../Flex';
 import { Icon } from '../Icon';
 
 import {
-	PhPencilSimple,
+	PhNotePencil,
 	PhWarningCircle,
 	PhWarning,
 	PhCheck,
@@ -18,7 +18,7 @@ import {
 
 const AlertPresets = {
 	memo: {
-		icon: PhPencilSimple,
+		icon: PhNotePencil,
 		color: 'gray',
 	},
 	error: {
@@ -56,15 +56,16 @@ const defaultProps = {
 export default function Notice({
 	icon,
 	caption,
-	variant,
+	variant = 'note',
 	preset,
-	color,
+	color = 'basic',
 	// boxColor,
 	// iconColor,
 	style = {},
 	children,
 	// headProps,
 	// bodyProps,
+	flowGap,
 	...props
 }) {
 	// if ('cbox' === variant) {
@@ -82,13 +83,13 @@ export default function Notice({
 	}
 
 	icon = icon || presetIcon;
-	color = color || presetColor || 'main';
+	color = color || presetColor;
 
 	const boxProps = {
 		blockClass: 'b--notice',
 		'data-variant': variant,
-		p: '-',
-		gap: '-',
+		// p: '-',
+		// gap: '-',
 		// radius: '-',
 		style,
 		...defaultProps.Notice,
@@ -96,60 +97,53 @@ export default function Notice({
 	};
 
 	const headProps = {
-		blockClass: 'b--notice__head',
-		gap: 20,
+		// gap: 20,
 	};
 
 	const bodyProps = {
-		blockClass: 'b--notice__body',
-		flowGap: 40,
-	};
-
-	const captionProps = {
-		className: 'b--notice__caption',
+		flowGap: flowGap || 40,
 	};
 
 	// colorの調整
 	boxProps.keycolor = color;
 
-	if ('fill' !== variant) {
-		headProps.fw = 700;
-	}
+	// if ('fill' === variant) {
+	// 	boxProps.gap = 0;
+	// 	boxProps.p = null; // boxで --p を使わない（0にもしないように注意）
+	// 	boxProps.ov = 'hidden'; // radiusつけたときに fill部分がはみ出さないように
 
-	// paddingの調整
-	if ('fill' === variant) {
-		boxProps.gap = 0;
-		boxProps.p = null; // boxで --p を使わない（0にもしないように注意）
-		boxProps.ov = 'hidden'; // radiusつけたときに fill部分がはみ出さないように
+	// 	// --p を継承する
+	// 	bodyProps.p = '-';
 
-		// --p を継承する
-		bodyProps.p = '-';
+	// 	// X方向は親の --p を引き継ぎ、Y方向は別途指定
+	// 	headProps.pX = '-';
+	// 	headProps.pY = 20;
+	// }
 
-		// X方向は親の --p を引き継ぎ、Y方向は別途指定
-		headProps.pX = '-';
-		headProps.pY = 20;
-	} else if ('cap-onbd' === variant) {
+	if ('bump' === variant) {
 		// borderの上に重ねる
 		Object.assign(headProps, {
 			pos: 'absolute',
-			pX: 20,
 			top: 0,
 			left: 0,
 			translate: '0 -50%',
 		});
+		// headProps.pos = 'absolute';
+		bodyProps.mbs = '10';
 	}
 	// else {}
 
+	let Component = 'bump' === variant ? Lism : Stack;
 	return (
-		<Stack {...boxProps}>
-			<Flex {...headProps}>
+		<Component {...boxProps}>
+			<Flex blockClass='b--notice__head' {...headProps}>
 				{icon && <Icon icon={icon} blockClass='b--notice__icon' size='1.5em' />}
-				<span {...captionProps}>{caption}</span>
+				<span className='b--notice__caption'>{caption}</span>
 			</Flex>
 
-			<Lism isFlow {...bodyProps}>
+			<Lism blockClass='b--notice__body' isFlow {...bodyProps}>
 				{children}
 			</Lism>
-		</Stack>
+		</Component>
 	);
 }

@@ -60,7 +60,7 @@ export function getMaybeSpaceVar(space) {
 
 export function getMaybeColorVar(color) {
 	if (isPresetValue('color', color)) {
-		return 'var(--color--' + color + ')';
+		return 'var(--' + color + ')';
 	}
 	//  else if (isPresetValue('keycolor', color)) {
 	// 	return 'var(--c--' + color + ')';

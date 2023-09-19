@@ -1,9 +1,8 @@
-
 // --------------------
 // Reel
 // --------------------
 .l--reel {
-	--item-w: 16em; // 初期値要検討
+	--item--w: 16em; // 初期値要検討
 
 	// display: flex;
 	overflow-x: auto;
@@ -11,19 +10,18 @@
 
 	// display: grid !important;
 	grid-auto-flow: column;
-	grid-auto-columns: var(--item-w);
-    // grid-template-columns: unset;
-    // grid-template-rows: unset;
+	grid-auto-columns: var(--item--w);
+	// grid-template-columns: unset;
+	// grid-template-rows: unset;
 }
 
 // .l--reel.is--flex {
 // 	> .is--item {
-// 		flex: 0 0 var(--item-w);
+// 		flex: 0 0 var(--item--w);
 // 	}
 // }
 
-
-.l--reel[data-scbar="show"]{
+.l--reel[data-scbar='show'] {
 	--scrollbar--thumb-color: #fff;
 	--scrollbar--track-color: #000;
 	--scrollbar--height: 1rem;
@@ -33,7 +31,9 @@
 	scrollbar-width: var(--scrollbar--height);
 
 	&:not(.no-bar) {
-		padding-bottom: var(--space--10); // JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい?
+		padding-bottom: var(
+			--space--10
+		); // JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい?
 	}
 
 	&.no-bar {
@@ -44,7 +44,13 @@
 	}
 	&::-webkit-scrollbar-thumb {
 		background-color: var(--scrollbar--thumb-color);
-		background-image: linear-gradient(var(--scrollbar--track-color) 0, var(--scrollbar--track-color) .25rem, var(--scrollbar--thumb-color) .25rem, var(--scrollbar--thumb-color) .75rem, var(--scrollbar--track-color) .75rem);
+		background-image: linear-gradient(
+			var(--scrollbar--track-color) 0,
+			var(--scrollbar--track-color) 0.25rem,
+			var(--scrollbar--thumb-color) 0.25rem,
+			var(--scrollbar--thumb-color) 0.75rem,
+			var(--scrollbar--track-color) 0.75rem
+		);
 	}
 	&::-webkit-scrollbar-track {
 		background-color: var(--scrollbar--track-color);

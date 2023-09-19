@@ -1,11 +1,11 @@
 // ネストされている時はpX継承できるように
 :where(.b--navMenu:not([data-nest-level])) {
-	--item-py: var(--space--20);
-	--item-px: var(--space--30);
-	// --item-pl: var(--item-px);
-	--item-ml: 0;
+	--item--py: var(--space--20);
+	--item--px: var(--space--30);
+	// --item--pl: var(--item--px);
+	--item--ml: 0;
 	--level: 0;
-	--hov--bgc: var(--color--whitesmoke);
+	--hov--bgc: var(--b100);
 
 	// --bdc: var(--c--border);
 	// --bd: solid 1px var(--bdc);
@@ -17,7 +17,7 @@
 // <li>
 .b--navMenu__item {
 	line-height: 1.5;
-	margin-left: var(--item-ml);
+	margin-left: var(--item--ml);
 }
 .l--accordion__bodyInner > .b--navMenu {
 	// アウトラインが ov:hiddenによって 見えなく鳴るのを防ぐ?
@@ -30,7 +30,7 @@
 	display: flex;
 	align-items: center;
 	gap: var(--space--20);
-	padding: var(--item-py) var(--item-px);
+	padding: var(--item--py) var(--item--px);
 	color: inherit;
 	text-decoration: none;
 	// align-items: baseline;
@@ -39,21 +39,21 @@
 
 // 子項目の余白をpaddingで調整する場合
 // .b--navMenu[data-nest-level]{
-// 	--item-pl: calc(var(--item-px) + (var(--level) * 1.25em));
+// 	--item--pl: calc(var(--item--px) + (var(--level) * 1.25em));
 // }
 
 // 子項目の余白をmarginで調整する場合
 .b--navMenu[data-nest-level] {
-	--item-ml: var(--space--40);
+	--item--ml: var(--space--40);
 }
 
 .b--navMenu__acc > .l--accordion__header {
-	--p: 0 var(--item-px) 0 0;
+	--p: 0 var(--item--px) 0 0;
 }
 
 .b--navMenu.l--cluster {
 	.b--navMenu[data-nest-level] {
-		--item-ml: 0;
+		--item--ml: 0;
 	}
 	.l--accordion__body {
 		position: absolute;

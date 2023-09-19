@@ -9,7 +9,7 @@ const FILTERS = [
 	'grayscale',
 	'hue-rotate',
 	'invert',
-	'opacity',
+	// 'opacity',
 	'saturate',
 	'sepia',
 ];

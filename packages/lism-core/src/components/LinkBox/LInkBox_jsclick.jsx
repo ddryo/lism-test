@@ -43,7 +43,7 @@ export default function LinkBox({
 		forwardedRef: ref,
 		isLinkbox: true,
 		'aria-label': ariaLabel || null,
-		hover: hover || 'opacity',
+		hover: hover || 'fade',
 		...props,
 	};
 

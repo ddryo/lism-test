@@ -10,7 +10,7 @@ export default function Button({
 	rightIcon,
 	// label,
 	variant = 'fill',
-	color = 'main',
+	color = 'basic',
 	children,
 	iconPosition,
 	...props
@@ -18,10 +18,6 @@ export default function Button({
 	const blockProps = {
 		lismClass: 'l--button',
 		lismStyle: {},
-		// gap: 10,
-		// p: '-',
-		// radius: '-',
-		// ai: 'center',
 		'data-variant': variant,
 	};
 
@@ -31,25 +27,25 @@ export default function Button({
 	}
 
 	if (iconOffset) {
-		blockProps.lismStyle['--icon-offset'] = iconOffset;
+		blockProps.lismStyle['--icon--offset'] = iconOffset;
 	}
 
 	if (color) {
-		// blockProps.keycolor = color;
+		blockProps.keycolor = color;
 
-		if ('fill' === variant) {
-			blockProps.bgc = color;
-			// blockProps.c = 'white';
-		} else if ('outline' === variant) {
-			blockProps.keycolor = color;
-			// blockProps.c = color;
-			// blockProps.bdc = color;
-		} else if ('text' === variant) {
-			// test
-			blockProps.c = color;
-		} else {
-			blockProps.keycolor = color;
-		}
+		// if ('fill' === variant) {
+		// 	blockProps.bgc = color;
+		// 	// blockProps.c = 'white';
+		// } else if ('outline' === variant) {
+		// 	blockProps.keycolor = color;
+		// 	// blockProps.c = color;
+		// 	// blockProps.bdc = color;
+		// } else if ('ghost' === variant) {
+		// 	// test
+		// 	blockProps.c = color;
+		// } else {
+		// 	blockProps.keycolor = color;
+		// }
 	}
 
 	// if (undefined !== leftIcon || undefined !== rightIcon) {
@@ -60,14 +56,14 @@ export default function Button({
 	// → 別コンポーネントに切り分けるべき...?
 	if (icon) {
 		return (
-			<Lism tag='a' {...blockProps} p={30} {...props}>
+			<Lism tag='a' hover='fade' {...blockProps} p={30} {...props}>
 				<Icon icon={icon} lismClass='l--button__icon e--icon' />
 			</Lism>
 		);
 	}
 
 	return (
-		<Lism tag='a' {...blockProps} {...props}>
+		<Lism tag='a' hover='fade' {...blockProps} {...props}>
 			{leftIcon && (
 				<Icon icon={leftIcon} lismClass='l--button__icon e--icon' data-position='left' />
 			)}

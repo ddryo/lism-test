@@ -1,59 +1,70 @@
-// Notice は --keycolor が常に渡ってくる
+@layer lism-module {
+	// Notice は --keycolor が常に渡ってくる
+	.b--notice {
+		// --keycolor: currentColor; //var(--gray);
+		--p: var(--space--40);
+		--gap: var(--space--30);
+		--head--c: var(--keycolor);
+		--bdc: var(--keycolor);
+		--bdrs: var(--radius--1);
+	}
+}
+
 :where(.b--notice) {
-	--p: var(--space--40);
-	--gap: var(--space--35);
-	--head--c: var(--keycolor);
-	--bdc: var(--keycolor);
-	// --bdrs: var(--radius--1);
 	position: relative;
+	padding: var(--p);
+	gap: var(--gap);
+	border-radius: var(--bdrs);
 }
 .b--notice__icon {
 	margin-left: -0.125em;
 }
 .b--notice__head {
 	color: var(--head--c);
-	// display: flex;
 	align-items: center;
-}
-
-// default以外
-:where(.b--notice[data-variant]) {
-	border: solid 1px var(--bdc);
+	font-weight: 700;
+	gap: 0.325em;
 }
 
 // default
-.b--notice:not([data-variant]) {
+:where(.b--notice[data-variant='note']) {
 	border-inline-start: solid 4px var(--bdc);
 
 	// color-mixのサポートチェック
 	@supports (color: color-mix(in srgb, #000, #fff)) {
-		--link--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
-		--head--c: var(--link--c);
+		--head--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
+		--link--c: var(--head--c);
 		background-color: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bg));
 	}
 }
+
+// :where(.b--notice[data-variant='outline']) {
+// 	border: solid 1px var(--bdc);
+// 	gap: var(--gap);
+// }
 
 // fill
 // [data-variant="fill"]{
 // 	overflow: hidden; // border-radiusつけたときに fill部分がはみ出さないように
 // }
-[data-variant='fill'] > .b--notice__head {
-	--head--c: #fff;
-	--pX: var(--p);
-	background-color: var(--keycolor);
-}
+// [data-variant='fill'] > .b--notice__head {
+// 	--head--c: var(--c--filled);
+// 	--pX: var(--p);
+// 	background-color: var(--keycolor);
+// }
 
 // outline
 // .b--notice[data-variant="outline"] {border: solid 1px var(--keycolor);}
 
-// obbd
-.b--notice[data-variant='cap-onbd'] {
-	:where(&) > .b--notice__head {
-		background-color: var(--bgc--base);
-		margin-inline: var(--space--40);
+// bump
+[data-variant='bump'] {
+	:where(&.b--notice) {
+		border: solid 1px var(--bdc);
 	}
-
-	:where(&) > .b--notice__body {
-		margin-top: var(--space--20);
+	:where(& > .b--notice__head) {
+		background-color: var(--bgc--base);
+		margin-inline: var(--space--30);
+		padding-inline: 0.5em;
+		// border-radius: 4px;
 	}
 }

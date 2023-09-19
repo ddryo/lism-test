@@ -10,7 +10,7 @@ export default function Badge({
 	// icon,
 	// label,
 	variant = 'fill',
-	color = 'main',
+	color = 'basic',
 	hasIcon,
 	style = {},
 	children,

@@ -4,7 +4,7 @@ import { Lism } from '../Lism';
 export default function Cluster({ itemMinW, ...props }) {
 	const lismStyle = {};
 	if (itemMinW) {
-		lismStyle['--item-minW'] = itemMinW;
+		lismStyle['--item--minW'] = itemMinW;
 	}
 	return <Lism useFlexProps lismClass='l--cluster' lismStyle={lismStyle} gap={20} {...props} />;
 }

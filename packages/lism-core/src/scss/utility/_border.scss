@@ -43,7 +43,7 @@
 // 	border: var(--bdw) var(--bds) var(--bdc--base);
 // }
 .-bd\:emphasis {
-	border: 5px double var(--bdc--strong);
+	border: 5px double currentColor;
 }
 .-bd\:guide {
 	border: 1px dashed rgba(160, 160, 160, 0.4);
@@ -123,25 +123,25 @@
 
 // .-bdc\:{border-color: var(--bdc);}
 .-bdc\:main {
-	--bdc: var(--color--main);
+	--bdc: var(--main);
 }
 .-bdc\:accent {
-	--bdc: var(--color--accent);
+	--bdc: var(--accent);
 }
 .-bdc\:base {
 	--bdc: var(--bdc--base);
 }
-.-bdc\:strong {
-	--bdc: var(--bdc--strong);
-}
+// .-bdc\:strong {
+// 	--bdc: var(--bdc--strong);
+// }
 .-bdc\:t {
 	--bdc: var(--bd--transparent);
 }
 // .-bdc\:white {
-// 	--bdc: var(--color--white);
+// 	--bdc: var(--white);
 // }
 // .-bdc\:black {
-// 	--bdc: var(--color--black);
+// 	--bdc: var(--black);
 // }
 
 // border-style使うと全方向にborder出てくることに注意。

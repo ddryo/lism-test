@@ -72,16 +72,16 @@ import TableDemo from '~/html/table.html';
 		</tfoot>
 	</table>
 
-	<!-- color: var(--c--th, inherit); background-color: var(--bgc--th, transparent); -->
+	<!-- color: var(--th--c, inherit); background-color: var(--th--bgc, transparent); -->
 	<table>
-		<thead style='--c--th:#fff;--bgc--th:black'>
+		<thead style='--th--c:#fff;--th--bgc:black'>
 			<tr>
 				<th>Table Header 1</th>
 				<th>Table Header 2</th>
 				<th>Table Header 3</th>
 			</tr>
 		</thead>
-		<tbody style='--bgc--th:#f8f9fa'>
+		<tbody style='--th--bgc:#f8f9fa'>
 			<tr>
 				<th>Division 1</th>
 				<td>Division 2</td>
@@ -98,7 +98,7 @@ import TableDemo from '~/html/table.html';
 				<td>...</td>
 			</tr>
 		</tbody>
-		<tfoot style='--c--th:rgb(234, 62, 28);'>
+		<tfoot style='--th--c:rgb(234, 62, 28);'>
 			<tr>
 				<th>Total</th>
 				<td>Table Header 2</td>
@@ -125,14 +125,14 @@ import TableDemo from '~/html/table.html';
 	<p>↓scroll, fix-1st-row, fix-thead, solid</p>
 	<figure
 		class='scroll-table fix-1st-row fix-thead is-style-table--solid'
-		style='--bgc--th:#f8f9fa'
+		style='--th--bgc:#f8f9fa'
 	>
 		<TableDemo />
 	</figure>
 
 	<h2>入れ子</h2>
 	<table class='table table-striped table-bordered'>
-		<thead style='--bgc--th:#f8f9fa'>
+		<thead style='--th--bgc:#f8f9fa'>
 			<tr>
 				<th scope='col'>#</th>
 				<th scope='col'>First</th>

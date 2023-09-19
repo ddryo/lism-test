@@ -98,63 +98,88 @@
 	  カラー: ユーザー側で定義できる仕組みも必要
 	------------------------------------------------------------ */
 
-	// --color-: 文字色・背景色など共通して採用されるカラー
-	--color--main: #2f4858;
-	--color--accent: #be3455;
+	// --color--: 文字色・背景色など共通して採用されるカラー
+	--main: #1e4e6b;
+	// --main--c: #fff; // 背景が main の時の文字色
+	--accent: #be3455;
+	// --accent--c: #fff; // 背景が accent の時の文字色
 	// --bgc--base: #fdfdfd; // 背景色メイン
 
-	--color--black: #000;
-	--color--white: #fff;
+	// ベースカラーに合わせたカラーを段階的に用意
+	--hs--basic: 215 8%;
+	--b50: hsl(var(--hs--basic) 99%); // 背景色
+	--b100: hsl(var(--hs--basic) 96%); // 淡い背景色
+	--b200: hsl(var(--hs--basic) 88%); // 少し濃い背景色 & ボーダー基本色もデフォルトはこれ
+	// ...
+	--b800: hsl(var(--hs--basic) 30%); // 淡い文字色 strong背景色
+	--b900: hsl(var(--hs--basic) 16%); // 少しだけ淡い文字色. pre code などで使用
+	--b950: hsl(var(--hs--basic) 8%); // 文字色
 
-	// nuetral カラー（グレー系）を5段階で用意
-	--hs--nuetral: 215, 8%;
-	--color--n100: hsl(var(--hs--nuetral), 96%);
-	--color--n200: hsl(var(--hs--nuetral), 80%);
-	--color--n300: hsl(var(--hs--nuetral), 48%);
-	--color--n400: hsl(var(--hs--nuetral), 30%);
-	--color--n500: hsl(var(--hs--nuetral), 16%);
+	// --pallete--?
+	--black: #000;
+	--white: #fff;
+	--red: hsl(4 76% 52%); // #ef4444
+	// --red--c: var(--c--filled);
+	--orange: hsl(28 80% 52%); // #f97316
+	// --orange--c: var(--c--filled);
+	--yellow: hsl(52 88% 48%); //#f1b808
+	// --yellow--c: #000;
+	--green: hsl(148 84% 44%); //#10b981
+	// --green--c: #000;
+	--blue: hsl(200 80% 52%); //#0ea5e9
+	// --blue--c: var(--c--filled);
+	--purple: hsl(250 80% 60%); //#8b5cf6
+	// --purple--c: var(--c--filled);
+	--pink: hsl(325 76% 52%); //#ec4899
+	// --pink--c: var(--c--filled);
+	--gray: hsl(214 8% 48%); // #64748b;
+	// --gray--c: var(--c--filled);
 
-	// --c-: 文字色
-	--c--base: #111; // テキスト色
-	--c--pale: #666; // テキスト色
-	--c--opposite: #fff;
-	--c--filled: var(--c--opposite); // fill時のカラー. // --filled--c?
+	// --c-: 文字色 に関するセマンティックトークン
+	--c--base: var(--b900); // テキスト色
+	--c--pale: var(--b800); // テキスト色
+	--c--opposite: var(--b50); // 明暗反転色
+	--c--filled: #fff; // variant="fill"系の文字色
 
-	@supports (color: color-mix(in srgb, #000, #fff)) {
-		--c--pale: color-mix(in srgb, var(--c--base), transparent 30%);
-	}
+	// --bgc-: 背景色 に関するセマンティックトークン
+	--bgc--base: var(--b50);
+	--bgc--pale: var(--b100);
+	--bgc--strong: var(--b800);
+	--bgc--opposite: var(--b900); // 明暗反転色
 
-	// --bgc-: 背景色
-	--bgc--base: #fdfdfd; // 背景色 // --color--bg-base
-	--bgc--pale: var(--color--n100); // クラス側でもよさそう
-	--bgc--strong: var(--color--n500); // クラス側でもよさそう
-
-	// --bdc-: ボーダー色
-	--bdc--base: var(--color--n200); // ボーダーカラー
-	--bdc--strong: var(--color--n400);
+	// --bdc-: ボーダー色 に関するセマンティックトークン
+	--bdc--base: var(--b200); // ボーダーカラー
+	// --bdc--strong: var(--b800);
 
 	// ---
 
-	// gray
-	// --c--dimgray: hsl(var(--hs--nuetral), 20%); // gray 90
-	// --c--darkgray: hsl(var(--hs--nuetral), 32%); // gray 70
-	// --color--gray: hsl(var(--hs--nuetral), 52%); // #646b79 // gray50
-	// --c--lightgray: hsl(var(--hs--nuetral), 80%); //#f5f5f5; // gray30
-	// --color--whitesmoke: hsl(var(--hs--nuetral), 96%); // gray10
-
-	// cbox
-	// --pallete--?
-	--color--red: hsl(4, 76%, 56%); // #ef4444
-	--color--orange: hsl(30, 80%, 52%); // #f97316
-	--color--yellow: hsl(50, 88%, 48%); //#f1b808
-	--color--green: hsl(150, 80%, 44%); //#10b981
-	--color--blue: hsl(200, 80%, 52%); //#0ea5e9
-	--color--purple: hsl(250, 80%, 60%); //#8b5cf6
-	--color--pink: hsl(330, 76%, 56%); //#ec4899
-
-	--cMixPer--bg: 92%;
-	--cMixPer--text: 16%;
+	--cMixPer--bg: 95%;
+	--cMixPer--text: 12%;
 	--cMixPer--bd: 80%;
+
+	/* ------------------------------------------------------------
+	    elements
+	------------------------------------------------------------ */
+
+	--code--ff: Menlo, Consolas, monaco, monospace;
+	--code--fz: 0.9em;
+	--code--c: var(--b900);
+	--code--bgc: var(--bgc--pale);
+	--code--bdc: var(--bdc--base);
+
+	// --table--bdc:
+	--th--bgc: var(--bgc--pale);
+
+	// collape にしているので、tfoot 1pxだと見えないことに注意。
+	--thead--border: solid 2px var(--b900);
+	--tfoot--border: solid 2px var(--b900);
+	--hr--color: var(--bdc--base);
+
+	--link--c: #0c61e4;
+	--link--underlineOffset: 0.2ex;
+
+	--focus--color: revert;
+	--focus--outlineOffset: 1px;
 
 	/* ------------------------------------------------------------
 	  カラー: ユーザー側で定義できる仕組みも必要
@@ -195,13 +220,18 @@
 	  shadow
 	------------------------------------------------------------ */
 
-	--shadow--color: 0 0 0;
-	--shadow--amount--0: 0.5px 1px 2px 0px;
-	--shadow--amount--1: 0.5px 1px 4px -1px;
-	--shadow--amount--2: 1px 2px 8px -1px;
-	--shadow--amount--3: 2px 4px 16px -1px;
-	--shadow--amount--4: 4px 8px 32px -1px;
-	--shadow--amount--5: 8px 16px 56px -1px;
+	--shadow--hsl: 0 0% 0%;
+	--shadowStrength--base: 0.06;
+	--shadowStrength: 0.12;
+	--shadowLength--0: 0.5px 1px 2px 0px;
+	--shadowLength--1: 0.5px 1px 4px -1px;
+	--shadowLength--2: 1px 2px 8px -1px;
+	--shadowLength--3: 2px 4px 16px -1px;
+	--shadowLength--4: 4px 8px 32px -1px;
+	--shadowLength--5: 8px 16px 56px -1px;
+
+	--shadowColor--low: hsl(var(--shadow--hsl) / var(--shadowStrength--base));
+	--shadowColor: hsl(var(--shadow--hsl) / var(--shadowStrength));
 
 	// ポイント:
 	//    x:yのオフセット比率は一定に保つ. 1:2
@@ -209,79 +239,43 @@
 	//    base(0)のshadowを共通で付ける
 	//    1段階前のshadowを薄めてつける
 
-	--shadow--1: var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
-		var(--shadow--amount--1) rgb(var(--shadow--color) / 0.1);
+	--shadow--1: var(--shadowLength--0) var(--shadowColor--low),
+		var(--shadowLength--1) var(--shadowColor);
 
-	--shadow--2: var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
-		var(--shadow--amount--1) rgb(var(--shadow--color) / 0.05),
-		var(--shadow--amount--2) rgb(var(--shadow--color) / 0.1);
+	--shadow--2: var(--shadowLength--0) var(--shadowColor--low),
+		var(--shadowLength--1) var(--shadowColor--low), var(--shadowLength--2) var(--shadowColor);
 
-	--shadow--3: var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
-		var(--shadow--amount--2) rgb(var(--shadow--color) / 0.05),
-		var(--shadow--amount--3) rgb(var(--shadow--color) / 0.1);
+	--shadow--3: var(--shadowLength--0) var(--shadowColor--low),
+		var(--shadowLength--2) var(--shadowColor--low), var(--shadowLength--3) var(--shadowColor);
 
-	--shadow--4: var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
-		var(--shadow--amount--3) rgb(var(--shadow--color) / 0.05),
-		var(--shadow--amount--4) rgb(var(--shadow--color) / 0.1);
+	--shadow--4: var(--shadowLength--0) var(--shadowColor--low),
+		var(--shadowLength--3) var(--shadowColor--low), var(--shadowLength--4) var(--shadowColor);
 
-	--shadow--i1: inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
-		inset var(--shadow--amount--1) rgb(var(--shadow--color) / 0.1);
+	--shadow--i1: inset var(--shadowLength--0) var(--shadowColor--low),
+		inset var(--shadowLength--1) var(--shadowColor);
 
-	--shadow--i2: inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
-		inset var(--shadow--amount--1) rgb(var(--shadow--color) / 0.05),
-		inset var(--shadow--amount--2) rgb(var(--shadow--color) / 0.1);
+	--shadow--i2: inset var(--shadowLength--0) var(--shadowColor--low),
+		inset var(--shadowLength--1) var(--shadowColor--low),
+		inset var(--shadowLength--2) var(--shadowColor);
 
-	--shadow--i3: inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
-		inset var(--shadow--amount--2) rgb(var(--shadow--color) / 0.05),
-		inset var(--shadow--amount--3) rgb(var(--shadow--color) / 0.1);
+	--shadow--i3: inset var(--shadowLength--0) var(--shadowColor--low),
+		inset var(--shadowLength--2) var(--shadowColor--low),
+		inset var(--shadowLength--3) var(--shadowColor);
 
-	--shadow--i4: inset var(--shadow--amount--0) rgb(var(--shadow--color) / 0.05),
-		inset var(--shadow--amount--3) rgb(var(--shadow--color) / 0.05),
-		inset var(--shadow--amount--4) rgb(var(--shadow--color) / 0.1);
-
-	// --shadow--5:
-	// 	var(--shadow--amount--0) rgb(var(--shadow--color) / 0.1),
-	// 	calc(5px / 2) 5px 8px -1px rgb(var(--shadow--color) / 0.05),
-	// 	var(--shadow--amount--3) rgb(var(--shadow--color) / 0.05),
-	// 	calc(13px / 2) 13px 21px -1px rgb(var(--shadow--color) / 0.05),
-	// 	calc(12px / 2) 21px 34px -1px rgb(var(--shadow--color) / 0.15);
+	--shadow--i4: inset var(--shadowLength--0) var(--shadowColor--low),
+		inset var(--shadowLength--3) var(--shadowColor--low),
+		inset var(--shadowLength--4) var(--shadowColor);
 
 	// 1 にすると押し込むような感じになる
 	--shadow--hov: var(--shadow--4);
 
-	/* ------------------------------------------------------------
-	    elements
-	------------------------------------------------------------ */
-
-	// あとでいれかえ start
-	--offset--outline: 1px;
-	--color--focus: revert;
-	--color--hr: currentColor;
-	// --ff--code: Menlo, Consolas, monaco, monospace;
-	// --fz--code: 0.9em;
-	// end;
-
-	--glass--blur: 20px;
-
-	--code--ff: Menlo, Consolas, monaco, monospace;
-	--code--fz: 0.9em;
-	--code--c: var(--color--n400);
-	--code--bgc: var(--color--n100);
-	--code--bdc: var(--color--n200);
-
-	--hr--color: currentColor;
-
-	// --table--bdc:
-	--th--bgc: var(--color--n100);
-
-	--link--c: #0c61e4;
-	--link--underlineOffset: 0.2ex;
-
-	--focus--color: revert;
-	--focus--outlineOffset: 1px;
-
 	// ?
-	// --hov--bgc--base: var(--color--n100);
+	// --hov--bgc--base: var(--b100);
+
+	/* ------------------------------------------------------------
+	    装飾
+	------------------------------------------------------------ */
+	--glass--blur: 20px;
 }
 
 // ↓ space: これでもわりとしっくりくる...？ 2:.25, 3: 0.375
@@ -295,3 +289,12 @@
 // 80: 6.875
 // 90: 11.125
 // 100: 18
+
+// 暖色系テーマ
+// --hs--basic: 15 12%;
+// --b50: hsl(var(--hs--basic) 96%);
+// --b100: hsl(var(--hs--basic) 92%);
+// --b200: hsl(var(--hs--basic) 88%);
+// --b800: hsl(var(--hs--basic) 30%);
+// --b900: hsl(var(--hs--basic) 24%);
+// --b950: hsl(var(--hs--basic) 16%);

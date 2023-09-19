@@ -90,6 +90,10 @@ export default {
 			styleKey: '--keycolor',
 			presets: 'keycolor',
 			converter: getMaybeColorVar,
+			utilVals: {
+				current: 'cc',
+				currentColor: 'cc',
+			},
 		},
 
 		bg: { presets: 'bg', utilVals: { none: 'n' } },

@@ -1,27 +1,56 @@
 :root {
 	// fill時のカラーをグローバルに定義？ → .-c:white なエリアでは #000 に反転させたりしておくと便利か。
 	// → .-c:white を用意する意味もでてくる。
-	--lism--c--filled: #fff;
+	// --lism--c--filled: #fff;
 }
 
-:where(.l--button) {
-	// --keycolor: var(--color--main);
-	--p: var(--space--30) var(--space--40);
-	--icon-scale: 1.25; // offsetとバランス合わせる
-	--icon-offset: 25%;
-	--bdrs: var(--radius--1);
-	// --c: var(--keycolor);
-	--bdc: transparent;
-	--bgc: transparent;
-	--w: fit-content;
-	--gap: var(--space--10);
+@layer lism-module {
+	// --btn--color:
+	.l--button {
+		--keycolor: var(--b900);
+		// --c: var(--b50);
+		--bdc: transparent;
+		--bgc: transparent;
+		--w: fit-content;
+		--p: var(--space--25) var(--space--30);
+		--bdrs: var(--radius--1);
+		--gap: 0.5em;
+		--icon--scale: 1.25; // offsetとバランス合わせる
+		--icon--offset: 0%; //25%;
+	}
 
+	.l--button[data-variant='fill'] {
+		--bgc: var(--keycolor);
+		--bdc: var(--bgc); // reverse用
+		--c: var(--c--filled); // filledColor?
+		--rev--bgc: transparent;
+	}
+
+	.l--button[data-variant='outline'] {
+		--bdc: var(--keycolor);
+		--c: var(--bdc); // bdc上書きするだけで --c も変わるように
+
+		// reverse用
+		--rev--c: var(--hov--c, var(--c--filled));
+		// --rev--bgc: var(--bdc);
+	}
+
+	.l--button[data-variant='ghost'] {
+		--c: var(--keycolor);
+		--rev--c: var(--hov--c, var(--c--filled)); // reverse用
+	}
+}
+
+// :where(.l--button) {
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// }
+
+.l--button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-.l--button {
 	line-height: 1.5;
 	text-decoration: none;
 	width: var(--w); // .-w: 関連で上書きできるように
@@ -34,29 +63,15 @@
 	// min-width: 2em;
 }
 
-.l--button[data-variant='fill'] {
-	// --keycolor: var(--color--main);
-	--bdc: var(--bgc); // reverse用
-	// --bgc: var(--keycolor);
-	--c: #fff;
-}
+// .l--button[data-variant='fill'] {
+// }
 
-.l--button[data-variant='outline'] {
-	--bdc: var(--keycolor);
-	--c: var(--bdc); // bdc上書きするだけで --c も変わる
+// .l--button[data-variant='outline'] {
+// }
 
-	// reverse用
-	--rev--c: var(--hov--c, #fff);
-	// --rev--bgc: var(--bdc);
-}
-
-.l--button[data-variant='text'] {
-	// color: var(--keycolor);
-	--rev--c: var(--hov--c, #fff); // reverse用
-}
-
-// .l--button__text {
-// 	overflow-wrap: anywhere;
+// .l--button[data-variant='ghost'] {
+// 	// color: var(--keycolor);
+// 	--rev--c: var(--hov--c, #fff); // reverse用
 // }
 
 // .l--button[data-icon-position="edge"],
@@ -73,19 +88,19 @@
 }
 
 // .l--button[data-icon-offset="0"]{
-// 	--icon-offset: 0;
+// 	--icon--offset: 0;
 // }
 
 .l--button__icon {
-	scale: var(--icon-scale);
+	scale: var(--icon--scale);
 	flex-shrink: 0;
 
 	&[data-position='left'] {
 		grid-area: left;
-		translate: calc(0px - var(--icon-offset));
+		translate: calc(0px - var(--icon--offset));
 	}
 	&[data-position='right'] {
 		grid-area: right;
-		translate: var(--icon-offset);
+		translate: var(--icon--offset);
 	}
 }

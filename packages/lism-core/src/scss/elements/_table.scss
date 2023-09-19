@@ -3,9 +3,6 @@
 // ただし、スクロール時にsticky要素の border が表示されない問題があることに注意。
 // 　　　→ ベースは上下ボーダーのみにしてその問題に対処しやすくする。
 @layer lism-elements {
-	:root {
-		--border--table-em: solid 2px var(--bdc--thead, currentColor);
-	}
 	table {
 		width: 100%;
 		// max-width: 100%;
@@ -14,7 +11,7 @@
 		border: none;
 		border-collapse: collapse; // memo: oveflow の指定によっては separate にしないとborderが表示されない場合があるので横スクロール時には注意。
 		border-spacing: 0;
-		--bdc: var(--color--border, #dcdcdc);
+		--bdc: var(--bdc--base, #dcdcdc);
 		--bds: solid;
 		--bdwX: 1px;
 		--bdwY: 1px;
@@ -29,27 +26,27 @@
 	}
 
 	th {
-		color: var(--c--th, inherit);
-		background-color: var(--bgc--th, transparent);
+		color: var(--th--c, inherit);
+		background-color: var(--th--bgc, transparent);
 	}
 
 	td {
-		color: var(--c--td, inherit);
-		background-color: var(--bgc--td, transparent);
+		color: var(--td--c, inherit);
+		background-color: var(--td--bgc, transparent);
 	}
 
 	thead {
-		// --bgc--th: #f8f9fa;
-		border-block-end: var(--border--table-em);
+		// --th--bgc: #f8f9fa;
+		border-block-end: var(--thead--border);
 	}
 
 	tbody {
-		// --bgc--th: #f8f9fa;
+		// --th--bgc: #f8f9fa;
 		// text-align: left; // tbody 内の th が中央寄せになるのを防ぐ？
 	}
 
 	tfoot {
-		border-block-start: var(--border--table-em);
+		border-block-start: var(--tfoot--border);
 	}
 
 	:where(table) caption {
@@ -89,8 +86,8 @@
 // .scroll-table
 .fix-1st-row {
 	// 後ろが透過してると文字がかぶるので、何かしら背景色を初期セットする
-	--bgc--td: var(--color--bg, white);
-	--bgc--th: var(--color--bg, white);
+	--td--bgc: var(--bgc--base, white);
+	--th--bgc: var(--bgc--base, white);
 
 	// rowspan考慮必要
 	tr > :first-child {
@@ -119,7 +116,7 @@
 
 .fix-thead {
 	// 後ろが透過してると文字がかぶるので、何かしら背景色を初期セットする
-	--bgc--th: var(--color--bg, white);
+	--th--bgc: var(--bgc--base, white);
 
 	thead {
 		position: sticky;
@@ -134,7 +131,7 @@
 			z-index: 3;
 			inset: 0;
 			border-block-start: solid var(--bdwY) var(--bdc);
-			border-block-end: var(--border--table-em);
+			border-block-end: var(--thead--border);
 		}
 	}
 }

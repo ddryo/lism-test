@@ -1,5 +1,15 @@
 // .-hov\: ユーティリティ
 
+@layer lism-init {
+	.-hov\:bgc\: {
+		--hov--bgc: var(--bgc--pale);
+	}
+	.-hov\:reverse {
+		--rev--c: var(--hov--c, var(--bgc)); // .-hov:c: あれば優先
+		--rev--bgc: var(--hov--bgc, var(--c));
+	}
+}
+
 [class*='-hov\:'] {
 	transition: filter, opacity, box-shadow, translate, scale, border-color, color, background-color;
 	transition-duration: var(--hov--duration);
@@ -34,7 +44,7 @@
 // 	filter: brightness(1.2) contrast(1.2); //grayscale(5%);
 // }
 
-.-hov\:opacity:hover {
+.-hov\:fade:hover {
 	opacity: 0.75;
 }
 .-hov\:shadow:hover {
@@ -47,18 +57,12 @@
 .-hov\:scale:hover {
 	scale: 1.05;
 }
-.-hov\:bgc\:lightgray:hover {
-	background-color: var(--c--lightgray) !important;
-}
 
-.-hov\:reverse {
-	--rev--c: var(--hov--c, var(--bgc)); // .-hov:c: あれば優先
-	--rev--bgc: var(--hov--bgc, var(--c));
+// .-hov\:reverse {
+// 	--rev--c: var(--hov--c, var(--bgc)); // .-hov:c: あれば優先
+// 	--rev--bgc: var(--hov--bgc, var(--c));
+// }
 
-	&.-bd\:current {
-		--bdc: var(--c);
-	}
-}
 .-hov\:reverse:hover {
 	background-color: var(--rev--bgc) !important;
 	color: var(--rev--c) !important;

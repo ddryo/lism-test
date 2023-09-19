@@ -51,8 +51,8 @@
 }
 
 .d--text[data-variant='sticky'] {
-	--bgc: var(--c--lightgray);
-	--bdc: var(--color--gray);
+	--bgc: var(--bgc--pale);
+	--bdc: currentColor;
 	--c: #000;
 	// border-color: currentColor;
 	// border-left: 8px solid currentColor;

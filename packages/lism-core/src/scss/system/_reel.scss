@@ -1,17 +1,16 @@
-@use "../query" as query;
-
+@use '../query' as query;
 
 // base値がinlineスタイルなので、importantで上書きする必要がある。→ だったら変数上書きではなく普通にプロパティ名　sで指定すべき...？
-@include query.cq('max-md'){
+@include query.cq('max-md') {
 	// is--reel@sp
-	.is--reel\@max-md{
-		--item-w: 16em;
+	.is--reel\@max-md {
+		--item--w: 16em;
 		overflow-x: auto;
 		// overflow-y: hidden;
 
 		display: grid !important;
 		grid-auto-flow: column;
-		grid-auto-columns: var(--item-w);
+		grid-auto-columns: var(--item--w);
 		grid-template-columns: unset !important;
 		grid-template-rows: unset !important;
 	}

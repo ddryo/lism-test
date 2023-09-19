@@ -42,7 +42,7 @@ export default function LinkBox({
 	const blockProps = {
 		forwardedRef: ref,
 		isLinkbox: true,
-		hover: hover || 'opacity',
+		hover: hover || 'fade',
 		// 'aria-label': ariaLabel || null,
 		...props,
 	};

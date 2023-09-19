@@ -28,7 +28,7 @@ export default function Reel({
 	}
 
 	if (undefined !== itemW) {
-		lismStyle['--item-w'] = itemW;
+		lismStyle['--item--w'] = itemW;
 	}
 
 	return (

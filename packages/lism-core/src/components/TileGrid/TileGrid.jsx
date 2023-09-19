@@ -4,7 +4,7 @@ import { Grid } from '../Grid';
 
 export default function TileGrid({ itemMinW, ...props }) {
 	// const lismStyle = {};
-	// if (itemMinW) lismStyle['--item-minW'] = itemMinW;
+	// if (itemMinW) lismStyle['--item--minW'] = itemMinW;
 
 	// const clms = getLismMainProp(clm, { sm, md, lg, xl });
 	const blockProps = {

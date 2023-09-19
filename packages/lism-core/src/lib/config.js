@@ -19,7 +19,7 @@ export const PRESETS = {
 	],
 	lh: [],
 
-	// --color--変数化できるキーワード
+	// --変数化できるキーワード
 	color: [
 		'main',
 		'accent',
@@ -30,17 +30,23 @@ export const PRESETS = {
 		'purple',
 		'orange',
 		'pink',
-		// 'gray',
 		'white',
 		'black',
-		'n100',
-		'n200',
-		'n300',
-		'n400',
-		'n500',
+		// 'gray',
+		'b50',
+		'b100',
+		'b200',
+		'b300',
+		'b400',
+		'b500',
+		'b600',
+		'b700',
+		'b800',
+		'b900',
+		'b950',
 	],
-	c: ['main', 'accent', 'base', 'pale', 'opposite', 'white', 'black'],
-	bgc: ['main', 'accent', 'base', 'pale', 'strong', 'white', 'black'],
+	c: ['main', 'accent', 'base', 'pale', 'opposite'],
+	bgc: ['main', 'accent', 'base', 'pale', 'strong', 'opposite'],
 	bdc: ['main', 'accent', 'base', 'strong'],
 	keycolor: [
 		'main',
@@ -52,7 +58,8 @@ export const PRESETS = {
 		'purple',
 		'orange',
 		'pink',
-		'nuetral',
+		'gray',
+		'basic',
 	],
 
 	// ユーティリティ化するもの。（）80~100以降、変数の用意はしている

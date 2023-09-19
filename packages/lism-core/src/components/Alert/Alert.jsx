@@ -31,7 +31,7 @@ import {
 const AlertPresets = {
 	memo: {
 		icon: LsPen,
-		color: 'nuetral',
+		color: 'gray',
 	},
 	error: {
 		icon: LsAlertOutline,

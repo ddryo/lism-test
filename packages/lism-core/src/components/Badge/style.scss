@@ -1,6 +1,7 @@
 :where(.e--badge) {
+	// --keycolor: ;
 	--p: var(--space--5) var(--space--10);
-	--c: #fff;
+	--c: var(--c--filled);
 	--bgc: var(--keycolor);
 	--bdc: transparent;
 	--gap: 0.2em; // em 単位で指定したいので --space--5 は使わない
@@ -18,9 +19,13 @@
 // .e--badge[data-variant="fill"]{}
 
 .e--badge[data-variant='outline'] {
-	--bdc: var(--keycolor);
+	--bdc: currentColor;
 	--bgc: transparent;
 	--c: var(--keycolor);
+	// text-shadow: 0.5px 0.5px 0.5px var(--keycolor);
+	// @supports (color: color-mix(in srgb, #000, #fff)) {
+	// 	--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
+	// }
 }
 
 .e--badge[data-variant='subtle'] {

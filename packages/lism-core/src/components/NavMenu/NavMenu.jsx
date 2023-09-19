@@ -65,11 +65,3 @@ export default function NavMenu({
 		</Lism>
 	);
 }
-
-// itemProps: p,border,background-color,shadow,radius,flowGap,gap...?
-// has--itemProp > .is--item{...}
-
-// --item-p, --item-shadow, --item-radius, --item-bg, --item-hover, --item-border,
-// [data-item-p]
-// :where(is--item{p:var(--item-p),...})
-// data-ls-provide=[p,...], data-ls-consume=[p,...]

@@ -3,56 +3,57 @@
 	color: var(--c) !important;
 }
 .-c\:main {
-	--c: var(--c--main);
+	--c: var(--color--main);
 }
 .-c\:accent {
-	--c: var(--c--accent);
+	--c: var(--color--accent);
 }
+.-c\:base {
+	--c: var(--c--base);
+}
+.-c\:pale {
+	--c: var(--c--pale);
+	// opacity: 0.7;
+}
+.-c\:opposite {
+	--c: var(--c--opposite);
+	// opacity: 0.7;
+}
+
 .-c\:white {
-	--c: var(--c--white);
+	--c: var(--color--white);
 }
 .-c\:black {
-	--c: var(--c--black);
+	--c: var(--color--black);
 }
-.-c\:gray {
-	--c: var(--c--gray);
-}
-.-c\:lightgray {
-	--c: var(--c--lightgray);
-}
-.-c\:darkgray {
-	--c: var(--c--darkgray);
-}
+
 // .-c\:current{--c: currentColor;}
 
 [class*='-bgc:'] {
 	background-color: var(--bgc) !important;
 }
 .-bgc\:main {
-	--bgc: var(--c--main);
+	--bgc: var(--color--main);
 }
 .-bgc\:accent {
-	--bgc: var(--c--accent);
+	--bgc: var(--color--accent);
 }
 .-bgc\:white {
-	--bgc: var(--c--white);
+	--bgc: var(--color--white);
 }
 .-bgc\:black {
-	--bgc: var(--c--black);
+	--bgc: var(--color--black);
 }
-.-bgc\:gray {
-	--bgc: var(--c--gray);
+.-bgc\:base {
+	--bgc: var(--bg--base);
 }
-.-bgc\:lightgray {
-	--bgc: var(--c--lightgray);
+.-bgc\:pale {
+	--bgc: var(--bgc--pale);
 }
-.-bgc\:darkgray {
-	--bgc: var(--c--darkgray);
+.-bgc\:strong {
+	--bgc: var(--bgc--strong);
+	color: var(--c--opposite);
 }
-.-bgc\:whitesmoke {
-	--bgc: var(--c--whitesmoke);
-}
-
 .-bgc\:cc {
 	--bgc: currentColor;
 }
@@ -60,88 +61,38 @@
 	--bgc: transparent;
 }
 
-// .-bgc\:keycolor-light{
-// 	--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) var(--colorMixPercent--link));
-// 	--bgc: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
-// }
-
-// Darkモード
-// #wrapper{
-// 	--colorMixPercent--bg: 90%;
-// 	--mixPercent--bdc: 40%;
-// 	--c--bg: #000; // 背景色メイン
-// 	--c--text: #fff; // メインカラー
-// 	background-color: var(--c--bg);
-// 	color: var(--c--text);
-// }
-
-// #wrapper{
-// 	--c--bg: hsl(273, 30%, 95%);
-// 	--c--text: rgb(69, 66, 87);
-// 	background-color: var(--c--bg);
-// 	color: var(--c--text);
-// }
-
-// cbox color-mix
-// @supports (color: color-mix(in srgb, #000, #fff)) {
-// 	:where([class*="-keycolor:"])[data-variant="cbox"] {
-// 		--bdc: color-mix(in srgb, var(--keycolor), transparent var(--mixPercent--bdc));
-// 		--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) 20%);
-
-// 		// color: color-mix(in srgb, var(--keycolor), var(--c--text) 90%);
-// 		background-color: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
-// 		border: solid 1px var(--bdc);
-// 	}
-// }
-
 // --keycolor : 1つのカラーをもとにスタイリングしたいときに活用する。 cbox,outline,fillなどで使っている
 // .-keycolor\:{&}
 .-keycolor\:current {
 	--keycolor: currentColor;
 }
 .-keycolor\:main {
-	--keycolor: var(--c--main);
+	--keycolor: var(--color--main);
 }
 .-keycolor\:accent {
-	--keycolor: var(--c--accent);
+	--keycolor: var(--color--accent);
 }
-.-keycolor\:gray {
-	--keycolor: var(--c--gray);
+.-keycolor\:nuetral {
+	--keycolor: var(--color--n300);
 }
 .-keycolor\:red {
-	--keycolor: var(--c--red);
+	--keycolor: var(--color--red);
 }
 .-keycolor\:orange {
-	--keycolor: var(--c--orange);
+	--keycolor: var(--color--orange);
 }
 .-keycolor\:yellow {
-	--keycolor: var(--c--yellow);
+	--keycolor: var(--color--yellow);
 }
 .-keycolor\:green {
-	--keycolor: var(--c--green);
+	--keycolor: var(--color--green);
 }
 .-keycolor\:blue {
-	--keycolor: var(--c--blue);
+	--keycolor: var(--color--blue);
 }
 .-keycolor\:purple {
-	--keycolor: var(--c--purple);
+	--keycolor: var(--color--purple);
 }
 .-keycolor\:pink {
-	--keycolor: var(--c--pink);
+	--keycolor: var(--color--pink);
 }
-
-// [data-variant="fill"]{
-// 	--c--link: currentColor;
-// 	color: var(--c--bg); // #fff
-// 	background-color: var(--bgc);
-// }
-
-// [data-variant="outline"]{
-// 	border: solid 1px var(--bdc);
-// 	--icon-c: var(--bdc); // Alert,Notice用
-
-// 	 // reverse用
-// 	&.-hov\:reverse{
-// 		--bgc:#fff;
-// 	}
-// }

@@ -1,16 +1,16 @@
 // インライン
-.e--inlineIcon{
+.e--inlineIcon {
 	display: inline;
-	vertical-align: -.125em;
+	vertical-align: -0.125em;
 	margin-inline: 0.125em; // 0.125 = 16px で 2pxの余白ができる
 	transform: scale(1.125);
 }
 
-:where(.e--icon){
+:where(.e--icon) {
 	--size: 1em;
 }
 
-.e--icon[data-css-icon]{
+.e--icon[data-css-icon] {
 	text-align: center;
 	line-height: 1;
 	font-size: var(--size);
@@ -22,7 +22,7 @@
 	justify-content: center;
 }
 
-.e--icon[data-emoji]{
+.e--icon[data-emoji] {
 	text-align: center;
 	line-height: 1;
 	font-family: var(--ls--ff--emoji);
@@ -32,7 +32,7 @@
 	display: inline-block;
 }
 
-.e--icon[data-css-icon="triangle"]{
+.e--icon[data-css-icon='triangle'] {
 	background-color: currentColor;
 	clip-path: polygon(50% 76%, 10% 24%, 90% 24%);
 }
@@ -41,17 +41,16 @@
 // 	position: relative;
 // }
 
-:where(.b--icon){
+:where(.b--icon) {
 	--color: currentColor;
 	// width: fit-content;
 	// height: fit-content;
 }
 
-
 // fill, outline も　ユーティリティ化？
 // .b--icon[data-variant="fill"]{
 // 	background-color: var(--color);
-// 	color: var(--c--bg); //color-mix(in srgb-linear, var(--color), var(--c--bg) 40%);
+// 	color: var(--bgc--base); //color-mix(in srgb-linear, var(--color), var(--bgc--base) 40%);
 // }
 // .b--icon[data-variant="outline"]{
 // 	color: var(--color);

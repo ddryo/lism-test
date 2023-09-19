@@ -1,6 +1,7 @@
 import {
 	filterEmptyObj,
 	isPresetValue,
+	getUtilValue,
 	getMaybeColorVar,
 	getMaybeShadowVar,
 	// getMaybeSpaceVar,
@@ -351,8 +352,8 @@ class CommonProps {
 		}
 
 		if (utilVals) {
-			const utilVal = utilVals?.[val];
-			// utilVal = getUtilVal(utilVals, val);
+			// const utilVal = utilVals?.[val];
+			const utilVal = getUtilValue(utilVals, val);
 			if (utilVal) {
 				this.addUtil(`${utilName}${utilVal}`);
 				return;

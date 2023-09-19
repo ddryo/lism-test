@@ -1,71 +1,5 @@
 import { getMaybeSpaceVar, getMaybeColorVar } from '../index.js';
-
-// 特定のCSSプロパティ用キーワードをユーティリティ化するためのリスト。
-const UTILITIES = {
-	// color: {
-	// 	gray: 'gray50',
-	// 	lightgray: 'gray50',
-	// 	darkgray: 'gray50',
-	// 	dimgray: 'gray50',
-	// 	whitesmoke: 'gray50',
-	// },
-	place: {
-		center: 'c',
-		strech: 'str',
-		start: 's',
-		end: 'e',
-		'space-between': 'sb',
-	},
-	// fw: { bold: '700', normal: '400', thin: '100', 100: '100', 400: '400', 700: '700', 900: '900' },
-	// ta: { center: 'c', left: 'l', right: 'r' },
-	// fxw: { wrap: 'w', nowrap: 'nw' }, // nowrap → nw にすべき？(whs と揃える)
-	// fxd: { column: 'c', row: 'r', 'column-reverse': 'cr', 'row-reverse': 'rr' },
-	// margin: { auto: 'a' },
-	// t,l,r,b用
-	// insets: { '0%': '0', '50%': '50', '100%': '100' },
-	size: { '100%': '100', text: 'text' },
-	ga: { fix: 'fix', left: 'l', right: 'r', center: 'c' },
-	border: {
-		// left: 'l',
-		// right: 'r',
-		// top: 't',
-		// bottom: 'b',
-		// inline: 'inline',
-		// block: 'block',
-		'inline-start': 'in-s',
-		'inline-end': 'in-e',
-		'block-start': 'bl-s',
-		'block-end': 'bl-e',
-	},
-
-	// pos: { static: 's', relative: 'r', absolute: 'a', fixed: 'f' },
-	// ovw: { anywhere: 'any' },
-	// ov: { hidden: 'h' },
-	// lis: { none: 'n' },
-	// lts:{},
-	display: {
-		none: 'n',
-		block: 'b',
-		flex: 'f',
-		grid: 'g',
-		inline: 'i',
-		'inline-flex': 'if',
-		'inline-block': 'ib',
-	},
-	// rotate: { '45deg': '45', '-45deg': '-45', '90deg': '90', '-90deg': '-90', '180deg': '180' },
-	origin: {
-		center: 'c',
-		'left top': 'lt',
-		'right top': 'rt',
-		'left bottom': 'lb',
-		'right bottom': 'rb',
-		'50%': 'c',
-		'0% 0%': 'lt',
-		'100% 0%': 'rt',
-		'0% 100%': 'lb',
-		'100% 100%': 'rb',
-	},
-};
+import { UTILITIES } from '../config.js';
 
 const mgOption = { BP: 1, utilVals: { auto: 'a' }, converter: getMaybeSpaceVar };
 const pdOption = { BP: 1, presets: 'space', converter: getMaybeSpaceVar };
@@ -139,6 +73,25 @@ export default {
 		minW: {},
 		minH: {},
 
+		c: { presets: 'c', withUtil: 1, converter: getMaybeColorVar },
+		bgc: {
+			presets: 'bgc',
+			withUtil: 1,
+			utilVals: {
+				none: 't',
+				transparent: 't',
+				current: 'cc',
+				currentColor: 'cc',
+			},
+			converter: getMaybeColorVar,
+		},
+		keycolor: {
+			withUtil: 0,
+			styleKey: '--keycolor',
+			presets: 'keycolor',
+			converter: getMaybeColorVar,
+		},
+
 		bg: { presets: 'bg', utilVals: { none: 'n' } },
 		opacity: { withUtil: 0, styleKey: 'opacity' },
 
@@ -154,38 +107,12 @@ export default {
 		bdc: {
 			withUtil: 0,
 			styleKey: '--bdc',
-			presets: 'color',
-			utilVals: {
-				none: 't',
-				transparent: 't',
-				border: 'border',
-			},
+			presets: 'bdc',
+			utilVals: { none: 't', transparent: 't' },
 			converter: getMaybeColorVar,
 		},
 		borderSolid: { withUtil: 0, styleKey: 'borderSolid' },
 		borderWidth: { withUtil: 0, styleKey: 'borderWidth' },
-
-		c: {
-			presets: 'color',
-			// utilVals: {},
-			converter: getMaybeColorVar,
-		},
-		bgc: {
-			presets: 'color',
-			utilVals: {
-				none: 't',
-				transparent: 't',
-				current: 'cc',
-				currentColor: 'cc',
-			},
-			converter: getMaybeColorVar,
-		},
-		keycolor: {
-			withUtil: 0,
-			styleKey: '--keycolor',
-			presets: 'keycolor',
-			converter: getMaybeColorVar,
-		},
 
 		//transform
 		translate: {

@@ -1,18 +1,29 @@
-:root {
-	// --bd--regular: var(--bdw) var(--bds) var(--c--border);
-	// --bd--current: var(--bdw) var(--bds) currentColor;
-	// --bd--transparent: var(--bdw) var(--bds) transparent;
+// has--border?
+// bdc だけとかの指定でも -bd:出力？
+/*
+	borderはかなり特殊。
+	--bds, --bdw, --bdc で管理できるようにしていて、そのために基本的に .-bd: クラスを使う。
+	各方向も、 -bd:left, -bd:right など。　( -bd: で全方向。)
 
+	.-bd:{preset}: 方向 or ボーダー用のセマンティックプリセット。
+
+	まず bd を指定してもらう。
+	bdc, bdw などを追加で指定。
+
+*/
+:root {
 	// --bdw--thin: thin;
 	// --bdw--medium: medium;
 	// --bdw--thik: thik;
 }
 
-// .-bdc で上書きできるように border 自体も変数管理
+// bdc, bdw などでカラーや太さを上書きできるように border 自体を変数管理
+
+// root定義でもよさそう? → 入れ子のときに影響受けてしまう
 [class*='-bd:'] {
 	--bds: solid;
 	--bdw: 1px;
-	--bdc: currentColor; //var(--c--border);
+	--bdc: currentColor; //var(--bdc--base);
 }
 
 // 使用される環境（resetCSS）によって挙動が変わりやすいので 各プロパティを変数で管理する。
@@ -21,12 +32,21 @@
 	--bd: var(--bdw) var(--bds) var(--bdc);
 	border: var(--bd);
 }
-.-bd\:current {
-	border: var(--bdw) var(--bds) currentColor;
-	// --bdc: currentColor;
+// .-bd\:cc {
+// 	border: var(--bdw) var(--bds) currentColor;
+// 	// --bdc: currentColor;
+// }
+// .-bd\:t {
+// 	border: var(--bdw) var(--bds) transparent;
+// }
+// .-bd\:base {
+// 	border: var(--bdw) var(--bds) var(--bdc--base);
+// }
+.-bd\:emphasis {
+	border: 5px double var(--bdc--strong);
 }
-.-bd\:transparent {
-	border: var(--bdw) var(--bds) transparent;
+.-bd\:guide {
+	border: 1px dashed rgba(160, 160, 160, 0.4);
 }
 
 // regular? default? normal? base?
@@ -75,9 +95,14 @@
 	border-block-end: var(--bdw) var(--bds) var(--bdc);
 }
 
-// bd:l,bdw:1,bds:ds
-
-// .-bdl\:{border-left: var(--bdl);}
+// bd, bdl, bdr,...
+// .-bdl{}
+// .-bdl {
+// 	border-left: var(--bdw) var(--bds) var(--bdc);
+// }
+// .-bdl\: {
+// 	border-left: var(--bdl);
+// }
 // .-bdr\:{border-right: var(--bdr);}
 // .-bdt\:{border-top: var(--bdt);}
 // .-bdb\:{border-bottom: var(--bdb);}
@@ -98,33 +123,26 @@
 
 // .-bdc\:{border-color: var(--bdc);}
 .-bdc\:main {
-	--bdc: var(--c--main);
+	--bdc: var(--color--main);
 }
 .-bdc\:accent {
-	--bdc: var(--c--accent);
+	--bdc: var(--color--accent);
 }
-.-bdc\:white {
-	--bdc: var(--c--white);
+.-bdc\:base {
+	--bdc: var(--bdc--base);
 }
-.-bdc\:black {
-	--bdc: var(--c--black);
+.-bdc\:strong {
+	--bdc: var(--bdc--strong);
 }
-.-bdc\:gray {
-	--bdc: var(--c--gray);
-}
-.-bdc\:lightgray {
-	--bdc: var(--c--lightgray);
-}
-.-bdc\:darkgray {
-	--bdc: var(--c--darkgray);
-}
-
 .-bdc\:t {
 	--bdc: var(--bd--transparent);
 }
-.-bdc\:border {
-	border-color: var(--c--border);
-}
+// .-bdc\:white {
+// 	--bdc: var(--color--white);
+// }
+// .-bdc\:black {
+// 	--bdc: var(--color--black);
+// }
 
 // border-style使うと全方向にborder出てくることに注意。
 // bds→ --bdsのみ出力。 borderStyle→border-style出力

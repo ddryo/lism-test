@@ -13,7 +13,7 @@
 	  コンテンツサイズ: ユーザー側で定義が必要
 	    コンテンツサイズは960 ~ 1120 くらいがよさそう.
 	    1080 にしてるのは、 1920 * 1080画像がきれいに配置できるため？
-	 ------------------------------------------------------------ */
+	------------------------------------------------------------ */
 	// コンテンツサイズは960 ~ 1120 くらいがよさそう
 	--ls--contentSize: 1120px; // = --wp--style--global--content-size.
 	--ls--contentSize--wide: 1440px; // = --wp--style--global--wide-size. alignwide で使う.
@@ -31,24 +31,6 @@
 
 	// hoverユーティリティ用 → --ls--?
 	--hov--duration: 0.3s;
-
-	/* ------------------------------------------------------------
-	    elements
-	------------------------------------------------------------ */
-
-	--offset--outline: 1px;
-	--offset--link-underline: 0.2ex; // // リンクのtext-underline-offset用
-	// --link--underlineOffset:
-
-	--color--focus: revert;
-	--color--hr: currentColor;
-
-	--ff--code: Menlo, Consolas, monaco, monospace;
-	--fz--code: 0.9em;
-
-	// --code--ff, --code--fz, --focus--color, --hr--color, --focus--outlineOffset
-
-	--glass--blur: 20px;
 
 	/* ------------------------------------------------------------
 	    タイポグラフィ
@@ -114,59 +96,69 @@
 
 	/* ------------------------------------------------------------
 	  カラー: ユーザー側で定義できる仕組みも必要
-	 ------------------------------------------------------------ */
-	--c--bg: #fdfdfd; // 背景色メイン
-	--c--main: #2f4858; // メインカラー
-	--c--accent: #be3455; // mainと逆の目立つ色
+	------------------------------------------------------------ */
 
-	--hs--gray: 215, 8%;
+	// --color-: 文字色・背景色など共通して採用されるカラー
+	--color--main: #2f4858;
+	--color--accent: #be3455;
+	// --bgc--base: #fdfdfd; // 背景色メイン
 
-	// 確定
-	--c--link: #0c61e4; // リンク色
-	--c--text: #111; // テキスト色
-	--c--headline: #00473e; // 見出しカラー
-	// --bdc--table: #dcdcdc;
+	--color--black: #000;
+	--color--white: #fff;
 
-	// どうする
-	--c--sub: #dde7f0; // main と相性のいい、背景色に使うような薄い色？
+	// nuetral カラー（グレー系）を5段階で用意
+	--hs--nuetral: 215, 8%;
+	--color--n100: hsl(var(--hs--nuetral), 96%);
+	--color--n200: hsl(var(--hs--nuetral), 80%);
+	--color--n300: hsl(var(--hs--nuetral), 48%);
+	--color--n400: hsl(var(--hs--nuetral), 30%);
+	--color--n500: hsl(var(--hs--nuetral), 16%);
 
-	--c--black: #000;
+	// --c-: 文字色
+	--c--base: #111; // テキスト色
+	--c--pale: #666; // テキスト色
+	--c--opposite: #fff;
+	--c--filled: var(--c--opposite); // fill時のカラー. // --filled--c?
+
+	@supports (color: color-mix(in srgb, #000, #fff)) {
+		--c--pale: color-mix(in srgb, var(--c--base), transparent 30%);
+	}
+
+	// --bgc-: 背景色
+	--bgc--base: #fdfdfd; // 背景色 // --color--bg-base
+	--bgc--pale: var(--color--n100); // クラス側でもよさそう
+	--bgc--strong: var(--color--n500); // クラス側でもよさそう
+
+	// --bdc-: ボーダー色
+	--bdc--base: var(--color--n200); // ボーダーカラー
+	--bdc--strong: var(--color--n400);
+
+	// ---
 
 	// gray
-	--c--dimgray: hsl(var(--hs--gray), 20%); // gray 90
-	--c--darkgray: hsl(var(--hs--gray), 32%); // gray 70
-	--c--gray: hsl(var(--hs--gray), 52%); // #646b79 // gray50
-	--c--lightgray: hsl(var(--hs--gray), 80%); //#f5f5f5; // gray30
-	--c--whitesmoke: hsl(var(--hs--gray), 96%); // gray10
-
-	--c--white: #fff;
-
-	--c--border: hsl(var(--hs--gray), 88%);
+	// --c--dimgray: hsl(var(--hs--nuetral), 20%); // gray 90
+	// --c--darkgray: hsl(var(--hs--nuetral), 32%); // gray 70
+	// --color--gray: hsl(var(--hs--nuetral), 52%); // #646b79 // gray50
+	// --c--lightgray: hsl(var(--hs--nuetral), 80%); //#f5f5f5; // gray30
+	// --color--whitesmoke: hsl(var(--hs--nuetral), 96%); // gray10
 
 	// cbox
-	--c--red: hsl(5, 72%, 56%); // #ef4444
-	--c--orange: hsl(32, 88%, 52%); // #f97316
-	--c--yellow: hsl(48, 88%, 52%); //#f1b808
-	--c--green: hsl(156, 80%, 44%); //#10b981
-	--c--blue: hsl(200, 80%, 52%); //#0ea5e9
-	--c--purple: hsl(255, 72%, 60%); //#8b5cf6
-	--c--pink: hsl(330, 76%, 56%); //#ec4899
+	// --pallete--?
+	--color--red: hsl(4, 76%, 56%); // #ef4444
+	--color--orange: hsl(30, 80%, 52%); // #f97316
+	--color--yellow: hsl(50, 88%, 48%); //#f1b808
+	--color--green: hsl(150, 80%, 44%); //#10b981
+	--color--blue: hsl(200, 80%, 52%); //#0ea5e9
+	--color--purple: hsl(250, 80%, 60%); //#8b5cf6
+	--color--pink: hsl(330, 76%, 56%); //#ec4899
 
-	// --c--red: hsl(0, 80%, 60%); // #ef4444
-	// --c--orange: hsl(30, 80%, 60%); // #f97316
-	// --c--yellow: hsl(45, 80%, 60%); //#f1b808
-	// --c--green: hsl(155, 60%, 60%); //#10b981
-	// --c--blue: hsl(200, 80%, 60%); //#0ea5e9
-	// --c--purple: hsl(260, 80%, 60%); //#8b5cf6
-	// --c--pink: hsl(330, 80%, 60%); //#ec4899
-
-	--colorMixPercent--bg: 92%;
-	--colorMixPercent--link: 12%;
-	// --colorMixPercent--bdc: 80%;
+	--cMixPer--bg: 92%;
+	--cMixPer--text: 16%;
+	--cMixPer--bd: 80%;
 
 	/* ------------------------------------------------------------
 	  カラー: ユーザー側で定義できる仕組みも必要
-	 ------------------------------------------------------------ */
+	------------------------------------------------------------ */
 	// フィボナッチ数列 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89,
 	// 0 .25rem, .5rem, .75rem, 1.25rem, M:(8):2rem, 3.25rem, 5.25rem, 8.5rem
 	--space--0: 0rem;
@@ -190,7 +182,7 @@
 
 	/* ------------------------------------------------------------
 	  radius
-	 ------------------------------------------------------------ */
+	------------------------------------------------------------ */
 	--radius--1: 2px;
 	--radius--2: 5px;
 	--radius--3: 8px;
@@ -201,7 +193,7 @@
 
 	/* ------------------------------------------------------------
 	  shadow
-	 ------------------------------------------------------------ */
+	------------------------------------------------------------ */
 
 	--shadow--color: 0 0 0;
 	--shadow--amount--0: 0.5px 1px 2px 0px;
@@ -256,6 +248,40 @@
 
 	// 1 にすると押し込むような感じになる
 	--shadow--hov: var(--shadow--4);
+
+	/* ------------------------------------------------------------
+	    elements
+	------------------------------------------------------------ */
+
+	// あとでいれかえ start
+	--offset--outline: 1px;
+	--color--focus: revert;
+	--color--hr: currentColor;
+	// --ff--code: Menlo, Consolas, monaco, monospace;
+	// --fz--code: 0.9em;
+	// end;
+
+	--glass--blur: 20px;
+
+	--code--ff: Menlo, Consolas, monaco, monospace;
+	--code--fz: 0.9em;
+	--code--c: var(--color--n400);
+	--code--bgc: var(--color--n100);
+	--code--bdc: var(--color--n200);
+
+	--hr--color: currentColor;
+
+	// --table--bdc:
+	--th--bgc: var(--color--n100);
+
+	--link--c: #0c61e4;
+	--link--underlineOffset: 0.2ex;
+
+	--focus--color: revert;
+	--focus--outlineOffset: 1px;
+
+	// ?
+	// --hov--bgc--base: var(--color--n100);
 }
 
 // ↓ space: これでもわりとしっくりくる...？ 2:.25, 3: 0.375

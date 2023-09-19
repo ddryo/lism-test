@@ -1,47 +1,44 @@
-
 // Notice は --keycolor が常に渡ってくる
-:where(.b--notice){
+:where(.b--notice) {
 	--p: var(--space--40);
 	--gap: var(--space--35);
-	--head-c: var(--keycolor);
+	--head--c: var(--keycolor);
 	--bdc: var(--keycolor);
 	// --bdrs: var(--radius--1);
 	position: relative;
 }
-.b--notice__icon{
+.b--notice__icon {
 	margin-left: -0.125em;
 }
-.b--notice__head{
-	color: var(--head-c);
+.b--notice__head {
+	color: var(--head--c);
 	// display: flex;
 	align-items: center;
 }
 
 // default以外
-:where(.b--notice[data-variant]){
+:where(.b--notice[data-variant]) {
 	border: solid 1px var(--bdc);
 }
 
-
 // default
-.b--notice:not([data-variant]){
+.b--notice:not([data-variant]) {
 	border-inline-start: solid 4px var(--bdc);
-	
+
 	// color-mixのサポートチェック
 	@supports (color: color-mix(in srgb, #000, #fff)) {
-		--c--link: color-mix(in srgb, var(--keycolor), var(--c--text) var(--colorMixPercent--link));
-		--head-c: var(--c--link);
-		background-color: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
+		--link--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
+		--head--c: var(--link--c);
+		background-color: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bg));
 	}
 }
-
 
 // fill
 // [data-variant="fill"]{
 // 	overflow: hidden; // border-radiusつけたときに fill部分がはみ出さないように
 // }
-[data-variant="fill"] > .b--notice__head{
-	--head-c:#fff;
+[data-variant='fill'] > .b--notice__head {
+	--head--c: #fff;
 	--pX: var(--p);
 	background-color: var(--keycolor);
 }
@@ -50,14 +47,13 @@
 // .b--notice[data-variant="outline"] {border: solid 1px var(--keycolor);}
 
 // obbd
-.b--notice[data-variant="cap-onbd"] {
-
-	:where(&) > .b--notice__head{
-		background-color: var(--c--bg);
+.b--notice[data-variant='cap-onbd'] {
+	:where(&) > .b--notice__head {
+		background-color: var(--bgc--base);
 		margin-inline: var(--space--40);
 	}
 
-	:where(&) > .b--notice__body{
+	:where(&) > .b--notice__body {
 		margin-top: var(--space--20);
 	}
 }

@@ -17,7 +17,7 @@ import {
 } from './icons/loos-icons';
 
 import {
-	PhPencilSimple,
+	// PhPencilSimple,
 	PhWarningCircle,
 	PhWarning,
 	PhCheck,
@@ -31,7 +31,7 @@ import {
 const AlertPresets = {
 	memo: {
 		icon: LsPen,
-		color: 'gray',
+		color: 'nuetral',
 	},
 	error: {
 		icon: LsAlertOutline,

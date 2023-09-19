@@ -1,6 +1,6 @@
 .b--card {
 	:where(&) {
-		--bgc: var(--c--bg);
+		--bgc: var(--bgc--base);
 		--fz: var(--fz-fluid);
 	}
 

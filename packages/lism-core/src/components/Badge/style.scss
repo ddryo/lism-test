@@ -25,7 +25,7 @@
 
 .e--badge[data-variant='subtle'] {
 	@supports (color: color-mix(in srgb, #000, #fff)) {
-		--c: color-mix(in srgb, var(--keycolor), var(--c--text) var(--colorMixPercent--link));
-		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
+		--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
+		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bg));
 	}
 }

@@ -11,15 +11,18 @@
 	}
 
 	code {
-		font-size: var(--fz--code);
-		font-family: var(--ff--code);
+		font-size: var(--code--fz);
+		font-family: var(--code--ff);
 	}
 
 	:not(pre) > code {
-		background-color: var(--color--gray, whitesmoke);
-		border: solid 1px lightgray;
+		color: var(--code--c);
+		background-color: var(--code--bgc);
+		border: solid 1px var(--code--bdc);
 		padding: 0.125em 0.25em;
 		border-radius: 2px;
+		display: inline-block; // できるだけ途中で改行されないように
+		line-height: 1.2;
 	}
 
 	kbd {
@@ -30,11 +33,6 @@
 		padding: 0.25em 0.5em;
 		border-radius: 2px;
 		box-shadow: 0 1px 0 lightgray;
-	}
-
-	/* 下線の上にスペースを追加する */
-	a {
-		text-underline-offset: var(--offset--link-underline);
 	}
 
 	/* hrのスタイリング. currentColor */

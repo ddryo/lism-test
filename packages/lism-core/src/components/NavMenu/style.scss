@@ -5,12 +5,12 @@
 	// --item-pl: var(--item-px);
 	--item-ml: 0;
 	--level: 0;
-	--hov--bgc: var(--c--whitesmoke);
+	--hov--bgc: var(--color--whitesmoke);
 
 	// --bdc: var(--c--border);
 	// --bd: solid 1px var(--bdc);
 }
-.b--navMenu{
+.b--navMenu {
 	list-style: none;
 }
 
@@ -18,10 +18,8 @@
 .b--navMenu__item {
 	line-height: 1.5;
 	margin-left: var(--item-ml);
-
-
 }
-.l--accordion__bodyInner > .b--navMenu{
+.l--accordion__bodyInner > .b--navMenu {
 	// アウトラインが ov:hiddenによって 見えなく鳴るのを防ぐ?
 	// padding: 2px;
 	outline-offset: -2px;
@@ -39,7 +37,6 @@
 	// justify-content: space-between;
 }
 
-
 // 子項目の余白をpaddingで調整する場合
 // .b--navMenu[data-nest-level]{
 // 	--item-pl: calc(var(--item-px) + (var(--level) * 1.25em));
@@ -50,15 +47,15 @@
 	--item-ml: var(--space--40);
 }
 
-.b--navMenu__acc > .l--accordion__header{
+.b--navMenu__acc > .l--accordion__header {
 	--p: 0 var(--item-px) 0 0;
 }
 
-.b--navMenu.l--cluster{
-	.b--navMenu[data-nest-level]{
+.b--navMenu.l--cluster {
+	.b--navMenu[data-nest-level] {
 		--item-ml: 0;
 	}
-	.l--accordion__body{
+	.l--accordion__body {
 		position: absolute;
 	}
 }

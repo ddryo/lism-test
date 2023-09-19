@@ -1,34 +1,29 @@
 // Alert は --keycolor が常に渡ってくる
 
 :where(.b--alert) {
-	// --keycolor: var(--c--main);
-	--icon-c: var(--keycolor);
+	// --keycolor: var(--color--main);
+	--icon--c: var(--keycolor);
 	--bdc: var(--keycolor);
 	--bgc: transparent;
 	--p: var(--space--30);
 	--gap: var(--space--30);
 	--bdrs: var(--radius--2);
 
-	// --p--sm: var(--space--30);
-	// --gap--sm: var(--space--30);
-	// --c: var(--c--text);
-}
-
-:where(.b--alert){
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc);
 	padding: var(--p);
 	align-items: center;
 	border-radius: var(--bdrs);
 }
-.b--alert{
+
+.b--alert {
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc);
 	padding: var(--p);
 }
 
-.b--alert__icon{
-	color: var(--icon-c);
+.b--alert__icon {
+	color: var(--icon--c);
 }
 
 // .-scale: で上書きできる詳細度で
@@ -36,25 +31,19 @@
 // 	scale: 1.125;
 // }
 
-.b--alert{
+.b--alert {
 	// color-mixのサポートチェック
 	// srgb-linear
 	@supports (color: color-mix(in srgb, #000, #fff)) {
-		// color: color-mix(in srgb, var(--keycolor), var(--c--text) 90%);
-		--bdc: color-mix(in srgb, var(--keycolor), transparent 80%);
-		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--colorMixPercent--bg));
+		// color: color-mix(in srgb, var(--keycolor), var(--c--base) 90%);
+		--bdc: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bd));
+		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bg));
 
 		// 親でカラー指定があればそれを引き継げるように
-		--c--link: color-mix(in srgb, var(--keycolor), var(--c, var(--c--text)) var(--colorMixPercent--link));
+		--link--c: color-mix(
+			in srgb,
+			var(--keycolor),
+			var(--c, var(--c--base)) var(--cMixPer--text)
+		);
 	}
 }
-
-// .b--alert:where([data-variant="fill"]) {
-// 	--c--link: currentColor;
-// 	--icon-c: currentColor;
-// 	--bgc: var(--keycolor);
-// 	color: #fff;
-// }
-
-// :where(.b--alert[data-variant="outline"]){}
-

@@ -1,23 +1,20 @@
-
-
-
 // --------------------
 // divider
 // --------------------
-:where(.l--divider){
-	--c: var(--c--bg);
+:where(.l--divider) {
+	--c: var(--bgc--base);
 	// 20px - (500 * 0.04 = 20px) = 0px
 	// 20px - (300 * 0.04 = 12px) = 8px
 
 	// 300:8px ~ 500:0px
-	// clamp(-0.5rem, -1.25rem + 4vw, 0rem)	
+	// clamp(-0.5rem, -1.25rem + 4vw, 0rem)
 	// --levelOffset: clamp(0px, 20px - 4cqw, 8px);
 
 	// 400:8px ~ 600:0px
 	// --levelOffset: clamp(0px, 24px - 4cqw, 8px);
 }
 
- // heightが.-h:で上書きできるかあとでチェック
+// heightが.-h:で上書きできるかあとでチェック
 .l--divider {
 	--level: 5;
 	--rotateX: 0deg;
@@ -27,57 +24,56 @@
 	--stretch: 1;
 
 	position: relative;
-	height: clamp( calc(6px * var(--level)), calc( 1cqw * var(--level) ), calc(12px * var(--level)) ); // 600px時点を最小値, 1200px時点を最大値にする
+	height: clamp(
+		calc(6px * var(--level)),
+		calc(1cqw * var(--level)),
+		calc(12px * var(--level))
+	); // 600px時点を最小値, 1200px時点を最大値にする
 	// height: calc(1cqw * var(--level) + var(--levelOffset)); // 小さい領域では高さをプラスする?
 	max-width: 100%; // is--constrainedの影響を受けないようにする
 	overflow: hidden;
 	color: var(--c);
 
-
-	&[data-flip~="y"]{
+	&[data-flip~='y'] {
 		--rotateY: 180deg;
 	}
-	&[data-flip~="x"]{
+	&[data-flip~='x'] {
 		--rotateX: 180deg;
-		top: -.5px; // transform で上下反転させると隙間ができてしまう
+		top: -0.5px; // transform で上下反転させると隙間ができてしまう
 	}
-	&:not([data-flip~="x"]){
-		bottom: -.5px;
+	&:not([data-flip~='x']) {
+		bottom: -0.5px;
 	}
 
-	.l--divider__svg{
+	.l--divider__svg {
 		color: inherit;
 		width: 100%;
 		height: 100%;
 	}
 
-	.l--divider__inner{
+	.l--divider__inner {
 		position: absolute;
 		inset: 0;
 		scale: var(--stretch) 1;
 		translate: var(--offset);
 		transform: rotateX(var(--rotateX)) rotateY(var(--rotateY));
 	}
-	
-	path{
+
+	path {
 		fill: currentColor;
 	}
 }
 
-
-
-
 /* 左右にスライドするだけ */
 @keyframes LsDividerMove {
-	0%{
-		transform:scaleX(4);
+	0% {
+		transform: scaleX(4);
 	}
 	100% {
 		transform: scaleX(4) translateX(calc(100% - 25%));
 	}
 }
-.l--divider[data-animation="lr"] {
-
+.l--divider[data-animation='lr'] {
 	// .l--divider__inner{}
 	.l--divider__svg {
 		/* ↓ X 100% にしてるのは translateXのcalc計算で * -1 をしなくていいように。*/
@@ -85,7 +81,6 @@
 		animation: LsDividerMove var(--duration) infinite alternate linear;
 	}
 }
-
 
 @keyframes LsDividerLoop {
 	0% {
@@ -98,9 +93,8 @@
 }
 
 // 多くの場合、継ぎ目が見えてしまう
-.l--divider[data-animation="loop"] {
-
-	.l--divider__inner{
+.l--divider[data-animation='loop'] {
+	.l--divider__inner {
 		width: 100%;
 		height: 100%;
 		display: flex;
@@ -138,7 +132,6 @@
 // 	}
 // }
 
-
 // // 多くの場合、継ぎ目が見えてしまう
 // .l--divider[data-animation="loop"] {
 
@@ -151,7 +144,7 @@
 // 		min-width: 100%;
 // 		transform: scaleX(4);
 // 		transform-origin: 0 0;
-		
+
 // 	}
 
 // 	.l--divider__svg:first-child {
@@ -162,5 +155,3 @@
 // 	}
 
 // }
-
-

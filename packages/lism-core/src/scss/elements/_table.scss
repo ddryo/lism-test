@@ -2,7 +2,7 @@
 // Why? 特定のセルだけボーダーカスタマイズもしやすい.
 // ただし、スクロール時にsticky要素の border が表示されない問題があることに注意。
 // 　　　→ ベースは上下ボーダーのみにしてその問題に対処しやすくする。
-@layer lism-elements {
+@layer lism-init {
 	table {
 		width: 100%;
 		// max-width: 100%;

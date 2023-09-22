@@ -45,7 +45,7 @@
 // 	--bgc: var(--black);
 // }
 .-bgc\:base {
-	--bgc: var(--bg--base);
+	--bgc: var(--bgc--base);
 }
 .-bgc\:pale {
 	--bgc: var(--bgc--pale);
@@ -68,9 +68,9 @@
 	--c: var(--keycolor--c, var(--c--filled));
 }
 // .-keycolor\:{&}
-.-keycolor\:cc {
-	--keycolor: currentColor;
-}
+// .-keycolor\:cc {
+// 	--keycolor: currentColor;
+// }
 .-keycolor\:main {
 	--keycolor: var(--main);
 	--keycolor--c: var(--main--c);

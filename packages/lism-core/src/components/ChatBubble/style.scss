@@ -62,14 +62,13 @@
 }
 
 :where(.b--chatBubble__content) {
-	--p: var(--space--30) calc(var(--space--30) + var(--space--5));
+	--p: var(--space--30);
 	// --p--sm: var(--space--30);
 	--bdrs: var(--radius--3);
 }
 
 :where([data-variant='box'] > div > .b--chatBubble__content) {
 	--p: var(--space--40);
-	// --p--sm: var(--space--45);
 	--bdrs: var(--radius--2);
 }
 

@@ -1,18 +1,20 @@
-:where(.e--badge) {
-	// --keycolor: ;
-	--p: var(--space--5) var(--space--10);
-	--c: var(--c--filled);
-	--bgc: var(--keycolor);
-	--bdc: transparent;
-	--gap: 0.2em; // em 単位で指定したいので --space--5 は使わない
-	--bdrs: var(--radius--1);
-}
+@layer lism-module {
+	.e--badge {
+		// --keycolor: ;
+		--c: var(--c--filled);
+		--bgc: var(--keycolor);
+		--bdc: transparent;
 
-.e--badge {
-	line-height: 1.5;
-	color: var(--c);
-	background-color: var(--bgc);
-	border: solid 1px var(--bdc); // サイズ揃えるため,常につける
+		color: var(--c);
+		background-color: var(--bgc);
+		border: solid 1px var(--bdc); // サイズ揃えるため, 常にborderを指定
+
+		font-size: var(--fz--xs);
+		line-height: 1.5;
+		gap: 0.2em;
+		padding: 0.125em 0.5em;
+		border-radius: var(--radius--1);
+	}
 }
 
 // fill=default
@@ -22,10 +24,6 @@
 	--bdc: currentColor;
 	--bgc: transparent;
 	--c: var(--keycolor);
-	// text-shadow: 0.5px 0.5px 0.5px var(--keycolor);
-	// @supports (color: color-mix(in srgb, #000, #fff)) {
-	// 	--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
-	// }
 }
 
 .e--badge[data-variant='subtle'] {

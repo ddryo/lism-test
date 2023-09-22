@@ -20,9 +20,9 @@ export default function Badge({
 		tag: 'span',
 		lismClass: 'e--badge',
 		keycolor: color,
-		radius: '-',
-		p: '-',
-		fz: 's',
+		// radius: '-',
+		// p: '-',
+		// fz: 's',
 		style,
 		'data-variant': variant,
 		...props,
@@ -31,7 +31,7 @@ export default function Badge({
 	if (hasIcon) {
 		blockProps.d = 'inline-flex';
 		blockProps.ai = 'center';
-		blockProps.gap = '-';
+		// blockProps.gap = '-';
 	}
 
 	// if (color) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Lism } from '../Lism';
 
 export default function Flow(props) {
-	return <Lism lismClass='l--flow' {...props} />;
+	return <Lism lismClass='is--flow' {...props} />;
 }
 
 // export default function Flow({ as, children, modifier, ...props }) {

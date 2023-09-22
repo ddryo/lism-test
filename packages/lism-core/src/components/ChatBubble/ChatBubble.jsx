@@ -37,15 +37,9 @@ export default function ChatBubble({
 	let decorators = null;
 	// const fxd = 'left' === direction ? null : 'row-reverse';
 
-	let _chatBoxProps = {
-		// isGrid: true,
-		// gap: '-',
-	};
+	let _chatBoxProps = {};
 	// let _avatarProps = { radius: '99' };
-	let _bodyProps = {
-		// pos: 'relative',
-		// mt: '-',
-	};
+	let _bodyProps = {};
 	let _contentProps = {
 		isFlow: true,
 		flowGap: 30,
@@ -113,15 +107,3 @@ export default function ChatBubble({
 		</Grid>
 	);
 }
-
-// Cluster: is--flexでflex-wrap: wrap;なもの
-// Stack: 縦方向のCluster
-
-// Flow: .l--Box.is--flow
-// Flex: .l--Box.is--flex
-// Grid: .l--Box.is--grid
-
-// smサイズだけreelとか → reel > flex,grid に対して処理するだけで済む？
-// reel > flex → fw: nowrapに
-// reel→ "lgで解除" という考え方？
-// reel.only-sm とかの直下にflexなどをおく。

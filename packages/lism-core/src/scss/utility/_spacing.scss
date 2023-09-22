@@ -1,44 +1,53 @@
 @use '../query' as query;
 
-@for $i from 0 through 7 {
-	.-flowGap\:#{$i * 10} {
-		--flowGap: var(--space--#{$i * 10});
+// 0, 5, 10, 15, 20, 30, 40, 50 まで
+
+//_SCSS
+$spaces: 0, 5, 10, 15, 20, 30, 40, 50;
+@each $s in $spaces {
+	// @for $i from 0 through 5 {
+	// .-flowGap\:#{$s} {
+	// 	--flowGap: var(--space--#{$s});
+	// }
+	.-mbs\:#{$s} {
+		--mbs: var(--space--#{$s});
+	}
+	// .-mbe\:#{$s} {
+	// 	--mbe: var(--space--#{$s});
+	// }
+	.-gap\:#{$s} {
+		--gap: var(--space--#{$s});
 	}
 
-	.-mbs\:#{$i * 10} {
-		--mbs: var(--space--#{$i * 10});
-	}
+	// .-clmg\:#{$s} {
+	// 	--clmg: var(--space--#{$s});
+	// }
+	// .-rowg\:#{$s} {
+	// 	--rowg: var(--space--#{$s});
+	// }
 
-	.-gap\:#{$i * 10} {
-		--gap: var(--space--#{$i * 10});
+	.-p\:#{$s} {
+		--p: var(--space--#{$s});
 	}
-	.-clmg\:#{$i * 10} {
-		--clmg: var(--space--#{$i * 10});
+	// .-pbs\:
+	// .-pbe\:
+	.-pX\:#{$s} {
+		--pX: var(--space--#{$s});
 	}
-	.-rowg\:#{$i * 10} {
-		--rowg: var(--space--#{$i * 10});
+	.-pY\:#{$s} {
+		--pY: var(--space--#{$s});
 	}
-
-	.-p\:#{$i * 10} {
-		--p: var(--space--#{$i * 10});
-	}
-	.-pX\:#{$i * 10} {
-		--pX: var(--space--#{$i * 10});
-	}
-	.-pY\:#{$i * 10} {
-		--pY: var(--space--#{$i * 10});
-	}
-	// .-pl\:#{$i * 10} {
-	// 	--pl: var(--space--#{$i * 10});
+	// .-pl\:#{$s} {
+	// 	--pl: var(--space--#{$s});
 	// }
-	// .-pr\:#{$i * 10} {
-	// 	--pr: var(--space--#{$i * 10});
+	// .-pr\:#{$s} {
+	// 	--pr: var(--space--#{$s});
 	// }
-	// .-pt\:#{$i * 10} {
-	// 	--pt: var(--space--#{$i * 10});
+	// .-pt\:#{$s} {
+	// 	--pt: var(--space--#{$s});
 	// }
-	// .-pb\:#{$i * 10} {
-	// 	--pb: var(--space--#{$i * 10});
+	// .-pb\:#{$s} {
+	// 	--pb: var(--space--#{$s});
 	// }
 }
 

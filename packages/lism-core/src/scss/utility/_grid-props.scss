@@ -58,14 +58,3 @@
 		grid-template-rows: var(--gtr--lg);
 	}
 }
-@include query.cq('xl') {
-	.-gta\@xl\: {
-		grid-template-areas: var(--gta--xl);
-	}
-	.-gtc\@xl\: {
-		grid-template-columns: var(--gtc--xl);
-	}
-	.-gtr\@xl\: {
-		grid-template-rows: var(--gtr--xl);
-	}
-}

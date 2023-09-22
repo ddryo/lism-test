@@ -12,6 +12,16 @@
 	padding: var(--p) !important;
 }
 
+.-p\:box {
+	--p: var(--p--box);
+}
+.-p\:box\:s {
+	--p: var(--p--box--s);
+}
+.-p\:box\:l {
+	--p: var(--p--box--l);
+}
+
 // [data-props*="-pX:"], 
 // [data-props~="-pX"],
 [class*="-pX:"]{
@@ -94,22 +104,4 @@
 	.-pr\@lg\: { padding-right: var(--pr--lg) !important;}
 	.-pb\@lg\: { padding-bottom: var(--pb--lg) !important;}
 	.-pl\@lg\: { padding-left: var(--pl--lg) !important;}
-}
-
-@include query.cq('xl'){
-	.-p\@xl\:{
-		padding: var(--p--xl) !important;
-	}
-	.-pX\@xl\:{
-		padding-left: var(--pX--xl) !important;
-		padding-right: var(--pX--xl) !important;
-	}
-	.-pY\@xl\:{
-		padding-top: var(--pY--xl) !important;
-		padding-bottom: var(--pY--xl) !important;
-	}
-	.-pt\@xl\: { padding-top: var(--pt--xl) !important;}
-	.-pr\@xl\: { padding-right: var(--pr--xl) !important;}
-	.-pb\@xl\: { padding-bottom: var(--pb--xl) !important;}
-	.-pl\@xl\: { padding-left: var(--pl--xl) !important;}
 }

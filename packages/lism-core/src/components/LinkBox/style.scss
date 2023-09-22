@@ -27,6 +27,10 @@
 	pointer-events: auto;
 }
 
+.is--flow > [data-hidden-link] + * {
+	margin-block-start: 0;
+}
+
 // .is--linkbox {
 // 	color: inherit;
 // 	text-decoration: none;

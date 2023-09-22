@@ -3,6 +3,7 @@
 // --------------------
 .l--reel {
 	--item--w: 16em; // 初期値要検討
+	display: grid;
 
 	// display: flex;
 	overflow-x: auto;
@@ -15,12 +16,6 @@
 	// grid-template-rows: unset;
 }
 
-// .l--reel.is--flex {
-// 	> .is--item {
-// 		flex: 0 0 var(--item--w);
-// 	}
-// }
-
 .l--reel[data-scbar='show'] {
 	--scrollbar--thumb-color: #fff;
 	--scrollbar--track-color: #000;
@@ -31,9 +26,8 @@
 	scrollbar-width: var(--scrollbar--height);
 
 	&:not(.no-bar) {
-		padding-bottom: var(
-			--space--10
-		); // JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい?
+		// JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい?
+		padding-bottom: var(--space--10);
 	}
 
 	&.no-bar {

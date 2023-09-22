@@ -10,7 +10,7 @@
 	}
 }
 
-[class*='-hov\:'] {
+[class*='-hov:'] {
 	transition: filter, opacity, box-shadow, translate, scale, border-color, color, background-color;
 	transition-duration: var(--hov--duration);
 
@@ -26,12 +26,24 @@
 .-hov\:c\::hover {
 	color: var(--hov--c) !important;
 }
+
+// [class*='-hov:bgc:']:hover,
 .-hov\:bgc\::hover {
 	background-color: var(--hov--bgc) !important;
 }
 .-hov\:bdc\::hover {
 	border-color: var(--hov--bdc) !important;
 }
+
+// .-hov\:bgc\:b100 {
+// 	--hov--bgc: var(--b100);
+// }
+// .-hov\:bgc\:b200 {
+// 	--hov--bgc: var(--b200);
+// }
+// .-hov\:bgc\:b900 {
+// 	--hov--bgc: var(--b900);
+// }
 
 // プリセット
 .-hov\:shadow\::hover {

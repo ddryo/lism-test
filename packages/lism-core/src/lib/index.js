@@ -34,7 +34,7 @@ export const isPresetValue = (presets, value) => {
 // ユーティリティ化できるキーワードのチェック
 export const getUtilValue = (utils, value) => {
 	let utilValues = '';
-	if (typeof presets === 'string') {
+	if (typeof utils === 'string') {
 		utilValues = UTILITIES[utils];
 	} else {
 		utilValues = utils;

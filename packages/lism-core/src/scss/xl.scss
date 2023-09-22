@@ -1,0 +1,72 @@
+@use '../query' as query;
+/* stylelint-disable */
+
+@include query.cq('xl') {
+	.-d\@xl\: {display: var(--d--xl) !important;}
+	.-w\@xl\: {width: var(--w--xl) !important;}
+	.-h\@xl\: {height: var(--h--xl) !important;}
+
+	.-fxw\@xl\: {flex-wrap: var(--fxw--xl);}
+	.-fxd\@xl\: {flex-direction: var(--fxd--xl);}
+
+	.-gta\@xl\: {grid-template-areas: var(--gta--xl);}
+	.-gtc\@xl\: {grid-template-columns: var(--gtc--xl);}
+	.-gtr\@xl\: {grid-template-rows: var(--gtr--xl);}
+
+	.-fxg\@xl\: {flex-grow: var(--fxg--xl);}
+	.-fxsh\@xl\: {flex-shrink: var(--fxsh--xl);}
+	.-fxb\@xl\: {flex-basis: var(--fxb--xl);}
+	.-fx\@xl\: {flex: var(--fx--xl);}
+	.-gc\@xl\: {grid-column: var(--gc--xl);}
+	.-gr\@xl\: {grid-row: var(--gr--xl);}
+}
+
+@include query.cq('xl') {
+	.-p\@xl\: {
+		padding: var(--p--xl) !important;
+	}
+	.-pX\@xl\: {
+		padding-left: var(--pX--xl) !important;
+		padding-right: var(--pX--xl) !important;
+	}
+	.-pY\@xl\: {
+		padding-top: var(--pY--xl) !important;
+		padding-bottom: var(--pY--xl) !important;
+	}
+	.-pt\@xl\: {
+		padding-top: var(--pt--xl) !important;
+	}
+	.-pr\@xl\: {
+		padding-right: var(--pr--xl) !important;
+	}
+	.-pb\@xl\: {
+		padding-bottom: var(--pb--xl) !important;
+	}
+	.-pl\@xl\: {
+		padding-left: var(--pl--xl) !important;
+	}
+
+	.-m\@xl\: {
+		margin: var(--m--xl) !important;
+	}
+	.-mX\@xl\: {
+		margin-left: var(--mX--xl) !important;
+		margin-right: var(--mX--xl) !important;
+	}
+	.-mY\@xl\: {
+		margin-top: var(--mY--xl) !important;
+		margin-bottom: var(--mY--xl) !important;
+	}
+	.-mt\@xl\: {
+		margin-top: var(--mt--xl) !important;
+	}
+	.-mr\@xl\: {
+		margin-right: var(--mr--xl) !important;
+	}
+	.-mb\@xl\: {
+		margin-bottom: var(--mb--xl) !important;
+	}
+	.-ml\@xl\: {
+		margin-left: var(--ml--xl) !important;
+	}
+}

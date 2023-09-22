@@ -47,16 +47,12 @@ export default function FractiosGrid({
 	// if ('1fr 1fr' === gtcs._) delete gtcs._;
 
 	const blockProps = {
-		// lismClass: 'l--ratioGrid',
-		// isGrid: true,
-		modifier: 'fractions',
 		gap: 20, // 初期値
 		gtc: frs,
-		// lismVar: clms,
 	};
 
 	return (
-		<Grid {...blockProps} {...props}>
+		<Grid modifier='fractions' {...blockProps} {...props}>
 			{/* {customQueryCSS && <style jsx>{customQueryCSS}</style>} */}
 			{children}
 		</Grid>

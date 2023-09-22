@@ -46,11 +46,3 @@
 		flex-direction: var(--fxd--lg);
 	}
 }
-@include query.cq('xl') {
-	.-fxw\@xl\: {
-		flex-wrap: var(--fxw--xl);
-	}
-	.-fxd\@xl\: {
-		flex-direction: var(--fxd--xl);
-	}
-}

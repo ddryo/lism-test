@@ -1,19 +1,14 @@
 @use '../query' as query;
 
-@layer lism-init {
-	// l--flex, l--stack, l--reel, ...
-	// .is--flex,
+@layer lism-layout {
 	.l--flex {
 		--fxw: nowrap;
 		--fxd: row;
 		--gap: 0;
-	}
-}
 
-.l--flex,
-.is--flex {
-	display: flex;
-	flex-wrap: var(--fxw);
-	flex-direction: var(--fxd);
-	gap: var(--gap);
+		display: flex;
+		flex-wrap: var(--fxw);
+		flex-direction: var(--fxd);
+		gap: var(--gap);
+	}
 }

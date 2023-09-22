@@ -1,19 +1,11 @@
-import { getMaybeSpaceVar, getMaybeColorVar } from '../index.js';
-import { UTILITIES } from '../config.js';
-
-const mgOption = { BP: 1, utilVals: { auto: 'a' }, converter: getMaybeSpaceVar };
-const pdOption = { BP: 1, presets: 'space', converter: getMaybeSpaceVar };
-const tlrbOption = {
-	withUtil: 0,
-	utilVals: { 0: '0', '0%': '0', '50%': '50', '100%': '100' },
-	converter: getMaybeSpaceVar,
-};
+const marginOption = { BP: 1, utilVals: 'margin', converter: 'space' };
+const paddingOption = { BP: 1, presets: 'space', converter: 'space' };
 
 /*
 // memo: 
 
-if: styleKey && !options → スタイルのみ
-	→ かつ、BP の有無で `${styleKey}--${bp}` にするか判断
+if: style && !options → スタイルのみ
+	→ かつ、BP の有無で `${style}--${bp}` にするか判断
 else:BP → .-prop: ありで、BPサポートあり
 else: → .-prop: ありで、BPサポートなし
 
@@ -24,7 +16,7 @@ withUtil: ユーティリティクラスを出力するかどうか
 
 
 DATA.onlyStyle: ユーティリティクラスを出力しないもの。
-	今 styleKey 
+	今 style 
 	... isStyle? or useUtil?
 	単純に true → そのままprops名をstyleとして受け付ける
 	文字列指定 → 受け取るprop名と実際に出力するstyle名が異なる場合に指定する
@@ -57,217 +49,153 @@ options.onlyStyle: ユーティリティクラス化しない値の時、.-prop:
 options.skipBaseUtil: BPなしの時だけユーティリティクラスの出力をスキップする
 	例: gtaなど ( is--grid で--gtaは受け付けるので、 .-gta: がいらない)
 
-options.styleKey → options.onlyStyle が true の場合に、プリセット値以外の時に出力するスタイル名。
+options.style → options.onlyStyle が true の場合に、プリセット値以外の時に出力するスタイル名。
 	これを指定しなければ、 --prop 変数のみが出力される。（--gaなど (item制限廃止すればこのケースはなくなる) ）
 
 
+mode: 
+	ユーティリティクラス化されない時の挙動パターンを定義?
+		-  .-prop: かつ --prop ( ほとんどこれ ) →
+		-  普通のstyleとして出力するだけ ( alignSelf など ) → style をもつ
+		-  --prop のみ出力.( keycolor や --bdc など ) → withUtil:0 かつ style をもつ
+		- propのname と 出力name が変わる ( radius → bdrs) →  name をもつ
+	BP: 1 なら withUtil も 1 になる.
+	utilKey があれば になる.
 
+	禁止: 
+		styleを持っていて BP:1 
+		styleを持っていて withUtil:0
 */
 export default {
 	common: {
-		d: { BP: 1, utilVals: UTILITIES['display'] },
-		w: { BP: 1, utilVals: UTILITIES['size'] },
-		h: { BP: 1, utilVals: UTILITIES['size'] },
-		maxW: { utilVals: UTILITIES['size'] },
-		maxH: { utilVals: UTILITIES['size'] },
-		minW: {},
-		minH: {},
+		d: { BP: 1, utilVals: 1 },
+		w: { BP: 1, utilVals: 'size' },
+		h: { BP: 1, utilVals: 'size' },
+		maxW: { style: 'maxWidth', utilVals: 'size' },
+		maxH: { style: 'maxHeight', utilVals: 'size' },
+		minW: { style: 'minWidth' },
+		minH: { style: 'minHeight' },
 
-		c: { presets: 'c', withUtil: 1, converter: getMaybeColorVar },
-		bgc: {
-			presets: 'bgc',
-			withUtil: 1,
-			utilVals: {
-				none: 't',
-				transparent: 't',
-				current: 'cc',
-				currentColor: 'cc',
-			},
-			converter: getMaybeColorVar,
-		},
-		keycolor: {
-			withUtil: 0,
-			styleKey: '--keycolor',
-			presets: 'keycolor',
-			converter: getMaybeColorVar,
-			utilVals: {
-				current: 'cc',
-				currentColor: 'cc',
-			},
-		},
+		c: { presets: 1, converter: 'color' },
+		bgc: { presets: 1, utilVals: 1, converter: 'color' },
+		keycolor: { style: '--keycolor', presets: 1, converter: 'color' },
 
-		bg: { presets: 'bg', utilVals: { none: 'n' } },
-		opacity: { withUtil: 0, styleKey: 'opacity' },
+		bg: { presets: 1, utilVals: 1 },
+		opacity: { style: 1 },
 
-		bd: { presets: 'border', utilVals: UTILITIES['border'] },
-		bdl: { withUtil: 0, styleKey: 'borderLeft' },
-		bdr: { withUtil: 0, styleKey: 'borderRight' },
-		bdt: { withUtil: 0, styleKey: 'borderTop' },
-		bdb: { withUtil: 0, styleKey: 'borderBottom' },
+		bd: { presets: 1, utilVals: 1 },
+		bdl: { style: 'borderLeft' },
+		bdr: { style: 'borderRight' },
+		bdt: { style: 'borderTop' },
+		bdb: { style: 'borderBottom' },
 
 		// bd="l,r,is"
-		bdw: { withUtil: 0, styleKey: '--bdw' }, // --bdw のみ
-		bds: { withUtil: 0, styleKey: '--bds' }, // --bds のみ
-		bdc: {
-			withUtil: 0,
-			styleKey: '--bdc',
-			presets: 'bdc',
-			utilVals: { none: 't', transparent: 't' },
-			converter: getMaybeColorVar,
-		},
-		borderSolid: { withUtil: 0, styleKey: 'borderSolid' },
-		borderWidth: { withUtil: 0, styleKey: 'borderWidth' },
+		bdw: { style: '--bdw' }, // --bdw のみ
+		bds: { style: '--bds' }, // --bds のみ
+		bdc: { style: '--bdc', presets: 1, utilVals: 1, converter: 'color' },
+		borderSolid: { style: 1 },
+		borderWidth: { style: 1 },
 
 		//transform
-		translate: {
-			withUtil: 0,
-			utilKey: 'trnslt',
-			styleKey: 'translate',
-			utilVals: { '-50% -50%': 'XY:-50', '-50% 0': 'X:-50', '0 -50%': 'Y:-50' },
-		},
-		transformOrigin: {
-			withUtil: 0,
-			utilKey: 'trso',
-			utilVals: UTILITIES['origin'],
-			styleKey: 'transformOrigin',
-		},
-		rotate: {
-			withUtil: 0,
-			utilVals: {
-				'45deg': '45',
-				'-45deg': '-45',
-				'90deg': '90',
-				'-90deg': '-90',
-				'180deg': '180',
-			},
-		},
-		scale: { withUtil: 0 },
-		order: { withUtil: 0 },
+		translate: { style: 1, utilVals: 1, utilKey: 'trnslt' },
+		transformOrigin: { style: 1, utilKey: 'trso', utilVals: 'origin' },
+		rotate: { style: 1, utilVals: 1 },
+		scale: { style: 1 },
+		order: { style: 1 },
 
-		// position
-		top: { utilKey: 't', ...tlrbOption },
-		left: { utilKey: 'l', ...tlrbOption },
-		right: { utilKey: 'r', ...tlrbOption },
-		bottom: { utilKey: 'b', ...tlrbOption },
-		inset: { ...tlrbOption, utilVals: { 0: '0', '0%': '0' } }, // inset は 0 だけ util
-		z: { withUtil: 0, presets: ['-1', '0', '1'], styleKey: 'zIndex' },
-
-		mbs: { presets: 'space' },
-		radius: { utilKey: 'bdrs', styleKey: '--bdrs', presets: 'radius' },
-		shadow: { utilKey: 'bxsh', styleKey: '--bxsh', presets: 'shadow' },
+		top: { style: 1, utilKey: 't', utilVals: 'positions', converter: 'space' },
+		left: { style: 1, utilKey: 'l', utilVals: 'positions', converter: 'space' },
+		right: { style: 1, utilKey: 'r', utilVals: 'positions', converter: 'space' },
+		bottom: { style: 1, utilKey: 'b', utilVals: 'positions', converter: 'space' },
+		inset: { style: 'inset', utilVals: 1, converter: 'space' },
+		z: { style: 'zIndex', presets: 1 },
+		// mbe: { presets: 'space' },
+		radius: { name: 'bdrs', presets: 1 },
+		shadow: { name: 'bxsh', presets: 1 },
 		lh: { presets: 'lh' },
 		fz: { presets: 'fz' },
-		fw: {
-			withUtil: 0,
-			presets: ['100', '300', '400', '500', '700', '900'],
-			utilVals: { thin: '100', normal: '400', bold: '700' },
-			styleKey: 'fontWeight',
-		},
-		ta: {
-			withUtil: 0,
-			styleKey: 'textAlign',
-			utilVals: { center: 'c', left: 'l', right: 'r' },
-		},
-		lts: { withUtil: 0, styleKey: 'letterSpacing' }, // utilityあってもいい
-		whs: { withUtil: 0, styleKey: 'whiteSpace' }, // utilityあってもいい
-		td: { withUtil: 0, styleKey: 'textDecoration' },
+		fw: { style: 'fontWeight', presets: 1, utilVals: 1 },
+		ta: { style: 'textAlign', utilVals: 1 },
+		lts: { style: 'letterSpacing' }, // utilityあってもいい
+		td: { style: 'textDecoration' },
+		whs: { style: 'whiteSpace', utilVals: { nowrap: 'nw' } },
+		ovw: { style: 'overflowWrap', utilVals: { anywhere: 'any' } },
+		lis: { style: 'listStyle', utilVals: { none: 'n' } },
+		ov: { style: 'overflow', utilVals: 1 },
+		ovx: { style: 'overflowX', utilVals: 'ov' },
+		ovy: { style: 'overflowY', utilVals: 'ov' },
+		pos: { style: 'position', utilVals: 1 },
 
-		ovw: { withUtil: 0, styleKey: 'overflowWrap', utilVals: { anywhere: 'any' } },
-		lis: { withUtil: 0, styleKey: 'listStyle', utilVals: { none: 'n' } },
-		ov: {
-			withUtil: 0,
-			styleKey: 'overflow',
-			utilVals: {
-				visible: 'v',
-				hidden: 'h',
-				auto: 'a',
-				clip: 'c',
-			},
-		},
-		ovx: { withUtil: 0, styleKey: 'overflowX', utilVals: { auto: 'a', clip: 'c' } },
-		ovy: { withUtil: 0, styleKey: 'overflowY', utilVals: { auto: 'a', clip: 'c' } },
-		pos: {
-			withUtil: 0,
-			styleKey: 'position',
-			utilVals: { static: 's', relative: 'r', absolute: 'a', fixed: 'f' },
-		},
-
-		pl: { BP: 1, converter: getMaybeSpaceVar },
-		pr: { BP: 1, converter: getMaybeSpaceVar },
-		pt: { BP: 1, converter: getMaybeSpaceVar },
-		pb: { BP: 1, converter: getMaybeSpaceVar },
-		pX: pdOption,
-		pY: pdOption,
-		ml: mgOption,
-		mr: mgOption,
-		mt: mgOption,
-		mb: mgOption,
-		mX: mgOption,
-		mY: mgOption,
+		pl: { BP: 1, converter: 'space' },
+		pr: { BP: 1, converter: 'space' },
+		pt: { BP: 1, converter: 'space' },
+		pb: { BP: 1, converter: 'space' },
+		pX: { BP: 1, presets: 'space', converter: 'space' },
+		pY: { BP: 1, presets: 'space', converter: 'space' },
+		mbs: { presets: 'space' },
+		ml: marginOption,
+		mr: marginOption,
+		mt: marginOption,
+		mb: marginOption,
+		mX: marginOption,
+		mY: marginOption,
 		p: {
-			...pdOption,
-			// {top,left,...} の場合の処理
-			objProcessor: (d) => {
-				const presets = d === 'X' || d === 'Y' ? 'space' : '';
-				return { utilKey: `p${d[0]}`, presets };
-			},
+			BP: 1,
+			presets: 'p',
+			converter: 'space',
+			// {X, Y, top, bottom, left, right} の場合の処理. block, inline どうする？
+			objProcessor: (d) => `p${d[0]}`,
 		},
 		m: {
-			...mgOption,
-			// {top,left,...} の場合の処理
-			objProcessor: (d) => ({ utilKey: `m${d[0]}` }),
+			...marginOption,
+			// {X, Y, top, bottom, left, right} の場合の処理. block, inline どうする？
+			objProcessor: (d) => `m${d[0]}`,
 		},
 
-		// Centerでも使いたい
 		gap: {
 			BP: 1,
 			presets: 'space',
-			converter: getMaybeSpaceVar,
+			converter: 'space',
 
-			// {row, clm} の場合の処理
-			objProcessor: (d) => ({ utilKey: `${d}g` }),
+			// {row, column} の場合の処理
+			objProcessor: (d) => `${d}Gap`,
 		},
+		rowGap: { BP: 1, name: 'rowg', converter: 'space' },
+		columnGap: { BP: 1, name: 'clmg', converter: 'space' },
 
 		// isFlex & isGrid
 		// utility以外を使うのは珍しいので,
-		ai: { withUtil: 0, utilVals: UTILITIES['place'], styleKey: 'alignItems' },
-		ac: { withUtil: 0, utilVals: UTILITIES['place'], styleKey: 'alignContent' },
-		ji: { withUtil: 0, utilVals: UTILITIES['place'], styleKey: 'justifyItems' },
-		jc: { withUtil: 0, utilVals: UTILITIES['place'], styleKey: 'justifyContent' },
+		ai: { style: 'alignItems', utilVals: 'place' },
+		ac: { style: 'alignContent', utilVals: 'place' },
+		ji: { style: 'justifyItems', utilVals: 'place' },
+		jc: { style: 'justifyContent', utilVals: 'place' },
 
 		// isFlowでのみ有効
-		flowGap: { BP: 0, presets: 'space' },
+		flowGap: { presets: 1, converter: 'space' },
 
 		// isItem 解除したやつ
-		ga: { utilVals: UTILITIES['ga'] }, // grid-area
-		gc: { BP: 1, withUtil: 'BP' },
-		gr: { BP: 1, withUtil: 'BP' },
-		fxg: { BP: 1, withUtil: 'BP', presets: ['0', '1'] },
-		fxsh: { BP: 1, withUtil: 'BP', presets: ['0', '1'] },
-		fx: { BP: 1, withUtil: 'BP' },
-		fxb: { BP: 1, withUtil: 'BP' },
-		alignSelf: { withUtil: 0 },
-		justifySelf: { withUtil: 0 },
+		ga: { utilVals: 1 }, // grid-area
+		gc: { BP: 1 },
+		gr: { BP: 1 },
+		fxg: { BP: 1, presets: ['0', '1'] },
+		fxsh: { BP: 1, presets: ['0', '1'] },
+		fx: { BP: 1 },
+		fxb: { BP: 1 },
+		alignSelf: { style: 1 },
+		justifySelf: { style: 1 },
 
 		// lismVar
-		// lismVar: { withUtil: 0, BP: 1, styleKey: '--lism' },
+		// lismVar: { withUtil: 0, BP: 1, style: '--lism' },
 	},
 
 	isGrid: {
-		gta: {
-			BP: 1,
-			// utilVals: UTILITIES['gta']
-		},
+		gta: { BP: 1 },
 		gtc: { BP: 1 },
 		gtr: { BP: 1 },
 	},
 	isFlex: {
-		// nowrap → nw にすべき？(whs と揃える)
-		fxw: { BP: 1, utilVals: { wrap: 'w', nowrap: 'nw' } },
-		fxd: {
-			BP: 1,
-			utilVals: { column: 'c', row: 'r', 'column-reverse': 'cr', 'row-reverse': 'rr' },
-		},
+		fxw: { BP: 1, utilVals: 1 },
+		fxd: { BP: 1, utilVals: 1 },
 	},
 	// isItem: {},
 

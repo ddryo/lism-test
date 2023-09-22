@@ -5,8 +5,8 @@ import { getCommonProps } from '../../lib';
 
 export default function SideFixFlex({ children, fixW, fluidMinW, fix = 'last', ...props }) {
 	const { className, style, attrs } = getCommonProps(props, {
-		lismClass: 'l--sideFix',
-		isFlex: true,
+		lismClass: 'l--sideFix--flex',
+		useFlexProps: true,
 	});
 
 	if (undefined !== fluidMinW) {
@@ -19,6 +19,7 @@ export default function SideFixFlex({ children, fixW, fluidMinW, fix = 'last', .
 	const blockProps = {
 		className,
 		style,
+		// 'data-fix-mode': 'flex',
 		'data-fix': 'first' === fix ? 'first' : 'last', // 必ず first か last になるように,
 		...attrs,
 	};

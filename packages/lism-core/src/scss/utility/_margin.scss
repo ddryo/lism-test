@@ -8,7 +8,8 @@
 //   ツールバーから使う用でもあるので、block-start 方向に指定
 // --------------------
 [class*="-mbs:"]{
-	margin-block-start: var(--mbs) !important;
+	// flowGap関連との兼ね合いで、important つけたほうが無難かも
+	margin-block-start: var(--mbs);
 }
 
 
@@ -84,21 +85,5 @@
 	.-mr\@lg\: { margin-right: var(--mr--lg) !important;}
 	.-mb\@lg\: { margin-bottom: var(--mb--lg) !important;}
 	.-ml\@lg\: { margin-left: var(--ml--lg) !important;}
-}
-
-@include query.cq('xl'){
-	.-m\@xl\: { margin: var(--m--xl) !important;}
-	.-mX\@xl\: {
-		margin-left: var(--mX--xl) !important;
-		margin-right: var(--mX--xl) !important;
-	}
-	.-mY\@xl\: {
-		margin-top: var(--mY--xl) !important;
-		margin-bottom: var(--mY--xl) !important;
-	}
-	.-mt\@xl\: { margin-top: var(--mt--xl) !important;}
-	.-mr\@xl\: { margin-right: var(--mr--xl) !important;}
-	.-mb\@xl\: { margin-bottom: var(--mb--xl) !important;}
-	.-ml\@xl\: { margin-left: var(--ml--xl) !important;}
 }
 

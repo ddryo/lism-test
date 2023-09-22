@@ -1,20 +1,17 @@
 .e--delimiter {
-
-	&[data-type="/"] {
-
+	&[data-type='/'] {
 		&::before {
-			content: "/";
+			content: '/';
 		}
 	}
 
-	&[data-type="|"] {
-
+	&[data-type='|'] {
 		&::before {
-			content: "|";
+			content: '|';
 		}
 	}
 
-	.is--flex > & {
+	.l--flex > & {
 		text-align: center;
 	}
 }

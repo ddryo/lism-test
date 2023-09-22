@@ -1,11 +1,11 @@
 // Alert は --keycolor が常に渡ってくる
 
 :where(.b--alert) {
-	--keycolor: var(--gray);
+	// --keycolor: var(--gray);
 	--icon--c: var(--keycolor);
 	--bdc: var(--keycolor);
 	--bgc: transparent;
-	--p: var(--space--30);
+	--p: var(--space--35);
 	--gap: var(--space--30);
 	--bdrs: var(--radius--2);
 

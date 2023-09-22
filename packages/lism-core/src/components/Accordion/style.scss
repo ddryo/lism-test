@@ -47,7 +47,6 @@
 
 .l--accordion__bodyInner {
 	overflow: hidden; // ※ 正常な animation に必須
-	--ls--flowGap: var(--space--40);
 }
 
 // 閉じている時

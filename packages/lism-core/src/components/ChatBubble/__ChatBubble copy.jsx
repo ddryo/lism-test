@@ -1,63 +1,72 @@
 import React from 'react';
-import { Box } from '../Box';
-import { Text } from '../Text';
-import { Layer } from '../Layer';
+import { Lism } from '../Lism';
+import { Grid } from '../Grid';
+// import { Center } from '../Center';
+// import { Text } from '../Text';
+// import { Layer } from '../Layer';
+// import { Decorator } from '../Decorator';
 
-import { SideFixGrid } from '../SideFix';
-import { Frame } from '../Frame';
-import { MediaLayer } from '../Layer';
+// import { Flex } from '../Flex';
+// import { Avatar } from '../Avatar';
+// import { MediaLayer } from '../Layer';
+
+// const DECORATOR_PROPS = {
+// 	// chat: {
+// 	left: {
+// 		// rtl言語を考慮してleftも明示的にセット
+// 		top: 0,
+// 		right: '100%',
+// 	},
+// 	right: {
+// 		top: 0,
+// 		left: '100%',
+// 	},
+// 	// },
+// };
 
 export default function ChatBubble({
 	name,
-	img,
+	// img,
+	variant = 'chat',
 	direction = 'left',
-	contentProps = {},
+	// contentProps = {},
+	// avatarProps = {},
 	children,
 	...props
 }) {
-	// right up
+	// let decorators = null;
+	// const fxd = 'left' === direction ? null : 'row-reverse';
+
+	let chatBoxProps = {};
+	// let _avatarProps = { radius: '99' };
+
+	// let _contentProps = {
+	// 	isFlow: true,
+	// 	flowGap: 30,
+	// 	radius: '-',
+	// 	p: '-',
+	// };
+	if ('box' === variant) {
+		chatBoxProps.gap = 0;
+		// _contentProps.radius = 1;
+		// _avatarProps.shadow = 1;
+	}
+	//  else {}
 
 	return (
-		<SideFixGrid
-			className='b--chatBubble'
-			fix={`${direction} up`}
-			fixW='auto'
-			gap={40}
-			_breakPoint='none'
+		<Grid
+			blockClass='b--chatBubble'
+			data-variant={variant}
+			data-direction={direction}
+			{...chatBoxProps}
+			{...props}
 		>
-			<Box ga='fix' w={['-', '-']}>
-				<Frame ratio='1:1' radius='99'>
-					<MediaLayer>{img}</MediaLayer>
-				</Frame>
-				<Text tag='div' fz='xs' ta='center' mbs={10}>
+			{name && (
+				<Lism blockClass='b--chatBubble__name' fz='2xs' p={10}>
 					{name}
-				</Text>
-			</Box>
-			<Box blockClass='b--chatBubble__body' pos='relative' maxW='40em'>
-				<Box
-					className='b--chatBubble__content'
-					isFlow
-					flowGap={40}
-					p={40}
-					{...contentProps}
-				>
-					{children}
-				</Box>
-				<Layer className='b--chatBubble__decorator -a' aria-hidden='true'></Layer>
-				<Layer className='b--chatBubble__decorator -b' aria-hidden='true'></Layer>
-			</Box>
-		</SideFixGrid>
+				</Lism>
+			)}
+			{children}
+		</Grid>
 	);
 }
-
-// Cluster: is--flexでflex-wrap: wrap;なもの
-// Stack: 縦方向のCluster
-
-// Flow: .l--Box.is--flow
-// Flex: .l--Box.is--flex
-// Grid: .l--Box.is--grid
-
-// smサイズだけreelとか → reel > flex,grid に対して処理するだけで済む？
-// reel > flex → fw: nowrapに
-// reel→ "lgで解除" という考え方？
-// reel.only-sm とかの直下にflexなどをおく。

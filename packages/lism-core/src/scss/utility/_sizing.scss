@@ -15,19 +15,6 @@
 .-h\:100 {
 	height: 100% !important;
 }
-// max, min
-.-maxW\: {
-	max-width: var(--maxW) !important;
-}
-.-maxH\: {
-	max-height: var(--maxH) !important;
-}
-.-minW\: {
-	min-width: var(--minW) !important;
-}
-.-minH\: {
-	min-height: var(--minH) !important;
-}
 
 @include query.cq('sm') {
 	.-w\@sm\: {
@@ -54,14 +41,20 @@
 		height: var(--h--lg) !important;
 	}
 }
-@include query.cq('xl') {
-	.-w\@xl\: {
-		width: var(--w--xl) !important;
-	}
-	.-h\@xl\: {
-		height: var(--h--xl) !important;
-	}
-}
+
+// max, min
+// .-maxW\: {
+// 	max-width: var(--maxW) !important;
+// }
+// .-maxH\: {
+// 	max-height: var(--maxH) !important;
+// }
+// .-minW\: {
+// 	min-width: var(--minW) !important;
+// }
+// .-minH\: {
+// 	min-height: var(--minH) !important;
+// }
 
 .-maxW\:100 {
 	max-width: 100% !important;
@@ -76,41 +69,3 @@
 
 // width:slim
 // width:text
-
-// メディアクエリ対応の変数 --size を扱うためのクラス
-// .-size\:{
-// 	--size--sm: var(--size--xs);
-// 	--size--md: var(--size--sm);
-// 	--size--lg: var(--size--md);
-// 	--size--xl: var(--size--lg);
-
-// 	--size: var(--size--xs);
-// 	@include query.cq('sm'){
-// 		--size: var(--size--sm);
-// 	}
-// 	@include query.cq('md'){
-// 		--size: var(--size--md);
-// 	}
-// 	@include query.cq('lg'){
-// 		--size: var(--size--lg);
-// 	}
-// 	@include query.cq('xl'){
-// 		--size: var(--size--xl);
-// 	}
-// }
-
-// メディアクエリ対応の変数 --lism を扱うためのクラス
-// .-lism\:{
-// 	@include query.cq('sm'){
-// 		--lism: var(--lism--sm);
-// 	}
-// 	@include query.cq('md'){
-// 		--lism: var(--lism--md);
-// 	}
-// 	@include query.cq('lg'){
-// 		--lism: var(--lism--lg);
-// 	}
-// 	@include query.cq('xl'){
-// 		--lism: var(--lism--xl);
-// 	}
-// }

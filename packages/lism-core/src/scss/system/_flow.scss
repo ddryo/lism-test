@@ -1,41 +1,43 @@
-// .is--flow {}
-
-:is(.l--flow, .is--flow) > * {
-	margin-block-start: 0;
-	margin-block-end: 0;
-}
-
-// > * + *
-:is(.l--flow, .is--flow) > *:not(:first-child) {
-	margin-block-start: var(--ls--flowGap); // global な値
-	margin-block-end: 0;
-}
-
-
-// 後で確認
-// :is(.l--flow, .is--flow) > .alignleft {
-// 	float: left;
-// 	margin-inline-start: 0;
-// 	margin-inline-end: 2em;
-// }
-// :is(.l--flow, .is--flow) > .alignright {
-// 	float: right;
-// 	margin-inline-start: 2em;
-// 	margin-inline-end: 0;
-// }
-// :is(.l--flow, .is--flow) > .aligncenter {
-// 	margin-right: auto !important;
-// 	margin-left: auto !important;
-// }
-
-
-
 // flowGap はクエリ調整不可。
 // クエリ調整必要な場合はStack使ってもらう。
 
-// .-flowGap\:10{
-// 	--ls--flowGap: var(--space--10);
-// }
-[class*="-flowGap:"] > *:not(:first-child) {
-	margin-block-start: var(--flowGap);
+// 重要なので @layerなし
+:where(.is--flow) {
+	--flowGap: var(--flowGap--m);
+
+	> :first-child {
+		margin-block-start: 0 !important;
+		margin-block-end: 0;
+	}
+
+	// > * + * ?
+	> *:not(:first-child) {
+		margin-block-start: var(--flowGap); // global な値
+		margin-block-end: 0;
+	}
 }
+
+// [class*='-flowGap:'] > *:not(:first-child) {
+// 	margin-block-start: var(--flowGap);
+// }
+
+// 入れ子の処理
+// :not(:first-child) がないと、入れ子の最初の要素にも margin がついてしまう → シンプルに 0 指定側に important つけて回避
+:where(.-flowGap\:s) > .is--flow {
+	margin-block-start: var(--flowGap--s);
+}
+:where(.-flowGap\:l) > .is--flow {
+	margin-block-start: var(--flowGap--l);
+}
+:where(.is--flow:not([class*='-flowGap:'])) > .is--flow {
+	margin-block-start: var(--flowGap--m);
+}
+
+// .-flow:[s,m,l] → プリセット値
+$spaces: xs, s, m, l;
+@each $s in $spaces {
+	.-flowGap\:#{$s} {
+		--flowGap: var(--flowGap--#{$s});
+	}
+}
+// -flowGap, -flow:s, -flow:m, -flow:l, -flow:xl

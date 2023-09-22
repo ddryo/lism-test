@@ -118,7 +118,7 @@ export default function Alert({
 	}
 
 	icon = icon || presetIcon;
-	color = color || presetColor || 'main';
+	color = color || presetColor || 'basic';
 	blockProps.keycolor = color;
 
 	// Center: 縦並び時にセンター寄せしたい

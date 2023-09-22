@@ -36,8 +36,9 @@ export default function SideFixGrid({
 
 	const blockProps = {
 		lismClass: 'l--sideFix',
+		// 'data-fix-mode': 'grid',
 		'data-fix': fix,
-		isGrid: true,
+		useGridProps: true,
 		gap: 20, // 初期値
 		gta,
 		gtc,

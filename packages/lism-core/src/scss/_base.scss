@@ -2,12 +2,16 @@
 @use './base/reset';
 @use './base/tokens';
 
+html {
+	font-size: var(--root--fz);
+}
+
 body {
 	// WPでは、カラー・タイポグラフィなどについては theme.json 設定によって出力される
 	background-color: var(--bgc--base);
 	color: var(--c--base);
 	font-family: var(--root--ff);
-	font-size: var(--root--fz);
+	font-size: 1rem;
 	line-height: var(--root--lh);
 	overflow-x: clip;
 	container-type: inline-size;

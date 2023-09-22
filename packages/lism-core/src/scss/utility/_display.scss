@@ -20,6 +20,3 @@
 @include query.cq('lg'){
 	.-d\@lg\:{display: var(--d--lg) !important;}
 }
-@include query.cq('xl'){
-	.-d\@xl\:{display: var(--d--xl) !important;}
-}

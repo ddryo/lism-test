@@ -76,11 +76,3 @@
 	.-gc\@lg\: { grid-column: var(--gc--lg)}
 	.-gr\@lg\: { grid-row: var(--gr--lg)}
 }
-@include query.cq('xl'){
-	.-fxg\@xl\: { flex-grow: var(--fxg--xl)}
-	.-fxsh\@xl\: { flex-shrink: var(--fxsh--xl)}
-	.-fxb\@xl\: { flex-basis: var(--fxb--xl)}
-	.-fx\@xl\:{ flex: var(--fx--xl)}
-	.-gc\@xl\: { grid-column: var(--gc--xl)}
-	.-gr\@xl\: { grid-row: var(--gr--xl)}
-}

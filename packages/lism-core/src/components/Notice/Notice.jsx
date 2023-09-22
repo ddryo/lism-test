@@ -58,7 +58,7 @@ export default function Notice({
 	caption,
 	variant = 'note',
 	preset,
-	color = 'basic',
+	color,
 	// boxColor,
 	// iconColor,
 	style = {},
@@ -83,7 +83,7 @@ export default function Notice({
 	}
 
 	icon = icon || presetIcon;
-	color = color || presetColor;
+	color = color || presetColor || 'basic';
 
 	const boxProps = {
 		blockClass: 'b--notice',
@@ -136,10 +136,12 @@ export default function Notice({
 	let Component = 'bump' === variant ? Lism : Stack;
 	return (
 		<Component {...boxProps}>
-			<Flex blockClass='b--notice__head' {...headProps}>
-				{icon && <Icon icon={icon} blockClass='b--notice__icon' size='1.5em' />}
-				<span className='b--notice__caption'>{caption}</span>
-			</Flex>
+			{caption && (
+				<Flex blockClass='b--notice__head' {...headProps}>
+					{icon && <Icon icon={icon} blockClass='b--notice__icon' size='1.5em' />}
+					<span className='b--notice__caption'>{caption}</span>
+				</Flex>
+			)}
 
 			<Lism blockClass='b--notice__body' isFlow {...bodyProps}>
 				{children}

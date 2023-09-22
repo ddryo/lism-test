@@ -62,17 +62,20 @@
 // }
 
 // overflow
-.-ov\:v{overflow: visible;}
+// .-ov\:v{overflow: visible;}
 .-ov\:h{overflow: hidden;}
 .-ov\:a{overflow: auto;}
 .-ov\:c{overflow: clip;}
 // .-ov\:s{overflow: scroll;}
 
-// x,yは auto, clip のみutil化
-.-ovy\:a{overflow-y: auto;}
-.-ovy\:c{overflow-y: clip;}
 .-ovx\:a{overflow-x: auto;}
 .-ovx\:c{overflow-x: clip;}
+.-ovx\:h{overflow-x: hidden;}
+
+.-ovy\:a{overflow-y: auto;}
+.-ovy\:c{overflow-y: clip;}
+.-ovy\:h{overflow-y: hidden;}
+
 
 
 // text-align
@@ -119,9 +122,9 @@
 
 // 折返し禁止
 // .i--nowrap,
-// .-whs\:nw {
-// 	white-space: nowrap;
-// }
+.-whs\:nw {
+	white-space: nowrap;
+}
 // .-whs\:p{
 // 	white-space: pre;
 // }

@@ -1,3 +1,4 @@
+@use 'utility/aspect';
 @use 'utility/border';
 @use 'utility/color';
 @use 'utility/display';
@@ -17,3 +18,9 @@
 @use 'utility/typography';
 
 @use 'utility/others';
+
+.has\:indent {
+	> p {
+		text-indent: 1em;
+	}
+}

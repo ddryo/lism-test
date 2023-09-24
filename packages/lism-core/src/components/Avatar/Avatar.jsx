@@ -1,6 +1,6 @@
 import React from 'react';
 import { Lism } from '../Lism';
-// import { getLismMainProp } from '../../lib';
+// import { getLismMainProp } from '@/lib';
 
 export default function Avatar({
 	children,

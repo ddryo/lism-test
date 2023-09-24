@@ -1,9 +1,9 @@
 import React from 'react';
-import { getCommonProps } from '../../lib';
+import { getLismProps } from '@/lib';
 // import classnames from 'classnames';
 
 export default function MediaText({ children, tag, ...props }) {
-	const { className, style, attrs } = getCommonProps(props, { blockClass: 'b--mediaText' });
+	const { className, style, attrs } = getLismProps(props, { blockClass: 'b--mediaText' });
 
 	const blockProps = {
 		className,

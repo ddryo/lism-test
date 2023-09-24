@@ -14,7 +14,7 @@
 	    コンテンツサイズは960 ~ 1120 くらいがよさそう.
 	    1080 にしてるのは、 1920 * 1080画像がきれいに配置できるため？
 	------------------------------------------------------------ */
-	// コンテンツサイズは960 ~ 1120 くらいがよさそう
+	// コンテンツサイズは960 ~ 1120 くらいがよさそう. @lg よりは大きく?
 	--ls--contentSize: 1120px; // = --wp--style--global--content-size.
 	--ls--contentSize--wide: 1440px; // = --wp--style--global--wide-size. alignwide で使う.
 	--ls--contentSize--slim: 45rem; // slim幅1カラムテンプレートで使う. fz:16px時 = 720px
@@ -226,9 +226,9 @@
 	--space--60: calc(4.25 * var(--sUnit));
 	--space--70: calc(6.875 * var(--sUnit));
 
-	--p--box: var(--space--30) calc(var(--space--5) + var(--space--30));
-	--p--box--s: var(--space--20) calc(var(--space--5) + var(--space--20));
-	--p--box--l: var(--space--40) calc(var(--space--10) + var(--space--40));
+	--p--box: var(--space--30) calc(0.2em + var(--space--30));
+	--p--box--s: var(--space--20) calc(0.125em + var(--space--20));
+	--p--box--l: var(--space--40) calc(0.25em + var(--space--40));
 
 	// .is--flow の blockGap 管理用変数
 	// --flowGap--xs: var(--space--15);
@@ -237,7 +237,7 @@
 	--flowGap--l: var(--space--50);
 
 	// --flowGap--root: var(--flowGap--m); // global値
-	--flowGap--heading: var(--flowGap--l);
+	--flowGap--heading: 2.5em; // var(--space--50); // フォントサイズ依存
 
 	/* ------------------------------------------------------------
 	  radius

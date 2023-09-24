@@ -7,7 +7,7 @@ import React from 'react';
 
 // animationTime: [s]
 export default function TabPanels({ children, tabId, activeIndex }) {
-	// const { className, style, attrs } = getCommonProps(props, { lismClass: 'l--tab' });
+	// const { className, style, attrs } = getLismProps(props, { lismClass: 'l--tab' });
 
 	// console.log('children', children);
 	return (

@@ -1,22 +1,38 @@
 import React from 'react';
-import { getCommonProps } from '../../lib';
-// import { getLismClass } from '../../lib';
+import { Core } from '../Core';
+import { isEmptyObj, filterEmptyObj } from '@/lib';
 
-export default function Grid({ as, children, modifier, ...props }) {
-	const { className, style, attrs } = getCommonProps(props, {
-		lismClass: 'l--grid',
-		lismModifier: modifier && 'l--grid--' + modifier,
-		useGridProps: true,
+export default function Grid({ isInline, areas, columns, rows, ...props }) {
+	const grid = filterEmptyObj({
+		isInline,
+		areas,
+		columns,
+		rows,
 	});
 
-	// --gta:, --gtc:, --gtr: クラスを削除する
+	const noOptions = isEmptyObj(grid);
 
-	const blockProps = {
-		className,
-		style,
-		...attrs,
-	};
+	// inline-grid にする時以外は、display の出力不要
+	if (!noOptions && !isInline) {
+		grid.skipDisplay = true;
+	}
 
-	const Grid = as || 'div';
-	return <Grid {...blockProps}>{children}</Grid>;
+	return <Core lismClass='l--grid' grid={noOptions ? null : grid} {...props} />;
+
+	// const { className, style, attrs } = getLismProps(props, {
+	// 	lismClass: 'l--grid',
+	// 	lismModifier: modifier && 'l--grid--' + modifier,
+	// 	// useGridProps: true,
+	// });
+
+	// // --gta:, --gtc:, --gtr: クラスを削除する
+
+	// const blockProps = {
+	// 	className,
+	// 	style,
+	// 	...attrs,
+	// };
+
+	// const Grid = as || 'div';
+	// return <Grid {...blockProps}>{children}</Grid>;
 }

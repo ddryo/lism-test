@@ -1,9 +1,9 @@
 import React from 'react';
-import { getCommonProps } from '../../lib';
+import { getLismProps } from '@/lib';
 import classnames from 'classnames';
 
 export default function Icon({ icon, label, size = '1em', scale, width, height, ...props }) {
-	const { className, style, attrs } = getCommonProps(props, { lismClass: 'e--icon' });
+	const { className, style, attrs } = getLismProps(props, { lismClass: 'e--icon' });
 
 	// label の有無でaria属性を変える
 	const iconProps = {

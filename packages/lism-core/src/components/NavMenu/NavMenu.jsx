@@ -1,7 +1,7 @@
 import React from 'react';
 import { Lism } from '../Lism';
-import { Cluster } from '../Cluster';
-// import { getMaybeColorVar } from '../../lib';
+import { Cluster } from '../Flex/Cluster';
+// import { getMaybeColorVar } from '@/lib';
 
 export default function NavMenu({
 	children,

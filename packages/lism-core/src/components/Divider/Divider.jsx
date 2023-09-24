@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import { Lism } from '../Lism';
 // import Image from "next/image";
 // import { Box, Stack, Layer, MediaLayer, FilterLayer } from '../index';
-// import { filterEmptyObj } from '../../lib';
 
 import DividerSVG from './svg';
 

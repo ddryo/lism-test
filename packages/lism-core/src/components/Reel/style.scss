@@ -3,17 +3,25 @@
 // --------------------
 .l--reel {
 	--item--w: 16em; // 初期値要検討
-	display: grid;
+	// display: grid;
+	// overflow-x: auto;
+	// grid-auto-flow: column;
+	// grid-auto-columns: var(--item--w);
+	// // grid-template-columns: unset;
+	// // grid-template-rows: unset;
 
-	// display: flex;
+	display: flex;
 	overflow-x: auto;
-	// overflow-y: hidden;
+	scroll-snap-type: x mandatory;
 
-	// display: grid !important;
-	grid-auto-flow: column;
-	grid-auto-columns: var(--item--w);
-	// grid-template-columns: unset;
-	// grid-template-rows: unset;
+	> * {
+		// flex: 0 0 auto;
+		flex: none;
+		flex-basis: var(--item--w);
+		// box-sizing: content-box;
+		// display: flex;
+		scroll-snap-align: start;
+	}
 }
 
 .l--reel[data-scbar='show'] {

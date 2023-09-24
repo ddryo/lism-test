@@ -1,5 +1,5 @@
-import filterEmptyObj from './filterEmptyObj';
-import { BREAK_POINTS } from '../config';
+import filterEmptyObj from './helper/filterEmptyObj';
+import { BREAK_POINTS } from '@/config';
 const BREAK_POINTS_ALL = ['_', ...BREAK_POINTS];
 
 function hasKeys(object, keys) {
@@ -14,23 +14,32 @@ function hasBpKeys(data) {
 
 // クエリ対応プロパティの型を調べて規格化したObjを返す
 // string, array, obj → {_, sm, md, ...} の型に変換
-export default function getPropBpObj(propVal) {
-	let returnObj = {}; // {sm,md,...}
+export default function getBpData(propVal) {
+	let values = {};
+
+	if (true === propVal) return { _: true };
 
 	if (typeof propVal === 'string' || typeof propVal === 'number') {
-		returnObj._ = propVal;
+		values._ = propVal;
 	} else if (Array.isArray(propVal)) {
 		propVal.forEach((r, i) => {
-			returnObj[`${BREAK_POINTS_ALL[i]}`] = r;
+			values[`${BREAK_POINTS_ALL[i]}`] = r;
 		});
 	} else if (typeof propVal === 'object') {
 		// breakpoint指定のオブジェクトか、ただのプロパティの成分オブジェクトかで処理を分ける
 		if (hasBpKeys(propVal)) {
-			returnObj = propVal;
+			values = propVal;
 		} else {
-			returnObj._ = propVal;
+			values._ = propVal;
 		}
 	}
 
-	return filterEmptyObj(returnObj);
+	return filterEmptyObj(values);
+
+	// return {
+	// 	baseValue,
+	// 	bpValues,
+	// };
+
+	// return filterEmptyObj(returnObj);
 }

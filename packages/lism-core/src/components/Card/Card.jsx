@@ -1,14 +1,14 @@
 import React from 'react';
 import { Frame } from '../Frame';
-// import { Lism } from '../Lism';
+import { Lism } from '../Lism';
 import { Layer } from '../Layer';
 import { LinkBox } from '../LinkBox';
-import { Stack } from '../Stack';
+import { Stack } from '../Flex/Stack';
 import { Flex } from '../Flex';
-import { getMediaLayer } from '../helper';
+// import { getMediaLayer } from '../helper';
 // import { Item } from '../Item';
 
-export default function Card({ children, isHorizontal, href, ...props }) {
+export default function Card({ children, isFlex, href, ...props }) {
 	// let bannerContents = null;
 	const blockProps = {
 		blockClass: 'b--card',
@@ -28,16 +28,16 @@ export default function Card({ children, isHorizontal, href, ...props }) {
 	}
 
 	// href指定なし
-	if (isHorizontal) {
+	if (isFlex) {
 		return <Flex {...blockProps}>{children}</Flex>;
 	}
 	return <Stack {...blockProps}>{children}</Stack>;
 }
 
-export function CardMedia({ ratio, media, children, ...props }) {
+export function CardMedia({ aspect, children, ...props }) {
+	// const Component = aspect ? Frame : Lism;
 	return (
-		<Frame blockClass='b--card__media' ratio={ratio} {...props}>
-			{getMediaLayer(media)}
+		<Frame blockClass='b--card__media' aspect={aspect} {...props}>
 			{children}
 		</Frame>
 	);
@@ -46,7 +46,7 @@ export function CardMedia({ ratio, media, children, ...props }) {
 export function CardBody({ children, isLayer, ...props }) {
 	const Component = isLayer ? Layer : Stack;
 	return (
-		<Component blockClass='b--card__body' p={40} gap={isLayer ? null : 30} {...props}>
+		<Component blockClass='b--card__body' p='box' gap={isLayer ? null : 20} {...props}>
 			{children}
 		</Component>
 	);

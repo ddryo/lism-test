@@ -1,19 +1,21 @@
 import {
-	filterEmptyObj,
 	isPresetValue,
 	getUtilValue,
 	getMaybeColorVar,
 	getMaybeShadowVar,
 	getMaybeSpaceVar,
-} from '../index.js';
+} from './index.js';
 
-import PROP_LIST from './prop_list';
-import getPropBpObj from '../helper/getPropBpObj';
+import { PROPS } from '@/config';
+import getBpData from './getBpData';
+import filterEmptyObj from './helper/filterEmptyObj';
+import isEmptyObj from './helper/isEmptyObj';
+
 import classnames from 'classnames';
 
-const isBaseBP = (bp) => {
-	return '_' === bp;
-};
+// const isBaseBP = (bp) => {
+// 	return '_' === bp;
+// };
 
 const CONVERTERS = {
 	color: getMaybeColorVar,
@@ -34,7 +36,7 @@ class CommonProps {
 
 	constructor(props) {
 		// 初期化
-		this.propList = {};
+		// this.propList = {};
 		this.styles = {};
 		this.className = '';
 		this.utilityClasses = []; // props解析処理で追加される
@@ -48,7 +50,7 @@ class CommonProps {
 			lismClass,
 			lismModifier,
 			// modifier,
-			_util,
+			lismUtility,
 			// utility, // ユーザーがコンポーネントに指定できる?
 			lismStyle = {},
 			style = {},
@@ -57,18 +59,20 @@ class CommonProps {
 			alignfull,
 			alignwide,
 			isFlow,
+			flex,
+			grid,
 			// isFlex,
 			// isGrid,
 			// isItem,
 			isLinkbox,
 			isConstrained,
-			useFlexProps,
-			useGridProps,
-			useItemProps,
+			// useFlexProps,
+			// useGridProps,
+			// useItemProps,
 			hasGutter,
 			hasLayer,
-			hasLismVar,
-			useLog,
+			// useLog,
+			lismVar,
 			...others
 		} = props;
 
@@ -88,19 +92,71 @@ class CommonProps {
 				'is--constrained': isConstrained || false,
 				'has--gutter': hasGutter || false,
 				'has--layer': hasLayer || false,
-				'-lism:': hasLismVar || false,
-				// 'has--lismVar': hasLismVar || false,
+				// 'use:lismVar': lismVar || false,
 
 				alignfull,
 				alignwide,
 			},
 			className, // ユーザー指定
-			_util
+			lismUtility
 			// utility
 		);
 
+		// propリストのセット
+		// this.setPropList(useFlexProps, useGridProps, useItemProps, useLog);
+
+		if (isFlow && isFlow !== true) {
+			this.analyzeProp('flowGap', isFlow);
+		}
+		if (flex) {
+			if (flex === true) {
+				this.addUtil('-d:f'); // this.analyzeProp('d', 'flex');
+			} else if (typeof flex === 'object') {
+				const { skipDisplay, isInline, ...flexProps } = flex;
+				if (isInline) {
+					this.addUtil('-d:if');
+				} else if (!skipDisplay) {
+					this.addUtil('-d:f');
+				}
+
+				// flex系propを処理
+				this.setContextProps('flex', flexProps);
+			}
+		}
+		if (grid) {
+			if (grid === true) {
+				this.addUtil('-d:g'); // this.analyzeProp('d', 'grid');
+			} else if (typeof grid === 'object') {
+				const { skipDisplay, isInline, ...gridProps } = grid;
+				if (isInline) {
+					this.addUtil('-d:ig');
+				} else if (!skipDisplay) {
+					this.addUtil('-d:g');
+				}
+
+				// grid系propを処理
+				this.setContextProps('grid', gridProps);
+			}
+		}
+
+		if (lismVar) {
+			this.addUtil('-lismVar:');
+			const { _: baseValue, ...bpValues } = getBpData(lismVar);
+			if (baseValue != null) {
+				this.addStyle('--lism', baseValue);
+			}
+			Object.keys(bpValues).forEach((bp) => {
+				this.addStyle(`--lism--${bp}`, bpValues[bp]);
+			});
+		}
+		// if (flexItem) {
+		// 	// flexItem='1 1 auto'; とか文字列で渡ってきたら？
+		// }
+
 		// propsの処理
-		if (others) {
+		if (!isEmptyObj(others)) {
+			// console.log('others', others);
+
 			// padding, margin, border はフルネームも受け取れるように？
 			// Object.keys(PROP_FULL_NAMES).forEach((_name) => {
 			// 	if (null != others[_name]) {
@@ -111,17 +167,8 @@ class CommonProps {
 
 			this.attrs = others;
 
-			// propリストのセット
-			// if (useLog) console.log('this.propList before', this.propList);
-			this.setPropList(useFlexProps, useGridProps, useItemProps, useLog);
-			// if (useLog) console.log('this.propList after', this.propList, PROP_LIST.common);
-
 			// props処理
 			this.analyzeProps(others);
-
-			if (isFlow && isFlow !== true) {
-				this.swichAttrs('flowGap', isFlow);
-			}
 		}
 
 		// ref
@@ -130,36 +177,43 @@ class CommonProps {
 		}
 	}
 
-	setPropList(useFlex, useGrid, useItem, useLog) {
-		let thePropList = {};
+	// 特定の条件下で受け取るpropの処理
+	setContextProps(context, props) {
+		// console.log('context', context, props);
+		const contextProps = PROPS[context];
 
-		if (useFlex) {
-			thePropList = Object.assign(
-				{},
-				PROP_LIST.common,
-				// PROP_LIST.useFlexGrid,
-				PROP_LIST.useFlex
-			);
-		} else if (useGrid) {
-			thePropList = Object.assign(
-				{},
-				PROP_LIST.common,
-				// PROP_LIST.useFlexGrid,
-				PROP_LIST.useGrid
-			);
-		} else {
-			thePropList = Object.assign({}, PROP_LIST.common);
-		}
-
-		// なくす？
-		// if (isItem) {
-		// 	thePropList = Object.assign({}, thePropList, PROP_LIST.isItem);
-		// }
-
-		// if (useLog) console.log('thePropList', thePropList);
-
-		this.propList = thePropList;
+		if (!contextProps) return;
+		Object.keys(props).forEach((propName) => {
+			const propData = contextProps[propName];
+			const propValue = props[propName];
+			console.log(propName, propValue, propData);
+			this.analyzeProp(propName, propValue, propData);
+		});
 	}
+
+	// setPropList(useFlex, useGrid, useItem, useLog) {
+	// 	let thePropList = {};
+
+	// 	if (useFlex) {
+	// 		thePropList = Object.assign(
+	// 			{},
+	// 			PROPS.common,
+	// 			// PROPS.useFlexGrid,
+	// 			PROPS.useFlex
+	// 		);
+	// 	} else if (useGrid) {
+	// 		thePropList = Object.assign(
+	// 			{},
+	// 			PROPS.common,
+	// 			// PROPS.useFlexGrid,
+	// 			PROPS.useGrid
+	// 		);
+	// 	} else {
+	// 		thePropList = Object.assign({}, PROPS.common);
+	// 	}
+
+	// 	this.propList = thePropList;
+	// }
 
 	// prop解析
 	analyzeProps(attrs) {
@@ -172,20 +226,11 @@ class CommonProps {
 				this.setHoverProps(propVal);
 				return;
 			}
-			if (propName === 'lismVar') {
-				const propVal = this.extractProp(propName);
-				const data = getPropBpObj(propVal);
-				Object.keys(data).forEach((bp) => {
-					const styleName = isBaseBP(bp) ? '--lism' : `--lism--${bp}`;
-					this.addStyle(styleName, data[bp]);
-				});
-				return;
-			}
 
 			// if (PROP_FULL_NAMES[propName]) propName = PROP_FULL_NAMES[propName];
 
 			// Lismで処理する prop 以外はここでスキップ
-			if (!this.propList[propName]) return;
+			if (!PROPS[propName]) return;
 
 			// value取得して attrsリストから削除しておく
 			const propVal = this.attrs[propName];
@@ -196,34 +241,31 @@ class CommonProps {
 	}
 
 	// prop解析
-	analyzeProp(propName, propVal) {
+	analyzeProp(propName, propVal, propData) {
 		// propデータ取得
-		const propData = this.propList[propName] || null;
+		propData = propData || PROPS[propName] || null;
 		if (null === propData) return; // 一応 nullチェックここでも
 
+		const { name, BP, objProcessor, ...options } = propData;
+
 		// BP対応あり/なしで分岐
-		if (propData.BP) {
-			// 事前にBP指定用の {_, sm, md, ...} 形式に統一
-			const valueData = getPropBpObj(propVal);
+		if (BP) {
+			// 事前にBP指定用の { sm, md, ...} 形式で取り出す
+			const { _: baseValue, ...bpValues } = getBpData(propVal);
+			propVal = baseValue;
 
 			// 各BP成分の処理
-			Object.keys(valueData).forEach((bp) => {
-				const val = valueData[bp];
-
-				// 方向成分を持つ場合の特殊処理
-				if (typeof val === 'object') {
-					this.analyzeObjValue(val, propData.objProcessor);
-				} else {
-					this.swichAttrs(propName, val, bp);
-				}
+			Object.keys(bpValues).forEach((bp) => {
+				this.setAttrs(name || propName, bpValues[bp], options, bp);
 			});
+		}
+
+		// 方向成分を持つ場合の特殊処理
+		if (typeof propVal === 'object') {
+			if (propName === 'bd') this.addUtil('-bd:');
+			this.analyzeObjValue(propVal, objProcessor);
 		} else {
-			// 方向成分を持つ場合の特殊処理
-			if (typeof propVal === 'object') {
-				this.analyzeObjValue(propVal, propData.objProcessor);
-			} else {
-				this.swichAttrs(propName, propVal);
-			}
+			this.setAttrs(name || propName, propVal, options);
 		}
 	}
 
@@ -235,7 +277,7 @@ class CommonProps {
 			// 指定された成分に対応する prop名 を取得
 			const propName = objProcessor(dataKey);
 
-			this.analyzeProps(propName, valueObj[dataKey]);
+			this.analyzeProp(propName, valueObj[dataKey]);
 		});
 	}
 
@@ -287,6 +329,74 @@ class CommonProps {
 		// }
 	}
 
+	// utilクラスを追加するか、styleにセットするかの分岐処理 @base
+	setAttrs(name, val, options = {}, bp) {
+		if (null == val) return;
+
+		let styleName = `--${name}`;
+		let utilName = `-${options.utilKey || name}`;
+		// const isBP = bp && !isBaseBP(bp);
+
+		if (bp) {
+			styleName += `--${bp}`;
+			utilName += `@${bp}:`;
+		} else {
+			utilName += ':';
+		}
+
+		// ユーティリティクラス化できるかどうかをチェック
+		if (!bp) {
+			let { presets, utils } = options;
+			if (presets) {
+				if (1 === presets) presets = name; // 1 は prop名をそのままキーとして取得
+				if (isPresetValue(presets, val)) {
+					this.addUtil(`${utilName}${val}`);
+					return;
+				}
+			}
+			if (utils) {
+				if (1 === utils) utils = name; // 1 は prop名をそのままキーとして取得
+				const utilVal = getUtilValue(utils, val);
+				if (utilVal) {
+					this.addUtil(`${utilName}${utilVal}`);
+					return;
+				}
+			}
+		}
+
+		// 以下、ユーティリティクラス化できない場合の処理
+
+		let { style, converter } = options;
+
+		// .-prop: だけ出力するケース
+		if ((!style && true === val) || '-' === val) {
+			this.addUtil(utilName);
+			return;
+		}
+
+		// converter(getMaybe...)があればそれを通す
+		if (converter) {
+			converter = options.converter;
+			if (typeof converter === 'string') {
+				converter = CONVERTERS[converter];
+			}
+			val = converter(val);
+		}
+
+		// style のみ出力
+		//     memo: --gtcなど、Noクエリの時に .-prop: 不要なケースがあるが、それを判定すると処理が複雑になるので一旦なくしている。
+		//       (クラスがあったほうが上書き判定できて便利なケースもあるし...)
+		if (style) {
+			if (1 === style) style = name; // 1 は prop名をそのままstyleとして使う
+			this.addStyle(style, val);
+			return;
+		}
+
+		// .-prop: & --prop で 出力
+		this.addUtil(utilName);
+		this.addStyle(styleName, val);
+	}
+
 	setHoverProps(hover) {
 		if (!hover) return;
 
@@ -322,78 +432,6 @@ class CommonProps {
 			}
 		}
 	}
-
-	// utilクラスを追加するか、styleにセットするかの分岐処理 @base
-	swichAttrs(propName, val, bp) {
-		if (null == val) return;
-
-		// propListからそのpropの設定データを取得
-		const options = this.propList[propName] || {};
-		const { name = propName, utilKey } = options;
-
-		let styleName = `--${name}`;
-		let utilName = `-${utilKey || name}`;
-		const isBP = bp && !isBaseBP(bp);
-
-		if (isBP) {
-			styleName += `--${bp}`;
-			utilName += `@${bp}:`;
-		} else {
-			utilName += ':';
-		}
-
-		// ユーティリティクラス化できるかどうかをチェック
-		if (!isBP) {
-			let { presets, utilVals } = options;
-			if (presets) {
-				if (1 === presets) presets = propName; // 1 は prop名をそのままキーとして取得
-				if (isPresetValue(presets, val)) {
-					this.addUtil(`${utilName}${val}`);
-					return;
-				}
-			}
-			if (utilVals) {
-				if (1 === utilVals) utilVals = propName; // 1 は prop名をそのままキーとして取得
-				const utilVal = getUtilValue(utilVals, val);
-				if (utilVal) {
-					this.addUtil(`${utilName}${utilVal}`);
-					return;
-				}
-			}
-		}
-
-		// 以下、ユーティリティクラス化できない場合の処理
-
-		// .-prop: だけ出力するケース
-		if (true === val || '-' === val) {
-			this.addUtil(utilName);
-			return;
-		}
-
-		let { style, converter } = options;
-
-		// converter(getMaybe...)があればそれを通す
-		if (converter) {
-			converter = options.converter;
-			if (typeof converter === 'string') {
-				converter = CONVERTERS[converter];
-			}
-			val = converter(val);
-		}
-
-		// style のみ出力
-		//     memo: --gtcなど、Noクエリの時に .-prop: 不要なケースがあるが、それを判定すると処理が複雑になるので一旦なくしている。
-		//       (クラスがあったほうが上書き判定できて便利なケースもあるし...)
-		if (style) {
-			if (1 === style) style = propName; // 1 は prop名をそのままstyleとして使う
-			this.addStyle(style, val);
-			return;
-		}
-
-		// .-prop: & --prop で 出力
-		this.addUtil(utilName);
-		this.addStyle(styleName, val);
-	}
 }
 
 /**
@@ -405,11 +443,7 @@ class CommonProps {
  */
 
 // styleを生成するための共通処理
-// 一括していpropは、 "prop", "props" で分けて指定する。 padding:{X:20,Y:20} paddingQs:{sm:10,md:20} みたいな
-// それ以外は、"prop" にオブジェクトを渡すとクエリ指定できる。 w:{_:'100%',sm:'50%'} みたいな
-// or, "propQs" として統一する？ wQs, gapQs, paddingQs, marginQs...
-
-export default function getCommonProps(props, options = {}) {
+export default function getLismProps(props, options = {}) {
 	// const beforeMethod = performance.now();
 
 	props = { ...options, ...props }; // options:初期値などが渡ってくる

@@ -22,15 +22,13 @@
 	--p: var(--p--box--l);
 }
 
-// [data-props*="-pX:"], 
-// [data-props~="-pX"],
+// utilあり
 [class*="-pX:"]{
 	padding-left: var(--pX) !important;
 	padding-right: var(--pX) !important;
 }
 
-// [data-props*="-pY:"], 
-// [data-props~="-pY" ],
+// utilあり
 [class*="-pY:"]{
 	padding-top: var(--pY) !important;
 	padding-bottom: var(--pY) !important;
@@ -48,6 +46,16 @@
 	padding-right: var(--pr) !important;
 }
 
+// 論理値プロパティは inline-start, inline-end だけでいいか。
+//   → Why? 言語で変わるのがinline方向のみ.
+//     縦書きは自分で縦書き指定するはずなので、block方向じゃなくて物理方向でも基本的に問題ない。
+//     縦書き考慮も、 p, pInline 系の両方を指定すれば、実質 block 方向 & inline 方向で指定できる。
+//     ただし、 mbs だけは flowレイアウトに関わるのでサポートする。
+// .pin, .pbl, pis pie, pbs, pbe
+
+// .-p-is\: {
+// 	padding-inline-start: var(--pr) !important;
+// }
 // p-is inline-start
 // p-bs block-start
 

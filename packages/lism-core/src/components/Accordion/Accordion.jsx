@@ -1,6 +1,6 @@
 import React from 'react';
 import setEvent from './setEvent';
-import { getCommonProps } from '../../lib';
+import { getLismProps } from '@/lib';
 import { AccContext } from './context';
 
 // import classnames from 'classnames';
@@ -14,7 +14,7 @@ export default function Accordion({ children, clickable, duration = 0.3, ...prop
 		return setEvent(ref.current, duration, clickable || 'header');
 	}, [duration]);
 
-	const { className, style, attrs } = getCommonProps(props, { lismClass: 'l--accordion' });
+	const { className, style, attrs } = getLismProps(props, { lismClass: 'l--accordion' });
 	const blockProps = {
 		ref,
 		className,

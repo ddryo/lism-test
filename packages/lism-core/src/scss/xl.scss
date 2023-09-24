@@ -1,6 +1,14 @@
 @use '../query' as query;
 /* stylelint-disable */
 
+:where(.-lismVar\:) {
+	--lism--xl: var(--lism--lg);
+	@include query.cq('xl') {
+		--lismVar: var(--lism--xl);
+	}
+}
+
+
 @include query.cq('xl') {
 	.-d\@xl\: {display: var(--d--xl) !important;}
 	.-w\@xl\: {width: var(--w--xl) !important;}

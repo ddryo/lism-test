@@ -1,28 +1,8 @@
-// コンポーネント
-@forward '../components/Box/style.scss';
-@forward '../components/Flex/style.scss';
-@forward '../components/Stack/style.scss';
-@forward '../components/Cluster/style.scss';
-@forward '../components/Flow/style.scss';
-@forward '../components/Grid/style.scss';
-
-@forward '../components/Center/style.scss';
-@forward '../components/Columns/style.scss';
-
-@forward '../components/AreaGrid/style.scss';
-@forward '../components/FractiosGrid/style.scss';
-@forward '../components/TileGrid/style.scss';
-@forward '../components/SideFix/style.scss';
-@forward '../components/Layer/style.scss';
-@forward '../components/Frame/style.scss';
-@forward '../components/Reel/style.scss';
-@forward '../components/Divider/style.scss';
-@forward '../components/Tab/style.scss';
+@forward '../components/Decorator/style.scss';
+@forward '../components/Avatar/style.scss';
+@forward '../components/Badge/style.scss';
 @forward '../components/Icon/style.scss';
 @forward '../components/Button/style.scss';
 @forward '../components/Delimiter/style.scss';
-@forward '../components/Badge/style.scss';
+
 @forward '../components/LinkBox/style.scss';
-@forward '../components/Accordion/style.scss';
-@forward '../components/Decorator/style.scss';
-@forward '../components/Avatar/style.scss';

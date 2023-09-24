@@ -1,0 +1,10 @@
+// --------------------
+// 比率固定グリッド
+// --------------------
+.l--ratioGrid {
+	--gtc: 1fr 1fr; // 初期値
+	--gtc--val: var(--gtc);
+
+	display: grid;
+	grid-template-columns: var(--gtc--val);
+}

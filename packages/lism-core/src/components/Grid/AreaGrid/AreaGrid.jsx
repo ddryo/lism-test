@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '../index';
+import Grid from '../Grid';
 
 export default function AreaGrid({
 	children,

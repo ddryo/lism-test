@@ -1,10 +1,10 @@
 import React from 'react';
-import { getMaybeSpaceVar } from '../../lib';
+import { getMaybeSpaceVar } from '@/lib';
 import classnames from 'classnames';
 
 // 縦書きの時どうする？
 export default function Spacer({ className, width, height, style = {}, ...props }) {
-	// const { className, style, attrs } = getCommonProps(props);
+	// const { className, style, attrs } = getLismProps(props);
 
 	let classNames = ['l--spacer'];
 	// const lismStyle = {};

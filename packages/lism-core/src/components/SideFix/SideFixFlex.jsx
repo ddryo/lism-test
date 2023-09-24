@@ -1,12 +1,11 @@
 import React from 'react';
 // import classnames from 'classnames';
-import { getCommonProps } from '../../lib';
+import { getLismProps } from '@/lib';
 // import "./style.scss";
 
 export default function SideFixFlex({ children, fixW, fluidMinW, fix = 'last', ...props }) {
-	const { className, style, attrs } = getCommonProps(props, {
+	const { className, style, attrs } = getLismProps(props, {
 		lismClass: 'l--sideFix--flex',
-		useFlexProps: true,
 	});
 
 	if (undefined !== fluidMinW) {

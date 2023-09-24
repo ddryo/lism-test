@@ -6,8 +6,11 @@ import { Lism } from '../Lism';
 export default function Reel({
 	children,
 	// onlySmall,
+	unreel,
+	// to, until, til
 	componentForWide,
 	itemW,
+	// release, 解除サイズを指定?
 	...props
 }) {
 	let lismProps;
@@ -21,8 +24,7 @@ export default function Reel({
 		};
 	} else {
 		lismProps = {
-			lismClass: 'l--reel',
-			isGrid: true,
+			className: 'is--reel',
 			gap: 20,
 		};
 	}

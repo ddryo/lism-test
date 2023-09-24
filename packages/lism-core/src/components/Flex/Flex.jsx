@@ -1,21 +1,20 @@
 import React from 'react';
-import { getCommonProps } from '../../lib';
+import { Core } from '../Core';
+import { isEmptyObj, filterEmptyObj } from '@/lib';
 
-export default function Flex({ as, children, modifier, ...props }) {
-	const { className, style, attrs } = getCommonProps(props, {
-		lismClass: 'l--flex',
-		lismModifier: modifier && 'l--flex--' + modifier,
-		useFlexProps: true,
+export default function Flex({ isInline, direction, wrap, ...props }) {
+	const flex = filterEmptyObj({
+		isInline,
+		direction,
+		wrap,
 	});
 
-	// --fxw:, --fxd:, クラスを削除する
+	const noOptions = isEmptyObj(flex);
 
-	const blockProps = {
-		className,
-		style,
-		...attrs,
-	};
+	// inline-flex にする時以外は、display の出力不要
+	if (!noOptions && !isInline) {
+		flex.skipDisplay = true;
+	}
 
-	const Flex = as || 'div';
-	return <Flex {...blockProps}>{children}</Flex>;
+	return <Core lismClass='l--flex' flex={noOptions ? null : flex} {...props} />;
 }

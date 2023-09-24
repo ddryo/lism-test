@@ -1,6 +1,6 @@
 import React from 'react';
 import { Lism } from '../Lism';
-import { Stack } from '../Stack';
+import { Stack } from '../Flex/Stack';
 
 // import classnames from 'classnames';
 

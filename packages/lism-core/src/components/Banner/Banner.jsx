@@ -19,7 +19,7 @@ export default function Banner({
 }) {
 	const theProps = { blockClass: 'b--banner', ...attrs };
 
-	if (attrs.ratio) {
+	if (attrs.aspect) {
 		// children = <ContentLayer>{children}</ContentLayer>;
 		theProps.as = Frame;
 	}
@@ -36,7 +36,11 @@ export default function Banner({
 
 	// hrefあり
 	if (attrs.href) {
-		return <LinkBox {...theProps}>{Contents}</LinkBox>;
+		return (
+			<LinkBox tag='a' {...theProps}>
+				{Contents}
+			</LinkBox>
+		);
 	}
 
 	// ratio指定なし、href指定なし

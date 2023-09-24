@@ -6,42 +6,42 @@
 // import React from 'react';
 export { Lism } from './Lism';
 
+// Layout
 export { Box } from './Box';
 export { Flow } from './Flow';
 export { Flex } from './Flex';
+export { Stack } from './Flex/Stack';
+export { Cluster } from './Flex/Cluster';
+export { Center } from './Flex/Center';
 export { Grid } from './Grid';
+export { Columns } from './Grid/Columns';
+export { TileGrid } from './Grid/TileGrid';
+export { RatioGrid } from './Grid/RatioGrid';
+export { AreaGrid } from './Grid/AreaGrid';
+export { SideFixGrid, SideFixFlex } from './SideFix';
+export { Item } from './Item';
+
+export { Reel } from './Reel';
+export { Frame } from './Frame';
+export { Layer, MediaLayer, FilterLayer, ContentLayer } from './Layer';
+export { Divider } from './Divider';
+export { Spacer } from './Spacer';
 
 export { LinkBox } from './LinkBox';
 
-export { Stack } from './Stack';
-export { Cluster } from './Cluster';
-export { Center } from './Center';
-
-export { Frame } from './Frame';
-export { Layer, MediaLayer, FilterLayer, ContentLayer } from './Layer';
-export { Reel } from './Reel';
-
+// Elements
+export { Text } from './Text';
 export { Avatar } from './Avatar';
-export { Divider } from './Divider';
-export { Icon, InlineIcon, BlockIcon } from './Icon';
-
-export { Columns } from './Columns';
-export { TileGrid } from './TileGrid';
-export { FractiosGrid } from './FractiosGrid';
-export { AreaGrid } from './AreaGrid';
-export { SideFixGrid, SideFixFlex } from './SideFix';
-// export { PinGallery } from './PinGallery';
-
-export { Spacer } from './Spacer';
-export { Item } from './Item';
+export { Icon, InlineIcon } from './Icon';
 export { Button } from './Button';
 export { Badge } from './Badge';
 export { Decorator } from './Decorator';
+export { Delimiter } from './Delimiter';
 
 // appルーターで use client がいるもの
 export { Accordion, AccordionHeader, AccordionBody } from './Accordion';
 export { Tab, TabItem } from './Tab';
-export { DynamicCSS } from './DynamicCSS';
+// export { DynamicCSS } from './DynamicCSS';
 
 // Blocks
 export { Alert } from './Alert';
@@ -55,12 +55,5 @@ export { Glossary, GlossaryItem } from './Glossary';
 export { NavMenu, NavMenuItem } from './NavMenu';
 // export { MediaText } from './MediaText';
 
-// Lismにいれるかは未定
-export { Text } from './Text';
-
-export { Delimiter } from './Delimiter';
-
+// 特殊
 export { LismProvider, LismConsumer } from './LismProvider';
-
-// Hoge.Foo があるもの
-// Accordion, Section, SideFix

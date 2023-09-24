@@ -74,13 +74,11 @@
 // 	--rev--c: var(--hov--c, #fff); // reverse用
 // }
 
-// .l--button[data-icon-position="edge"],
+// .l--button.l--grid,
 .l--button[data-icon-position='edge'] {
 	display: grid;
 	grid-template-areas: 'left center right';
 	grid-template-columns: 1em 1fr 1em;
-	// --gta: 'left center right';
-	// --gtc: 1em 1fr 1em;
 }
 [data-icon-position='edge'] > .l--button__text {
 	justify-self: center;

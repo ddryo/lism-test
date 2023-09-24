@@ -1,10 +1,8 @@
 import React from 'react';
-// import { getMaybeColorVar } from '../../lib';
 import { Flow } from '../Flow';
-// import { Flex } from '../Flex';
 import { Icon } from '../Icon';
 import { SideFixFlex } from '../SideFix';
-import { Center } from '../Center';
+import { Center } from '../Flex/Center';
 
 import {
 	LsAlertOutline,

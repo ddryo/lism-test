@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack } from '../Stack';
+import { Stack } from '../Flex/Stack';
 import { Lism } from '../Lism';
 import { Flex } from '../Flex';
 import { Icon } from '../Icon';

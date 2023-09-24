@@ -1,7 +1,7 @@
 import React from 'react';
 import { Lism } from '../Lism';
 // import { Grid } from '../Grid';
-// import { Center } from '../Center';
+// import { Center } from '../Flex/Center';
 // import { Text } from '../Text';
 // import { Layer } from '../Layer';
 import { Decorator } from '../Decorator';

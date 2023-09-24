@@ -1,9 +1,0 @@
-
-// --------------------
-// カラム
-// --------------------
-.l--columns{
-	--lism: 1;
-	display: grid;
-	grid-template-columns: repeat(var(--lismVal), minmax(0,1fr));
-}

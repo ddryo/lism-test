@@ -1,6 +1,9 @@
 @use '../query' as query;
 
 @layer lism-layout {
+	// .l--flex {
+	// 	display: flex;
+	// }
 	.l--flex {
 		--fxw: nowrap;
 		--fxd: row;
@@ -12,3 +15,5 @@
 		gap: var(--gap);
 	}
 }
+
+// flex={wrap: direction:}

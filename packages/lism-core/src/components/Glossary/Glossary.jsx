@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack } from '../Stack';
+import { Stack } from '../Flex/Stack';
 // import classnames from 'classnames';
 
 export default function Glossary({ children, ...props }) {

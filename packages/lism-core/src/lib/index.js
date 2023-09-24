@@ -1,12 +1,13 @@
+// 核となる処理
+export { default as getBpData } from './getBpData';
+export { default as getLismMainProp } from './getLismMainProp';
+export { default as getLismProps } from './getLismProps';
+
+// ヘルパー関数
 export { default as isEmptyObj } from './helper/isEmptyObj';
 export { default as filterEmptyObj } from './helper/filterEmptyObj';
-export { default as getPropBpObj } from './helper/getPropBpObj';
-export { default as getLismMainProp } from './helper/getLismMainProp';
-export { default as getLismClass } from './helper/getLismClass';
 
-export { default as getCommonProps } from './getCommonProps';
-
-import { PRESETS, UTILITIES } from './config';
+import { PRESETS, UTILITIES } from '@/config';
 
 function isNumStr(val) {
 	if (typeof val !== 'string') return false;
@@ -40,7 +41,22 @@ export const getUtilValue = (utils, value) => {
 		utilValues = utils;
 	}
 
-	return utilValues?.[value] || '';
+	// 数値→文字列化 ← しない。 spaceプリセット受け取りたい時に 数値 と文字列で分けれるようにするため。
+	// if (typeof value === 'number') {
+	// 	value = `${value}`;
+	// }
+
+	// fullname
+	if (utilValues?.[value]) {
+		return utilValues[value];
+	}
+
+	// shortname
+	if (Object.values(utilValues).includes(value)) {
+		return value;
+	}
+
+	return '';
 };
 
 // console.log('Number10%', Number('10%'));

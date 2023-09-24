@@ -1,11 +1,11 @@
 import React from 'react';
-import { getCommonProps } from '../../lib';
+import { getLismProps } from '@/lib';
 // import classnames from 'classnames';
 
 // as : Component | html-tag
 // tag : html-tag
 export default function Lism({ children, as, tag, ...props }) {
-	const { className, style, attrs } = getCommonProps(props);
+	const { className, style, attrs } = getLismProps(props);
 
 	let hasError = false;
 	// if (typeof as === 'function' && !as.prototype?.isReactComponent) {

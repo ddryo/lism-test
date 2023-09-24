@@ -3,7 +3,7 @@ import React from 'react';
 import { Center } from '../Center';
 
 import { Icon } from './index';
-import { getMaybeColorVar } from '../../lib';
+import { getMaybeColorVar } from '@/lib';
 // import classnames from 'classnames';
 
 // align: full, wide, ''

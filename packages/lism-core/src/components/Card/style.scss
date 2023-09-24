@@ -1,13 +1,13 @@
 .b--card {
 	:where(&) {
 		--bgc: var(--bgc--base);
-		--fz: var(--fz-fluid);
+		// --fz: var(--fz-fluid);
 	}
 
 	overflow: hidden; // radius考慮
 	position: relative;
 	background-color: var(--bgc);
-	font-size: var(--fz);
+	// font-size: var(--fz);
 }
 
 .l--flex > .b--card__media {
@@ -23,6 +23,7 @@
 
 .b--card__body {
 	flex-grow: 1;
+	// line-height: 1.625; // smaller
 }
 
 .l--end,

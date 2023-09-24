@@ -1,6 +1,6 @@
 import React from 'react';
 import { Lism } from '../Lism';
-// import { getLismClass } from '../../lib';
+// import { getLismClass } from '@/lib';
 
 // .l--layer[data-layer="media|filter|content"] ?
 export default function Layer({ children, modifier, position, size, ...props }) {

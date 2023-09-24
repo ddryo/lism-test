@@ -1,5 +1,4 @@
 import React from 'react';
-// import { getMaybeColorVar } from '../../lib';
 import { Lism } from '../Lism';
 // import { InlineIcon } from '../Icon';
 // import { Flex } from '../Flex';

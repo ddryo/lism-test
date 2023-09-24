@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack } from '../Stack';
+import { Stack } from '../Flex/Stack';
 // import { Item } from '../Item';
 import { Icon } from '../Icon';
 // import { Badge } from '../Badge';

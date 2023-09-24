@@ -39,6 +39,13 @@ export default defineConfig({
 		//react()
 		svgr(),
 	],
+	resolve: {
+		alias: [
+			{ find: '@/', replacement: '/src/' },
+			// { find: '@/lib', replacement: '/src/lib' },
+			// { find: '@/components', replacement: '/src/components' },
+		],
+	},
 	exportOnly: ['index'],
 	build: {
 		// target: 'es2015',
@@ -63,7 +70,7 @@ export default defineConfig({
 			formats: ['es'],
 		},
 		rollupOptions: {
-			external: ['react','classnames'],
+			external: ['react', 'classnames'],
 			output: {
 				dir: 'dist',
 				// 外部化された依存関係のために UMD のビルドで使用するグローバル変数を提供します

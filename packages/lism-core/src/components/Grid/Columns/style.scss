@@ -1,0 +1,9 @@
+// --------------------
+// カラム
+// --------------------
+.l--columns {
+	--gtc: 1; // 初期値
+	--gtc--val: var(--gtc);
+	display: grid;
+	grid-template-columns: repeat(var(--gtc--val), minmax(0, 1fr)) !important;
+}

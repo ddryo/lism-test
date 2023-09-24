@@ -11,7 +11,6 @@ export default function Decorator({ type, index, direction, pos = 'absolute', ..
 			data-i={index}
 			data-dir={direction || null}
 			pos={pos}
-			// _util='-size:'
 			aria-hidden='true'
 			{...props}
 		/>

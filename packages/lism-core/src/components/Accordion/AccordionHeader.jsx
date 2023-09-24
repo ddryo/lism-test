@@ -1,9 +1,9 @@
 import React from 'react';
 import { Lism } from '../Lism';
-// import { Center } from '../Center';
+// import { Center } from '../Flex/Center';
 
 import { Icon } from '../Icon';
-import { getCommonProps } from '../../lib';
+import { getLismProps } from '@/lib';
 import { AccContext } from './context';
 
 // import classnames from 'classnames';
@@ -27,7 +27,7 @@ export default function AccordionHeader({
 	labelProps = {},
 	...props
 }) {
-	const { className, style, attrs } = getCommonProps(props, {
+	const { className, style, attrs } = getLismProps(props, {
 		lismClass: 'l--accordion__header',
 		bgc: 'whitesmoke',
 	});
@@ -47,10 +47,6 @@ export default function AccordionHeader({
 	const { clickable } = React.useContext(AccContext);
 	if (clickable === 'icon') {
 		iconProps.tag = 'button';
-		// iconProps.bd = 'current';
-		// iconProps.p = '-';
-		// iconProps.radius = '1';
-		// iconSize = iconSize || '1em';
 	} else {
 		iconProps['aria-hidden'] = 'true';
 		// iconSize = iconSize || '1.25em';

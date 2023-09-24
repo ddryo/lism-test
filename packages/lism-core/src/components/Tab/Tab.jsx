@@ -13,7 +13,7 @@ export default function Tab({
 	keepHeight,
 	...props
 }) {
-	// const { className, style, attrs } = getCommonProps(props, { lismClass: 'l--tab' });
+	// const { className, style, attrs } = getLismProps(props, { lismClass: 'l--tab' });
 
 	// エディタ上での開閉状態を管理
 	// const [actTab, setActTab] = useState(activeTab);

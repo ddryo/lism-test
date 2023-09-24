@@ -38,11 +38,10 @@ export default function SideFixGrid({
 		lismClass: 'l--sideFix',
 		// 'data-fix-mode': 'grid',
 		'data-fix': fix,
-		useGridProps: true,
+		// useGridProps: true,
 		gap: 20, // 初期値
 		gta,
 		gtc,
-		// hasLismVar: true,
 		lismVar: fixW,
 	};
 

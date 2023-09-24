@@ -3,15 +3,19 @@
 @layer lism-layout {
 	.l--grid {
 		// 初期値セット
-		--gta: none;
-		--gtc: none;
-		--gtr: none;
+		--gta--val: none;
+		--gtc--val: none;
+		--gtr--val: none;
+		// --gaf
+		// --gar
+		// --gac
 		--gap: 0;
 
 		display: grid;
-		grid-template-areas: var(--gta);
-		grid-template-columns: var(--gtc);
-		grid-template-rows: var(--gtr);
+		grid-template-areas: var(--gta--val);
+		grid-template-columns: var(--gtc--val);
+		grid-template-rows: var(--gtr--val);
 		gap: var(--gap);
 	}
 }
+// grid={areas: columns: rows: gap:}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCommonProps } from '../../lib';
+import { getLismProps } from '@/lib';
 // import classnames from 'classnames';
 
 // R ?
@@ -13,7 +13,7 @@ import { getCommonProps } from '../../lib';
 export default function Text({ children, as, tag, ...props }) {
 	// 省略しててもOK
 
-	const { className, style, attrs } = getCommonProps(props);
+	const { className, style, attrs } = getLismProps(props);
 
 	// ta から1文字目を取得
 	// if (ta && taSets.includes(ta)) {

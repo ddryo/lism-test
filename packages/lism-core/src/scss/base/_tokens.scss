@@ -211,7 +211,7 @@
 	// --space--60: calc(5.25 * var(--sUnit));
 	// ここまでFibonacci
 	// ここから等比数列
-	--space--70: calc(var(--space--60) * 1.5);
+	// --space--70: calc(var(--space--60) * 1.5);
 	--space--80: calc(var(--space--70) * 1.5);
 	--space--90: calc(var(--space--80) * 1.5);
 
@@ -255,17 +255,19 @@
 	------------------------------------------------------------ */
 
 	--shadow--hsl: 0 0% 0%;
-	--shadowStrength--base: 0.06;
-	--shadowStrength: 0.12;
-	--shadowLength--0: 0.5px 1px 2px 0px;
-	--shadowLength--1: 0.5px 1px 4px -1px;
-	--shadowLength--2: 1px 2px 8px -1px;
-	--shadowLength--3: 2px 4px 16px -1px;
-	--shadowLength--4: 4px 8px 32px -1px;
-	--shadowLength--5: 8px 16px 56px -1px;
+	--shadow-strength--base: 0.05;
+	--shadow-strength: 0.1;
 
-	--shadowColor--low: hsl(var(--shadow--hsl) / var(--shadowStrength--base));
-	--shadowColor: hsl(var(--shadow--hsl) / var(--shadowStrength));
+	// x:y = 1:2 で統一。
+	--shadow-length--0: 0.5px 1px 2px 0px;
+	--shadow-length--1: 0.5px 1px 4px 0px;
+	--shadow-length--2: 1px 2px 8px 0px;
+	--shadow-length--3: 2px 4px 16px 0px;
+	--shadow-length--4: 4px 8px 32px 0px;
+	// --shadow-length--5: 8px 16px 56px -1px;
+
+	--shadow-color--low: hsl(var(--shadow--hsl) / var(--shadow-strength--base));
+	--shadow-color: hsl(var(--shadow--hsl) / var(--shadow-strength));
 
 	// ポイント:
 	//    x:yのオフセット比率は一定に保つ. 1:2
@@ -273,32 +275,35 @@
 	//    base(0)のshadowを共通で付ける
 	//    1段階前のshadowを薄めてつける
 
-	--shadow--1: var(--shadowLength--0) var(--shadowColor--low),
-		var(--shadowLength--1) var(--shadowColor);
+	--shadow--1: var(--shadow-length--0) var(--shadow-color--low),
+		var(--shadow-length--1) var(--shadow-color);
 
-	--shadow--2: var(--shadowLength--0) var(--shadowColor--low),
-		var(--shadowLength--1) var(--shadowColor--low), var(--shadowLength--2) var(--shadowColor);
+	--shadow--2: var(--shadow-length--0) var(--shadow-color--low),
+		var(--shadow-length--1) var(--shadow-color--low),
+		var(--shadow-length--2) var(--shadow-color);
 
-	--shadow--3: var(--shadowLength--0) var(--shadowColor--low),
-		var(--shadowLength--2) var(--shadowColor--low), var(--shadowLength--3) var(--shadowColor);
+	--shadow--3: var(--shadow-length--0) var(--shadow-color--low),
+		var(--shadow-length--2) var(--shadow-color--low),
+		var(--shadow-length--3) var(--shadow-color);
 
-	--shadow--4: var(--shadowLength--0) var(--shadowColor--low),
-		var(--shadowLength--3) var(--shadowColor--low), var(--shadowLength--4) var(--shadowColor);
+	--shadow--4: var(--shadow-length--0) var(--shadow-color--low),
+		var(--shadow-length--3) var(--shadow-color--low),
+		var(--shadow-length--4) var(--shadow-color);
 
-	--shadow--i1: inset var(--shadowLength--0) var(--shadowColor--low),
-		inset var(--shadowLength--1) var(--shadowColor);
+	--shadow--i1: inset var(--shadow-length--0) var(--shadow-color--low),
+		inset var(--shadow-length--1) var(--shadow-color);
 
-	--shadow--i2: inset var(--shadowLength--0) var(--shadowColor--low),
-		inset var(--shadowLength--1) var(--shadowColor--low),
-		inset var(--shadowLength--2) var(--shadowColor);
+	--shadow--i2: inset var(--shadow-length--0) var(--shadow-color--low),
+		inset var(--shadow-length--1) var(--shadow-color--low),
+		inset var(--shadow-length--2) var(--shadow-color);
 
-	--shadow--i3: inset var(--shadowLength--0) var(--shadowColor--low),
-		inset var(--shadowLength--2) var(--shadowColor--low),
-		inset var(--shadowLength--3) var(--shadowColor);
+	--shadow--i3: inset var(--shadow-length--0) var(--shadow-color--low),
+		inset var(--shadow-length--2) var(--shadow-color--low),
+		inset var(--shadow-length--3) var(--shadow-color);
 
-	--shadow--i4: inset var(--shadowLength--0) var(--shadowColor--low),
-		inset var(--shadowLength--3) var(--shadowColor--low),
-		inset var(--shadowLength--4) var(--shadowColor);
+	--shadow--i4: inset var(--shadow-length--0) var(--shadow-color--low),
+		inset var(--shadow-length--3) var(--shadow-color--low),
+		inset var(--shadow-length--4) var(--shadow-color);
 
 	// 1 にすると押し込むような感じになる
 	--shadow--hov: var(--shadow--4);

@@ -61,14 +61,9 @@ class CommonProps {
 			isFlow,
 			flex,
 			grid,
-			// isFlex,
-			// isGrid,
-			// isItem,
+
 			isLinkbox,
 			isConstrained,
-			// useFlexProps,
-			// useGridProps,
-			// useItemProps,
 			hasGutter,
 			hasLayer,
 			// useLog,
@@ -179,14 +174,14 @@ class CommonProps {
 
 	// 特定の条件下で受け取るpropの処理
 	setContextProps(context, props) {
-		// console.log('context', context, props);
 		const contextProps = PROPS[context];
 
 		if (!contextProps) return;
 		Object.keys(props).forEach((propName) => {
 			const propData = contextProps[propName];
 			const propValue = props[propName];
-			console.log(propName, propValue, propData);
+
+			// console.log(propName, propValue, propData);
 			this.analyzeProp(propName, propValue, propData);
 		});
 	}

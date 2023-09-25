@@ -49,11 +49,11 @@ const AlertPresets = {
 // const AlertColors = {}
 
 const defaultProps = {
-	Notice: {
+	Note: {
 		// radius: '2',
 	},
 };
-export default function Notice({
+export default function Note({
 	icon,
 	caption,
 	variant = 'note',
@@ -92,7 +92,7 @@ export default function Notice({
 		// gap: '-',
 		// radius: '-',
 		style,
-		...defaultProps.Notice,
+		...defaultProps.Note,
 		...props,
 	};
 

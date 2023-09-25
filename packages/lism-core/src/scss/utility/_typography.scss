@@ -67,3 +67,8 @@
 	--fz: var(--fz--5xl);
 	--lh: var(--ls--6L--lh);
 }
+
+// font-family
+.-ff\:code {
+	font-family: var(--code--ff);
+}

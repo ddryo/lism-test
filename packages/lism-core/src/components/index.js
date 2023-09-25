@@ -40,12 +40,12 @@ export { Delimiter } from './Delimiter';
 
 // appルーターで use client がいるもの
 export { Accordion, AccordionHeader, AccordionBody } from './Accordion';
-export { Tab, TabItem } from './Tab';
+export { Tabs, TabItem } from './Tabs';
 // export { DynamicCSS } from './DynamicCSS';
 
 // Blocks
 export { Alert } from './Alert';
-export { Notice } from './Notice';
+export { Note } from './Note';
 export { Banner } from './Banner';
 export { FAQ } from './FAQ';
 export { ChatBubble } from './ChatBubble';

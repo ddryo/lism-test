@@ -4,7 +4,7 @@ import { Lism } from '../Lism';
 // import classnames from 'classnames';
 
 // animationTime: [s]
-export default function Tab({
+export default function Tabs({
 	// panels,
 	// items,
 	children,

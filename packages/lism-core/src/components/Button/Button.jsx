@@ -1,5 +1,6 @@
 import React from 'react';
-import { Lism } from '../Lism';
+import { Core } from '../Core';
+import { Grid } from '../Grid';
 import { Icon } from '../Icon';
 
 // variant
@@ -12,18 +13,19 @@ export default function Button({
 	variant = 'fill',
 	color = 'basic',
 	children,
-	iconPosition,
+	// iconPosition,
+	isGrid,
 	...props
 }) {
 	const blockProps = {
-		lismClass: 'l--button',
+		blockClass: 'l--button',
 		lismStyle: {},
 		'data-variant': variant,
 	};
 
-	if (iconPosition === 'edge') {
-		blockProps['data-icon-position'] = 'edge';
-	}
+	// if (iconPosition === 'edge') {
+	// 	blockProps['data-icon-position'] = 'edge';
+	// }
 
 	if (iconOffset) {
 		blockProps.lismStyle['--icon--offset'] = iconOffset;
@@ -51,18 +53,20 @@ export default function Button({
 	// 	blockProps['data-has-icon'] = '1';
 	// }
 
+	const ButtonComponent = isGrid ? Grid : Core;
+
 	// iconボタン
 	// → 別コンポーネントに切り分けるべき...?
 	if (icon) {
 		return (
-			<Lism tag='a' hover='fade' {...blockProps} p={30} {...props}>
+			<ButtonComponent tag='a' hover='fade' {...blockProps} p={30} {...props}>
 				<Icon icon={icon} lismClass='l--button__icon e--icon' />
-			</Lism>
+			</ButtonComponent>
 		);
 	}
 
 	return (
-		<Lism tag='a' hover='fade' {...blockProps} {...props}>
+		<ButtonComponent tag='a' hover='fade' {...blockProps} {...props}>
 			{leftIcon && (
 				<Icon icon={leftIcon} lismClass='l--button__icon e--icon' data-position='left' />
 			)}
@@ -70,6 +74,6 @@ export default function Button({
 			{rightIcon && (
 				<Icon icon={rightIcon} lismClass='l--button__icon e--icon' data-position='right' />
 			)}
-		</Lism>
+		</ButtonComponent>
 	);
 }

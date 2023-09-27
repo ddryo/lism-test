@@ -1,19 +1,20 @@
 @use '../query' as query;
 
-@layer lism-layout {
+@layer lism-init {
 	// .l--flex {
 	// 	display: flex;
 	// }
 	.l--flex {
 		--fxw: nowrap;
 		--fxd: row;
-		--gap: 0;
-
-		display: flex;
-		flex-wrap: var(--fxw);
-		flex-direction: var(--fxd);
-		gap: var(--gap);
+		// --gap: 0;
 	}
+}
+.l--flex {
+	display: flex !important; // ユーティリティ的な側面もあり、組み合わせ方でレイアウトを変えることもあるので !important 付与
+	flex-wrap: var(--fxw);
+	flex-direction: var(--fxd);
+	// gap: var(--gap);
 }
 
 // flex={wrap: direction:}

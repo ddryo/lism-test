@@ -13,26 +13,80 @@
 		--flowGap: var(--flowGap--heading);
 	}
 
+	// --lh--4xs: var(--lh--20);
+	// --lh--3xs: var(--lh--30);
+	// --lh--2xs: var(--lh--40);
+	// --lh--xs: var(--lh--50);
+
 	h1 {
 		--fz: var(--fz--3xl);
-		--lh: var(--ls--4L--lh);
+		// --lh: var(--lh--40);
+		// --lh: calc(var(--lh--base) - 0.5);
 	}
 	h2 {
 		--fz: var(--fz--2xl);
-		--lh: var(--ls--3L--lh);
+		// --lh: var(--lh--50);
+		// --lh: calc(var(--lh--base) - 0.375);
 	}
 	h3 {
 		--fz: var(--fz--xl);
-		--lh: var(--ls--2L--lh);
+		// --lh: var(--lh--50);
+		// --lh: calc(var(--lh--base) - 0.25);
 	}
 	h4 {
 		--fz: var(--fz--l);
-		--lh: var(--ls--L--lh);
+		// --lh: var(--lh--60);
+		// --lh: calc(var(--lh--base) - 0.125);
 	}
 	h5 {
 		--fz: var(--fz--m);
+		// --lh: var(--lh--s);
 	}
 	h6 {
 		--fz: var(--fz--s);
+		--lh: var(--lh--60); // 1.5
 	}
 }
+
+// ---------------------------------------------------------------------
+// lh 自動計算
+// ---------------------------------------------------------------------
+// :where(body *),
+// :where(:is(h1, h2, h3, h4, h5, h6, p)) {
+// 	font-size: var(--fz, inherit);
+// 	line-height: var(--lh, inherit);
+// }
+@layer lism-init {
+	:root {
+		--lh--min: 1.25em;
+		--lh--max: 1.75em;
+	}
+
+	// .-typoCalc, // (仮名) 自動計算対象にするというユーティリティクラス合ったほうが便利かも...？
+	// [style*="--fz:"], // --fzでフォントサイズ指定されているもの
+	:is(h1, h2, h3, h4, h5, h6),
+	[class*='-fz\:'] {
+		--lh--bsae: 1.75;
+		--slope: 0.3; // 自動計算用の傾き
+		--base: calc(var(--lh--base) * 1em); // 計算ように単位をつけておく
+
+		// 計算
+		--calced: calc((var(--slope) * 1em) + var(--base) - (var(--slope) * var(--fz)));
+
+		// 上限値を var(--base) にすることで、フォントサイズが大きい場合にのみ計算を適用することも可能
+		line-height: clamp(var(--lh--min), var(--calced), var(--lh--max));
+	}
+}
+//  1.75em - fz*slope + slope*1em
+// slop .4, fz 2em →  1.75em - .4*2em + .4*1em → 1.15em
+// slop .35, fz 2em →  1.75em - .35*2em + .35*1em → 1.2em
+// slop .3, fz 2em →  1.75em - .3*2em + .3*1em → 1.25em
+// slop .3, fz 1.5em → 1.75em - .3*1.5em + .3*1em → 1.3em
+// slop .3, fz 2em →  1.5em - .3*2em + .3*1em → 1.1em
+// slop .2, fz 2em →  1.5em - .2*2em + .2*1em → 1.2em
+
+// 1em → 1.8em,
+// 1.5em → 1.6em
+// 2em → 1.4em
+// 2.5em → 1.2em
+// ---------------------------------------------------------------------

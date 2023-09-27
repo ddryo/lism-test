@@ -7,23 +7,23 @@ listについて
 */
 
 @layer lism-init {
+	:root {
+		--list--padding: 1.5em;
+	}
 	/*
 		list
 	 */
 	:is(ul, ol) {
 		// 子要素含めてすべて変更したい時 → CSS変数使えばOK
-		padding-inline-start: var(--list-padding, 0);
+		padding-inline-start: var(--list--padding, 0);
 		list-style: var(--list-style, revert);
-	}
-	.is--flow > :is(ul, ol) {
-		--list-padding: 1.5em;
 	}
 
 	// flex, grid なリストはスタイルをリセット
-	:is(ul, ol):is(.l--flex, .l--grid) {
-		--list-style: none;
-		--list-padding: 0;
-	}
+	// :is(ul, ol):is(.l--flex, .l--cluster, .l--grid, .l--columns, .l--tileGrid) {
+	// 	--list-style: none;
+	// 	--list--padding: 0;
+	// }
 
 	/*
 		dl
@@ -56,7 +56,7 @@ listについて
 	> li::before {
 		position: absolute;
 		top: 0;
-		left: calc(var(--list-padding) * -0.5 - 0.5em);
+		left: calc(var(--list--padding) * -0.5 - 0.5em);
 		display: block;
 		width: 1em;
 		height: auto;

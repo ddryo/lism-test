@@ -1,11 +1,12 @@
 @use 'sass:map';
 
 // xs sm md lg xl xxl
+// 240刻み
 $points: (
 	'sm': '(min-width: 480px)',
 	'md': '(min-width: 720px)',
 	'lg': '(min-width: 960px)',
-	'xl': '(min-width: 1140px)',
+	'xl': '(min-width: 1200px)',
 	// 'xxl': '(min-width: 1400px)',
 	'under-sm': 'not (min-width: 480px)',
 	'under-md': 'not (min-width: 720px)',

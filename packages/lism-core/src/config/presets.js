@@ -3,6 +3,7 @@ const spacingPresets = ['0', '5', '10', '15', '20', '30', '40', '50'];
 // PRESETS
 export default {
 	fz: [
+		'root',
 		'5xl',
 		'4xl',
 		'3xl',
@@ -13,12 +14,13 @@ export default {
 		's',
 		'xs',
 		'2xs',
-		'r',
 		'fluid',
 		'fluid:s',
 		'fluid:l',
 	],
-	lh: [],
+	// lh: ['10', '20', '30', '40', '50', '60', '70', '80', '90'],
+	lh: ['base', '4xs', '3xs', '2xs', 'xs', 's', 'l', 'xl'],
+	ff: ['base', 'mono', 'emoji', 'sans', 'serif'],
 
 	// --変数化できるキーワード
 	color: [
@@ -44,7 +46,7 @@ export default {
 		'b700',
 		'b800',
 		'b900',
-		'b950',
+		// 'b950',
 	],
 	c: ['main', 'accent', 'base', 'pale', 'opposite'],
 	bgc: ['main', 'accent', 'base', 'pale', 'strong', 'opposite'],

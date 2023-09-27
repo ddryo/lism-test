@@ -1,13 +1,13 @@
 /*
  * タイポグラフィ
  */
- :root{
+:root {
 	--lh--min: 1.3em;
 	--lh--max: 1.9em;
 }
 
 // ---------------------------------------------------------------------
-body{
+body {
 	--fz: 1em; // 計算用に --fz の単位をem化しておく
 	--lh: var(--root--lh); // 任意の値
 }
@@ -25,7 +25,6 @@ body{
 // :where(:is(h1, h2, h3, h4, h5, h6, p)):not([style*="font-size"]){
 // 	color: red;
 // }
-	
 
 .-typoCalc, // (仮名) 自動計算対象にするというユーティリティクラス合ったほうが便利かも...？
 [style*="--fz:"], // --fzでフォントサイズ指定されているもの
@@ -37,14 +36,14 @@ body{
 	// 上限値を var(--base) にすることで、フォントサイズが大きい場合にのみ計算を適用することも可能
 	line-height: clamp(
 		min(var(--lh--min), var(--base)),
-		calc((var(--slope) * 1em) + var(--base) - (var(--slope) * var(--fz)) ),
+		calc((var(--slope) * 1em) + var(--base) - (var(--slope) * var(--fz))),
 		max(var(--lh--max), var(--base))
 	);
 	font-size: var(--fz);
 }
 
 // --lh指定されている要素自身はその値で上書き。→ .-lh: 使ってもらう?
-[style*="--lh:"]{
+[style*='--lh:'] {
 	line-height: var(--lh);
 }
 

@@ -6,37 +6,42 @@
 	}
 
 	pre {
-		padding: var(--space--40, 1rem);
-		color: var(--b500);
+		padding: var(--p--box);
+		color: var(--b800);
 		background-color: var(--b100);
 	}
 
+	// --code--ff: var(var(--ff--mono));
+	// --code--fz: 0.9em;
+	// --code--c: var(--b800);
+	// --code--bgc: var(--bgc--pale);
+	// --code--bdc: var(--bdc--base);
 	code {
-		font-size: var(--code--fz);
-		font-family: var(--code--ff);
+		font-size: 0.9em;
+		font-family: var(--ff--mono);
 	}
 
 	:not(pre) > code {
-		color: var(--code--c);
-		background-color: var(--code--bgc);
-		border: solid 1px var(--code--bdc);
+		color: var(var(--b800));
+		background-color: var(--b100);
+		border: solid 1px var(--b300);
 		padding: 0.125em 0.25em;
 		border-radius: 2px;
 		display: inline-block; // できるだけ途中で改行されないように
-		line-height: 1.2;
+		line-height: 1.25;
 	}
 
 	kbd {
-		font-size: var(--code--fz);
-		font-family: var(--code--ff);
-		color: var(--code--c);
-		background-color: var(--code--bgc);
-		border: solid 1px var(--code--bdc);
+		font-size: 0.9em;
+		font-family: var(--ff--mono);
+		color: var(var(--b800));
+		background-color: var(--b100);
+		border: solid 1px var(--b300);
 		border-radius: 2px;
-		box-shadow: 0 1px 0 var(--code--bdc);
+		box-shadow: 0 1px 0 var(--b300);
 		padding: 0.25em 0.5em;
 		display: inline-block; // できるだけ途中で改行されないように
-		line-height: 1.2;
+		line-height: 1.25;
 	}
 
 	/* hrのスタイリング. currentColor */

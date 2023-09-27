@@ -8,13 +8,9 @@
 	// --btn--color:
 	.l--button {
 		--keycolor: var(--b900);
-		// --c: var(--b50);
+		--c: inherit;
 		--bdc: transparent;
 		--bgc: transparent;
-		--w: fit-content;
-		--p: var(--space--25) var(--space--30);
-		--bdrs: var(--radius--1);
-		--gap: 0.5em;
 		--icon--scale: 1.25; // offsetとバランス合わせる
 		--icon--offset: 0%; //25%;
 	}
@@ -41,25 +37,22 @@
 	}
 }
 
-// :where(.l--button) {
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-// }
-
-.l--button {
+// pYは小さめにして、minHで最低限の高さを確保.
+:where(.l--button) {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	line-height: 1.5;
 	text-decoration: none;
-	width: var(--w); // .-w: 関連で上書きできるように
+	width: fit-content;
 	color: var(--c);
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc); // アウトラインと並べたときにサイズに差がでないように
-	border-radius: var(--bdrs);
-	padding: var(--p);
-	gap: var(--gap);
+	border-radius: var(--radius--1);
+	line-height: 1.25;
+	padding-block: 0.325em;
+	padding-inline: 1em;
+	min-block-size: 3em;
+	gap: 0.5em; // --gap--icon ?
 	// min-width: 2em;
 }
 
@@ -75,12 +68,12 @@
 // }
 
 // .l--button.l--grid,
-.l--button[data-icon-position='edge'] {
-	display: grid;
-	grid-template-areas: 'left center right';
-	grid-template-columns: 1em 1fr 1em;
+.l--button.l--grid {
+	// display: grid;
+	--gta--val: 'left center right';
+	--gtc--val: 1em 1fr 1em;
 }
-[data-icon-position='edge'] > .l--button__text {
+.l--grid > .l--button__text {
 	justify-self: center;
 	grid-area: center;
 }

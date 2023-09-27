@@ -2,23 +2,25 @@
 @use './base/reset';
 @use './base/tokens';
 
-html {
-	font-size: var(--root--fz);
-}
+@layer lism-init {
+	html {
+		font-size: var(--fz--root);
+	}
 
-body {
-	// WPでは、カラー・タイポグラフィなどについては theme.json 設定によって出力される
-	background-color: var(--bgc--base);
-	color: var(--c--base);
-	font-family: var(--root--ff);
-	font-size: 1rem;
-	line-height: var(--root--lh);
-	overflow-x: clip;
-	container-type: inline-size;
-}
+	body {
+		// WPでは、カラー・タイポグラフィなどについては theme.json 設定によって出力される
+		background-color: var(--bgc--base);
+		color: var(--c--base);
+		font-family: var(--ff--base);
+		font-size: 1rem;
+		line-height: var(--lh--bsae);
+		overflow-x: clip;
+		container-type: inline-size;
+	}
 
-a {
-	color: var(--link--c);
-	text-decoration: underline;
-	text-underline-offset: var(--link--underlineOffset);
+	a {
+		color: var(--link--c); // --c--link?
+		text-decoration: underline;
+		text-underline-offset: var(--link--underlineOffset);
+	}
 }

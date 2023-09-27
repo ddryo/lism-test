@@ -125,9 +125,10 @@ export default {
 	// mbe: { presets: 'space' },
 	radius: { name: 'bdrs', presets: 'radius' },
 	shadow: { name: 'bxsh', presets: 'shadow' },
-	lh: { presets: 'lh' },
-	fz: { presets: 'fz' },
+	lh: { presets: 1 },
+	fz: { presets: 1 },
 	fw: { style: 'fontWeight', utils: 1 },
+	ff: { style: 'fontFamiry', presets: 1 },
 	ta: { style: 'textAlign', utils: 1 },
 	lts: { style: 'letterSpacing' }, // utilityあってもいい
 	td: { style: 'textDecoration' },

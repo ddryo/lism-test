@@ -1,37 +1,27 @@
 // Alert は --keycolor が常に渡ってくる
 
-:where(.b--alert) {
-	// --keycolor: var(--gray);
-	--icon--c: var(--keycolor);
-	--bdc: var(--keycolor);
-	--bgc: transparent;
-	--p: var(--space--35);
-	--gap: var(--space--30);
-	--bdrs: var(--radius--2);
-
+@layer lism-init {
+	.b--alert {
+		// --keycolor: var(--gray);
+		--icon--c: var(--keycolor);
+		--icon--size: 1.4em; //var(--fz--xl); //1.325em;
+		--bdc: var(--keycolor);
+		--bgc: transparent;
+		// --p: var(--space--35);
+		// --gap: var(--space--30);
+		// --bdrs: var(--radius--2);
+	}
+}
+.b--alert {
+	--fluid--minW: 16em;
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc);
-	padding: var(--p);
+	padding: var(--p--box--s);
 	align-items: center;
-	border-radius: var(--bdrs);
-}
+	border-radius: var(--radius--2);
+	gap: var(--p--box--s); //0.75em;
+	line-height: var(--lh--s);
 
-.b--alert {
-	background-color: var(--bgc);
-	border: solid 1px var(--bdc);
-	padding: var(--p);
-}
-
-.b--alert__icon {
-	color: var(--icon--c);
-}
-
-// .-scale: で上書きできる詳細度で
-// :where(.b--alert__icon > .e--icon){
-// 	scale: 1.125;
-// }
-
-.b--alert {
 	// color-mixのサポートチェック
 	// srgb-linear
 	@supports (color: color-mix(in srgb, #000, #fff)) {
@@ -47,3 +37,15 @@
 		);
 	}
 }
+
+.b--alert__icon {
+	color: var(--icon--c);
+	// width: var(--icon--size);
+	// height: var(--icon--size);
+	font-size: var(--icon--size);
+}
+
+// .-scale: で上書きできる詳細度で
+// :where(.b--alert__icon > .e--icon){
+// 	scale: 1.125;
+// }

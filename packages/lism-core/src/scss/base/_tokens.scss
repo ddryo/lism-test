@@ -8,6 +8,23 @@
 		子要素: --{item}--{prop}
 			--rev--c, --icon--offset, --item--minW
  ------------------------------------------------------------ */
+
+/* ------------------------------------------------------------
+	段階的な値は基本的に
+	　→ 0,10,20,30,...
+	  → why? → 間を増やせるように、1,2,3,... ではなく10単位ベース
+
+	レイヤー的な段階値
+	  → 0, 1,2,3..., -1,-2,...
+
+	カラーの段階値は 100,200,300 ?　→ 10,20,...に揃えてもいいか。
+
+	真ん中のデフォルト値があって、そこから見て小さいか大きいか
+	 →　l, xl. 2xl, ...
+	 → s, xs, 2xs, ...
+	 - ベース = m or r
+
+ ------------------------------------------------------------ */
 :root {
 	/* ------------------------------------------------------------
 	  コンテンツサイズ: ユーザー側で定義が必要
@@ -31,14 +48,29 @@
 	/* ------------------------------------------------------------
 	    タイポグラフィ
 	------------------------------------------------------------ */
-	--root--ff: sans-serif;
+
+	--ff--base: sans-serif;
+	--ff--emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji',
+		'Segoe UI Symbol';
+	--ff--mono: Menlo, Consolas, monaco, monospace;
+	// --ff--sans, --ff--serif;
+	// meta, heading
+
+	// letter-spacing
+	--lts--base: 0;
+	--lts--tight: 0;
+	--lts--wide: 0;
+
+	// --root--ff: sans-serif;
 	// --root--fz: clamp(14px, 4vw, 1rem); // 1rem: ブラウザ標準はほぼ16px
-	--root--fz: clamp(0.875rem, 0.625rem + 1vw, 1rem); // 400 - 600
-	--root--lh: 1.75;
+	// --root--fz: clamp(0.875rem, 0.625rem + 1vw, 1rem); // 400 - 600
+	// --root--lh: 1.75;
 
 	// font-size 変数
-	--fz--m: 1em;
-	--fz--r: 1rem;
+	--fz--root: clamp(0.875rem, 0.625rem + 1vw, 1rem); // 400 - 600
+	// --fz--hero?
+	--fz--m: 1em; // デフォルトでフォントサイズ 変わっているものを1emにリセットしたい時に必要
+	--fz--r: 1rem; // → --fz--base?
 
 	// 倍音列(分子8) での計算値
 	--fz--5xl: 4em; //calc(1em * 8 / 2);
@@ -72,18 +104,46 @@
 	// --fz-fluid--l: clamp(1rem, 0.9rem + 0.25cqw, 1.1rem); // 大きい方向のみ 640: 1rem a~ 960: 1.1rem
 	// clamp(0.9rem, 0.75rem + 0.75vw, 1.2rem); // 上下両方. 320: .9rem ~ 960: 1.2rem
 
-	--ls--ff--emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji',
-		'Android Emoji', 'EmojiSymbols';
-
 	// ------------------------------
 	// line-height 変数
 	// ------------------------------
-	--ls--6L--lh: 1.2;
-	--ls--5L--lh: 1.4;
-	--ls--4L--lh: 1.4;
-	--ls--3L--lh: 1.5;
-	--ls--2L--lh: 1.6;
-	--ls--L--lh: 1.6;
+
+	// 1~9 だと普通の数値指定と区別がつかない.
+	--lh--10: 1;
+	--lh--20: 1.125;
+	--lh--30: 1.25;
+	--lh--40: 1.375;
+	--lh--50: 1.5;
+	--lh--60: 1.625;
+	--lh--70: 1.75;
+	--lh--80: 1.875;
+	--lh--90: 2;
+	// --lh--90: 2.5;
+
+	// --lh--r:
+	// --lh:1
+
+	// --lh--4xs: var(--lh--20);
+	// --lh--3xs: var(--lh--30);
+	// --lh--2xs: var(--lh--40);
+	// --lh--xs: var(--lh--50);
+	// --lh--xs: var(--lh--30); // button, badge?
+	--lh--base: 1.75;
+	--lh--xs: calc(var(--lh--base) - 0.25);
+	--lh--s: calc(var(--lh--base) - 0.125);
+	--lh--l: calc(var(--lh--base) + 0.125);
+	// --lh--xl: var(--lh--90);
+
+	// --h1--lh:
+	// --h2--lh:
+	// --h3--lh:
+	// --h4--lh:
+
+	// --lh--xl: var(--lh--70);
+	// tight snug - relaxed loose
+	// shorter short - tall taller
+	// xs s - l xl
+
 	// --lh--base: 1.75;
 
 	// 1, xs          sm       md,  lg  xl
@@ -92,15 +152,6 @@
 	// line-height 変数
 	// --ls--lh--contents: 1.8;
 	// --ls--lh--heading: 1.8;
-
-	// chakra
-	// normal: "normal",
-	// none: 1,
-	// shorter: 1.25,
-	// short: 1.375,
-	// base: 1.5,
-	// tall: 1.625,
-	// taller: "2",
 
 	/* ------------------------------------------------------------
 	  カラー: ユーザー側で定義できる仕組みも必要
@@ -115,13 +166,35 @@
 
 	// ベースカラーに合わせたカラーを段階的に用意
 	--hs--basic: 215 8%;
-	--b50: hsl(var(--hs--basic) 99%); // 背景色
-	--b100: hsl(var(--hs--basic) 96%); // 淡い背景色
-	--b200: hsl(var(--hs--basic) 88%); // 少し濃い背景色 & ボーダー基本色もデフォルトはこれ
-	// ...
-	--b800: hsl(var(--hs--basic) 30%); // 淡い文字色 strong背景色
-	--b900: hsl(var(--hs--basic) 16%); // 少しだけ淡い文字色. pre code などで使用
-	--b950: hsl(var(--hs--basic) 8%); // 文字色
+	--b50: hsl(var(--hs--basic) 99%);
+	--b100: hsl(var(--hs--basic) 96%);
+	--b200: hsl(var(--hs--basic) 92%);
+	--b300: hsl(var(--hs--basic) 84%);
+	--b400: hsl(var(--hs--basic) 72%);
+	--b500: hsl(var(--hs--basic) 60%);
+	--b600: hsl(var(--hs--basic) 48%);
+	--b700: hsl(var(--hs--basic) 36%);
+	--b800: hsl(var(--hs--basic) 24%); // 淡い文字色 strong背景色
+	--b900: hsl(var(--hs--basic) 8%); // 少しだけ淡い文字色. pre code などで使用
+	// --b950: hsl(var(--hs--basic) 8%); // 文字色
+
+	// --c-: 文字色 に関するセマンティックトークン
+	--c--base: var(--b900); // 基本の文字色
+	--c--pale: var(--b700); // 薄いテキスト色
+	--c--opposite: var(--b50); // 背景色と反転
+	--c--filled: #fff; // variant="fill"系の文字色
+
+	// --bgc-: 背景色 に関するセマンティックトークン
+	--bgc--base: var(--b50); // 基本の背景色
+	--bgc--pale: var(--b100); // 薄い背景色
+	// --bgc--medium: var(--b200); // 少し濃い背景色? & ボーダー基本色もデフォルトはこれ
+	// --bgc--strong: var(--b900); //
+	--bgc--opposite: var(--b900); // テキスト色と反転
+
+	// --bdc-: ボーダー色 に関するセマンティックトークン
+	--bdc--base: var(--b300); // 基本ボーダーカラー
+	--bdc--pale: var(--b200); // 薄いボーダーカラー
+	// --bdc--strong: var(--b800);
 
 	// --pallete--?
 	--black: #000;
@@ -143,22 +216,6 @@
 	--gray: hsl(214 8% 48%); // #64748b;
 	// --gray--c: var(--c--filled);
 
-	// --c-: 文字色 に関するセマンティックトークン
-	--c--base: var(--b900); // テキスト色
-	--c--pale: var(--b800); // テキスト色
-	--c--opposite: var(--b50); // 明暗反転色
-	--c--filled: #fff; // variant="fill"系の文字色
-
-	// --bgc-: 背景色 に関するセマンティックトークン
-	--bgc--base: var(--b50);
-	--bgc--pale: var(--b100);
-	--bgc--strong: var(--b800);
-	--bgc--opposite: var(--b900); // 明暗反転色
-
-	// --bdc-: ボーダー色 に関するセマンティックトークン
-	--bdc--base: var(--b200); // ボーダーカラー
-	// --bdc--strong: var(--b800);
-
 	// ---
 
 	--cMixPer--bg: 95%;
@@ -168,12 +225,6 @@
 	/* ------------------------------------------------------------
 	    elements
 	------------------------------------------------------------ */
-
-	--code--ff: Menlo, Consolas, monaco, monospace;
-	--code--fz: 0.9em;
-	--code--c: var(--b900);
-	--code--bgc: var(--bgc--pale);
-	--code--bdc: var(--bdc--base);
 
 	// --table--bdc:
 	--th--bgc: var(--bgc--pale);
@@ -226,9 +277,26 @@
 	--space--60: calc(4.25 * var(--sUnit));
 	--space--70: calc(6.875 * var(--sUnit));
 
-	--p--box: var(--space--30) calc(0.2em + var(--space--30));
-	--p--box--s: var(--space--20) calc(0.125em + var(--space--20));
-	--p--box--l: var(--space--40) calc(0.25em + var(--space--40));
+	// --em--5: .125em;
+	// --em--10: .25em;
+	// --em--20: .5em;
+	// --em--30: .75em;
+	// --em--40: 1em;
+	// --em--50: 1.25em;
+
+	// --p--box-10: 0.5em 0.625em;
+
+	// --p--box--s: 0.75em 0.875em;
+	// --p:box:{padding: var(--p--box) calc(--p--box + 0.125em);}
+	// --p:box:10{--p--box: var(--em--10)}
+
+	--p--box--s: 0.625em 0.75em;
+	--p--box: 1em 1.125em;
+	--p--box--l: 1.5em 1.625em;
+
+	--gap--icon--s: 0.25em;
+	--gap--icon: 0.5em;
+	--gap--icon--l: 0.75em;
 
 	// .is--flow の blockGap 管理用変数
 	// --flowGap--xs: var(--space--15);
@@ -242,6 +310,7 @@
 	/* ------------------------------------------------------------
 	  radius
 	------------------------------------------------------------ */
+	// 10,20, ... ?
 	--radius--1: 0.125rem; // ≒ 2px
 	--radius--2: 0.25rem; // ≒ 4px
 	--radius--3: 0.5rem; // ≒ 8px
@@ -258,7 +327,7 @@
 	--shadow-strength--base: 0.05;
 	--shadow-strength: 0.1;
 
-	// x:y = 1:2 で統一。
+	// x:y = 1:2 で統一。 layer的な考え方で、10,20...ではなく 1,2,...?
 	--shadow-length--0: 0.5px 1px 2px 0px;
 	--shadow-length--1: 0.5px 1px 4px 0px;
 	--shadow-length--2: 1px 2px 8px 0px;

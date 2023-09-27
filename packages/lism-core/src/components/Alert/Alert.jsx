@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flow } from '../Flow';
 import { Icon } from '../Icon';
-import { SideFixFlex } from '../SideFix';
+import { FluidFix } from '../FluidFix';
 import { Center } from '../Flex/Center';
 
 import {
@@ -85,7 +85,8 @@ export default function Alert({
 	// size,
 	preset = 'memo',
 	// variant,
-	iconProps = {},
+	iconSize,
+	// iconProps = {},
 	style = {},
 	children,
 	...props
@@ -119,17 +120,21 @@ export default function Alert({
 	color = color || presetColor || 'basic';
 	blockProps.keycolor = color;
 
+	if (iconSize) {
+		blockProps.style['--icon--size'] = iconSize;
+	}
+
 	// Center: 縦並び時にセンター寄せしたい
 	return (
-		<SideFixFlex fix='first' {...blockProps}>
+		<FluidFix fix='first' {...blockProps}>
 			{icon && (
 				<Center blockClass='b--alert__icon'>
-					<Icon icon={icon} size='1.5em' {...iconProps} />
+					<Icon icon={icon} size='1em' />
 				</Center>
 			)}
 			<Flow blockClass='b--alert__body' flowGap={30}>
 				{children}
 			</Flow>
-		</SideFixFlex>
+		</FluidFix>
 	);
 }

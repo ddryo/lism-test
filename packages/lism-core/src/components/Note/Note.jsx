@@ -86,7 +86,7 @@ export default function Note({
 	color = color || presetColor || 'basic';
 
 	const boxProps = {
-		blockClass: 'b--notice',
+		blockClass: 'b--note',
 		'data-variant': variant,
 		// p: '-',
 		// gap: '-',
@@ -137,13 +137,13 @@ export default function Note({
 	return (
 		<Component {...boxProps}>
 			{caption && (
-				<Flex blockClass='b--notice__head' {...headProps}>
-					{icon && <Icon icon={icon} blockClass='b--notice__icon' size='1.5em' />}
-					<span className='b--notice__caption'>{caption}</span>
+				<Flex blockClass='b--note__head' {...headProps}>
+					{icon && <Icon icon={icon} blockClass='b--note__icon' size='1.5em' />}
+					<span className='b--note__caption'>{caption}</span>
 				</Flex>
 			)}
 
-			<Lism blockClass='b--notice__body' isFlow {...bodyProps}>
+			<Lism blockClass='b--note__body' isFlow {...bodyProps}>
 				{children}
 			</Lism>
 		</Component>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Frame } from '../Frame';
 import { LinkBox } from '../LinkBox';
-import { ContentLayer, FilterLayer } from '../Layer';
+import { FilterLayer } from '../Layer';
 import { Lism } from '../Lism';
 import { getMediaLayer } from '../helper';
 // import { Box } from '../Box';

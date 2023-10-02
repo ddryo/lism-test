@@ -1,8 +1,5 @@
 import React from 'react';
 import { Box } from '../Box';
-// import { Lism } from '../Lism';
-// import setEvent from './setEvent';
-// import classnames from 'classnames';
 
 /**
  * linkbox用のスクリプトどう読み込ませる？？

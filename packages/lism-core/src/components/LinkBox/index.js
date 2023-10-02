@@ -1,1 +1,1 @@
-export { default as LinkBox } from './LinkBox.jsx';
+export { default as LinkBox } from './LinkBox';

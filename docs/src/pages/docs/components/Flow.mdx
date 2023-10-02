@@ -1,0 +1,67 @@
+import { Box, Flow } from '@lism/core';
+
+# Flow
+
+[`.is--flow`](http://localhost:3000/docs/props/is-flow)を出力するコンポーネントです。
+
+- `<Flow>`
+- Lismクラス: `.is--flow`
+
+`<Lism isFlow>`のエイリアス。
+
+
+## Props
+
+- `gap`: `Flow`コンポーネントでのみ、`gap` = `flowGap`として扱われます。
+- `as`: 展開コンポーネントを指定できます。
+	- `<Flow as="Box">` = `<Box isFlow>` です。
+
+## Import
+
+```js
+import { Flow } from '@lism/core';
+```
+
+## Demo
+
+<Demo>
+	<Demo.Title>Flowの例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flow p="box:l" bgc='pale'>
+			<h3>Heading</h3>
+			<DammyText />
+			<DammyText />
+			<DammyText />
+		</Flow>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Flow p="box:l" bgc='pale'>
+			<h3>Heading</h3>
+			<p>...</p>
+		</Flow>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>Flowの例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flow gap='s' as={Box} p="box:l" bgc='pale'>
+			<h3>Heading</h3>
+			<DammyText />
+			<DammyText />
+			<DammyText />
+		</Flow>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Flow gap='s' as={Box} p="box:l" bgc='pale'>
+			<h3>Heading</h3>
+			<p>...</p>
+		</Flow>
+		```
+	</Demo.Code>
+</Demo>
+

@@ -1,0 +1,40 @@
+{
+  "name": "lism-docs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+	"build:css": "node scss-builder.js",
+    "delete-cache": "rm -rf .next/cache"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.0.10",
+    "autoprefixer": "^10.4.15",
+    "classnames": "^2.3.2",
+    "css-loader": "^6.8.1",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^6.0.1",
+    "eslint": "8.46.0",
+    "eslint-config-next": "13.4.12",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-config-standard": "^17.1.0",
+    "next": "13.4.12",
+    "nextra": "^2.10.0",
+    "nextra-theme-docs": "^2.10.0",
+    "postcss": "^8.4.29",
+    "prettier": "^3.0.0",
+    "raw-loader": "^4.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-shadow": "^20.4.0",
+    "sass": "^1.64.2",
+    "style-loader": "^3.3.3",
+    "to-string-loader": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.4.8"
+  }
+}

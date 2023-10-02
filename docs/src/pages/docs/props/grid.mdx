@@ -1,0 +1,168 @@
+import { Box, Grid, Item } from '@lism/core';
+// import { Demo01, Demo01_Code } from '@/examples/box';
+
+# Grid
+
+Lismで**Gridレイアウト**を使用する方法は大きく分けて2パターンあります。
+
+1. 専用の[`<Grid>`](/docs/components/Grid)(`.l--grid`）モジュール、またはその派生系モジュール（`Columns`や`TileGrid`など）を使う。
+2. Lismコンポーネントに`d="grid"`を指定して単純に`display:grid`を適用する。（`.-d:g`クラスが出力されます。）
+
+
+## Demo
+
+<Demo>
+	<Demo.Title>`<Grid>`を使う例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Grid gap={20} className='has:itemGuide'>
+			<p>A</p>
+			<p>B</p>
+			<p>C</p>
+		</Grid>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Grid gap={20}>
+		<p>A</p>
+		<p>B</p>
+		<p>C</p>
+	</Grid>
+	```
+	</Demo.Code>
+</Demo>
+
+
+### Gridオプションの指定方法について
+
+Lismコンポーネントでは `grid` Propにオブジェクト形式でflexの各オプションを指定でき、`<Grid>`系コンポーネントでは`grid`を使わずに直接コンポーネントにPropsを指定できます。
+
+[`<Grid>`](/docs/modules/grid), [`<Columns>`](/docs/modules/columns), [`<RatioGrid>`](/docs/modules/ratio-grid)
+
+
+- `areas`: `grid-template-areas` の値を指定できます。
+- `columns`: `grid-template-columns`
+- `rows`: `grid-template-rows`
+- `ai`: `align-items` の値を指定できます。
+- `ac`: `align-content` の値を指定できます。
+- `ji`: `justify-items` の値を指定できます。
+- `jc`: `justify-content` の値を指定できます。
+
+
+<Demo>
+	<Demo.Title>`<Grid>`コンポーネント</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Grid columns="1fr 1fr 1fr" gap={20} className='has:itemGuide'>
+			<p>コンテンツ</p>
+			<p>コンテンツ</p>
+			<p>コンテンツ</p>
+		</Grid>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Grid columns="1fr 1fr 1fr" gap={20}>
+		...
+	</Grid>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>`<Box>`に`grid`を指定する</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box d="grid" grid={{ columns: "1fr 1fr 1fr" }} gap={20} className='has:itemGuide'>
+			<p>コンテンツ</p>
+			<p>コンテンツ</p>
+			<p>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box d="grid" grid={{ columns: "1fr 1fr 1fr" }} gap={20}>
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+### GridItemの指定
+
+gridの子要素で使用できるプロパティは、`gridItem` にオブジェクト形式で指定するか、もしくは、`<Item>`コンポーネントを使うことでコンポーネントに直接指定できます。
+
+- `ga`: `grid-area` の値を指定できます。
+- `gc`:  `grid-column` の値を指定できます。
+- `gr`:  `grid-row` の値を指定できます。
+- `alignSelf`: align-self の値を指定できます。
+- `justifySelf`: justifySelf の値を指定できます。
+- order
+
+<Demo>
+	<Demo.Title>`<Item>`コンポーネントに指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Grid columns="1fr 1fr" gap={20} className='has:itemGuide'>
+			<Item>コンテンツ</Item>
+			<Item>コンテンツ</Item>
+			<Item gc="span 2">コンテンツ</Item>
+		</Grid>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {4}
+	<Grid columns="1fr 1fr" gap={20}>
+		<Item>コンテンツ</Item>
+		<Item>コンテンツ</Item>
+		<Item gc="span 2">コンテンツ</Item>
+	</Grid>
+	```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>`gridItem`に指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Grid columns="1fr 1fr" gap={20} className='has:itemGuide'>
+			<Box>コンテンツ</Box>
+			<Box>コンテンツ</Box>
+			<Box gridItem={{ gc: "span 2" }}>コンテンツ</Box>
+		</Grid>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {4}
+	<Grid columns="1fr 1fr" gap={20}>
+		<Box>コンテンツ</Box>
+		<Box>コンテンツ</Box>
+		<Box gridItem={{ gc: "span 2" }}>コンテンツ</Box>
+	</Grid>
+	```
+	</Demo.Code>
+</Demo>
+
+
+### BP対応props
+
+デフォルトで、以下のPropsは[BP指定が可能](###)です。
+- ...
+
+
+<Demo>
+	<Demo.Title>...</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Grid columns={["1fr 1fr", "1fr 1fr 1fr"]} gap={20} className='has:itemGuide'>
+			<Item>コンテンツ</Item>
+			<Item gc={[null, "span 2"]}>コンテンツ</Item>
+			<Item gc={["span 2", "span 3"]}>コンテンツ</Item>
+		</Grid>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {2,6,7}
+	<Grid
+		columns={["1fr 1fr", "1fr 1fr 1fr"]}
+		gap={20}
+	>
+		<Item>コンテンツ</Item>
+		<Item gc={[null, "span 2"]}>コンテンツ</Item>
+		<Item gc={["span 2", "span 3"]}>コンテンツ</Item>
+	</Grid>
+	```
+	</Demo.Code>
+</Demo>

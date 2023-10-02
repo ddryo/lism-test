@@ -1,0 +1,36 @@
+// @use './reset';
+@use '../../node_modules/@lism/core/src/scss/all.scss';
+// @use './global/guide.scss';
+
+:where(.has\:itemGuide > *) {
+	border: 1px dashed hsla(0, 0%, 63%, 0.4);
+	padding: 2px 4px;
+}
+:where(.has\:layerGuide) {
+	&.has--layer {
+		background: rgba(220, 220, 220, 0.2);
+	}
+	&.has--layer > p {
+		color: rgba(120, 120, 120, 0.2);
+	}
+	.l--layer {
+		// bgc="hsl(268 50% 80% / 0.2)" bd="guide"
+		background: hsl(268 50% 80% / 0.2);
+		border: dashed 1px hsla(268, 10%, 70%, 0.25);
+		padding: 2px 4px;
+	}
+}
+
+// 追加したhovクラス
+.b--card.-hov\:contentUp .b--card__hiddenArea {
+	transition:
+		opacity 0.25s,
+		grid-template-rows 0.25s;
+	opacity: 0;
+	--gtr: 0fr;
+}
+
+.b--card.-hov\:contentUp:hover .b--card__hiddenArea {
+	opacity: 1;
+	--gtr: 1fr;
+}

@@ -40,12 +40,15 @@
 
 .b--alert__icon {
 	color: var(--icon--c);
+	font-size: var(--icon--size);
 	// width: var(--icon--size);
 	// height: var(--icon--size);
-	font-size: var(--icon--size);
 }
 
 // .-scale: で上書きできる詳細度で
 // :where(.b--alert__icon > .e--icon){
 // 	scale: 1.125;
+// }
+
+// .b--alert[data-preset] {
 // }

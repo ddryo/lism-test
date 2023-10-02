@@ -1,0 +1,108 @@
+import { Tabs, TabItem } from '@lism/core';
+
+# Tabs
+
+- `<Tabs>`
+	- `<TabItem>`
+- Lismクラス:
+	- `.l--tab`
+		- `.l--tab__list`
+			- `.l--tab__button`
+		- `.l--tab__panels`
+			- `.l--tab__panel`
+
+## Props
+
+- `<Tabs>`
+	- `keepHeight` が true の場合、タブの高さを固定する（切り替えた時に高さが動かないようにする）
+	- `defaultIndex`で最初に開くタブを指定できる
+	- `tabId`: tabID.指定しなければランダム生成されます。(ページ内で一意の値の指定である必要があります。)
+- `<TabItem>`
+	- `index`: (必須) タブのindex番号
+
+
+## 要検討
+- アコーディオンと同様に、isFlow, flowGap をデフォルトセットする？
+- Panelに 共通のpaddingなどを付けたい時、どう指定する？→ contextで渡せばいいか。
+- `variant` を用意。縦並びタブも作る。スマホではアコーディオン？ or ドロップダウンメニュー化してもいいかもしれない。
+- ナビ部分の横スクロールどうする？
+	- スクロールするときは数が多い時→「テキストに応じる」幅の時にautoにしておけばよいか。
+
+- ナビ部分の設定値どうするか
+	- ボタン幅 fillにするか、テキストに応じるか。
+		- 最低限維持する幅 minW (auto幅用)
+		- 最大幅（fill用）
+		- を、クエリサイズごとに？
+	- ボタン間のギャップ
+- 構造をnextraのTabのようにする？
+	- indexをcontextを使って自動で繰り上げていければ今の形式がよい。
+
+## Import
+
+```js
+import { Tab, TabItem } from '@lism/core';
+```
+
+## Demo
+
+<Demo>
+	<Demo.Title>`<Tabs>`の例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Tabs>
+			<TabItem label="title1">
+				<p>index:0</p>
+				<DammyText />
+			</TabItem>
+			<TabItem label="title2">
+				<p>index:1</p>
+				<DammyText length="l" />
+			</TabItem>
+		</Tabs>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Tabs>
+			<TabItem label="title1">
+				<p>index:0</p>
+				<DammyText />
+			</TabItem>
+			<TabItem label="title2">
+				<p>index:1</p>
+				<DammyText length="l" />
+			</TabItem>
+		</Tabs>
+		```
+	</Demo.Code>
+</Demo>
+
+ <Demo>
+	<Demo.Title>最初に開くタブを指定、高さが変わらないようにする"</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Tabs keepHeight defaultIndex={1}>
+			<TabItem label="title1" isFlow flowGap='s'>
+				<p>index:0</p>
+				<DammyText />
+			</TabItem>
+			<TabItem label="title2" isFlow flowGap='s'>
+				<p>index:1</p>
+				<DammyText />
+				<DammyText length="l" />
+			</TabItem>
+		</Tabs>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Tabs keepHeight defaultIndex={1}>
+			<TabItem label="title1" isFlow flowGap='s'>
+				<p>index:0</p>
+				<p>...</p>
+			</TabItem>
+			<TabItem label="title2" isFlow flowGap='s'>
+				<p>index:1</p>
+				<p>...</p>
+				<p>...</p>
+			</TabItem>
+		</Tabs>
+		```
+	</Demo.Code>
+</Demo>

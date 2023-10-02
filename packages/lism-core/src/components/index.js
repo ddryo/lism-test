@@ -18,7 +18,7 @@ export { Columns } from './Grid/Columns';
 export { TileGrid } from './Grid/TileGrid';
 export { RatioGrid } from './Grid/RatioGrid';
 export { AreaGrid } from './Grid/AreaGrid';
-// export { SideFixGrid, SideFixFlex } from './SideFix';
+export { SwitchFix } from './SwitchFix';
 export { FluidFix } from './FluidFix';
 export { Item } from './Item';
 

@@ -1,0 +1,54 @@
+@use '../../scss/query' as query;
+
+.l--switchFix {
+	--fixW: auto;
+	display: grid;
+	grid-template-areas: var(--gta--val);
+	grid-template-columns: var(--gtc--val);
+
+	--gtc--val: auto;
+	--gta--val: '.' 'fix';
+
+	// up指定がある時
+	&[data-fix~='up'] {
+		--gta--val: 'fix' '.';
+	}
+	// &[data-fix~='down'] {
+	// 	--gta--val: '.' 'fix';
+	// }
+
+	// 横並び時のgridオプション
+	// &[data-fix~='left'] {
+	--gta--horizontal: 'fix .';
+	--gtc--horizontal: var(--fixW) 1fr;
+	// }
+
+	&[data-fix~='right'] {
+		--gta--horizontal: '. fix';
+		--gtc--horizontal: 1fr var(--fixW);
+	}
+
+	// 折返しタイミンを切り替えれるようにしている
+	// &.-gta\@sm\: {
+	// 	--gta--sm: var(--gta--horizontal);
+	// 	--gtc--sm: var(--gtc--horizontal);
+	// }
+	// &.-gta\@md\: {
+	// 	--gta--md: var(--gta--horizontal);
+	// 	--gtc--md: var(--gtc--horizontal);
+	// }
+}
+
+.l--switchFix[data-bp='sm'] {
+	@include query.cq('sm') {
+		--gta--val: var(--gta--horizontal);
+		--gtc--val: var(--gtc--horizontal);
+	}
+}
+
+.l--switchFix[data-bp='md'] {
+	@include query.cq('md') {
+		--gta--val: var(--gta--horizontal);
+		--gtc--val: var(--gtc--horizontal);
+	}
+}

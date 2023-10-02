@@ -4,9 +4,10 @@ import {
 	getMaybeColorVar,
 	getMaybeShadowVar,
 	getMaybeSpaceVar,
+	getMaybeFzVar,
 } from './index.js';
 
-import { PROPS } from '@/config';
+import { PROPS, CONTEXT_PROPS } from '@/config';
 import getBpData from './getBpData';
 import filterEmptyObj from './helper/filterEmptyObj';
 import isEmptyObj from './helper/isEmptyObj';
@@ -20,6 +21,7 @@ import classnames from 'classnames';
 const CONVERTERS = {
 	color: getMaybeColorVar,
 	space: getMaybeSpaceVar,
+	fz: getMaybeFzVar,
 };
 
 // const PROP_FULL_NAMES = {
@@ -49,8 +51,8 @@ class CommonProps {
 			blockClass,
 			lismClass,
 			lismModifier,
-			// modifier,
 			lismUtility,
+			// _lismState,
 			// utility, // ユーザーがコンポーネントに指定できる?
 			lismStyle = {},
 			style = {},
@@ -59,8 +61,9 @@ class CommonProps {
 			alignfull,
 			alignwide,
 			isFlow,
-			flex,
-			grid,
+			isItem,
+			// flex,
+			// grid,
 
 			isLinkbox,
 			isConstrained,
@@ -78,11 +81,12 @@ class CommonProps {
 			blockClass, // b--
 			lismClass, // l--
 			lismModifier,
+			// _lismState,
 			{
 				'is--flow': isFlow || false,
 				// 'is--flex': isFlex,
 				// 'is--grid': isGrid,
-				// 'is--item': isItem || false,
+				'is--item': isItem || false,
 				'is--linkbox': isLinkbox || false,
 				'is--constrained': isConstrained || false,
 				'has--gutter': hasGutter || false,
@@ -103,36 +107,13 @@ class CommonProps {
 		if (isFlow && isFlow !== true) {
 			this.analyzeProp('flowGap', isFlow);
 		}
-		if (flex) {
-			if (flex === true) {
-				this.addUtil('-d:f'); // this.analyzeProp('d', 'flex');
-			} else if (typeof flex === 'object') {
-				const { skipDisplay, isInline, ...flexProps } = flex;
-				if (isInline) {
-					this.addUtil('-d:if');
-				} else if (!skipDisplay) {
-					this.addUtil('-d:f');
-				}
-
-				// flex系propを処理
-				this.setContextProps('flex', flexProps);
-			}
-		}
-		if (grid) {
-			if (grid === true) {
-				this.addUtil('-d:g'); // this.analyzeProp('d', 'grid');
-			} else if (typeof grid === 'object') {
-				const { skipDisplay, isInline, ...gridProps } = grid;
-				if (isInline) {
-					this.addUtil('-d:ig');
-				} else if (!skipDisplay) {
-					this.addUtil('-d:g');
-				}
-
-				// grid系propを処理
-				this.setContextProps('grid', gridProps);
-			}
-		}
+		// if (flex) {
+		// 	this.setContextProps('flex', flex);
+		// }
+		// if (grid) {
+		// 	// grid系propを処理
+		// 	this.setContextProps('grid', grid);
+		// }
 
 		if (lismVar) {
 			this.addUtil('-lismVar:');
@@ -144,9 +125,6 @@ class CommonProps {
 				this.addStyle(`--lism--${bp}`, bpValues[bp]);
 			});
 		}
-		// if (flexItem) {
-		// 	// flexItem='1 1 auto'; とか文字列で渡ってきたら？
-		// }
 
 		// propsの処理
 		if (!isEmptyObj(others)) {
@@ -174,9 +152,11 @@ class CommonProps {
 
 	// 特定の条件下で受け取るpropの処理
 	setContextProps(context, props) {
-		const contextProps = PROPS[context];
+		if (typeof props !== 'object') return;
 
+		const contextProps = CONTEXT_PROPS[context];
 		if (!contextProps) return;
+
 		Object.keys(props).forEach((propName) => {
 			const propData = contextProps[propName];
 			const propValue = props[propName];
@@ -241,7 +221,13 @@ class CommonProps {
 		propData = propData || PROPS[propName] || null;
 		if (null === propData) return; // 一応 nullチェックここでも
 
-		const { name, BP, objProcessor, ...options } = propData;
+		const { name, BP, objProcessor, map, ...options } = propData;
+
+		// CONTET_PROPSからデータを取得する
+		if (map && null != propVal) {
+			this.setContextProps(propName, propVal);
+			return;
+		}
 
 		// BP対応あり/なしで分岐
 		if (BP) {

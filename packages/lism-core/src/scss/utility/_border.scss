@@ -43,10 +43,16 @@
 // 	border: var(--bdw) var(--bds) var(--bdc--base);
 // }
 .-bd\:emphasis {
-	border: 5px double currentColor;
+	--bds: double;
+	--bdw: 5px;
+	border: var(--bdw) var(--bds) var(--bdc);
+	// border: 5px double currentColor;
 }
 .-bd\:guide {
-	border: 1px dashed rgba(160, 160, 160, 0.4);
+	--bds: dashed;
+	--bdc: rgba(160, 160, 160, 0.4);
+	border: var(--bdw) var(--bds) var(--bdc);
+	// border: 1px dashed rgba(160, 160, 160, 0.4);
 }
 
 // regular? default? normal? base?
@@ -107,12 +113,18 @@
 // .-bdt\:{border-top: var(--bdt);}
 // .-bdb\:{border-bottom: var(--bdb);}
 
-// 2方向以上使う時は使わないものを none してもらう？
-// bdl="none"
-// .-bdl\:n{border-left: none;}
-// .-bdr\:n{border-right: none;}
-// .-bdt\:n{border-top: none;}
-// .-bdb\:n{border-bottom: none;}
+.-bdl\:n {
+	border-left: none;
+}
+.-bdr\:n {
+	border-right: none;
+}
+.-bdt\:n {
+	border-top: none;
+}
+.-bdb\:n {
+	border-bottom: none;
+}
 
 // bdw="1px 1px 0 0" とかでも指定できる
 // .-bdw\:{border-width: var(--bdw);}

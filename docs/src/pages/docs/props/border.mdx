@@ -1,0 +1,262 @@
+import { Box, RatioGrid, Flex, Stack } from '@lism/core';
+
+export const LismBorderDemos = ({ directions = [] }) => {
+	return (
+		<>
+			{directions.map((name) => {
+				return (
+					<Box key={name} bd={name} p="20">{name}</Box>
+				);
+			})}
+		</>
+	);
+};
+
+
+# Border
+
+borderの指定については少し特殊になっています。
+
+- `bd`の指定が必須です。
+- `bdc`, `bdw`, `bds` は 変数としてのみ出力されます。
+
+実際に見てもらったほうが早いと思います。
+
+
+## DEMO
+
+<Demo>
+	<Demo.Title>`bd`だけ指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box bd>
+			<DammyText p={20}/>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Box bd>
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+`bd`に何も指定しない場合、`-bd:` クラスが出力されます。  
+そして、`.-bd:` に関するCSSは以下のようになっています。
+
+```scss
+[class*='-bd:'] {
+	// 初期値
+	--bds: solid;
+	--bdw: 1px;
+	--bdc: currentColor;
+}
+.-bd\: {
+	--bd: var(--bdw) var(--bds) var(--bdc);
+	border: var(--bd);
+}
+```
+
+
+<Alert preset="point">
+このように、Lismコンポーネントで扱うボーダーは、基本的に`--bdw`, `--bds`, `--bdc`の3変数によって管理される仕組みになっています。
+</Alert>
+
+
+例を見てみましょう。
+
+<Demo>
+	<Demo.Title>`bdc="base"`を指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box bd bdc="base">
+			<DammyText p={20}/>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Box bd bdc="base">
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+まず`bd`でボーダーを出力指定した上で、`--bdc`でカラーを上書きするような仕組みになっています。
+
+
+<Demo>
+	<Demo.Title>`bdc`,`bdw`,`bds`をそれぞれ指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box bd bdc="accent" bdw="3px" bds="dotted">
+			<DammyText p={20}/>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Box bd bdc="accent" bdw="3px" bds="dotted">
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+上の例は、以下のように`bd`に全て記述することも可能です。
+
+<Demo>
+	<Demo.Title>`bdc`,`bdw`,`bds`をそれぞれ指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box bd={{ color:"accent", width:"3px", style:"dotted" }}>
+			<DammyText p={20}/>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Box bd={{ color:"accent", width:"3px", style:"dotted" }}>
+		...
+	</Box>
+
+	or
+
+	<Box bd={{ c:"accent", w:"3px", s:"dotted" }}>
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+## プリセット値を指定してユーティリティクラスを出力
+
+border用のプリセット値を指定することで、ユーティリティクラスとして出力することも可能です。
+
+デフォルトで用意しているのは次の通りです。（要検討）
+
+- guide
+- emphasis
+
+
+<Demo>
+	<Demo.Title>セマンティックトークン(カスタマイズ可能)</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box bd="guide">
+			<DammyText p={20}/>
+		</Box>
+		<Box bd="emphasis">
+			<DammyText p={20}/>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box bd="guide">...</Box>
+	<Box bd="emphasis">...</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+ユーティリティクラス側で--bdc,--bdw,--bdsを使ってスタイルを定義していれば、
+プリセットをベースにしつつそれらを上書きすることも可能です。
+
+<Demo>
+	<Demo.Title>セマンティックトークン(カスタマイズ可能)</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box bd="emphasis" bdc="accent">
+			<DammyText p={20}/>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box bd="emphasis" bdc="accent">...</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+## 方向指定
+
+特定の方向のみborderを指定したい場合も、基本的には`bd`を使用します。
+
+使えるキーワードは次の通りです。
+
+- left
+- ...
+
+<Demo>
+	<Demo.Title>方向指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box bd="left" p="20">left</Box>
+		<Box bd="right" p="20">right</Box>
+		<Box bd="top" p="20">top</Box>
+		<Box bd="bottom" p="20">bottom</Box>
+		<Box bd="inline" p="20">inline</Box>
+		<Box bd="in-s" p="20">inline start</Box>
+		<Box bd="block" p="20">block</Box>
+		<Box bd="bl-s" p="20">block start</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box bd="left" p="20">left</Box>
+	<Box bd="right" p="20">right</Box>
+	<Box bd="top" p="20">top</Box>
+	<Box bd="bottom" p="20">bottom</Box>
+	<Box bd="inline" p="20">inline</Box>
+	<Box bd="in-s" p="20">inline start</Box>
+	<Box bd="block" p="20">block</Box>
+	<Box bd="bl-s" p="20">block start</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+### `bdl`,`bdr`,`bdt`,`bdb`の使用
+
+`--bdw`, `--bds`, `--bdc`と無関係に好きな値を各方向に対して指定できます。
+
+<Demo>
+	<Demo.Title>bdl,bdb</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box bdl="solid 4px" bdb="solid 1px">
+			<DammyText p={20} lh='xs'/>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box bdl="solid 4px" bdb="solid 1px">
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>1方向だけ消すのにも使えます</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box bd bdt="none">
+			<DammyText p={20}/>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box bd bdt="none">
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+---
+{/* 
+
+<Demo>
+	<Demo.Title>gray, nuetral系</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box bd p={20}>
+			<DammyText />
+		</Box>
+		<Box bd bdc='base' p={20}>
+			<DammyText />
+		</Box>
+		<Box bd="block" bdw="4px" bdc='strong' bds="dotted" p={20}>
+			<DammyText />
+		</Box>
+	</Demo.Preview>
+</Demo> */}

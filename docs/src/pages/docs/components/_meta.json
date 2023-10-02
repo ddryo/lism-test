@@ -1,0 +1,85 @@
+{
+	"index": "",
+	"Lism": "",
+	"--- layout": {
+		"type": "separator",
+		"title": "Layout"
+	},
+	"Box": "",
+	"Flow": "",
+
+	"--- flex": {
+		"type": "separator",
+		"title": ""
+	},
+	"Flex": "",
+	"Cluster": "",
+	"Stack": "",
+	"Center": "",
+
+	
+	"--- grid": {
+		"type": "separator",
+		"title": ""
+	},
+	"Grid": "",
+	"Columns": "",
+	"RatioGrid": "",
+	"TileGrid": "",
+	"SideFix": "",
+
+	"--- other-layout": {
+		"type": "separator",
+		"title": ""
+	},
+	
+	"FluidFix": "",
+	"SwitchFix": "",
+	"Layer": "",
+	"Frame": "",
+	"Reel": "",
+	"Spacer": "",
+
+	"LinkBox": "",
+
+	"--- disclosure": {
+		"type": "separator",
+		"title": ""
+	},
+	
+	"Accordion": "",
+	"Tab": "",
+	"Swap": "swap?",
+
+	"--- component": {
+		"type": "separator",
+		"title": "Component"
+	},
+	"Button": "",
+	"Alert": "",
+	"Note": "",
+	"Banner": "",
+	"Card": "",
+
+	"--- elements": {
+		"type": "separator",
+		"title": "Elements"
+	},
+	"Icon": "",
+	"Badge": "",
+
+	"--- Block": {
+		"type": "separator",
+		"title": "Block"
+	},
+
+	"Section": "",
+	"Glossary": "",
+	"FAQ": "",
+	"NavMenu": "",
+
+	"---": {
+		"type": "separator",
+		"title": "Block"
+	}
+}

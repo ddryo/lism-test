@@ -1,0 +1,173 @@
+import { Reel, Item, Columns } from '@lism/core';
+
+export const ReelContents = () => {
+	return (
+		<>
+			<Item bgc="pale" p="box:s">
+				<p>Lorem ipsum, dolor sit amet.</p>
+			</Item>
+			<Item bgc="pale" p="box:s">
+				<p>Lorem ipsum, dolor sit amet.</p>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+			</Item>
+			<Item bgc="pale" p="box:s">
+				<p>Lorem ipsum, dolor sit amet.</p>
+			</Item>
+			<Item bgc="pale" p="box:s">
+				<p>Lorem ipsum, dolor sit amet.</p>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+			</Item>
+			<Item bgc="pale" p="box:s">
+				<p>Lorem ipsum, dolor sit amet.</p>
+			</Item>
+		</>
+	);
+}
+
+
+
+# Reel
+
+
+<Reel>
+	<ReelContents />
+</Reel>
+
+<Reel unreel='md' itemW='50%'>
+	<ReelContents />
+</Reel>
+
+
+コンテンツを横スクロールで表示するコンポーネントです。
+
+- `<Reel>`
+- Lismクラス: `.l--reel` → `is--reel`にする?
+
+
+## 主なProps
+
+- `itemW`: 各アイテムの横幅（クエリ対応すべき？）
+- `componentForWide` ?:  wide幅の時のコンポーネントを指定する。SPサイズの時のみReelにするための設定
+
+## 注意点
+
+`<Reel>` 直下の要素には `<Item>` を使ってください。
+
+
+### 要検討
+
+- スクロールバーの色調整機能
+- align-itemsをストレッチ以外にできるようにするか？
+- l--box--reel にする？
+- スクロール可能であることを視覚的に表示する機能をつける？
+	- JSを使う?
+	- lea verou 形式のCSSで端にシャドウつける？（背景色と一致させないといけない）
+
+- ブロック化した時
+	- 子要素はBox or 画像・動画だけにする？
+	- もしくは、専用の子ブロック（BOX拡張）のみにするか
+
+
+## Import
+
+```js
+import { Reel } from '@lism/core';
+```
+
+## Demo
+
+
+
+
+<Demo>
+	<Demo.Title>
+		`<Reel>`デフォルト
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Reel>
+			<ReelContents />
+		</Reel>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Reel>
+			<Item>...</Item>
+			<Item>...</Item>
+			...
+		</Reel>
+		```
+	</Demo.Code>
+</Demo>
+
+子要素の数が少ない時は、横幅が狭まってスクロールが必要になるとスクロール可能になります。
+
+<Demo>
+	<Demo.Title>
+		子要素の数が少ない例
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Reel gap={20}>
+			<Item>
+				<p>Lorem ipsum, dolor sit amet.</p>
+			</Item>
+			<Item>
+				<p>Lorem ipsum, dolor sit amet.</p>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+			</Item>
+			<Item>
+				<p>Lorem ipsum, dolor sit amet.</p>
+			</Item>
+		</Reel>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Reel gap={20}>
+			<Item>...</Item>
+			<Item>...</Item>
+			...
+		</Reel>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>
+		`itemW="20em"`
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Reel itemW="20em" gap={20}>
+			<ReelContents />
+		</Reel>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Reel itemW="20em" gap={20}>
+			<Item>...</Item>
+			<Item>...</Item>
+			...
+		</Reel>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### SPサイズでのみReel→componentForWide
+
+<Demo>
+	<Demo.Title>SPサイズでのみReel</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Reel componentForWide={Columns} cols={3} gap={20}>
+			<ReelContents />
+		</Reel>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Reel componentForWide={Columns} cols={3} gap={20}>
+			<Item>...</Item>
+			<Item>...</Item>
+			...
+		</Reel>
+		```
+	</Demo.Code>
+</Demo>

@@ -107,3 +107,10 @@ export function getMaybeShadowVar(shadow) {
 	}
 	return shadow;
 }
+
+export function getMaybeFzVar(fz) {
+	if (isPresetValue('fz', fz)) {
+		return 'var(--fz--' + fz + ')';
+	}
+	return fz;
+}

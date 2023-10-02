@@ -1,0 +1,181 @@
+import { SwitchFix, Item } from '@lism/core';
+
+
+
+# SwitchFix
+
+片方の横幅を固定し、もう片方の横幅が伸縮する横並びレイアウトで、かつ、指定したブレイクポイント値未満では縦並びに切り替わるレイアウトを組めるモジュールです。
+
+- `<SwitchFix>`
+- Lismクラス: `.l--switchFix`
+{/* - デフォルト`gap`: `20` */}
+
+
+<Note preset="memo" caption='FluidFixと異なる点'>
+- 折返しタイミングをコンテナクエリで制御します
+- 横並び時の固定幅コンテンツが縦並びになった時に上に来るか下にくるかを選択できます。
+</Note>
+
+## 主なProps
+
+- `fixW` : 固定幅
+	- デフォルト値: `auto` (要検討)
+- `fix`:FIX要素の位置を指定。`data-fix`属性に指定した文字列が出力されます。
+		- 横並びの位置を `left` or `right`で,
+		- 縦並びの位置を `up` or `down`で指定する。
+			- 'none', modal?
+- breakPoint : 横並び・縦並びの切り替えポイントを指定できる。
+	- defaultは `sm`。`sm`||`md`　をデフォルトでサポートしています。
+- customBreakPoint (未定)
+
+
+## 使用時の注意点
+<Alert preset="info">
+子要素に `grid-area:fix` の指定が必須です.
+</Alert>
+
+固定幅にしたい要素に対して`<Item area="fix">`を使うか、`<Box gridItem={{area:"fix"}}>`を使用してください。
+
+( memo → ブロック化する時は、`ga="fix"`付きの`<Item>`になっている専用の子ブロックを用意する。)
+
+Memo: grid-areaで場所を指定している理由: → DOM自体の順番を自由にできるため。（大きいサイドバー要素を左に固定するけどDOMの順番はあとに回したい、ということがある。）
+
+
+## Import
+
+```js
+import { SwitchFix } from '@lism/core';
+```
+
+## Demo
+
+<Demo>
+	<Demo.Title>
+		`fix="right down"` (初期値)
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SwitchFix fix="right down" className='has:itemGuide'>
+			<Item>Main Contents</Item>
+			<Item ga="fix" bgc="pale">Side</Item>
+		</SwitchFix>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<SwitchFix fix="right down">
+			<Item>Main Contents</Item>
+			<Item ga="fix" bgc="pale">Side</Item>
+		</SwitchFix>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>
+		`fix="left down"`, `fixW` を指定, breakPoint: `md`
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SwitchFix breakPoint="md" fix="left down" fixW='16em' gap={20} className='has:itemGuide'>
+			<Item>Main Contents</Item>
+			<Item ga="fix" bgc="pale">Side</Item>
+		</SwitchFix>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<SwitchFix breakPoint="md" fix="left down" fixW='16em' gap={20}>
+			<Item>Main Contents</Item>
+			<Item ga="fix" bgc="pale">Side</Item>
+		</SwitchFix>
+		```
+	</Demo.Code>
+</Demo>
+
+### `fix`指定パターン一覧
+
+export const SwitchFixDemos = () => {
+	return (
+		<>
+			{["left up", "left down", "right up", "right down"].map((datFix) => (
+				<Demo key={datFix}>
+					<Demo.Title><code>fix="{datFix}"</code></Demo.Title>
+					<Demo.Preview resize p={20}>
+						<SwitchFix fix={datFix} gap={20} className='has:itemGuide'>
+							<Item>Main Contents</Item>
+							<Item ga="fix" bgc="pale">Side</Item>
+						</SwitchFix>
+					</Demo.Preview>
+				</Demo>
+			))}
+		</>
+	);
+}
+
+<SwitchFixDemos />
+
+
+### 並び切り替えポイントの指定
+
+`breakPoint="{bpName}"`で指定。
+（デフォルトは`sm`.）
+
+`sm`||`md`をデフォルトでサポートしていますが、`lg`などを指定することで`data-bp="lg"`を出力させることができるので、CSSを追加していただければお好きなポイントで切り替えるようにカスタマイズすることもできます。
+
+<Demo>
+	<Demo.Title>`@sm`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SwitchFix fix="left up" breakPoint="sm">
+			<Item>Main Contents</Item>
+			<Item ga="fix">Side</Item>
+		</SwitchFix>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<SwitchFix fix="left up" breakPoint="sm">
+			<Item>Main Contents</Item>
+			<Item ga="fix">Side</Item>
+		</SwitchFix>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>`@md`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SwitchFix fix="left up" breakPoint="md">
+			<Item>Main Contents</Item>
+			<Item ga="fix">Side</Item>
+		</SwitchFix>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<SwitchFix fix="left up" breakPoint="md">
+			<Item>Main Contents</Item>
+			<Item ga="fix">Side</Item>
+		</SwitchFix>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>`@lg`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SwitchFix fix="left up" breakPoint="lg">
+			<Item>Main Contents</Item>
+			<Item ga="fix">Side</Item>
+		</SwitchFix>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<SwitchFix fix="left up" breakPoint="lg">
+			<Item>Main Contents</Item>
+			<Item ga="fix">Side</Item>
+		</SwitchFix>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### カスタムブレイクポイントの指定
+
+コンポーネントライブラリでどう実装するか検討中...

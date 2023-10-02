@@ -1,0 +1,73 @@
+import { Spacer } from '@lism/core';
+
+
+# Spacer
+
+- `<Spacer>`
+- Lismクラス: `.l--spacer`
+
+## 主なprops
+- width: 横幅を指定できます。
+- height: 高さを指定できます。
+
+スペーシングプリセットがサイズ指定に使えます。
+
+## 注意点
+Common Props の `w`, `h` ではなく、`width`, `height` を使ってください。
+
+
+## Import
+
+```js
+import { Spacer } from '@lism/core';
+```
+
+## Demo
+
+<Demo>
+	<Demo.Title>`<Spacer>`の使用例</Demo.Title>
+	<Demo.Preview resize p={20} isFlow={false}>
+		<Box bgc="whitesmoke">Box</Box>
+		<Spacer height={50} />
+		<Box bgc="whitesmoke">Box</Box>
+		<Spacer height={20} />
+		<Box bgc="whitesmoke">Box</Box>
+		<Spacer height="200px" />
+		<Box bgc="whitesmoke">Box</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Box bgc="whitesmoke">Box</Box>
+		<Spacer height={50} />
+		<Box bgc="whitesmoke">Box</Box>
+		<Spacer height={20} />
+		<Box bgc="whitesmoke">Box</Box>
+		<Spacer height="200px" />
+		<Box bgc="whitesmoke">Box</Box>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>`<Spacer>`の使用例</Demo.Title>
+	<Demo.Preview resize p={20} isFlow={false}>
+		<Flex>
+			<Box bgc="whitesmoke">Box</Box>
+			<Spacer width={50} />
+			<Box bgc="whitesmoke">Box</Box>
+			<Spacer width="100px" />
+			<Box bgc="whitesmoke">Box</Box>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Flex>
+			<Box bgc="whitesmoke">Box</Box>
+			<Spacer width={50} />
+			<Box bgc="whitesmoke">Box</Box>
+			<Spacer width="100px" />
+			<Box bgc="whitesmoke">Box</Box>
+		</Flex>
+		```
+	</Demo.Code>
+</Demo>

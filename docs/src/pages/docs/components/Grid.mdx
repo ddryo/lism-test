@@ -1,0 +1,134 @@
+import { Flex, Grid, Item } from '@lism/core';
+
+# Grid
+
+コンテンツを**Gridレイアウトで配置する**ためのコンポーネントです。
+
+`<Grid>` は `<Box>`に[`isGrid`](/docs/layout-system/is-grid)を指定した状態のコンポーネントで、`<Box isGrid>`と同等です。
+
+-   `<Grid>`
+-   Lismクラス: `.l--box.is--grid`
+
+用途に合わせて Columns, RatioGrid, TileGrid などを用意していますが、内部ではこのGridを使用している。
+
+`<Grid>`は、それらより柔軟に各プロパティを指定して利用できる。
+
+
+## Import
+
+```js
+import { Grid } from '@lism/core';
+```
+
+## Demo
+
+<Demo className="has--box-guide">
+	<Demo.Title>1列 → 2列 → 幅200pxで3列</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Grid columns={["1fr", "repeat(2, 1fr)", "repeat(3, 200px)"]} jc="center" gap={20}>
+			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+			<p>Unde ratione blanditiis aperiam sed eos assumenda veniam</p>
+			<p>Voluptatibus voluptates similique quis, accusamus optio cumque praesentium!</p>
+			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+			<p>Unde ratione blanditiis aperiam sed eos assumenda veniam</p>
+			<p>Voluptatibus voluptates similique quis, accusamus optio cumque praesentium!</p>
+		</Grid>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Flex gap={20}>
+		<div>...</div>
+		<div>...</div>
+		<div>...</div>
+		...
+	</Flex>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>Left, Center, Right にエリア分け</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Grid
+			areas={`'L C R'`}
+			columns="auto 1fr auto"
+			ai="center"
+			ji="center"
+		>
+			<Item ga="L" pX={20} bgc="whitesmoke">L</Item>
+			<Item ga="C" pX={20} bgc="whitesmoke">{`Center`}</Item>
+			<Item ga="R" pX={20} bgc="whitesmoke">R</Item>
+		</Grid>
+	</Demo.Preview>
+</Demo>
+
+
+```jsx
+<Grid
+	areas={`'L C R'`}
+	columns="auto 1fr auto"
+	ai="center"
+	ji="center"
+>
+	<Item ga="L" pX={20} bgc="whitesmoke">L</Item>
+	<Item ga="C" pX={20} bgc="whitesmoke">Center</Item>
+	<Item ga="R" pX={20} bgc="whitesmoke">R</Item>
+</Grid>
+```
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>コンテナサイズでエリア位置を切り替える</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Grid
+			areas={[
+				`'top bottom'
+				 'L   R'`,
+				`'L  top     R'
+				 'L  bottom  R'`,
+			]}
+			columns={["1fr 1fr", "5em 1fr 5em"]}
+			gap={20}
+		>
+			<Item ga="L" p={20} bgc="whitesmoke">
+				Left
+			</Item>
+			<Item ga="top">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</Item>
+			<Item ga="bottom">
+				Unde ratione blanditiis aperiam sed eos assumenda veniam, culpa sint qui enim rerum
+				doloribus quod dolor deleniti?
+			</Item>
+			<Item ga="R" p={20} bgc="whitesmoke">
+				Right
+			</Item>
+		</Grid>
+	</Demo.Preview>
+</Demo>
+
+
+```jsx
+<Grid
+	areas={[
+		`'top bottom'
+			'L   R'`,
+		`'L  top     R'
+			'L  bottom  R'`,
+	]}
+	columns={["1fr 1fr", "5em 1fr 5em"]}
+	gap={20}
+>
+	<Item ga="L" p={20} bgc="whitesmoke">
+		Left
+	</Item>
+	<Item ga="A">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</Item>
+	<Item ga="B">
+		Unde ratione blanditiis aperiam sed eos assumenda veniam, culpa sint qui enim rerum
+		doloribus quod dolor deleniti?
+	</Item>
+	<Item ga="R" p={20} bgc="whitesmoke">
+		Right
+	</Item>
+</Grid>
+```

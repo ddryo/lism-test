@@ -1,0 +1,183 @@
+import { Box, Alert, Center, Frame, Section, SectionBody, MediaLayer, FilterLayer } from '@lism/core';
+import {
+	Smiley,
+	Horse,
+	Book,
+	Cat,
+	Baseball,
+} from "@phosphor-icons/react";
+
+
+export const DemoText = (
+	<p>
+		ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、<a href="###">リンク文字列</a> ブラインド行うにはいくつかの重要な事柄に座ります。
+	</p>
+	// <p>
+	// 	Lorem ipsum dolor <code>sit amet</code> consectetur <a href="###">linked elit</a> adipisicing.
+	// </p>
+);
+export const DemoTextLong = (
+	<p>
+		Lorem ipsum dolor sit amet consectetur <a href="###">linked elit</a> adipisicing elit. Illo sunt deserunt
+		consectetur consequatur, tenetur perferendis totam magnam laborum <code>iure recusandae</code> repellendus
+		voluptatum tempora quidem praesentium sapiente harum quas maiores magni.
+	</p>
+);
+
+export const PRESETS = ["error", "point", "warning", "success", "info", "question", "memo"];
+
+export const AlertDemos = ({ children,variant }) => {
+	return (
+		<>
+			{PRESETS.map((preset) => {
+				return (
+					<Alert key={preset} variant={variant} preset={preset}>{DemoText}</Alert>
+				);
+			})}
+		</>
+	);
+};
+
+
+# Alert
+
+短い文言を目立たせて表示したい時に使えるコンポーネントです。
+
+- `<Alert>`
+- Lismクラス: `b--alert`
+
+- デフォルトkeycolor=main
+
+
+## 主なProps
+- `preset`: `"memo"` | `"error"` ...
+- `color`
+- `icon`
+- `iconSize`
+{/* - `variant`: `"fill"` | `"outline"` ? */}
+
+
+## Import
+
+```js
+import { Alert } from '@lism/core';
+```
+
+## Demo
+
+<div>{DemoText}</div>
+
+<Alert>{DemoText}</Alert>
+
+<Demo>
+	<Demo.Title>
+		デフォルト
+	</Demo.Title>
+	<Demo.Preview p={20}>
+	<div>{DemoText}</div>
+		<Alert>{DemoText}</Alert>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Alert>...</Alert>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>
+		icon, color を指定
+	</Demo.Title>
+	<Demo.Preview p={20}>
+		<Alert icon={Book} color="accent">{DemoTextLong}</Alert>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Alert icon={Book} color="accent">{DemoTextLong}</Alert>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>
+		`preset`
+	</Demo.Title>
+	<Demo.Preview p={20} resize>
+		<AlertDemos />
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Alert>
+			<p>...</p>
+		</Alert>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>demos</Demo.Title>
+	<Demo.Preview alignfull p={20}>
+		<Box>
+			<MediaLayer src="/img/demo-img.jpeg" z='-1'/>
+			<FilterLayer blur="8px" bgc="rgba(0,0,0,0.6)" z='-1'/>
+			<Box c="white" p={20} isFlow flowGap={20}>
+				<DammyText />
+				<AlertDemos />
+			</Box>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Section
+			c="white"
+			pY={40}
+			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+			filter={{ blur: "8px", bgc: "rgba(0,0,0,0.6)" }}
+		>
+			<SectionBody>
+				...
+			</SectionBody>
+		</Section>
+		```
+	</Demo.Code>
+</Demo>
+
+
+{/* 
+<Demo>
+	<Demo.Title>
+		`variant="fill"`
+	</Demo.Title>
+	<Demo.Preview p={20}>
+		<AlertDemos variant="fill"/>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Alert variant="fill">
+			<p>...</p>
+		</Alert>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>
+		`variant="outline"`
+	</Demo.Title>
+	<Demo.Preview p={20}>
+		<AlertDemos variant="outline"/>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Alert variant="outline">
+			<p>...</p>
+		</Alert>
+		```
+	</Demo.Code>
+</Demo> */}
+
+

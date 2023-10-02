@@ -1,0 +1,339 @@
+import { Button, Cluster, MediaLayer, FilterLayer } from '@lism/core';
+import {
+	ArrowFatDown,
+	ArrowDown,
+	ArrowRight,
+	ShoppingCartSimple,
+	ArrowCircleRight,
+} from "@phosphor-icons/react";
+
+# Button
+
+- `<Button>`
+- Lismクラス: `.l--button` → `.e--button` にすべき?
+
+## 主なprops
+- `color`: ボタンのキーカラー。デフォルトは`main`カラーです。
+- `variant`: ボタンの表示スタイル。`fill`(default)、`outline`、`ghost`の3種類。
+- `icon`: アイコン。`icon`に指定するとアイコンのみ表示される。
+
+{/* ## 注意点
+Common Props の `w`, `h` ではなく、`width`, `height` を使ってください。 */}
+
+
+## 要検討
+- グラデーションなどどうする？
+- ブロック化時のプリセット機能
+	- `data-preset="{keyword}"`に対するCSSを設定できるようにする？
+	- primary, secondary... or main, sub, simple ... ?
+
+
+## Import
+
+```js
+import { Button } from '@lism/core';
+```
+
+export const cboxKeywords = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "gray"];
+
+## Demo
+
+<Demo>
+	<Demo.Title>各`variant`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Button href="#button">Fill Button</Button>
+			<Button href="#button" variant="outline">Outline Button</Button>
+			<Button href="#button" variant="ghost">Text Button</Button>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>左にアイコン、`hover="reverse"`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Button href="#button" leftIcon={<ShoppingCartSimple />}>Button</Button>
+			<Button href="#button" leftIcon={<ShoppingCartSimple />} variant="outline">Button</Button>
+			<Button href="#button" leftIcon={<ShoppingCartSimple />} variant="ghost">Button</Button>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>アイコンを右に。カラー指定もあり</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Button href="#button" rightIcon={<ArrowRight />}>Button</Button>
+			<Button href="#button" rightIcon={<ArrowRight />} variant="outline">Button</Button>
+			<Button href="#button" rightIcon={<ArrowRight />} variant="ghost">Button</Button>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>アイコンのみ. hoverも変えてみる</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Button href="#button" icon={<ShoppingCartSimple />} hover="up" />
+			<Button href="#button" icon={<ArrowFatDown />} hover="shadow" variant="outline" />
+			<Button href="#button" icon={<ArrowRight />} hover={{c:'b800', bgc: 'b100'}} variant="ghost" />
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+{/* <Demo>
+	<Demo.Title>`gap`でアイコンとテキストの余白を調整</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Button
+				href="#button"
+				hover="reverse"
+				rightIcon={<ArrowRight />}
+				gap={20}
+			>
+				gap:20
+			</Button>
+			<Button
+				href="#button"
+				hover="reverse"
+				rightIcon={<ArrowRight />}
+				gap={20}
+			>
+				gap:40
+			</Button>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo> */}
+
+
+### Prop: `isGrid`
+
+ボタンに幅を指定した時に、`isGrid`を併用することでアイコンを端に寄せることもできます。
+(`[data-icon-position="edge"]`)
+ {/* `iconPosition="edge"` */}
+
+<Alert preset="warning">
+prop名は要検討
+</Alert>
+
+<Demo>
+	<Demo.Title>`isGrid`</Demo.Title>
+	<Demo.Preview resize p={20} isFlow flowGap={20}>
+			<Button href="#button" leftIcon={<ShoppingCartSimple />} w="100%" maxW="20em" isGrid>Button</Button>
+			<Button href="#button" rightIcon={<ArrowRight />} w="100%" maxW="20em" isGrid>Button</Button>
+			<Button
+				href="#button"
+				leftIcon={<ShoppingCartSimple />}
+				rightIcon={<ArrowRight />}
+				w="100%"
+				maxW="20em"
+				isGrid
+			>Button</Button>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+### Prop: `iconOffset`
+
+`iconOffset`の指定(`data-icon-offset`属性) によって、`translate`でアイコンの位置を微調整できます。
+
+アイコンがある側の余白が広く見えてしまう場合などに活用してください。
+
+<Demo>
+	<Demo.Title>`iconOffset`の比較</Demo.Title>
+	<Demo.Preview resize p={20} flowGap='20'>
+		<Button href="#button" iconOffset="0%" rightIcon={<ArrowRight />}>Button</Button>
+		<Button href="#button" iconOffset="10%" rightIcon={<ArrowRight />}>Button</Button>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Button href="#button" iconOffset="0%" rightIcon={<ArrowRight />}>Button</Button>
+		<Button href="#button" iconOffset="10%" rightIcon={<ArrowRight />}>Button</Button>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>もう少しわかりやすい比較</Demo.Title>
+	<Demo.Preview resize p={20} flowGap='20'>
+		<Button
+			href="#button"
+			rightIcon={<ArrowRight />}
+			w="100%"
+			maxW="20em"
+			isGrid
+		>デフォルト(0%)</Button>
+		<Button
+			iconOffset="25%"
+			href="#button"
+			rightIcon={<ArrowRight />}
+			w="100%"
+			maxW="20em"
+			isGrid
+		>offset:25%</Button>
+		<Button
+			iconOffset="50%"
+			href="#button"
+			rightIcon={<ArrowRight />}
+			w="100%"
+			maxW="20em"
+			isGrid
+		>offset:50%</Button>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+### サイズの調整
+
+p, fz, w などで調整。
+
+<Demo>
+	<Demo.Title>小さいサイズのボタンテスト</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Button href="#button" variant="ghost" color="main" fz="xs" p={10} hover={{ bgc: "b100" }}>Button</Button>
+			<Button href="#button" variant="fill" color="purple" fz="xs" p={10} hover="reverse" leftIcon={<ArrowRight />}>Button</Button>
+			<Button
+				href="#button"
+				variant="fill"
+				fz="xs"
+				p={20}
+				hover="fade"
+				icon={<ShoppingCartSimple />}
+			/>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+## hover="reverse"
+
+Button用のhoverユーティリティ。
+
+- 基本的には、 cとbgcを入れ替えるようになっている
+- fill で使うと、文字色,ボーダー色→ホバー前の背景色になり、背景→透明
+- outline,ghost で使うと、文字色→ filled--c, 背景色→ホバー前の文字色
+	- テキストカラー反転してるようなエリアでは、ホバー時の文字色を明示的に指定してあげないと真っ白になったり真っ黒になったりする。
+
+<Demo>
+	<Demo.Title>`hover="reverse"`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Button href="#button" hover="reverse">Fill</Button>
+			<Button href="#button" hover="reverse" variant="outline">Outline</Button>
+			<Button href="#button" hover="reverse" variant="ghost">Ghost</Button>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>color指定テスト</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Button href="#button" hover="reverse" color="blue">Button</Button>
+			<Button href="#button" hover="reverse" color="blue" c="purple">Button</Button>
+			<Button href="#button" hover="reverse" variant="outline" color="pink">Button</Button>
+			<Button href="#button" hover="reverse" variant="ghost" color="pink">Button</Button>
+			<Button href="#button" hover="reverse" variant="ghost" bgc="pale">Button</Button>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>白黒反転エリア</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box gap={20} p={20} hasLayer c="white">
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} z='-1'/>
+			<FilterLayer blur='4px' z='-1'/>
+			<FilterLayer bgc="#000" opacity='0.5' z='-1'/>
+			<DammyText />
+			<Cluster mbs={30} gap={20}>
+				<Button href="#button" hover="reverse" variant="fill">Button</Button>
+				<Button href="#button" hover="reverse" variant="outline">Button</Button>
+				<Button href="#button" hover="reverse" variant="ghost">Button</Button>
+			</Cluster>
+			<Cluster mbs={30} gap={20}>
+				<Button href="#button" hover="reverse" color="b100" c="b900">Fill</Button>
+				<Button href="#button" hover="reverse" color="blue">Fill</Button>
+				<Button href="#button" hover="reverse" variant="outline" color="#fff">Outline</Button>
+				<Button href="#button" hover={["reverse", { c:'#000' }]} variant="outline" color="#fff">Outline</Button>
+				<Button href="#button" hover="reverse" variant="ghost" color="#fff">Button</Button>
+				<Button href="#button" hover={["reverse", { c:'#000' }]} variant="ghost" color="#fff">Button</Button>
+			</Cluster>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+### 沈むボタン
+
+<Demo>
+	<Demo.Title>hover</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Button href="#button" variant="outline" shadow="4" hover={{ shadow: "1" }} leftIcon={<ArrowRight />}>shadow 4 → 1</Button>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>

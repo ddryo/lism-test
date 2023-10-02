@@ -1,0 +1,136 @@
+import { Flex } from '@lism/core';
+
+# Flex
+
+コンテンツを**Flexレイアウトで配置する**ためのコンポーネントです。
+
+`<Flex>` は `<Box>`に[`isFlex`](/docs/layout-system/is-flex)を指定した状態のコンポーネントで、`<Box isFlex>`と同等です。
+
+-   `<Flex>`
+-   Lismクラス: `.l--box.is--flex`
+
+## Import
+
+```js
+import { Flex } from '@lism/core';
+```
+
+
+TEST
+
+<Box bgc="pale" flex>
+	<div>flexのみ</div>
+	<div>A</div>
+</Box>
+<Box bgc="pale" flex={{direction: 'rr'}}>
+	<div>direction指定</div>
+	<div>A</div>
+</Box>
+
+<Flex bgc="b200" direction='cr'>
+	<div>direction指定</div>
+	<div>A</div>
+</Flex>
+<Stack bgc="b200" direction='cr'>
+	<div>direction指定</div>
+	<div>A</div>
+</Stack>
+
+## Demo
+
+<Demo className="has--box-guide">
+	<Demo.Title>シンプルな`<Flex>`の例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex gap={20}>
+			<div>Item</div>
+			<div>Item</div>
+			<div>Item</div>
+		</Flex>
+	</Demo.Preview>
+</Demo>
+
+```jsx
+<Flex gap={20}>
+	<div>...</div>
+	<div>...</div>
+	<div>...</div>
+</Flex>
+```
+
+<Demo className="has--box-guide">
+	<Demo.Title>flexオプションの指定など</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex gap={20} fxw='wrap' jc="center" bgc="whitesmoke" p={20}>
+			<div>Flex Component</div>
+			<div>Flex Component</div>
+			<div>Flex Component</div>
+		</Flex>
+	</Demo.Preview>
+</Demo>
+
+```jsx
+<Flex gap={20} fxw='wrap' jc="center" bgc="whitesmoke" p={20}>
+	<div>...</div>
+	<div>...</div>
+	<div>...</div>
+</Flex>
+```
+
+
+
+
+### Flexの要素が横に飛び出してしまう場合
+
+改行位置がない長い文字列があると画面幅が狭い時に要素がはみ出してしまうことがあります。（特に子要素がpaddingを持っているとはみだしやすい。）
+
+`.l--flex>*`に対して`overflow-wrap: anywhere;`を指定すれば回避できるが、それをしてしまうと必要ない部分にまで影響が出るため、デフォルトでは overflow-wrap は指定していません。
+必要な時にユーティリティクラス`.-ovw:any`を使って回避してください。
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>
+		画面幅が狭い時にAAA...が長すぎて横にはみ出す例
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex fxw="nowrap" gap={20}>
+			<p>AAAaaaAaaaaaaaaaaaaaaaaaaaa</p>
+			<p>BBB</p>
+			<p>CCC</p>
+			<p>DDD</p>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Flex fxw="nowrap" gap={20}>
+			<p>AAAaaaAaaaaaaaaaaaaaaaaaaaa</p>
+			<p>BBB</p>
+			<p>CCC</p>
+			<p>DDD</p>
+		</Flex>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo className="has--box-guide">
+	<Demo.Title>
+		はみ出す原因となるテキストに `overflow-wrap:anywhere` を適用
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+			<Flex fxw="nowrap" gap={20}>
+		<p className="-ovw:any">Lorem ipsum text AAAaaaAaaaaaaaaaaaaaaaaaaaa</p>
+		<p>BBB</p>
+		<p>CCC</p>
+		<p>DDD</p>
+	</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Flex fxw="nowrap" gap={20}>
+			<p className="-ovw:any">Lorem ipsum text AAAaaaAaaaaaaaaaaaaaaaaaaaa</p>
+			<p>BBB</p>
+			<p>CCC</p>
+			<p>DDD</p>
+		</Flex>
+		```
+	</Demo.Code>
+</Demo>

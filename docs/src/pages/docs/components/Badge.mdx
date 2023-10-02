@@ -1,0 +1,112 @@
+import { Badge, Cluster, Icon, InlineIcon } from '@lism/core';
+import {
+	Book,
+	Cat,
+	Baseball,
+} from "@phosphor-icons/react";
+
+# Badge
+
+- `<Badge>`
+- Lismクラス: `.e--badge`
+
+
+## 主なprops
+- `color`: バッジのキーカラー。デフォルトは`main`カラーです。
+	- パレットカラーを指定できます。(`"red"`, `"blue"`, `"green"`, `"yellow"`, `"purple"`, `"orange"`, `"pink"`, `"gray"`
+- `variant`: ボタンの表示スタイル。`fill`(default)、`outline`、`text`の3種類。
+
+## Import
+
+
+```js
+import { Badge } from '@lism/core';
+```
+
+## Demo
+
+export const ColorDemos = ({variant = 'fill'}) => {
+	return (
+		<Cluster gap={20}>
+			{["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"].map((ckey) => {
+				return (
+					<Badge color={ckey} key={ckey} variant={variant}>Badge</Badge>
+				);
+			})}
+
+		</Cluster>
+	);
+}
+
+<Demo>
+	<Demo.Title>`<Spacer>`の使用例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Badge variant="fill">Badge</Badge>
+			<Badge variant="outline">Badge</Badge>
+			<Badge variant="subtle">Badge</Badge>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Badge variant="fill">Badge</Badge>
+		<Badge variant="outline">Badge</Badge>
+		<Badge variant="subtle">Badge</Badge>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### カラー
+<Demo>
+	<Demo.Title>`variant="fill"`でのカラーバリエーション</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<ColorDemos variant="fill" />
+	</Demo.Preview>
+</Demo>
+
+<Demo>
+	<Demo.Title>`variant="outline"`でのカラーバリエーション</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<ColorDemos variant="outline" />
+	</Demo.Preview>
+</Demo>
+
+<Demo>
+	<Demo.Title>`variant="subtle"`でのカラーバリエーション</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<ColorDemos variant="subtle" />
+	</Demo.Preview>
+</Demo>
+
+### アイコン
+
+<Demo>
+	<Demo.Title>`<InlineIcon>`の使用例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Badge hasIcon variant="fill"><Icon icon={Book} size="1.125em" /> Badge</Badge>
+			<Badge hasIcon variant="outline"><Icon icon={Cat} size="1.125em" /> Badge</Badge>
+			<Badge hasIcon variant="subtle"><Icon icon={Baseball} size="1.125em" /> Badge</Badge>
+		</Cluster>
+		<Cluster gap={20}>
+			<Badge hasIcon p={10} fz="l" variant="fill"><Icon icon={Book} /></Badge>
+			<Badge hasIcon p={10} fz="l" variant="outline"><Icon icon={Cat} /></Badge>
+			<Badge hasIcon p={10} fz="l" variant="subtle"><Icon icon={Baseball} /></Badge>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Cluster gap={20}>
+			<Badge hasIcon variant="fill"><Icon icon={Book} size="1.125em" /> Badge</Badge>
+			<Badge hasIcon variant="outline"><Icon icon={Cat} size="1.125em" /> Badge</Badge>
+			<Badge hasIcon variant="subtle"><Icon icon={Baseball} size="1.125em" /> Badge</Badge>
+		</Cluster>
+		<Cluster gap={20}>
+			<Badge hasIcon p={10} fz="l" variant="fill"><Icon icon={Book} /></Badge>
+			<Badge hasIcon p={10} fz="l" variant="outline"><Icon icon={Cat} /></Badge>
+			<Badge hasIcon p={10} fz="l" variant="subtle"><Icon icon={Baseball} /></Badge>
+		</Cluster>
+		```
+	</Demo.Code>
+</Demo>

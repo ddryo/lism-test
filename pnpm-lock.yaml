@@ -154,6 +154,42 @@ importers:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
 
+  docs:
+    dependencies:
+      '@lism/core':
+        specifier: workspace:*
+        version: link:../packages/lism-core
+      '@nanostores/react':
+        specifier: ^0.7.1
+        version: 0.7.1(nanostores@0.9.3)(react@18.2.0)
+      '@phosphor-icons/react':
+        specifier: ^2.0.10
+        version: 2.0.10(react-dom@18.2.0)(react@18.2.0)
+      classnames:
+        specifier: ^2.3.2
+        version: 2.3.2
+      eslint-config-next:
+        specifier: 13.4.12
+        version: 13.4.12(eslint@8.42.0)(typescript@5.2.2)
+      nanostores:
+        specifier: ^0.9.3
+        version: 0.9.3
+      next:
+        specifier: 13.4.12
+        version: 13.4.12(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)(sass@1.66.1)
+      nextra:
+        specifier: ^2.10.0
+        version: 2.10.0(next@13.4.12)(react-dom@18.2.0)(react@18.2.0)
+      nextra-theme-docs:
+        specifier: ^2.10.0
+        version: 2.10.0(next@13.4.12)(nextra@2.10.0)(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+
   packages/lism-astro:
     dependencies:
       '@types/node':
@@ -8713,7 +8749,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       scroll-into-view-if-needed: 3.0.10
-      zod: 3.21.1
+      zod: 3.21.4
     dev: false
 
   /nextra@2.10.0(next@13.4.12)(react-dom@18.2.0)(react@18.2.0):
@@ -8751,7 +8787,7 @@ packages:
       title: 3.5.3
       unist-util-remove: 4.0.0
       unist-util-visit: 5.0.0
-      zod: 3.21.1
+      zod: 3.21.4
     transitivePeerDependencies:
       - supports-color
     dev: false

@@ -1,0 +1,190 @@
+// nxtra テンプレートカスタマイズ
+// [data-docs-path="/docs/components/Section"]{
+// }
+
+/**
+ * Nextra用
+ */
+#__next {
+	--h--fullscreen: calc(100vh - var(--nextra-navbar-height));
+
+	:where(h1, h2, h3, h4, h5, h6) {
+		font-weight: 700;
+		font-size: var(--fz);
+		// line-height: var(--lh);
+		// --ls--flowGap: var(--ls--flowGap--heading);
+	}
+}
+:where(.nextra-content) {
+	line-height: var(--root--lh);
+
+	a {
+		color: var(--c--link);
+		text-decoration: underline;
+		border-radius: revert; // nextra側で 0.25rem; になるのを打ち消す
+	}
+}
+
+:is(.nextra-toc, .nextra-sidebar-container) a {
+	text-decoration: none;
+}
+.nextra-sidebar-container {
+	.nx-duration-500 > ul {
+		padding-left: 0.5em !important;
+	}
+
+	li > :is(a, button) {
+		padding-block: 0.25rem !important;
+		padding-inline: 0.4rem !important;
+	}
+
+	// セパレーター　タイトルあり
+	li.\[word-break\:break-word\].nx-mt-5.nx-mb-2 {
+		margin-top: 0.25em !important;
+		margin-bottom: 0 !important;
+		padding: 0.25em !important;
+	}
+	// セパレーター　タイトルなし
+	li.\[word-break\:break-word\].nx-my-4 {
+		margin-block: 0.25em !important;
+		> hr {
+			margin-inline: 0.25em !important;
+		}
+	}
+}
+
+body {
+	// カラーモード切り替えメニューが出てこなくなるので初期値へ戻す
+	container-type: revert !important;
+}
+.nextra-content {
+	container-type: inline-size;
+}
+.light.light {
+	--yellow--c: var(--b950);
+	// --green--c: var(--b950);
+	// --c--filled: var(--b50);
+}
+.dark.dark {
+	--hs--basic: 210 2%;
+	--main: #4082aa;
+	--accent: #da3159;
+	--link--c: #418cff;
+	--shadow--hsl: 200 8% 99%;
+	--shadowStrength--low: 0.1;
+	--shadowStrength: 0.15;
+
+	--b50: hsl(var(--hs--basic) 5%);
+	--b100: hsl(var(--hs--basic) 12%);
+	--b200: hsl(var(--hs--basic) 24%);
+	--b800: hsl(var(--hs--basic) 76%);
+	--b900: hsl(var(--hs--basic) 88%);
+	--b950: hsl(var(--hs--basic) 98%);
+
+	--red: hsl(4 76% 56%);
+	--orange: hsl(28 80% 56%);
+	--yellow: hsl(52 88% 52%);
+	--green: hsl(148 84% 48%);
+	--blue: hsl(200 80% 56%);
+	--purple: hsl(248 84% 68%);
+	--pink: hsl(325 76% 56%);
+	--gray: hsl(214 8% 64%);
+
+	--cMixPer--bg: 88%;
+	--cMixPer--text: 20%;
+	--cMixPer--bd: 70%;
+
+	// --c--base: #fff;
+	// --bgc--base: #000;
+	--c--opposite: #000;
+	--c--filled: #000;
+
+	// --bgc--pale: var(--b500);
+	// --bgc--strong: var(--b100);
+	// --bdc--base: var(--b400);
+	// --code--c: var(--b100);
+	// --code--bgc: var(--b500);
+	// --code--bdc: var(--b400);
+}
+
+#__next:has([data-docs-path='/docs/components/Section'], [data-docs-path='/docs/components/Divider']) {
+	// color: red;
+
+	.nextra-nav-container + .nx-max-w-\[90rem\] {
+		max-width: 2000px !important;
+		// justify-content: center;
+	}
+}
+
+.nextra-toc.nextra-toc {
+	width: 14rem;
+}
+
+// resizeエリアが飛び出していかないように、実数値で指定する必要がある
+// .nextra-content{
+// 	max-width: 1200px;
+// 	> main{
+// 		max-width: 100%;
+
+// 		// max-width: 100% !important;
+// 		// > * {
+// 		// 	max-width: 64rem;
+// 		// 	margin-inline: auto;
+// 		// }
+// 	}
+// }
+
+// .nextra-code-block{
+// 	margin-block: var(--space--50);
+// }
+
+.a--main {
+	container-type: inline-size; // resizeコンテンツが飛び出るのを防げる
+
+	// breadcrumbがある場合（layout:full）
+	margin-top: var(--space--50);
+
+	// breadcrumbがある場合（普通のページ）
+	.nextra-breadcrumb + & {
+		margin-top: var(--space--30);
+	}
+}
+
+// ------------------------------------------------
+// 細かいカスタマイズ
+// ------------------------------------------------
+
+// ---
+svg:where(:not([fill])) {
+	fill: currentcolor;
+}
+
+// リスト
+ul,
+ol {
+	padding-left: var(--space--40);
+}
+
+:is(.lsdoc--ul, .lsdoc--ol) {
+	margin-block: var(--space--40);
+	list-style: revert;
+
+	&:first-child {
+		margin-block-start: 0;
+	}
+	&:last-child {
+		margin-block-end: 0;
+	}
+}
+.lsdoc--li {
+	margin-block: var(--space--5);
+}
+.lsdoc--li > :is(.lsdoc--ul, .lsdoc--ol) {
+	// margin-top: var(--space--10);
+	margin-block-start: 0;
+	margin-block-end: var(--space--10);
+}
+
+// .nextra-callout {
+// 	border-radius: var(--radius--2) !important;
+// }

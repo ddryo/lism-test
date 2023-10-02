@@ -201,7 +201,7 @@
 	--white: #fff;
 	--red: hsl(4 76% 52%); // #ef4444
 	// --red--c: var(--c--filled);
-	--orange: hsl(28 80% 52%); // #f97316
+	--orange: hsl(28 80% var(--aaaaa, 52%)); // #f97316
 	// --orange--c: var(--c--filled);
 	--yellow: hsl(52 88% 48%); //#f1b808
 	// --yellow--c: #000;

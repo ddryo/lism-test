@@ -48,7 +48,9 @@
 }
 
 .b--navMenu__acc > .l--accordion__header {
-	--p: 0 var(--item--px) 0 0;
+	// --p: 0 var(--item--px) 0 0;
+	padding-inline-start: 0;
+	padding-inline-end: var(--item--px);
 }
 
 .b--navMenu.l--cluster {

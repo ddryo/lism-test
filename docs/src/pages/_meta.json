@@ -1,0 +1,36 @@
+{
+    "index": {
+        "title": "Home",
+        "type": "page",
+		"theme": {
+			"layout": "raw"
+		}
+    },
+    "docs": {
+        "title": "Docs",
+        "type": "page",
+        "href": "/docs"
+    },
+    "sample": {
+        "type": "page"
+    },
+    "wp": {
+        "type": "menu",
+		"title": "WordPress",
+        "items": {
+            "team": {
+                "title": "Theme",
+                "href": "/theme"
+            }
+        }
+    },
+	"---": {
+		"type": "separator",
+		"title": "More"
+	  },
+	"github_link": {
+		"title": "Link ↗",
+		"href": "/###",
+		"newWindow": true
+	  }
+}

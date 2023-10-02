@@ -1,0 +1,87 @@
+---
+title: 'Getting Started'
+description: '...'
+---
+
+import { Tabs, TabItem } from '@lism/core';
+
+# Installation
+
+<Tabs>
+	<TabItem label='npm'>
+		```bash
+		npm i @lism/core
+		```
+	</TabItem>
+	<TabItem label='pnpm'>
+		```bash
+		pnpm add @lism/core
+		```
+	</TabItem>
+		<TabItem label='yarn'>
+		```bash
+		yarn add @lism/core
+		```
+	</TabItem>
+</Tabs>
+
+
+## CSSの読み込み
+
+
+<Tabs>
+	<TabItem label='Next.js'>
+		```js filename="_app.js or layout.js"
+		import '@lism/core/scss/...';
+		```
+	</TabItem>
+
+	<TabItem label='HTML'>
+		```html filename="index.html"
+		<link ...>
+		```
+	</TabItem>
+</Tabs>
+
+
+## Import Components
+
+特定の環境に合わせた コンポーネントの読み込み
+
+<Tabs>
+	<TabItem label='React'>
+		```bash
+		npm i @lism/core
+		```
+
+		```js
+		import { Box, ... } from '@lism/core';
+		```
+	</TabItem>
+	<TabItem label='Next.js'>
+		```bash
+		npm i @lism/core @lism/next
+		```
+
+		```js
+		import { Box, ... } from '@lism/next';
+		```
+	</TabItem>
+
+	<TabItem label='Astro'>
+		```bash
+		npm i @lism/core @lism/astro
+		```
+
+		```js
+		import { Box, ... } from '@lism/astro';
+		```
+	</TabItem>
+</Tabs>
+
+
+## lism.config
+
+```js filename="lism.config.js"
+...
+```

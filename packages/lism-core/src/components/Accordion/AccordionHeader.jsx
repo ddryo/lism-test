@@ -1,7 +1,5 @@
 import React from 'react';
-import { Lism } from '../Lism';
-// import { Center } from '../Flex/Center';
-
+import { Core } from '../Core';
 import { Icon } from '../Icon';
 import { getLismProps } from '@/lib';
 import { AccContext } from './context';
@@ -21,8 +19,8 @@ export default function AccordionHeader({
 	closeIcon,
 	iconSize,
 	iconPosition = 'right',
-	labelBefore,
-	labelAfter,
+	before,
+	after,
 	labelTag,
 	labelProps = {},
 	...props
@@ -55,16 +53,16 @@ export default function AccordionHeader({
 	let Icons = null;
 	if (openIcon && closeIcon) {
 		Icons = (
-			<Lism {...iconProps}>
+			<Core {...iconProps}>
 				<Icon tag='span' icon={openIcon} size={iconSize} data-to='open' />
 				<Icon tag='span' icon={closeIcon} size={iconSize} data-to='close' />
-			</Lism>
+			</Core>
 		);
 	} else {
 		Icons = (
-			<Lism {...iconProps}>
+			<Core {...iconProps}>
 				<Icon icon={icon || caretSvg} size={iconSize} />
-			</Lism>
+			</Core>
 		);
 	}
 
@@ -73,9 +71,12 @@ export default function AccordionHeader({
 		lismClass: 'l--accordion__label',
 	};
 
-	// -f:inhert みたいにフォント関連を一括で継承するクラス作る？
+	// hタグにもできるように。
 	if (labelTag) {
 		baseLabelProps.tag = labelTag;
+
+		// hタグになっても文字サイズなどは変わらないように
+		// -f:inhert みたいにフォント関連を一括で継承するクラス作る？
 		baseLabelProps.fz = 'm';
 		baseLabelProps.fw = '400';
 	}
@@ -84,11 +85,11 @@ export default function AccordionHeader({
 	return (
 		<summary {...blockProps}>
 			{iconPosition !== 'right' && Icons}
-			{labelBefore}
-			<Lism {...baseLabelProps} {...labelProps}>
+			{before}
+			<Core {...baseLabelProps} {...labelProps}>
 				{children}
-			</Lism>
-			{labelAfter}
+			</Core>
+			{after}
 			{iconPosition === 'right' && Icons}
 		</summary>
 	);

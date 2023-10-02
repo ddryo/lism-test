@@ -1,0 +1,70 @@
+// --------------------
+// ガイド線
+// --------------------
+// [data-guide-tip] {
+// 	position: relative;
+// 	&::after {
+// 		position: absolute;
+// 		top: -1px;
+// 		right: -1px;
+// 		content: attr(data-guide-tip);
+// 		font-size: min(0.8em, 12px);
+// 		background-color: rgba(#000, 0.1);
+// 		border: solid 1px var(--guide--color);
+// 		padding: 0 4px;
+// 		line-height: 1.5;
+// 	}
+// }
+:where(.has--box-guide) .b--demoBox__preview {
+	:is(.l--box, .l--flex, .l--grid, .l--columns, .l--stack, .l--cluster) {
+		> :is(p, div) {
+			border: dashed 1px var(--guide--color);
+		}
+		// [data-guide-tip] {
+		// 	padding: 2px;
+		// }
+	}
+}
+
+// [data-docs-path="/docs/components/Frame"] .b--demoBox__preview .l--frame {
+// 	border: dashed 1px rgba(120, 120, 120, 0.2);
+// }
+
+[data-docs-path='/docs/components/Reel'] .b--demoBox__preview {
+	:is(.l--reel, [class*='is--reel']) > .is--item {
+		border: dashed 1px var(--guide--color);
+	}
+}
+
+[data-docs-path='/docs/components/SideFix'] .b--demoBox__preview {
+	> .l--sideFix > .is--item {
+		border: dashed 1px var(--guide--color);
+	}
+	> .l--sideFix > .-ga\:fix {
+		background-color: #f0f7f9;
+	}
+}
+
+// [data-docs-path="/docs/components/Spacer"] .b--demoBox__preview {
+// 	.l--spacer {
+// 		border: dashed 1px var(--guide--color);
+// 	}
+// }
+
+[data-docs-path='/docs/design-system/color'] .-bg\:stripe .b--demoBox__preview {
+	// background-image: none;
+	background-image: repeating-linear-gradient(
+		-45deg,
+		rgba(200, 200, 200, 0.3),
+		rgba(200, 200, 200, 0.3) 1px,
+		transparent 1px,
+		transparent 4px
+	);
+	background-size: revert;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+// [data-docs-path='/docs/design-system/color'] .b--demoBox__preview .l--box {
+// 	text-shadow: 0px 0px 4px rgba(100, 100, 100, 0.2);
+// }

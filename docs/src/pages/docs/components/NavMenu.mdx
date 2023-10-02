@@ -1,0 +1,345 @@
+import { NavMenu, NavMenuItem, Badge, Icon, Spacer } from '@lism/core';
+import { FolderSimple } from "@phosphor-icons/react";
+import Script from 'next/script';
+
+# NavMenu
+
+作成中...
+
+- `<NavMenu>`
+- Lismクラス: `.b--navMenu`
+
+
+### 検討
+
+- リンクリストもこれのバリエーションで...？
+- icon, badge 設定？
+
+
+## Import
+
+```js
+import { NavMenu } from '@lism/core';
+```
+
+## Demo
+
+export const Items = ({ length = 3, ...props }) => {
+	// Array.from({length}).map((i) => {
+	// Array.from(Array(ct))
+	// Array.from(Array(ct))
+
+	return [...Array(length)].map((i) => (
+		<NavMenuItem key={i} href="#menu" text="Lorem item" {...props} />
+	));
+};
+
+export const DemoBadge = ({ num = "10", ml = "auto" }) => {
+	return (
+		<Badge fz="12px" ml={ml} fw="400" color="dimgray">
+			{num}
+		</Badge>
+	);
+};
+
+<Script src='/js/acc.js' type="module"/>
+<Demo>
+	<Demo.Title>NavMenuの例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu>
+			<Items />
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>NavMenuの例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu bd="bottom" bdc="border">
+			<Items bd="top" bdc="border" />
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+### before, after の指定
+
+<Demo>
+	<Demo.Title>Badge</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu>
+			<Items after={<DemoBadge />} />
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>Badge</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu>
+			<NavMenuItem href="#menu" before={<Badge fz="12px" fw="700" color="dimgray" variant="outline">New</Badge>} text="Lorem item" />
+			<NavMenuItem href="#menu" text="Lorem item" />
+			<NavMenuItem href="#menu" text="Lorem item" />
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo>
+	<Demo.Title>NavMenuの例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu>
+			<Items after={<DemoBadge />} before={<Icon icon={FolderSimple} />} />
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+### Nest
+
+<Demo>
+	<Demo.Title>メニューのネスト</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu>
+			<Items length={2} />
+			<NavMenuItem href="#has-child" text='Has Child'>
+				<NavMenu nestLevel={1}>
+					<Items length={2} />
+					<NavMenuItem href="#has-child" text='Has Child'>
+						<NavMenu nestLevel={2}>
+							<Items length={2} />
+						</NavMenu>
+					</NavMenuItem>
+				</NavMenu>
+			</NavMenuItem>
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>No link parent</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu>
+			<NavMenuItem text='Nolink'>
+				<NavMenu nestLevel={1}><Items length={2} /></NavMenu>
+			</NavMenuItem>
+			<NavMenuItem text='Nolink'>
+				<NavMenu nestLevel={1}>
+					<Items length={2} />
+					<NavMenuItem text='Nolink'>
+					<NavMenu nestLevel={2}>
+						<Items length={2} />
+					</NavMenu>
+				</NavMenuItem>
+				</NavMenu>
+			</NavMenuItem>
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+### アコーディオン
+
+<Demo>
+	<Demo.Title>展開メニューにリンクなし, badgeもあり</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu>
+			<Items length={2} after={<DemoBadge />} />
+			<NavMenuItem text='Nolink' isAccordion >
+				<NavMenu nestLevel={1}>
+					<Items length={2} after={<DemoBadge />} />
+					<NavMenuItem text='Nolink' isAccordion>
+						<NavMenu nestLevel={2}>
+							<Items length={2} after={<DemoBadge />} />
+						</NavMenu>
+					</NavMenuItem>
+				</NavMenu>
+			</NavMenuItem>
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>親liがリンクのまま子ulをアコーディオン（アイコンクリックで展開）</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu>
+			<Items length={2} />
+			<NavMenuItem
+				href="#menu"
+				text='Has Link'
+				isAccordion
+			>
+				<NavMenu nestLevel={1}>
+					<Items length={2} />
+					<NavMenuItem
+						href="#menu"
+						text='Has Link'
+						isAccordion
+						after={<DemoBadge num="8" />}
+						accordionHeaderProps={{ icon: "triangle" }}
+					>
+						<NavMenu nestLevel={2}><Items after={<DemoBadge num="4" />}/></NavMenu>
+					</NavMenuItem>
+				</NavMenu>
+			</NavMenuItem>
+
+			
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+### 横並び
+<Demo>
+	<Demo.Title>direction="horizontal"</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu direction="horizontal">
+			<Items length={4} />
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>direction="horizontal"</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu direction="horizontal">
+			<NavMenuItem href="###" text='Has child' >
+				<NavMenu nestLevel={1}>
+					<Items length={2} />
+				</NavMenu>
+			</NavMenuItem>
+			<NavMenuItem href="###" text='Has child' >
+				<NavMenu nestLevel={1}>
+					<Items length={2} />
+				</NavMenu>
+			</NavMenuItem>
+			<NavMenuItem href="###" text='Has child' >
+				<NavMenu nestLevel={1}>
+					<Items length={2} />
+				</NavMenu>
+			</NavMenuItem>
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+<Demo>
+	<Demo.Title>direction="horizontal"</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu direction="horizontal">
+			<NavMenuItem text='Nolink' >
+				<NavMenu nestLevel={1}>
+					<Items length={2} after={<DemoBadge />} />
+				</NavMenu>
+			</NavMenuItem>
+			<NavMenuItem text='Nolink' >
+				<NavMenu nestLevel={1}>
+					<Items length={2} after={<DemoBadge />} />
+				</NavMenu>
+			</NavMenuItem>
+			<NavMenuItem text='Nolink' >
+				<NavMenu nestLevel={1}>
+					<Items length={2} after={<DemoBadge />} />
+				</NavMenu>
+			</NavMenuItem>
+		</NavMenu>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>アコーディオン</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<NavMenu direction="horizontal">
+			<Items length={2} after={<DemoBadge />} />
+			<NavMenuItem text='Nolink' isAccordion >
+				<NavMenu nestLevel={1}>
+					<Items length={2} after={<DemoBadge />} />
+					<NavMenuItem text='Nolink' isAccordion>
+						<NavMenu nestLevel={2}>
+							<Items length={2} after={<DemoBadge />} />
+						</NavMenu>
+					</NavMenuItem>
+				</NavMenu>
+			</NavMenuItem>
+			<NavMenuItem href="#menu" text='Has Link' isAccordion>
+				<NavMenu nestLevel={1}>
+					<Items length={2} />
+					<NavMenuItem
+						href="#menu"
+						text='Has Link'
+						isAccordion
+						after={<DemoBadge num="8" />}
+						accordionHeaderProps={{ icon: "triangle" }}
+					>
+						<NavMenu nestLevel={2}><Items after={<DemoBadge num="4" />}/></NavMenu>
+					</NavMenuItem>
+				</NavMenu>
+			</NavMenuItem>
+		</NavMenu>
+		<Spacer height={100} />
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>

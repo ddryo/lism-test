@@ -1,0 +1,70 @@
+// @use "scss/reset";
+// @use 'global/html';
+// @use 'global/code';
+@use 'global/demo';
+@use 'global/docs';
+@use 'global/guide';
+
+:root {
+	--codeblock--radius: var(--radius--3);
+	--guide--color: #ced8dc;
+	// --c--guide: rgba(100, 150, 160, 0.5);
+}
+
+.light {
+	--codeblock--bgc: hsl(200, 20%, 96%);
+}
+.dark {
+	--codeblock--bgc: hsl(200, 20%, 15%);
+}
+
+// #000
+.nextra-code-block {
+	> pre {
+		background-color: var(--codeblock--bgc) !important;
+		border-radius: var(--codeblock--radius);
+		padding-inline: 0 !important;
+	}
+}
+
+// .-bd\:guide {
+// 	border: dashed 1px var(--c--guide);
+// }
+
+.b--demoBox__frame {
+	width: 100%;
+	height: auto;
+}
+
+// mdxで構造変になってたらわかるように
+p > p {
+	color: red !important;
+}
+// .light{
+// }
+
+// コンテンツが少なくてもfooterを下に寄せる
+// .wp-site-blocks > .wp-block-template-part,
+// #__next{
+// 	display: flex;
+// 	flex-direction: column;
+// 	min-height: 100vh;
+// }
+
+// .a--content{
+// 	flex-grow: 1;
+// }
+
+// .a--footer{
+// 	margin-top: auto;
+// 	background-color: #f5f5f5;
+// }
+
+// .d--microCaption{
+// 	font-size: var(--fz--s);
+// 	color: #00758d;
+
+// 	 + * {
+// 		margin-block-start: var(--space--10) !important;
+// 	}
+// }

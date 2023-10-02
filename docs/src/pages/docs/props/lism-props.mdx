@@ -1,0 +1,190 @@
+import { Box } from '@lism/core';
+import Reference from '@/components/Reference';
+
+# Lism Props
+
+[Lismコンポーネント](/docs/components/overview)で受け取れる 主要な Lism Props について紹介します。
+
+
+## Colors
+
+|Prop|CSS Property|Token,Utility|
+|---|---|---|
+|c|color|COLOR,<br/>`"base"`,`"pale"`, `"opposite"`|
+|bgc|background-color|COLOR,<br/> `"base"`, `"pale"`, `"opposite"`|
+|bdc|border-color|COLOR,<br/> `"base"`|
+|keycolor|`--keycolor`|COLOR|
+
+
+※ `bdc`は[`bd`との併用が必要](/docs/props/border)です。
+
+<Reference>
+[COLOR Tokens](/docs/tokens/color)
+</Reference>
+
+
+## Typography
+
+|Prop|CSS Property|Token,Utility|
+|---|---|---|
+|fz|font-size|FONT_SIZE|
+|lh|line-height|LINE_HEIGHT|
+|ff|font-family|`"base"`,`"mono"`,`"emoji"`|
+|lts|letter-spacing||
+|ta|text-align|`"center"`,`"left"`,`"right"`|
+|whs|white-space||
+|font?|font|inherit?|
+|td?|text-decoration||
+
+
+## Margin and padding
+
+
+
+|Prop|CSS Property|Token,Utility|
+|---|---|---|
+|p|padding|SPACE, PADDING|
+|pl|padding-left|SPACE, PADDING|
+|pr|padding-right|SPACE, PADDING|
+|pt|padding-top|SPACE, PADDING|
+|pb|padding-bottom|SPACE, PADDING|
+|px|padding-left, padding-right|SPACE, PADDING|
+|py|padding-top, padding-bottom|SPACE, PADDING|
+|ps|padding-start|SPACE, PADDING|
+|pbs|padding-block-start|SPACE, PADDING|
+|m|margin|SPACE|
+|ml|margin-left|SPACE|
+|mr|margin-right|SPACE|
+|mt|margin-top|SPACE|
+|mb|margin-bottom|SPACE|
+|mx|margin-left, margin-right|SPACE|
+|my|margin-top, margin-bottom|SPACE|
+|ms|margin-start|SPACE|
+|mbs|margin-block-start|SPACE|
+
+<Reference>
+[SPACE Tokens](/docs/tokens/spacing)
+</Reference>
+
+Utility Class: 
+- paddings
+	- `-p[X|Y]:{0,5,10,15,20,30,40,50}`
+	- `-p:{box[:s|:l]}`
+- margins
+	- `-mbs:{0,5,10,15,20,30,40,50}`, s,m,l?
+	- `-m[l|r|t|b|y|x]:auto`
+
+全てBP対応?
+
+<Note>
+論理プロパティは ps, pbs だけでいいかどうかは要検討.
+
+- inline-start, block-start だけでいいか。end方向はX,Yとstartの併用で擬似的に指定できる。
+- px,pyをinline,blockとしてもいいかもしれない。
+</Note>
+
+<Demo>
+	<Demo.Title>Examples</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Box m={40}>...</Box>
+	<Box pb='20px'>...</Box>
+	<Box mX='auto'>...</Box>
+	<Box p='box' pY={[null, 50]}>...</Box>
+	<Text pX={[20, 30]}>...</Text>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>各方向の値をp,mに対してオブジェクトで指定することも可能</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Box m={{left:20, bottom: 30}}>...</Box>
+	<Box p={{X:30, Y: 40}}>...</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+## gap
+
+Flex, Gridでgapを指定できます。
+
+|Prop|CSS Property|Token,Utility|
+|---|---|---|
+|gap|gap|SPACE|
+|rowGap|row-gap|SPACE|
+|columnGap|columns-gap|SPACE|
+
+<Reference>
+[SPACE Tokens](/docs/tokens/spacing)
+</Reference>
+
+Utility Class: 
+- `-gap:{0,5,10,15,20,30,40,50}`
+- em系？
+
+全てBP対応
+
+<Demo>
+	<Demo.Title>Examples</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Flex gap={40}>...</Flex>
+	<Grid gap="20px">...</Grid>
+	<Columns rowGap={[15,20]} columnsGap={[20,30]}>...</Columns>
+	
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>各方向の値をgapに対してオブジェクトで指定することも可能</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Columns gap={{row:20, columns:30}}>...</Columns>
+	```
+	</Demo.Code>
+</Demo>
+
+
+## Width & Height
+
+|Prop|CSS Property|Token,Utility|
+|---|---|---|
+|w|width|SIZE|
+|h|height|SIZE|
+|maxW|max-width||
+|maxH|max-height||
+|minW|min-width||
+|minH|min-height||
+
+
+## Others
+
+|Prop|CSS Property|Token,Utility|
+|---|---|---|
+|shadow|box-shadow|SHADOW|
+|radius|border-radius|RADIUS|
+|d|display|`"none"`,`"block"`,`"flex"`,`"grid"`,`"inline"`,`"inline-block"`,`"inline-flex"`,`"inline-grid"`|
+|aspect|aspect-ratio||
+|opacity(op?)|opacity||
+|translate|translate||
+|rotate|rotate||
+|scale|scale||
+|transformOrigin|transformOrigin||
+|top|top||
+|left|left||
+|right|right||
+|bottom|bottom||
+|inset|inset||
+|z|z-index||
+|pos|position||
+|lis|listStyle|`"none"`|
+|ovw|overflowWrap|`"anywhere"`|
+|ov|overflow|`"hidden"`,`"auto"`,`"clip"`,`"scroll"`?|
+|ovx|overflow-x|`"hidden"`,`"auto"`,`"clip"`,`"scroll"`?|
+|ovy|overflow-y|`"hidden"`,`"auto"`,`"clip"`,`"scroll"`?|
+

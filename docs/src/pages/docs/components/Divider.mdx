@@ -1,0 +1,53 @@
+import { Divider, Spacer, Tabs, TabItem } from '@lism/core';
+import LineDemo from '@/examples/divider/line.mdx';
+import ArrowDemo from '@/examples/divider/arrow.mdx';
+import CircleDemo from '@/examples/divider/circle.mdx';
+import WaveDemo from '@/examples/divider/wave.mdx';
+
+# Divider
+
+境界線
+
+- `<Divider>`
+- Lismクラス: `.l--divider`
+
+## Props
+- `level`: 高さのレベル。正の数・負の数を指定できます。 `5` がデフォルトです。
+	- `{level} * 1cqw` で`<Divider>`の高さが計算され、600px時点の値が最小値、1200px時点の値が最大値となります。
+- `stretch`: 横方向の伸縮率。 `1` がデフォルトです。
+- `offset`: X方向の位置をずらす。 `stretch`と合わせて`%`単位で指定してください。
+	- 例: `stretch:1.5` なら、`offset:-25%~25%`の範囲が有効です。
+- `flip`: x軸、y軸方向の反転。 `x` `y` `xy` が指定できます。
+
+
+memo 
+- 任意のSVGを入力できるようにする
+- アニメーション機能
+	- SVGにあわせて、アニメーション手法を切り替える?
+		1. 左右交互移動 (これが一番カンタン)
+		2. 一方向への無限ループ（隙間がどうしても見えてしまう）(参考: https://chocolat5.com/ja/tips/loop-image-animation/)
+
+
+## Import
+
+```js
+import { Box } from '@lism/core';
+```
+
+## Demo
+
+<Tabs alignfull>
+	<TabItem index={0} isConstrained isFlow label="Line">
+		<LineDemo />
+	</TabItem>
+	<TabItem index={1} isConstrained isFlow label="Wave">
+		<WaveDemo />
+	</TabItem>
+	<TabItem index={2} isConstrained isFlow label="Arrow">
+		<ArrowDemo />
+	</TabItem>
+	<TabItem index={3} isConstrained isFlow label="Circle">
+		<CircleDemo />
+	</TabItem>
+</Tabs>
+

@@ -1,0 +1,80 @@
+import { TileGrid, Columns } from '@lism/core';
+
+# TileGrid
+
+**各子要素が最低限維持する幅**を指定するだけで、`auto-fit` で折返しタイミングがクエリサイズに依存しないタイルレイアウトを作成できるコンポーネントです。
+
+
+ただし、カラム数は**1列ずつしか変わらない**（ 6列 → 3列 → 1列 とかはできない ) ので、そういうレイアウトが必要な場合は [`<Columns>`](/docs/modules/columns) を使ってください。
+
+- `<TileGrid>`
+- Lismクラス: `.l--tileGrid.is--grid`
+- [`isGrid`](/docs/layout-system/is-grid) なコンポーネントす。
+- defaultのgap: `40`
+
+- clampをプリセット用意したい
+	- sizeプリセット使えるようにして、text-s-fluid とか用意する？
+
+
+## 主なprops
+- `itemMinW`: 子要素が最低限維持する幅. デフォルト値は `20rem` (要検討)
+
+
+## Import
+
+```js
+import { TileGrid } from '@lism/core';
+```
+
+## Demo
+
+<Demo className="has--box-guide">
+	<Demo.Title>
+		デフォルト size=`16rem`
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<TileGrid className='has:itemGuide'>
+			<DammyText />
+			<DammyText />
+			<DammyText />
+			<DammyText />
+			<DammyText />
+			<DammyText />
+			<DammyText />
+			<DammyText />
+		</TileGrid>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<TileGrid>
+			...
+		</TileGrid>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>
+		子要素の最低限維持する幅を`12rem`に
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<TileGrid itemMinW="12rem" className='has:itemGuide'>
+			<DammyText />
+			<DammyText />
+			<DammyText />
+			<DammyText />
+			<DammyText />
+			<DammyText />
+			<DammyText />
+			<DammyText />
+		</TileGrid>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<TileGrid itemMinW="12rem">
+			...
+		</TileGrid>
+		```
+	</Demo.Code>
+</Demo>

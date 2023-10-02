@@ -2,19 +2,19 @@ import React from 'react';
 import { Core } from '../Core';
 import { isEmptyObj, filterEmptyObj } from '@/lib';
 
-export default function Flex({ isInline, direction, wrap, ...props }) {
+export default function Flex({ direction, wrap, ai, ac, ji, jc, ...props }) {
 	const flex = filterEmptyObj({
-		isInline,
 		direction,
 		wrap,
+		ai,
+		ac,
+		ji,
+		jc,
 	});
 
-	const noOptions = isEmptyObj(flex);
-
-	// inline-flex にする時以外は、display の出力不要
-	if (!noOptions && !isInline) {
-		flex.skipDisplay = true;
+	if (!isEmptyObj(flex)) {
+		props.flex = flex;
 	}
 
-	return <Core lismClass='l--flex' flex={noOptions ? null : flex} {...props} />;
+	return <Core lismClass='l--flex' {...props} />;
 }

@@ -1,0 +1,151 @@
+import { Layer, MediaLayer, Frame } from '@lism/core';
+// import './css/layer.css'
+import Image from "next/image";
+
+# MediaLayer
+
+`<Layer>`の拡張モジュール。  
+親サイズにフィットするサイズで`object-fit` なメディア（画像・動画）を配置するレイヤー。
+
+- `<MediaLayer>`
+- Lismクラス: `.l--layer--media`
+- 直下のimg要素には`.l--layer--media__img`が付与される.
+
+
+## 主なProps
+- `tag`
+- `z`: ラッパー要素である `<Layer>`に渡されます。
+- `...props` : メディアデータ指定. `src`, `alt` `width`, `height` など
+
+<Alert>
+`media`を指定せず、 `<MediaLayer><img ... /></MediaLayer>` のように`children`にそのまま画像を渡してもOKです。
+</Alert>
+
+
+## Import
+
+```js
+import { MediaLayer } from '@lism/core';
+```
+
+
+## Demo
+
+<Demo className="">
+	<Demo.Title>
+		`MediaLayer`に画像用のpropsを指定する
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box hasLayer h="200px">
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Box hasLayer h="200px">
+	<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+</Box>
+```
+	</Demo.Code>
+</Demo>
+
+
+<Demo className="">
+	<Demo.Title>
+		`next/image`を使う
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box hasLayer h="200px">
+			<MediaLayer tag={Image} src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+import Image from "next/image";
+
+<Box hasLayer h="200px">
+	<MediaLayer tag={Image} src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+</Box>
+```
+	</Demo.Code>
+</Demo>
+
+### Frameの併用
+
+<Demo className="">
+	<Demo.Title>
+		`2:1`で画像を表示する
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Frame aspect="2/1">
+			<MediaLayer>
+				<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+			</MediaLayer>
+		</Frame>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+import Image from "next/image";
+
+<Frame aspect="2/1">
+	<MediaLayer>
+		<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+	</MediaLayer>
+</Frame>
+```
+	</Demo.Code>
+</Demo>
+
+
+
+
+## `children`でメディアを渡す
+
+<Demo className="">
+	<Demo.Title>
+		`MediaLayer`の`children`で画像等を渡すこともできます。
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box hasLayer h="200px">
+			<MediaLayer>
+				<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+			</MediaLayer>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+import Image from "next/image";
+
+<Box hasLayer h="200px">
+	<MediaLayer>
+		<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+	</MediaLayer>
+</Box>
+```
+	</Demo.Code>
+</Demo>
+
+※ この時、`MediaLayer`に渡すpropsはすべて`Layer`に渡されます。
+
+<Demo className="">
+	<Demo.Title>
+		例
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Frame aspect="2/1" bgc="#fff" shadow='3'>
+			<MediaLayer p={20}>
+				<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+			</MediaLayer>
+		</Frame>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Frame aspect="2/1" bgc="#fff" shadow='3'>
+			<MediaLayer p={20}>
+				<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+			</MediaLayer>
+		</Frame>
+		```
+	</Demo.Code>
+</Demo>
+

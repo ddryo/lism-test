@@ -1,0 +1,43 @@
+import { Grid, Lism } from '@lism/core';
+
+# PriceMenu
+
+
+- `<PriceMenu>`
+- Lismクラス: `.b--`
+
+
+## Import
+
+```js
+import { PriceMenu } from '@lism/core';
+```
+
+## Demo
+
+作成中...
+
+含めるというより、組み合わせ例として紹介するだけでもいいかも？
+
+<Demo>
+	<Demo.Title>PriceMenuの例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Stack className="b--menu" gap={20}>
+			<Grid gtc="auto 1fr auto" ai="center" gap={[30, 40]}>
+				<Lism className="b--menu__dt">ハンバーグデミグラスソースとトマトソースのスパゲッティ</Lism>
+				<Lism tag="hr" minW="2em" />
+				<Lism className="b--menu__dd -whs:nw">$1,000</Lism>
+			</Grid>
+			<Grid gtc="auto 1fr auto" ai="center" gap={[30, 40]}>
+				<Lism className="b--menu__dt">Drink</Lism>
+				<Lism tag="hr" minW="2em" />
+				<Lism className="b--menu__dd -whs:nw">$500</Lism>
+			</Grid>
+		</Stack>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>

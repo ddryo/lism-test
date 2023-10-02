@@ -1,0 +1,293 @@
+import { Stack, Text, Center, Flex, Icon, Accordion, AccordionHeader, AccordionBody } from '@lism/core';
+import { CaretDown, Minus, Plus, X, Question, Selection } from "@phosphor-icons/react";
+import Script from 'next/script';
+
+# Accordion
+
+- `<Accordion>`
+	- `<AccordionHeader>`, `<AccordionBody>`
+- Lismクラス: `.l--accordion` ( .l-- 以外を)
+	- `.l--accordion__header`, `.l--accordion__body`
+- 実装について
+	- `details/summary` を採用。
+	- `grid` の `1fr` を使って "height:100% 問題" を解決。
+	- Note: `__body` の padding は `__body` につけるようにする。（閉じる時にpaddingYが0 !importantになる。）
+
+
+## 主なProps
+- `<Accordion>`
+	- `clickable="icon"`
+- `<AccordionHeader>`
+	- `icon`: "" | "triangle" | コンポーネント
+		- `openIcon`, `closeIcon` に分けて指定することも可能。
+	- `iconPosition`: "right" | "left"
+	- `labelTag`: ヘッダーテキストのHTMLタグ。
+- `<AccordionBody>`
+	- 特になし?
+
+## 要検討
+- アニメーションはjs管理?（CSSと切り分けると、transitionのタイムとopen属性の削除の遅延タイムをあわせないといけいない）
+- クリックで他を閉じる機能いる？ → AccordionGroupが必要。
+- "アコーディオンナビゲーション" に関しては、別途 WAI-ARIA 自作パターンで実装...？
+- どうせuseStateとか使うのでContext使って親からアイコン等も指定できるようにする...？
+
+
+## Import
+
+```js
+import { Accordion, AccordionHeader, AccordionBody } from '@lism/core';
+```
+
+## Demo
+
+export const AccDemoContent = () => {
+	return(
+		<>
+			<p>Accordion Contents.</p>
+		</>
+	);
+};
+
+<Script src='/js/acc.js' type="module"/>
+<Demo>
+	<Demo.Title>Accordionの例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Accordion>
+			<AccordionHeader>アコーディオンのタイトル</AccordionHeader>
+			<AccordionBody>
+				<AccDemoContent />
+				<DammyText length="l" />
+			</AccordionBody>
+		</Accordion>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Accordion>
+	<AccordionHeader>アコーディオンのタイトル</AccordionHeader>
+	<AccordionBody>
+		...
+	</AccordionBody>
+</Accordion>
+```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>Accordionの例  (variant=fill とかにする？)</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Accordion>
+			<AccordionHeader c="white" bgc="main" radius="0">アコーディオンのタイトル</AccordionHeader>
+			<AccordionBody bd bdc="main" bdt="none">
+				<AccDemoContent />
+			</AccordionBody>
+		</Accordion>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Accordion>
+	<AccordionHeader c="white" bgc="main" radius="0">アコーディオンのタイトル</AccordionHeader>
+	<AccordionBody bd bdc="main" bdt="none">
+		...
+	</AccordionBody>
+</Accordion>
+```
+	</Demo.Code>
+</Demo>
+
+
+### アイコンの違い
+
+<Demo>
+	<Demo.Title>デフォルトで用意しているアイコン</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Stack gap={10}>
+			<Accordion>
+				<AccordionHeader>アコーディオンのタイトル</AccordionHeader>
+				<AccordionBody>
+					<AccDemoContent />
+				</AccordionBody>
+			</Accordion>
+			<Accordion>
+				<AccordionHeader icon="triangle">アコーディオンのタイトル</AccordionHeader>
+				<AccordionBody>
+					<AccDemoContent />
+				</AccordionBody>
+			</Accordion>
+		</Stack>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Accordion>
+	<AccordionHeader>アコーディオンのタイトル</AccordionHeader>
+	<AccordionBody>...</AccordionBody>
+</Accordion>
+<Accordion>
+	<AccordionHeader icon="triangle">アコーディオンのタイトル</AccordionHeader>
+	<AccordionBody>...</AccordionBody>
+</Accordion>
+```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>アイコンを左側に表示</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Accordion>
+			<AccordionHeader iconPosition="left">アコーディオンのタイトル</AccordionHeader>
+			<AccordionBody>
+				<AccDemoContent />
+			</AccordionBody>
+		</Accordion>
+</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Accordion>
+	<AccordionHeader iconPosition="left">アコーディオンのタイトル</AccordionHeader>
+	<AccordionBody>...</AccordionBody>
+</Accordion>
+```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>openIcon, closeIconを分ける</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Stack gap={10}>
+			<Accordion>
+				<AccordionHeader openIcon={<Plus weight="bold" />} closeIcon={<Minus weight="bold" />}>
+					{`プラス/マイナス`}
+				</AccordionHeader>
+				<AccordionBody>
+					<AccDemoContent />
+				</AccordionBody>
+			</Accordion>
+			<Accordion>
+				<AccordionHeader openIcon={<CaretDown weight="bold" />} closeIcon={<X weight="bold" />}>
+					{`キャレット/クローズ`}
+				</AccordionHeader>
+				<AccordionBody>
+					<AccDemoContent />
+				</AccordionBody>
+			</Accordion>
+		</Stack>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+import { CaretDown, Minus, Plus, X } from "@phosphor-icons/react";
+
+<Accordion>
+	<AccordionHeader
+		openIcon={<Plus weight="bold" />}
+		closeIcon={<Minus weight="bold" />}
+	>
+		プラス/マイナス
+	</AccordionHeader>
+	<AccordionBody>...</AccordionBody>
+</Accordion>
+<Accordion>
+	<AccordionHeader
+		openIcon={<CaretDown weight="bold" />}
+		closeIcon={<X weight="bold" />}
+	>
+		キャレット/クローズ
+	</AccordionHeader>
+	<AccordionBody>...</AccordionBody>
+</Accordion>
+
+```
+	</Demo.Code>
+</Demo>
+
+
+## ヘッダーのHTMLタグをhタグにする
+
+<Demo>
+	<Demo.Title>Accordionの例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Accordion>
+			<AccordionHeader labelTag="h3">アコーディオンのタイトル</AccordionHeader>
+			<AccordionBody>
+				<AccDemoContent />
+			</AccordionBody>
+		</Accordion>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Accordion>
+	<AccordionHeader labelTag="h3">アコーディオンのタイトル</AccordionHeader>
+	<AccordionBody>...</AccordionBody>
+</Accordion>
+```
+	</Demo.Code>
+</Demo>
+
+
+## ヘッダーに要素を追加する
+`<AccordionHeader>`には`before`, `after`を挿入することができ、`.l--accordion__label` の前後に要素を追加できます。
+
+<Demo>
+	<Demo.Title>アイコンを挿入してみる</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Accordion>
+			<AccordionHeader
+				before={(<Center><Selection size='1.5em' /></Center>)}
+				after={(<Center><Selection size='1.5em' /></Center>)}
+			>
+				Accordion header label...
+			</AccordionHeader>
+			<AccordionBody>
+				<DammyText />
+			</AccordionBody>
+		</Accordion>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Accordion>
+	<AccordionHeader
+		before={(<Center><Selection size='1.5em' /></Center>)}
+		after={(<Center><Selection size='1.5em' /></Center>)}
+	>
+		Accordion header label...
+	</AccordionHeader>
+	<AccordionBody>
+		<DammyText />
+	</AccordionBody>
+</Accordion>
+```
+	</Demo.Code>
+</Demo>
+
+
+
+
+## アコーディオントリガーをアイコンのみにする
+
+`clickable="icon"`を指定すると、アコーディオンを展開するためのクリック範囲がアイコン部分のみになります。  
+この時、アイコン部分は少し強調されて表示されます。
+
+タイトル部分にもリンクを設置したいケースで活用してください。
+
+<Demo>
+	<Demo.Title>Accordionの例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Accordion clickable="icon">
+			<AccordionHeader>
+				<a href="#acc">アコーディオンのタイトル</a>
+			</AccordionHeader>
+			<AccordionBody>
+				<AccDemoContent />
+			</AccordionBody>
+		</Accordion>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Accordion clickable="icon">
+	<AccordionHeader>
+		<a href="#acc">アコーディオンのタイトル</a>
+	</AccordionHeader>
+	<AccordionBody>...</AccordionBody>
+</Accordion>
+```
+	</Demo.Code>
+</Demo>

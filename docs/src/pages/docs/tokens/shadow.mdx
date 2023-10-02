@@ -1,0 +1,98 @@
+import { Box,Frame, Text, Columns, Flex, Stack } from '@lism/core';
+
+# Shadow
+
+## Tokens
+- Tokens: `-4`, `-3`, ..., `0`, ... `3`, `4`
+
+## Utility
+- Utility Class: `-bxsh:-4`, ... ,`-bxsh:4`
+
+
+## Variables
+
+- `--shadow--{token}`
+	- プラス値: `--shadow--1`, `--shadow--2`...
+	- マイナス値: `--shadow--i1`, `--shadow--i2`...
+- 構成変数
+	- `--shadow--hsl`: `0 0% 0%`;
+	- `--shadow-strength--base`: `0.05`
+	- `--shadow-strength`: `0.1`
+	- `--shadow-length--0`: `0.5px 1px 2px 0px`
+	- `--shadow-length--1`: `0.5px 1px 4px 0px`
+	- `--shadow-length--2`: `1px 2px 8px 0px`
+	- `--shadow-length--3`: `2px 4px 16px 0px`
+	- `--shadow-length--4`: `4px 8px 32px 0px`
+
+
+## Demos
+
+export const ShadowDemos = ({ shadows = [] }) => {
+	return (
+		<>
+			{shadows.map((name) => {
+				return (
+					<Stack key={name} gap="20">
+						<Text bd='left' bdw='2px' lh='1' pl="20" fz='xs'><code>{name}</code></Text>
+						<Box aspect="1/1" shadow={name} radius='2'>&emsp;</Box>
+					</Stack>
+				);
+			})}
+		</>
+	);
+};
+
+<Demo>
+	<Demo.Title>shadows</Demo.Title>
+	<Demo.Preview nogrid p={30}>
+		<Columns cols={[2, 4, 4]} gap={30}>
+			<ShadowDemos shadows={[ 1, 2, 3, 4 ]}/>
+		</Columns>
+	</Demo.Preview>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>inset shadows</Demo.Title>
+	<Demo.Preview nogrid p={20}>
+		<Columns cols={[2, 4, 4]} gap={20}>
+			<ShadowDemos shadows={[ -1, -2, -3, -4 ]}/>
+		</Columns>
+	</Demo.Preview>
+</Demo>
+
+
+## How to use
+
+<Demo>
+	<Demo.Title>Component</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Box shadow="2">...</Box>
+	```
+	</Demo.Code>
+</Demo>
+<Demo>
+	<Demo.Title>HTML</Demo.Title>
+	<Demo.Code>
+	```html
+	<div class="l--box -bxsh:1">...</div>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>CSS</Demo.Title>
+	<Demo.Code>
+```css
+.foo{
+	box-shadow: var(--shadow--2);
+}
+```
+	</Demo.Code>
+</Demo>
+
+
+`shadowHsl`も指定したい
+
+

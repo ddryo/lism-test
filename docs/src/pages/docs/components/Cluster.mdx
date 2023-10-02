@@ -1,0 +1,94 @@
+import { Cluster, Badge } from '@lism/core';
+
+# Cluster
+
+複数の要素を**Flexレイアウトで横並びに配置する**ためのコンポーネントです。
+
+`--fxw:wrap`がデフォルトで適用されている[`isFlex`](/docs/layout-system/is-flex)なコンポーネントで、`<Flex fxw="wrap">`と機能的には同等です。
+
+- `<Cluster>`
+- Lismクラス: `.l--cluster.is--flex`
+- itemMinW: 子要素の最低限維持する幅
+	- ※ `div, span, li, p, a, button, input`に対してのみ有効です。
+
+## Import
+
+```js
+import { Cluster } from '@lism/core';
+```
+
+## Demo
+
+<Demo>
+	<Demo.Title>シンプルな`<Cluster>`の例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster>
+			<Badge>Lorem ipsum</Badge>
+			<Badge>Dolor sit</Badge>
+			<Badge>consectetur</Badge>
+			<Badge>adipisicing</Badge>
+			<Badge>elit</Badge>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Cluster>
+	<Badge>Lorem ipsum</Badge>
+	<Badge>Dolor sit amet</Badge>
+	<Badge>consectetur</Badge>
+	<Badge>adipisicing</Badge>
+	<Badge>elit</Badge>
+</Cluster>
+```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo>
+	<Demo.Title>他のpropsの活用</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={{row:15, column:20}} jc="end" fz="s" p={20} bgc="pale">
+			<Badge>Lorem ipsum</Badge>
+			<Badge>Dolor sit amet</Badge>
+			<Badge>consectetur</Badge>
+			<Badge>adipisicing</Badge>
+			<Badge>elit</Badge>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Cluster gap={{row:15, column:20}} jc="end" fz="s" p={20} bgc="pale">
+	<Badge>Cluster Item</Badge>
+	<Badge>Cluster Item</Badge>
+	<Badge>Cluster Item</Badge>
+</Cluster>
+```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo>
+	<Demo.Title>itemMinWを使う例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster itemMinW="5em" ta="center">
+			<Badge>Lorem ipsum</Badge>
+			<Badge>Dolor sit</Badge>
+			<Badge>amet</Badge>
+			<Badge>A</Badge>
+			<Badge>B</Badge>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Cluster itemMinW="5em" ta="center">
+	<Badge>Lorem ipsum</Badge>
+	<Badge>Dolor sit</Badge>
+	<Badge>amet</Badge>
+	<Badge>A</Badge>
+	<Badge>B</Badge>
+</Cluster>
+```
+	</Demo.Code>
+</Demo>

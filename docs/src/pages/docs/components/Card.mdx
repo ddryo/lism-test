@@ -1,0 +1,498 @@
+import { Box, TileGrid, Card, CardMedia, CardBody, Layer, Grid, Item, MediaLayer, FilterLayer, ContentLayer, Button, Columns } from '@lism/core';
+import Image from "next/image";
+
+
+# Card
+
+コンテンツをラップしてグループ化するためのシンプルなコンポーネントです。
+
+- `<Card>`
+	- CardMedia
+	- CardBody
+- Lismクラス:
+	- `.b--card`
+		- `.b--card-media`
+		- `.b--card-body`
+
+## 主なprops
+
+- `Card`
+	- `shadow`
+	- `radius`
+	- `href`
+	- `hover`
+- `CardMedia`
+	- `ratio`
+	- `media`
+- `CardBody`
+	- `isLayer`?
+
+radiusのデフォルト、`1`にする？
+
+
+## Import
+
+```js
+import { Card, CardMedia, CardBody } from '@lism/core';
+```
+
+
+{/* <Demo>
+	<Demo.Title>比率指定なしのバナーリンク</Demo.Title>
+	<Demo.Preview p={20} resize>
+		<Box fz='fluid'>
+			<DammyText  />
+		</Box>
+	</Demo.Preview>
+</Demo> */}
+
+
+## Demo
+
+<Demo>
+	<Demo.Title>シンプルなカード</Demo.Title>
+	<Demo.Preview p={30} maxW="32em">
+		<Card>
+			<CardMedia>
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</CardMedia>
+			<CardBody>
+				<h3 className="-fz:l">Card Title</h3>
+				<DammyText lang='ja' length='m' />
+			</CardBody>
+		</Card>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Card>
+			<CardMedia aspect="2/1">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</CardMedia>
+			<CardBody>
+				<h3 className="-fz:l">Card Title</h3>
+				<DammyText />
+			</CardBody>
+		</Card>
+		```
+	</Demo.Code>
+</Demo>
+
+
+`<CardMedia>`に `aspect`を指定すると、内部で`<Frame>`が使われます。
+<Demo>
+	<Demo.Title>`aspect`の指定</Demo.Title>
+	<Demo.Preview p={30} maxW="32em">
+		<Card>
+			<CardMedia aspect="2/1">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</CardMedia>
+			<CardBody>
+				<h3 className="-fz:l">Card Title</h3>
+				<DammyText lang='ja' length='m' />
+			</CardBody>
+		</Card>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Card>
+			<CardMedia aspect="2/1">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</CardMedia>
+			<CardBody>
+				<h3 className="-fz:l">Card Title</h3>
+				<DammyText />
+			</CardBody>
+		</Card>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### 横並び
+
+`isFlex` を指定すると、`<Card>`が`<Stack>`ではなく`<Flex>`で構成されるようになります。
+
+<Demo>
+	<Demo.Title>横並びカード</Demo.Title>
+	<Demo.Preview p={20} maxW="40em">
+			<Card isFlex>
+				<CardMedia>
+					<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+				</CardMedia>
+				<CardBody>
+					<h3 className="-fz:l">Card Title</h3>
+					<DammyText/>
+					<Text className="l--end" fz='s'>Bottom Text</Text>
+				</CardBody>
+			</Card>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {1}
+		<Card isFlex>
+			<CardMedia>
+				...
+			</CardMedia>
+			<CardBody>
+				...
+			</CardBody>
+		</Card>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>横並びの方向を 逆順にする</Demo.Title>
+	<Demo.Preview p={20} maxW="40em">
+			<Card isFlex direction="row-reverse">
+				<CardMedia>
+					<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+				</CardMedia>
+				<CardBody>
+					<h3 className="-fz:l">Card Title</h3>
+					<DammyText/>
+					<Text className="l--end" fz='s'>Bottom Text</Text>
+				</CardBody>
+			</Card>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {1}
+		<Card isFlex direction="row-reverse">
+			<CardMedia>
+				...
+			</CardMedia>
+			<CardBody>
+				...
+			</CardBody>
+		</Card>
+		```
+	</Demo.Code>
+</Demo>
+
+
+#### 横並び時のメディアサイズ
+
+`<CardMedia>`に対して `w`, `ratio` を指定することでサイズを調整します。  
+（`w`の初期値は`50%`になっています）
+
+
+<Alert>
+`min-height:100%`になります。これにより、コンテンツ側よりも画像の縦幅が大きくなる場合のみ、指定したアスペクト比が保持されます。
+</Alert>
+
+<Demo>
+	<Demo.Title>`w:32%`, `ratio:3/4`, 位置反転</Demo.Title>
+	<Demo.Preview p={20} maxW="40em" resize>
+		<Card isFlex>
+			<CardMedia w="32%" aspect="3/4">
+				<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+			</CardMedia>
+			<CardBody>
+				<h3 className="-fz:l">Card Title</h3>
+				<DammyText/>
+				<Text className="l--end" fz='s'>Bottom Text</Text>
+			</CardBody>
+		</Card>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {2}
+		<Card isFlex>
+			<CardMedia w="32%" aspect="3/4">
+				...
+			</CardMedia>
+			<CardBody>
+				...
+			</CardBody>
+		</Card>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>横並びカードをColumnsで配置テスト</Demo.Title>
+	<Demo.Preview p={20} resize>
+		<Columns cols={[1, null, 2]} gap={20}>
+			<Card isFlex>
+				<CardMedia w="40%">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				</CardMedia>
+				<CardBody gap={15}>
+					<h3 className="-fz:l">Card Title</h3>
+					<DammyText/>
+					<Text className="l--end" fz='s'>Bottom Text</Text>
+				</CardBody>
+			</Card>
+			<Card isFlex>
+				<CardMedia w="40%">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				</CardMedia>
+				<CardBody gap={15}>
+					<h3 className="-fz:l">Card Title</h3>
+					<DammyText/>
+					<Text className="l--end" fz='s'>Bottom Text</Text>
+				</CardBody>
+			</Card>
+		</Columns>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Columns cols={[1, null, 2]} gap={20}>
+			<Card isFlex>
+				<CardMedia w="40%" media={...} />
+				<CardBody>
+					...
+				</CardBody>
+			</Card>
+			<Card isFlex>
+				<CardMedia w="40%" media={...} />
+				<CardBody>
+					...
+				</CardBody>
+			</Card>
+		</Columns>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>rtl言語テスト</Demo.Title>
+	<Demo.Preview p={20} maxW="40em">
+		<Card isFlex dir='rtl'>
+			<CardMedia w="40%">
+				<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+			</CardMedia>
+			<CardBody>
+				<h3 className="-fz:l">ما هو "لوريم إيبسوم" ؟</h3>
+				<p>هذا نص وهمي أنا أكتب جمل ليس لها معنى معين.هذا نص وهمي أنا أكتب جمل ليس لها معنى معين.هذا نص وهمي أنا أكتب جمل ليس لها معنى معين.</p>
+				<Text className="l--end" fz='s'>النص السفلي</Text>
+			</CardBody>
+		</Card>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Card shadow={null} radius={null} gap={20} bgc="none">
+			<CardMedia w="40%">
+				<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+			</CardMedia>
+			<CardBody p={null} pX={10} pY={0}>
+				<h3 className="-fz:l">Card Title</h3>
+				<DammyText />
+			</CardBody>
+		</Card>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>TileGrid と併用、リンクあり, radius="4"</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<TileGrid itemMinW="20rem" gap={20}>
+			<Card href="#card-demo" radius="4">
+				<CardMedia aspect="16/9">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				</CardMedia>
+				<CardBody>
+					<h3 className="-fz:l">Card Title A</h3>
+					<DammyText />
+					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+			<Card href="#card-demo" radius="4">
+				<CardMedia aspect="16/9">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				</CardMedia>
+				<CardBody>
+					<h3 className="-fz:l">Card Title B</h3>
+					<DammyText length="m" />
+					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+		</TileGrid>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<TileGrid itemMinW="20rem" gap={20}>
+			<Card href="#card-demo" radius="4">
+				<CardMedia aspect="16/9">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				</CardMedia>
+				<CardBody lh="1.625">
+					<h3 className="-fz:l">Card Title A</h3>
+					<DammyText />
+					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+			...
+		</TileGrid>
+		```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo>
+	<Demo.Title>hoverを変えてみる</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<TileGrid itemMinW="20rem" gap={20}>
+			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
+				<CardMedia aspect="2/1">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+					<Layer position="top right" c="white" bgc="black" p={10} radius="1" fz="xs">Category</Layer>
+				</CardMedia>
+				<CardBody lh="1.625">
+					<h3 className="-fz:l">Card Title A</h3>
+					<DammyText />
+					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
+				<CardMedia aspect="2/1">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+					<Layer position="top right" c="white" bgc="black" p={10} radius="1" fz="xs">Category</Layer>
+				</CardMedia>
+				<CardBody lh="1.625">
+					<h3 className="-fz:l">Card Title B</h3>
+					<DammyText />
+					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+		</TileGrid>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<TileGrid itemMinW="20rem" gap={20}>
+			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
+				<CardMedia aspect="2/1">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+					<Layer position="top right" c="white" bgc="black" p={10} radius="1" fz="xs">Category</Layer>
+				</CardMedia>
+				<CardBody lh="1.625">
+					<h3 className="-fz:l">Card Title A</h3>
+					<DammyText />
+					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
+				...
+			</Card>
+		</TileGrid>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### isLayer
+
+<Demo>
+	<Demo.Title>画像の上にコンテンツを</Demo.Title>
+	<Demo.Preview p={30} maxW="32em">
+		<Card shadow="3">
+			<CardMedia aspect="16/9">
+				<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				<FilterLayer bgc="rgba(255,255,255,0.5)" blur="3px" brightness={1.2}/>
+			</CardMedia>
+			<CardBody isLayer size='cover'>
+				<Stack h="100%" gap={20}>
+					<h3 className="-fz:l">Card Title</h3>
+					<DammyText />
+					<Button className="is:end" href="#button-test" radius="99" hover="fade">Button</Button>
+				</Stack>
+			</CardBody>
+		</Card>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>画像の上にコンテンツを</Demo.Title>
+	<Demo.Preview p={30} maxW="32em">
+		<Card shadow="3" href="#card-test">
+			<CardMedia aspect="4/3">
+				<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+			</CardMedia>
+			<CardBody isLayer position='bottom' w='100%' size="contain" z='0'>
+				<FilterLayer bgc="rgba(255,255,255,0.6)" blur="3px" brightness={1.2} z='-1'/>
+				<Stack h="100%" gap={10}>
+					<h3 className="-fz:r">Card Title</h3>
+					<DammyText fz='s'/>
+				</Stack>
+			</CardBody>
+		</Card>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		```
+	</Demo.Code>
+</Demo>
+
+
+## カスタマイズ例
+
+hoverエフェクトを自作する
+
+<Demo>
+	<Demo.Title>コンテンツをホバーして表示</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<TileGrid itemMinW="20rem" gap={20}>
+			<Card href="#card-demo" radius="1" hover={["contentUp", "mediaZoom"]}>
+				<CardMedia aspect="4/3">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				</CardMedia>
+				<CardBody isLayer position='bottom' w='100%' p={0} size="contain">
+					<FilterLayer blur="4px" brightness={1.2}/>
+					<Box pos="relative" z="1" p='box' bgc="rgba(255,255,255,0.5)" c="black">
+						<h3 className="-fz:r">Card Title A</h3>
+						<Grid className="b--card__hiddenArea">
+							<Box ov="hidden">
+								<DammyText  pY={10} fz="s" lh="1.5" opacity=".75" />
+							</Box>
+						</Grid>
+						<Text fz="s" opacity=".75">2000.01.01 / Author</Text>
+					</Box>
+				</CardBody>
+			</Card>
+			<Card href="#card-demo" radius="1" hover={["contentUp", "mediaZoom"]}>
+				<CardMedia aspect="4/3">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				</CardMedia>
+				<CardBody isLayer position='bottom' w='100%' p={0} size="contain">
+					<FilterLayer blur="4px" brightness={1.2}/>
+					<Box pos="relative" z="1" p='box' bgc="rgba(255,255,255,0.5)" c="black">
+						<h3 className="-fz:r">Card Title A</h3>
+						<Grid className="b--card__hiddenArea">
+							<Box ov="hidden">
+								<DammyText  pY={10} fz="s" lh="1.5" opacity=".75" />
+							</Box>
+						</Grid>
+						<Text fz="s" opacity=".75">2000.01.01 / Author</Text>
+					</Box>
+				</CardBody>
+			</Card>
+		</TileGrid>
+
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		```
+	</Demo.Code>
+</Demo>
+
+`"contentUp"`を指定しているので、 `.-hov:contentUp` が出力されます。
+このクラスに対して、下記のCSSを追加して上記のDEMOを実装しています。
+
+```scss
+.b--card.-hov\:contentUp .b--card__hiddenArea{
+	--gtr:0fr;
+	opacity: 0;
+	transition: opacity .25s, grid-template-rows .25s;
+}
+
+.b--card.-hov\:contentUp:hover .b--card__hiddenArea{
+	--gtr: 1fr;
+	opacity: 1;
+}
+```

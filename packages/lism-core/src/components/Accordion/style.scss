@@ -8,19 +8,15 @@
 	}
 }
 
-:where(.l--accordion__header) {
-	--p: 0 var(--space--30);
-	--gap: var(--space--30);
-	--bdrs: var(--radius--1);
-}
 .l--accordion__header {
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: var(--p);
-	gap: var(--gap);
-	border-radius: var(--bdrs);
+	padding: var(--p--box--s);
+	gap: var(--space--20);
+	border-radius: var(--radius--1);
+	min-height: 3em;
 
 	/* Safariで表示されるデフォルトの三角形アイコンを消します */
 	&::-webkit-details-marker {
@@ -31,18 +27,15 @@
 .l--accordion__label {
 	flex-grow: 1;
 	overflow-wrap: anywhere;
-	padding: var(--space--30) var(--space--10);
+	line-height: var(--lh--s);
 }
 
-:where(.l--accordion__body) {
-	--p: var(--space--40);
-}
 .l--accordion__body {
 	display: grid;
 	grid-template-rows: 1fr;
 	transition-property: padding, opacity, grid-template-rows;
 	transition-duration: var(--duration);
-	padding: var(--p);
+	padding: var(--p--box);
 }
 
 .l--accordion__bodyInner {
@@ -63,6 +56,7 @@
 // アコーディオンブロックのネスト時、別のアイコンタイプにすると表示が崩れるがそこまでは考慮しない。
 .l--accordion__icon {
 	display: flex;
+	flex-shrink: 0;
 	// --gta: "icon";
 
 	// __icon 自体にborderつけたりすると回転が見えてしまうので、 icon自体を回転させる。
@@ -81,24 +75,20 @@
 	}
 }
 
-.l--accordion__label > a,
-.l--accordion__icon {
-	pointer-events: auto;
-}
-
 // [data-clickable="icon"] のとき
-button.l--accordion__icon {
+button:where(.l--accordion__icon) {
 	padding: 0.325em;
 	border: solid 1px currentColor;
 	border-radius: var(--radius--1);
 }
 
-[data-clickable='icon'] {
-	> .l--accordion__header {
-		pointer-events: none;
-	}
+[data-clickable='icon'] > .l--accordion__header {
+	pointer-events: none;
 }
-
+.l--accordion__label > a,
+.l--accordion__icon {
+	pointer-events: auto;
+}
 // .-opened > .l--accordion__header > .l--accordion__icon {
 // 	transform: rotate(180deg);
 

@@ -1,8 +1,9 @@
+@use '../query' as query;
+
 // [class*="-lh:"]{
 // 	line-height: var(--lh);
 // }
 
-// fzは詳細度高くていいが、lhは詳細度低くていい.
 [class*='-fz:'] {
 	font-size: var(--fz);
 }
@@ -54,7 +55,10 @@
 // }
 
 // line-height
-.-lh\: {
+// .-lh\: {
+// 	line-height: var(--lh);
+// }
+[class*='-lh:'] {
 	line-height: var(--lh);
 }
 .-lh\:base {
@@ -79,4 +83,20 @@
 }
 .-ff\:emoji {
 	font-family: var(--ff--emoji);
+}
+
+@include query.cq('sm') {
+	.-fz\@sm\: {
+		font-size: var(--fz--sm) !important;
+	}
+}
+@include query.cq('md') {
+	.-fz\@md\: {
+		font-size: var(--fz--md) !important;
+	}
+}
+@include query.cq('lg') {
+	.-fz\@lg\: {
+		font-size: var(--fz--lg) !important;
+	}
 }

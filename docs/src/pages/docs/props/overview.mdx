@@ -1,0 +1,341 @@
+import { Box } from '@lism/core';
+
+# Lism Props
+
+[Lismコンポーネント](/docs/components/overview)で受け取れるProps(Lism Props と呼びます)と、それに対応するCSSプロパティについて紹介します。
+
+Lism Propsは基本的に**各CSSプロパティを省略した名前**で用意されています。
+
+memo: 省略判断
+
+- 使用頻度が少ない（=省略に馴染みがない）
+- 省略すると単語的にややこしい（as,js）
+- プリセットが何もないやつも省略しない？
+- シンプルにstyle属性で出力するプロパティは、省略指定しないようにルールを統一する?（alignSelf,justifySelf,…）
+
+<Demo>
+	<Demo.Title>Lism Propsで`background-color`を指定する例</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Box bgc="rgba(0,0,0,0.2)">...</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+<Note caption="Lismコンポーネント以外では使用できません。" preset="warning">
+次のように普通のdivタグなどには使用できません。
+```jsx
+<div bgc="rgba(0,0,0,0.2)">...</div>
+```
+</Note> 
+
+Lism Propsにおける重要なポイントをいくつか先に挙げておきます。
+
+<Box p='box' bgc="pale">
+- 対応するプリセット値（トークン）を持つものがある
+- 指定した値によってユーティリティクラス化されて出力される場合がある
+- ユーティリティクラス化されない時の挙動が数パターンある
+- ブレイクポイントで値を切り替えることができるものがある
+- それらの設定は、configファイルでカスタマイズ可能である
+</Box>
+
+
+## 対応トークンとユーティリティクラスでの出力について
+
+Lismでは、主要なCSSプロパティ向けのプリセット値をトークンで管理しています。  
+[Tokens](/docs/tokens/overview) で紹介しているものがそれにあたります。
+
+対応するトークン値を指定した時、ユーティリティクラスとして出力されるか、もしくは対応するCSS変数として出力されます。
+
+例えば、`p`(`padding`)や`mb`(`margin-bottom`)プロパティは`SPACE`, `shadow`プロパティには`SHADOW`トークンが対応しており、対応するトークンを指定することが可能です。
+
+<Demo>
+	<Demo.Title>例</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Box p={20} mb={40} shadow="2">...</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+この中で、`p`に対する`20`と`shadow`に対する`2`は、ユーティリティクラスとして出力されるように事前に設定されており、`mb`には、その設定がありません。
+
+そのため、出力結果は次のようになります。
+
+```jsx
+<div class="-p:20 -bxsh:2 -mb:" style="--mb:var(--space--40)">...</div>
+```
+
+
+### ユーティリティクラスとして出力される値について
+
+トークン管理している値が全てユーティリティ化されているわけでもなく、トークン管理していない値でもユーティリティ化されているものがあります。
+
+`PROPS`データで `utils` または `presets` が指定されているものは、指定した値がユーティリティクラス化される可能性があります。具体的にどの値をユーティリティ化するかどうかの詳細は`/src/config/presets`,`/src/config/utilities`で定義しており、これらは上書きも可能です（予定）。
+
+いくつかユーティリティクラス化される例を挙げておきます。
+
+- `p={20}` → `-p:20`
+- `p="box:s"` → `-p:box:s`
+- `mt="auto"` → `-mt:a`
+- `c="main"`, → `-c:main`
+- `bgc="pale"`, → `-bgc:pale`
+- `fz="xl"` → `-fz:xl`
+- `w="100%"`,`w="100"` → `-w:100`
+- `ta="center"`,`ta="c"` → `-ta:c`
+- `d="flex"`,`d="f"` → `-d:f`
+
+<Demo>
+	<Demo.Title>例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box p="box:s" c="main" bgc="pale" ta="c" fz="xl">
+			Text
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box p="box:s" c="main" bgc="pale" ta="c" fz="xl">
+		Text
+	</Box>
+
+	↓ 出力結果
+
+	<div class="l--box -p:box:s -c:main -bgc:pale -ta:c -fz:xl">
+		...
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+### ユーティリティクラス化されない時の出力パターンについて
+
+3パターンあります。
+
+- 1のメリット
+    - 何かしらそのpropを持つかどうかがクラスで判定できる。
+    例: `[class*=-c:]`
+    - 優先度的な問題が多少緩和できる。（強力なインラインセットは変数でしかない）
+    - →HTML側の文字数が少なくなる
+
+- 1,2の判断基準どうする？
+	- utility以外を使うことが珍しいか（自由な数値で値をとれるか）どうか?
+	- ブレイクポイントで切り替えるかどうかで判断すればいいのでは？
+
+#### 1. `-prop:`クラスと`--prop`変数の組み合わせで出力される
+
+`p`や`c`,`bgc`など、
+
+- ブレイクポイントの指定が可能なもの
+- ユーティリティクラスが多いもの
+- 使用頻度が高く文字数の省略になりそうなもの
+- `-{prop}:`クラスによって何か値を指定していることが分かったほうが便利なケースがありそうなプロパティ
+
+がこのパターンで出力されます。
+
+<Demo>
+	<Demo.Title>`p`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box p="1em" c="#f15a00" bgc="rgba(0,0,0,0.1)">
+			<DammyText />
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box p="1em" bgc="rgba(0,0,0,0.1)">
+		...
+	</Box>
+
+	↓ 出力結果
+
+	<div class="l--box -p: -c: -bgc:" style="--p:1em;--c:#f15a00;--bgc:rgba(0,0,0,0.1)">
+		...
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+#### 2. 単純にstyleとして出力される
+
+<Demo>
+	<Demo.Title>`p`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box maxW="20em" opacity="0.5">
+			<DammyText />
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box maxW="20em" opacity="0.5">
+		...
+	</Box>
+
+	↓ 出力結果
+
+	<div class="l--box" style="max-width:20em;opacity:0.5">
+		...
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+#### 3. `--prop`だけ出力されるもの
+
+このケースは稀です。
+
+- `--bdc`,`--bdw`,`--bds` のborder系
+- `--keycolor` など、利用する場面が限定されているもの。
+{/* - l--gridにおける--gtaなど?。 */}
+
+
+## `-prop:`クラスだけを出力する方法
+
+パターン1での出力がされるLism Propsに対して `"-"` または `true` を指定することで、`.-{prop}:` クラスだけの出力が可能です。
+
+CSSファイル側で具体的な値を指定したい場合などに活用できます。
+<Demo>
+	<Demo.Title>`p`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box mb bd w opacity p={['-', '-']}>
+
+			<p>Box</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box mb bd w opacity p={['-', '-']}>
+		<p>Box</p>
+	</Box>
+
+	↓
+
+	<div class="l--box -p@sm: -p: -mb: -bd: -w:"><p>Box</p></div>
+	```
+	</Demo.Code>
+</Demo>
+
+このように、`-{prop}:`クラスだけ出力されてCSS変数は何も出力されません。（パターン2で出力される`opacity`に関しては、`-opacity:`クラスが出力されていないことにも注目してください。）
+
+
+## Responsive Props
+
+Lism Propsの一部は、[ブレイクポイント](/docs/design-system/break-point)で値を切り替えることができ、2通りの指定方法があります。
+
+1. 配列で順番に指定（ _ → sm → md → ...）
+2. オブジェクトで直接ブレイクポイントを指定
+
+<Alert preset="info">
+どちらも最終的に出力されるHTMLは同じになり、そのHTMLとCSSを直接記載するだけでもブレイクポイントで値を切り替えることが可能です。
+</Alert>
+
+
+<Demo>
+	<Demo.Title>例1: `p`を 20 → @sm:30 → @md:40 に切り替えていく</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box p={[20, 30, 40]}>
+			<p>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box p={[20, 30, 40]}>
+		...
+	</Box>
+
+	or
+
+	<Box p={{ _: 20, sm: 30, md: 40 }}>
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+これにより出力されるHTMLは以下のようになります。
+
+```html
+<div class="l--box -p:20 -p@sm: -p@md:" style="--p--sm:var(--space--30);--p--md:var(--space--40)">
+	...
+</div>
+```
+<Demo>
+	<Demo.Title>例2: `p`を 20 → @md:40 に切り替える</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box p={[20, null, 40]}>
+			<p>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box p={[20, null, 40]}>
+		...
+	</Box>
+
+	or
+
+	<Box p={{ _: 20, md: 40 }}>
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+これにより出力されるHTMLは以下のようになります。
+
+```html
+<div class="l--box -p:20 -p@md:" style="--p--md:var(--space--40)">
+	...
+</div>
+```
+
+<Demo>
+	<Demo.Title>その他、`gap`や`w`でもBP指定可能な様子</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex gap={[30, 40]}>
+			<Box w={['auto', null, '25%']}>コンテンツ</Box>
+			<Box>コンテンツ</Box>
+			<Box>コンテンツ</Box>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Flex gap={[30, 40]}>
+		<Box w={['auto', null, '25%']}>コンテンツ</Box>
+		<Box>コンテンツ</Box>
+		<Box>コンテンツ</Box>
+	</Flex>
+	```
+	</Demo.Code>
+</Demo>
+
+
+### 方向成分を持ち、かつBP指定可能なプロパティ
+
+`p={{left, right,...}}`などの指定も可能です。
+
+BP指定との併用時における注意事項を以下に記載します。
+
+...
+
+
+```
+// p={_:{pl: [20,40], pr: 30}, sm:{}} のような指定はできないルール.
+// p=[{left,right}, {left,right}] みたいな指定はできないルール.
+// p={X: [20,40], Y: [30,40]} は一応処理的には問題ないが、そもそもそんな指定は非推奨
+```
+
+
+## その他
+
+`tag`で出力するHTMLタグの指定ができる。
+
+一部、`as`で別コンポーネントとして展開できるものもある。
+
+
+TODO:Space分割にも対応？
+<Box radius='1 2' m='10 20'>
+	<p>Box</p>
+</Box>

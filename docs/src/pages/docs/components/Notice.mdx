@@ -1,0 +1,110 @@
+import {  Alert, Note, Tabs, TabItem, Spacer } from '@lism/core';
+
+import Image from "next/image";
+import {
+	Smiley,
+	Horse,
+	Book,
+	Cat,
+	Baseball,
+} from "@phosphor-icons/react";
+
+export const DemoText = (
+	<p>
+		ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、<a href="###">リンク文字列</a> ブラインド行うにはいくつかの重要な事柄に座ります。
+	</p>
+	// <p>
+	// 	Lorem ipsum dolor <code>sit amet</code> consectetur <a href="###">linked elit</a> adipisicing.
+	// </p>
+);
+export const DemoTextLong = (
+	<p>
+		Lorem ipsum dolor sit amet consectetur <a href="###">linked elit</a> adipisicing elit. Illo sunt deserunt
+		consectetur consequatur, tenetur perferendis totam magnam laborum <code>iure recusandae</code> repellendus
+		voluptatum tempora quidem praesentium sapiente harum quas maiores magni.
+	</p>
+);
+// export const PRESETS = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray"];
+export const PRESETS = ["error", "point", "warning", "success", "info", "question", "memo"];
+export const NoteDemos = ({ children, variant }) => {
+	return (
+		<>
+			{PRESETS.map((preset) => {
+				return (
+					<Note caption="Note default" variant={variant} preset={`${preset}`} key={preset}>
+						{DemoTextLong}
+					</Note>
+				);
+			})}
+		</>
+	);
+};
+
+
+
+# Note
+
+- Lismクラス: `.b--Note`
+
+## 主なprops
+- 
+
+
+## Import
+
+```js
+import { Note } from '@lism/core';
+```
+
+## Demo
+
+<Demo>
+	<Demo.Title>
+		`variant`一覧
+	</Demo.Title>
+	<Demo.Preview p={20}>
+		<Note caption="variant: note(default)">{DemoTextLong}</Note>
+		{/* <Note caption="variant: outline" variant="outline">
+			{DemoTextLong}
+		</Note> */}
+		<Note caption="variant: bump" variant="bump">
+			{DemoTextLong}
+		</Note>
+		{/* <Note caption="variant: fill" variant="fill">
+			{DemoTextLong}
+		</Note> */}
+		<Note caption="Note default" icon={Smiley} color="pink">
+			{DemoTextLong}
+		</Note>
+	</Demo.Preview>
+	<Demo.Code p={20}>
+		```jsx
+		
+		```
+	</Demo.Code>
+</Demo>
+
+
+### Coloring
+
+
+<Tabs alignfull>
+	<TabItem index={0} isConstrained isFlow p={20} label="note">
+		<Demo>
+			<Demo.Preview isShadow p={20}>
+				<NoteDemos />
+			</Demo.Preview>
+		</Demo>
+	</TabItem>
+	<TabItem index={1} isConstrained isFlow p={20} label="bump">
+		<Demo>
+			<Demo.Preview isShadow p={{Y:50, X:40}}flowGap={20}>
+				<NoteDemos variant="bump"/>
+			</Demo.Preview>
+		</Demo>
+	</TabItem>
+	{/* <TabItem index={2} isConstrained isFlow p={20} label="outline">
+		<NoteDemos variant="outline" />
+	</TabItem> */}
+</Tabs>
+

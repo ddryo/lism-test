@@ -1,0 +1,147 @@
+import { Box, Text, RatioGrid, Flex, Stack, Spacer } from '@lism/core';
+
+export const LismColorDemos = ({ colors = [] }) => {
+	return (
+		<>
+			{colors.map((name) => {
+				return (
+					<Stack key={name} gap="10">
+						<Text bd='left' bdw='2px' lh='1.25' pl="20" fz='xs'><code>--{name}</code></Text>
+						<RatioGrid ratio={['1', '1:2']} fz='s'>
+							<Box bgc={`var(--${name})`} p="10">&emsp;</Box>
+							<Box bd='' c={`var(--${name})`} p="10">Lorem ipsum text...</Box>
+						</RatioGrid>
+					</Stack>
+				);
+			})}
+		</>
+	);
+};
+
+
+# Color Tokens
+
+- Box にも variant
+
+<Demo>
+	<Demo.Title>テキスト系(code, link )</Demo.Title>
+	<Demo.Preview isShadow resize p={20}>
+		Lorem ipsum dolor sit `code text`amet, [link text](#)consectetur <kbd>kbd tag</kbd> adipisicing elit.
+	</Demo.Preview>
+</Demo>
+
+
+## カラートークン
+
+<Demo className='-bg:stripe'>
+	<Demo.Title>Point colors</Demo.Title>
+	<Demo.Preview isShadow resize p={20} flowGap="30">
+		<LismColorDemos colors={[ 'main', 'accent' ]}/>
+	</Demo.Preview>
+</Demo>
+
+
+<Demo className='-bg:stripe'>
+	<Demo.Title>Basic カラー</Demo.Title>
+	<Demo.Preview isShadow resize p={20} flowGap="30">
+		<LismColorDemos colors={[ 'b50', 'b100', 'b200', 'b300', 'b400', 'b500', 'b600', 'b700', 'b800', 'b900' ]}/>
+	</Demo.Preview>
+</Demo>
+
+<Alert>
+Basic系カラーはデフォルトで 背景色・文字色・ボーダー色などに使われています。(50:背景色 ←→ 950:文字色)  
+`--hs--basic`で色味を一括調整可能。
+</Alert>
+
+<Demo className='-bg:stripe'>
+	<Demo.Title>パレットカラー</Demo.Title>
+	<Demo.Preview isShadow resize p={20} flowGap="30">
+		<LismColorDemos colors={[ 'black', 'white', "red", "orange", "yellow", "green", "blue", "purple", "pink" ]}/>
+	</Demo.Preview>
+</Demo>
+
+
+## セマンティックトークン
+
+### 文字色(`color`)用 
+|トークン|変数|初期値|
+|---|---|---|
+|`base`|`--c--base`|`--b900`|
+|`pale`|`--c--pale`|`--b700`|
+|`opposite`|`--c--opposite`|`--b50`|
+
+weak - srtong?
+pale - deep?
+
+### 背景色(`background-color`)用 
+|トークン|変数|初期値|
+|---|---|---|
+|`base`|`--bgc--base`|`--b50`|
+|`pale`|`--bgc--pale`|`--b100`|
+|`opposite`|`--bgc--opposite`|`--b900`|
+
+### ボーダー色(`border-color`)用 
+|トークン|変数|初期値|
+|---|---|---|
+|`base`|`--bdc--base`|`--b300`|
+{/* |`strong`?|`--bdc--strong?`|`--b800`| */}
+
+
+<Demo>
+	<Demo.Title>テキストカラー</Demo.Title>
+	<Demo.Preview isShadow resize p={20}>
+		`c="base"` :  
+		<DammyText tag="span" c="base" />
+
+		`c="pale"` :  
+		<DammyText tag="span" c="pale" />
+		
+		`c="opposite"` :  
+		<DammyText tag="span" c="opposite" />
+	</Demo.Preview>
+</Demo>
+
+<Demo>
+	<Demo.Title>背景色</Demo.Title>
+	<Demo.Preview isShadow resize p={20} flowGap={10}>
+		`bgc="base"`
+		<Box bgc="base" p='box'>
+			<DammyText tag="span"/>
+		</Box>
+		<Spacer height={20} />
+		`bgc="pale"`
+		<Box bgc="pale" p='box'>
+			<DammyText tag="span"/>
+		</Box>
+		<Spacer height={20} />
+		`bgc="b200"`
+		<Box bgc="b200" p='box'>
+			<DammyText tag="span"/>
+		</Box>
+		<Spacer height={20} />
+		`bgc="opposite"`
+		<Box bgc="opposite" p='box'>
+			<DammyText tag="span"/>
+		</Box>
+		{/* <Spacer height={20} /> */}
+		{/* `bgc="pale"`,  `bdc="base"`
+		<Box bgc="pale" bd bdc="base" p='box'>
+			<DammyText tag="span"/>
+		</Box> */}
+	</Demo.Preview>
+</Demo>
+
+<Demo>
+	<Demo.Title>ボーダーカラー</Demo.Title>
+	<Demo.Preview isShadow resize p={20} flowGap={10} nogrid>
+		`c="base"`
+		<Box p='box' bd bdc="base">
+			<DammyText tag="span"/>
+		</Box>
+		<Spacer height={20} />
+		`c="pale"`
+		<Box p='box' bd bdc="b200">
+			<DammyText tag="span"/>
+		</Box>
+	</Demo.Preview>
+</Demo>

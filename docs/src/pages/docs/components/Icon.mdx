@@ -1,0 +1,231 @@
+import { Badge, Cluster, Icon, InlineIcon, Center } from '@lism/core';
+import {
+	Smiley,
+	Horse,
+	Book,
+	Cat,
+	Baseball,
+} from "@phosphor-icons/react";
+
+
+
+# Icon
+
+- `<Icon>`
+	- Lismクラス: `.e--icon`
+- `<InlineIcon>`: テキストの中にアイコンをインライン要素として挿入するためのコンポーネント。
+	- Lismクラス: `.e--inlineIcon`
+
+
+## 主なprops
+- `icon`: アイコンの指定。svgコンポーネントを投げるか、文字列で指定するとCSSでアイコンを定義できるようにdata-css-iconとして出力される。
+- `size`: svgタグのwidth,heightに出力されるサイズ。CSSアイコンの場合は--sizeとして出力される。
+	- default: `1em`
+
+
+## 補足事項
+- fillがcurrentColorになっているアイコンのみ、色を変えられる。
+
+
+## Import
+
+```js
+import { Icon } from '@lism/core';
+```
+
+## Demo
+
+### アイコン
+
+<Demo>
+	<Demo.Title>外部パッケージの利用</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Icon icon={<Smiley weight="thin" />} size="3em" />
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+import { Smiley } from "@phosphor-icons/react";
+
+<Icon icon={<Smiley weight="thin" />} size="3em" />
+```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>自作svgの利用</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Icon
+			icon={<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" xmlSpace="preserve"><polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " /></svg>}
+			size="3em"
+		/>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Icon
+	icon={<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" xmlSpace="preserve"><polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " /></svg>}
+	size="3em"
+/>
+```
+	</Demo.Code>
+</Demo>
+
+
+## InlineIcon
+<Demo>
+	<Demo.Title>InlineIcon</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<p><InlineIcon icon={<Horse />} />ロレム・イプサム・ドロー・シット・アメット</p>
+		<p>Lorem ipsum dolor<InlineIcon icon={Horse} c="accent" /> sit amet<InlineIcon icon={<Smiley c="blue" />} /> consectetur.</p>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<p><InlineIcon icon={<Horse />} />ロレム・イプサム・ドロー・シット・アメット</p>
+<p>Lorem ipsum dolor<InlineIcon icon={Horse} c="accent" /> sit amet<InlineIcon icon={<Smiley c="blue" />} /> consectetur.</p>
+```
+	</Demo.Code>
+</Demo>
+
+
+InlineIcon（e--icon）に対しては次のようなCSSが適用されており、文字と並んでも見やすく鳴るような調整がデフォルトで入っています。
+
+```css
+.e--inlineIcon {
+    display: inline;
+    vertical-align: -0.125em;
+    margin-inline: 0.125em;
+    transform: scale(1.125);
+}
+```
+
+
+
+## BlockIcon
+
+→ IconBox(b--iconBox) みたいなのを作る？
+
+<Demo>
+	<Demo.Title>BlockIcon</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Center>
+			<Icon icon={<Horse weight="fill" />} size="3em" c="red" p={20} bd="solid 1px" bdc="red" radius="99" />
+		</Center>
+
+		<Center size="content" c="red" bd="solid 1px" bdc="red" radius="99" p={20}>
+			<Icon icon={<Horse weight="fill" />} size="3em"/>
+		</Center>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Center>
+	<Icon icon={<Horse weight="fill" />} size="3em" c="red" p={20} bd="solid 1px" bdc="red" radius="99" />
+</Center>
+
+<Center size="content" c="red" bd="solid 1px" bdc="red" radius="99" p={20}>
+	<Icon icon={<Horse weight="fill" />} size="3em"/>
+</Center>
+```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>BlockIcon</Demo.Title>
+	<Demo.Preview resize p={20}>
+	<Cluster>
+		<Center fxg="1" c="red" bd="solid 1px" bdc="red" radius="99" p={20}>
+			<Icon icon={<Horse weight="fill" />} size="2em"/>
+		</Center>
+		<Center fxg="1" bgc="blue" c="white" radius="99" p={20}>
+			<Icon icon={<Horse weight="fill" />} size="2em"/>
+		</Center>
+		<Center fxg="1" bgc="#f5f5f5" bd="solid 1px" radius="3" p={20}>
+			<Icon icon={<Horse weight="fill" />} size="2em"/>
+		</Center>
+	</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Cluster>
+	<Center fxg="1" c="red" bd="solid 1px" bdc="red" radius="99" p={20}>
+		<Icon icon={<Horse weight="fill" />} size="2em"/>
+	</Center>
+	<Center fxg="1" bgc="blue" c="white" radius="99" p={20}>
+		<Icon icon={<Horse weight="fill" />} size="2em"/>
+	</Center>
+	<Center fxg="1" bgc="#f5f5f5" bd="solid 1px" radius="3" p={20}>
+		<Icon icon={<Horse weight="fill" />} size="2em"/>
+	</Center>
+</Cluster>
+```
+	</Demo.Code>
+</Demo>
+
+
+buttonなどと同じようにvariantで outline,fill,...などを用意する...？
+
+
+
+## アイコン活用例
+
+<Demo>
+	<Demo.Title>BlockIcon</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex ai="center" gap={20}>
+			<Center bd="-" c="accent" p={10} radius="99">
+				<Icon icon={Horse} size="1.5em" />
+			</Center>
+			<DammyText length="l" />
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Flex ai="center" gap={20}>
+	<Center bd="-" c="accent" p={10} radius="99">
+		<Icon icon={Horse} size="1.5em" />
+	</Center>
+	<p>...</p>
+</Flex>
+```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>BlockIcon</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex
+			ai="center"
+			gap={20}
+			p={20}
+			bgc="main"
+			shadow="1"
+			radius="calc(var(--radius--2) + var(--space--10))"
+		>
+			<Center c="white" margin={10} radius="99">
+				<Icon icon={<Smiley weight="fill" />} size="2em" />
+			</Center>
+			<Box bgc="white" p={{ Y: 30, X: 40 }} radius="2">
+				<DammyText length="l" />
+			</Box>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Flex
+	ai="center"
+	gap={20}
+	p={20}
+	bgc="main"
+	shadow="1"
+	radius="calc(var(--radius--2) + var(--space--10))"
+>
+	<Center c="white" margin={10} radius="99">
+		<Icon icon={<Smiley weight="fill" />} size="2em" />
+	</Center>
+	<Box bgc="white" p={{ Y: 30, X: 40 }} radius="2">
+		<p>...</p>
+	</Box>
+</Flex>
+```
+	</Demo.Code>
+</Demo>
+

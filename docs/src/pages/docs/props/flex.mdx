@@ -1,0 +1,291 @@
+import { Box, Flex, Cluster, Stack, Item } from '@lism/core';
+
+
+# Flex
+
+Lismで**Flexレイアウト**を使用する方法は大きく分けて2パターンあります。
+
+1. 専用の[`<Flex>`](/docs/components/Flex)(`.l--flex`）モジュール、またはその派生系モジュール（`Cluster`や`Stack`など）を使う。
+2. Lismコンポーネントに`d="flex"`を指定して単純に`display:flex`を適用する。（`.-d:f`クラスが出力されます。）
+
+
+## Demo
+<Demo>
+	<Demo.Title>`<Flex>`を使うパターン</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex gap={20} className='has:itemGuide'>
+			<p>A</p>
+			<p>B</p>
+			<p>C</p>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Flex gap={20}>
+		<p>A</p>
+		<p>B</p>
+		<p>C</p>
+	</Flex>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>`d=flex`を使うパターン</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box d="flex" gap={20} className='has:itemGuide'>
+			<p>A</p>
+			<p>B</p>
+			<p>C</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Box d="flex" gap={20}>
+		<p>A</p>
+		<p>B</p>
+		<p>C</p>
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+### Flexオプションの指定方法について
+
+Lismコンポーネントでは `flex` Propにオブジェクト形式でflexの各オプションを指定できます。
+
+- `wrap`: `flex-wrap` の値を指定できます。
+- `direction`: `flex-direction` の値を指定できます。
+- `ai`: `align-items` の値を指定できます。
+- `ac`: `align-content` の値を指定できます。
+- `ji`: `justify-items` の値を指定できます。
+- `jc`: `justify-content` の値を指定できます。
+{/* - flex.isInline: `display:inline-flex` になります。 */}
+{/* 
+<Note caption="Memo" preset="memo">
+	alignItem,justifyContentなどもここに含めるべきか要検討
+</Note> */}
+
+<Demo>
+	<Demo.Title>`flex`の指定例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box d='flex' flex={{ wrap:'wrap', direction:'row-reverse', jc:"center" }} gap={20} className='has:itemGuide'>
+			<p>A</p>
+			<p>B</p>
+			<p>C</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Box d='flex' flex={{ wrap:'wrap', direction:'row-reverse', jc:"center" }} gap={20}>
+		<p>A</p>
+		<p>B</p>
+		<p>C</p>
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+[`<Flex>`](/docs/components/Flex)系モジュールでは、`flex`オプションで指定できるオプションをそのままコンポーネントに指定できます。
+
+<Demo>
+	<Demo.Title>`<Flex>`の例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex wrap='wrap' direction='row-reverse' jc="center" gap={20} className='has:itemGuide'>
+			<p>A</p>
+			<p>B</p>
+			<p>C</p>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Flex wrap='wrap' direction='row-reverse' jc="center" gap={20}>
+		<p>A</p>
+		<p>B</p>
+		<p>C</p>
+	</Flex>
+	```
+	</Demo.Code>
+</Demo>
+
+内部でFlexコンポーネントが使われている`Cluster`や`Stack`、`Center`モジュールでも、Flexと同様の方法でオプション指定が可能です。
+
+<Demo>
+	<Demo.Title>`<Cluster>`の例</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster direction='row-reverse' jc="center" gap={20} className='has:itemGuide'>
+			<p>A</p>
+			<p>B</p>
+			<p>C</p>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Cluster direction='row-reverse' jc="center" gap={20}>
+		<p>A</p>
+		<p>B</p>
+		<p>C</p>
+	</Cluster>
+	```
+	</Demo.Code>
+</Demo>
+
+
+### FlexItemの指定
+
+Flexの子要素で使用できるプロパティは、`flexItem` にオブジェクト形式で指定するか、もしくは、`<Item>`コンポーネントを使うことでコンポーネントに直接指定できます。
+
+{/* flexBasis,flexGrow,flexShrink,flex,alignSelf,justifySelf の値を指定できます。 */}
+
+
+- `fxb`: flex-basisの値を指定できます。
+- `fxg`: flex-growの値を指定できます。
+- `fxsh`: flex-shrinkの値を指定できます。
+- `fx`: flexの値を指定できます。
+- `alignSelf`: align-self の値を指定できます。
+- `justifySelf`: justifySelf の値を指定できます。
+- order
+
+<Demo>
+	<Demo.Title>flexItem</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex jc="center" gap={20} className='has:itemGuide'>
+			<Box flexItem={{fxb: '50%', alignSelf:'center'}}>A</Box>
+			<Box>
+				<p>B</p>
+				<p>B</p>
+			</Box>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {2}
+	<Flex jc="center" gap={20}>
+		<Box flexItem={{fxb: '50%', alignSelf:'center'}}>A</Box>
+		<Box>
+			<p>B</p>
+			<p>B</p>
+		</Box>
+	</Flex>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>flexItem</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex jc="center" gap={20} className='has:itemGuide'>
+			<Item fxb='50%' alignSelf='center'>A</Item>
+			<Item>
+				<p>B</p>
+				<p>B</p>
+			</Item>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {2}
+	<Flex jc="center" gap={20}>
+		<Item fxb='50%' alignSelf='center'>A</Item>
+		<Item>
+			<p>B</p>
+			<p>B</p>
+		</Item>
+	</Flex>
+	```
+	</Demo.Code>
+</Demo>
+
+
+### BP対応props
+
+デフォルトで、以下のPropsは[BP指定が可能](###)です。
+
+- gap
+- flex.wrap, flex.direction
+- flexItem.fxb, flexItem.fxg, flexItem.fxsh
+
+<Demo>
+	<Demo.Title>gap, flex.directionにBP指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex
+			gap={[30, 40]}
+			wrap="wrap"
+			direction={['column', 'row']}
+			className='has:itemGuide'
+		>
+			<Item>コンテンツ</Item>
+			<Item>コンテンツ</Item>
+			<Item>コンテンツ</Item>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {2,3}
+	<Flex
+		gap={[30, 40]}
+		direction={['column', 'row']}
+	>
+		<Item>コンテンツ</Item>
+		<Item>コンテンツ</Item>
+		<Item>コンテンツ</Item>
+	</Flex>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>fxbにBP指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex
+			gap={30}
+			wrap="wrap"
+			className='has:itemGuide'
+		>
+			<Item fxb="100%">コンテンツ</Item>
+			<Item fxg="1" fxb={['100%', '40%']}>コンテンツ</Item>
+			<Item fxg="1" fxb={['100%', '40%']}>コンテンツ</Item>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {6,7}
+	<Flex
+		gap={30}
+		wrap="wrap"
+	>
+		<Item fxb="100%">コンテンツ</Item>
+		<Item fxg="1" fxb={['100%', '40%']}>コンテンツ</Item>
+		<Item fxg="1" fxb={['100%', '40%']}>コンテンツ</Item>
+	</Flex>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo>
+	<Demo.Title>fxsh,fxbにBP指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex fxw="nowrap" gap={20} className='has:itemGuide'>
+			<Item fx="1 1 50%" bgc="pale">
+				<DammyText length="xs"/>
+			</Item>
+
+			<Item fxsh={["1", "0"]} fxb={["50%", "60%"]} bgc="pale">
+				<DammyText length="m"/>
+			</Item>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {2,5}
+	<Flex fxw="nowrap" gap={20}>
+		<Item fx="1 1 50%" bgc="pale">
+			<p>...</p>
+		</Item>
+		<Item fxsh={["1", "0"]} fxb={["50%", "60%"]} bgc="pale">
+			<p>...</p>
+		</Item>
+	</Flex>
+	```
+	</Demo.Code>
+</Demo>

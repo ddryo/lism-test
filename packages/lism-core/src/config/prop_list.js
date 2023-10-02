@@ -85,19 +85,16 @@ export default {
 	bgc: { presets: 1, utils: 1, converter: 'color' },
 	keycolor: { style: '--keycolor', presets: 1, converter: 'color' },
 
-	bg: { presets: 1, utils: 1 },
-	opacity: { style: 1 },
-
 	bd: {
 		presets: 1,
 		utils: 1,
-		objProcessor: (d) => `bd${d}`,
+		objProcessor: (d) => `bd${d[0]}`,
 	},
 	//
-	// bdl: { style: 'borderLeft' },
-	// bdr: { style: 'borderRight' },
-	// bdt: { style: 'borderTop' },
-	// bdb: { style: 'borderBottom' },
+	bdl: { style: 'borderLeft', utils: { none: 'n' } },
+	bdr: { style: 'borderRight', utils: { none: 'n' } },
+	bdt: { style: 'borderTop', utils: { none: 'n' } },
+	bdb: { style: 'borderBottom', utils: { none: 'n' } },
 
 	// bd="l,r,is"
 	bdw: { style: '--bdw' }, // --bdw のみ
@@ -106,40 +103,41 @@ export default {
 	// borderSolid: { style: 1 },
 	// borderWidth: { style: 1 },
 
-	aspect: { BP: 1, presets: 1 },
-
-	//transform
-	translate: { style: 1, utils: 1, utilKey: 'trnslt' },
-	transformOrigin: { style: 1, utilKey: 'trso', utils: 'origin' },
-	rotate: { style: 1, utils: 1 },
-	scale: { style: 1 },
-	order: { style: 1 },
-
-	top: { style: 1, utilKey: 't', utils: 'positions', converter: 'space' },
-	left: { style: 1, utilKey: 'l', utils: 'positions', converter: 'space' },
-	right: { style: 1, utilKey: 'r', utils: 'positions', converter: 'space' },
-	bottom: { style: 1, utilKey: 'b', utils: 'positions', converter: 'space' },
-	inset: { style: 1, utils: 1, converter: 'space' },
-
-	z: { style: 'zIndex', presets: 1 },
-	// mbe: { presets: 'space' },
-	radius: { name: 'bdrs', presets: 'radius' },
-	shadow: { name: 'bxsh', presets: 'shadow' },
+	// Typography
 	lh: { presets: 1 },
-	fz: { presets: 1 },
+	fz: { BP: 1, presets: 1, converter: 'fz' },
 	fw: { style: 'fontWeight', utils: 1 },
 	ff: { style: 'fontFamiry', presets: 1 },
 	ta: { style: 'textAlign', utils: 1 },
 	lts: { style: 'letterSpacing' }, // utilityあってもいい
 	td: { style: 'textDecoration' },
 	whs: { style: 'whiteSpace', utils: { nowrap: 'nw' } },
-	ovw: { style: 'overflowWrap', utils: { anywhere: 'any' } },
+	// others
+	radius: { name: 'bdrs', presets: 'radius' },
+	shadow: { name: 'bxsh', presets: 'shadow' },
+	aspect: { BP: 1, presets: 1 },
+	bg: { presets: 1, utils: 1 },
+	opacity: { style: 1 },
 	lis: { style: 'listStyle', utils: { none: 'n' } },
+	ovw: { style: 'overflowWrap', utils: { anywhere: 'any' } },
 	ov: { style: 'overflow', utils: 1 },
 	ovx: { style: 'overflowX', utils: 'ov' },
 	ovy: { style: 'overflowY', utils: 'ov' },
+	z: { style: 'zIndex', presets: 1 },
 	pos: { style: 'position', utils: 1 },
+	top: { style: 1, utilKey: 't', utils: 'positions', converter: 'space' },
+	left: { style: 1, utilKey: 'l', utils: 'positions', converter: 'space' },
+	right: { style: 1, utilKey: 'r', utils: 'positions', converter: 'space' },
+	bottom: { style: 1, utilKey: 'b', utils: 'positions', converter: 'space' },
+	inset: { style: 1, utils: 1, converter: 'space' },
 
+	//transform
+	translate: { style: 1, utils: 1, utilKey: 'trnslt' },
+	transformOrigin: { style: 1, utilKey: 'trso', utils: 'origin' },
+	rotate: { style: 1, utils: 1 },
+	scale: { style: 1 },
+
+	// Spacing
 	pl: { BP: 1, converter: 'space' },
 	pr: { BP: 1, converter: 'space' },
 	pt: { BP: 1, converter: 'space' },
@@ -183,46 +181,63 @@ export default {
 	// isFlowでのみ有効
 	flowGap: { presets: 1, converter: 'space' },
 
-	// isItem 解除したやつ
-	// gridItem
-	ga: { utils: 1 }, // grid-area
-	gc: { BP: 1 },
-	gr: { BP: 1 },
-
 	// flexItem
-	fxg: { BP: 1, presets: ['0', '1'] },
-	fxsh: { BP: 1, presets: ['0', '1'] },
-	fx: { BP: 1 },
-	fxb: { BP: 1 },
-	alignSelf: { style: 1 },
-	justifySelf: { style: 1 },
-	placeSelf: { style: 1 },
+	flex: { map: 1 },
+	grid: { map: 1 },
+	flexItem: { map: 1 },
+	gridItem: { map: 1 },
 
 	// lismVar
 	// lismVar: { withUtil: 0, BP: 1, style: '--lism' },
+	// ai: { style: 'alignItems', utils: 'place' },
+	// ac: { style: 'alignContent', utils: 'place' },
+	// ji: { style: 'justifyItems', utils: 'place' },
+	// jc: { style: 'justifyContent', utils: 'place' },
+};
 
+const placeProps = {
+	ai: { style: 'alignItems', utils: 'place' },
+	ac: { style: 'alignContent', utils: 'place' },
+	ji: { style: 'justifyItems', utils: 'place' },
+	jc: { style: 'justifyContent', utils: 'place' },
+};
+const selfProps = {
+	alignSelf: { style: 1 },
+	justifySelf: { style: 1 },
+	placeSelf: { style: 1 },
+};
+
+export const CONTEXT_PROPS = {
 	grid: {
 		areas: { name: 'gta', BP: 1 },
 		columns: { name: 'gtc', BP: 1 },
 		// cols: { name: 'gtc', BP: 1 }, // どっちでも受け付ける？
 		rows: { name: 'gtr', BP: 1 },
 		// autoFlow, autoRows, autoCols
+		...placeProps,
 	},
 	flex: {
 		wrap: { name: 'fxw', BP: 1, utils: 1 },
 		direction: { name: 'fxd', BP: 1, utils: 1 },
 		// fxw: { BP: 1, utils: 1 },
 		// fxd: { BP: 1, utils: 1 },
+		// placement: { context: 1 },
+		...placeProps,
 	},
 
-	// isFlex & isGrid
-	// utility以外を使うのは珍しいので,
-	ai: { style: 'alignItems', utils: 'place' },
-	ac: { style: 'alignContent', utils: 'place' },
-	ji: { style: 'justifyItems', utils: 'place' },
-	jc: { style: 'justifyContent', utils: 'place' },
-
-	// isItem: {},
-
-	// クエリ対応あり、ユーティリティあり
+	flexItem: {
+		fxg: { BP: 1, presets: ['0', '1'] },
+		fxsh: { BP: 1, presets: ['0', '1'] },
+		fx: { BP: 1 },
+		fxb: { BP: 1 },
+		order: { style: 1 },
+		...selfProps,
+	},
+	gridItem: {
+		ga: { utils: 1 }, // grid-area
+		gc: { BP: 1 }, // grid-column
+		gr: { BP: 1 }, // grid-row
+		order: { style: 1 },
+		...selfProps,
+	},
 };

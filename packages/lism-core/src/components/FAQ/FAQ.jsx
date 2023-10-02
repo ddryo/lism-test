@@ -27,7 +27,7 @@ export default function FAQ({
 			blockClass='b--faq__icon'
 			c='white'
 			bgc='main'
-			p={20}
+			p={15}
 			bd='-'
 			bdc='transparent'
 			radius='99'
@@ -45,7 +45,7 @@ export default function FAQ({
 				<AccordionHeader
 					blockClass='b--faq__q'
 					labelProps={{ blockClass: 'b--faq__title' }}
-					labelBefore={Qmark}
+					before={Qmark}
 					tag={Qtag}
 				>
 					{title}
@@ -56,20 +56,20 @@ export default function FAQ({
 	}
 
 	const Amark = (
-		<Flex c='main' p={20} bd='-' radius='99' {...aIconProps}>
+		<Flex c='main' p={15} bd='-' radius='99' {...aIconProps}>
 			<Icon icon='A' />
 		</Flex>
 	);
 
 	return (
-		<Stack blockClass='b--faq' gap={40} {...props}>
-			<Flex blockClass='b--faq__q'>
+		<Stack blockClass='b--faq' gap={20} {...props}>
+			<Flex blockClass='b--faq__q' gap={20}>
 				{Qmark}
 				<Qtag className='b--faq__title'>{title}</Qtag>
 			</Flex>
-			<Flex blockClass='b--faq__a'>
+			<Flex blockClass='b--faq__a' gap={20}>
 				{Amark}
-				<Lism blockClass='b--faq__body' isFlow flowGap={flowGap || 40}>
+				<Lism blockClass='b--faq__body' isFlow flowGap={flowGap || 's'}>
 					{children}
 				</Lism>
 			</Flex>

@@ -1,0 +1,207 @@
+import { Center, Frame, Columns } from '@lism/core';
+
+# Center
+
+**要素**を水平・垂直方向の中央に配置するためのモジュール。
+
+- Lismクラス: `.l--center`
+
+
+## 主なProps
+- `size`: `"cover"` | `"content"` (size cover?)
+
+
+## Import
+
+```js
+import { Center } from '@lism/core';
+```
+
+## Demo
+
+### 活用例１: コンテンツを水平方向の中央に配置する
+
+Centerが高さを持たない場合、内部のコンテンツを水平方向の中央に配置するだけとなります。
+
+この時、いわゆる『内在的な』中央寄せ（テキスト幅が小さければ左右中央寄せ、長ければ普通に左寄せ状態と同じ状態）になります。
+
+<Demo className="has--box-guide">
+	<Demo.Title>
+		デフォルトの挙動 → 水平方向の中央寄せのみ
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Center p={20} gap={20}>
+			<Text fz="l">TEXT</Text>
+			<DammyText />
+			<DammyText length="l" />
+		</Center>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Center p={20} gap={20}>
+			<Text fz="l">TEXT</Text>
+			<p>...</p>
+			<p>...</p>
+		</Center>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### 活用例2: コンテンツを水平・垂直方向の中央に配置する
+
+垂直方向に対しても中央寄せをしたい場合、Centerに高さを設定します。
+
+<Demo className="has--box-guide">
+	<Demo.Title>
+		高さを設定 → 上下位置も中央寄せになる
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Center p={20} gap={20} h="50vh">
+			<Text fz="l" fw="700">TEXT</Text>
+			<p>Lorem ipsum text.</p>
+		</Center>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Center p={20} gap={20} h="50vh">
+			<Text fz="l" fw="700">TEXT</Text>
+			<p>...</p>
+		</Center>
+		```
+	</Demo.Code>
+</Demo>
+
+<Note caption="垂直中央寄せの手法について" type="memo">
+	直下の`:first-child`の`margin-top`と`:last-child`の`margin-bottom`に対してそれぞれ`auto`を指定することで実装しています。
+</Note>
+
+なぜmarginなのかというと、`justify-content:center` でセンター寄せにすると、`overflow-y:scroll`状態の時に正常にスクロールできなくなるためです。
+
+例えば、Frame内でCenterを使ってみます。  
+次のエリアをリサイズして小さくして比較みてください。
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>
+		垂直中央寄せの実装方法の比較
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Columns cols="2" fz="s">
+			<Frame aspect="2/1">
+				<Center h="100%" gap={20} p={20}>
+					<Text fz="l" fw="700">margin</Text>
+					<DammyText length="m" />
+				</Center>
+			</Frame>
+			<Frame aspect="2/1">
+				<Stack ai="center" jc="center" h="100%" gap={20} p={20}>
+					<Text fz="l" fw="700">justify-content</Text>
+					<DammyText length="m" />
+				</Stack>
+			</Frame>
+		</Columns>
+	</Demo.Preview>
+</Demo>
+
+
+"margin"の方がスクロールでコンテンツが全て見えるようになっています。  
+ただし、**実はまだ注意が必要**です。よく見ると下側のpadding部分までスクロールできていません。
+
+
+これを改善するには、`<Center>`自体をスクロール可能な状態（`overflow-y`を`auto`に）する必要があります。
+
+<Demo className="has--box-guide">
+	<Demo.Title>
+		`overflow-y:auto`の有無の差
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Columns cols="2" fz="s">
+			<Frame aspect="2/1">
+				<Center h="100%" gap={20} pX={20} pY={40} ovy="auto">
+					<Text fz="l" fw="700">ovy="auto"</Text>
+					<DammyText length="m" />
+				</Center>
+			</Frame>
+			<Frame aspect="2/1">
+				<Center h="100%" gap={20} pX={20} pY={40}>
+					<Text fz="l" fw="700">ovy なし</Text>
+					<DammyText length="m" />
+				</Center>
+			</Frame>
+		</Columns>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Columns cols="2" fz="s">
+			<Frame aspect="2/1">
+				<Center h="100%" gap={20} pX={20} pY={40} ovy="auto">
+					<Text fz="l" fw="700">ovy="auto"</Text>
+					<DammyText length="m" />
+				</Center>
+			</Frame>
+			<Frame aspect="2/1">
+				<Center h="100%" gap={20} pX={20} pY={40}>
+					<Text fz="l" fw="700">ovy なし</Text>
+					<DammyText length="m" />
+				</Center>
+			</Frame>
+		</Columns>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### size="cover"
+
+スクロール可能な状態で、の正常な挙動を考慮するのであれば、`size="cover"`(`[data-size="cover"]`) を指定することをおすすめします。
+
+これは、`w="100%" h="100%" ovy="auto"` の一括指定と同じ挙動になります。
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>
+		`size="cover"`
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Frame aspect="2/1">
+			<Center size="cover" gap={20} pX={20} pY={40}>
+				<Text fz="l" fw="700">size="cover"</Text>
+				<DammyText length="l" />
+			</Center>
+		</Frame>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Frame aspect="2/1">
+			<Center size="cover" gap={20} pX={20} pY={40}>
+				<Text fz="l" fw="700">size="cover"</Text>
+				<DammyText length="l" />
+			</Center>
+		</Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### size="content"
+
+自分自身を水平方向に中央寄せできる
+
+<Demo className="has--box-guide">
+	<Demo.Title>
+		content
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Center size="content" p={20} gap={20} bgc="whitesmoke" h="15rem">
+			<Text fz="l" fw="700">TEXT</Text>
+		</Center>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Center size="content" p={20} gap={20} bgc="whitesmoke" h="15rem">
+			<Text fz="l" fw="700">TEXT</Text>
+		</Center>
+		```
+	</Demo.Code>
+</Demo>

@@ -19,7 +19,7 @@ export default {
 		'fluid:l',
 	],
 	// lh: ['10', '20', '30', '40', '50', '60', '70', '80', '90'],
-	lh: ['base', '4xs', '3xs', '2xs', 'xs', 's', 'l', 'xl'],
+	lh: ['base', '2xs', 'xs', 's', 'l', 'xl', '2xl'], // 検討
 	ff: ['base', 'mono', 'emoji', 'sans', 'serif'],
 
 	// --変数化できるキーワード

@@ -1,0 +1,72 @@
+import { FAQ, Cluster, Icon, InlineIcon } from '@lism/core';
+import {
+	Book,
+	Cat,
+	Baseball,
+} from "@phosphor-icons/react";
+
+
+
+# FAQ
+
+- Lismクラス: `.b--faq`
+
+<Alert preset="info">
+テーマ化したときにブロックで用意する
+</Alert>
+
+## 主なprops
+
+
+## 要検討
+
+- `<FaqWrap>`など親ラッパーを用意して、一括でprop指定できるようにする？
+
+
+## Demo
+
+
+### 非アコーディオン
+
+<Demo>
+	<Demo.Title>Boxの例 1</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Stack gap={30}>
+			<FAQ title="Question 1">
+				<DammyText length="l" />
+			</FAQ>
+			<FAQ title="Question 2">
+				<DammyText />
+				<DammyText length="l" />
+			</FAQ>
+		</Stack>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Stack gap={20}>
+			<FAQ title="Question 1">
+				<p>...</p>
+			</FAQ>
+			<FAQ title="Question 2">
+				<p>...</p>
+				<p>...</p>
+			</FAQ>
+		</Stack>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### アコーディオンタイプ
+<Stack blockClass="b--faqWrap" gap={10}>
+	<FAQ isAccordion title="Question 1">
+		<DammyText />
+		<DammyText length="l" />
+	</FAQ>
+	<FAQ
+		isAccordion
+		title="Question 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit."
+	>
+		<DammyText length="l" />
+	</FAQ>
+</Stack>

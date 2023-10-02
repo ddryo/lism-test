@@ -1,0 +1,125 @@
+import { Stack, LinkBox, Frame, Columns, Center, Layer } from '@lism/core';
+import Link from "next/link";
+
+
+# LinkBox
+
+ボックス全体がリンクになっているブロックモジュール。
+
+- Lismクラス: `.is--linkbox`
+
+
+## 主なProps
+
+- `href`: リンク先を指定できます。
+- `as`: 指定したLismコンポーネントでLinkBox全体を展開できます。
+- `tag`: リンクボックスを`<a>`ではなく`<div>`などの別タグにすることができます。
+
+## Import
+
+```js
+import { LinkBox } from '@lism/core';
+```
+
+## Demo
+
+<Demo>
+	<Demo.Title>
+		`<LinkBox>`
+	</Demo.Title>
+	<Demo.Preview resize p={10}>
+		<LinkBox href="#boxlink01" isFlow flowGap='s' p='box' bgc="pale">
+			<Text fz="l">このBox全体がリンクです。</Text>
+			<DammyText length="l" />
+			<Text fz='s' ta="right" mbs={10}>More→</Text>
+		</LinkBox>
+	</Demo.Preview>
+	<Demo.Code p={30}>
+		```jsx
+		<LinkBox href="#boxlink01" isFlow flowGap='s' p='box' bgc="pale">
+			<Text fz="l">このBox全体がリンクです。</Text>
+			<p>...</p>
+			<Text fz='s' ta="right" mbs={10}>More→</Text>
+		</LinkBox>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>
+		`tag='div'` で `<div>`のままリンク化することも可能。
+	</Demo.Title>
+	<Demo.Preview resize p={10}>
+		<LinkBox tag='div' href="#boxlink02" isFlow flowGap='s' p='box' bgc="pale">
+			<Text fz="l">このBox全体がリンクです。</Text>
+			<DammyText length="l" />
+			<p><Link href="#inner-link">linkBox内にさらにリンク</Link>を配置できる。</p>
+			<Text fz='s' ta="right" mbs={10}>More→</Text>
+		</LinkBox>
+	</Demo.Preview>
+	<Demo.Code p={20}>
+		```jsx
+		<LinkBox tag='div' href="#boxlink02" isFlow flowGap='s' p='box' bgc="pale">
+			<Text fz="l">このBox全体がリンクです。</Text>
+			<p>...</p>
+			<p><Link href="#inner-link">linkBox内にさらにリンク</Link>を配置できる。</p>
+			<Text fz='s' ta="right" mbs={10}>More→</Text>
+		</LinkBox>
+		```
+	</Demo.Code>
+</Demo>
+
+### Box以外のコンポーネントとしても展開可能
+
+<Demo>
+	<Demo.Title>
+		Center にして中央揃えに
+	</Demo.Title>
+	<Demo.Preview resize p={10}>
+		<LinkBox as={Center} href="#boxlink03" gap={20} p='box' bgc="pale">
+			<Text fz="l">LinkBox as Center</Text>
+			<DammyText length="m" />
+			<Text>→ More</Text>
+		</LinkBox>
+	</Demo.Preview>
+	<Demo.Code p={20}>
+		```jsx
+		<LinkBox as={Center} href="#boxlink03" gap={20} pX={40} pY={40} bgc="pale">
+			<Text fz="l">LinkBox as Center</Text>
+			<p>...</p>
+			<Text>→ More</Text>
+		</LinkBox>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>
+		Frameとして展開
+	</Demo.Title>
+	<Demo.Preview resize p={10}>
+		<LinkBox as={Frame} href="#boxlink04" ratio="16/9" bgc="pale" p={20}>
+			<Center size="cover" gap={20} jc="start">
+				<Text fz="l">LinkBox as Frame</Text>
+				<DammyText />
+			</Center>
+			<Layer position="right bottom" fz="s" p={20}>More →</Layer>
+		</LinkBox>
+	</Demo.Preview>
+	<Demo.Code p={20}>
+		```jsx
+		<LinkBox as={Frame} href="#boxlink04" ratio="16/9" bgc="pale" p={20}>
+			<Center size="cover" gap={20}>
+				<Text fz="l">LinkBox as Frame</Text>
+				<p>...</p>
+			</Center>
+			<Layer position="right bottom" fz="s" p={20}>More →</Layer>
+		</LinkBox>
+		```
+	</Demo.Code>
+</Demo>
+
+
+## openNewTab
+...

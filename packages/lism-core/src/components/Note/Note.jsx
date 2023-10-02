@@ -101,7 +101,7 @@ export default function Note({
 	};
 
 	const bodyProps = {
-		flowGap: flowGap || 40,
+		flowGap: flowGap || 's',
 	};
 
 	// colorの調整

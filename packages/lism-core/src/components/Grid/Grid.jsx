@@ -2,22 +2,21 @@ import React from 'react';
 import { Core } from '../Core';
 import { isEmptyObj, filterEmptyObj } from '@/lib';
 
-export default function Grid({ isInline, areas, columns, rows, ...props }) {
+export default function Grid({ areas, columns, rows, ai, ac, ji, jc, ...props }) {
 	const grid = filterEmptyObj({
-		isInline,
 		areas,
 		columns,
 		rows,
+		ai,
+		ac,
+		ji,
+		jc,
 	});
-
-	const noOptions = isEmptyObj(grid);
-
-	// inline-grid にする時以外は、display の出力不要
-	if (!noOptions && !isInline) {
-		grid.skipDisplay = true;
+	if (!isEmptyObj(grid)) {
+		props.grid = grid;
 	}
 
-	return <Core lismClass='l--grid' grid={noOptions ? null : grid} {...props} />;
+	return <Core lismClass='l--grid' {...props} />;
 
 	// const { className, style, attrs } = getLismProps(props, {
 	// 	lismClass: 'l--grid',

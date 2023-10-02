@@ -1,20 +1,14 @@
-@layer lism-module {
-	// Note は --keycolor が常に渡ってくる
-	.b--note {
-		// --keycolor: currentColor; //var(--gray);
-		--p: var(--space--40);
-		--gap: var(--space--30);
+// Note は --keycolor が常に渡ってくる
+.b--note {
+	:where(&) {
 		--head--c: var(--keycolor);
 		--bdc: var(--keycolor);
-		--bdrs: var(--radius--1);
+		position: relative;
+		padding: var(--p--box);
+		gap: var(--space--20);
+		border-radius: var(--radius--1);
+		line-height: var(--ls--s);
 	}
-}
-
-:where(.b--note) {
-	position: relative;
-	padding: var(--p);
-	gap: var(--gap);
-	border-radius: var(--bdrs);
 }
 .b--note__icon {
 	margin-left: -0.125em;

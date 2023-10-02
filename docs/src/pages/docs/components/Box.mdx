@@ -1,0 +1,51 @@
+import { Box } from '@lism/core';
+
+# Box
+
+コンテンツをラップしてグループ化するためのシンプルなコンポーネントです。
+
+- `<Box>`
+- Lismクラス: `.l--box`
+
+## Import
+
+```js
+import { Box } from '@lism/core';
+```
+
+## Demo
+
+<Demo>
+	<Demo.Title>Boxの例 1</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box p='box' bgc='white' shadow='2' radius='3'>
+			<p>Box</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Box p='box' bgc='white' shadow='2' radius='3'>
+			<p>Box</p>
+		</Box>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>Boxの例 2</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Box isFlow tag='section' p="box:l" bgc='pale'>
+			<h3>Heading</h3>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugit, numquamdicta repellat ipsa autem eos iure ducimus consequatur vel.</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Box isFlow tag='section' p="box:l" bgc='pale'>
+			<h3>Heading</h3>
+			<p>...</p>
+		</Box>
+		```
+	</Demo.Code>
+</Demo>
+

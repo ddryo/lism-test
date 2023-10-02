@@ -1,0 +1,354 @@
+import { Box, Text, Flow } from '@lism/core';
+
+# isFlow
+
+Lism設計では、**コンテンツ間の余白を管理するためのStateクラス**として、`.is--flow`を用意しています。  
+`.is--flow`の直下では、コンテンツ間の余白が `margin-block-start` で管理されます。
+
+
+- デフォルトの余白量 は `var(--space--40)` です。
+- 子要素間の余白量を一括で変更するには、`flowGap`をコンポーネントに指定します。
+	- 対応するユーティリティクラスは `.-flowGap:{値}` です。
+	- 's', 'm', 'l' がユーティリティクラスとして用意されており、それ以外の値はstyle属性に `--flowGap` 変数が出力されます。
+{/* - 子要素に対して個別に `margin-block-start` の値を調整するには、ユーティリティクラスの `.-mbs:{値}` が便利です。 */}
+
+
+## Lismコンポーネントでの使用方法
+
+Lismコンポーネントでは、`isFlow`をpropsに指定することで、`.is--flow`クラスが出力されるようになっています。
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>デフォルト状態のFlow</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box isFlow>
+		...
+	</Box>
+
+	↓ 出力結果
+
+	<div class="l--box is--flow">...</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+`<Flow>`コンポーネントを使うことで、シンプルに`is--flow`クラスのみを出力することもできます。
+
+<Demo className="has--box-guide">
+	<Demo.Title>デフォルト状態のFlow</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Flow>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Flow>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Flow>
+		...
+	</Flow>
+
+	↓ 出力結果
+
+	<div class="is--flow">...</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>個別の余白調整には`mbs`を使います。</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Flow>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Text className='-bd:guide' mbs={10}>mbs=10指定</Text>
+		</Flow>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Flow>
+		<p>...</p>
+		<p>...</p>
+		<Text mbs={10}>mbs=10指定</Text>
+	</Flow>
+	```
+	</Demo.Code>
+</Demo>
+
+
+<Alert preset="info">
+	↑ `mbs={10}`によって、`.-mbs:10`クラスが出力されます。
+</Alert>
+
+
+
+### Flowレイアウト直下の余白量を一括で変更する方法
+
+`isFlow`と併用して`flowGap`を指定すると、flowレイアウトの余白を調整できます。  
+指定する値が `flowGap` 専用のプリセット値（`s`, `m`, `l`）の時、`.-flowGap:s` のようにユーティリティクラスとして出力されます。
+
+<Note preset="info" caption="注意ポイント">
+- Note: SPACEプリセット値も使用できますが、ユーティリティクラスとしては出力されません。
+- `flowGap`はブレークポイント指定に対応していません。
+</Note>
+
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>`flowGap`を `s` にしてみる</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow flowGap="s">
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box isFlow flowGap="s">
+		<p>...</p>
+		<p>...</p>
+		<p>...</p>
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>SPACEプリセット値を指定する</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow flowGap={30}>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box isFlow flowGap={30}>
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>`flowGap`を `16px` にしてみる</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow flowGap="16px">
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box isFlow flowGap="16px">
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+#### ショートハンド指定
+
+<Alert preset="info">
+	`isFlow flowGap={val}`を`isFlow={val}`と省略して書くこともできます。
+</Alert>
+
+
+```jsx
+<Box isFlow="s">
+	...
+</Box>
+
+<Box isFlow={30}>
+	...
+</Box>
+
+<Box isFlow="16px">
+	...
+</Box>
+```
+
+<Alert preset="info">
+	また、`<Flow>`を使う場合は`gap` = `flowGap`となります。
+</Alert>
+
+
+```jsx
+<Flow gap="s">
+	...
+</Flow>
+```
+
+## isFlow をネストする時の注意点
+
+<Alert preset='warning'>
+	`flowGap`が指定されたボックスの直下で、さらに`flowGap`指定付きのボックスを配置した場合(※1)、ネストされた側のボックスのが自身の `--flowGap` に干渉されてしまいます。
+</Alert>
+
+(※1): `.-flowGap: > .-flowGap:`という構造になってしまう場合
+
+<Demo className="has--box-guide">
+	<Demo.Title>`flowGap`を指定した ボックス直下で さらに`flowGap`を指定したケース</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow flowGap={50}>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Box
+				isFlow
+				flowGap={20}
+				bd='guide'
+				p={5}
+				bgc="rgb(248 255 250)"
+				border="solid 1px rgb(190 220 180)"
+			>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Box isFlow={40}>
+		...
+		<Box isFlow={20}>
+			...
+		</Box>
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+これを回避するには、Flowではないボックスや`div`などで囲む必要があります。
+
+```jsx {3,7}
+<Box isFlow={40}>
+	...
+	<div>
+		<Box isFlow={20}>
+			...
+		</Box>
+	</div>
+</Box>
+```
+
+
+<Note preset='memo' caption='次のケースでのネストは問題ありません'>
+	- シンプルな`isFlow`だけのボックスの直下
+	- `flowGap` が `"s"` または `"l"` の直下
+</Note> 
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>シンプルな`isFlow`だけのボックスの直下で`isFlow`が入れ子になるケース</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Box
+				isFlow={20}
+				bd='guide'
+				p={5}
+				bgc="rgb(248 255 250)"
+				border="solid 1px rgb(190 220 180)"
+			>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Box isFlow>
+		...
+		<Box isFlow={20}>
+			...
+		</Box>
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo className="has--box-guide">
+	<Demo.Title>`isFlow="l"`の直下で`isFlow`が入れ子になるケース</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow="l">
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Box
+				isFlow='20'
+				bd='guide'
+				p={5}
+				bgc="rgb(248 255 250)"
+				border="solid 1px rgb(190 220 180)"
+			>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1}
+	<Box isFlow="l">
+		...
+		<Box isFlow={20}>
+			...
+		</Box>
+		...
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+## 検討事項
+
+
+### 字下げ機能？
+
+<Demo>
+	<Demo.Title>`hasIndent`</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Flow gap="s" hasIndent>
+			ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
+
+			長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。
+
+			先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
+		</Flow>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Flow gap="s" hasIndent>
+		<p>...</p>
+		<p>...</p>
+		<p>...</p>
+	</Flow>
+	```
+	</Demo.Code>
+</Demo>

@@ -1,0 +1,26 @@
+{
+	"name": "lism-docs-nextra",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"build:css": "node scss-builder.js",
+		"delete-cache": "rm -rf .next/cache"
+	},
+	"dependencies": {
+		"@lism/core": "workspace:*",
+		"@nanostores/react": "^0.7.1",
+		"@phosphor-icons/react": "^2.0.10",
+		"classnames": "^2.3.2",
+		"eslint-config-next": "13.4.12",
+		"nanostores": "^0.9.3",
+		"next": "13.4.12",
+		"nextra": "^2.10.0",
+		"nextra-theme-docs": "^2.10.0",
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
+	}
+}

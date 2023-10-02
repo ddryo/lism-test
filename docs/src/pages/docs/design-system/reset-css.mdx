@@ -1,0 +1,211 @@
+import { Box, Text, RatioGrid, Flex, Stack } from '@lism/core';
+
+# HTML
+
+<Demo>
+<Demo.Title>gray, nuetral系</Demo.Title>
+<Demo.Preview isShadow p={20}>
+
+<h2 id='text'>Text</h2>
+<p>
+	Lorem ipsum dolor sit amet,
+	<a href='#' title='test link'>test link</a> adipiscing elit.
+</p>
+
+<h3 id='inline-tags'>inline tags</h3>
+<p>
+	Lorem <sup>sup</sup> dolor <sub>sub</sub> amet.
+</p>
+<p>
+	<b>b tag</b>
+		|
+	<strong>strong tag</strong>
+		|
+	<em>em tag</em>
+		|
+	<i>i tag</i>
+		|
+	<small>small tag</small>
+		|
+	<abbr title='Avenue'>AVE</abbr>
+		|
+	<q cite='...'>q tag text</q>
+		|
+	<code>code tag</code>
+		|
+	<kbd>kbd tag</kbd>
+		|
+	<mark>mark tag</mark>
+		|
+	<dfn>dfn tag</dfn>
+		|
+	<samp>samp tag</samp>
+		|
+</p>
+
+<h4 id='ruby'>Ruby</h4>
+<p>
+	<ruby>紫陽花<rt>あじさい</rt></ruby> /
+	<ruby>踝<rt>くるぶし</rt></ruby> /
+	<ruby>
+		聖剣
+		<rp>(</rp>
+		<rt>エクスカリバー</rt>
+		<rp>)</rp>
+	</ruby>
+</p>
+
+<h3>Pre</h3>
+<pre>
+Lorem ipsum dolor sit amet, Nunc iaculis suscipit dui.
+Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum.
+</pre>
+
+<hr />
+<h2>Blockquote</h2>
+
+<blockquote>
+	<p>Lorem ipsum dolor sit amet, Nunc iaculis suscipit dui.</p>
+	<cite>- cite...</cite>
+</blockquote>
+
+<p>↓with figure</p>
+<figure>
+	<blockquote>
+		<p>It was a bright cold day in April, and the clocks were striking thirteen.</p>
+	</blockquote>
+	<figcaption>
+		First sentence in
+		<cite>
+			<a href='http://www.george-orwell.org/1984/0.html'> Nineteen Eighty-Four</a>
+		</cite>
+			by George Orwell (Part 1, Chapter 1).
+	</figcaption>
+</figure>
+
+<hr />
+<h2>List</h2>
+<ul>
+	<li>Unordered List</li>
+	<li>List Item 2</li>
+	<li>
+		List Item 3
+		<ul>
+			<li>Unordered List</li>
+			<li>
+				List Item 2
+				<ul>
+					<li>Unordered List</li>
+					<li>
+						List Item 2
+						<ul>
+							<li>Unordered List</li>
+							<li>List Item 2</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+
+<ol>
+	<li>Ordered List</li>
+	<li>
+		List Item 2
+		<ul>
+			<li>Unordered List</li>
+			<li>
+				List Item 2
+				<ul>
+					<li>Unordered List</li>
+					<li>List Item 2</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li>
+		List Item 3
+		<ol>
+			<li>Ordered List</li>
+			<li>
+				List Item 2
+				<ol>
+					<li>Ordered List</li>
+					<li>
+						List Item 2
+						<ol>
+							<li>Ordered List</li>
+							<li>List Item 2</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+	</li>
+</ol>
+
+<hr />
+<h2>Table</h2>
+<table>
+	<tbody>
+		<tr>
+			<th>Division 1</th>
+			<td>Division 2</td>
+			<td>Division 3</td>
+		</tr>
+		<tr>
+			<th>Division 1</th>
+			<td>Division 2</td>
+			<td>Division 3<br />text</td>
+		</tr>
+		<tr>
+			<th>Division 1</th>
+			<td>Division 2</td>
+			<td>...</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th>Footer 1</th>
+			<td>Footer 2</td>
+			<td>Footer 3</td>
+		</tr>
+	</tfoot>
+</table>
+
+<table>
+	<thead>
+		<tr>
+			<th>Table Header 1</th>
+			<th>Table Header 2</th>
+			<th>Table Header 3</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Division 1</td>
+			<td>Division 2</td>
+			<td>Division 3</td>
+		</tr>
+		<tr>
+			<td>Division 1</td>
+			<td>Division 2</td>
+			<td>Division 3<br />text</td>
+		</tr>
+		<tr>
+			<td>Division 1</td>
+			<td>Division 2</td>
+			<td>...</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td>Footer 1</td>
+			<td>Footer 2</td>
+			<td>Footer 3</td>
+		</tr>
+	</tfoot>
+</table>
+</Demo.Preview>
+</Demo>

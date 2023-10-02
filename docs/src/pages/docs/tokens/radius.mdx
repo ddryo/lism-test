@@ -1,0 +1,81 @@
+import { Box, Frame, Text, Columns, Center, Stack } from '@lism/core';
+
+# Radius
+
+## Tokens
+- Tokens: `1`, `2`, ..., `6`, `99`
+
+
+## Utility
+- Utility Class: `-bdrs:1`, ..., `-bdrs:6`, `-bdrs:99`
+
+
+## Variables
+
+- `--radius--{token}`
+- 初期値
+	- `--radius--1`: `0.125rem` // ≒ 2px
+	- `--radius--2`: `0.25rem` // ≒ 4px
+	- `--radius--3`: `0.5rem` // ≒ 8px
+	- `--radius--4`: `0.75rem` // ≒ 12px
+	- `--radius--5`: `1.25rem` // ≒ 20px
+	- `--radius--6`: `1.875rem` // ≒ 30px
+	- `--radius--99`: `999px`
+
+
+## Demos
+
+export const RadiusDemos = () => {
+	return (
+		<>
+			{['1','2','3','4','5','6','99'].map((r) => {
+				return (
+					<Stack key={r} gap="20">
+						<Text bd='left' bdw='2px' lh='1' pl="20" fz='xs'><code>{r}</code></Text>
+						<Frame aspect="1/1" radius={r} bd='-' bdc='main'></Frame>
+					</Stack>
+				);
+			})}
+		</>
+	);
+};
+
+<Demo>
+	<Demo.Title>shadow: `1` ~ `5`, `99`</Demo.Title>
+	<Demo.Preview p={30}>
+		<Columns cols={[2, 4, 4]} gap={30}>
+			<RadiusDemos />
+		</Columns>
+	</Demo.Preview>
+</Demo>
+
+
+## How to use
+
+<Demo>
+	<Demo.Title>Component</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Box radius="2">...</Box>
+	```
+	</Demo.Code>
+</Demo>
+<Demo>
+	<Demo.Title>HTML</Demo.Title>
+	<Demo.Code>
+	```html
+	<div class="l--box -bdrs:2">...</div>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>CSS</Demo.Title>
+	<Demo.Code>
+```css
+.foo{
+	border-radius: var(--radius--2);
+}
+```
+	</Demo.Code>
+</Demo>

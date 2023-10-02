@@ -1,0 +1,263 @@
+
+import { DecoratedText } from '@/examples/test';
+import Image from 'next/image'
+import { Frame, MediaLayer, FilterLayer, ContentLayer, Center } from '@lism/core';
+
+
+# DecorationBox
+
+`hasDecoration` , `has--decoration[data-decoration="xxx"]`とか？
+{/* or, l--box--decoration */}
+{/* l--text--decoration */}
+{/* l--box s--kakko, s--stripe, s--glass, s--gridnote */}
+{/* l--box -box:kakko, -box:stripe, -deco:hoge, -style:hoge */}
+
+
+## Import
+
+```js
+import { DecoratedText } from '@lism/core';
+```
+
+<Demo>
+	<Demo.Title>test</Demo.Title>
+	<Demo.Preview resize p={20}>
+	
+		<Box bdl="solid 1px" bdw="4px" >
+			<DammyText />
+		</Box>
+		<Box bdl="solid 1px" bds="solid" >
+			<DammyText />
+		</Box>
+		<Box bdl bdr bds="dashed" bdw="2px" >
+			<DammyText />
+		</Box>
+		<Box bd bds="dashed" bdw="2px" >
+			<DammyText />
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+## Demo
+
+<Demo>
+	<Demo.Title>Speak</Demo.Title>
+	<Demo.Preview resize p={20}>
+	
+		<DecoratedText variant="call" direction="left">
+			<DammyText />
+		</DecoratedText>
+		<DecoratedText variant="call" direction="right">
+			<DammyText />
+		</DecoratedText>
+		<DecoratedText variant="call" direction="top">
+			<DammyText />
+		</DecoratedText>
+		<DecoratedText variant="call" direction="bottom">
+			<DammyText />
+		</DecoratedText>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>balloon bdc,bgcをどう引き継がせるか。</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<DecoratedText variant="balloon" direction="left-center">
+			<DammyText />
+			<DammyText />
+		</DecoratedText>
+		{/* <DecoratedText variant="balloon" direction="left-top">
+			<DammyText />
+			<DammyText />
+		</DecoratedText>
+		<DecoratedText variant="balloon" direction="left-bottom">
+			<DammyText />
+			<DammyText />
+		</DecoratedText> */}
+		<DecoratedText variant="balloon" direction="right-center">
+			<DammyText />
+			<DammyText />
+		</DecoratedText>
+		{/* <DecoratedText variant="balloon" direction="right-top">
+			<DammyText />
+			<DammyText />
+		</DecoratedText>
+		<DecoratedText variant="balloon" direction="right-bottom">
+			<DammyText />
+			<DammyText />
+		</DecoratedText> */}
+
+		<DecoratedText variant="balloon" direction="bottom-center">
+			<DammyText />
+		</DecoratedText>
+		<DecoratedText variant="balloon" direction="top-center">
+			<DammyText />
+		</DecoratedText>
+		<DecoratedText variant="balloon" direction="bottom-left">
+			<DammyText />
+		</DecoratedText>
+
+		<DecoratedText variant="balloon" direction="top-left">
+			<DammyText />
+		</DecoratedText>
+		<DecoratedText variant="balloon" direction="bottom-right">
+			<DammyText />
+		</DecoratedText>
+		<DecoratedText variant="balloon" direction="top-right">
+			<DammyText />
+		</DecoratedText>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>emphasis</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<DecoratedText variant="emphasis"  direction="left">
+			<DammyText />
+		</DecoratedText>
+
+		<DecoratedText variant="emphasis" direction="right">
+			<DammyText />
+		</DecoratedText>
+		
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>sticky</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<DecoratedText variant="sticky">
+			<DammyText />
+		</DecoratedText>
+		
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>grid</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<DecoratedText variant="grid">
+			<DammyText />
+		</DecoratedText>
+		
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>grid</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<DecoratedText variant="stripe">
+			<DammyText />
+		</DecoratedText>
+		
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>kakko</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<DecoratedText variant="kakko" direction="lr">
+			<DammyText />
+		</DecoratedText>
+		<DecoratedText variant="kakko" direction="tb">
+			<DammyText />
+		</DecoratedText>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>big-kakko</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<DecoratedText variant="big-kakko" direction="lr">
+			<DammyText />
+		</DecoratedText>
+		<DecoratedText variant="big-kakko" direction="tb">
+			<DammyText />
+		</DecoratedText>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+
+
+`<GlassBox>` とか完全に分けてもいいレベルか？
+でもCardとかでも使いたい。
+<Demo>
+	<Demo.Title>glass</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Frame aspect="2/1">
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			<FilterLayer brightness="1.1"/>
+			<ContentLayer gap={20} p={20} bg='glass' inset={50} c="white" shadow={2}>
+				<Center gap={20} size="cover">
+					<DammyText length="m" />
+				</Center>
+			</ContentLayer>
+		</Frame>
+		
+		<Frame aspect="2/1">
+			<MediaLayer src="https://images.unsplash.com/photo-1501949997128-2fdb9f6428f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80" alt="" width='960' height='640' />
+			<ContentLayer gap={20} p={20} bg='glass' inset={50} c="black" shadow={4}>
+				<Center gap={20} size="cover">
+					<DammyText length="m" />
+				</Center>
+			</ContentLayer>
+		</Frame>
+		
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>

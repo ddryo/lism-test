@@ -1,0 +1,280 @@
+import { Frame, Box, Text, Stack,Columns, Tabs, TabItem } from '@lism/core';
+import Script from 'next/script';
+
+# Typography
+
+
+## フォントサイズ
+
+|トークン|変数|ユーティリティ|初期値|
+|---|---|---|---|
+|`2xs`|`--fz--2xs`|`.-fz:2xs`||
+|`xs`|`--fz--xs`|`.-fz:xs`||
+|`s`|`--fz--s`|`.-fz:s`||
+|`m`|`--fz--m`|`.-fz:m`|1em|
+|`r`|`--fz--r`|`.-fz:r`|1rem|
+|`l`|`--fz--l`|`.-fz:l`||
+|`xl`|`--fz--xl`|`.-fz:xl`||
+|`2xl`|`--fz--2xl`|`.-fz:2xl`||
+|`3xl`|`--fz--3xl`|`.-fz:3xl`||
+|`4xl`|`--fz--4xl`|`.-fz:4xl`||
+|`5xl`|`--fz--5xl`|`.-fz:5xl`||
+
+
+<Alert>
+	Memo:スケーリングは 4xl くらいまでにして、5xlのとこは `here` などのセマンティックトークンにしてもよさそう。2xsとかも?
+</Alert>
+
+
+export const FzTexts = () => (
+	<>
+		{['2xs', 'xs', 's', 'm', 'l', 'xl', '2xl', '3xl', '4xl', '5xl'].map((fz, i) => {
+			return (
+				<Stack key={fz} gap="0">
+					<Text className='is--sizeTip' fz='12px'><code>{fz}</code></Text>
+					<Text className='is--lipsum' fz={fz}>ロレムイプサムのAmet、学部エリットとSeddo絵薄モッド。</Text>
+				</Stack>
+			);
+		})}
+	</>
+);
+
+<Demo>
+	<Demo.Title>Demo</Demo.Title>
+	<Demo.Preview p={20} flowGap='20'>
+		<FzTexts />
+	</Demo.Preview>
+</Demo>
+
+
+
+### スケーリングについて
+
+各プリセット値は、数学的に美しいとされるスケーリング理論に基づいて定義することを推奨しています。
+
+<Alert>
+デフォルトでは、**分子8の調和数列**ベースで設計しています。
+</Alert>
+
+<Alert>
+	Memo: 英語: `8`ベース、 日本語: `9`ベース でスケーリングするのが良さそう。
+</Alert>
+
+参考: [音楽、数学、タイポグラフィ](https://standard.shiftbrain.com/blog/music-math-typography)
+
+
+#### 別のスケーリング例
+
+（調和数列をベースにした）スケーリング例を紹介します。
+
+<Script src='/typo.js' />
+
+
+<Tabs>
+	<TabItem label='分子7'>
+	<Frame aspect="16/9">
+		<Demo>
+			<Demo.Preview flowGap='20' className='fzDemo typo-7'>
+				<FzTexts />
+			</Demo.Preview>
+		</Demo>
+		</Frame>
+	</TabItem>
+	<TabItem label='分子8'>
+		<Frame aspect="16/9">
+		<Demo>
+			<Demo.Preview flowGap='20' className='fzDemo typo-8'>
+				<FzTexts />
+			</Demo.Preview>
+		</Demo>
+		</Frame>
+	</TabItem>
+	<TabItem label='分子9'>
+		<Frame aspect="16/9">
+		<Demo>
+			<Demo.Preview flowGap='20' className='fzDemo typo-9'>
+				<FzTexts />
+			</Demo.Preview>
+		</Demo>
+		</Frame>
+	</TabItem>
+</Tabs>
+
+
+## line-height
+
+Base:  
+日本語:1.625 or 1.75 or 1.875 あたりがおすすめ  
+英語: 1.5 or 1.625 あたりがおすすめ
+
+
+<Flex gap={20} fxw='w'>
+	<Box>
+		|段階トークン|値|
+		|---|---|
+		|10|1|
+		|20|1.125|
+		|30|1.25|
+		|40|1.375|
+		|50|1.5|
+		|60|1.625|
+		|70|1.75|
+		|80|1.875|
+		|90|2|
+	</Box>
+	<Box>
+		|トークン|値|
+		|---|---|
+		|4xs|20|
+		|3xs|30|
+		|2xs|40|
+		|xs|50|
+		|s|60|
+		|base|70|
+		|l|80|
+		|xl|90|
+	</Box>
+</Flex>
+
+<Tabs>
+	<TabItem label='日本語'>
+	<Demo>
+		<Demo.Title>Demo</Demo.Title>
+		<Demo.Preview p={20} flowGap='40'>
+			<DammyText lang='ja' length='m' lh='1'/>
+			<DammyText lang='ja' length='m' lh='1.125'/>
+			<DammyText lang='ja' length='m' lh='1.25'/>
+			<DammyText lang='ja' length='m' lh='1.375'/>
+			<DammyText lang='ja' length='m' lh='1.5'/>
+			<DammyText lang='ja' length='m' lh='1.625'/>
+			<DammyText lang='ja' length='m' lh='1.75'/>
+			<DammyText lang='ja' length='m' lh='1.875'/>
+			<DammyText lang='ja' length='m' lh='2'/>
+		</Demo.Preview>
+	</Demo>
+	</TabItem>
+	<TabItem label='English'>
+	<Demo>
+	<Demo.Title>Demo</Demo.Title>
+	<Demo.Preview p={20} flowGap='40'>
+		<DammyText length='m' lh='1'/>
+		<DammyText length='m' lh='1.125'/>
+		<DammyText length='m' lh='1.25'/>
+		<DammyText length='m' lh='1.375'/>
+		<DammyText length='m' lh='1.5'/>
+		<DammyText length='m' lh='1.625'/>
+		<DammyText length='m' lh='1.75'/>
+		<DammyText length='m' lh='1.875'/>
+		<DammyText length='m' lh='2'/>
+	</Demo.Preview>
+</Demo>
+	</TabItem>
+</Tabs>
+
+
+## フォントファミリー
+
+- base, code, heading
+<Demo>
+	<Demo.Title>Demo</Demo.Title>
+	<Demo.Preview p={20} flowGap='20'>
+		<DammyText />
+		<DammyText ff='mono' />
+		<DammyText ff='sans' />
+		<DammyText ff='serif' />
+		<Text ff='emoji'>💡 ✔️ ✅ 👍 ✍️ ⚡ 🚫 Lorem 0123</Text>
+		<Text ff='mono'>💡 ✔️ ✅ 👍 ✍️ ⚡ 🚫 Lorem 0123</Text>
+		<Text>💡 ✔️ ✅ 👍 ✍️ ⚡ 🚫 Lorem 0123</Text>
+	</Demo.Preview>
+</Demo>
+
+
+## letter spacing
+letter spacing
+<Demo>
+	<Demo.Title>Demo</Demo.Title>
+	<Demo.Preview p={20} flowGap='20'>
+		<Text>Lorem 0123</Text>
+		<Text lts="1px">Lorem 0123</Text>
+		<Text lts="2px">Lorem 0123</Text>
+	</Demo.Preview>
+</Demo>
+
+
+
+## Headings
+
+<Demo>
+	<Demo.Title>Headings</Demo.Title>
+	<Demo.Preview p={20} flowGap='20'>
+		<h1>Heading 1: <DammyText tag='span' lang='ja' /></h1>
+		<h2>Heading 2: <DammyText tag='span' lang='ja' /></h2>
+		<h3>Heading 3: <DammyText tag='span' lang='ja' /></h3>
+		<h4>Heading 4: <DammyText tag='span' lang='ja' /></h4>
+		<p>Paragraph: <DammyText tag='span' lang='ja' /></p>
+		<h5>Heading 5: <DammyText tag='span' lang='ja' /></h5>
+		<h6>Heading 6: <DammyText tag='span' lang='ja' /></h6>
+		
+	</Demo.Preview>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>Headings</Demo.Title>
+	<Demo.Preview p={20} flowGap='20'>
+		<h1>Heading 1: <DammyText tag='span' /></h1>
+		<h2>Heading 2: <DammyText tag='span' /></h2>
+		<h3>Heading 3: <DammyText tag='span' /></h3>
+		<h4>Heading 4: <DammyText tag='span' /></h4>
+		<p>Paragraph: <DammyText tag='span' /></p>
+		<h5>Heading 5: <DammyText tag='span' /></h5>
+		<h6>Heading 6: <DammyText tag='span' /></h6>
+		
+	</Demo.Preview>
+</Demo>
+
+
+## Customize
+
+以下が初期値です。
+スタイルシートにコピーして別の値へカスタマイズしてください。
+
+```css filename="your css"
+@layer lism-init {
+	:root{
+		 /* 400px:0.875rem ~ 600:1rem */
+		--fz--root: clamp(0.875rem, 0.625rem + 1vw, 1rem);
+		--lh--bsae: var(--lh--70);
+	}
+
+	h1 {
+		--fz: var(--fz--3xl);
+		--lh: var(--lh--40);
+	}
+	h2 {
+		--fz: var(--fz--2xl);
+		--lh: var(--lh--50);
+	}
+	h3 {
+		--fz: var(--fz--xl);
+		--lh: var(--lh--50);
+	}
+	h4 {
+		--fz: var(--fz--l);
+		--lh: var(--lh--60);
+	}
+	h5 {
+		--fz: var(--fz--m);
+	}
+	h6 {
+		--fz: var(--fz--s);
+		--lh: var(--lh--60);
+	}
+}
+
+body{
+    font-size: 1rem;
+    line-height: var(--lh--bsae);
+}
+
+```

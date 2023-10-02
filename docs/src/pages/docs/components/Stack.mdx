@@ -1,0 +1,85 @@
+import { Stack } from '@lism/core';
+
+# Stack
+
+複数の要素を**Flexレイアウトで縦並びに配置する**ためのコンポーネントです。
+
+`--fxd:column`がデフォルトで適用されている[`isFlex`](/docs/layout-system/is-flex)なコンポーネントで、`<Flex fxd="column">`と機能的には同等です。
+
+-   `<Stack>`
+-   Lismクラス: `.l--stack.is--flex`
+
+## Import
+
+```js
+import { Stack } from '@lism/core';
+```
+
+## Demo
+
+<Demo className="has--box-guide">
+	<Demo.Title>デフォルト状態の`<Stack>`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Stack>
+			<p>コンテンツ</p>
+			<p>コンテンツ</p>
+			<p>コンテンツ</p>
+		</Stack>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Stack>
+		<p>...</p>
+		<p>...</p>
+		<p>...</p>
+	</Stack>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo>
+	<Demo.Title>sectionとしての活用</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Stack tag='section' gap={20} pX={50} pY={40} bgc='whitesmoke' c='darkgray'>
+			<h3>Heading</h3>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugit, numquamdictarepellat ipsa autem eos iure ducimus consequatur vel.</p>
+		</Stack>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Stack tag='section' gap={20} pX={50} pY={40} bgc='whitesmoke' c='darkgray'>
+		<h3>Heading</h3>
+		<p>...</p>
+	</Stack>
+	```
+	</Demo.Code>
+</Demo>
+
+
+## Stackを活用したセンター寄せレイアウト
+`<Stack ai="center">`( `.l--stack.-ai:c` )の組み合わせで、Every Layout で言うところの **"内在的な中央寄せ"** （コンテンツが短い時だけ中央寄せ）にできます。
+
+<Demo className="has--box-guide">
+	<Demo.Title>内在的な中央寄せ</Demo.Title>
+	<Demo.Preview resize>
+		<Stack ai="center" gap={20} p={20}>
+			<h3 role="presentation">
+				見出し
+			</h3>
+			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit.Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+		</Stack>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Stack ai="center" gap={20} p={20}>
+		<h3>見出し</h3>
+		<p>...</p>
+		<p>...</p>
+	</Stack>
+	```
+	</Demo.Code>
+</Demo>
+

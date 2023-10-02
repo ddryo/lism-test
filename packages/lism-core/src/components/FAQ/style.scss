@@ -6,26 +6,24 @@
 // }
 
 // :where(.b--faq) {}
-[data-css-icon="Q"]::before{
+[data-css-icon='Q']::before {
 	font-family: Arial, sans-serif;
-	content: "Q";
+	content: 'Q';
 }
-[data-css-icon="A"]::before{
+[data-css-icon='A']::before {
 	font-family: Arial, sans-serif;
-	content: "A";
+	content: 'A';
 }
 
 .b--faq__q,
 .b--faq__a {
 	// position: relative;
 
-	&.l--flex{
+	&.l--flex {
 		align-items: baseline;
-		gap: var(--space--30);
+		// gap: var(--space--30);
 	}
 }
-
-
 
 // .b--faq__icon{
 // 	grid-area: icon;
@@ -33,4 +31,3 @@
 // .b--faq__title{
 // 	grid-area: text;
 // }
-

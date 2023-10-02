@@ -1,0 +1,257 @@
+import { Text, Box, Layer, Columns, TileGrid, Center, Frame } from '@lism/core';
+
+# Layer
+
+`position:absolute`で要素を配置するためのモジュールです。
+
+- Lismクラス: `.l--layer`
+
+
+## 主なProps
+- `position`: Layerの配置位置を指定します。
+	- `"cover"` or `"{X} {Y}"`形式を利用できます。
+	- X,Yには `"left"` | `"right"` | `"top"` | `"bottom"` | `"center"` | `"cover"` キーワードが利用できます。
+	{/* - `position="{X} {Y}"` で X,Y にキーワード値を指定できます。
+		- X: `"left"` | `"right"` | `"center"`
+		- Y: `"top"` | `"bottom"` | `"center"`
+		- また、`position="center"` = `position="center center"` になります。 */}
+- `position` を指定せず、`top`, `right`, `bottom`, `left` で細かい数値を指定することも可能です。
+- `size="contain"`: Layerサイズが親要素を超えないようになります。
+
+
+### 注意点
+
+Layerの親要素は`position:relative`にしておく必要があることに注意してください。  
+`pos="relative"` を指定するか、`hasLayer`を親コンポーネントに指定すると(`.has--layer`クラスを付与します）、`position:relative`になります。
+
+### ブロック化した時のmemo...
+	- できれば、Layer配置時に自動で親ブロックに `.has--layer` or `.-pos:r` を追加するようにしたい。
+		- ブロック化したときは、Layerブロックから親要素へアクセスしてsetAtttibutesでクラス付けたりできるか。
+	- （さらに) (できれば、）削除されたときに親ブロックからそのクラスは削除したい。
+	- エディター側では 常に親に被っていると編集ができないので、「relative モード」みたいなのを用意して absolute を一時的に解除もできるようにしたい。
+	- 子ブロックとしてしか使えないようにしたい。
+		- ~~fixed な要素を作ることを想定するとテンプレート直下でも普通に使えたほうがいいか...？~~
+	
+
+## Import
+
+```js
+import { Layer } from '@lism/core';
+```
+
+
+## positionの指定による挙動の違い
+
+export const LayerPositionsDemo = () => {
+	return (
+		<Columns cols={[1, 3]}>
+			{[
+				"left top",
+				"center top",
+				"right top",
+				"left center",
+				"center",
+				"right center",
+				"left bottom",
+				"center bottom",
+				"right bottom",
+			].map((position) => (
+				<Box key={position} hasLayer pY={40} bgc="pale">
+					<Text fz="4xl" fw="bold" ta="c" opacity=".1">BG</Text>
+					<Layer position={position} bgc="hsl(268 50% 80% / 0.2)" bd="guide">
+						<Text fz="s" p={10} lh="1.5">"{position}"</Text>
+					</Layer>
+				</Box>
+			))}
+		</Columns>
+	);
+}
+
+<Demo>
+	<Demo.Title>
+		`position`の指定
+	</Demo.Title>
+	<Demo.Preview p={15}>
+		<LayerPositionsDemo />
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {4}
+		<Box hasLayer pY={40} bgc="pale">
+			<Text fz="xl" fw="bold" ta="c" opacity=".1">BG</Text>
+			<Layer
+				position={position}
+				bgc="hsl(268 50% 80% / 0.2)"
+				bd="guide"
+			>
+				<Text fz="xs" p={10} lh="1.5">...</Text>
+			</Layer>
+		</Box>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### `size="cover"`の時の挙動について
+
+`inset:0` になり、`<Layer>` が親要素全体に覆い被さります。
+
+<Demo>
+	<Demo.Title>
+		`size="cover"`
+	</Demo.Title>
+	<Demo.Preview p={20}>
+		<Box hasLayer pY={40} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c">BG</Text>
+			<Layer size="cover">
+				<DammyText length='xs' />
+			</Layer>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {3}
+		<Box hasLayer pY={40}>
+			...
+			<Layer size="cover">
+				<p>...</p>
+			</Layer>
+		</Box>
+		```
+	</Demo.Code>
+</Demo>
+
+Centerと組み合わせることで、コンテンツを中央に配置できます。
+
+<Demo>
+	<Demo.Title>
+		`size="cover"`の中に`<Center>`
+	</Demo.Title>
+	<Demo.Preview resize p={15}>
+		<Box hasLayer pY={40} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer size="cover">
+				<Center size="cover">
+					<DammyText length='xs' />
+				</Center>
+			</Layer>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {3,4}
+		<Box hasLayer pY={40}>
+			...
+			<Layer size="cover">
+				<Center size="cover">
+					<p>...</p>
+				</Center>
+			</Layer>
+		</Box>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Alert preset="memo">
+※ Stackを活用しても中央に寄せれますが、コンテンツが長くてスクロール必要な状態になったときに全部のコンテンツが見れないのでCenter使うのがおすすめです。
+</Alert>
+
+
+## positionを指定せずに使う場合
+
+`top`,`left`,`inset` などで直接位置を指定できます。
+
+<Demo>
+	<Demo.Title>
+		`top`, `left` に SPACE.20 を指定
+	</Demo.Title>
+	<Demo.Preview resize p={15}>
+		<Box hasLayer pY={40} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer top={20} left={20}>
+				<p>Layer Contents</p>
+			</Layer>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Layer top={20} left={20}>
+			<p>Layer Contents</p>
+		</Layer>
+		```
+	</Demo.Code>
+</Demo>
+
+
+{/* `position="top left"` は `top="0" left="0"`, `size="cover"` は `inset="0"`と同じです。 */}
+
+
+## overflow:auto がデフォルトの挙動です。
+親要素よりコンテンツの高さが高くなる場合は、次のように縦方向にスクロール可能になります。
+
+<Demo>
+	<Demo.Title>
+		コンテンツが長い場合
+	</Demo.Title>
+	<Demo.Preview resize p={15}>
+		<Box hasLayer pY={50} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer size="cover" isFlow p='box'>
+				<DammyText />
+				<DammyText length='l' />
+				<DammyText length='xl' />
+			</Layer>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Layer size="cover" isFlow p='box'>
+			...
+		</Layer>
+		```
+	</Demo.Code>
+</Demo>
+
+## `size=contain` の挙動について
+
+`size=contain`を指定すると、親のサイズを超えないようになります。（maxW, maxH に 100% 指定が入る）
+
+<Demo>
+	<Demo.Title>
+		`size="contain"`の指定なしの場合.
+	</Demo.Title>
+	<Demo.Preview resize p={{X:20, Y:60}}>
+		<Box hasLayer pY={40} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer position="center" w="75%" p='box'>
+				<DammyText length="l" />
+			</Layer>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Layer position="center" w="75%" p='box'>
+			...
+		</Layer>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>
+		`size="contain"`の指定ありの場合
+	</Demo.Title>
+	<Demo.Preview resize p={{X:20, Y:40}}>
+		<Box hasLayer pY={40} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer size="contain" position="center" w="75%" p={20}>
+				<DammyText length="l" />
+			</Layer>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Layer size="contain" position="center" w="75%" p={20}>
+			...
+		</Layer>
+		```
+	</Demo.Code>
+</Demo>

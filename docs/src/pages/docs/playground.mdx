@@ -1,0 +1,43 @@
+---
+title: 'Test'
+# description: '...'
+---
+
+# Nextra test
+
+<Demo>
+	<Demo.Title>shadow</Demo.Title>
+	<Demo.Preview isShadow resize  p={20}>
+		<Box maxW='100%' minH={'3em'} bgc='n100' p="20">
+			<DammyText />
+		</Box>
+	</Demo.Preview>
+</Demo>
+
+
+
+{/* <Demo>
+	<Demo.Title>iframe (元windowから変数セットできない)</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Demo.Frame>
+			<Box maxW='100%' minH={'2em'} bgc='n100'>
+				<DammyText />あああ
+				あああ
+			</Box>
+		</Demo.Frame>
+	</Demo.Preview>
+</Demo> */}
+
+
+<Demo>
+	<Demo.Title>test</Demo.Title>
+	<Demo.Preview resize p={20}>
+	
+		<Box maxW='100%' minH={'2em'} bgc='n100'>
+			<DammyText />
+		</Box>
+		<Box className="hoge -lism:" style={{'--lism': '8px'}}>
+			<DammyText />
+		</Box>
+	</Demo.Preview>
+</Demo>

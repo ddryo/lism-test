@@ -1,0 +1,138 @@
+import { FluidFix, Box } from '@lism/core';
+
+{/* FixFluid,FixSwitch */}
+
+
+# FluidFix
+
+片方の横幅を固定し、もう片方の横幅が伸縮する横並びレイアウトで、かつ、指定した値を下回ると自動で縦並びに切り替わるレイアウトを組めるモジュールです。
+
+<Alert preset="point">
+コンテナクエリに依存せずに横並びと縦並びの切り替えを行います。
+</Alert>
+
+- `<FluidFix>`
+- Lismクラス: `.l--fluidFix`
+
+
+## 主なProps
+
+- `fixW` : 固定幅
+	- デフォルト値: `auto` (要検討)
+- `fluidMinW` : Fluid要素の最小幅
+	- デフォルト値: `50%`
+- `fix`: `first` or `last` で FIX要素を指定。
+	- `data-fix`属性に指定した文字列が出力されます。
+{/* - `gap`: 初期値 `20` */}
+
+
+
+## Import
+
+```js
+import { FluidFix } from '@lism/core';
+```
+
+## Demo
+
+<Demo>
+	<Demo.Title>
+		`fix="first"`
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<FluidFix fix="first" gap={20} className='has:itemGuide'>
+			<Box>Fixed Content</Box>
+			<Box>
+				Fluid Contents..., <DammyText tag='span'/>
+			</Box>
+		</FluidFix>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<FluidFix fix="first" gap={20}>
+			<Box>Fixed Content</Box>
+			<Box>
+				Fluid Contents..., <DammyText tag='span'/>
+			</Box>
+		</FluidFix>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>
+		`fix="last"`, `fixW="200px"`
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<FluidFix fix="last" fixW="200px" gap={20} className='has:itemGuide'>
+			<Box>
+				Fluid Contents..., <DammyText tag='span'/>
+			</Box>
+			<Box>Fixed Content</Box>
+		</FluidFix>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<FluidFix fix="first" fixW="200px" gap={20}>
+			<Box>
+				Fluid Contents..., <DammyText tag='span'/>
+			</Box>
+			<Box>Fixed Content</Box>
+		</FluidFix>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>
+		`fix="last"`, `fluidMinW="32rem"`
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<FluidFix fix="last" fluidMinW="32rem" gap={20} className='has:itemGuide'>
+			<Box>
+				Fluid Contents..., <DammyText tag='span'/>
+			</Box>
+			<Box>Fixed Content</Box>
+		</FluidFix>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<FluidFix fix="first" fluidMinW="32rem" gap={20}>
+			<Box>
+				Fluid Contents..., <DammyText tag='span'/>
+			</Box>
+			<Box>Fixed Content</Box>
+		</FluidFix>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### 折り返さずに使うことも。
+`fluidMinW`を小さな値にすることで折り返さないことも可能です。
+
+→ 子要素がgrow:1 で nowrap なコンポーネント作る？ LiquidFlexとか...。
+<Demo>
+	<Demo.Title>
+		`fluidMinW="1em"`
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<FluidFix fluidMinW='1em' gap="20" className='has:itemGuide'>
+			<Box>
+				Fluid Contents..., <DammyText tag='span'/>
+			</Box>
+			<Box w={['8em', '12em']}>Fixed Content</Box>
+		</FluidFix>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<FluidFix fluidMinW='1em' gap="20">
+			<Box>
+				Fluid Contents..., <DammyText tag='span'/>
+			</Box>
+			<Box w={['8em', '12em']}>Fixed Content</Box>
+		</FluidFix>
+		```
+	</Demo.Code>
+</Demo>

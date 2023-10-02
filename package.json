@@ -11,7 +11,10 @@
 		"preview": "vite preview"
 	},
 	"workspaces": [
-		"packages/*"
+		"packages/*",
+		"demo/*",
+		"website",
+		"docs"
 	],
 	"keywords": [
 		"framework",

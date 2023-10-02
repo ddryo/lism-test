@@ -12,11 +12,9 @@
 	},
 	"dependencies": {
 		"@lism/core": "workspace:*",
-		"@nanostores/react": "^0.7.1",
 		"@phosphor-icons/react": "^2.0.10",
 		"classnames": "^2.3.2",
 		"eslint-config-next": "13.4.12",
-		"nanostores": "^0.9.3",
 		"next": "13.4.12",
 		"nextra": "^2.10.0",
 		"nextra-theme-docs": "^2.10.0",

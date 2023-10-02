@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lism, Decorator, Text, Layer } from '@lism/core';
+import { Lism, Decorator } from '@lism/core';
 
 const PRESETS = {
 	sticky: {

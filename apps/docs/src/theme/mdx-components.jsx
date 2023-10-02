@@ -2,9 +2,7 @@
 // contexts内の依存ファイルは必要なものだけそのままコピペして持ってきている
 
 // import cn from 'clsx';
-import { useEffect, useRef } from 'react';
-import { useSetActiveAnchor } from './contexts';
-import { useIntersectionObserver, useSlugs } from './contexts/active-anchor';
+
 import { Box, Text, Flex, Stack, Note, Alert } from '@lism/core';
 import Demo from '@/components/Demo';
 import Preview from '@/components/Preview';
@@ -35,52 +33,8 @@ const DammyText = ({ length = 's', lang = 'en', ...props }) => {
 	return <Text {...props}>{LOREM_TEXT[lang][length]}</Text>;
 };
 
-// Anchor links
-function HeadingLink({ tag: Tag, context, children, id, ...props }) {
-	const setActiveAnchor = useSetActiveAnchor();
-	const slugs = useSlugs();
-	const observer = useIntersectionObserver();
-	const obRef = useRef(null);
-
-	useEffect(() => {
-		if (!id) return;
-		const heading = obRef.current;
-		if (!heading) return;
-		slugs.set(heading, [id, (context.index += 1)]);
-		observer?.observe(heading);
-
-		return () => {
-			observer?.disconnect();
-			slugs.delete(heading);
-			setActiveAnchor((f) => {
-				const ret = { ...f };
-				delete ret[id];
-				return ret;
-			});
-		};
-	}, [id, context, slugs, observer, setActiveAnchor]);
-
-	return (
-		<Tag className={`lsdoc--${Tag}`} {...props}>
-			{children}
-
-			{/* そのまま */}
-			<span className='nx-absolute -nx-mt-20' id={id} ref={obRef} />
-			<a href={`#${id}`} className='subheading-anchor' aria-label='Permalink for this section' />
-		</Tag>
-	);
-}
-
 export const getMyComponents = () => {
-	const context = { index: 0 };
 	return {
-		h1: (props) => <h1 className='lsdoc--h1' {...props} />,
-		h2: (props) => <HeadingLink tag='h2' context={context} {...props} />,
-		h3: (props) => <HeadingLink tag='h3' context={context} {...props} />,
-		h4: (props) => <HeadingLink tag='h4' context={context} {...props} />,
-		h5: (props) => <HeadingLink tag='h5' context={context} {...props} />,
-		h6: (props) => <HeadingLink tag='h6' context={context} {...props} />,
-
 		p: ({ children }) => <p>{children}</p>,
 		h: ({ children }) => <h1 className='lsdoc--h1'>{children}</h1>,
 		ul: ({ children }) => <ul className='lsdoc--ul'>{children}</ul>,

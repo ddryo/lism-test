@@ -4,7 +4,8 @@
 
 // そのままでいいもの
 // export { Box, ... } from "../dist";
-export * from '@lism/core/components/index.js';
+// export * from '@lism/core/components/index.js';
+export * from '@lism/core';
 
 // export { default as Columns } from './Columns';
 export { Tab, TabItem } from './Tab';

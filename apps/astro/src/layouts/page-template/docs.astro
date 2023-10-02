@@ -1,5 +1,5 @@
 ---
-import { SideFixFlex, Stack, Box } from '@lism/core';
+import { FluidFix, Stack, Box } from '@lism/core';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 import DocsSidebar from '~/components/DocsSidebar.jsx';
@@ -13,7 +13,7 @@ const { title, url } = Astro.props;
 
 <Header />
 {/* 240px@1000px ~ 300px@1600px */}
-<SideFixFlex
+<FluidFix
 	class='a--'
 	fix='first'
 	fixW='clamp(240px, 140px + 10vw, 300px);'
@@ -26,8 +26,8 @@ const { title, url } = Astro.props;
 	<Stack gap={0} class='lism--page'>
 		<!-- <Header /> -->
 		<Box class='a--content'>
-			<Box class='a--main' tag='main' pY={60}>
-				<Box class='a--article' tag='article' isFlow flowGap={60}>
+			<Box class='a--main' tag='main' pY={60} pX={40}>
+				<Box class='a--article' tag='article' isFlow>
 					<Box class='a--article__header' tag='header' isConstrained hasGutter>
 						<Box>
 							<h1 class='c--pageTitle wp-block-post-title'>
@@ -43,4 +43,4 @@ const { title, url } = Astro.props;
 		</Box>
 		<Footer />
 	</Stack>
-</SideFixFlex>
+</FluidFix>

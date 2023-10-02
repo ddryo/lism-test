@@ -1,11 +1,11 @@
 {
-	"name": "@ism/docs",
+	"name": "@lism/astro-test",
 	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "astro build",
+		"_build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
 		"format": "prettier --write ./src/**/*.astro --plugin=prettier-plugin-astro"

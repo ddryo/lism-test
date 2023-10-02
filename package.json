@@ -5,13 +5,15 @@
 	"main": "dist/index.js",
 	"module": "dist/index.js",
 	"scripts": {
-		"dev": "vite",
-		"build": "vite build && npm run build:css",
-		"build:css": "node scss-builder.js",
-		"preview": "vite preview"
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"start": "turbo run start",
+		"lint": "turbo run lint",
+		"clean": "turbo run clean"
 	},
 	"workspaces": [
-		"packages/*"
+		"packages/*",
+		"apps/*"
 	],
 	"keywords": [
 		"framework",
@@ -41,6 +43,11 @@
 		"prettier": "^3.0.3",
 		"sass": "^1.66.1",
 		"stylelint": "^15.10.3",
-		"stylelint-config-recommended-scss": "^13.0.0"
+		"stylelint-config-recommended-scss": "^13.0.0",
+		"turbo": "^1.10.14"
+	},
+	"packageManager": "pnpm@8.6.11",
+	"engines": {
+		"pnpm": ">=8.0"
 	}
 }

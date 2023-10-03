@@ -141,9 +141,6 @@ body {
 .a--main {
 	container-type: inline-size; // resizeコンテンツが飛び出るのを防げる
 
-	// breadcrumbがある場合（layout:full）
-	margin-top: var(--space--50);
-
 	// breadcrumbがある場合（普通のページ）
 	.nextra-breadcrumb + & {
 		margin-top: var(--space--30);

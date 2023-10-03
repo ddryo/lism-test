@@ -1,5 +1,5 @@
 import React from 'react';
-import { Core } from '../Core';
+import { Grid } from '../Grid';
 // import { DynamicCSS } from '../index';
 // import classnames from 'classnames';
 // import "./style.scss";
@@ -35,14 +35,8 @@ export default function SwitchFix({
 	}
 
 	const blockProps = {
-		lismClass: 'l--switchFix',
 		'data-fix': fix,
 		'data-bp': breakPoint,
-		// useGridProps: true,
-		// gap: 20, // 初期値
-		// gta,
-		// gtc,
-		// lismVar: fixW,
 	};
 
 	if (customBreakPoint) {
@@ -59,11 +53,11 @@ export default function SwitchFix({
 	// }
 	return (
 		<>
-			<Core lismStyle={lismStyle} {...blockProps} {...props}>
+			<Grid lismClass='l--switchFix' lismStyle={lismStyle} {...blockProps} {...props}>
 				{/* <DynamicCSS css={customQueryCSS} /> */}
 				{/* {sortChildren(children, upper)} */}
 				{children}
-			</Core>
+			</Grid>
 		</>
 	);
 }

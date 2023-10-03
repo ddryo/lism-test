@@ -2,18 +2,23 @@ import { Box, Flow } from '@lism/core';
 
 # Flow
 
-[`.is--flow`](http://localhost:3000/docs/props/is-flow)を出力するコンポーネントです。
+[`.is--flow`](http://localhost:3000/docs/props/is-flow)を出力するコンポーネントで、 `<Lism isFlow>`のエイリアスです。
 
-- `<Flow>`
-- Lismクラス: `.is--flow`
 
-`<Lism isFlow>`のエイリアス。
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="is--flow">...</div>
+	```
+	</Demo.Code>
+</Demo>
 
 
 ## Props
 
 - `gap`: `Flow`コンポーネントでのみ、`gap` = `flowGap`として扱われます。
-- `as`: 展開コンポーネントを指定できます。
+- `as`: 展開したいコンポーネントを指定できます。
 	- `<Flow as="Box">` = `<Box isFlow>` です。
 
 ## Import
@@ -22,7 +27,7 @@ import { Box, Flow } from '@lism/core';
 import { Flow } from '@lism/core';
 ```
 
-## Demo
+## DEMO
 
 <Demo>
 	<Demo.Title>Flowの例</Demo.Title>

@@ -2,14 +2,23 @@ import { Columns } from '@lism/core';
 
 # Columns
 
-- `<Columns>`
-- Lismクラス: `.l--columns`
-- grid で実装。(flexだと gap の値を計算に含める必要がでてくるが、grid だと 1fr で自動調整してくれる。)
-{/* - default gap: 40 ? */}
+指定した列数でカラムレイアウトを作成します。
+
+内部的には[`<Grid>`](/docs/components/Grid)ベースのコンポーネントです。
+
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--columns" style="--gtc:{cols}">...</div>
+	```
+	</Demo.Code>
+</Demo>
+
 
 ## 主なProps
 - `cols`: 列数指定
-
+- その他、[`<Grid>`で使えるprops](/docs/components/Grid#props)が使えます。
 
 ## Import
 
@@ -17,7 +26,7 @@ import { Columns } from '@lism/core';
 import { Columns } from '@lism/core';
 ```
 
-## Demo
+## DEMO
 
 <Demo className="has--box-guide">
 	<Demo.Title>
@@ -49,7 +58,7 @@ import { Columns } from '@lism/core';
 		2列 → `@md`:4列
 	</Demo.Title>
 	<Demo.Preview resize p={15}>
-		<Columns cols={[2, null, 4]} gap={[20, null, 30]} className='has:itemGuide'>
+		<Columns cols={[2, null, 4]} gap={20} className='has:itemGuide'>
 			<Box bgc="pale" p="box">Box</Box>
 			<Box bgc="pale" p="box">Box</Box>
 			<Box bgc="pale" p="box">Box</Box>
@@ -58,7 +67,7 @@ import { Columns } from '@lism/core';
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Columns cols={[2, null, 4]} gap={[20, null, 30]}>
+		<Columns cols={[2, null, 4]} gap={20}>
 			...
 		</Columns>
 		```
@@ -105,8 +114,6 @@ import { Columns } from '@lism/core';
 	<Demo.Code>
 		```jsx
 		<Columns cols={[2, 3, 4, 6]} gap={20}>
-			<p>...</p>
-			<p>...</p>
 			...
 		</Columns>
 		```

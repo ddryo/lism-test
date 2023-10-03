@@ -4,11 +4,22 @@ import { Center, Frame, Columns } from '@lism/core';
 
 **要素**を水平・垂直方向の中央に配置するためのモジュール。
 
-- Lismクラス: `.l--center`
+
+
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--center">...</div>
+	```
+	</Demo.Code>
+</Demo>
 
 
 ## 主なProps
-- `size`: `"cover"` | `"content"` (size cover?)
+- `size` : 指定した値が`data-size`に出力されます。
+	- （有効な値は`"cover"` or `"content"`の2つ）
+- その他、[`<Flex>`で使えるprops](/docs/components/Flex#props)が使えます。
 
 
 ## Import
@@ -17,28 +28,26 @@ import { Center, Frame, Columns } from '@lism/core';
 import { Center } from '@lism/core';
 ```
 
-## Demo
+## DEMO
 
-### 活用例１: コンテンツを水平方向の中央に配置する
-
-Centerが高さを持たない場合、内部のコンテンツを水平方向の中央に配置するだけとなります。
+Centerが**高さを持たない**場合、内部のコンテンツを水平方向の中央に配置するだけとなります。
 
 この時、いわゆる『内在的な』中央寄せ（テキスト幅が小さければ左右中央寄せ、長ければ普通に左寄せ状態と同じ状態）になります。
 
-<Demo className="has--box-guide">
+<Demo>
 	<Demo.Title>
 		デフォルトの挙動 → 水平方向の中央寄せのみ
 	</Demo.Title>
 	<Demo.Preview resize>
-		<Center p={20} gap={20}>
+		<Center p={30} gap={30}>
 			<Text fz="l">TEXT</Text>
-			<DammyText />
-			<DammyText length="l" />
+			<DammyText length="xs" />
+			<DammyText length="m" />
 		</Center>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Center p={20} gap={20}>
+		<Center p={30} gap={30}>
 			<Text fz="l">TEXT</Text>
 			<p>...</p>
 			<p>...</p>
@@ -48,160 +57,238 @@ Centerが高さを持たない場合、内部のコンテンツを水平方向�
 </Demo>
 
 
-### 活用例2: コンテンツを水平・垂直方向の中央に配置する
+これだけであれば、`<Stack ai="center">`と基本的には同じです。
 
-垂直方向に対しても中央寄せをしたい場合、Centerに高さを設定します。
+{/* ### 活用例2: コンテンツを水平・垂直方向の中央に配置する */}
+が、
 
-<Demo className="has--box-guide">
+<Alert preset="point">
+**Centerに高さを設定**すると、垂直方向に対しても中央寄せになります。
+</Alert>
+
+<Demo>
 	<Demo.Title>
-		高さを設定 → 上下位置も中央寄せになる
+		高さを設定すると、水平・垂直方向ともに中央寄せになる
 	</Demo.Title>
 	<Demo.Preview resize>
-		<Center p={20} gap={20} h="50vh">
+		<Center p={30} gap={30} h="50vh">
 			<Text fz="l" fw="700">TEXT</Text>
-			<p>Lorem ipsum text.</p>
+			<DammyText length="xs" />
+			<DammyText length="m" />
 		</Center>
 	</Demo.Preview>
 	<Demo.Code>
-		```jsx
-		<Center p={20} gap={20} h="50vh">
+		```jsx {4}
+		<Center
+			p={30}
+			gap={30}
+			h="50vh"
+		>
 			<Text fz="l" fw="700">TEXT</Text>
+			<p>...</p>
 			<p>...</p>
 		</Center>
 		```
 	</Demo.Code>
 </Demo>
 
-<Note caption="垂直中央寄せの手法について" type="memo">
-	直下の`:first-child`の`margin-top`と`:last-child`の`margin-bottom`に対してそれぞれ`auto`を指定することで実装しています。
-</Note>
 
-なぜmarginなのかというと、`justify-content:center` でセンター寄せにすると、`overflow-y:scroll`状態の時に正常にスクロールできなくなるためです。
-
-例えば、Frame内でCenterを使ってみます。  
-次のエリアをリサイズして小さくして比較みてください。
-
-
-<Demo className="has--box-guide">
-	<Demo.Title>
-		垂直中央寄せの実装方法の比較
-	</Demo.Title>
-	<Demo.Preview resize>
-		<Columns cols="2" fz="s">
-			<Frame aspect="2/1">
-				<Center h="100%" gap={20} p={20}>
-					<Text fz="l" fw="700">margin</Text>
-					<DammyText length="m" />
-				</Center>
-			</Frame>
-			<Frame aspect="2/1">
-				<Stack ai="center" jc="center" h="100%" gap={20} p={20}>
-					<Text fz="l" fw="700">justify-content</Text>
-					<DammyText length="m" />
-				</Stack>
-			</Frame>
-		</Columns>
-	</Demo.Preview>
-</Demo>
-
-
-"margin"の方がスクロールでコンテンツが全て見えるようになっています。  
-ただし、**実はまだ注意が必要**です。よく見ると下側のpadding部分までスクロールできていません。
-
-
-これを改善するには、`<Center>`自体をスクロール可能な状態（`overflow-y`を`auto`に）する必要があります。
-
-<Demo className="has--box-guide">
-	<Demo.Title>
-		`overflow-y:auto`の有無の差
-	</Demo.Title>
-	<Demo.Preview resize>
-		<Columns cols="2" fz="s">
-			<Frame aspect="2/1">
-				<Center h="100%" gap={20} pX={20} pY={40} ovy="auto">
-					<Text fz="l" fw="700">ovy="auto"</Text>
-					<DammyText length="m" />
-				</Center>
-			</Frame>
-			<Frame aspect="2/1">
-				<Center h="100%" gap={20} pX={20} pY={40}>
-					<Text fz="l" fw="700">ovy なし</Text>
-					<DammyText length="m" />
-				</Center>
-			</Frame>
-		</Columns>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Columns cols="2" fz="s">
-			<Frame aspect="2/1">
-				<Center h="100%" gap={20} pX={20} pY={40} ovy="auto">
-					<Text fz="l" fw="700">ovy="auto"</Text>
-					<DammyText length="m" />
-				</Center>
-			</Frame>
-			<Frame aspect="2/1">
-				<Center h="100%" gap={20} pX={20} pY={40}>
-					<Text fz="l" fw="700">ovy なし</Text>
-					<DammyText length="m" />
-				</Center>
-			</Frame>
-		</Columns>
-		```
-	</Demo.Code>
-</Demo>
-
+## `size` の 指定について
 
 ### size="cover"
 
-スクロール可能な状態で、の正常な挙動を考慮するのであれば、`size="cover"`(`[data-size="cover"]`) を指定することをおすすめします。
+`size="cover"`を指定すると、`<Center>`の親要素のサイズに合わせて広がるようになります。
 
-これは、`w="100%" h="100%" ovy="auto"` の一括指定と同じ挙動になります。
-
-
-<Demo className="has--box-guide">
+<Demo>
 	<Demo.Title>
 		`size="cover"`
 	</Demo.Title>
 	<Demo.Preview resize>
-		<Frame aspect="2/1">
-			<Center size="cover" gap={20} pX={20} pY={40}>
+		<Frame aspect="4/3" bgc="pale">
+			<Center size="cover" gap={30} p="box" bd>
 				<Text fz="l" fw="700">size="cover"</Text>
-				<DammyText length="l" />
+				<DammyText/>
 			</Center>
 		</Frame>
 	</Demo.Preview>
 	<Demo.Code>
-		```jsx
-		<Frame aspect="2/1">
-			<Center size="cover" gap={20} pX={20} pY={40}>
+		```jsx {2}
+		<Frame aspect="4/3" bgc="pale">
+			<Center size="cover" gap={30} p="box" bd>
 				<Text fz="l" fw="700">size="cover"</Text>
-				<DammyText length="l" />
+				<p>...</p>
 			</Center>
 		</Frame>
 		```
 	</Demo.Code>
 </Demo>
+
+<Alert preset="info">
+この時、`<Center w="100%" h="100%" ovy="auto">` と同じ挙動になっています。(`overflow-y`の指定がある理由は後述します。)
+</Alert>
 
 
 ### size="content"
 
-自分自身を水平方向に中央寄せできる
+`size="content"`を指定した時、`<Center>`のサイズは内部コンテンツに依存するようになり、さらに、内部の要素ではなく`<Center>`自身が親要素に対して水平方向(実際はinline方向)に中央寄せされます。
 
-<Demo className="has--box-guide">
+<Demo>
 	<Demo.Title>
-		content
+		`size="content"`
 	</Demo.Title>
 	<Demo.Preview resize>
-		<Center size="content" p={20} gap={20} bgc="whitesmoke" h="15rem">
-			<Text fz="l" fw="700">TEXT</Text>
-		</Center>
+		<Box bgc="pale">
+			<Center size="content" p={20} bd>
+				<Text fz="l" fw="700">Center</Text>
+			</Center>
+		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Center size="content" p={20} gap={20} bgc="whitesmoke" h="15rem">
-			<Text fz="l" fw="700">TEXT</Text>
-		</Center>
+		<Box bgc="pale">
+			<Center size="content" p={20} bd>
+				<Text fz="l" fw="700">Center</Text>
+			</Center>
+		</Box>
 		```
 	</Demo.Code>
 </Demo>
+
+<Demo>
+	<Demo.Title>
+		`size="content"`
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Frame aspect="2/1" bgc="pale">
+			<Center size="content" p={20} gap={20} bd h="100%">
+				<Text fz="l" fw="700">Center</Text>
+			</Center>
+		</Frame>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Frame aspect="2/1" bgc="pale">
+			<Center size="content" p={20} gap={20} bd h="100%">
+				<Text fz="l" fw="700">Center</Text>
+			</Center>
+		</Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+
+## Centerで使用されているCSSについて
+
+垂直中央寄せの指定方法については、次のように、直下の`:first-`,`:last-`要素の`margin`に対して`auto`を指定することで実装しています。
+
+```scss
+.l--center > :first-child {
+	margin-top: auto;
+}
+.l--center > :last-child {
+	margin-bottom: auto;
+}
+```
+
+<Alert preset="info">
+	`justify-content:center` にするだけでも垂直方向にセンター寄せできますが、それだと**スクロール時に正常な動作にならない**ため、`margin`で実装しています。
+</Alert>
+
+
+次のエリアをリサイズしてスクロール時の挙動の違いを比較してみてください。
+
+
+<Demo>
+	<Demo.Title>
+		垂直中央寄せの実装方法の比較
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Columns cols="2" fz="s" lh="s">
+			<Frame aspect="4/3" bgc="pale">
+				<Center h="100%" p='box'>
+					<Text fw="700">margin</Text>
+					<DammyText length="l" mbs={20}/>
+				</Center>
+			</Frame>
+			<Frame aspect="4/3" bgc="pale">
+				<Stack ai="center" jc="center" h="100%" p='box'>
+					<Text fw="700">justify-content</Text>
+					<DammyText length="l" mbs={20}/>
+				</Stack>
+			</Frame>
+		</Columns>
+	</Demo.Preview>
+		<Demo.Code>
+		```jsx {3, 9}
+		<Columns cols="2" fz="s" lh="s">
+			<Frame aspect="4/3" bgc="pale">
+				<Center h="100%" p='box'>
+					<Text fw="700">margin</Text>
+					...
+				</Center>
+			</Frame>
+			<Frame aspect="4/3" bgc="pale">
+				<Stack ai="center" jc="center" h="100%" p='box'>
+					<Text fw="700">justify-content</Text>
+					...
+				</Stack>
+			</Frame>
+		</Columns>
+		```
+	</Demo.Code>
+</Demo>
+
+
+このように、`margin`で実装している方はスクロールして正常にコンテンツが全て見えるようになっていますが、`justify-content`での実装では、コンテンツが見えない状態になっていることがわかります。
+
+
+ただし、**実はまだ注意が必要**です。よく見ると下側のpadding部分まではスクロールできていません。
+
+これを改善するには、親の`<Frame>`でスクロールを発生させるのではなく、`<Center>`自体をスクロールする必要があります。
+
+そのためには、`overflow-y`を`auto`(または`scroll`)に指定しておく必要があります。
+
+以下のDEMOエリアをリサイズして挙動を比較してみてください。
+
+<Demo>
+	<Demo.Title>
+		`overflow-y:auto`の有無の差
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Columns cols="2" fz="s" lh="s">
+			<Frame aspect="4/3" bgc="pale">
+				<Center h="100%" pX={30} pY={40} ovy="auto">
+					<Text fz="l" fw="700">ovy "auto"</Text>
+					<DammyText length="l" mbs={20} />
+				</Center>
+			</Frame>
+			<Frame aspect="4/3" bgc="pale">
+				<Center h="100%" pX={30} pY={40}>
+					<Text fz="l" fw="700">ovy なし</Text>
+					<DammyText length="l" mbs={20} />
+				</Center>
+			</Frame>
+		</Columns>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {3,9}
+		<Columns cols="2" fz="s" lh="s">
+			<Frame aspect="4/3" bgc="pale">
+				<Center h="100%" pX={30} pY={40} ovy="auto">
+					<Text fz="l" fw="700">ovy "auto"</Text>
+					...
+				</Center>
+			</Frame>
+			<Frame aspect="4/3" bgc="pale">
+				<Center h="100%" pX={30} pY={40}>
+					<Text fz="l" fw="700">ovy なし</Text>
+					...
+				</Center>
+			</Frame>
+		</Columns>
+		```
+	</Demo.Code>
+</Demo>
+
+
+このため、`size="cover"`にはデフォルトで`overflow-y: auto;`が指定されています。

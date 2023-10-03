@@ -242,8 +242,12 @@ letter spacing
 ```css filename="your css"
 @layer lism-init {
 	:root{
-		 /* 400px:0.875rem ~ 600:1rem */
-		--fz--root: clamp(0.875rem, 0.625rem + 1vw, 1rem);
+		
+		/* 400px:0.875rem ~ 600:1rem */
+		/* --fz--root: clamp(0.875rem, 0.625rem + 1vw, 1rem); */
+
+		/* 350px:0.875rem ~ 600:1rem */
+		--fz--root: clamp(0.875rem, 0.7rem + 0.8vw, 1rem);
 		--lh--bsae: var(--lh--70);
 	}
 

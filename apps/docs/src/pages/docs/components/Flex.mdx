@@ -4,10 +4,28 @@ import { Flex } from '@lism/core';
 
 コンテンツを**Flexレイアウトで配置する**ためのコンポーネントです。
 
-`<Flex>` は `<Box>`に[`isFlex`](/docs/layout-system/is-flex)を指定した状態のコンポーネントで、`<Box isFlex>`と同等です。
+{/* `<Flex>` は `<Box>`に[`isFlex`](/docs/layout-system/is-flex)を指定した状態のコンポーネントで、`<Box isFlex>`と同等です。 */}
 
--   `<Flex>`
--   Lismクラス: `.l--box.is--flex`
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--flex">...</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+## Props
+- `wrap`: `flex-wrap` の値を指定できます。
+- `direction`: `flex-direction` の値を指定できます。
+- `gap`: `gap` の値を指定できます。
+- `rowGap`: `row-gap` の値を指定できます。
+- `columnGap`: `column-gap` の値を指定できます。
+- `ai`: `align-items` の値を指定できます。
+- `ac`: `align-content` の値を指定できます。
+- `ji`: `justify-items` の値を指定できます。
+- `jc`: `justify-content` の値を指定できます。
 
 ## Import
 
@@ -16,32 +34,12 @@ import { Flex } from '@lism/core';
 ```
 
 
-TEST
+## DEMO
 
-<Box bgc="pale" flex>
-	<div>flexのみ</div>
-	<div>A</div>
-</Box>
-<Box bgc="pale" flex={{direction: 'rr'}}>
-	<div>direction指定</div>
-	<div>A</div>
-</Box>
-
-<Flex bgc="b200" direction='cr'>
-	<div>direction指定</div>
-	<div>A</div>
-</Flex>
-<Stack bgc="b200" direction='cr'>
-	<div>direction指定</div>
-	<div>A</div>
-</Stack>
-
-## Demo
-
-<Demo className="has--box-guide">
-	<Demo.Title>シンプルな`<Flex>`の例</Demo.Title>
+<Demo>
+	<Demo.Title>`<Flex>`</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex gap={20}>
+		<Flex className='has:itemGuide'>
 			<div>Item</div>
 			<div>Item</div>
 			<div>Item</div>
@@ -50,17 +48,17 @@ TEST
 </Demo>
 
 ```jsx
-<Flex gap={20}>
-	<div>...</div>
-	<div>...</div>
-	<div>...</div>
+<Flex>
+	<div>Item</div>
+	<div>Item</div>
+	<div>Item</div>
 </Flex>
 ```
 
-<Demo className="has--box-guide">
+<Demo>
 	<Demo.Title>flexオプションの指定など</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex gap={20} fxw='wrap' jc="center" bgc="whitesmoke" p={20}>
+		<Flex gap={30} fxw='wrap' jc="center" p={20} className='has:itemGuide'>
 			<div>Flex Component</div>
 			<div>Flex Component</div>
 			<div>Flex Component</div>
@@ -69,7 +67,7 @@ TEST
 </Demo>
 
 ```jsx
-<Flex gap={20} fxw='wrap' jc="center" bgc="whitesmoke" p={20}>
+<Flex gap={20} fxw='wrap' jc="center" p={20}>
 	<div>...</div>
 	<div>...</div>
 	<div>...</div>
@@ -87,7 +85,7 @@ TEST
 必要な時にユーティリティクラス`.-ovw:any`を使って回避してください。
 
 
-<Demo className="has--box-guide">
+<Demo>
 	<Demo.Title>
 		画面幅が狭い時にAAA...が長すぎて横にはみ出す例
 	</Demo.Title>
@@ -111,7 +109,7 @@ TEST
 	</Demo.Code>
 </Demo>
 
-<Demo className="has--box-guide">
+<Demo>
 	<Demo.Title>
 		はみ出す原因となるテキストに `overflow-wrap:anywhere` を適用
 	</Demo.Title>
@@ -134,3 +132,13 @@ TEST
 		```
 	</Demo.Code>
 </Demo>
+
+
+## Flex Item について
+Flexの子要素に対するFlexオプションを指定する方法は以下のページを参考にしてください。
+
+<Reference>
+[Flex Props - flexitemの指定](/docs/props/flex#flexitemの指定)
+</Reference>
+
+

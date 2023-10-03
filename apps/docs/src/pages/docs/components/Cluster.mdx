@@ -1,15 +1,29 @@
-import { Cluster, Badge } from '@lism/core';
+import { Cluster, Badge, Item, Lism } from '@lism/core';
 
 # Cluster
 
-複数の要素を**Flexレイアウトで横並びに配置する**ためのコンポーネントです。
+複数のちさな要素をFlexレイアウトで**横並び**に配置するためのコンポーネントです。
 
-`--fxw:wrap`がデフォルトで適用されている[`isFlex`](/docs/layout-system/is-flex)なコンポーネントで、`<Flex fxw="wrap">`と機能的には同等です。
+`flex-wrap:wrap`がデフォルトで適用されている[`<Flex>`](/docs/components/Flex)ベースのコンポーネントで、`<Flex wrap="wrap">`と機能的には同等です。
 
-- `<Cluster>`
-- Lismクラス: `.l--cluster.is--flex`
-- itemMinW: 子要素の最低限維持する幅
-	- ※ `div, span, li, p, a, button, input`に対してのみ有効です。
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--cluster">...</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+## Props
+
+- `itemMinW`: 子要素の最低限維持する幅
+	- ※ `.is--item, span, li, a, button`に対してのみ有効です。
+- その他、[`<Flex>`で使えるprops](/docs/components/Flex#props)が使えます。
+
+`gap`に初期値`20`が指定されています。
+
 
 ## Import
 
@@ -17,27 +31,50 @@ import { Cluster, Badge } from '@lism/core';
 import { Cluster } from '@lism/core';
 ```
 
-## Demo
+## DEMO
 
 <Demo>
 	<Demo.Title>シンプルな`<Cluster>`の例</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<Cluster>
 			<Badge>Lorem ipsum</Badge>
-			<Badge>Dolor sit</Badge>
-			<Badge>consectetur</Badge>
-			<Badge>adipisicing</Badge>
-			<Badge>elit</Badge>
+			<Badge>Dolor</Badge>
+			<Badge>Sit amet</Badge>
+			<Badge>Consectetur</Badge>
+			<Badge>Adipisicing</Badge>
+			<Badge>Elit</Badge>
 		</Cluster>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
 <Cluster>
 	<Badge>Lorem ipsum</Badge>
-	<Badge>Dolor sit amet</Badge>
-	<Badge>consectetur</Badge>
-	<Badge>adipisicing</Badge>
-	<Badge>elit</Badge>
+	<Badge>Dolor</Badge>
+	<Badge>Sit amet</Badge>
+	<Badge>Consectetur</Badge>
+	<Badge>Adipisicing</Badge>
+	<Badge>Elit</Badge>
+</Cluster>
+```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>`itemMinW`は`isItem`に有効</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster itemMinW="20%" ta="center">
+			<Item tag="span" bd>A</Item>
+			<Box isItem tag="span" bd>B</Box>
+			<Lism isItem tag="span" bd>C</Lism>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Cluster itemMinW="20%" ta="center">
+	<Item tag="span" bd>A</Item>
+	<Box isItem tag="span" bd>B</Box>
+	<Lism isItem tag="span" bd>C</Lism>
 </Cluster>
 ```
 	</Demo.Code>
@@ -48,46 +85,24 @@ import { Cluster } from '@lism/core';
 <Demo>
 	<Demo.Title>他のpropsの活用</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Cluster gap={{row:15, column:20}} jc="end" fz="s" p={20} bgc="pale">
-			<Badge>Lorem ipsum</Badge>
-			<Badge>Dolor sit amet</Badge>
-			<Badge>consectetur</Badge>
-			<Badge>adipisicing</Badge>
-			<Badge>elit</Badge>
+		<Cluster itemMinW="6em" rowGap={20} columnGap={40} jc="center" ta="center" >
+			<Badge isItem>Lorem ipsum</Badge>
+			<Badge isItem>Dolor</Badge>
+			<Badge isItem>Sit amet</Badge>
+			<Badge isItem>Consectetur</Badge>
+			<Badge isItem>Adipisicing</Badge>
+			<Badge isItem>Elit</Badge>
 		</Cluster>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Cluster gap={{row:15, column:20}} jc="end" fz="s" p={20} bgc="pale">
-	<Badge>Cluster Item</Badge>
-	<Badge>Cluster Item</Badge>
-	<Badge>Cluster Item</Badge>
-</Cluster>
-```
-	</Demo.Code>
-</Demo>
-
-
-
-<Demo>
-	<Demo.Title>itemMinWを使う例</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Cluster itemMinW="5em" ta="center">
-			<Badge>Lorem ipsum</Badge>
-			<Badge>Dolor sit</Badge>
-			<Badge>amet</Badge>
-			<Badge>A</Badge>
-			<Badge>B</Badge>
-		</Cluster>
-	</Demo.Preview>
-	<Demo.Code>
-```jsx
-<Cluster itemMinW="5em" ta="center">
-	<Badge>Lorem ipsum</Badge>
-	<Badge>Dolor sit</Badge>
-	<Badge>amet</Badge>
-	<Badge>A</Badge>
-	<Badge>B</Badge>
+<Cluster itemMinW="6em" rowGap={20} columnGap={40} jc="center" ta="center" >
+	<Badge isItem>Lorem ipsum</Badge>
+	<Badge isItem>Dolor</Badge>
+	<Badge isItem>Sit amet</Badge>
+	<Badge isItem>Consectetur</Badge>
+	<Badge isItem>Adipisicing</Badge>
+	<Badge isItem>Elit</Badge>
 </Cluster>
 ```
 	</Demo.Code>

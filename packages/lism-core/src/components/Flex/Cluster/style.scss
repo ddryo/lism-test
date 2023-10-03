@@ -5,6 +5,6 @@
 	flex-wrap: wrap;
 }
 
-:where(.l--cluster > :is(div, span, li, p, a, button, input)) {
+:where(.l--cluster > .is--item) {
 	min-width: var(--item--minW);
 }

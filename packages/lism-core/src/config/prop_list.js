@@ -144,8 +144,8 @@ export default {
 	pb: { BP: 1, converter: 'space' },
 	pX: { BP: 1, presets: 'space', converter: 'space' },
 	pY: { BP: 1, presets: 'space', converter: 'space' },
-	mbs: { presets: 'space' },
-	mbe: { presets: 'space' },
+	mbs: { presets: 'space', converter: 'space' },
+	mbe: { presets: 'space', converter: 'space' },
 	ml: marginOption,
 	mr: marginOption,
 	mt: marginOption,
@@ -166,17 +166,6 @@ export default {
 		// {X, Y, top, bottom, left, right} の場合の処理. block, inline どうする？
 		objProcessor: (d) => `m${d[0]}`,
 	},
-
-	gap: {
-		BP: 1,
-		presets: 'space',
-		converter: 'space',
-
-		// gap={row, column} の場合の処理
-		objProcessor: (d) => `${d}Gap`,
-	},
-	rowGap: { BP: 1, name: 'rowg', converter: 'space' },
-	columnGap: { BP: 1, name: 'colmg', converter: 'space' },
 
 	// isFlowでのみ有効
 	flowGap: { presets: 1, converter: 'space' },
@@ -206,6 +195,18 @@ const selfProps = {
 	justifySelf: { style: 1 },
 	placeSelf: { style: 1 },
 };
+const gapProps = {
+	gap: {
+		BP: 1,
+		presets: 'space',
+		converter: 'space',
+
+		// gap={row, column} の場合の処理→context内での処理ができないので一旦OFF
+		// objProcessor: (d) => `${d}Gap`,
+	},
+	rowGap: { BP: 1, name: 'rowg', converter: 'space' },
+	columnGap: { BP: 1, name: 'colmg', converter: 'space' },
+};
 
 export const CONTEXT_PROPS = {
 	grid: {
@@ -215,6 +216,7 @@ export const CONTEXT_PROPS = {
 		rows: { name: 'gtr', BP: 1 },
 		// autoFlow, autoRows, autoCols
 		...placeProps,
+		...gapProps,
 	},
 	flex: {
 		wrap: { name: 'fxw', BP: 1, utils: 1 },
@@ -223,6 +225,7 @@ export const CONTEXT_PROPS = {
 		// fxd: { BP: 1, utils: 1 },
 		// placement: { context: 1 },
 		...placeProps,
+		...gapProps,
 	},
 
 	flexItem: {

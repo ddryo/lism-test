@@ -2,7 +2,19 @@ import React from 'react';
 import { Core } from '../Core';
 import { isEmptyObj, filterEmptyObj } from '@/lib';
 
-export default function Grid({ areas, columns, rows, ai, ac, ji, jc, ...props }) {
+export default function Grid({
+	areas,
+	columns,
+	rows,
+	ai,
+	ac,
+	ji,
+	jc,
+	gap,
+	rowGap,
+	columnGap,
+	...props
+}) {
 	const grid = filterEmptyObj({
 		areas,
 		columns,
@@ -11,6 +23,9 @@ export default function Grid({ areas, columns, rows, ai, ac, ji, jc, ...props })
 		ac,
 		ji,
 		jc,
+		gap,
+		rowGap,
+		columnGap,
 	});
 	if (!isEmptyObj(grid)) {
 		props.grid = grid;

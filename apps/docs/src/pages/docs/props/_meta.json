@@ -3,8 +3,8 @@
 	"lism-props": "Lism Props",
 	"responsive-props": "",
 	"is-flow": "isFlow",
-	"flex": "",
-	"grid": "",
+	"flex": "Flex Props",
+	"grid": "Grid Props",
 	"border": "",
 	"container-control": ""
 }

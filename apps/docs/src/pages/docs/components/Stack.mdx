@@ -2,12 +2,26 @@ import { Stack } from '@lism/core';
 
 # Stack
 
-複数の要素を**Flexレイアウトで縦並びに配置する**ためのコンポーネントです。
+複数の要素をFlexレイアウトで**縦並び**に配置するためのコンポーネントです。
 
-`--fxd:column`がデフォルトで適用されている[`isFlex`](/docs/layout-system/is-flex)なコンポーネントで、`<Flex fxd="column">`と機能的には同等です。
+`flex-direction:column`がデフォルトで適用されている[`<Flex>`](/docs/components/Flex)ベースのコンポーネントで、`<Flex direction="column">`と機能的には同等です。
 
--   `<Stack>`
--   Lismクラス: `.l--stack.is--flex`
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--stack">...</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+## Props
+
+[`<Flex>`で使えるprops](/docs/components/Flex#props)が使えます。
+
+
 
 ## Import
 
@@ -15,12 +29,13 @@ import { Stack } from '@lism/core';
 import { Stack } from '@lism/core';
 ```
 
-## Demo
+
+## DEMO
 
 <Demo className="has--box-guide">
-	<Demo.Title>デフォルト状態の`<Stack>`</Demo.Title>
+	<Demo.Title>シンプルな`<Stack>`の例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Stack>
+		<Stack gap={20} className='has:itemGuide'>
 			<p>コンテンツ</p>
 			<p>コンテンツ</p>
 			<p>コンテンツ</p>
@@ -28,7 +43,7 @@ import { Stack } from '@lism/core';
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx
-	<Stack>
+	<Stack gap={20}>
 		<p>...</p>
 		<p>...</p>
 		<p>...</p>
@@ -40,16 +55,16 @@ import { Stack } from '@lism/core';
 
 
 <Demo>
-	<Demo.Title>sectionとしての活用</Demo.Title>
+	<Demo.Title>例2</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Stack tag='section' gap={20} pX={50} pY={40} bgc='whitesmoke' c='darkgray'>
+		<Stack gap={30} p='box:l' bgc='pale' shadow="2">
 			<h3>Heading</h3>
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugit, numquamdictarepellat ipsa autem eos iure ducimus consequatur vel.</p>
 		</Stack>
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx
-	<Stack tag='section' gap={20} pX={50} pY={40} bgc='whitesmoke' c='darkgray'>
+	<Stack gap={30} p='box:l' bgc='pale' shadow="2">
 		<h3>Heading</h3>
 		<p>...</p>
 	</Stack>
@@ -59,22 +74,23 @@ import { Stack } from '@lism/core';
 
 
 ## Stackを活用したセンター寄せレイアウト
+
 `<Stack ai="center">`( `.l--stack.-ai:c` )の組み合わせで、Every Layout で言うところの **"内在的な中央寄せ"** （コンテンツが短い時だけ中央寄せ）にできます。
 
 <Demo className="has--box-guide">
 	<Demo.Title>内在的な中央寄せ</Demo.Title>
 	<Demo.Preview resize>
-		<Stack ai="center" gap={20} p={20}>
+		<Stack ai="center" gap={30} p={40} className='has:itemGuide'>
 			<h3 role="presentation">
 				見出し
 			</h3>
-			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit.Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+			<DammyText length="xs" />
+			<DammyText length="l" />
 		</Stack>
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx
-	<Stack ai="center" gap={20} p={20}>
+	<Stack ai="center" gap={30} p={40}>
 		<h3>見出し</h3>
 		<p>...</p>
 		<p>...</p>

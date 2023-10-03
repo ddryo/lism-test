@@ -2,6 +2,13 @@
 @use '../../node_modules/@lism/core/src/scss/all.scss';
 // @use './global/guide.scss';
 
+.preview {
+	container-type: inline-size;
+	> * {
+		--fz--root: clamp(0.875rem, 0.7rem + 0.8cqw, 1rem); // 350 ~ 600で変動
+		font-size: var(--fz--root);
+	}
+}
 :where(.has\:itemGuide > *) {
 	border: 1px dashed hsla(0, 0%, 63%, 0.4);
 	padding: 2px 4px;

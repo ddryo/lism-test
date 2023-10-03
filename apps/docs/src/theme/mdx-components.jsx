@@ -6,6 +6,7 @@
 import { Box, Text, Flex, Stack, Note, Alert } from '@lism/core';
 import Demo from '@/components/Demo';
 import Preview from '@/components/Preview';
+import Reference from '@/components/Reference';
 // import { Callout, Tabs, Tab } from 'nextra/components';
 
 const LOREM_TEXT = {
@@ -60,5 +61,6 @@ export const getMyComponents = () => {
 		Demo,
 		Preview,
 		DammyText,
+		Reference,
 	};
 };

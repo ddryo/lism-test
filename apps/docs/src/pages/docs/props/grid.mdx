@@ -1,7 +1,7 @@
 import { Box, Grid, Item } from '@lism/core';
 // import { Demo01, Demo01_Code } from '@/examples/box';
 
-# Grid
+# grid Props
 
 Lismで**Gridレイアウト**を使用する方法は大きく分けて2パターンあります。
 
@@ -9,7 +9,7 @@ Lismで**Gridレイアウト**を使用する方法は大きく分けて2パタ�
 2. Lismコンポーネントに`d="grid"`を指定して単純に`display:grid`を適用する。（`.-d:g`クラスが出力されます。）
 
 
-## Demo
+## DEMO
 
 <Demo>
 	<Demo.Title>`<Grid>`を使う例</Demo.Title>
@@ -42,6 +42,9 @@ Lismコンポーネントでは `grid` Propにオブジェクト形式でflexの
 - `areas`: `grid-template-areas` の値を指定できます。
 - `columns`: `grid-template-columns`
 - `rows`: `grid-template-rows`
+- `gap`: `gap` の値を指定できます。
+- `rowGap`: `row-gap` の値を指定できます。
+- `columnGap`: `column-gap` の値を指定できます。
 - `ai`: `align-items` の値を指定できます。
 - `ac`: `align-content` の値を指定できます。
 - `ji`: `justify-items` の値を指定できます。
@@ -69,7 +72,7 @@ Lismコンポーネントでは `grid` Propにオブジェクト形式でflexの
 <Demo>
 	<Demo.Title>`<Box>`に`grid`を指定する</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Box d="grid" grid={{ columns: "1fr 1fr 1fr" }} gap={20} className='has:itemGuide'>
+		<Box d="grid" grid={{ columns: "1fr 1fr 1fr", gap: 20 }} className='has:itemGuide'>
 			<p>コンテンツ</p>
 			<p>コンテンツ</p>
 			<p>コンテンツ</p>
@@ -77,7 +80,7 @@ Lismコンポーネントでは `grid` Propにオブジェクト形式でflexの
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx
-	<Box d="grid" grid={{ columns: "1fr 1fr 1fr" }} gap={20}>
+	<Box d="grid" grid={{ columns: "1fr 1fr 1fr", gap: 20 }}>
 		...
 	</Box>
 	```

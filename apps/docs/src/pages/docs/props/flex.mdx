@@ -1,7 +1,7 @@
 import { Box, Flex, Cluster, Stack, Item } from '@lism/core';
 
 
-# Flex
+# flex Props
 
 Lismで**Flexレイアウト**を使用する方法は大きく分けて2パターンあります。
 
@@ -9,11 +9,11 @@ Lismで**Flexレイアウト**を使用する方法は大きく分けて2パタ�
 2. Lismコンポーネントに`d="flex"`を指定して単純に`display:flex`を適用する。（`.-d:f`クラスが出力されます。）
 
 
-## Demo
+## DEMO
 <Demo>
 	<Demo.Title>`<Flex>`を使うパターン</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex gap={20} className='has:itemGuide'>
+		<Flex className='has:itemGuide'>
 			<p>A</p>
 			<p>B</p>
 			<p>C</p>
@@ -21,7 +21,7 @@ Lismで**Flexレイアウト**を使用する方法は大きく分けて2パタ�
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx {1}
-	<Flex gap={20}>
+	<Flex>
 		<p>A</p>
 		<p>B</p>
 		<p>C</p>
@@ -33,7 +33,7 @@ Lismで**Flexレイアウト**を使用する方法は大きく分けて2パタ�
 <Demo>
 	<Demo.Title>`d=flex`を使うパターン</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Box d="flex" gap={20} className='has:itemGuide'>
+		<Box d="flex" className='has:itemGuide'>
 			<p>A</p>
 			<p>B</p>
 			<p>C</p>
@@ -41,7 +41,7 @@ Lismで**Flexレイアウト**を使用する方法は大きく分けて2パタ�
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx {1}
-	<Box d="flex" gap={20}>
+	<Box d="flex">
 		<p>A</p>
 		<p>B</p>
 		<p>C</p>
@@ -58,20 +58,18 @@ Lismコンポーネントでは `flex` Propにオブジェクト形式でflexの
 
 - `wrap`: `flex-wrap` の値を指定できます。
 - `direction`: `flex-direction` の値を指定できます。
+- `gap`: `gap` の値を指定できます。
+- `rowGap`: `row-gap` の値を指定できます。
+- `columnGap`: `column-gap` の値を指定できます。
 - `ai`: `align-items` の値を指定できます。
 - `ac`: `align-content` の値を指定できます。
 - `ji`: `justify-items` の値を指定できます。
 - `jc`: `justify-content` の値を指定できます。
-{/* - flex.isInline: `display:inline-flex` になります。 */}
-{/* 
-<Note caption="Memo" preset="memo">
-	alignItem,justifyContentなどもここに含めるべきか要検討
-</Note> */}
 
 <Demo>
 	<Demo.Title>`flex`の指定例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Box d='flex' flex={{ wrap:'wrap', direction:'row-reverse', jc:"center" }} gap={20} className='has:itemGuide'>
+		<Box d='flex' flex={{ wrap:'wrap', direction:'row-reverse', jc:"center", gap:20 }} className='has:itemGuide'>
 			<p>A</p>
 			<p>B</p>
 			<p>C</p>
@@ -79,7 +77,7 @@ Lismコンポーネントでは `flex` Propにオブジェクト形式でflexの
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx {1}
-	<Box d='flex' flex={{ wrap:'wrap', direction:'row-reverse', jc:"center" }} gap={20}>
+	<Box d='flex' flex={{ wrap:'wrap', direction:'row-reverse', jc:"center", gap:20 }}>
 		<p>A</p>
 		<p>B</p>
 		<p>C</p>
@@ -202,8 +200,7 @@ Flexの子要素で使用できるプロパティは、`flexItem` にオブジ�
 
 デフォルトで、以下のPropsは[BP指定が可能](###)です。
 
-- gap
-- flex.wrap, flex.direction
+- gap, rowGap, columnGap, wrap, direction
 - flexItem.fxb, flexItem.fxg, flexItem.fxsh
 
 <Demo>

@@ -1,10 +1,4 @@
 // resizeした時にサイズ感を縮める
-// :where(.b--demoBox.-like-root) > .b--demoBox__preview {
-// 	--space--side: clamp(1.5rem, 4cqw, 2rem); // var(--space-50) とかを使うべきか？
-// 	> * {
-// 		font-size: clamp(14px, 4cqw, 1rem);
-// 	}
-// }
 
 .b--demoBox {
 	position: relative;
@@ -38,8 +32,8 @@
 	padding: 4px;
 
 	> * {
-		--root--fz: clamp(0.875rem, 0.625rem + 1cqw, 1rem); // 400 - 600
-		font-size: var(--root--fz);
+		--fz--root: clamp(0.875rem, 0.7rem + 0.8cqw, 1rem); // 350 ~ 600で変動
+		font-size: var(--fz--root);
 	}
 
 	.-noframe > & {

@@ -242,6 +242,7 @@ class CommonProps {
 		}
 
 		// 方向成分を持つ場合の特殊処理
+		// context内のgapどうするかは要検討
 		if (typeof propVal === 'object') {
 			if (propName === 'bd') this.addUtil('-bd:');
 			this.analyzeObjValue(propVal, objProcessor);

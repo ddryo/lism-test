@@ -11,8 +11,10 @@ import {
 	// LismConsumer as Consumer,
 	Columns,
 } from '@lism/core';
+import Preview from '@/components/Preview';
+// import { useConfig } from 'nextra-theme-docs';
 
-const lismPoints = [
+const POINTS = [
 	{
 		icon: null,
 		title: 'レイアウトプリミティブ',
@@ -22,16 +24,9 @@ const lismPoints = [
 	},
 	{
 		icon: null,
-		title: 'プリセットとユーティリティ',
+		title: 'ユーティリティファースト',
 		desc: `
 			事前のプリセット定義と、それを活用したユーティリティクラスを活用します。
-		`,
-	},
-	{
-		icon: null,
-		title: 'モダンCSSの活用',
-		desc: `
-			CSS変数などのモダンなCSSを積極的に活用することで、少量のCSSで柔軟なレイアウトを可能にしています。
 		`,
 	},
 	{
@@ -41,9 +36,14 @@ const lismPoints = [
 	},
 	{
 		icon: null,
-		title: '高速な開発フロー',
+		title: '専用コンポーネント',
+		desc: 'Lism設計に基づいたコンポーネントを使うことでより手軽なWEBサイト制作を可能にします。',
+	},
+	{
+		icon: null,
+		title: '軽量',
 		desc: `
-			"90%をサクッとで作る"のに最適です。100% Lismだけで完結する必要はありません。
+			全てのユーティリティクラスをインポートしても、軽量です。
 		`,
 	},
 	{
@@ -56,45 +56,65 @@ const lismPoints = [
 ];
 
 export default function Home() {
+	// const { navbar: Nav } = useConfig();
+	// console.log('navbar', Nav?.component);
+	// const Navbar = Nav?.component;
 	return (
-		<Box className='a--main' tag='main'>
-			<Center isConstrained className='a--atf' minH='50vh' pY={40} bgc='whitesmoke' gap={20}>
-				<Text tag='h1' fz='4xl'>
-					Lism Web System
-				</Text>
-				<Flex mbs={60}>
-					<Button href='/docs/getting-started'>Docs</Button>
-					<Button href='/' variant='outline'>
-						Github
-					</Button>
-				</Flex>
-				<Text c='gray' fw='700' mbs={60}>
-					レイアウトプリミティブ + ユーティリティベースの、WEB設計システム。
-				</Text>
-				<Text c='gray' fw='700'>
-					サイトの骨組みを爆速構築するためのフレームワークです。
-				</Text>
-			</Center>
-			{/* HTML&CSSだけでも完結できるシンプルな設計がベースにした */}
-			<Box className='a--content' pY={40}>
-				<Box className='a--article' tag='article'>
-					<Box className='a--article__content' isFlow isConstrained hasGutter>
-						{/* 特徴 */}
-						<Columns cols={[2, 2, 3]}>
-							{lismPoints.map((point, i) => {
-								return (
-									<Stack key={i}>
-										<h3>{point.title}</h3>
-										{/* <MarkDown del='\t'>{point.desc}</MarkDown> */}
-									</Stack>
-								);
-							})}
-						</Columns>
+		<>
+			{/* <Navbar flatDirectories={[]} items={[]} /> */}
 
-						<h2>About &quot;Lism&quot; ?</h2>
+			<Preview>
+				<Box className='a--main' tag='main'>
+					<Center isConstrained className='a--atf' minH='50vh' pY={40} bgc='pale' gap={40}>
+						<Text tag='h1' fz='4xl' ff='mono' fw='light'>
+							Lism UI
+						</Text>
+						<Flex mbs={40} gap={20}>
+							<Button href='/docs/getting-started'>Docs</Button>
+							<Button href='/' variant='outline'>
+								Github
+							</Button>
+						</Flex>
+						<Text c='pale' fw='700'>
+							完成度8割までを爆速構築するためのWEB設計フレームワーク。
+						</Text>
+					</Center>
+					{/* HTML&CSSだけでも完結できるシンプルな設計がベースにした */}
+					<Box className='a--content' pY={40}>
+						<Box className='a--article' tag='article'>
+							<Box className='a--article__content' isFlow isConstrained hasGutter>
+								{/* 特徴 */}
+								<Columns cols={[2, 2, 3]} gap={30}>
+									{POINTS.map((point, i) => {
+										return (
+											<Stack key={i} gap={20} p='box' bd bdc='b200' radius='2' shadow='1'>
+												<Text tag='h3' fz='l' lh='s'>
+													{point.title}
+												</Text>
+												<p>{point.desc}</p>
+											</Stack>
+										);
+									})}
+								</Columns>
+
+								<h2>About &quot;Lism&quot; ?</h2>
+								<p>....</p>
+								<p>
+									ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio culpa at hic aliquid
+									iste, neque reiciendis vero optio perspiciatis nesciunt, id autem pariatur esse.
+									Reprehenderit corporis dolores perspiciatis quasi incidunt. Lorem ipsum dolor sit
+									amet consectetur adipisicing elit. Vitae sunt maiores consequuntur obcaecati magni
+									nesciunt quos tenetur totam rerum quis quae veniam repellat amet ea, asperiores
+									provident quibusdam enim perferendis!
+								</p>
+							</Box>
+						</Box>
 					</Box>
 				</Box>
-			</Box>
-		</Box>
+			</Preview>
+		</>
 	);
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Core } from '../Core';
+import { Flex } from '../Flex';
 // import classnames from 'classnames';
 // import { getLismProps } from '@/lib';
 // import "./style.scss";
@@ -22,13 +22,13 @@ export default function FluidFix({ children, fixW, fluidMinW, fix = 'last', ...p
 	// };
 
 	return (
-		<Core
+		<Flex
 			lismClass='l--fluidFix'
 			lismStyle={lismStyle}
 			data-fix={'first' === fix ? 'first' : 'last'} // 必ず first か last になるように
 			{...props}
 		>
 			{children}
-		</Core>
+		</Flex>
 	);
 }

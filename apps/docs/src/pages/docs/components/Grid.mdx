@@ -4,14 +4,33 @@ import { Flex, Grid, Item } from '@lism/core';
 
 コンテンツを**Gridレイアウトで配置する**ためのコンポーネントです。
 
-`<Grid>` は `<Box>`に[`isGrid`](/docs/layout-system/is-grid)を指定した状態のコンポーネントで、`<Box isGrid>`と同等です。
+{/* `<Grid>` は `<Box>`に[`isGrid`](/docs/layout-system/is-grid)を指定した状態のコンポーネントで、`<Box isGrid>`と同等です。 */}
 
--   `<Grid>`
--   Lismクラス: `.l--box.is--grid`
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--grid">...</div>
+	```
+	</Demo.Code>
+</Demo>
 
-用途に合わせて Columns, RatioGrid, TileGrid などを用意していますが、内部ではこのGridを使用している。
+より具体的な用途に合わせて Columns, RatioGrid, TileGrid などのコンポーネントも用意していますが、内部ではこのGridを使用しています。
 
-`<Grid>`は、それらより柔軟に各プロパティを指定して利用できる。
+
+## Props
+
+- `areas`: `grid-template-areas` の値を指定できます。
+- `columns`: `grid-template-columns`
+- `rows`: `grid-template-rows`
+- `gap`: `gap` の値を指定できます。
+- `rowGap`: `row-gap` の値を指定できます。
+- `columnGap`: `column-gap` の値を指定できます。
+- `ai`: `align-items` の値を指定できます。
+- `ac`: `align-content` の値を指定できます。
+- `ji`: `justify-items` の値を指定できます。
+- `jc`: `justify-content` の値を指定できます。
+
 
 
 ## Import
@@ -20,12 +39,12 @@ import { Flex, Grid, Item } from '@lism/core';
 import { Grid } from '@lism/core';
 ```
 
-## Demo
+## DEMO
 
 <Demo className="has--box-guide">
 	<Demo.Title>1列 → 2列 → 幅200pxで3列</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Grid columns={["1fr", "repeat(2, 1fr)", "repeat(3, 200px)"]} jc="center" gap={20}>
+		<Grid columns={["1fr", "repeat(2, 1fr)", "repeat(3, 200px)"]} jc="center" gap={20} className='has:itemGuide'>
 			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
 			<p>Unde ratione blanditiis aperiam sed eos assumenda veniam</p>
 			<p>Voluptatibus voluptates similique quis, accusamus optio cumque praesentium!</p>
@@ -36,12 +55,9 @@ import { Grid } from '@lism/core';
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx
-	<Flex gap={20}>
-		<div>...</div>
-		<div>...</div>
-		<div>...</div>
+	<Grid columns={["1fr", "repeat(2, 1fr)", "repeat(3, 200px)"]} jc="center" gap={20}>
 		...
-	</Flex>
+	</Grid>
 	```
 	</Demo.Code>
 </Demo>
@@ -57,9 +73,9 @@ import { Grid } from '@lism/core';
 			ai="center"
 			ji="center"
 		>
-			<Item ga="L" pX={20} bgc="whitesmoke">L</Item>
-			<Item ga="C" pX={20} bgc="whitesmoke">{`Center`}</Item>
-			<Item ga="R" pX={20} bgc="whitesmoke">R</Item>
+			<Item ga="L" pX={20} bgc="pale">L</Item>
+			<Item ga="C" pX={20} bgc="pale">{`Center`}</Item>
+			<Item ga="R" pX={20} bgc="pale">R</Item>
 		</Grid>
 	</Demo.Preview>
 </Demo>
@@ -72,9 +88,9 @@ import { Grid } from '@lism/core';
 	ai="center"
 	ji="center"
 >
-	<Item ga="L" pX={20} bgc="whitesmoke">L</Item>
-	<Item ga="C" pX={20} bgc="whitesmoke">Center</Item>
-	<Item ga="R" pX={20} bgc="whitesmoke">R</Item>
+	<Item ga="L" pX={20} bgc="pale">L</Item>
+	<Item ga="C" pX={20} bgc="pale">Center</Item>
+	<Item ga="R" pX={20} bgc="pale">R</Item>
 </Grid>
 ```
 
@@ -92,7 +108,7 @@ import { Grid } from '@lism/core';
 			columns={["1fr 1fr", "5em 1fr 5em"]}
 			gap={20}
 		>
-			<Item ga="L" p={20} bgc="whitesmoke">
+			<Item ga="L" p={20} bgc="pale">
 				Left
 			</Item>
 			<Item ga="top">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</Item>
@@ -100,7 +116,7 @@ import { Grid } from '@lism/core';
 				Unde ratione blanditiis aperiam sed eos assumenda veniam, culpa sint qui enim rerum
 				doloribus quod dolor deleniti?
 			</Item>
-			<Item ga="R" p={20} bgc="whitesmoke">
+			<Item ga="R" p={20} bgc="pale">
 				Right
 			</Item>
 		</Grid>
@@ -112,14 +128,14 @@ import { Grid } from '@lism/core';
 <Grid
 	areas={[
 		`'top bottom'
-			'L   R'`,
+		 'L   R'`,
 		`'L  top     R'
-			'L  bottom  R'`,
+		 'L  bottom  R'`,
 	]}
 	columns={["1fr 1fr", "5em 1fr 5em"]}
 	gap={20}
 >
-	<Item ga="L" p={20} bgc="whitesmoke">
+	<Item ga="L" p={20} bgc="pale">
 		Left
 	</Item>
 	<Item ga="A">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</Item>
@@ -127,8 +143,16 @@ import { Grid } from '@lism/core';
 		Unde ratione blanditiis aperiam sed eos assumenda veniam, culpa sint qui enim rerum
 		doloribus quod dolor deleniti?
 	</Item>
-	<Item ga="R" p={20} bgc="whitesmoke">
+	<Item ga="R" p={20} bgc="pale">
 		Right
 	</Item>
 </Grid>
 ```
+
+
+## Grid Item について
+Gridの子要素に対するGridオプションを指定する方法は以下のページを参考にしてください。
+
+<Reference>
+[grid Props - griditemの指定](/docs/props/grid#griditemの指定)
+</Reference>

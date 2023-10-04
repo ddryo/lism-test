@@ -20,7 +20,6 @@ export default function Banner({
 	const theProps = { blockClass: 'b--banner', ...attrs };
 
 	if (attrs.aspect) {
-		// children = <ContentLayer>{children}</ContentLayer>;
 		theProps.as = Frame;
 	}
 

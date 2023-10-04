@@ -17,7 +17,7 @@
 }
 
 @include query.cq('sm') {
-	.l--reel[data-unreel='sm'] {
+	.is--reel[data-unreel='sm'] {
 		// --lism: 20rem;
 
 		display: grid;
@@ -29,7 +29,7 @@
 	}
 }
 @include query.cq('md') {
-	.l--reel[data-unreel='md'] {
+	.is--reel[data-unreel='md'] {
 		// --lism: 20rem;
 
 		display: grid;

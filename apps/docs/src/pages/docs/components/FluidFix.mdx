@@ -5,25 +5,34 @@ import { FluidFix, Box } from '@lism/core';
 
 # FluidFix
 
-片方の横幅を固定し、もう片方の横幅が伸縮する横並びレイアウトで、かつ、指定した値を下回ると自動で縦並びに切り替わるレイアウトを組めるモジュールです。
+2つの子要素のうち、**片方の横幅を固定してもう片方の横幅が伸縮する**横並びレイアウトで、かつ、**指定した横幅を下回ると自動で縦並びに切り替わる**レイアウトを組めるモジュールです。
 
 <Alert preset="point">
 コンテナクエリに依存せずに横並びと縦並びの切り替えを行います。
 </Alert>
 
-- `<FluidFix>`
-- Lismクラス: `.l--fluidFix`
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--fluidFix">
+		<div>...</div>
+		<div>...</div>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
 
 
-## 主なProps
+## Props
 
-- `fixW` : 固定幅
+- `fixW` : Fix要素側の横幅
 	- デフォルト値: `auto` (要検討)
-- `fluidMinW` : Fluid要素の最小幅
+- `fluidMinW` : Fluid要素側の最小幅
 	- デフォルト値: `50%`
 - `fix`: `first` or `last` で FIX要素を指定。
 	- `data-fix`属性に指定した文字列が出力されます。
-{/* - `gap`: 初期値 `20` */}
+- その他、[`<Flex>`で使えるprops](/docs/components/Flex#props)が使えます。
 
 
 
@@ -109,7 +118,7 @@ import { FluidFix } from '@lism/core';
 </Demo>
 
 
-### 折り返さずに使うことも。
+### 折り返さずに使うことも可
 `fluidMinW`を小さな値にすることで折り返さないことも可能です。
 
 → 子要素がgrow:1 で nowrap なコンポーネント作る？ LiquidFlexとか...。

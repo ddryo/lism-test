@@ -1,37 +1,52 @@
-import { Text, Box, Layer, Columns, TileGrid, Center, Frame } from '@lism/core';
+import { Text, Box, Layer, Columns, Center, Frame } from '@lism/core';
+import Image from "next/image";
+
 
 # Layer
 
 `position:absolute`で要素を配置するためのモジュールです。
 
-- Lismクラス: `.l--layer`
+
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--layer">...</div>
+	```
+	</Demo.Code>
+</Demo>
 
 
 ## 主なProps
 - `position`: Layerの配置位置を指定します。
 	- `"cover"` or `"{X} {Y}"`形式を利用できます。
 	- X,Yには `"left"` | `"right"` | `"top"` | `"bottom"` | `"center"` | `"cover"` キーワードが利用できます。
-	{/* - `position="{X} {Y}"` で X,Y にキーワード値を指定できます。
-		- X: `"left"` | `"right"` | `"center"`
-		- Y: `"top"` | `"bottom"` | `"center"`
-		- また、`position="center"` = `position="center center"` になります。 */}
-- `position` を指定せず、`top`, `right`, `bottom`, `left` で細かい数値を指定することも可能です。
-- `size="contain"`: Layerサイズが親要素を超えないようになります。
+- `size`: `<Layer>`のサイズに関する調整を行うための`data-size`属性を出力します。
+	- `"cover"` または `"contain"`が有効です。
+- `z`: `z-index`を指定します。
+
+共通Lism Propsの`inset`, `top`, `right`, `bottom`, `left` を使って細かい配置を指定することも可能です。（`position`の指定は内部でこれらのprops指定に変換されます）
 
 
 ### 注意点
 
-Layerの親要素は`position:relative`にしておく必要があることに注意してください。  
+<Alert preset="warning">
+Layerの親要素を `position:relative` にしておく必要があることに注意してください。
+</Alert>
+
 `pos="relative"` を指定するか、`hasLayer`を親コンポーネントに指定すると(`.has--layer`クラスを付与します）、`position:relative`になります。
 
-### ブロック化した時のmemo...
-	- できれば、Layer配置時に自動で親ブロックに `.has--layer` or `.-pos:r` を追加するようにしたい。
-		- ブロック化したときは、Layerブロックから親要素へアクセスしてsetAtttibutesでクラス付けたりできるか。
-	- （さらに) (できれば、）削除されたときに親ブロックからそのクラスは削除したい。
-	- エディター側では 常に親に被っていると編集ができないので、「relative モード」みたいなのを用意して absolute を一時的に解除もできるようにしたい。
-	- 子ブロックとしてしか使えないようにしたい。
-		- ~~fixed な要素を作ることを想定するとテンプレート直下でも普通に使えたほうがいいか...？~~
-	
+---
+
+<Note preset="memo" caption="ブロック化した時のmemo...">
+- Layer配置時に自動で親ブロックに `.has--layer` or `.-pos:r` を追加するようにしたい。(Layerブロックから親要素へアクセスしてsetAtttibutes）
+- ~~できれば、削除されたときに親ブロックからそのクラスは削除したい。~~  
+	→ 「まだ必要なのに消えてしまう」ケースも起こりうるので、削除はなし。
+- エディター側では 常に親要素・兄弟要素に被っていると編集ができないので、「relative モード」的なものを用意して `absolute` を一時的に解除して他のブロックの編集ができるようにしたい。
+- 子ブロックとしてしか使えないようにしたい。
+</Note>
+
+---
 
 ## Import
 
@@ -39,8 +54,9 @@ Layerの親要素は`position:relative`にしておく必要があることに�
 import { Layer } from '@lism/core';
 ```
 
+## DEMO
 
-## positionの指定による挙動の違い
+### positionの指定による挙動の違い
 
 export const LayerPositionsDemo = () => {
 	return (
@@ -91,7 +107,68 @@ export const LayerPositionsDemo = () => {
 </Demo>
 
 
-### `size="cover"`の時の挙動について
+
+### positionを指定せずに使う場合
+
+`inset`,`top`,`left`,... などで直接位置を指定できます。
+
+<Demo>
+	<Demo.Title>
+		`top`, `left` に SPACE.20 を指定
+	</Demo.Title>
+	<Demo.Preview resize p={15}>
+		<Box hasLayer pY={40} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer top={20} left={20}>
+				<p>Layer Contents</p>
+			</Layer>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Layer top={20} left={20}>
+			<p>Layer Contents</p>
+		</Layer>
+		```
+	</Demo.Code>
+</Demo>
+
+
+{/* `position="top left"` は `top="0" left="0"`, `size="cover"` は `inset="0"`と同じです。 */}
+
+
+### overflow:auto がデフォルトの挙動です。
+
+`<Layer>`(`.l--layer`)は `overflow:auto` が適用されており、親要素よりコンテンツの高さが高くなる場合は縦方向にスクロール可能になります。
+
+<Demo>
+	<Demo.Title>
+		コンテンツが長い場合
+	</Demo.Title>
+	<Demo.Preview resize p={15}>
+		<Box hasLayer pY={60} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer size="cover" isFlow p='box'>
+				<DammyText />
+				<DammyText length='l' />
+				<DammyText length='xl' />
+			</Layer>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Layer size="cover" isFlow p='box'>
+			...
+		</Layer>
+		```
+	</Demo.Code>
+</Demo>
+
+
+
+### `size`の指定
+
+#### `size="cover"`の時の挙動について
 
 `inset:0` になり、`<Layer>` が親要素全体に覆い被さります。
 
@@ -119,7 +196,7 @@ export const LayerPositionsDemo = () => {
 	</Demo.Code>
 </Demo>
 
-Centerと組み合わせることで、コンテンツを中央に配置できます。
+[`<Center>`](/docs/components/Center)と組み合わせることで、コンテンツを中央に配置できます。
 
 <Demo>
 	<Demo.Title>
@@ -150,67 +227,7 @@ Centerと組み合わせることで、コンテンツを中央に配置でき�
 </Demo>
 
 
-<Alert preset="memo">
-※ Stackを活用しても中央に寄せれますが、コンテンツが長くてスクロール必要な状態になったときに全部のコンテンツが見れないのでCenter使うのがおすすめです。
-</Alert>
-
-
-## positionを指定せずに使う場合
-
-`top`,`left`,`inset` などで直接位置を指定できます。
-
-<Demo>
-	<Demo.Title>
-		`top`, `left` に SPACE.20 を指定
-	</Demo.Title>
-	<Demo.Preview resize p={15}>
-		<Box hasLayer pY={40} className="has:layerGuide">
-			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
-			<Layer top={20} left={20}>
-				<p>Layer Contents</p>
-			</Layer>
-		</Box>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Layer top={20} left={20}>
-			<p>Layer Contents</p>
-		</Layer>
-		```
-	</Demo.Code>
-</Demo>
-
-
-{/* `position="top left"` は `top="0" left="0"`, `size="cover"` は `inset="0"`と同じです。 */}
-
-
-## overflow:auto がデフォルトの挙動です。
-親要素よりコンテンツの高さが高くなる場合は、次のように縦方向にスクロール可能になります。
-
-<Demo>
-	<Demo.Title>
-		コンテンツが長い場合
-	</Demo.Title>
-	<Demo.Preview resize p={15}>
-		<Box hasLayer pY={50} className="has:layerGuide">
-			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
-			<Layer size="cover" isFlow p='box'>
-				<DammyText />
-				<DammyText length='l' />
-				<DammyText length='xl' />
-			</Layer>
-		</Box>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Layer size="cover" isFlow p='box'>
-			...
-		</Layer>
-		```
-	</Demo.Code>
-</Demo>
-
-## `size=contain` の挙動について
+#### `size=contain` の挙動について
 
 `size=contain`を指定すると、親のサイズを超えないようになります。（maxW, maxH に 100% 指定が入る）
 
@@ -218,8 +235,8 @@ Centerと組み合わせることで、コンテンツを中央に配置でき�
 	<Demo.Title>
 		`size="contain"`の指定なしの場合.
 	</Demo.Title>
-	<Demo.Preview resize p={{X:20, Y:60}}>
-		<Box hasLayer pY={40} className="has:layerGuide">
+	<Demo.Preview resize p={{X:30, Y:60}} maxW="40rem">
+		<Box hasLayer pY={50} className="has:layerGuide">
 			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
 			<Layer position="center" w="75%" p='box'>
 				<DammyText length="l" />
@@ -239,8 +256,8 @@ Centerと組み合わせることで、コンテンツを中央に配置でき�
 	<Demo.Title>
 		`size="contain"`の指定ありの場合
 	</Demo.Title>
-	<Demo.Preview resize p={{X:20, Y:40}}>
-		<Box hasLayer pY={40} className="has:layerGuide">
+	<Demo.Preview resize p={{X:30, Y:30}} maxW="40rem">
+		<Box hasLayer pY={50} className="has:layerGuide">
 			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
 			<Layer size="contain" position="center" w="75%" p={20}>
 				<DammyText length="l" />

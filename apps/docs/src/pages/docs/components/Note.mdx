@@ -85,20 +85,20 @@ import { Note } from '@lism/core';
 </Demo>
 
 
+
 ### Coloring
 
-
 <Tabs alignfull>
-	<TabItem index={0} isConstrained isFlow p={20} label="note">
+	<TabItem index={0} isConstrained p={20} label="note">
 		<Demo>
 			<Demo.Preview isShadow p={20}>
 				<NoteDemos />
 			</Demo.Preview>
 		</Demo>
 	</TabItem>
-	<TabItem index={1} isConstrained isFlow p={20} label="bump">
+	<TabItem index={1} isConstrained p={20} label="bump">
 		<Demo>
-			<Demo.Preview isShadow p={{Y:50, X:40}}flowGap={20}>
+			<Demo.Preview isShadow p={{ Y:50, X:40 }} flowGap={40}>
 				<NoteDemos variant="bump"/>
 			</Demo.Preview>
 		</Demo>

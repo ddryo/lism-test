@@ -190,11 +190,13 @@ const placeProps = {
 	ji: { style: 'justifyItems', utils: 'place' },
 	jc: { style: 'justifyContent', utils: 'place' },
 };
+
 const selfProps = {
 	alignSelf: { style: 1 },
 	justifySelf: { style: 1 },
 	placeSelf: { style: 1 },
 };
+
 const gapProps = {
 	gap: {
 		BP: 1,
@@ -218,6 +220,7 @@ export const CONTEXT_PROPS = {
 		...placeProps,
 		...gapProps,
 	},
+
 	flex: {
 		wrap: { name: 'fxw', BP: 1, utils: 1 },
 		direction: { name: 'fxd', BP: 1, utils: 1 },
@@ -236,6 +239,7 @@ export const CONTEXT_PROPS = {
 		order: { style: 1 },
 		...selfProps,
 	},
+
 	gridItem: {
 		ga: { utils: 1 }, // grid-area
 		gc: { BP: 1 }, // grid-column

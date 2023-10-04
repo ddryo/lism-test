@@ -1,4 +1,4 @@
-import { MediaLayer, FilterLayer, ContentLayer, Frame, Center, Columns, Layer } from '@lism/core';
+import { MediaLayer, FilterLayer, Frame, Center, Columns, Layer } from '@lism/core';
 
 import Image from "next/image";
 
@@ -6,16 +6,25 @@ import Image from "next/image";
 
 横縦比率(`aspect-ratio`)を指定したり、高さを指定することで、内部のコンテンツをそのサイズからはみ出さないように表示できるモジュール。
 
-- Lismクラス: `.l--frame`
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--frame -aspect:{aspect}">...</div>
+	```
+	</Demo.Code>
+</Demo>
 
 
-## 主なprops
-- `aspect` : 比率を指定する。
+
+## props
+- `aspect` : アスペクト比率を指定する。ブレイクポイント指定可能です。
 	- 例: `aspect="16/9"`, `aspect={["4/3", "16/9"]}`
 
 {/* <Alert>
 	一応、`aspect` は 単純に Prop としても使用できます。
 </Alert> */}
+
 
 ## Import
 
@@ -25,16 +34,17 @@ import { Frame } from '@lism/core';
 
 ## DEMO
 
+
 <Demo>
 	<Demo.Title>
-		`aspect`を指定
+		`aspect='16/9'`を指定
 	</Demo.Title>
 	<Demo.Preview resize>
 		<Frame aspect='16/9'>
 			<Text fw="bold">16/9</Text>
 		</Frame>
 	</Demo.Preview>
-	<Demo.Code p={20}>
+	<Demo.Code>
 		```jsx
 		<Frame aspect='16/9'>
 			<Text fw="bold">16/9</Text>
@@ -43,23 +53,23 @@ import { Frame } from '@lism/core';
 	</Demo.Code>
 </Demo>
 
+
 <Demo>
 	<Demo.Title>
-		`h`を指定
+		コンテンツが長い場合
 	</Demo.Title>
 	<Demo.Preview resize>
-		<Frame h='12rem' isFlow>
+		<Frame aspect='2/1' isFlow p='box'>
 			<Text fw="bold">コンテンツ量が多い場合はスクロールできます。</Text>
 			<DammyText />
-			<DammyText />
 			<DammyText length="m" />
-			<DammyText length="m" />
+			<DammyText length="l" />
+			<DammyText length="xl" />
 		</Frame>
 	</Demo.Preview>
-	<Demo.Code p={20}>
+	<Demo.Code>
 		```jsx
-		<Frame h='12rem' isFlow>
-			<Text fw="bold">コンテンツ量が多い場合はスクロールできます。</Text>
+		<Frame aspect='2/1' isFlow p='box'>
 			...
 		</Frame>
 		```
@@ -72,7 +82,7 @@ import { Frame } from '@lism/core';
 		コンテンツに`<Center>`を使用, 比率をブレイクポイントで変える
 	</Demo.Title>
 	<Demo.Preview resize>
-		<Frame aspect={["10/10", "4/3", "16/9"]} p={20}>
+		<Frame aspect={["10/10", "4/3", "16/9"]} p="box">
 			<Center size="cover" gap={20}>
 				<Text fw="bold">1/1 → 4/3 → 16/9</Text>
 				<DammyText />
@@ -82,7 +92,7 @@ import { Frame } from '@lism/core';
 
 	<Demo.Code>
 		```jsx
-		<Frame aspect={["1/1", "4/3", "16/9"]} p={20}>
+		<Frame aspect={["1/1", "4/3", "16/9"]} p="box">
 			<Center size="cover" gap={20}>
 				<Text fw="bold">1/1 → 4/3 → 16/9</Text>
 				<p>...</p>
@@ -93,100 +103,21 @@ import { Frame } from '@lism/core';
 </Demo>
 
 
-### 直下に画像を配置
-
-Frame直下の img, video は、Frameサイズいっぱいに表示され、`object-fit:cover` が標準で適用されます。
-
-<Demo>
-	<Demo.Title>
-		`<img>`を使用
-	</Demo.Title>
-	<Demo.Preview maxW="25rem">
-		<Frame>
-			<img src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
-		</Frame>
-	</Demo.Preview>
-
-	<Demo.Code>
-		```jsx
-		<Frame>
-			<img src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
-		</Frame>
-		```
-	</Demo.Code>
-</Demo>
-
-<Demo>
-	<Demo.Title>
-		nextの`<Image>`を使用
-	</Demo.Title>
-	<Demo.Preview maxW="25rem">
-		<Frame>
-			<Image src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
-		</Frame>
-	</Demo.Preview>
-
-	<Demo.Code>
-		```jsx
-		<Frame>
-			<Image src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
-		</Frame>
-		```
-	</Demo.Code>
-</Demo>
-
-
-### Layer系の活用
-
-<Demo>
-	<Demo.Title>
-		MediaLayer & FilterLayer & ContentLayer を使用.
-	</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Frame aspect="2/1" c="white">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-			<FilterLayer blur="8px" bgc="rgba(0,0,0,0.25)" />
-			<ContentLayer>
-				<Center data-size="cover" gap={20}>
-					<Text fz="2xl" fw="bold">2:1</Text>
-					<DammyText length="m" />
-				</Center>
-			</ContentLayer>
-		</Frame>
-	</Demo.Preview>
-
-	<Demo.Code>
-		```jsx
-		<Frame aspect="2/1" c="white">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-			<FilterLayer blur="8px" bgc="rgba(0,0,0,0.25)" />
-			<ContentLayer>
-				<Center data-size="cover" gap={20}>
-					<Text fz="4xl" fw="bold">2:1</Text>
-					<p>...</p>
-				</Center>
-			</ContentLayer>
-		</Frame>
-		```
-	</Demo.Code>
-</Demo>
-
-
 ### 数値以外での比率指定
 
-- OG imageサイズ: ogp
-- 黄金比=golden
-- 白銀比=silver
-- 青銅比=bronze
+- `golden`: 黄金比
+- `silver`: 白銀比
+- `bronze`: 青銅比
+- `ogp`: OG Imageの比率
 
 export const FrameRatios = () => {
 	return (
 		<Columns cols={[1, 2, 4]} gap={20} >
-			{["ogp", "golden", "silver", "bronze"].map((ratio) => {
+			{["golden", "silver", "bronze", "ogp"].map((ratio) => {
 				return (
 					<Frame key={ratio} aspect={ratio} bgc="whitesmoke">
-						<Layer position="center" c="gray">
-							"{ratio}"
+						<Layer position="center" c="gray" fz="s">
+							<code>aspect="{ratio}"</code>
 						</Layer>
 					</Frame>
 				);
@@ -210,5 +141,110 @@ export const FrameRatios = () => {
 		<Frame aspect="bronze">...</Frame>
 		```
 	</Demo.Code>
-	
 </Demo>
+
+
+### 直下に画像を配置するケース
+
+`<Frame>`直下の `img`, `video` は、Frameのサイズいっぱいに表示され、`object-fit:cover` が適用されます。
+
+<Demo>
+	<Demo.Title>
+		`<img>`を使用
+	</Demo.Title>
+	<Demo.Preview maxW="25rem">
+		<Frame aspect="16/9">
+			<img src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
+		</Frame>
+	</Demo.Preview>
+
+	<Demo.Code>
+		```jsx
+		<Frame aspect="16/9">
+			<img src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
+		</Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>
+		nextの`<Image>`を使用
+	</Demo.Title>
+	<Demo.Preview maxW="25rem">
+		<Frame aspect="16/9">
+			<Image src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
+		</Frame>
+	</Demo.Preview>
+
+	<Demo.Code>
+		```jsx
+		<Frame aspect="16/9">
+			<Image src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
+		</Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### `aspect`は必須ではありません
+
+`aspect`を使わず、`h`を指定して必要な高さを固定させることも可能です。
+
+<Demo>
+	<Demo.Title>
+		`aspect`を使わず、`h`を指定
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Frame h='12rem' isFlow p='box'>
+			<DammyText length="m" />
+			<DammyText length="l" />
+			<DammyText length="xl" />
+		</Frame>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Frame h='12rem' isFlow p='box'>
+			...
+		</Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### Layer系を活用する
+
+<Demo>
+	<Demo.Title>
+		MediaLayer & FilterLayer を使用.
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Frame aspect="2/1" c="white">
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			<FilterLayer blur="8px" bgc="rgba(0,0,0,0.25)" />
+			<Layer inset="0" p="box">
+				<Center data-size="cover" gap={20}>
+					<Text fz="2xl" fw="bold">2:1</Text>
+					<DammyText length="m" />
+				</Center>
+			</Layer>
+		</Frame>
+	</Demo.Preview>
+
+	<Demo.Code>
+		```jsx
+		<Frame aspect="2/1" c="white">
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			<FilterLayer blur="8px" bgc="rgba(0,0,0,0.25)" />
+			<Layer inset="0" p="box">
+				<Center data-size="cover" gap={20}>
+					<Text fz="4xl" fw="bold">2:1</Text>
+					<p>...</p>
+				</Center>
+			</Layer>
+		</Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+

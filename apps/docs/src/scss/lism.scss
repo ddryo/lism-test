@@ -15,7 +15,7 @@
 }
 :where(.has\:layerGuide) {
 	&.has--layer {
-		background: rgba(220, 220, 220, 0.2);
+		background: rgba(220, 220, 220, 0.25);
 	}
 	&.has--layer > p {
 		color: rgba(120, 120, 120, 0.2);

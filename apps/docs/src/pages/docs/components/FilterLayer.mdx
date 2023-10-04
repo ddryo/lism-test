@@ -4,16 +4,22 @@ import Image from "next/image";
 
 # FilterLayer
 
-`<Layer>`の拡張モジュール。  
-親サイズにfitするサイズで配置され、bgc, blur, contrast, brightness を指定できる。
-`<MediaLayer>` と組み合わせると便利。
+**背景にエフェクト効果を加える**ための、[`<Layer>`](/docs/components/Layer)の拡張モジュール。
 
-- `<FilterLayer>`
-- Lismクラス: `.l--layer--filter`
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--layer l--layer--filter">...</div>
+	```
+	</Demo.Code>
+</Demo>
 
 
-## 主なProps
+## Props
 - `blur` : ブラー
+- bgc, contrast, brightness,...など
+- texture?
 
 ## Import
 
@@ -37,7 +43,7 @@ import { FilterLayer } from '@lism/core';
 		</Stack>
 	</Demo.Preview>
 	<Demo.Code>
-		```jsx
+		```jsx {3}
 		<Box hasLayer p={20}>
 			...
 			<FilterLayer blur="4px" bgc="rgb(255 255 255 / 50%)" />
@@ -49,18 +55,18 @@ import { FilterLayer } from '@lism/core';
 
 <Demo className="">
 	<Demo.Title>
-		画像の色味を変える
+		`contrast`, `grayscale`で画像の色味を変える
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Frame aspect="4/3" c="white">
+		<Frame aspect="16/9" c="white">
 			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
 			<FilterLayer contrast={1.1} grayscale={0.5}/>
 			<Layer bottom="0" right="0" p={20}>Lorem ipsum text...</Layer>
 		</Frame>
 	</Demo.Preview>
 	<Demo.Code>
-		```jsx
-		<Frame aspect="4/3" c="white">
+		```jsx {3}
+		<Frame aspect="16/9" c="white">
 			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
 			<FilterLayer contrast={1.1} grayscale={0.5}/>
 			<Layer bottom="0" right="0" p={20}>Lorem ipsum text...</Layer>

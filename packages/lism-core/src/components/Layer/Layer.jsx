@@ -1,11 +1,9 @@
 import React from 'react';
-import { Lism } from '../Lism';
-// import { getLismClass } from '@/lib';
+import { Core } from '../Core';
 
 // .l--layer[data-layer="media|filter|content"] ?
 export default function Layer({ children, modifier, position, size, ...props }) {
 	const layerProps = {
-		// lismClass:getLismClass('l', 'layer', modifier),
 		lismClass: 'l--layer',
 		lismModifier: modifier && 'l--layer--' + modifier,
 		'data-size': size || null,
@@ -56,8 +54,8 @@ export default function Layer({ children, modifier, position, size, ...props }) 
 	// const Tag = tag || 'div';
 
 	return (
-		<Lism {...layerProps} {...props}>
+		<Core {...layerProps} {...props}>
 			{children}
-		</Lism>
+		</Core>
 	);
 }

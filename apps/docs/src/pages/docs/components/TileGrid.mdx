@@ -2,22 +2,31 @@ import { TileGrid, Columns } from '@lism/core';
 
 # TileGrid
 
-**各子要素が最低限維持する幅**を指定するだけで、`auto-fit` で折返しタイミングがクエリサイズに依存しないタイルレイアウトを作成できるコンポーネントです。
+**各子要素が指定した最小幅を下回らないように自動で折り返しされる**グリッドモジュールです。
+
+<Alert preset="info">
+カラムの折返しタイミングがブレイクポイントに依存しません。
+</Alert>
+
+ただし、カラム数は**1列ずつしか変わらない**（ 4列→2列 とかはできず、4列→3列→2列になる ) ので、カラム数を具体的に指定したい場合は [`<Columns>`](/docs/components/Columns) を使ってください。
+
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--tileGrid">...</div>
+	```
+	</Demo.Code>
+</Demo>
 
 
-ただし、カラム数は**1列ずつしか変わらない**（ 6列 → 3列 → 1列 とかはできない ) ので、そういうレイアウトが必要な場合は [`<Columns>`](/docs/modules/columns) を使ってください。
-
-- `<TileGrid>`
-- Lismクラス: `.l--tileGrid.is--grid`
-- [`isGrid`](/docs/layout-system/is-grid) なコンポーネントす。
-- defaultのgap: `40`
-
-- clampをプリセット用意したい
-	- sizeプリセット使えるようにして、text-s-fluid とか用意する？
+{/* Memo: clampをプリセット用意したいsizeプリセット使えるようにして、text-s-fluid とか用意する？ */}
 
 
 ## 主なprops
 - `itemMinW`: 子要素が最低限維持する幅. デフォルト値は `20rem` (要検討)
+- その他、[`<Grid>`で使えるprops](/docs/components/Grid#props)が使えます。
+	- `gap`の初期値を `20` にセットしています。
 
 
 ## Import
@@ -26,11 +35,12 @@ import { TileGrid, Columns } from '@lism/core';
 import { TileGrid } from '@lism/core';
 ```
 
+
 ## DEMO
 
 <Demo className="has--box-guide">
 	<Demo.Title>
-		デフォルト size=`16rem`
+		デフォルト (`itemMinW`=`16rem`
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<TileGrid className='has:itemGuide'>
@@ -71,7 +81,7 @@ import { TileGrid } from '@lism/core';
 		</TileGrid>
 	</Demo.Preview>
 	<Demo.Code>
-		```jsx
+		```jsx {1}
 		<TileGrid itemMinW="12rem">
 			...
 		</TileGrid>

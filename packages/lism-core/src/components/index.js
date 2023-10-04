@@ -24,7 +24,7 @@ export { Item } from './Item';
 
 export { Reel } from './Reel';
 export { Frame } from './Frame';
-export { Layer, MediaLayer, FilterLayer, ContentLayer } from './Layer';
+export { Layer, MediaLayer, FilterLayer } from './Layer';
 export { Divider } from './Divider';
 export { Spacer } from './Spacer';
 

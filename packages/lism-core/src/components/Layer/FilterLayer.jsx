@@ -14,11 +14,7 @@ const FILTERS = [
 	'sepia',
 ];
 
-export function ContentLayer(props) {
-	return <Layer modifier='content' p={40} {...props} />;
-}
-
-export function FilterLayer({
+export default function FilterLayer({
 	//texture,
 	z,
 	...props

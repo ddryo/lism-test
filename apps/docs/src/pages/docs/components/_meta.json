@@ -16,7 +16,7 @@
 	"Cluster": "",
 	"Stack": "",
 	"Center": "",
-
+	"FluidFix": "FluidFix",
 	
 	"--- grid": {
 		"type": "separator",
@@ -24,18 +24,18 @@
 	},
 	"Grid": "",
 	"Columns": "",
-	"RatioGrid": "",
-	"TileGrid": "",
-	"SideFix": "",
+	"RatioGrid": "RatioGrid",
+	"TileGrid": "TileGrid",
+	"SwitchFix": "SwitchFix",
 
 	"--- other-layout": {
 		"type": "separator",
 		"title": ""
 	},
-	
-	"FluidFix": "",
-	"SwitchFix": "",
+
 	"Layer": "",
+	"FilterLayer": "",
+	"MediaLayer": "",
 	"Frame": "",
 	"Reel": "",
 	"Spacer": "",

@@ -107,7 +107,8 @@ body {
 	// --code--bdc: var(--b400);
 }
 
-#__next:has([data-docs-path='/docs/components/Section'], [data-docs-path='/docs/components/Divider']) {
+// #__next:has([data-docs-path^='/docs/components/'], [data-docs-path='/docs/components/Divider']),
+#__next {
 	// color: red;
 
 	.nextra-nav-container + .nx-max-w-\[90rem\] {

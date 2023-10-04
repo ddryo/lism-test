@@ -38,17 +38,19 @@ import { Spacer } from '@lism/core';
 		<Box bgc="pale">Box</Box>
 		<Spacer h="100px" />
 		<Box bgc="pale">Box</Box>
+		<Spacer h={["50px", "100px"]} />
+		<Box bgc="pale">Box</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx {2}
 		<Box bgc="pale">Box</Box>
 		<Spacer h="100px" />
 		<Box bgc="pale">Box</Box>
+		<Spacer h={["50px", "100px"]} />
+		<Box bgc="pale">Box</Box>
 		```
 	</Demo.Code>
 </Demo>
-
-`<Space>`では、`w`と`h`に対してSPACEトークンの値が使えます。
 
 <Demo>
 	<Demo.Title>`h`にSPACEトークンを使う例</Demo.Title>
@@ -76,9 +78,33 @@ import { Spacer } from '@lism/core';
 	<Demo.Preview resize p={20} isFlow={false}>
 		<Flex>
 			<Box bgc="pale">Box</Box>
-			<Spacer w={[30,50]} />
+			<Spacer w="40px" />
 			<Box bgc="pale">Box</Box>
-			<Spacer w="100px" />
+			<Spacer w={["40px", "60px"]} />
+			<Box bgc="pale">Box</Box>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Flex>
+			<Box bgc="pale">Box</Box>
+			<Spacer w="40px" />
+			<Box bgc="pale">Box</Box>
+			<Spacer w={["40px", "60px"]} />
+			<Box bgc="pale">Box</Box>
+		</Flex>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>`w`にSPACEトークンを使う例</Demo.Title>
+	<Demo.Preview resize p={20} isFlow={false}>
+		<Flex>
+			<Box bgc="pale">Box</Box>
+			<Spacer w={50} />
+			<Box bgc="pale">Box</Box>
+			<Spacer w={[30, 50]} />
 			<Box bgc="pale">Box</Box>
 		</Flex>
 	</Demo.Preview>
@@ -88,7 +114,7 @@ import { Spacer } from '@lism/core';
 			<Box bgc="pale">Box</Box>
 			<Spacer w={50} />
 			<Box bgc="pale">Box</Box>
-			<Spacer w="100px" />
+			<Spacer w={[30, 50]} />
 			<Box bgc="pale">Box</Box>
 		</Flex>
 		```

@@ -1,0 +1,319 @@
+import { Box, Text, Center, Columns, Layer } from '@lism/core';
+
+
+# コンテナサイズの制御
+
+WordPressのブロックエディターと同じ設計になっています。
+
+`<Box>`コンポーネントに`isConstrained`と`hasGutter`が指定できるようになっており、これらを指定することで以下のクラスが出力され、内部のコンテンツ幅を制御できます。
+
+- `.is--constrained` : そのBox直下の**コンテンツ幅**をルートで定義したMaxサイズに制限するためのクラスです。
+	- （WordPressでいうところの`is-layout-constrained`の機能にあたります。）
+- `.has--gutter` : **コンテンの左右にpaddingを追加する**ためのクラスです。
+	- （WordPressでいうところの`has-global-padding`と同じ役割です。）
+
+
+また、`.alignfull` で全幅、 `.alignwide` で幅広のレイアウトを作ることができます。（**※ クラス名要検討**）
+
+
+<Alert preset="info">
+このページはデスクトップPCで御覧ください。
+</Alert>
+
+
+## 前提: コンテンツサイズの制御手法
+
+（記事ページなどにおいて）Lism設計では、基本的にコンテンツエリアのラッパー側で横幅をコントロールする**のではなく**、**コンテンツエリア直下のそれぞれの要素自身の幅を直接制御する**方式を推奨します。
+
+例えば、ページ全体が次のような構造をしているとします。
+
+```html {5}
+<body>
+	<header>ヘッダー</header>
+	<main>
+		<article class="entry-content">
+			...コンテンツ...
+		</article>
+	</main>
+	<footer>フッター</footer>
+</body>
+```
+
+このとき、例えばコンテンツの基本幅を`800px`にしたい時、主に次の①か②の選択肢があると思います。
+
+```css
+/* ① */
+.entry-content{
+	max-width: 800px;
+}
+
+/* ② */
+.entry-content > * {
+	max-width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+}
+```
+
+<Alert preset="point">
+Lism設計では、①ではなく②を前提としています。
+</Alert>
+
+
+
+<Note caption='なぜ?' preset="memo">
+`.entry-content`エリアの中で**全幅コンテンツ**を作る場合、基本的に`width:100%`にするだけでよくなるので非常にシンプルになるためです。
+サイドバーありの2カラムレイアウトと、シンプルな1カラムレイアウトがサイト内に混在するケースでも対応しやすくなります。
+
+
+非推奨の①のケースを採用してしまうと、その直下で全幅コンテンツを作る場合のCSSが複雑になってしまいます。
+
+```css
+.alignfull{
+	width: 100vw;
+	max-width: 100vw;
+	left: calc(50% - 50vw);
+}
+```
+
+みたいなCSSを書いた経験はないでしょうか。これらは、他のレイアウト条件なども考慮し始めるとかなり複雑になってしまいます。
+
+</Note>
+
+また、**WordPressのブロックエディターでそういう設計が前提となっている**のも大きな理由です。
+特にブロックテーマを作る場合には、この設計に従うかどうかで、コンテンツの幅を制御するためのCSSの複雑度がかなり大きく変わってきます。
+（記事ページなどにおいての）
+
+
+## コンテンツ制御クラスについて
+
+ただし、実際には`.entry-content > *`のように特定のエリアに対してCSSを書くのではなく、**直下のコンテンツ幅を制御する役割**をもつ専用のクラス`.is--constrained`を用意しています。
+（コンテンツ幅を揃えたいエリアは複数でてくることが多いため）
+
+なので、Lismでは実際には次のようにHTMLを書くことになります。
+
+
+```html
+<article class="is--constrained">
+	...コンテンツ...
+</article>
+```
+
+<Demo>
+	<Demo.Title>
+		`.is--constrained` の挙動
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Box isFlow isConstrained bd="guide" style={{"--contentSize": "30rem"}}>
+			<Box bd="guide">コンテンツ</Box>
+			<Box bd="guide">コンテンツ</Box>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Box isFlow isConstrained bd="guide" style={{"--contentSize": "30rem"}}>
+			<Box bd="guide">コンテンツ</Box>
+			<Box bd="guide">コンテンツ</Box>
+		</Box>
+		```
+	</Demo.Code>
+</Demo>
+
+このデモエリアが小さいため、`--contentSize`でコンテンツ幅を小さめに上書きしています。
+
+
+### 幅広(.alignwide) と 全幅 (.alignfull) 
+
+- `.alignwide` はmax-widthが大きめに変わるだけ、
+- `.alignfull` はmax-width:100% (has--gutter直下のみネガティブマージンあり)
+
+というシンプルな実装になります。
+
+<Demo>
+	<Demo.Title>
+		alignfull と alignwide
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Box isFlow isConstrained bd="guide" style={{ "--contentSize": "30rem", "--ls--contentSize--wide": "34rem" }}>
+			<Box bd="guide">普通幅のコンテンツ</Box>
+			<Box isFlow alignwide bd="guide">
+				<p>幅広Box内のコンテンツ</p>
+				<p>幅広Box内のコンテンツ</p>
+			</Box>
+			<Box isFlow alignfull bd="guide">
+				<p>全幅コンテンツ</p>
+			</Box>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Box isFlow isConstrained bd="guide" style={{ "--contentSize": "30rem", "--ls--contentSize--wide": "34rem" }}>
+			<Box bd="guide">普通幅のコンテンツ</Box>
+			<Box isFlow alignwide bd="guide">
+				<p>幅広Box内のコンテンツ</p>
+				<p>幅広Box内のコンテンツ</p>
+			</Box>
+			<Box isFlow alignfull bd="guide">
+				<p>全幅コンテンツ</p>
+			</Box>
+		</Box>
+		```
+	</Demo.Code>
+</Demo>
+
+
+
+### コンテンツの左右に余白をつける
+
+`.is--constrained`で横幅を制御しただけでは、画面サイズが狭い場合に、コンテンツの左右に余白がなくなります（上のDemoエリアをリサイズしてみてください）。
+
+そこで、コンテンツエリアの左右に余白をつけるための `.has--gutter` というクラスも別途用意しているので、併用して利用してください。
+
+
+```html
+<article class="is--constrained has--gutter">
+	...コンテンツ...
+</article>
+```
+
+<Demo>
+	<Demo.Title>
+		`.is--constrained&.has--gutter` の挙動
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Box
+			isFlow
+			isConstrained
+			hasGutter
+			bd='guide'
+			style={{ "--contentSize": "30rem", "--ls--contentSize--wide": "34rem" }}
+		>
+			<Box bd="guide">コンテンツ</Box>
+			<Box bd="guide">コンテンツ</Box>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+↓ なぜpaddingではなくわざわざ.has--gutterを使うか
+
+
+### has--gutter 直下の alignfull について
+
+コンテンツのラッパーに`.has--gutter`をつけてpaddingをつけるので、その内部の`.alignfull`を単純に`width:100%`にするだけではpaddingの内側までしか広がりません。
+
+そこで、`.has--gutter > .alignfull` に関してのみ別途追加の調整を加え、**gutterサイズ分だけネガティブマージンで左右に広がる**ような実装になっています。
+
+
+<Demo>
+	<Demo.Title>
+		`.is--constrained > .alignfull`の挙動
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Box
+			isFlow
+			isConstrained
+			hasGutter
+			bd='guide'
+			style={{ "--contentSize": "30rem", "--ls--contentSize--wide": "34rem" }}
+		>
+			<Text bd='guide'>通常幅のコンテンツ</Text>
+			<Box bd='guide' alignfull>ここは全幅 alignfull です</Box>
+			<Box bd='guide' style={{ maxWidth: '100%' }}>max-width:100%だとこうなる</Box>
+			<Text bd='guide'>通常幅のコンテンツ</Text>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+全幅用の`.alignfull` の幅調整が必要な特例はこの1点のみとなりますので、全体を通して非常にシンプルな実装になっています。  
+
+
+{/* <Note caption='.is--constrained と .has--gutter を分ける理由' preset='memo'>
+	`.is--constrained` に `.has--gutter`と同じ機能もつけて一つのクラスにまとめてしまえばもっとシンプルじゃないか、と思うかもしれません。
+	多くの場合はそれで十分かもしれないですが、より柔軟なケースにも対応できるように、クラスを分けています。
+</Note> */}
+
+
+### DEMO
+
+総合的に様々な組み合わせでコンテンツを並べてみます。
+
+
+<Demo>
+	<Demo.Title>
+		このデモエリアをコンテンツエリアとして考えてください
+	</Demo.Title>
+	<Demo.Preview resize>
+		<Box
+			isFlow
+			isConstrained
+			hasGutter
+			style={{ "--contentSize": "30rem", "--ls--contentSize--wide": "34rem" }}
+		>
+			<p>...普通のコンテンツ...</p>
+			<p>▼ ただの全幅Box</p>
+			<Box
+				mbs="10"
+				alignfull
+				bgc='b200'
+			>
+				<p>全幅コンテンツ</p>
+			</Box>
+
+			<p>▼ 全幅Box</p>
+			<Box
+				mbs="10"
+				alignfull
+				bgc='b200'
+			>
+				<p>全幅コンテンツ</p>
+			</Box>
+
+			<p>▼ <code>isConstrained</code> な全幅Box</p>
+			<Box
+				mbs="10"
+				alignfull
+				bgc='b200'
+				isConstrained
+			>
+				<p>全幅コンテンツ</p>
+			</Box>
+
+			<p>▼ <code>hasGutter</code> な全幅Box</p>
+			<Box
+				mbs="10"
+				alignfull
+				bgc='b200'
+				hasGutter
+			>
+				<p>全幅コンテンツ</p>
+			</Box>
+
+			<p>▼ <code>isConstrained</code>,<code>hasGutter</code> な全幅Box</p>
+			<Box
+				alignfull
+				bgc='b200'
+				hasGutter
+				isConstrained
+			>
+				<p>全幅コンテンツ</p>
+			</Box>
+			<p>...普通のコンテンツ...</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>

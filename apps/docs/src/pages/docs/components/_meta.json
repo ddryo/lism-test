@@ -37,16 +37,15 @@
 	"FilterLayer": "",
 	"MediaLayer": "",
 	"Frame": "",
-	"Reel": "",
 	"Spacer": "",
-
-	"LinkBox": "",
+	"Divider": "",
 
 	"--- disclosure": {
 		"type": "separator",
 		"title": ""
 	},
-	
+	"Reel": "",
+	"LinkBox": "",
 	"Accordion": "",
 	"Tab": "",
 	"Swap": "swap?",
@@ -80,6 +79,6 @@
 
 	"---": {
 		"type": "separator",
-		"title": "Block"
+		"title": "---"
 	}
 }

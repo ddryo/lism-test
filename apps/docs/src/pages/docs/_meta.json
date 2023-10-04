@@ -7,6 +7,9 @@
 	"tokens": "Tokens",
 	"props": "Props",
 	"components": {
+		"title": "Components"
+	},
+	"__": {
 		"title": "Components",
 		"theme": {
 			"toc": false

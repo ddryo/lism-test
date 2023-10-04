@@ -13,13 +13,17 @@
 // 内部のコンテンツ幅を制御する
 .is--constrained {
 	container-type: inline-size;
-	--maxW: min(100%, var(--ls--contentSize)); // -maxW: で上書きできるように
+	// --maxW: min(100%, var(--ls--contentSize)); // -maxW: で上書きできるように?
+	--contentSize: var(--ls--contentSize);
 
 	// 左寄せ・右寄せ・全幅以外の要素に対して、max-widthを設定する?
 	> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-		max-width: var(--maxW);
-		margin-right: auto !important;
-		margin-left: auto !important;
+		// max-width: var(--maxW);
+		// margin-right: auto !important;
+		// margin-left: auto !important;
+
+		max-inline-size: min(100%, var(--contentSize));
+		margin-inline: auto !important;
 	}
 
 	// 幅広の場合はmax-widthを上書きする

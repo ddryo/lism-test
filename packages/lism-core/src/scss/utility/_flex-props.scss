@@ -22,6 +22,13 @@
 	flex-direction: row-reverse;
 }
 
+.-fxw\: {
+	flex-wrap: var(--fxw);
+}
+.-fxd\: {
+	flex-direction: var(--fxd);
+}
+
 @include query.cq('sm') {
 	.-fxw\@sm\: {
 		flex-wrap: var(--fxw--sm);

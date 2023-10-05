@@ -1,41 +1,23 @@
 import React from 'react';
-import { Lism } from '../Lism';
+import { Flex } from '../Flex';
 
-// import classnames from 'classnames';
-
-export default function Reel({
-	children,
-	// onlySmall,
-	unreel,
-	// to, until, til
-	componentForWide,
-	itemW,
-	// release, 解除サイズを指定?
-	...props
-}) {
-	let lismProps;
-	let ReelComponent = Lism;
-	const lismStyle = {};
-
-	if (componentForWide) {
-		ReelComponent = componentForWide;
-		lismProps = {
-			className: 'is--reel@max-md',
-		};
-	} else {
-		lismProps = {
-			className: 'is--reel',
-			gap: 20,
+export default function Reel({ unreel, itemBasis, snap, ...props }) {
+	if (undefined !== itemBasis) {
+		props.lismStyle = {
+			'--item--basis': itemBasis,
 		};
 	}
 
-	if (undefined !== itemW) {
-		lismStyle['--item--w'] = itemW;
+	if (unreel) {
+		props['data-unreel'] = unreel;
+	}
+	if (snap) {
+		props['data-snap'] = snap;
 	}
 
-	return (
-		<ReelComponent {...lismProps} {...props} lismStyle={lismStyle} tabIndex='0'>
-			{children}
-		</ReelComponent>
-	);
+	// if (showScrollbar) {
+	// 	props['data-show-scrollbar'] = showScrollbar;
+	// }
+
+	return <Flex lismClass='l--reel' {...props} tabIndex='0' />;
 }

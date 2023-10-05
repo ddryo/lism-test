@@ -1,33 +1,66 @@
+@use '../../scss/query' as query;
+
 // --------------------
 // Reel
 // --------------------
-.is--reel {
-	--item--w: 16em; // 初期値要検討
-	// display: grid;
-	// overflow-x: auto;
-	// grid-auto-flow: column;
-	// grid-auto-columns: var(--item--w);
-	// // grid-template-columns: unset;
-	// // grid-template-rows: unset;
+// :root {
+// 	--is--unreel: 0;
+// }
+.l--reel {
+	// --is--unreel: 1;
+	--item--basis: 16em; // 初期値要検討
+	--snap: start;
 
 	display: flex;
-	overflow-x: auto;
-	scroll-snap-type: x mandatory;
+	overflow: auto;
+	scroll-snap-type: both mandatory;
 
-	> * {
-		// flex: 0 0 auto;
-		flex: none;
-		flex-basis: var(--item--w);
-		// box-sizing: content-box;
-		// display: flex;
-		scroll-snap-align: start;
+	// unreel時用
+	&:where([data-unreel]) {
+		--gtc--val: repeat(auto-fit, minmax(min(var(--item--basis), 100%), 1fr));
+	}
+
+	&:where([data-snap='center']) {
+		--snap: center;
+	}
+	// &:where([data-direction='vertical']) {
+	// 	--direction: center;
+	// }
+
+	> .is--item {
+		flex: 0 0 var(--item--basis);
+		scroll-snap-align: var(--snap);
+	}
+
+	// 子要素に対してしか使えない
+	// @container style(--is--unreel: 0) {
+	// 	color: red !important;
+	// }
+}
+
+// unreel → tileグリッドに切り替え. 別レイアウトが必要であればgtcで。
+@include query.cq('sm') {
+	.l--reel[data-unreel='sm'] {
+		display: grid;
+		overflow-x: revert;
+		grid-template-columns: var(--gtc--val);
+	}
+}
+@include query.cq('md') {
+	.l--reel[data-unreel='md'] {
+		display: grid;
+		overflow-x: revert;
+		grid-template-columns: var(--gtc--val);
 	}
 }
 
-.l--reel[data-scbar='show'] {
+// スクロールバーのカスタマイズ
+/*
+.l--reel[data-scrollbar='custom'] {
 	--scrollbar--thumb-color: #fff;
 	--scrollbar--track-color: #000;
 	--scrollbar--height: 1rem;
+	// overflow-x: scroll;
 
 	// 以下、 Firefox用
 	scrollbar-color: var(--scrollbar--thumb-color) var(--scrollbar--track-color);
@@ -58,3 +91,4 @@
 		background-color: var(--scrollbar--track-color);
 	}
 }
+*/

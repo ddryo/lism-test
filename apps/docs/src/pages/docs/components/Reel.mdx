@@ -1,68 +1,43 @@
-import { Reel, Item, Columns } from '@lism/core';
-
-export const ReelContents = () => {
-	return (
-		<>
-			<Item bgc="pale" p="box:s">
-				<p>Lorem ipsum, dolor sit amet.</p>
-			</Item>
-			<Item bgc="pale" p="box:s">
-				<p>Lorem ipsum, dolor sit amet.</p>
-				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-			</Item>
-			<Item bgc="pale" p="box:s">
-				<p>Lorem ipsum, dolor sit amet.</p>
-			</Item>
-			<Item bgc="pale" p="box:s">
-				<p>Lorem ipsum, dolor sit amet.</p>
-				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-			</Item>
-			<Item bgc="pale" p="box:s">
-				<p>Lorem ipsum, dolor sit amet.</p>
-			</Item>
-		</>
-	);
-}
-
+import { Reel, Frame, Item, Columns } from '@lism/core';
 
 
 # Reel
 
-
-<Reel>
-	<ReelContents />
-</Reel>
-
-<Reel unreel='md' itemW='50%'>
-	<ReelContents />
-</Reel>
-
-
 コンテンツを横スクロールで表示するコンポーネントです。
 
-- `<Reel>`
-- Lismクラス: `.l--reel` → `is--reel`にする?
+
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="l--reel">
+		<div class="is--item">...</div>
+		<div class="is--item">...</div>
+		<div class="is--item">...</div>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
 
 
-## 主なProps
+## Props
 
-- `itemW`: 各アイテムの横幅（クエリ対応すべき？）
-- `componentForWide` ?:  wide幅の時のコンポーネントを指定する。SPサイズの時のみReelにするための設定
+- `itemBasis`: 各アイテムのサイズを指定できます。
+- `unreel`:  横スクロールを解除するブレイクポイントを指定できます。（`sm`, `md`を標準ではサポートしています)
+
 
 ## 注意点
 
-`<Reel>` 直下の要素には `<Item>` を使ってください。
+<Alert preset="info">
+`<Reel>` 直下の要素には `<Item>`または `isItem` (`.is--item`) の指定が必要です。
+</Alert>
 
 
-### 要検討
+### 検討事項MEMO
 
-- スクロールバーの色調整機能
-- align-itemsをストレッチ以外にできるようにするか？
-- l--box--reel にする？
-- スクロール可能であることを視覚的に表示する機能をつける？
-	- JSを使う?
-	- lea verou 形式のCSSで端にシャドウつける？（背景色と一致させないといけない）
-
+{/* - スクロールバーの色調整機能? */}
+- scroll-snap-alignあたりの設定
+- スクロール可能であることを視覚的に表示する機能をつける？(端にシャドウ)
 - ブロック化した時
 	- 子要素はBox or 画像・動画だけにする？
 	- もしくは、専用の子ブロック（BOX拡張）のみにするか
@@ -74,17 +49,65 @@ export const ReelContents = () => {
 import { Reel } from '@lism/core';
 ```
 
+
 ## DEMO
 
+export const ReelContents = () => {
+	return (
+		<>
+			<Item bgc="pale" p="box:s">
+				<p>Content</p>
+			</Item>
+			<Item bgc="pale" p="box:s">
+				<p>Content</p>
+			</Item>
+			<Item bgc="pale" p="box:s">
+				<p>Content</p>
+			</Item>
+			<Item bgc="pale" p="box:s">
+				<p>Content</p>
+			</Item>
+			<Item bgc="pale" p="box:s">
+				<p>Content</p>
+			</Item>
+			<Item bgc="pale" p="box:s">
+				<p>Content</p>
+			</Item>
+		</>
+	);
+}
 
-
+export const ReelImages = () => {
+	return (
+		<>
+			<Frame isItem ascpect="16/9">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem ascpect="16/9">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem ascpect="16/9">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem ascpect="16/9">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem ascpect="16/9">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem ascpect="16/9">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+		</>
+	);
+}
 
 <Demo>
 	<Demo.Title>
 		`<Reel>`デフォルト
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Reel>
+		<Reel className='has:itemGuide'>
 			<ReelContents />
 		</Reel>
 	</Demo.Preview>
@@ -99,75 +122,180 @@ import { Reel } from '@lism/core';
 	</Demo.Code>
 </Demo>
 
-子要素の数が少ない時は、横幅が狭まってスクロールが必要になるとスクロール可能になります。
+
 
 <Demo>
+	<Demo.Title>
+		`itemBasis`で子要素の横幅を指定する
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Reel itemBasis="40%" gap={20}>
+			<ReelImages />
+		</Reel>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Reel itemBasis="40%" gap={20}>
+			<Frame isItem ascpect="16/9">
+				<img src="..." alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem ascpect="16/9">
+				<img src="..." alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			...
+		</Reel>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>
+		`snap="center"`
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Reel itemBasis="40%" snap="center" gap={20}>
+			<ReelImages />
+		</Reel>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Reel itemBasis="40%" snap="center" gap={20}>
+			<Frame isItem ascpect="16/9">
+				<img src="..." alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem ascpect="16/9">
+				<img src="..." alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			...
+		</Reel>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>
+		`direction="vertical"`
+	</Demo.Title>
+	<Demo.Preview resize p={20}  maxW="30rem">
+		<Reel itemBasis="auto" direction="column" snap="center" aspect="3/4.2" radius="4" bgc="b900" p={30} gap={30}>
+			<Frame isItem aspect="3/4" radius="3">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem aspect="3/4" radius="3">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem aspect="3/4" radius="3">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem aspect="3/4" radius="3">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+		</Reel>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Reel itemBasis="auto" direction="column" snap="center" aspect="3/4.5" radius="4" bgc="b900" p={30} gap={30}>
+			<Frame isItem aspect="3/4" radius="3">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem aspect="3/4" radius="3">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem aspect="3/4" radius="3">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame isItem aspect="3/4" radius="3">
+				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+		</Reel>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### 小さい画面サイズでのみReelにする
+
+`unreel`でブレイクポイントを指定(`sm`, `md`を標準ではサポートしています)することで、そのポイントを超えるとReelではなく、`<TileGrid>`と同じようなレイアウトに切り替わります。
+
+`flex`から`grid`に切り替わるので、[`grid`プロパティ](/docs/props/grid)(`grid-template-columns`など)を指定して、レイアウトを調整することもできます。(Reel時にgrid用のプロパティは影響しない)
+
+
+<Demo>
+	<Demo.Title>@mdでReel解除</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Reel unreel='md' gap={20}>
+			<ReelContents />
+		</Reel>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Reel unreel='md' gap={20}>
+			...
+		</Reel>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>@smでReel解除</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Reel unreel='sm' gap={20}>
+			<ReelContents />
+		</Reel>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Reel unreel='sm' gap={20}>
+			...
+		</Reel>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>@smでReel解除, grid時、2:3の比率でコンテンツを表示</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Reel unreel='sm' gap={20} grid={{columns: '2fr 3fr'}}>
+			<ReelContents />
+		</Reel>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Reel unreel='sm' gap={20} grid={{columns: '2fr 3fr'}}>
+			...
+		</Reel>
+		```
+	</Demo.Code>
+</Demo>
+
+
+{/* ### スクロールバーの強調表示 */}
+
+{/* `showScrollbar="always"`(`[data-show-scrollbar='always']`)で常にスクロールバーを表示することができます。 */}
+
+{/* <Demo>
 	<Demo.Title>
 		子要素の数が少ない例
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Reel gap={20}>
-			<Item>
+		<Reel gap={20} showScrollbar="always">
+			<Item bgc="pale" p="box:s">
 				<p>Lorem ipsum, dolor sit amet.</p>
 			</Item>
-			<Item>
+			<Item bgc="pale" p="box:s">
 				<p>Lorem ipsum, dolor sit amet.</p>
-				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+				<p>consectetur adipisicing elit.</p>
 			</Item>
-			<Item>
-				<p>Lorem ipsum, dolor sit amet.</p>
+			<Item bgc="pale" p="box:s">
+				<p>Quisquam, voluptatum.</p>
 			</Item>
 		</Reel>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Reel gap={20}>
-			<Item>...</Item>
-			<Item>...</Item>
-			...
-		</Reel>
 		```
 	</Demo.Code>
-</Demo>
-
-
-<Demo>
-	<Demo.Title>
-		`itemW="20em"`
-	</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Reel itemW="20em" gap={20}>
-			<ReelContents />
-		</Reel>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Reel itemW="20em" gap={20}>
-			<Item>...</Item>
-			<Item>...</Item>
-			...
-		</Reel>
-		```
-	</Demo.Code>
-</Demo>
-
-
-### SPサイズでのみReel→componentForWide
-
-<Demo>
-	<Demo.Title>SPサイズでのみReel</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Reel componentForWide={Columns} cols={3} gap={20}>
-			<ReelContents />
-		</Reel>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Reel componentForWide={Columns} cols={3} gap={20}>
-			<Item>...</Item>
-			<Item>...</Item>
-			...
-		</Reel>
-		```
-	</Demo.Code>
-</Demo>
+</Demo> */}

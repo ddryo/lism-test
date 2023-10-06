@@ -1,4 +1,4 @@
-import { Reel, Frame, Item, Columns } from '@lism/core';
+import { Lism, Reel, Frame, Item, Columns, Cluster } from '@lism/core';
 
 
 # Reel
@@ -80,22 +80,22 @@ export const ReelContents = () => {
 export const ReelImages = () => {
 	return (
 		<>
-			<Frame isItem ascpect="16/9">
+			<Frame id="image-1" isItem ascpect="16/9">
 				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
 			</Frame>
-			<Frame isItem ascpect="16/9">
+			<Frame id="image-2" isItem ascpect="16/9">
 				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
 			</Frame>
-			<Frame isItem ascpect="16/9">
+			<Frame id="image-3" isItem ascpect="16/9">
 				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
 			</Frame>
-			<Frame isItem ascpect="16/9">
+			<Frame id="image-4" isItem ascpect="16/9">
 				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
 			</Frame>
-			<Frame isItem ascpect="16/9">
+			<Frame id="image-5" isItem ascpect="16/9">
 				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
 			</Frame>
-			<Frame isItem ascpect="16/9">
+			<Frame id="image-6" isItem ascpect="16/9">
 				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
 			</Frame>
 		</>
@@ -174,6 +174,46 @@ export const ReelImages = () => {
 </Demo>
 
 
+<Demo>
+	<Demo.Title>
+		ボタンナビゲーションをつける（idつけてアンカーリンク用意するだけ）
+	</Demo.Title>
+	<Demo.Preview p={20} isShadow={false} flowGap={20}>
+		<Reel itemBasis="60%" snap="center" gap={20}>
+			<ReelImages />
+		</Reel>
+		<Cluster jc="c">
+			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-1">1</Lism>
+			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-2">2</Lism>
+			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-3">3</Lism>
+			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-4">4</Lism>
+			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-5">5</Lism>
+			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-6">6</Lism>
+		</Cluster>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Reel itemBasis="40%" snap="center" gap={20}>
+			<Frame id="image-1" isItem ascpect="16/9">
+				<img src="..." alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame id="image-2" isItem ascpect="16/9">
+				<img src="..." alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			<Frame id="image-3" isItem ascpect="16/9">
+				<img src="..." alt="" loading="lazy" width={960} height={640} />
+			</Frame>
+			...
+		</Reel>
+		<Cluster jc="c">
+			<Lism tag="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-1">1</Lism>
+			<Lism tag="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-2">2</Lism>
+			<Lism tag="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-3">3</Lism>
+			...
+		</Cluster>
+		```
+	</Demo.Code>
+</Demo>
 <Demo>
 	<Demo.Title>
 		`direction="vertical"`

@@ -1,0 +1,26 @@
+import { Box, Flow } from '@lism/core';
+
+# Container
+
+[`.is--container`](/docs/design-system/contents-layout)を出力するコンポーネントで、デフォルトだと `<Lism isContainer>`のエイリアスです。
+
+isConstrainedを指定した場合、`.is--container`ではなく`is--constrained`が出力されます。
+
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<div class="is--container">...</div>
+
+	or
+
+	<div class="is--constrained">...</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+## Props
+
+- `size`
+- `isConstrained`

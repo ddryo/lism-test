@@ -163,6 +163,17 @@ ol {
 	padding-left: var(--space--40);
 }
 
+table small {
+	display: inline-flex;
+	line-height: 1.5;
+}
+
+table code {
+	// display: inline-flex;
+	white-space: nowrap;
+	// line-height: 1.5;
+}
+
 :is(.lsdoc--ul, .lsdoc--ol) {
 	margin-block: var(--space--40);
 	list-style: revert;

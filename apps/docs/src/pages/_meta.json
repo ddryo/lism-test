@@ -12,7 +12,10 @@
         "href": "/docs"
     },
     "sample": {
-        "type": "page"
+        "type": "page",
+		"theme": {
+			"typesetting": "article"
+		}
     },
     "wp": {
         "type": "menu",

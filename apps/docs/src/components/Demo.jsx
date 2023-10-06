@@ -40,7 +40,7 @@ Demo.Title = ({ children }) => {
 	);
 };
 Demo.Preview = ({
-	isShadow,
+	isShadow = true,
 	children,
 	noframe,
 	nogrid,
@@ -64,7 +64,7 @@ Demo.Preview = ({
 		contentClass += ' -nogrid';
 	}
 
-	isShadow = 1;
+	// isShadow = 1;
 	return (
 		<Box blockClass={contentClass} {...props}>
 			{isShadow ? (

@@ -8,6 +8,7 @@ export { Lism } from './Lism';
 
 // Layout
 export { Box } from './Box';
+export { Container } from './Container';
 export { Flow } from './Flow';
 export { Flex } from './Flex';
 export { Stack } from './Flex/Stack';

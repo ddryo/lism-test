@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '../Box';
+import { Core } from '../Core';
 
 /**
  * linkbox用のスクリプトどう読み込ませる？？
@@ -51,7 +51,7 @@ export default function LinkBox({
 		'aria-label': ariaLabel || null,
 	};
 
-	const Component = as || Box;
+	const Component = as || Core;
 	// aタグ以外をリンク化する場合
 	if (tag !== 'a') {
 		return (

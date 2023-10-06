@@ -2,57 +2,98 @@
 // 	margin-block-start: 0;
 // }
 
-// コンテナクエリの基点とする要素
-.is--container {
-	container-type: inline-size;
-}
-.alignfull {
-	container-type: inline-size;
+@layer lism-init {
+	.is--container {
+		--size: 100%;
+		--contentSize--full: 100cqw; // この時点でのcqwをセット
+		&[data-size='s'] {
+			--size: var(--contentSize--s);
+		}
+		&[data-size='base'] {
+			--size: var(--contentSize--base);
+		}
+		&[data-size='l'] {
+			--size: var(--contentSize--l);
+		}
+	}
+	.is--constrained {
+		// --contentSize: var(--contentSize--base);
+
+		&[data-size='s'] {
+			--contentSize: var(--contentSize--s);
+		}
+		&[data-size='base'] {
+			--contentSize: var(--contentSize--base);
+		}
+		&[data-size='l'] {
+			--contentSize: var(--contentSize--l);
+		}
+	}
 }
 
 // 内部のコンテンツ幅を制御する
 .is--constrained {
+	// --contentSize: var(--contentSize--base);
 	container-type: inline-size;
-	// --maxW: min(100%, var(--ls--contentSize)); // -maxW: で上書きできるように?
-	--contentSize: var(--ls--contentSize);
+	// max-inline-size: 100% !important; // ネストされた時、constrained自体は幅100%で全幅にする。
 
 	// 左寄せ・右寄せ・全幅以外の要素に対して、max-widthを設定する?
-	> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-		// max-width: var(--maxW);
-		// margin-right: auto !important;
-		// margin-left: auto !important;
-
-		max-inline-size: min(100%, var(--contentSize));
-		margin-inline: auto !important;
-	}
-
-	// 幅広の場合はmax-widthを上書きする
-	> .alignwide {
-		max-width: var(--ls--contentSize--wide);
+	// > :where(:not(.alignleft):not(.alignright):not(.alignfull)),
+	> * {
+		// サイズ未セット時は base をセット
+		max-inline-size: min(100%, var(--contentSize, var(--contentSize--base)));
+		margin-inline: auto;
 	}
 }
 
-// ?
-.is--constrained.-slim {
-	> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
-		max-width: var(--ls--contentSize--slim);
-	}
+// コンテナクエリの基点とする要素。コンテンツ幅を自身の幅にセットして制御したい時にも使う。
+// cnstrained より container のサイズセットの優先度高くなるように順番を注意。
+.is--container {
+	container-type: inline-size;
 
-	// 幅広の場合はmax-widthを上書きする
-	> .alignwide {
-		max-width: var(--ls--contentSize);
+	// size指定があれば自身のサイズをセット
+	&:where([data-size]) {
+		margin-inline: auto;
+		max-inline-size: var(--size);
 	}
 }
 
 // .has-global-padding はコア以外の要素で使うと想像した結果にならないことがあるので同じようなことをするクラスを作る
-// .has--ls--gutter?　has--gutter?
 .has--gutter {
-	padding-right: var(--ls--gutter);
-	padding-left: var(--ls--gutter);
+	padding-inline: var(--gutter);
+}
 
-	> .alignfull {
-		// --pl, --pr > --padding > --ls--gutter
-		margin-right: calc(var(--ls--gutter) * -1);
-		margin-left: calc(var(--ls--gutter) * -1);
+.alignfull {
+	container-type: inline-size;
+
+	// --contentSize: 100%; // これすると内部まで影響してしまう
+	.is--constrained > & {
+		max-inline-size: 100%;
 	}
+	.is--container > & {
+		// max-inline-size: unset;
+		max-inline-size: var(--contentSize--full);
+		margin-inline: calc(50% - var(--contentSize--full) / 2);
+	}
+
+	.has--gutter > & {
+		// --contentSize 変数は min()で100%と比較してるので、直接セット
+		max-inline-size: calc(100% + var(--gutter) * 2);
+		margin-inline: calc(var(--gutter) * -1);
+	}
+}
+
+// 幅広の場合はmax-widthを上書きする
+.alignwide {
+	// --contentSize: var(--contentSize--l);
+	container-type: inline-size;
+
+	.is--constrained > & {
+		max-inline-size: var(--contentSize--l);
+	}
+
+	// スリム幅に対する幅広 = 通常幅 → [page-template='1column']などに対してセットするか？
+	// [data-size='s'] > & {
+	// 	--contentSize: var(--contentSize--base);
+	// }
 }

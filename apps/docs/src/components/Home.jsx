@@ -9,6 +9,7 @@ import {
 	// TileGrid,
 	// LismProvider,
 	// LismConsumer as Consumer,
+	Container,
 	Columns,
 } from '@lism/core';
 import Preview from '@/components/Preview';
@@ -114,6 +115,7 @@ export default function Home() {
 						</Box>
 					</Box>
 				</Box>
+				{/*  */}
 			</Preview>
 		</>
 	);

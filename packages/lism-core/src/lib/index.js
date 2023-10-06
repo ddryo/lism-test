@@ -87,6 +87,17 @@ export function getMaybeColorVar(color) {
 	return color;
 }
 
+export function getMaybeSizeVar(size) {
+	if (isPresetValue('contentSize', size)) {
+		return `var(--contentSize--${size})`;
+	}
+	// else if (isPresetValue('size', size)) {
+	// 	return `var(--size--${size})`;
+	// }
+
+	return size;
+}
+
 // export function getMaybeFzVar(fz) {
 // 	if (isPresetValue('fz', fz)) {
 // 		return 'var(--fz--' + fz + ')';

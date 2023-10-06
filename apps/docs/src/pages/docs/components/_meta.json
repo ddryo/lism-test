@@ -1,13 +1,12 @@
 {
 	"index": "",
 	"Lism": "",
+	"Text": "",
 	"--- layout": {
 		"type": "separator",
 		"title": "Layout"
 	},
 	"Box": "",
-	"Flow": "",
-
 	"--- flex": {
 		"type": "separator",
 		"title": ""
@@ -32,7 +31,8 @@
 		"type": "separator",
 		"title": ""
 	},
-
+	
+	"Reel": "",
 	"Layer": "",
 	"FilterLayer": "",
 	"MediaLayer": "",
@@ -40,32 +40,39 @@
 	"Spacer": "",
 	"Divider": "",
 
-	"--- disclosure": {
+	"--- state": {
 		"type": "separator",
-		"title": ""
+		"title": "State"
 	},
-	"Reel": "",
+	"Flow": "",
+	"Container": "",
 	"LinkBox": "",
-	"Accordion": "",
-	"Tab": "",
-	"Swap": "swap?",
-
-	"--- component": {
-		"type": "separator",
-		"title": "Component"
-	},
-	"Button": "",
-	"Alert": "",
-	"Note": "",
-	"Banner": "",
-	"Card": "",
 
 	"--- elements": {
 		"type": "separator",
 		"title": "Elements"
 	},
 	"Icon": "",
+	"Avatar": "",
+	"Delimiter": "",
+
+	"--- component": {
+		"type": "separator",
+		"title": "Component"
+	},
+	"Button": "",
 	"Badge": "",
+	"Alert": "",
+	"Note": "",
+	"Banner": "",
+	"Card": "",
+
+	"--- disclosure": {
+		"type": "separator",
+		"title": ""
+	},
+	"Accordion": "",
+	"Tab": "",
 
 	"--- Block": {
 		"type": "separator",

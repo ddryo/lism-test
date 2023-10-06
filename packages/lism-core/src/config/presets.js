@@ -64,6 +64,7 @@ export default {
 		'gray',
 		'basic',
 	],
+	contentSize: ['xs', 's', 'base', 'l', 'xl'],
 
 	// ユーティリティ化
 	space: spacingPresets,

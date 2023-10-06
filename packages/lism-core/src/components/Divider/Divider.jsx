@@ -1,8 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Lism } from '../Lism';
-// import Image from "next/image";
-// import { Box, Stack, Layer, MediaLayer, FilterLayer } from '../index';
+import { Core } from '../Core';
 
 import DividerSVG from './svg';
 
@@ -100,9 +98,9 @@ function Divider({
 	}
 
 	return (
-		<Lism {...blockProps} lismStyle={lismStyle}>
+		<Core {...blockProps} lismStyle={lismStyle}>
 			<div className='l--divider__inner'>{svg}</div>
-		</Lism>
+		</Core>
 	);
 }
 export default Divider;

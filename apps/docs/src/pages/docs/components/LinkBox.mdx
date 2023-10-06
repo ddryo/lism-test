@@ -4,16 +4,37 @@ import Link from "next/link";
 
 # LinkBox
 
-ボックス全体がリンクになっているブロックモジュール。
+ボックス全体をリンクにできるモジュール。
 
-- Lismクラス: `.is--linkbox`
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<a href="###" class="is--linkbox">...</a>
+
+	or
+	<div class="is--linkbox">
+		<a href="###" data-hidden-link></a>
+		...
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+Memo: `[data-hidden-link]` → `.is--linkbox__hidden` とかに変える ?
 
 
-## 主なProps
+## Props
 
 - `href`: リンク先を指定できます。
 - `as`: 指定したLismコンポーネントでLinkBox全体を展開できます。
 - `tag`: リンクボックスを`<a>`ではなく`<div>`などの別タグにすることができます。
+- `target`: target属性を指定できます。
+- `rel`: rel属性を指定できます
+- `ariaLabel`: aria-label属性を指定できます。
+- `hover`: hoverエフェクトの指定ができます。（lism prop）
+- `openNewTab`: trueにすると、target="_blank"とrel="noopener noreferrer"が自動で付与されます。?
+
 
 ## Import
 
@@ -28,7 +49,7 @@ import { LinkBox } from '@lism/core';
 		`<LinkBox>`
 	</Demo.Title>
 	<Demo.Preview resize p={10}>
-		<LinkBox href="#boxlink01" isFlow flowGap='s' p='box' bgc="pale">
+		<LinkBox href="#boxlink01" isFlow='s' p='box' bgc="pale">
 			<Text fz="l">このBox全体がリンクです。</Text>
 			<DammyText length="l" />
 			<Text fz='s' ta="right" mbs={10}>More→</Text>
@@ -36,7 +57,7 @@ import { LinkBox } from '@lism/core';
 	</Demo.Preview>
 	<Demo.Code p={30}>
 		```jsx
-		<LinkBox href="#boxlink01" isFlow flowGap='s' p='box' bgc="pale">
+		<LinkBox href="#boxlink01" isFlow='s' p='box' bgc="pale">
 			<Text fz="l">このBox全体がリンクです。</Text>
 			<p>...</p>
 			<Text fz='s' ta="right" mbs={10}>More→</Text>
@@ -70,14 +91,15 @@ import { LinkBox } from '@lism/core';
 	</Demo.Code>
 </Demo>
 
-### Box以外のコンポーネントとしても展開可能
+
+### `as`で指定したコンポーネントとして展開可能
 
 <Demo>
 	<Demo.Title>
 		Center にして中央揃えに
 	</Demo.Title>
 	<Demo.Preview resize p={10}>
-		<LinkBox as={Center} href="#boxlink03" gap={20} p='box' bgc="pale">
+		<LinkBox as={Center} href="#boxlink03" gap={20} p="box:l" bgc="pale">
 			<Text fz="l">LinkBox as Center</Text>
 			<DammyText length="m" />
 			<Text>→ More</Text>
@@ -85,7 +107,7 @@ import { LinkBox } from '@lism/core';
 	</Demo.Preview>
 	<Demo.Code p={20}>
 		```jsx
-		<LinkBox as={Center} href="#boxlink03" gap={20} pX={40} pY={40} bgc="pale">
+		<LinkBox as={Center} href="#boxlink03" gap={20} p="box:l" bgc="pale">
 			<Text fz="l">LinkBox as Center</Text>
 			<p>...</p>
 			<Text>→ More</Text>
@@ -99,7 +121,7 @@ import { LinkBox } from '@lism/core';
 		Frameとして展開
 	</Demo.Title>
 	<Demo.Preview resize p={10}>
-		<LinkBox as={Frame} href="#boxlink04" ratio="16/9" bgc="pale" p={20}>
+		<LinkBox as={Frame} href="#boxlink04" aspect="16/9" bgc="pale" p={20}>
 			<Center size="cover" gap={20} jc="start">
 				<Text fz="l">LinkBox as Frame</Text>
 				<DammyText />
@@ -109,7 +131,7 @@ import { LinkBox } from '@lism/core';
 	</Demo.Preview>
 	<Demo.Code p={20}>
 		```jsx
-		<LinkBox as={Frame} href="#boxlink04" ratio="16/9" bgc="pale" p={20}>
+		<LinkBox as={Frame} href="#boxlink04" aspect="16/9" bgc="pale" p={20}>
 			<Center size="cover" gap={20}>
 				<Text fz="l">LinkBox as Frame</Text>
 				<p>...</p>

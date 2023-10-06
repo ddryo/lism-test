@@ -1,7 +1,7 @@
 import { Box, Text, Center, Columns, Layer } from '@lism/core';
 
 
-# コンテナサイズの制御
+# コンテンツに関するレイアウト
 
 WordPressのブロックエディターと同じ設計になっています。
 
@@ -244,12 +244,10 @@ Lism設計では、①ではなく②を前提としています。
 </Note> */}
 
 
-### DEMO
+{/* ### DEMO
+総合的に様々な組み合わせでコンテンツを並べてみます。 */}
 
-総合的に様々な組み合わせでコンテンツを並べてみます。
-
-
-<Demo>
+{/* <Demo>
 	<Demo.Title>
 		このデモエリアをコンテンツエリアとして考えてください
 	</Demo.Title>
@@ -316,4 +314,235 @@ Lism設計では、①ではなく②を前提としています。
 		...
 		```
 	</Demo.Code>
+</Demo> */}
+
+
+## コンテンツ間の余白を制御するクラス( `.is--flow` ) [#is--flow]
+
+Lismでは、**コンテンツ間の余白を管理するためのStateクラス**として、`.is--flow`を用意しています。  
+`.is--flow`の直下では、コンテンツの間隔が `margin-block-start` で管理されます。
+
+
+デフォルトの余白量 は `var(--space--40)` です。
+
+<Demo>
+	<Demo.Title>.is--flow</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<div class="is--flow">
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+		</div>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<div class="is--flow">
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+	</div>
+	```
+	</Demo.Code>
 </Demo>
+
+
+### 余白量を変更する方法
+
+`.is--flow`の子要素間の余白量を一括で変更するには、`--flowGap`を上書きするための`.-flowGap:`ユーティリティを使います。
+
+flowGap用のトークンとして`s`,`m`,`l`があり、ユーティリティクラス（`.-flowGap:[s|m|l]`）も用意しています。
+
+<Demo>
+	<Demo.Title>flowGapの指定</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<div class="is--flow -flowGap:s">
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+		</div>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<div class="is--flow -flowGap:s">
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+ユーティリティクラス以外の値をセットしたい場合は、変数と組み合わせます。
+
+<Demo>
+	<Demo.Title>任意の値をflowGapにセットする</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<div class="is--flow -flowGap:" style={{"--flowGap": "1em"}}>
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+		</div>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<div class="is--flow" style="--flowGap:1em">
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+`.is--flow`直下での個別の余白調整には`mbs`ユーティリティが便利です。  
+(mbsに対するユーティリティクラスをどれだけ用意するかは要検討)
+
+<Demo className="has--box-guide">
+	<Demo.Title>`mbs`での個別調整</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<div class="is--flow">
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className="-bd:guide -mbs:10">`margin-block-start`に SPACE.10 指定</p>
+		</div>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<div class="is--flow">
+		<p>...</p>
+		<p>...</p>
+		<p class="-mbs:10">margin-block-start に SPACE.10 指定</p>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+{/* <Alert preset="info">
+	↑ `mbs={10}`によって、`.-mbs:10`クラスが出力されます。
+</Alert> */}
+
+
+
+### is--flow をネストする時の注意点
+
+`flowGap`にカスタム値を指定した要素の直下で、さらに`is--flow`を配置すると、子要素側が自身の `--flowGap` に干渉してしまいます。
+
+<Note preset='success' caption='次の位置でのネストは問題ありません'>
+	- `flowGap`の指定がないシンプルな`.is--flow`の直下
+	- `flowGap` がユーティリティクラス（ `-flowGap:[s~l]`）で指定されている`.is--flow`の直下
+</Note>
+
+
+<Demo>
+	<Demo.Title>NG: `flowGap`を指定した直下で さらに`is--flow`を配置</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow flowGap="8px">
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Box isFlow bgc="pale">
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1,4}
+	<Box isFlow flowGap="8px">
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<Box isFlow bgc="pale">
+			<p>ネストされたコンテンツ</p>
+			<p>ネストされたコンテンツ</p>
+		</Box>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo>
+	<Demo.Title>問題なし: シンプルな`isFlow`の直下にある`isFlow`への`flowGap`の指定</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Box isFlow={10} bgc="pale">
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Box isFlow='s' bgc="pale">
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1,4,9}
+	<Box isFlow>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<Box isFlow={10} bgc="pale">
+			<p>ネストされたコンテンツ</p>
+			<p>ネストされたコンテンツ</p>
+		</Box>
+		<p>コンテンツ</p>
+		<Box isFlow='s' bgc="pale">
+			<p>ネストされたコンテンツ</p>
+			<p>ネストされたコンテンツ</p>
+		</Box>
+		<p>コンテンツ</p>
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>問題なし: ユーティリティ`-flowGap:s`の直下で`isFlow`が入れ子になるケース</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow="s">
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Box isFlow bgc='pale'>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Box isFlow={50} bgc='pale'>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1,4,9}
+	<Box isFlow="s">
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<Box isFlow>
+			<p>ネストされたコンテンツ</p>
+			<p>ネストされたコンテンツ</p>
+		</Box>
+		<p>コンテンツ</p>
+		<Box isFlow={50}>
+			<p>ネストされたコンテンツ</p>
+			<p>ネストされたコンテンツ</p>
+		</Box>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+

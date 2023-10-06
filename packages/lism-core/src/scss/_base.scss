@@ -4,7 +4,6 @@
 
 @layer lism-init {
 	html {
-		container-type: inline-size;
 		font-size: var(--fz--root);
 	}
 
@@ -16,7 +15,7 @@
 		font-size: 1rem;
 		line-height: var(--lh--bsae);
 		overflow-x: clip;
-		--window-width: 100cqw;
+		container-type: inline-size;
 	}
 
 	a {

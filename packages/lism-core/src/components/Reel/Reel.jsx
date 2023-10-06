@@ -1,6 +1,7 @@
 import React from 'react';
 import { Flex } from '../Flex';
 
+// snap-type, snap-stopも指定できるようにする？
 export default function Reel({ unreel, itemBasis, snap, ...props }) {
 	if (undefined !== itemBasis) {
 		props.lismStyle = {

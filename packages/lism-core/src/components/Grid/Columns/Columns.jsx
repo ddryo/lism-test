@@ -21,7 +21,6 @@ import { isEmptyObj, getLismMainProp } from '@/lib';
 
 // PRESET '1-2-3' 1-2, 1-2-4
 export default function Columns({ cols = 1, ...props }) {
-	console.log('cols', cols);
 	const { baseValue, bpValues } = getLismMainProp(cols);
 
 	const theProps = {

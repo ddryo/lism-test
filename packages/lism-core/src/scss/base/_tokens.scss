@@ -25,6 +25,15 @@
 	 - ベース = m or r
 
  ------------------------------------------------------------ */
+
+// cqw を算出値で保持するために登録済みカスタムプロパティとして定義
+// Note: 対応ブラウザが少ないことに注意。
+@property --contentSize--full {
+	syntax: '<length>'; //length-percentage?
+	initial-value: 0px;
+	inherits: true;
+}
+
 :root {
 	/* ------------------------------------------------------------
 	  コンテンツサイズ: ユーザー側で定義が必要
@@ -32,21 +41,20 @@
 	    1080 にしてるのは、 1920 * 1080画像がきれいに配置できるため？
 	------------------------------------------------------------ */
 	// コンテンツサイズは960 ~ 1120 くらいがよさそう. @lg よりは大きく?
-	--ls--contentSize: 1120px; // = --wp--style--global--content-size.
-	--ls--contentSize--wide: 1440px; // = --wp--style--global--wide-size. alignwide で使う.
-	--ls--contentSize--slim: 45rem; // slim幅1カラムテンプレートで使う. fz:16px時 = 720px
+	// --contentSize--full: 0px;
+	--contentSize--base: 1120px; // = --wp--style--global--content-size.
+	--contentSize--l: 1440px; // = --wp--style--global--wide-size. alignwide で使う.
+	--contentSize--s: 45rem; // slim幅1カラムテンプレートで使う. fz:16px時 = 720px
+	// --contentSize--full: 特殊
 
 	// コンテンツの左右の余白
-	--ls--gutter: clamp(1.5rem, 4vw, 2rem); // var(--space-50) とかを使うべきか？
+	--gutter: clamp(1.5rem, 4vw, 2rem); // var(--space-50) とかを使うべきか？
 
 	// ボーダーカラー
 	// --ls--bdc--table: #dcdcdc;
 
 	// hoverユーティリティ用 → --ls--?
 	--hov--duration: 0.3s;
-
-	// window幅を変数化しておく。bodyでcqwセットしてスクロールバーのサイズを差し引いた値を再セット
-	--window-width: 100vw;
 
 	/* ------------------------------------------------------------
 	    タイポグラフィ

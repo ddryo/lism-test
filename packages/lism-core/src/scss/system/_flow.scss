@@ -34,7 +34,7 @@
 }
 
 // .-flow:[s,m,l] → プリセット値
-$spaces: xs, s, m, l;
+$spaces: s, m, l;
 @each $s in $spaces {
 	.-flowGap\:#{$s} {
 		--flowGap: var(--flowGap--#{$s});

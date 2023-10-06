@@ -74,12 +74,13 @@ const marginOption = { BP: 1, utils: 'margin', converter: 'space' };
 
 export default {
 	d: { BP: 1, utils: 1 },
-	w: { BP: 1, utils: 'size' },
-	h: { BP: 1, utils: 'size' },
-	maxW: { style: 'maxWidth', utils: 'size' },
-	maxH: { style: 'maxHeight', utils: 'size' },
-	minW: { style: 'minWidth' },
-	minH: { style: 'minHeight' },
+	w: { BP: 1, utils: 'size', converter: 'size' },
+	h: { BP: 1, utils: 'size', converter: 'size' },
+	maxW: { style: 'maxWidth', utils: 'size', converter: 'size' },
+	maxH: { style: 'maxHeight', utils: 'size', converter: 'size' },
+	minW: { style: 'minWidth', converter: 'size' },
+	minH: { style: 'minHeight', converter: 'size' },
+	// size: { style: '--size', converter: 'size' },
 
 	c: { presets: 1, converter: 'color' },
 	bgc: { presets: 1, utils: 1, converter: 'color' },
@@ -111,6 +112,7 @@ export default {
 	ta: { style: 'textAlign', utils: 1 },
 	lts: { style: 'letterSpacing' }, // utilityあってもいい
 	td: { style: 'textDecoration' },
+	// textDecoration: { style: 1 },
 	whs: { style: 'whiteSpace', utils: { nowrap: 'nw' } },
 	// others
 	radius: { name: 'bdrs', presets: 'radius' },

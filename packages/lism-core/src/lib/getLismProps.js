@@ -5,6 +5,7 @@ import {
 	getMaybeShadowVar,
 	getMaybeSpaceVar,
 	getMaybeFzVar,
+	getMaybeSizeVar,
 } from './index.js';
 
 import { PROPS, CONTEXT_PROPS } from '@/config';
@@ -22,6 +23,7 @@ const CONVERTERS = {
 	color: getMaybeColorVar,
 	space: getMaybeSpaceVar,
 	fz: getMaybeFzVar,
+	size: getMaybeSizeVar,
 };
 
 // const PROP_FULL_NAMES = {
@@ -67,6 +69,7 @@ class CommonProps {
 
 			isLinkbox,
 			isConstrained,
+			isContainer,
 			hasGutter,
 			hasLayer,
 			// useLog,
@@ -88,6 +91,7 @@ class CommonProps {
 				// 'is--grid': isGrid,
 				'is--item': isItem || false,
 				'is--linkbox': isLinkbox || false,
+				'is--container': isContainer || false,
 				'is--constrained': isConstrained || false,
 				'has--gutter': hasGutter || false,
 				'has--layer': hasLayer || false,

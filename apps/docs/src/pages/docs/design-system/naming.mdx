@@ -1,114 +1,119 @@
 # Naming Rules
 
-- BEMと、WordPressコア機能で使用されるクラスとの衝突がない命名規則を採用。
+- 気をつけていること
+	- BEM系と、WordPressコア機能で使用されるクラスとの衝突がない命名規則を採用。
 
-- 変数
-	- ケバブケース?
-	- `[--{scope}]--{prop-name}[--{token|bp}]`
-	- １文字省略形は大文字 (`--maxW` とか
 
-## モジュールの分類と命名規則
+## クラス名の命名規則
+
+### モジュールの分類と命名規則
 
 |分類|形式|例|
 |---|---|---|
-|レイアウトモジュール<br /><small class="-d:ib">coreモジュール</small>|`.l--{moduleName}`|`.l--box`, `.l--layer`|
-|エレメントモジュール<br /><small class="-d:ib">coreモジュール</small>|`.e--{elemName}`|`.e--badge`,`.e--icon`|
-|ブロックモジュール<br /><small class="-d:ib">l--,e--の組み合わせ</small>|`.b--{blockName}`|`.b--banner`, `.b--section`|
+|レイアウトモジュール<br /><small>主要なレイアウト要素。</small>|`.l--{moduleName}`|`.l--box`, `.l--layer`|
+|エレメントモジュール<br /><small>レイアウトにおける最小単位。</small>|`.e--{moduleName}`|`.e--avatar`,`.e--icon`|
+|コンポーネントモジュール<br /><small>`l--`, `e--`で組めるようなもの。</small>|`.c--{moduleName}`|`.c--banner`, `.c--button`|
+|ブロックモジュール<br /><small>`l--`, `c--`で組めるようなもの。</small>|`.b--{moduleName}`|`.b--navMenu`, `.b--section`|
 
 {/* |インライン書式 ? |`.i--{書式名}` or `.f--{書式名}`|`.i--marker` or `.f--marker`| */}
 
-- `{}`の内側部分はキャメルケース.
-    - 例: `.b--mediaText`
+Memo: tab,accordionを `d--`(disclosure) とする？
 
-- 各モジュールの子要素は2つの`__`で連結する。
-	- `.{prfx}--{moduleName}__{elementName}`
+補足
+
+- `{moduleName}`の部分はキャメルケース.
+    - 例: `.l--ratioGrid`
+- Modifierは`.{prfx}--{moduleName}` & `.{prfx}--{moduleName}--{modifierName}`。
+	- 例: `.l--layer.l--layer--media`
+	- ※ 要検討。
+		- `.l--layer--media`だけでいいか。
+		- `.layer:media` とかユーティリティのような形式でもいいかも。
+		- もしくは、データ属性。`.l--layer[data-layer="media"]`
+		- `_media`, `-media`  ← こういうのは `l--` に対してなのか `c--` に対してなのかわからない
+- 各モジュールの子要素はBEM同様2つの`__`で連結する。
+	- `.{prfx}--{moduleName}__{elemName}`
 	- 例: `.b--section__body`
 
 
-### モジュールの関係性
 
-- .l--系モジュールがLismのコアとなるレイアウトプリミティブ要素です。
-	- .l--の中にさらに .l--が入ってきたりします。.e--ももちろん入る。
-- .e--系はデザインの最小単位となるような小さな要素です。(buttun, badge, icon, ...)
-	- iconはさらに e-- の中にも入ってくるので、命名規則は要検討...
-- .b--系は、Lismのコアモジュール(.l--,.e--)を組み合わせてより具体的な用途を想定したモジュールです。使わなくてもいいし、自分で好きに定義し直したり、増やしたりしてください。
+#### 各モジュールの分類と関係性について
+
+- `.l--`系: レイアウトプリミティブな要素。
+	- 他の`.l--`と併用はNG。(`.l--`の子要素 に `.l--`が入ってくるのはOK.
+- `.e--`系: それ単体では意味として薄く、デザインの最小単位となるような要素。
+- `.c--`系: `.l--`, `.e--`を組み合わせて作れるような要素。デザインとしてより具体的な意味をもつモジュールです。
+- `.b--`系: `.l--`,`.c--`を組み合わせて作れるような要素。デザインとしてより具体的な意味をもち、かつ`.c--`よりも構造が複雑なモジュールです。
+
+memo: `.c--badge` は 見た目としてはとても小さいが、内部にElemenであるアイコンがくることもあり、また用途としても明確なので `.c--` としている。
 
 
-
-## Utilityクラスの分類と命名規則
+### Utilityクラスの分類と命名規則
 
 |分類|形式|例|
 |---|---|---|
-|状態 (is)|`.is--{stateName}`|`.is--flow`, `.is--constrained`|
-|状態 (has)|`.has--[{scope}-]{propName}`|`.has--gutter`, `.has--layer`|
-|prop:value<br /><small class="-d:ib">特定のプロパティとその値を指定するもの。</small>|`.-{prop}:{value}`|`.-ta:c`, `.-fz:xl`, `.-p:50`|
-|prop:<br /><small class="-d:ib">CSS変数を受け入れるためのもの</small>|`.-{プロパティ}:`|`.-w:` (→ `--w`変数を受け取る)|
+|状態管理クラス|`.is--{stateName}`|`.is--flow`, `.is--constrained`, `.has--gutter`|
+| |`.has--{stateName}`|`.is--flow`, `.is--constrained`, `.has--gutter`|
+|プロパティ管理クラス<br /><small>特定のプロパティに対する値を指定するためのもの。</small>|`.-{prop}:{value}`|`.-ta:c`, `.-fz:xl`, `.-p:50`|
+| |`.-{プロパティ}:`|`.-w:` (→ `--w`変数を受け取る)|
 
-{/* |ユーティリティ<br /><small class="-d:ib">特定のプロパティ単体に紐づいているわけではないもの</small>|`.u--{utilName}`|`.u--cf`| */}
+{/* |ユーティリティ<br /><small>特定のプロパティ単体に紐づいているわけではないもの</small>|`.u--{utilName}`|`.u--cf`| */}
 
 状態(js操作等によって付け外しされるもの)→検討中 ... `.-{state}` or `.js--{state}` ? or `data-`属性
+
+- `{value}`について
+	- 小数点→`.`のままで。CSS側で`\`使う
+		- 例: `.-prop:1.5`
+	- ネガティブ(マイナス)値の表記もそのままで。
+		- 例: `.-prop:-1`
 
 {/* ※ prop:val ではないユーティリティどうする？ `.u--cf` ...? */}
 
 
-<Alert preset='point'>
-`.is--`, `.has--` 系のStateクラスは、**それ単体に対してスタイルが適用される**ものに対して使用します。
-</Alert>
+{/* <Alert preset='point'>
+上記のUtilityクラスクラスは、**それ単体に対してスタイルが適用される**ものに対して使用し、
+「特定のモジュールに関する状態のバリエーション」を示すものは `.-` 始まりor`data`属性で管理する。
+</Alert> */}
 
-{/* - JSで付け外しされるような「特定のモジュールに関するその時の状態」を示すものは `.-` 始まり。 */}
 
-
-## data属性
+#### data属性について
 
 「特定のモジュールに関する機能的なバリエーション」にあたるものはクラスではなくdata属性で管理する。
 
 - 例: `.l--frame[data-ratio="4/3"]`, `.e--badge[data-variant="xxx"]`など
 
 
-## その他、Lism管理外での推奨規則
+### その他、Lism管理外での推奨規則
 
-Lismで管理する範囲外だが、一応こんな感じで命名すると統一感でるよ、というもの。
+Lismで管理する範囲外だけどこんな感じで命名すると統一感でるよ、というもの。
 
 |分類|形式|例|
 |---|---|---|
 |エリア|`.a--{areaName}`|`.a--header`,<br />`.a--sidebar`,<br />`.a--article`|
-|ページ種別<br /><small class="-d:ib">WordPressではbodyに吐き出されるクラスが標準で用意されてるので、そっちを使う。</small>|`.p--{type}--{id\|slug}`|`.p--front`, `.p--archive`, `.p--post--{id}`, `.p--page--{slug}`|
+|ページ種別<br /><small>WordPressではbodyに吐き出されるクラスが標準で用意されてるので、そっちを使う。</small>|`.p--{type}--{id\|slug}`|`.p--front`, `.p--archive`, `.p--post--{id}`, `.p--page--{slug}`|
 
 
-{/* |(デザイン?)<br><small>ユーティリティよりもより複数のCSSプロパティの集まりでデザインを定義するようなもの？</small>|`.d--{デザイン名}`|`.d--card`?| */}
+## CSS変数名の命名規則
 
+|分類|形式|例|
+|---|---|---|
+|トークン値|`--[{prop-name}--]{token}`<br/><small>グローバル管理</small>|`--fz--s`,<br />`--shadow--1`,<br />`--red`|
+|プロパティ値|`--[{scope}--]{prop-name}[--{bp}]`<br/><small>ローカルなスコープでプロパティ管理するため変数</small>|`--fz`,`--w--md`,<br />`--item--minW`,<br />`--flowGap`|
+
+
+{/* 2→`--gutter`とかグローバルなものもある... */}
+
+
+- ケバブケース?キャメルケース？
+	- --flowGap, --contentSize, --mediaScale, --mediaFilter, --lismVar, --shadowProps
+	- --flow-gap, --content-size, --media-scale, --media-filter, --lism-var, --shadow-props
+	- １文字省略形はキャメルでつなぐ (`--maxW`, `--minH` とか)
+- 本当は メディアクエリは`--@sm`とかで記述したいが、`@`はCSS変数名では使えない。
 
 ---
 ---
 
 ... 以下、未整理
 
-### CSS変数名の命名規則
-
-- ローカルスコープの変数は プレフィックスなしでよさそう？
-	- 例: `--gap`
-- 同じ`{}`の中身はキャメルケースで。
-
-
-- 形式: `[--ls][--{scope}]--{propName}[--{modifier}]`
-	- `--{scope}` 付きの例
-		- --root--fz
-		- --inner--flowGap？
-	- global変数（ rootで定義はされるが、各要素で使用されるもの ）は `--ls`ではじめる。(`ls`は仮)
-		- 例: `--ls--flowGap`, `--main`, `--space--50`
-	- `--{modifier}` にくるものについて
-		1. プリセット値
-			- `--fz--s`, `--space--20`, `--main`
-			- `--ls--fz:s`, `--ls--space:20` のように 本当は`:`を使いたいが、CSS変数名では使えない。
-		2. メディアクエリ
-			- `--gap--sm`,  `--p--xs`,
-			- 本当は メディアクエリは`-@sm`とかで記述したいが、`@`はCSS変数名では使えない。
-
-- `{値}`について
-	- ~~小数点の . は _ で表記？~~ → `.`のままでCSS側で`\`使う
-		- 例: line-height: 1.5 のユーティリティ → `.-lh:1.5`
-	- ネガティブ値の表記
-		- `prop:-val`で書ける
 
 
 ## 単語の省略について
@@ -143,20 +148,17 @@ Lismで管理する範囲外だが、一応こんな感じで命名すると統�
 
 ## 要検討...
 
-- ボタンブロックどうする
-	- c--buttonをブロックにしてもいいが、 b--button > c--btn, c-microCopy みたいにしてもいいか。
-- margin 管理は top or bottom ?
-	- コアのスタイルがtop（margin-block-start）なのでそれに合わせている。
 
-- デザイン的な要素はエフェクター（`l--effector`）みたいな要素に分解する？
-	- filterやtransform系。
+- デザイン的な要素はエフェクター（`l--effector`,`l--decorator`）みたいな要素に分解する？
+	- filter,transform系,
 	- もしくは、エフェクト要素の設定を共通化して has--effect クラスを付けてもいいか。
 	- props的には `effect:{transform, filter,...}` みたいなオブジェクト管理？
 
 - 各モジュールのスタイルバリエーション（WPでのブロックスタイル）用のクラスどうする？
 	- WPと同じなら → `.is-style-hoge`
 	- ユーティリティっぽく `.-style:hoge` ?
-	- 現状 → `[data-variant="hoge"]`
+	- 現状 → `[data-variant="hoge"]`  
+	→ data-style のほうがいいか？
 
 - モディファイアの扱い...
 	- modifierが付くのはルート要素のみとする。

@@ -40,28 +40,4 @@
 	}
 }
 
-// :where(.-custom\:) {
-// 	--custom--xs: unset;
-// 	--custom--sm: var(--custom--xs);
-// 	--custom--md: var(--custom--sm);
-// 	--custom--lg: var(--custom--md);
-// 	--custom--xl: var(--custom--lg);
-
-// 	// 実際に扱う値.
-// 	--custom: var(--custom);
-
-// 	@include query.cq('sm') {
-// 		--custom: var(--custom--sm) !important;
-// 	}
-// 	@include query.cq('md') {
-// 		--custom: var(--custom--md) !important;
-// 	}
-// 	@include query.cq('lg') {
-// 		--custom: var(--custom--lg) !important;
-// 	}
-// 	@include query.cq('xl') {
-// 		--custom: var(--custom--xl) !important;
-// 	}
-// }
-
 // .@sm:, .@md:, -@lg:

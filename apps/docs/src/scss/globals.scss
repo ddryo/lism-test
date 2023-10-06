@@ -11,6 +11,15 @@
 	// --c--guide: rgba(100, 150, 160, 0.5);
 }
 
+html {
+	// scroll-padding-top: 64px; // 64px+α.  --scrollOffsetとかでlismに変数用意する？
+	// scroll-behavior: smooth; // smoothにするとreelのナビボタンが動かない？
+}
+
+html:has([data-docs-path='/docs/components/Reel']) {
+	scroll-padding-top: 72px; // 64px+α.  --scrollOffsetとかでlismに変数用意する？
+}
+
 .light {
 	--codeblock--bgc: hsl(200, 20%, 96%);
 }

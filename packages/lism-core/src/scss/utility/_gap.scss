@@ -3,20 +3,20 @@
 [class*='-gap:'] {
 	gap: var(--gap);
 }
-[class*='-colmg:'] {
-	column-gap: var(--colmg) !important;
+[class*='-clmg:'] {
+	column-gap: var(--clmg) !important;
 }
 [class*='-rowg:'] {
 	row-gap: var(--rowg) !important;
 }
-
+// gapX, gapY? tailwind: gap-x, gap-y
 // colm
 @include query.cq('sm') {
 	.-gap\@sm\: {
 		gap: var(--gap--sm) !important;
 	}
-	.-colmg\@sm\: {
-		column-gap: var(--colmg--sm) !important;
+	.-clmg\@sm\: {
+		column-gap: var(--clmg--sm) !important;
 	}
 	.-rowg\@sm\: {
 		row-gap: var(--rowg--sm) !important;
@@ -26,8 +26,8 @@
 	.-gap\@md\: {
 		gap: var(--gap--md) !important;
 	}
-	.-colmg\@md\: {
-		column-gap: var(--colmg--md) !important;
+	.-clmg\@md\: {
+		column-gap: var(--clmg--md) !important;
 	}
 	.-rowg\@md\: {
 		row-gap: var(--rowg--md) !important;
@@ -37,8 +37,8 @@
 	.-gap\@lg\: {
 		gap: var(--gap--lg) !important;
 	}
-	.-colmg\@lg\: {
-		column-gap: var(--colmg--lg) !important;
+	.-clmg\@lg\: {
+		column-gap: var(--clmg--lg) !important;
 	}
 	.-rowg\@lg\: {
 		row-gap: var(--rowg--lg) !important;

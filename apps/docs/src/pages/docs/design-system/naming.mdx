@@ -112,22 +112,42 @@ Lismで管理する範囲外だけどこんな感じで命名すると統一感�
 ---
 ---
 
+<Alert>
 ... 以下、未整理
-
+</Alert>
 
 
 ## 単語の省略について
-- Emmet形式をベースにして省略している。
+
+ユーティリティクラス名、CSS変数名、コンポーネントに渡すプロパティ名に関しての省略について。
+
+- CSSプロパティ名に関しては、基本的には[Emmetの省略形](https://docs.emmet.io/cheat-sheet/) に揃える。
 	- background → `bg`
 	- background-color → `bgc`
-	- \`-ta:c\`
-	- ※ Emmet に存在しないものどうする問題あり。
-- CSS変数名の`{対象}` もわかりやすいものは省略可能。
-	- text → txt (--c--txt)
-	- button → btn (--c--btn)
-	- background → bg (--c--bg)
-	- 1文字になるものはあまり省略しない.
-		- ただし、超メジャーな c, w, h, p, m は 1文字 で利用している。
+	- border → `bd`
+	- `text-align:center;` のユーティリティクラス → `.-ta:c`
+- ※ Emmet に存在しないものどうする問題あり。
+	- grid-template-area → gtc
+	- row-gap, column-gap → rowg, clmng
+	- 論理値プロパティ系どうする?
+		- padding-inline-start とか
+		- margin-block とか
+
+
+その他、わかりやすい単語、よくあるものは省略？
+- text → txt
+- button → btn
+
+
+column, columnsの省略について
+
+- col, cols → 一般的にはこれが多そうだけど、ぱっと見 color を連想してしまう。
+- colm, colms → あり。ただし Emmetさんが colm = columns としている...。
+- clmn, clmns → col,colsの次にけっこう一般的？
+- clm, clms → これもありか。 でも他の単語とも被りやすそう？
+- そもそもどこで使う
+	- column-gap → clmng? colmg? clmg?
+	- Columnsの列数指定 cols? clms? clmns?
 
 
 ## Pageテンプレートについて

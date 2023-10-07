@@ -1,8 +1,5 @@
 /* memo: 
 
-cols columns
-colm column
-
 options.name: 受け取るprop名と実際に出力するutilクラス名、style名がどちらも異なる場合に指定する
 	[string]
 
@@ -209,7 +206,7 @@ const gapProps = {
 		// objProcessor: (d) => `${d}Gap`,
 	},
 	rowGap: { BP: 1, name: 'rowg', converter: 'space' },
-	columnGap: { BP: 1, name: 'colmg', converter: 'space' },
+	columnGap: { BP: 1, name: 'clmg', converter: 'space' },
 };
 
 export const CONTEXT_PROPS = {

@@ -116,7 +116,7 @@ Flex, Gridでgapを指定できます。
 |---|---|---|
 |gap|gap|SPACE|
 |rowGap|row-gap|SPACE|
-|columnGap|columns-gap|SPACE|
+|columnGap|column-gap|SPACE|
 
 <Reference>
 [SPACE Tokens](/docs/tokens/spacing)
@@ -134,20 +134,20 @@ Utility Class:
 	```jsx
 	<Flex gap={40}>...</Flex>
 	<Grid gap="20px">...</Grid>
-	<Columns rowGap={[15,20]} columnsGap={[20,30]}>...</Columns>
+	<Columns rowGap={[15,20]} columnGap={[20,30]}>...</Columns>
 	
 	```
 	</Demo.Code>
 </Demo>
 
-<Demo>
-	<Demo.Title>各方向の値をgapに対してオブジェクトで指定することも可能</Demo.Title>
+{/* <Demo>
+	<Demo.Title>各方向の値をgapに対してオブジェクトで指定することも可能？</Demo.Title>
 	<Demo.Code>
 	```jsx
-	<Columns gap={{row:20, columns:30}}>...</Columns>
+	<Columns gap={{row:20, column:30}}>...</Columns>
 	```
 	</Demo.Code>
-</Demo>
+</Demo> */}
 
 
 ## Width & Height

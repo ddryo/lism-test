@@ -61,6 +61,9 @@
 	------------------------------------------------------------ */
 
 	--ff--base: sans-serif;
+	// --ff--base: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+	--ff--base: -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+		Meiryo, sans-serif, 'Segoe UI Emoji';
 	--ff--emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji',
 		'Segoe UI Symbol';
 	--ff--mono: Menlo, Consolas, monaco, monospace;

@@ -1,30 +1,57 @@
-import { Badge, Cluster, Icon, InlineIcon, Center } from '@lism/core';
+import { Badge, Cluster, Icon, Center, FluidFix } from '@lism/core';
 import {
 	Smiley,
 	Horse,
-	Book,
+	ChatCenteredDots,
 	Cat,
-	Baseball,
+	WarningCircle,
 } from "@phosphor-icons/react";
 
 
 
 # Icon
 
+アイコン要素を出力するためのコンポーネント。
+{/* 
 - `<Icon>`
 	- Lismクラス: `.e--icon`
-- `<InlineIcon>`: テキストの中にアイコンをインライン要素として挿入するためのコンポーネント。
-	- Lismクラス: `.e--inlineIcon`
+- `<Icon isInline>`: テキストの中にアイコンをインライン要素として挿入するためのコンポーネント。
+	- Lismクラス: `.e--Icon isInline` */}
+
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<svg class="e--icon">...</svg>
+	<svg class="e--icon e--icon--inline">...</svg>
+
+	or
+
+	<span class="e--icon"><svg>...</svg></span>
+	<span class="e--icon e--icon--inline"><svg>...</svg></span>
+	```
+	</Demo.Code>
+</Demo>
 
 
-## 主なprops
-- `icon`: アイコンの指定。svgコンポーネントを投げるか、文字列で指定するとCSSでアイコンを定義できるようにdata-css-iconとして出力される。
-- `size`: svgタグのwidth,heightに出力されるサイズ。CSSアイコンの場合は--sizeとして出力される。
-	- default: `1em`
+## Props
+
+- `icon`: 出力したいアイコンの種類を指定できます。**Reactコンポーネントの関数名を渡す**か、**文字列**を指定できます。
+- `size`: アイコンのサイズを指定できます。初期値は`1em`になっています。
+- `label`: `aria-label`として出力したい文字列を指定できます。
+- `isInline`: 指定すると、`.e--icon--inline`クラスも出力されます。（`.e--icon`の Modifierクラス ）
 
 
-## 補足事項
-- fillがcurrentColorになっているアイコンのみ、色を変えられる。
+### 追加の仕様説明
+
+- `icon`に文字列を渡すと、`data-icon`にその文字列が出力され、CSSと併用してアイコンの表示を行うことができます。  
+	→ デフォルトでは、`"triangle"`のみサポートされています。
+- `icon`にコンポーネントの指定があれば、`size`に指定した値が`width`, `height`として渡されます。それ以外の場合は`--size`として出力されます。
+- `label`の指定がある場合、`role="img"`が出力され、ない場合は`aria-hidden="true"`が出力されます。
+- `scale` アイコンの scale
+
+{/* ## 補足事項
+- fillがcurrentColorになっているアイコンのみ、色を変えられる。 */}
 
 
 ## Import
@@ -33,198 +60,239 @@ import {
 import { Icon } from '@lism/core';
 ```
 
+
 ## DEMO
 
-### アイコン
+### アイコン用のコンポーネントを利用する方法
+
+有名なアイコン用のパッケージを利用する場合など。
 
 <Demo>
-	<Demo.Title>外部パッケージの利用</Demo.Title>
+	<Demo.Title>外部パッケージのコンポーネントを`icon`に指定する</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Icon icon={<Smiley weight="thin" />} size="3em" />
+		<Icon icon={Smiley} weight="thin" size="3em" />
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
 import { Smiley } from "@phosphor-icons/react";
 
-<Icon icon={<Smiley weight="thin" />} size="3em" />
+<Icon icon={Smiley} weight="thin" size="3em" />
 ```
 	</Demo.Code>
 </Demo>
 
+※ `weight="thin"`は、`@phosphor-icons`側で利用できるプロパティです。
+
+
 <Demo>
-	<Demo.Title>自作svgの利用</Demo.Title>
+	<Demo.Title>アイコンを`children`に渡す</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Icon
-			icon={<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" xmlSpace="preserve"><polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " /></svg>}
-			size="3em"
-		/>
+		<Icon size="3em">
+			<Smiley weight="thin" />
+		</Icon>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Icon
-	icon={<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" xmlSpace="preserve"><polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " /></svg>}
-	size="3em"
-/>
+import { Smiley } from "@phosphor-icons/react";
+
+<Icon>
+	<Smiley weight="thin" size="3em" />
+</Icon>
 ```
 	</Demo.Code>
 </Demo>
 
 
-## InlineIcon
+### svgタグをそのまま利用する
+
 <Demo>
-	<Demo.Title>InlineIcon</Demo.Title>
+	<Demo.Title>`svg`を子要素へ</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<p><InlineIcon icon={<Horse />} />ロレム・イプサム・ドロー・シット・アメット</p>
-		<p>Lorem ipsum dolor<InlineIcon icon={Horse} c="accent" /> sit amet<InlineIcon icon={<Smiley c="blue" />} /> consectetur.</p>
+		<Icon>
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="3em" height="3em">
+				<polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " />
+			</svg>
+		</Icon>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<p><InlineIcon icon={<Horse />} />ロレム・イプサム・ドロー・シット・アメット</p>
-<p>Lorem ipsum dolor<InlineIcon icon={Horse} c="accent" /> sit amet<InlineIcon icon={<Smiley c="blue" />} /> consectetur.</p>
+<Icon>
+	<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="3em" height="3em">
+		<polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " />
+	</svg>
+</Icon>
+```
+	</Demo.Code>
+</Demo>
+
+svgをそのまま利用するなら、普通にsvgにクラスを指定してもらうのもいいと思います。
+
+<Demo>
+	<Demo.Title>`svg`にクラス指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<svg className="e--icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="3em" height="3em">
+			<polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " />
+		</svg>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {2}
+	<svg
+		className="e--icon"
+		xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="3em" height="3em"
+	>
+		<polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " />
+	</svg>
+	```
+	</Demo.Code>
+</Demo>
+
+### `icon`に文字列を指定する
+
+`icon="foo"`を指定すると `data-icon="foo"`が出力されるので、CSSで調整してください。
+
+Lismコアでは`"triangle"`のみ予め用意しています。
+
+これ"triangle"...?
+
+<Demo>
+	<Demo.Title>`icon="triangle"`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Icon icon="triangle" size="3em" />
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Icon icon="triangle" size="3em" />
 ```
 	</Demo.Code>
 </Demo>
 
 
-InlineIcon（e--icon）に対しては次のようなCSSが適用されており、文字と並んでも見やすく鳴るような調整がデフォルトで入っています。
+### 絵文字
+
+`.e--icon` には、emoji用のフォントファミリーを指定しています。
+<Demo>
+	<Demo.Title>絵文字を使う</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Flex>
+			<Icon size="2rem">✍️</Icon>
+			<Icon size="2rem">💡</Icon>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Icon size="2rem">✍️</Icon>
+<Icon size="2rem">💡</Icon>
+```
+	</Demo.Code>
+</Demo>
+
+
+## isInline
+
+`isInline`: 指定すると、`.e--icon--inline`クラスも出力されます。
+
+<Demo>
+	<Demo.Title>HTML構造</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<svg class="e--icon e--icon--inline">...</svg>
+	```
+	</Demo.Code>
+</Demo>
+
+`e--icon--inline`に対しては次のようなCSSが適用されており、文字と並んでも見やすくなるような調整がデフォルトで入っています。
 
 ```css
-.e--inlineIcon {
-    display: inline;
-    vertical-align: -0.125em;
-    margin-inline: 0.125em;
-    transform: scale(1.125);
+.e--icon--inline {
+    --scale: 1.125; /* アイコンは小さくなりがちなので、デフォルトでほんのり拡大 */
+	vertical-align: -0.125em; /* テキストの下部付近に揃える */
+	margin-inline: calc(1px + 1em * (var(--scale) - 1) / 2); /* scaleを考慮した上で、1pxのマージンをつける */
+	transform: scale(var(--scale));
 }
 ```
 
+<Demo>
+	<Demo.Title>`isInline` の使用</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<p>Lorem ipsum dolor sit amet.<Icon isInline icon={Smiley} /></p>
+		<p>Horse <Icon isInline icon={Horse} />, and Cat <Icon isInline icon={Cat}/>.</p>
+		<p><Icon isInline icon={WarningCircle} scale="1.5" c="red" weight="fill" /> Lorem ipsum dolor sit amet.</p>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<p>Lorem ipsum dolor sit amet.<Icon isInline icon={Smiley} /></p>
+		<p>Horse <Icon isInline icon={Horse} />, and Cat <Icon isInline icon={Cat}/>.</p>
+		<p><Icon isInline icon={WarningCircle} scale="1.5" c="red" weight="fill" /> Lorem ipsum dolor sit amet.</p>
+		```
+	</Demo.Code>
+</Demo>
 
 
-## BlockIcon
 
-→ IconBox(b--iconBox) みたいなのを作る？
+## その他活用例
 
 <Demo>
-	<Demo.Title>BlockIcon</Demo.Title>
+	<Demo.Title>アイコンにボーダーや余白をつける時の挙動の差</Demo.Title>
 	<Demo.Preview resize p={20}>
+		<p>↓ Iconにつける</p>
 		<Center>
-			<Icon icon={<Horse weight="fill" />} size="3em" c="red" p={20} bd="solid 1px" bdc="red" radius="99" />
+			<Icon icon={Horse} weight="fill" size="3rem" c="red" p="1rem" bd="solid 1px" bdc="red" radius="99" />
 		</Center>
 
-		<Center size="content" c="red" bd="solid 1px" bdc="red" radius="99" p={20}>
-			<Icon icon={<Horse weight="fill" />} size="3em"/>
+		<p>↓ 親のCenterなどにつける</p>
+		<Center size="content" c="red" bd="solid 1px" bdc="red" radius="99" p="1rem"> 
+			<Icon icon={Horse} weight="fill" size="3rem"/>
 		</Center>
 	</Demo.Preview>
 	<Demo.Code>
-```jsx
-<Center>
-	<Icon icon={<Horse weight="fill" />} size="3em" c="red" p={20} bd="solid 1px" bdc="red" radius="99" />
-</Center>
-
-<Center size="content" c="red" bd="solid 1px" bdc="red" radius="99" p={20}>
-	<Icon icon={<Horse weight="fill" />} size="3em"/>
-</Center>
-```
+		```jsx
+		<Center>
+			<Icon icon={Horse} weight="fill" size="3rem" c="red" p="1rem" bd="solid 1px" bdc="red" radius="99" />
+		</Center>
+		<Center size="content" c="red" bd="solid 1px" bdc="red" radius="99" p="1rem"> 
+			<Icon icon={Horse} weight="fill" size="3rem"/>
+		</Center>
+		```
 	</Demo.Code>
 </Demo>
 
 
 <Demo>
-	<Demo.Title>BlockIcon</Demo.Title>
+	<Demo.Title>例</Demo.Title>
 	<Demo.Preview resize p={20}>
-	<Cluster>
-		<Center fxg="1" c="red" bd="solid 1px" bdc="red" radius="99" p={20}>
-			<Icon icon={<Horse weight="fill" />} size="2em"/>
-		</Center>
-		<Center fxg="1" bgc="blue" c="white" radius="99" p={20}>
-			<Icon icon={<Horse weight="fill" />} size="2em"/>
-		</Center>
-		<Center fxg="1" bgc="#f5f5f5" bd="solid 1px" radius="3" p={20}>
-			<Icon icon={<Horse weight="fill" />} size="2em"/>
-		</Center>
-	</Cluster>
-	</Demo.Preview>
-	<Demo.Code>
-```jsx
-<Cluster>
-	<Center fxg="1" c="red" bd="solid 1px" bdc="red" radius="99" p={20}>
-		<Icon icon={<Horse weight="fill" />} size="2em"/>
-	</Center>
-	<Center fxg="1" bgc="blue" c="white" radius="99" p={20}>
-		<Icon icon={<Horse weight="fill" />} size="2em"/>
-	</Center>
-	<Center fxg="1" bgc="#f5f5f5" bd="solid 1px" radius="3" p={20}>
-		<Icon icon={<Horse weight="fill" />} size="2em"/>
-	</Center>
-</Cluster>
-```
-	</Demo.Code>
-</Demo>
-
-
-buttonなどと同じようにvariantで outline,fill,...などを用意する...？
-
-
-
-## アイコン活用例
-
-<Demo>
-	<Demo.Title>BlockIcon</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Flex ai="center" gap={20}>
-			<Center bd="-" c="accent" p={10} radius="99">
-				<Icon icon={Horse} size="1.5em" />
-			</Center>
-			<DammyText length="l" />
+		<Flex ai="center" gap={20} bd={{ c:"red" }} p='box:s' radius="4">
+			<Icon icon={WarningCircle} size="10%" c="red" flexItem={{ fxsh:'0' }} />
+			<DammyText length="m" />
 		</Flex>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Flex ai="center" gap={20}>
-	<Center bd="-" c="accent" p={10} radius="99">
-		<Icon icon={Horse} size="1.5em" />
-	</Center>
-	<p>...</p>
+<Flex ai="center" gap={20} bd={{ c:"red" }} p='box:s' radius="4">
+	<Icon icon={WarningCircle} size="10%" c="red" flexItem={{ fxsh:'0' }} />
+	<p>...text...</p>
 </Flex>
 ```
 	</Demo.Code>
 </Demo>
 
 <Demo>
-	<Demo.Title>BlockIcon</Demo.Title>
+	<Demo.Title>例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex
-			ai="center"
-			gap={20}
-			p={20}
-			bgc="main"
-			shadow="1"
-			radius="calc(var(--radius--2) + var(--space--10))"
-		>
-			<Center c="white" margin={10} radius="99">
-				<Icon icon={<Smiley weight="fill" />} size="2em" />
-			</Center>
-			<Box bgc="white" p={{ Y: 30, X: 40 }} radius="2">
+		<Stack ai="center" gap={15} p={15} bgc="main" shadow="1" radius="3">
+			<Icon icon={ChatCenteredDots} size="2em" c="white" weight="fill" />
+			<Box bgc="white" p='box:s' radius="2" lh='s'>
 				<DammyText length="l" />
 			</Box>
-		</Flex>
+		</Stack>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Flex
-	ai="center"
-	gap={20}
-	p={20}
-	bgc="main"
-	shadow="1"
-	radius="calc(var(--radius--2) + var(--space--10))"
->
-	<Center c="white" margin={10} radius="99">
-		<Icon icon={<Smiley weight="fill" />} size="2em" />
-	</Center>
-	<Box bgc="white" p={{ Y: 30, X: 40 }} radius="2">
-		<p>...</p>
+<Stack ai="center" gap={15} p={15} bgc="main" shadow="1" radius="3">
+	<Icon icon={ChatCenteredDots} size="2em" c="white" weight="fill" />
+	<Box bgc="white" p='box:s' radius="2" lh='s'>
+		<DammyText length="l" />
 	</Box>
-</Flex>
+</Stack>
 ```
 	</Demo.Code>
 </Demo>

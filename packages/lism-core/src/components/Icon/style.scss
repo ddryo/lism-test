@@ -1,61 +1,39 @@
-// インライン
-.e--inlineIcon {
-	display: inline;
-	vertical-align: -0.125em;
-	margin-inline: 0.125em; // 0.125 = 16px で 2pxの余白ができる
-	transform: scale(1.125);
-}
-
 :where(.e--icon) {
 	--size: 1em;
-}
-
-.e--icon[data-css-icon] {
-	text-align: center;
-	line-height: 1;
-	font-size: var(--size);
-	width: 1em;
-	height: 1em;
-	// display: inline-block;
+	--scale: 1;
 	display: inline-flex;
+	transform: scale(var(--scale));
+	line-height: 1;
 	align-items: center;
 	justify-content: center;
+	vertical-align: middle; //下にスペースができるのを防ぐ
+	font-size: var(--size);
+	font-family: var(--ff--emoji);
+
+	// > svg {
+	// 	// display: block;
+	// 	width: var(--size);
+	// 	height: var(--size);
+	// 	color: inherit;
+	// }
+}
+.e--icon--inline {
+	--scale: 1.125; // inlineアイコンはデフォルト状態で少し拡大表示
+	vertical-align: -0.125em;
+	margin-inline: calc(1em * (var(--scale) - 1) / 2);
+	// line-height: inherit;
 }
 
-.e--icon[data-emoji] {
-	text-align: center;
-	line-height: 1;
-	font-family: var(--ff--emoji);
-	font-size: var(--size);
+// data-icon: iconを文字列で指定すると出力される。CSSでアイコン表示するときに使う
+.e--icon[data-icon] {
+	// line-height: 1;
+	// text-align: center;
+	// font-size: var(--size);
 	width: 1em;
 	height: 1em;
-	display: inline-block;
 }
 
-.e--icon[data-css-icon='triangle'] {
+.e--icon[data-icon='triangle'] {
 	background-color: currentColor;
 	clip-path: polygon(50% 76%, 10% 24%, 90% 24%);
 }
-
-// .e--icon[data-css-icon="caret"]{
-// 	position: relative;
-// }
-
-:where(.b--icon) {
-	--color: currentColor;
-	// width: fit-content;
-	// height: fit-content;
-}
-
-// fill, outline も　ユーティリティ化？
-// .b--icon[data-variant="fill"]{
-// 	background-color: var(--color);
-// 	color: var(--bgc--base); //color-mix(in srgb-linear, var(--color), var(--bgc--base) 40%);
-// }
-// .b--icon[data-variant="outline"]{
-// 	color: var(--color);
-// 	border: solid 1px var(--color);
-// }
-
-// .-fill:...
-// .-outline:...

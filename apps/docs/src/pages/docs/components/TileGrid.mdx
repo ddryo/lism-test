@@ -43,7 +43,7 @@ import { TileGrid } from '@lism/core';
 		デフォルト (`itemMinW`=`16rem`
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<TileGrid className='has:itemGuide'>
+		<TileGrid lismState={["has--itemGuide"]}>
 			<DammyText />
 			<DammyText />
 			<DammyText />
@@ -69,7 +69,7 @@ import { TileGrid } from '@lism/core';
 		子要素の最低限維持する幅を`12rem`に
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<TileGrid itemMinW="12rem" className='has:itemGuide'>
+		<TileGrid itemMinW="12rem" lismState={["has--itemGuide"]}>
 			<DammyText />
 			<DammyText />
 			<DammyText />

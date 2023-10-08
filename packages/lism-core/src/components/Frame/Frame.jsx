@@ -1,6 +1,7 @@
 import React from 'react';
 import { Core } from '../Core';
 
-export default function Frame(props) {
-	return <Core lismClass='l--frame' {...props} />;
+export default function Frame({ lismClass = {}, ...props }) {
+	lismClass.l = 'l--frame';
+	return <Core lismClass={lismClass} {...props} />;
 }

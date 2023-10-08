@@ -1,6 +1,32 @@
 import React from 'react';
 import Grid from '../Grid';
-import { isEmptyObj, getLismMainProp } from '@/lib';
+import { isEmptyObj, getLismMainProp } from '../../../lib';
+
+export default function RatioGrid({ ratio, lismStyle = {}, ...props }) {
+	let { baseValue, bpValues } = getLismMainProp(ratio);
+
+	baseValue = getFrs(baseValue);
+
+	// objの 中身に getFrs() を適用する
+	bpValues = Object.entries(bpValues).reduce((newObj, [key, r]) => {
+		newObj[key] = getFrs(r);
+		return newObj;
+	}, {});
+
+	const gridProps = {
+		_gridName: 'ratioGrid',
+	};
+
+	if (null != baseValue) {
+		lismStyle['--gtc'] = baseValue;
+	}
+
+	if (!isEmptyObj(bpValues)) {
+		gridProps.columns = bpValues;
+	}
+
+	return <Grid {...gridProps} lismStyle={lismStyle} {...props} />;
+}
 
 // 1:2:3 → 1fr 2fr 3fr に変換
 function getFrs(ratio) {
@@ -12,34 +38,4 @@ function getFrs(ratio) {
 	const result = splitArray.map((s) => `${s}fr`).join(' ');
 
 	return result.trim();
-}
-
-export default function RatioGrid({ ratio, ...props }) {
-	// let frs = getLismMainProp(ratio);
-	let { baseValue, bpValues } = getLismMainProp(ratio);
-
-	baseValue = getFrs(baseValue);
-
-	// objの 中身に getFrs() を適用する
-	bpValues = Object.entries(bpValues).reduce((newObj, [key, r]) => {
-		newObj[key] = getFrs(r);
-		return newObj;
-	}, {});
-
-	// デフォルト値の削除
-	// if ('1fr 1fr' === gtcs._) delete gtcs._;
-
-	const theProps = {
-		lismStyle: {},
-	};
-
-	if (null != baseValue) {
-		theProps.lismStyle['--gtc'] = baseValue;
-	}
-
-	if (!isEmptyObj(bpValues)) {
-		theProps.columns = bpValues;
-	}
-
-	return <Grid lismClass='l--ratioGrid' {...theProps} {...props} />;
 }

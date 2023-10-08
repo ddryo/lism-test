@@ -9,6 +9,23 @@ export { default as filterEmptyObj } from './helper/filterEmptyObj';
 
 import { PRESETS, UTILITIES } from '@/config';
 
+// value: object
+// export const addObjData = (obj, key, value) => {
+// 	if (typeof value === 'object') {
+// 		obj[key] = Object.assign({}, obj[key], value);
+// 	}
+
+// 	return obj;
+// };
+
+export const addObjData = (obj, key, value) => {
+	if (typeof value === 'object') {
+		obj[key] = Object.assign({}, obj[key], value);
+	}
+
+	return obj;
+};
+
 function isNumStr(val) {
 	if (typeof val !== 'string') return false;
 	return !isNaN(Number(val));

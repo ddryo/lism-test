@@ -2,10 +2,21 @@ import React from 'react';
 import { Core } from '../Core';
 
 // .l--layer[data-layer="media|filter|content"] ?
-export default function Layer({ children, modifier, position, size, ...props }) {
+export default function Layer({
+	lismClass = {},
+	// lismStyle = {},
+	modifier,
+	position,
+	size,
+	...props
+}) {
+	let layoutClass = 'l--layer';
+	if (modifier) {
+		layoutClass += ' l--layer--' + modifier;
+	}
+	lismClass.l = layoutClass;
+
 	const layerProps = {
-		lismClass: 'l--layer',
-		lismModifier: modifier && 'l--layer--' + modifier,
 		'data-size': size || null,
 	};
 
@@ -53,9 +64,5 @@ export default function Layer({ children, modifier, position, size, ...props }) 
 
 	// const Tag = tag || 'div';
 
-	return (
-		<Core {...layerProps} {...props}>
-			{children}
-		</Core>
-	);
+	return <Core lismClass={lismClass} {...layerProps} {...props} />;
 }

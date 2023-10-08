@@ -5,48 +5,34 @@ import { Icon } from '../Icon';
 
 // variant
 export default function Button({
+	lismClass = {},
+	lismStyle = {},
 	icon,
 	iconOffset,
 	leftIcon,
 	rightIcon,
-	// label,
 	variant = 'fill',
 	color = 'basic',
 	children,
-	// iconPosition,
 	isGrid,
 	...props
 }) {
-	const blockProps = {
-		blockClass: 'l--button',
-		lismStyle: {},
-		'data-variant': variant,
-	};
-
-	// if (iconPosition === 'edge') {
-	// 	blockProps['data-icon-position'] = 'edge';
-	// }
+	let btnClass = 'c--button';
+	if (variant) btnClass += ` c--button--${variant}`;
+	Object.assign(lismClass, { c: btnClass });
 
 	if (iconOffset) {
-		blockProps.lismStyle['--icon--offset'] = iconOffset;
+		lismStyle['--icon--offset'] = iconOffset;
 	}
+
+	const blockProps = {
+		lismClass,
+		lismStyle,
+		// 'data-variant': variant,
+	};
 
 	if (color) {
 		blockProps.keycolor = color;
-
-		// if ('fill' === variant) {
-		// 	blockProps.bgc = color;
-		// 	// blockProps.c = 'white';
-		// } else if ('outline' === variant) {
-		// 	blockProps.keycolor = color;
-		// 	// blockProps.c = color;
-		// 	// blockProps.bdc = color;
-		// } else if ('ghost' === variant) {
-		// 	// test
-		// 	blockProps.c = color;
-		// } else {
-		// 	blockProps.keycolor = color;
-		// }
 	}
 
 	// if (undefined !== leftIcon || undefined !== rightIcon) {
@@ -60,7 +46,7 @@ export default function Button({
 	if (icon) {
 		return (
 			<ButtonComponent tag='a' hover='fade' {...blockProps} p={30} {...props}>
-				<Icon icon={icon} lismClass='l--button__icon e--icon' />
+				<Icon icon={icon} lismClass={{ c: 'c--button__icon' }} />
 			</ButtonComponent>
 		);
 	}
@@ -68,11 +54,11 @@ export default function Button({
 	return (
 		<ButtonComponent tag='a' hover='fade' {...blockProps} {...props}>
 			{leftIcon && (
-				<Icon icon={leftIcon} lismClass='l--button__icon e--icon' data-position='left' />
+				<Icon icon={leftIcon} lismClass={{ c: 'c--button__icon' }} data-position='left' />
 			)}
-			<span className='l--button__text'>{children}</span>
+			<span className='c--button__text'>{children}</span>
 			{rightIcon && (
-				<Icon icon={rightIcon} lismClass='l--button__icon e--icon' data-position='right' />
+				<Icon icon={rightIcon} lismClass={{ c: 'c--button__icon' }} data-position='right' />
 			)}
 		</ButtonComponent>
 	);

@@ -4,7 +4,7 @@ import { Lism } from '../Lism';
 // import { Item } from '../Item';
 import { Grid } from '../Grid';
 import { Divider } from '../Divider';
-// import { filterEmptyObj } from '@/lib';
+// import { filterEmptyObj } from '../../lib';
 import { getMediaLayer, getFilterLayer } from '../helper';
 // import classnames from 'classnames';
 
@@ -44,6 +44,7 @@ export default function Section({
 }
 
 export const SectionBody = ({ children, ...props }) => {
+	// Containerを使う
 	return (
 		<Lism blockClass='b--section__body' ga='-' isFlow isConstrained hasGutter {...props}>
 			{children}

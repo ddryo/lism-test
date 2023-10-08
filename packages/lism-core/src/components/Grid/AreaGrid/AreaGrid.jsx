@@ -17,7 +17,7 @@ export default function AreaGrid({
 	}
 
 	return (
-		<Grid modifier='area3' {...blockProps}>
+		<Grid _gridName='areaGrid' {...blockProps}>
 			{children}
 		</Grid>
 	);

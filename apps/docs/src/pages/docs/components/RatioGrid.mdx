@@ -38,7 +38,7 @@ import { RatioGrid } from '@lism/core';
 		1:2の比率でコンテンツを表示
 	</Demo.Title>
 	<Demo.Preview resize p={15}>
-		<RatioGrid ratio="1:2" className='has:itemGuide'>
+		<RatioGrid ratio="1:2" lismState={["has--itemGuide"]}>
 				<Box bgc="hsl(210 40% 90%)">1</Box>
 				<Box bgc="hsl(100 40% 90%)">2</Box>
 			</RatioGrid>
@@ -58,7 +58,7 @@ import { RatioGrid } from '@lism/core';
 		黄金比( 1:1.618 ) の比率でコンテンツを表示
 	</Demo.Title>
 	<Demo.Preview resize p={15}>
-		<RatioGrid ratio="1:1.618" className='has:itemGuide'>
+		<RatioGrid ratio="1:1.618" lismState={["has--itemGuide"]}>
 				<Box bgc="hsl(210 40% 90%)">1</Box>
 				<Box bgc="hsl(100 40% 90%)">2</Box>
 			</RatioGrid>
@@ -78,7 +78,7 @@ import { RatioGrid } from '@lism/core';
 		1:1:2 の比率でコンテンツを表示
 	</Demo.Title>
 	<Demo.Preview resize p={15}>
-		<RatioGrid ratio="1:1:2" gap={[10, 15]} className='has:itemGuide'>
+		<RatioGrid ratio="1:1:2" gap={[10, 15]} lismState={["has--itemGuide"]}>
 			<Box bgc="hsl(210 40% 90%)">1</Box>
 			<Box bgc="hsl(100 40% 90%)">2</Box>
 			<Box bgc="hsl(20 40% 90%)">3</Box>
@@ -106,7 +106,7 @@ import { RatioGrid } from '@lism/core';
 		1:1 → `@sm`: 2:3 → `@md`: 1:2 で比率を切り替える
 	</Demo.Title>
 	<Demo.Preview resize p={15}>
-		<RatioGrid ratio={["1:1", "2:3", "1:2"]} gap={20} className='has:itemGuide'>
+		<RatioGrid ratio={["1:1", "2:3", "1:2"]} gap={20} lismState={["has--itemGuide"]}>
 			<Box bgc="hsl(210 40% 90%)">1</Box>
 			<Box bgc="hsl(100 40% 90%)">2</Box>
 		</RatioGrid>
@@ -126,7 +126,7 @@ import { RatioGrid } from '@lism/core';
 		1:2 → `@md`: 1:2:1:2 で比率を切り替える
 	</Demo.Title>
 	<Demo.Preview resize p={15}>
-		<RatioGrid ratio={["1:2", null, "1:2:1:2"]} gap={20} className='has:itemGuide'>
+		<RatioGrid ratio={["1:2", null, "1:2:1:2"]} gap={20} lismState={["has--itemGuide"]}>
 			<Box bgc="hsl(210 40% 90%)">1</Box>
 			<Box bgc="hsl(100 40% 90%)">2</Box>
 			<Box bgc="hsl(210 40% 90%)">3</Box>

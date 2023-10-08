@@ -1,11 +1,11 @@
-import { Box, Text, Center, Columns, Layer } from '@lism/core';
+import { Container, Box, Text, Center, Columns, Layer } from '@lism/core';
 
 
 # コンテンツに関するレイアウト
 
 WordPressのブロックエディターと同じ設計になっています。
 
-`<Box>`コンポーネントに`isConstrained`と`hasGutter`が指定できるようになっており、これらを指定することで以下のクラスが出力され、内部のコンテンツ幅を制御できます。
+`<Container>`コンポーネントに`isConstrained`と`hasGutter`が指定できるようになっており、これらを指定することで以下のクラスが出力され、内部のコンテンツ幅を制御できます。
 
 - `.is--constrained` : そのBox直下の**コンテンツ幅**をルートで定義したMaxサイズに制限するためのクラスです。
 	- （WordPressでいうところの`is-layout-constrained`の機能にあたります。）
@@ -104,17 +104,17 @@ Lism設計では、①ではなく②を前提としています。
 		`.is--constrained` の挙動
 	</Demo.Title>
 	<Demo.Preview resize>
-		<Box isFlow isConstrained bd="guide" style={{"--contentSize": "30rem"}}>
+		<Container isFlow isConstrained bd="guide" style={{"--contentSize": "30rem"}}>
 			<Box bd="guide">コンテンツ</Box>
 			<Box bd="guide">コンテンツ</Box>
-		</Box>
+		</Container>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Box isFlow isConstrained bd="guide" style={{"--contentSize": "30rem"}}>
+		<Container isFlow isConstrained bd="guide" style={{"--contentSize": "30rem"}}>
 			<Box bd="guide">コンテンツ</Box>
 			<Box bd="guide">コンテンツ</Box>
-		</Box>
+		</Container>
 		```
 	</Demo.Code>
 </Demo>
@@ -134,7 +134,7 @@ Lism設計では、①ではなく②を前提としています。
 		alignfull と alignwide
 	</Demo.Title>
 	<Demo.Preview resize>
-		<Box isFlow isConstrained bd="guide" style={{ "--contentSize": "30rem", "--ls--contentSize--wide": "34rem" }}>
+		<Container isFlow isConstrained bd="guide" style={{ "--contentSize": "30rem", "--ls--contentSize--wide": "34rem" }}>
 			<Box bd="guide">普通幅のコンテンツ</Box>
 			<Box isFlow alignwide bd="guide">
 				<p>幅広Box内のコンテンツ</p>
@@ -143,11 +143,11 @@ Lism設計では、①ではなく②を前提としています。
 			<Box isFlow alignfull bd="guide">
 				<p>全幅コンテンツ</p>
 			</Box>
-		</Box>
+		</Container>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Box isFlow isConstrained bd="guide" style={{ "--contentSize": "30rem", "--ls--contentSize--wide": "34rem" }}>
+		<Container isFlow isConstrained bd="guide" style={{ "--contentSize": "30rem", "--ls--contentSize--wide": "34rem" }}>
 			<Box bd="guide">普通幅のコンテンツ</Box>
 			<Box isFlow alignwide bd="guide">
 				<p>幅広Box内のコンテンツ</p>
@@ -156,7 +156,7 @@ Lism設計では、①ではなく②を前提としています。
 			<Box isFlow alignfull bd="guide">
 				<p>全幅コンテンツ</p>
 			</Box>
-		</Box>
+		</Container>
 		```
 	</Demo.Code>
 </Demo>
@@ -181,7 +181,7 @@ Lism設計では、①ではなく②を前提としています。
 		`.is--constrained&.has--gutter` の挙動
 	</Demo.Title>
 	<Demo.Preview resize>
-		<Box
+		<Container
 			isFlow
 			isConstrained
 			hasGutter
@@ -190,7 +190,7 @@ Lism設計では、①ではなく②を前提としています。
 		>
 			<Box bd="guide">コンテンツ</Box>
 			<Box bd="guide">コンテンツ</Box>
-		</Box>
+		</Container>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
@@ -214,7 +214,7 @@ Lism設計では、①ではなく②を前提としています。
 		`.is--constrained > .alignfull`の挙動
 	</Demo.Title>
 	<Demo.Preview resize>
-		<Box
+		<Container
 			isFlow
 			isConstrained
 			hasGutter
@@ -225,7 +225,7 @@ Lism設計では、①ではなく②を前提としています。
 			<Box bd='guide' alignfull>ここは全幅 alignfull です</Box>
 			<Box bd='guide' style={{ maxWidth: '100%' }}>max-width:100%だとこうなる</Box>
 			<Text bd='guide'>通常幅のコンテンツ</Text>
-		</Box>
+		</Container>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
@@ -252,7 +252,7 @@ Lism設計では、①ではなく②を前提としています。
 		このデモエリアをコンテンツエリアとして考えてください
 	</Demo.Title>
 	<Demo.Preview resize>
-		<Box
+		<Container
 			isFlow
 			isConstrained
 			hasGutter
@@ -278,36 +278,36 @@ Lism設計では、①ではなく②を前提としています。
 			</Box>
 
 			<p>▼ <code>isConstrained</code> な全幅Box</p>
-			<Box
+			<Container
 				mbs="10"
 				alignfull
 				bgc='b200'
 				isConstrained
 			>
 				<p>全幅コンテンツ</p>
-			</Box>
+			</Container>
 
 			<p>▼ <code>hasGutter</code> な全幅Box</p>
-			<Box
+			<Container
 				mbs="10"
 				alignfull
 				bgc='b200'
 				hasGutter
 			>
 				<p>全幅コンテンツ</p>
-			</Box>
+			</Container>
 
 			<p>▼ <code>isConstrained</code>,<code>hasGutter</code> な全幅Box</p>
-			<Box
+			<Container
 				alignfull
 				bgc='b200'
 				hasGutter
 				isConstrained
 			>
 				<p>全幅コンテンツ</p>
-			</Box>
+			</Container>
 			<p>...普通のコンテンツ...</p>
-		</Box>
+		</Container>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx

@@ -1,44 +1,50 @@
 :root {
 	// fill時のカラーをグローバルに定義？ → .-c:white なエリアでは #000 に反転させたりしておくと便利か。
 	// → .-c:white を用意する意味もでてくる。
-	// --lism--c--filled: #fff;
+	// --c--filled: #fff;
 }
 
 @layer lism-module {
-	// --btn--color:
-	.l--button {
+	.c--button {
 		--keycolor: var(--b900);
-		--c: inherit;
-		--bdc: transparent;
-		--bgc: transparent;
 		--icon--scale: 1.25; // offsetとバランス合わせる
 		--icon--offset: 0%; //25%;
-	}
 
-	.l--button[data-variant='fill'] {
+		// default(fill)用
 		--bgc: var(--keycolor);
 		--bdc: var(--bgc); // reverse用
 		--c: var(--c--filled); // filledColor?
+	}
+
+	// デフォルトスタイル
+	.c--button:not([class*='c--button--']) {
 		--rev--bgc: transparent;
 	}
 
-	.l--button[data-variant='outline'] {
+	// c--button--style
+	.c--button--outline {
+		--bgc: transparent;
 		--bdc: var(--keycolor);
 		--c: var(--bdc); // bdc上書きするだけで --c も変わるように
 
-		// reverse用
+		// .-hov:reverse用
 		--rev--c: var(--hov--c, var(--c--filled));
 		// --rev--bgc: var(--bdc);
 	}
 
-	.l--button[data-variant='ghost'] {
+	// c--button--style
+	.c--button--ghost {
 		--c: var(--keycolor);
-		--rev--c: var(--hov--c, var(--c--filled)); // reverse用
+		--bdc: transparent;
+		--bgc: transparent;
+
+		// .-hov:reverse用
+		--rev--c: var(--hov--c, var(--c--filled));
 	}
 }
 
 // pYは小さめにして、minHで最低限の高さを確保.
-:where(.l--button) {
+:where(.c--button) {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -56,33 +62,18 @@
 	// min-width: 2em;
 }
 
-// .l--button[data-variant='fill'] {
-// }
-
-// .l--button[data-variant='outline'] {
-// }
-
-// .l--button[data-variant='ghost'] {
-// 	// color: var(--keycolor);
-// 	--rev--c: var(--hov--c, #fff); // reverse用
-// }
-
-// .l--button.l--grid,
-.l--button.l--grid {
+// .c--button.l--grid,
+.c--button.l--grid {
 	// display: grid;
 	--gta--val: 'left center right';
 	--gtc--val: 1em 1fr 1em;
 }
-.l--grid > .l--button__text {
+.l--grid > .c--button__text {
 	justify-self: center;
 	grid-area: center;
 }
 
-// .l--button[data-icon-offset="0"]{
-// 	--icon--offset: 0;
-// }
-
-.l--button__icon {
+.c--button__icon {
 	scale: var(--icon--scale);
 	flex-shrink: 0;
 

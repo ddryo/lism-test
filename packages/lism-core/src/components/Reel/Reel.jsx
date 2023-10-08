@@ -2,11 +2,9 @@ import React from 'react';
 import { Flex } from '../Flex';
 
 // snap-type, snap-stopも指定できるようにする？
-export default function Reel({ unreel, itemBasis, snap, ...props }) {
+export default function Reel({ lismStyle = {}, unreel, itemBasis, snap, ...props }) {
 	if (undefined !== itemBasis) {
-		props.lismStyle = {
-			'--item--basis': itemBasis,
-		};
+		lismStyle['--item--basis'] = itemBasis;
 	}
 
 	if (unreel) {
@@ -20,5 +18,5 @@ export default function Reel({ unreel, itemBasis, snap, ...props }) {
 	// 	props['data-show-scrollbar'] = showScrollbar;
 	// }
 
-	return <Flex lismClass='l--reel' {...props} tabIndex='0' />;
+	return <Flex _flexName='reel' lismStyle={lismStyle} {...props} tabIndex='0' />;
 }

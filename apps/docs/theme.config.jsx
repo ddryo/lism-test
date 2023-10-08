@@ -4,7 +4,7 @@ import { useConfig } from 'nextra-theme-docs';
 
 // import Demo from '@/components/Demo';
 import Footer from '@/components/Footer';
-import { Box } from '@lism/core';
+import { Container } from '@lism/core';
 
 import { getMyComponents } from '@/theme/mdx-components';
 
@@ -19,9 +19,9 @@ export default {
 	main: ({ children }) => {
 		const { asPath } = useRouter();
 		return (
-			<Box className='a--main' isConstrained isFlow lh='1.75' data-docs-path={asPath}>
+			<Container className='a--main' isConstrained isFlow lh='1.75' data-docs-path={asPath}>
 				{children}
-			</Box>
+			</Container>
 		);
 	},
 

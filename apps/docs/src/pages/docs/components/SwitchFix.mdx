@@ -66,7 +66,7 @@ import { SwitchFix } from '@lism/core';
 		`fix="right down"` (初期値)
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<SwitchFix fix="right down" className='has:itemGuide'>
+		<SwitchFix fix="right down" lismState={["has--itemGuide"]}>
 			<Item>Main Contents</Item>
 			<Item ga="fix" bgc="pale">Side</Item>
 		</SwitchFix>
@@ -87,7 +87,7 @@ import { SwitchFix } from '@lism/core';
 		`fix="left down"`, `fixW` を指定, breakPoint: `md`
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<SwitchFix breakPoint="md" fix="left down" fixW='16em' gap={20} className='has:itemGuide'>
+		<SwitchFix breakPoint="md" fix="left down" fixW='16em' gap={20} lismState={["has--itemGuide"]}>
 			<Item>Main Contents</Item>
 			<Item ga="fix" bgc="pale">Side</Item>
 		</SwitchFix>
@@ -111,7 +111,7 @@ export const SwitchFixDemos = () => {
 				<Demo key={datFix}>
 					<Demo.Title><code>fix="{datFix}"</code></Demo.Title>
 					<Demo.Preview resize p={20}>
-						<SwitchFix fix={datFix} gap={20} className='has:itemGuide'>
+						<SwitchFix fix={datFix} gap={20} lismState={["has--itemGuide"]}>
 							<Item>Main Contents</Item>
 							<Item ga="fix" bgc="pale">Side</Item>
 						</SwitchFix>

@@ -1,54 +1,49 @@
 import React from 'react';
-// import { getLismProps } from '@/lib';
 import { Lism } from '../Lism';
-// import classnames from 'classnames';
 
-export default function Icon({ icon, isInline, label, size = '1em', scale, children, ...props }) {
-	const iconProps = {
-		lismClass: 'e--icon',
-		lismModifier: isInline ? 'e--icon--inline' : '',
-		lismStyle: {},
-		// label の有無でaria属性を変える
-		...(label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true }),
-	};
+export default function Icon({
+	lismClass = {},
+	lismStyle = {},
+	icon,
+	isInline,
+	label,
+	size = '1em',
+	scale,
+	children,
+	...props
+}) {
+	lismClass.e = 'e--icon';
+	if (isInline) lismClass.e += ' e--icon--inline';
 
-	if (scale) {
-		iconProps.lismStyle['--scale'] = scale;
-	}
+	// label の有無でaria属性を変える
+	const iconProps = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true };
 
+	// iconに ReactElement が渡されてきた場合、childrenとして扱う
 	if (React.isValidElement(icon)) {
 		children = icon;
 	}
 
-	// childrenある場合
+	if (scale) lismStyle['--scale'] = scale;
+
 	if (children) {
-		if ('1em' !== size) iconProps.lismStyle['--size'] = size;
-		return (
-			<Lism tag='span' {...iconProps} {...props}>
-				{children}
-			</Lism>
-		);
+		// childrenある場合
+		iconProps.tag = 'span';
+		if ('1em' !== size) lismStyle['--size'] = size;
+	} else if (typeof icon === 'string') {
+		// cssでアイコンを描画する場合
+		iconProps.tag = 'span';
+		iconProps['data-icon'] = icon;
+		if ('1em' !== size) lismStyle['--size'] = size;
+	} else if (typeof icon === 'function' || typeof icon === 'object') {
+		// component関数が渡されてきた場合は、それを使う
+		iconProps.as = icon;
+		iconProps.width = size;
+		iconProps.height = size;
 	}
 
-	// cssでアイコンを描画する場合
-	if (typeof icon === 'string') {
-		if ('1em' !== size) iconProps.lismStyle['--size'] = size;
-		return (
-			<Lism tag='span' data-icon={icon} {...iconProps} {...props}>
-				{children}
-			</Lism>
-		);
-	}
-
-	//以下、普通にsvg
-	// label の有無でaria属性を変える
-	iconProps.width = size;
-	iconProps.height = size;
-
-	// component関数が渡されてきた場合は、それを使う
-	if (typeof icon === 'function' || typeof icon === 'object') {
-		return <Lism as={icon} {...iconProps} {...props} />;
-	}
-
-	return null;
+	return (
+		<Lism tag='span' lismClass={lismClass} lismStyle={lismStyle} {...iconProps} {...props}>
+			{children}
+		</Lism>
+	);
 }

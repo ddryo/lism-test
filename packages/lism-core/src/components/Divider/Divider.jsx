@@ -15,19 +15,17 @@ import DividerSVG from './svg';
 
 // align: full, wide, ''
 function Divider({
-	// children,
-	className,
+	lismClass = {},
+	lismStyle = {},
 	type = 'Wave1',
 	position = 'bottom',
-	// flip,
 	isAnimation,
-	// height,
-	level, // -10~10?
+	level = 5, // -10~10?
+	// flip,
 	// scaleX,
 	stretch, // 1~2
 	offset, // -25% ~ 25%
 	// color,
-	// style = {},
 	...attrs
 }) {
 	let flipXaxis = 'bottom' !== position; // 垂直方向の反転 ↕
@@ -59,17 +57,17 @@ function Divider({
 	});
 
 	const blockProps = {
-		className: classnames('l--divider', className, {}),
 		'data-type': type,
 		'data-flip': dataFlip || null,
+		'data-animation': isAnimation ? '1' : null, //animationType;
 		...attrs,
 	};
 
-	const lismStyle = {
+	lismStyle = Object.assign(lismStyle, {
 		'--level': level || null,
 		'--offset': offset || null,
 		'--stretch': stretch || null,
-	};
+	});
 
 	const svgProps = {
 		id: null,
@@ -78,27 +76,24 @@ function Divider({
 		'aria-hidden': 'true',
 		focusable: 'false',
 		preserveAspectRatio: 'none',
+		width: '100%',
+		height: `${level * 6}px`, // clampでの最小値
 		style: {},
 	};
 
-	const animationType = 'lr'; //animationTypes[svgType] || 'lr';
-
 	let svg = <SVG {...svgProps} />;
-	if (isAnimation) {
-		blockProps['data-animation'] = animationType;
+	// if (isAnimation) {
+	// const animationType = 'lr'; //animationTypes[svgType] || 'lr';
+	// if ('loop' === animationType) {
+	// 	svg = (
+	// 		<><SVG {...svgProps} /><SVG {...svgProps} /></>
+	// 	);
+	// }
+	// }
 
-		if ('loop' === animationType) {
-			svg = (
-				<>
-					<SVG {...svgProps} />
-					<SVG {...svgProps} />
-				</>
-			);
-		}
-	}
-
+	lismClass.l = 'l--divider';
 	return (
-		<Core {...blockProps} lismStyle={lismStyle}>
+		<Core {...blockProps} lismClass={lismClass} lismStyle={lismStyle}>
 			<div className='l--divider__inner'>{svg}</div>
 		</Core>
 	);

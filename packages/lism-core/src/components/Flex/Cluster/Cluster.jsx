@@ -1,12 +1,11 @@
 import React from 'react';
 import Flex from '../Flex';
 
-export default function Cluster({ itemMinW, ...props }) {
-	const lismStyle = {};
+export default function Cluster({ lismStyle = {}, itemMinW, ...props }) {
 	if (itemMinW) {
 		lismStyle['--item--minW'] = itemMinW;
 	}
-	return <Flex lismClass='l--cluster' lismStyle={lismStyle} gap={20} {...props} />;
+	return <Flex _flexName='cluster' lismStyle={lismStyle} gap={20} {...props} />;
 }
 
 // セパレーターを項目間に追加する

@@ -35,7 +35,7 @@ import { Stack } from '@lism/core';
 <Demo className="has--box-guide">
 	<Demo.Title>シンプルな`<Stack>`の例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Stack gap={20} className='has:itemGuide'>
+		<Stack gap={20} lismState={["has--itemGuide"]}>
 			<p>コンテンツ</p>
 			<p>コンテンツ</p>
 			<p>コンテンツ</p>
@@ -80,7 +80,7 @@ import { Stack } from '@lism/core';
 <Demo className="has--box-guide">
 	<Demo.Title>内在的な中央寄せ</Demo.Title>
 	<Demo.Preview resize>
-		<Stack ai="center" gap={30} p={40} className='has:itemGuide'>
+		<Stack ai="center" gap={30} p={40} lismState={["has--itemGuide"]}>
 			<h3 role="presentation">
 				見出し
 			</h3>

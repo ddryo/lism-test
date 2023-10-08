@@ -14,13 +14,14 @@ export { Flex } from './Flex';
 export { Stack } from './Flex/Stack';
 export { Cluster } from './Flex/Cluster';
 export { Center } from './Flex/Center';
+export { FluidFix } from './Flex/FluidFix';
 export { Grid } from './Grid';
 export { Columns } from './Grid/Columns';
 export { TileGrid } from './Grid/TileGrid';
 export { RatioGrid } from './Grid/RatioGrid';
 export { AreaGrid } from './Grid/AreaGrid';
-export { SwitchFix } from './SwitchFix';
-export { FluidFix } from './FluidFix';
+export { SwitchFix } from './Grid/SwitchFix';
+
 export { Item } from './Item';
 
 export { Reel } from './Reel';

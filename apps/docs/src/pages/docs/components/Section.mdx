@@ -1,4 +1,4 @@
-import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
+import { Container, Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 
 # Section
 
@@ -112,7 +112,7 @@ import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 <Demo>
 	<Demo.Title>Section外との関係</Demo.Title>
 	<Demo.Preview resize alignfull p={{ Y: 50 }}>
-		<Box isFlow isConstrained hasGutter>
+		<Container isFlow isConstrained hasGutter>
 			<p>...セクション外のコンテンツ...</p>
 			<Section c="dimgray" bgc="whitesmoke" pY={40}>
 				<SectionBody>
@@ -122,11 +122,11 @@ import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 				</SectionBody>
 			</Section>
 			<p>...セクション外のコンテンツ...</p>
-		</Box>
+		</Container>
 	</Demo.Preview>
 	<Demo.Code alignfull>
 		```jsx
-		<Box isFlow isConstrained hasGutter>
+		<Container isFlow isConstrained hasGutter>
 			<p>...セクション外のコンテンツ...</p>
 			<Section c="dimgray" bgc="whitesmoke" pY={40}>
 				<SectionBody>
@@ -136,7 +136,7 @@ import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 				</SectionBody>
 			</Section>
 			<p>...セクション外のコンテンツ...</p>
-		</Box>
+		</Container>
 		```
 	</Demo.Code>
 </Demo>
@@ -358,7 +358,7 @@ Memo: top,bottomに分けずに指定できるようにする → 同じオプ�
 <Demo>
 	<Demo.Title>Section外との関係</Demo.Title>
 	<Demo.Preview resize alignfull p={{ Y: 50 }}>
-		<Box isFlow isConstrained hasGutter>
+		<Container isFlow isConstrained hasGutter>
 			<p>...セクション外のコンテンツ...</p>
 			<Section
 					minH="30em"
@@ -374,11 +374,11 @@ Memo: top,bottomに分けずに指定できるようにする → 同じオプ�
 					</SectionBody>
 				</Section>
 			<p>...セクション外のコンテンツ...</p>
-		</Box>
+		</Container>
 	</Demo.Preview>
 	<Demo.Code alignfull>
 ```jsx {7-10}
-<Box isFlow isConstrained hasGutter>
+<Container isFlow isConstrained hasGutter>
 	<p>...セクション外のコンテンツ...</p>
 	<Section
 			minH="30em"
@@ -394,7 +394,7 @@ Memo: top,bottomに分けずに指定できるようにする → 同じオプ�
 			</SectionBody>
 		</Section>
 	<p>...セクション外のコンテンツ...</p>
-</Box>
+</Container>
 ```
 	</Demo.Code>
 </Demo>
@@ -403,7 +403,7 @@ Memo: top,bottomに分けずに指定できるようにする → 同じオプ�
 <Demo>
 	<Demo.Title>下側にアニメーション付きのDividerを使用</Demo.Title>
 	<Demo.Preview resize alignfull p={{ bottom: 50 }}>
-		<Box isFlow isConstrained hasGutter>
+		<Container isFlow isConstrained hasGutter>
 			<Section
 					isFullScreen
 					c="white"
@@ -419,27 +419,27 @@ Memo: top,bottomに分けずに指定できるようにする → 同じオプ�
 					</SectionBody>
 				</Section>
 			<p>...セクション外のコンテンツ...</p>
-		</Box>
+		</Container>
 	</Demo.Preview>
 	<Demo.Code alignfull>
 ```jsx {7}
-<Box isFlow isConstrained hasGutter>
+<Container isFlow isConstrained hasGutter>
 	<Section
-			isFullScreen
-			c="white"
-			filter={{ blur: "4px", bgc: "rgba(0,0,0,0.5)" }}
-			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
-			divider={{ bottom: { type: "wave3", color: "#fff", isAnimation: true } }}
-		>
-			<SectionHeader bd="guide" p={20}>
-				<p>SectionHeader</p>
-			</SectionHeader>
-			<SectionBody c="white">
-				<DammyText length="l" />
-			</SectionBody>
-		</Section>
+		isFullScreen
+		c="white"
+		filter={{ blur: "4px", bgc: "rgba(0,0,0,0.5)" }}
+		media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+		divider={{ bottom: { type: "wave3", color: "#fff", isAnimation: true } }}
+	>
+		<SectionHeader bd="guide" p={20}>
+			<p>SectionHeader</p>
+		</SectionHeader>
+		<SectionBody c="white">
+			<DammyText length="l" />
+		</SectionBody>
+	</Section>
 	<p>...セクション外のコンテンツ...</p>
-</Box>
+</Container>
 ```
 	</Demo.Code>
 </Demo>

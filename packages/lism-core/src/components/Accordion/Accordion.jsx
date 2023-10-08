@@ -1,6 +1,6 @@
 import React from 'react';
 import setEvent from './setEvent';
-import { getLismProps } from '@/lib';
+import { getLismProps } from '../../lib';
 import { AccContext } from './context';
 
 // import classnames from 'classnames';

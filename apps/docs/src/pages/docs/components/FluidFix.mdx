@@ -49,7 +49,7 @@ import { FluidFix } from '@lism/core';
 		`fix="first"`
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<FluidFix fix="first" gap={20} className='has:itemGuide'>
+		<FluidFix fix="first" gap={20} lismState={["has--itemGuide"]}>
 			<Box>Fixed Content</Box>
 			<Box>
 				Fluid Contents..., <DammyText tag='span'/>
@@ -74,7 +74,7 @@ import { FluidFix } from '@lism/core';
 		`fix="last"`, `fixW="200px"`
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<FluidFix fix="last" fixW="200px" gap={20} className='has:itemGuide'>
+		<FluidFix fix="last" fixW="200px" gap={20} lismState={["has--itemGuide"]}>
 			<Box>
 				Fluid Contents..., <DammyText tag='span'/>
 			</Box>
@@ -98,7 +98,7 @@ import { FluidFix } from '@lism/core';
 		`fix="last"`, `fluidMinW="32rem"`
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<FluidFix fix="last" fluidMinW="32rem" gap={20} className='has:itemGuide'>
+		<FluidFix fix="last" fluidMinW="32rem" gap={20} lismState={["has--itemGuide"]}>
 			<Box>
 				Fluid Contents..., <DammyText tag='span'/>
 			</Box>
@@ -127,7 +127,7 @@ import { FluidFix } from '@lism/core';
 		`fluidMinW="1em"`
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<FluidFix fluidMinW='1em' gap="20" className='has:itemGuide'>
+		<FluidFix fluidMinW='1em' gap="20" lismState={["has--itemGuide"]}>
 			<Box>
 				Fluid Contents..., <DammyText tag='span'/>
 			</Box>

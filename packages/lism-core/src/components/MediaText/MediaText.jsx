@@ -1,5 +1,5 @@
 import React from 'react';
-import { getLismProps } from '@/lib';
+import { getLismProps } from '../../lib';
 // import classnames from 'classnames';
 
 export default function MediaText({ children, tag, ...props }) {

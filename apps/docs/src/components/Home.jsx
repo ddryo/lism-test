@@ -66,7 +66,7 @@ export default function Home() {
 
 			<Preview>
 				<Box className='a--main' tag='main'>
-					<Center isConstrained className='a--atf' minH='50vh' pY={40} bgc='pale' gap={40}>
+					<Container as={Center} isConstrained className='a--atf' minH='50vh' pY={40} bgc='pale' gap={40}>
 						<Text tag='h1' fz='4xl' ff='mono' fw='light'>
 							Lism UI
 						</Text>
@@ -79,11 +79,11 @@ export default function Home() {
 						<Text c='pale' fw='700'>
 							完成度8割までを爆速構築するためのWEB設計フレームワーク。
 						</Text>
-					</Center>
+					</Container>
 					{/* HTML&CSSだけでも完結できるシンプルな設計がベースにした */}
 					<Box className='a--content' pY={40}>
 						<Box className='a--article' tag='article'>
-							<Box className='a--article__content' isFlow isConstrained hasGutter>
+							<Container className='a--article__content' isFlow isConstrained hasGutter>
 								{/* 特徴 */}
 								<Columns cols={[2, 2, 3]} gap={30}>
 									{POINTS.map((point, i) => {
@@ -111,7 +111,7 @@ export default function Home() {
 									nesciunt quos tenetur totam rerum quis quae veniam repellat amet ea, asperiores
 									provident quibusdam enim perferendis!
 								</p>
-							</Box>
+							</Container>
 						</Box>
 					</Box>
 				</Box>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Core } from '../Core';
-import { isEmptyObj, filterEmptyObj } from '@/lib';
+import { isEmptyObj, filterEmptyObj } from '../../lib';
 // import classnames from 'classnames';
 
 export function Item({

@@ -14,7 +14,7 @@ Lismで**Gridレイアウト**を使用する方法は大きく分けて2パタ�
 <Demo>
 	<Demo.Title>`<Grid>`を使う例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Grid gap={20} className='has:itemGuide'>
+		<Grid gap={20} lismState={["has--itemGuide"]}>
 			<p>A</p>
 			<p>B</p>
 			<p>C</p>
@@ -54,7 +54,7 @@ Lismコンポーネントでは `grid` Propにオブジェクト形式でflexの
 <Demo>
 	<Demo.Title>`<Grid>`コンポーネント</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Grid columns="1fr 1fr 1fr" gap={20} className='has:itemGuide'>
+		<Grid columns="1fr 1fr 1fr" gap={20} lismState={["has--itemGuide"]}>
 			<p>コンテンツ</p>
 			<p>コンテンツ</p>
 			<p>コンテンツ</p>
@@ -72,7 +72,7 @@ Lismコンポーネントでは `grid` Propにオブジェクト形式でflexの
 <Demo>
 	<Demo.Title>`<Box>`に`grid`を指定する</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Box d="grid" grid={{ columns: "1fr 1fr 1fr", gap: 20 }} className='has:itemGuide'>
+		<Box d="grid" grid={{ columns: "1fr 1fr 1fr", gap: 20 }} lismState={["has--itemGuide"]}>
 			<p>コンテンツ</p>
 			<p>コンテンツ</p>
 			<p>コンテンツ</p>
@@ -102,7 +102,7 @@ gridの子要素で使用できるプロパティは、`gridItem` にオブジ�
 <Demo>
 	<Demo.Title>`<Item>`コンポーネントに指定</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Grid columns="1fr 1fr" gap={20} className='has:itemGuide'>
+		<Grid columns="1fr 1fr" gap={20} lismState={["has--itemGuide"]}>
 			<Item>コンテンツ</Item>
 			<Item>コンテンツ</Item>
 			<Item gc="span 2">コンテンツ</Item>
@@ -123,7 +123,7 @@ gridの子要素で使用できるプロパティは、`gridItem` にオブジ�
 <Demo>
 	<Demo.Title>`gridItem`に指定</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Grid columns="1fr 1fr" gap={20} className='has:itemGuide'>
+		<Grid columns="1fr 1fr" gap={20} lismState={["has--itemGuide"]}>
 			<Box>コンテンツ</Box>
 			<Box>コンテンツ</Box>
 			<Box gridItem={{ gc: "span 2" }}>コンテンツ</Box>
@@ -150,7 +150,7 @@ gridの子要素で使用できるプロパティは、`gridItem` にオブジ�
 <Demo>
 	<Demo.Title>...</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Grid columns={["1fr 1fr", "1fr 1fr 1fr"]} gap={20} className='has:itemGuide'>
+		<Grid columns={["1fr 1fr", "1fr 1fr 1fr"]} gap={20} lismState={["has--itemGuide"]}>
 			<Item>コンテンツ</Item>
 			<Item gc={[null, "span 2"]}>コンテンツ</Item>
 			<Item gc={["span 2", "span 3"]}>コンテンツ</Item>

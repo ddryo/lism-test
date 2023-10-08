@@ -44,7 +44,7 @@ import { Grid } from '@lism/core';
 <Demo className="has--box-guide">
 	<Demo.Title>1列 → 2列 → 幅200pxで3列</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Grid columns={["1fr", "repeat(2, 1fr)", "repeat(3, 200px)"]} jc="center" gap={20} className='has:itemGuide'>
+		<Grid columns={["1fr", "repeat(2, 1fr)", "repeat(3, 200px)"]} jc="center" gap={20} lismState={["has--itemGuide"]}>
 			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
 			<p>Unde ratione blanditiis aperiam sed eos assumenda veniam</p>
 			<p>Voluptatibus voluptates similique quis, accusamus optio cumque praesentium!</p>

@@ -13,7 +13,7 @@ Lismで**Flexレイアウト**を使用する方法は大きく分けて2パタ�
 <Demo>
 	<Demo.Title>`<Flex>`を使うパターン</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex className='has:itemGuide'>
+		<Flex lismState={["has--itemGuide"]}>
 			<p>A</p>
 			<p>B</p>
 			<p>C</p>
@@ -33,7 +33,7 @@ Lismで**Flexレイアウト**を使用する方法は大きく分けて2パタ�
 <Demo>
 	<Demo.Title>`d=flex`を使うパターン</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Box d="flex" className='has:itemGuide'>
+		<Box d="flex" lismState={["has--itemGuide"]}>
 			<p>A</p>
 			<p>B</p>
 			<p>C</p>
@@ -69,7 +69,7 @@ Lismコンポーネントでは `flex` Propにオブジェクト形式でflexの
 <Demo>
 	<Demo.Title>`flex`の指定例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Box d='flex' flex={{ wrap:'wrap', direction:'row-reverse', jc:"center", gap:20 }} className='has:itemGuide'>
+		<Box d='flex' flex={{ wrap:'wrap', direction:'row-reverse', jc:"center", gap:20 }} lismState={["has--itemGuide"]}>
 			<p>A</p>
 			<p>B</p>
 			<p>C</p>
@@ -92,7 +92,7 @@ Lismコンポーネントでは `flex` Propにオブジェクト形式でflexの
 <Demo>
 	<Demo.Title>`<Flex>`の例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex wrap='wrap' direction='row-reverse' jc="center" gap={20} className='has:itemGuide'>
+		<Flex wrap='wrap' direction='row-reverse' jc="center" gap={20} lismState={["has--itemGuide"]}>
 			<p>A</p>
 			<p>B</p>
 			<p>C</p>
@@ -114,7 +114,7 @@ Lismコンポーネントでは `flex` Propにオブジェクト形式でflexの
 <Demo>
 	<Demo.Title>`<Cluster>`の例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Cluster direction='row-reverse' jc="center" gap={20} className='has:itemGuide'>
+		<Cluster direction='row-reverse' jc="center" gap={20} lismState={["has--itemGuide"]}>
 			<p>A</p>
 			<p>B</p>
 			<p>C</p>
@@ -150,7 +150,7 @@ Flexの子要素で使用できるプロパティは、`flexItem` にオブジ�
 <Demo>
 	<Demo.Title>flexItem</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex jc="center" gap={20} className='has:itemGuide'>
+		<Flex jc="center" gap={20} lismState={["has--itemGuide"]}>
 			<Box flexItem={{fxb: '50%', alignSelf:'center'}}>A</Box>
 			<Box>
 				<p>B</p>
@@ -174,7 +174,7 @@ Flexの子要素で使用できるプロパティは、`flexItem` にオブジ�
 <Demo>
 	<Demo.Title>flexItem</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex jc="center" gap={20} className='has:itemGuide'>
+		<Flex jc="center" gap={20} lismState={["has--itemGuide"]}>
 			<Item fxb='50%' alignSelf='center'>A</Item>
 			<Item>
 				<p>B</p>
@@ -210,7 +210,7 @@ Flexの子要素で使用できるプロパティは、`flexItem` にオブジ�
 			gap={[30, 40]}
 			wrap="wrap"
 			direction={['column', 'row']}
-			className='has:itemGuide'
+			lismState={["has--itemGuide"]}
 		>
 			<Item>コンテンツ</Item>
 			<Item>コンテンツ</Item>
@@ -237,7 +237,7 @@ Flexの子要素で使用できるプロパティは、`flexItem` にオブジ�
 		<Flex
 			gap={30}
 			wrap="wrap"
-			className='has:itemGuide'
+			lismState={["has--itemGuide"]}
 		>
 			<Item fxb="100%">コンテンツ</Item>
 			<Item fxg="1" fxb={['100%', '40%']}>コンテンツ</Item>
@@ -263,7 +263,7 @@ Flexの子要素で使用できるプロパティは、`flexItem` にオブジ�
 <Demo>
 	<Demo.Title>fxsh,fxbにBP指定</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex fxw="nowrap" gap={20} className='has:itemGuide'>
+		<Flex fxw="nowrap" gap={20} lismState={["has--itemGuide"]}>
 			<Item fx="1 1 50%" bgc="pale">
 				<DammyText length="xs"/>
 			</Item>

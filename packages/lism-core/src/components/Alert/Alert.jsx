@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flow } from '../Flow';
 import { Icon } from '../Icon';
-import { FluidFix } from '../FluidFix';
+import { FluidFix } from '../Flex/FluidFix';
 import { Center } from '../Flex/Center';
 
 import {

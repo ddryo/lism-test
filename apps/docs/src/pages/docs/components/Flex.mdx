@@ -39,7 +39,7 @@ import { Flex } from '@lism/core';
 <Demo>
 	<Demo.Title>`<Flex>`</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex className='has:itemGuide'>
+		<Flex lismState={["has--itemGuide"]}>
 			<div>Item</div>
 			<div>Item</div>
 			<div>Item</div>
@@ -58,7 +58,7 @@ import { Flex } from '@lism/core';
 <Demo>
 	<Demo.Title>flexオプションの指定など</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex gap={30} fxw='wrap' jc="center" p={20} className='has:itemGuide'>
+		<Flex gap={30} fxw='wrap' jc="center" p={20} lismState={["has--itemGuide"]}>
 			<div>Flex Component</div>
 			<div>Flex Component</div>
 			<div>Flex Component</div>

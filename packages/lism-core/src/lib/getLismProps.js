@@ -48,61 +48,64 @@ class CommonProps {
 
 		// 受け取るpropsとそうでないpropsを分ける
 		const {
-			forwardedRef,
 			className,
+			style = {},
+			forwardedRef,
+			// _lism = {},
 			blockClass,
 			lismClass,
-			lismModifier,
-			lismUtility,
-			// _lismState,
-			// utility, // ユーザーがコンポーネントに指定できる?
 			lismStyle = {},
-			style = {},
+			lismState = [],
 
 			// state
 			alignfull,
 			alignwide,
 			isFlow,
 			isItem,
-			// flex,
-			// grid,
-
-			isLinkbox,
-			isConstrained,
-			isContainer,
-			hasGutter,
 			hasLayer,
-			// useLog,
 			lismVar,
 			...others
 		} = props;
 
-		this.styles = { ...lismStyle, ...style };
+		// const { class: _lismClass = null, style: _lismStyle = {} } = _lism;
+
+		this.styles = Object.assign({}, lismStyle, style);
+
+		let lismClassNames = [];
+		if (blockClass && typeof blockClass === 'string') {
+			lismClassNames.push(blockClass);
+		}
+
+		if (lismClass && typeof lismClass === 'string') {
+			lismClassNames.push(lismClass);
+		}
+		if (typeof lismClass === 'object') {
+			['b', 'c', 'l', 'e', '_'].forEach((prefix) => {
+				if (!lismClass[prefix]) return;
+				lismClassNames.push(lismClass[prefix]);
+			});
+		}
 
 		// use=['layout', 'color', 'bd' ...]とかで使うprop指定?
 		this.className = classnames(
-			blockClass, // b--
-			lismClass, // l--
-			lismModifier,
-			// _lismState,
+			className, // ユーザー指定のクラス
+			lismClassNames, // l--
 			{
-				'is--flow': isFlow || false,
-				// 'is--flex': isFlex,
-				// 'is--grid': isGrid,
-				'is--item': isItem || false,
-				'is--linkbox': isLinkbox || false,
-				'is--container': isContainer || false,
-				'is--constrained': isConstrained || false,
-				'has--gutter': hasGutter || false,
-				'has--layer': hasLayer || false,
-				// 'use:lismVar': lismVar || false,
-
 				alignfull,
 				alignwide,
+				'is--flow': isFlow || false,
+				'is--item': isItem || false,
+				// 'is--linkbox': isLinkbox || false,
+				// 'is--container': isContainer || false,
+				// 'is--constrained': isConstrained || false,
 			},
-			className, // ユーザー指定
-			lismUtility
-			// utility
+			lismState, // is, has
+			{
+				// 'has--gutter': hasGutter || false,
+				'has--layer': hasLayer || false,
+				// 'use:lismVar': lismVar || false,
+			}
+			// lismUtil
 		);
 
 		// propリストのセット

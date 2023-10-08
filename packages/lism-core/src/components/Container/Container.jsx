@@ -1,22 +1,25 @@
 import React from 'react';
 import { Lism } from '../Lism';
-import { isPresetValue } from '@/lib';
+import { isPresetValue } from '../../lib';
 
 // asも受け取れるように Lism
-export default function Container({ size, isConstrained, ...props }) {
-	let stateClass = '';
-	let lismStyle = {};
-
+export default function Container({
+	// lismClass = {},
+	lismState = [],
+	lismStyle = {},
+	size,
+	isConstrained,
+	hasGutter,
+	...props
+}) {
 	if (isConstrained) {
-		stateClass = 'is--constrained';
-		// if (size) {
-		// 	lismStyle['--size'] = size;
-		// }
+		lismState.push('is--constrained');
 	} else {
-		stateClass = 'is--container';
-		// if (size) {
-		// 	lismStyle['--size'] = size;
-		// }
+		lismState.push('is--container');
+	}
+
+	if (hasGutter) {
+		lismState.push('has--gutter');
 	}
 
 	if (size) {
@@ -29,5 +32,5 @@ export default function Container({ size, isConstrained, ...props }) {
 		}
 	}
 
-	return <Lism lismStyle={lismStyle} lismUtility={stateClass} {...props} />;
+	return <Lism lismStyle={lismStyle} lismState={lismState} {...props} />;
 }

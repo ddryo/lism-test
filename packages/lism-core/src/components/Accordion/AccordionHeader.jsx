@@ -1,7 +1,7 @@
 import React from 'react';
 import { Core } from '../Core';
 import { Icon } from '../Icon';
-import { getLismProps } from '@/lib';
+import { getLismProps } from '../../lib';
 import { AccContext } from './context';
 
 // import classnames from 'classnames';

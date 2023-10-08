@@ -1,8 +1,10 @@
 import React from 'react';
 import { Core } from '../Core';
-import { isEmptyObj, filterEmptyObj } from '@/lib';
+import { isEmptyObj, filterEmptyObj } from '../../lib';
 
 export default function Grid({
+	_gridName = 'grid',
+	lismClass = {},
 	areas,
 	columns,
 	rows,
@@ -31,22 +33,6 @@ export default function Grid({
 		props.grid = grid;
 	}
 
-	return <Core lismClass='l--grid' {...props} />;
-
-	// const { className, style, attrs } = getLismProps(props, {
-	// 	lismClass: 'l--grid',
-	// 	lismModifier: modifier && 'l--grid--' + modifier,
-	// 	// useGridProps: true,
-	// });
-
-	// // --gta:, --gtc:, --gtr: クラスを削除する
-
-	// const blockProps = {
-	// 	className,
-	// 	style,
-	// 	...attrs,
-	// };
-
-	// const Grid = as || 'div';
-	// return <Grid {...blockProps}>{children}</Grid>;
+	lismClass.l = `l--${_gridName}`;
+	return <Core lismClass={lismClass} {...props} />;
 }

@@ -9,7 +9,7 @@
 		font-size: var(--fz--root);
 	}
 }
-:where(.has\:itemGuide > *) {
+:where(.has--itemGuide > *) {
 	border: 1px dashed hsla(0, 0%, 63%, 0.4);
 	padding: 2px 4px;
 }

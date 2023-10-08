@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Box, Layer, Flex } from '@lism/core';
+import { Container, Box, Layer, Flex } from '@lism/core';
 import Preview from './Preview';
 import classnames from 'classnames';
 import { renderToString } from 'react-dom/server';
@@ -20,9 +20,9 @@ const Demo = ({ children, alignfull, ...attrs }) => {
 	return (
 		<>
 			{/* <Script src='/demo.js' /> */}
-			<Box blockClass='b--demoBox' isConstrained alignfull {...attrs}>
+			<Container blockClass='b--demoBox' isConstrained alignfull {...attrs}>
 				{children}
-			</Box>
+			</Container>
 		</>
 	);
 };
@@ -70,15 +70,21 @@ Demo.Preview = ({
 			{isShadow ? (
 				<Box className={previewClass}>
 					<Preview>
-						<Box isFlow={isFlow} flowGap={flowGap} isConstrained={isConstrained} p={p}>
+						<Container isFlow={isFlow} flowGap={flowGap} isConstrained={isConstrained} p={p}>
 							{children}
-						</Box>
+						</Container>
 					</Preview>
 				</Box>
 			) : (
-				<Box isFlow={isFlow} flowGap={flowGap} isConstrained={isConstrained} className={previewClass} p={p}>
+				<Container
+					isFlow={isFlow}
+					flowGap={flowGap}
+					isConstrained={isConstrained}
+					className={previewClass}
+					p={p}
+				>
 					{children}
-				</Box>
+				</Container>
 			)}
 			{resize && (
 				<Layer position='bottom right' className='b--demoBox__help -fz:xs'>

@@ -1,4 +1,4 @@
-import { Divider, Spacer, Tabs, TabItem } from '@lism/core';
+import { Divider, Container, Spacer, Tabs, TabItem } from '@lism/core';
 import LineDemo from '@/examples/divider/line.mdx';
 import ArrowDemo from '@/examples/divider/arrow.mdx';
 import CircleDemo from '@/examples/divider/circle.mdx';
@@ -21,33 +21,41 @@ import WaveDemo from '@/examples/divider/wave.mdx';
 
 
 memo 
-- 任意のSVGを入力できるようにする
-- アニメーション機能
-	- SVGにあわせて、アニメーション手法を切り替える?
-		1. 左右交互移動 (これが一番カンタン)
-		2. 一方向への無限ループ（隙間がどうしても見えてしまう）(参考: https://chocolat5.com/ja/tips/loop-image-animation/)
+- 任意のSVGを指定できるようにしたい
+- アニメーション機能、SVGにあわせて、アニメーション手法を切り替える?
+	1. 左右交互移動 (これが一番カンタン)
+	2. 一方向への無限ループ（隙間がどうしても見えてしまうので一旦なし）  
+	(参考: https://chocolat5.com/ja/tips/loop-image-animation/)
 
 
 ## Import
 
 ```js
-import { Box } from '@lism/core';
+import { Divider } from '@lism/core';
 ```
 
 ## DEMO
 
 <Tabs alignfull>
-	<TabItem index={0} isConstrained isFlow label="Line">
-		<LineDemo />
+	<TabItem index={0} label="Line">
+		<Container isConstrained isFlow>
+			<LineDemo />
+		</Container>
 	</TabItem>
-	<TabItem index={1} isConstrained isFlow label="Wave">
-		<WaveDemo />
+	<TabItem index={1} label="Wave">
+		<Container isConstrained isFlow>
+			<WaveDemo />
+		</Container>
 	</TabItem>
-	<TabItem index={2} isConstrained isFlow label="Arrow">
-		<ArrowDemo />
+	<TabItem index={2} label="Arrow">
+		<Container isConstrained isFlow>
+			<ArrowDemo />
+		</Container>
 	</TabItem>
-	<TabItem index={3} isConstrained isFlow label="Circle">
-		<CircleDemo />
+	<TabItem index={3} label="Circle">
+		<Container isConstrained isFlow>
+			<CircleDemo />
+		</Container>
 	</TabItem>
 </Tabs>
 

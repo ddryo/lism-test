@@ -1,8 +1,10 @@
 import React from 'react';
 import { Core } from '../Core';
-import { isEmptyObj, filterEmptyObj } from '@/lib';
+import { isEmptyObj, filterEmptyObj } from '../../lib';
 
 export default function Flex({
+	_flexName = 'flex',
+	lismClass = {},
 	direction,
 	wrap,
 	ai,
@@ -30,5 +32,6 @@ export default function Flex({
 		props.flex = flex;
 	}
 
-	return <Core lismClass='l--flex' {...props} />;
+	lismClass.l = `l--${_flexName}`;
+	return <Core lismClass={lismClass} {...props} />;
 }

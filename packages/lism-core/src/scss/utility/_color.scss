@@ -64,55 +64,51 @@
 }
 
 // --keycolor : 1つのカラーをもとにスタイリングしたいときに活用する。 cbox,outline,fillなどで使っている
-[class*='-keycolor:'][data-variant='fill'] {
-	--c: var(--keycolor--c, var(--c--filled));
-}
-// .-keycolor\:{&}
-// .-keycolor\:cc {
-// 	--keycolor: currentColor;
+// [class*='-keycolor:'][data-variant='fill'] {
+// 	--c: var(--keycolor--c, var(--c--filled));
 // }
+
 .-keycolor\:main {
 	--keycolor: var(--main);
-	--keycolor--c: var(--main--c);
+	// --keycolor--c: var(--main--c);
 }
 .-keycolor\:accent {
 	--keycolor: var(--accent);
-	--keycolor--c: var(--accent--c);
+	// --keycolor--c: var(--accent--c);
 }
 .-keycolor\:gray {
 	--keycolor: var(--gray);
-	--keycolor--c: var(--gray--c);
+	// --keycolor--c: var(--gray--c);
 }
 .-keycolor\:red {
 	--keycolor: var(--red);
-	--keycolor--c: var(--red--c);
+	// --keycolor--c: var(--red--c);
 }
 .-keycolor\:orange {
 	--keycolor: var(--orange);
-	--keycolor--c: var(--orange--c);
+	// --keycolor--c: var(--orange--c);
 }
 .-keycolor\:yellow {
 	--keycolor: var(--yellow);
-	--keycolor--c: var(--yellow--c);
+	// --keycolor--c: var(--yellow--c);
 }
 .-keycolor\:green {
 	--keycolor: var(--green);
-	--keycolor--c: var(--green--c);
+	// --keycolor--c: var(--green--c);
 }
 .-keycolor\:blue {
 	--keycolor: var(--blue);
-	--keycolor--c: var(--blue--c);
+	// --keycolor--c: var(--blue--c);
 }
 .-keycolor\:purple {
 	--keycolor: var(--purple);
-	--keycolor--c: var(--purple--c);
+	// --keycolor--c: var(--purple--c);
 }
 .-keycolor\:pink {
 	--keycolor: var(--pink);
-	--keycolor--c: var(--pink--c);
+	// --keycolor--c: var(--pink--c);
 }
-
-.-keycolor\:basic {
-	--keycolor: var(--b900);
-	--keycolor--c: var(--b50);
-}
+// .-keycolor\:basic {
+// 	--keycolor: var(--b900);
+// 	--keycolor--c: var(--b50);
+// }

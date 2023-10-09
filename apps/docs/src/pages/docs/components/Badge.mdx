@@ -17,7 +17,6 @@ import {
 </Demo>
 
 
-
 ## 主なprops
 - `keycolor`: バッジのキーカラー。デフォルトは`main`カラーです。
 	- パレットカラーを指定できます。(`"red"`, `"blue"`, `"green"`, `"yellow"`, `"purple"`, `"orange"`, `"pink"`, `"gray"`
@@ -26,19 +25,18 @@ import {
 
 ## Import
 
-
 ```js
 import { Badge } from '@lism/core';
 ```
 
 ## DEMO
 
-export const ColorDemos = ({variant = 'fill'}) => {
+export const ColorDemos = ({colors, variant}) => {
 	return (
 		<Cluster gap={20}>
-			{["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"].map((ckey) => {
+			{colors.map((ckey) => {
 				return (
-					<Badge keycolor={ckey} key={ckey} variant={variant}>Badge</Badge>
+					<Badge keycolor={ckey} key={ckey} variant={variant || ''}>"{ckey}"</Badge>
 				);
 			})}
 
@@ -47,7 +45,7 @@ export const ColorDemos = ({variant = 'fill'}) => {
 }
 
 <Demo>
-	<Demo.Title>`<Spacer>`の使用例</Demo.Title>
+	<Demo.Title>`<Badge>`の使用例</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<Cluster gap={20}>
 			<Badge variant="fill">Badge</Badge>
@@ -67,27 +65,65 @@ export const ColorDemos = ({variant = 'fill'}) => {
 
 ### カラー
 
-`"red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"`などのパレットカラーの他、任意のカラーコードを指定できます。
+[カラートークン](/docs/tokens/color)の他、任意のカラーコードを指定できます。
 
 <Demo>
 	<Demo.Title>`variant="fill"`でのカラーバリエーション</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<ColorDemos variant="fill" />
+		<ColorDemos colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} />
 	</Demo.Preview>
+<Demo.Code>
+```jsx
+<Badge keycolor="red">Badge</Badge>
+<Badge keycolor="orange">Badge</Badge>
+...
+```
+</Demo.Code>
 </Demo>
 
 <Demo>
 	<Demo.Title>`variant="outline"`でのカラーバリエーション</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<ColorDemos variant="outline" />
+		<ColorDemos colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} variant="outline" />
 	</Demo.Preview>
 </Demo>
 
 <Demo>
 	<Demo.Title>`variant="subtle"`でのカラーバリエーション</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<ColorDemos variant="subtle" />
+		<ColorDemos colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} variant="subtle" />
 	</Demo.Preview>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>カラーコード指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Cluster gap={20}>
+			<Badge keycolor="#ac2c23">Badge</Badge>
+			<Badge keycolor="hsl(260deg 75% 40%)">Badge</Badge>
+			<Badge keycolor="rgb(10 80 100 / 20%)" c="base">Badge</Badge>
+		</Cluster>
+		<Cluster gap={20}>
+			<Badge variant="subtle" keycolor="#ac2c23">Badge</Badge>
+			<Badge variant="subtle" keycolor="hsl(260deg 75% 40%)">Badge</Badge>
+			<Badge variant="subtle" keycolor="rgb(10 80 100)" c="base">Badge</Badge>
+		</Cluster>
+	</Demo.Preview>
+<Demo.Code>
+```jsx
+<Cluster gap={20}>
+	<Badge keycolor="#ac2c23">Badge</Badge>
+	<Badge keycolor="hsl(260deg 75% 40%)">Badge</Badge>
+	<Badge keycolor="rgb(10 80 100 / 20%)" c="base">Badge</Badge>
+</Cluster>
+<Cluster gap={20}>
+	<Badge variant="subtle" keycolor="#ac2c23">Badge</Badge>
+	<Badge variant="subtle" keycolor="hsl(260deg 75% 40%)">Badge</Badge>
+	<Badge variant="subtle" keycolor="rgb(10 80 100)" c="base">Badge</Badge>
+</Cluster>
+```
+</Demo.Code>
 </Demo>
 
 ### アイコン

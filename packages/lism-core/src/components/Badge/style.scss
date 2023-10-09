@@ -1,25 +1,20 @@
-@layer lism-module {
-	.c--badge {
-		--keycolor: var(--b900);
-		--c: var(--c--filled);
-		--bgc: var(--keycolor);
-		--bdc: transparent;
+:where(.c--badge) {
+	--keycolor: var(--b900);
+	--c: var(--c--filled);
+	--bgc: var(--keycolor);
+	--bdc: transparent;
 
-		color: var(--c);
-		background-color: var(--bgc);
-		border: solid 1px var(--bdc); // サイズ揃えるため, 常にborderを指定
-		font-size: var(--fz--xs);
-		line-height: var(--lh--s);
-		gap: 0.2em;
-		padding: 0.125em 0.5em;
-		border-radius: var(--radius--1);
-		display: inline-flex;
-		align-items: center; // flexした時用
-	}
+	color: var(--c);
+	background-color: var(--bgc);
+	border: solid 1px var(--bdc); // サイズ揃えるため, 常にborderを指定
+	font-size: var(--fz--xs);
+	line-height: var(--lh--s);
+	gap: 0.2em;
+	padding: 0.125em 0.5em;
+	border-radius: var(--radius--1);
+	display: inline-flex;
+	align-items: center; // flexした時用
 }
-
-// fill=default
-// .c--badge[data-variant="fill"]{}
 
 .c--badge--outline {
 	--bdc: currentColor;

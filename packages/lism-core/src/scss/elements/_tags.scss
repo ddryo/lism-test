@@ -22,23 +22,28 @@
 	}
 
 	:not(pre) > code {
-		color: var(var(--b800));
-		background-color: var(--b100);
-		border: solid 1px var(--b300);
+		color: var(--code--c);
+		background-color: var(--code--bgc);
+		border: solid 1px var(--code--bdc);
 		padding: 0.125em 0.25em;
 		border-radius: 2px;
 		display: inline-block; // できるだけ途中で改行されないように
 		line-height: 1.25;
 	}
 
+	a > code {
+		color: inherit;
+		text-decoration: inherit;
+	}
+
 	kbd {
 		font-size: 0.9em;
 		font-family: var(--ff--mono);
-		color: var(var(--b800));
-		background-color: var(--b100);
-		border: solid 1px var(--b300);
+		color: var(--code--c);
+		background-color: var(--code--bgc);
+		border: solid 1px var(--code--bdc);
 		border-radius: 2px;
-		box-shadow: 0 1px 0 var(--b300);
+		box-shadow: 0 1px 0 var(--code--bdc);
 		padding: 0.25em 0.5em;
 		display: inline-block; // できるだけ途中で改行されないように
 		line-height: 1.25;

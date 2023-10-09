@@ -22,6 +22,11 @@
 		color: var(--c--link);
 		text-decoration: underline;
 		border-radius: revert; // nextra側で 0.25rem; になるのを打ち消す
+
+		> code {
+			color: inherit;
+			text-decoration: inherit;
+		}
 	}
 }
 
@@ -61,7 +66,7 @@ body {
 	container-type: inline-size;
 }
 .light.light {
-	--yellow--c: var(--b950);
+	// --yellow--c: var(--b950);
 	// --green--c: var(--b950);
 	// --c--filled: var(--b50);
 }
@@ -71,8 +76,8 @@ body {
 	--accent: #da3159;
 	--link--c: #418cff;
 	--shadow--hsl: 200 8% 99%;
-	--shadowStrength--low: 0.1;
-	--shadowStrength: 0.15;
+	--shadow-strength--low: 0.1;
+	--shadow-strength: 0.15;
 
 	--b50: hsl(var(--hs--basic) 5%);
 	--b100: hsl(var(--hs--basic) 12%);
@@ -90,9 +95,9 @@ body {
 	--pink: hsl(325 76% 56%);
 	--gray: hsl(214 8% 64%);
 
-	--cMixPer--bg: 88%;
-	--cMixPer--text: 20%;
-	--cMixPer--bd: 70%;
+	--cMixPer--bg: 90%;
+	// --cMixPer--text: 20%;
+	// --cMixPer--bd: 70%;
 
 	// --c--base: #fff;
 	// --bgc--base: #000;

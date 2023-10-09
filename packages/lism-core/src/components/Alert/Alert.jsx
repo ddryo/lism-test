@@ -3,136 +3,56 @@ import { Flow } from '../Flow';
 import { Icon } from '../Icon';
 import { FluidFix } from '../Flex/FluidFix';
 import { Center } from '../Flex/Center';
+import { defaultProps, AlertPresets } from '../../config/components';
 
-import {
-	LsAlertOutline,
-	LsInfoOutline,
-	LsLightbulbOutline,
-	LsWarningOutline,
-	LsPen,
-	LsCheck,
-	LsHatena,
-} from './icons/loos-icons';
+const _default = defaultProps?.Alert || {};
 
-import {
-	// PhPencilSimple,
-	PhWarningCircle,
-	PhWarning,
-	PhCheck,
-	PhQuestion,
-	PhLightbulb,
-	PhInfo,
-	PhNotePencil,
-} from './icons/ph';
-// import classnames from 'classnames';
-
-const AlertPresets = {
-	memo: {
-		icon: LsPen,
-		color: 'gray',
-	},
-	error: {
-		icon: LsAlertOutline,
-		color: 'red',
-	},
-	warning: {
-		icon: LsWarningOutline,
-		color: 'yellow',
-	},
-	success: {
-		icon: LsCheck,
-		color: 'green',
-	},
-	question: {
-		icon: LsHatena,
-		color: 'purple',
-	},
-	point: {
-		icon: LsLightbulbOutline,
-		color: 'orange',
-	},
-	info: {
-		icon: LsInfoOutline,
-		color: 'blue',
-	},
-};
-// const AlertColors = {}
-
-// phIcons
-const AlertIcons = {
-	memo: PhNotePencil, //PhPencilSimple,
-	error: PhWarningCircle,
-	warning: PhWarning,
-	success: PhCheck,
-	question: PhQuestion,
-	point: PhLightbulb,
-	info: PhInfo,
-};
-
-// memo: 'U+2712', //PhPencilSimple,
-// error: 'U+1F6AB', //PhWarningCircle,
-// warning: 'U+26A0', //PhWarning,
-// success: 'U+2705', // PhCheck,
-// question: 'U+2754', //PhQuestion,
-// point: 'U+1F4A1', // PhLightbulb,
-// info: 'U+2139', // PhInfo,
-
-// variant='red,blue', ...? or alert, warning, info, success, danger
 export default function Alert({
-	icon,
-	// label,
-	color,
-	// size,
-	preset = 'memo',
-	// variant,
-	iconSize,
-	// iconProps = {},
-	style = {},
-	children,
+	lismClass = {},
+	lismStyle = {},
+
 	...props
 }) {
-	const blockProps = {
-		blockClass: 'b--alert',
-		// ai: 'center',
-		// fxw: 'nowrap',
-		// fxd: ['column', 'row'],
-		// radius: '-',
-		// p: '-',
-		// gap: '-',
-		// 'data-variant': variant,
-		style,
-		...props,
-	};
+	props = Object.assign({}, _default, props);
+	let {
+		variant,
+		icon,
+		keycolor,
+		preset = 'alert',
+		iconSize,
+		iconLabel,
+		children,
+		...attrs
+	} = props;
 
-	let presetColor;
-	let presetIcon;
+	lismClass.c = 'c--alert';
+	if (variant) lismClass.c += ` c--alert--${variant}`;
 
 	if (preset) {
-		const thePresetData = AlertPresets[preset];
-		if (thePresetData) {
-			presetColor = thePresetData.color;
-			presetIcon = AlertIcons[preset] || thePresetData.icon;
-			// presetIcon = thePresetData.icon;
+		const presetData = AlertPresets[preset];
+		if (presetData) {
+			keycolor = keycolor || presetData.color || null;
+			icon = icon || presetData.icon || null;
+			iconLabel = iconLabel || presetData.label || null;
 		}
 	}
 
-	icon = icon || presetIcon;
-	color = color || presetColor || 'basic';
-	blockProps.keycolor = color;
-
+	if (keycolor) {
+		attrs.keycolor = keycolor;
+	}
 	if (iconSize) {
-		blockProps.style['--icon--size'] = iconSize;
+		lismStyle['--icon--size'] = iconSize;
 	}
 
 	// Center: 縦並び時にセンター寄せしたい
 	return (
-		<FluidFix fix='first' {...blockProps}>
+		<FluidFix fix='first' lismClass={lismClass} lismStyle={lismStyle} {...attrs}>
 			{icon && (
-				<Center blockClass='b--alert__icon'>
-					<Icon icon={icon} size='1em' />
+				<Center lismClass={{ c: 'c--alert__icon' }}>
+					<Icon icon={icon} label={iconLabel} size='1em' />
 				</Center>
 			)}
-			<Flow blockClass='b--alert__body' flowGap={30}>
+			<Flow lismClass={{ c: 'c--alert__body' }} gap='s'>
 				{children}
 			</Flow>
 		</FluidFix>

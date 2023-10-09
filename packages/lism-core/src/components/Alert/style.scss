@@ -1,31 +1,24 @@
 // Alert は --keycolor が常に渡ってくる
-
-@layer lism-init {
-	.b--alert {
-		// --keycolor: var(--gray);
+.c--alert {
+	:where(&) {
+		--fluid--minW: 16em; // .l--fluidFix より優先度高くなるように注意
+		--keycolor: var(--gray);
 		--icon--c: var(--keycolor);
 		--icon--size: 1.4em; //var(--fz--xl); //1.325em;
 		--bdc: var(--keycolor);
 		--bgc: transparent;
-		// --p: var(--space--35);
-		// --gap: var(--space--30);
-		// --bdrs: var(--radius--2);
+		padding: var(--p--box--s);
+		gap: var(--p--box--s); //0.75em;
+		// line-height: var(--lh--s);
+		// border-radius: var(--radius--2);
+		align-items: center;
+		background-color: var(--bgc);
+		border: solid 1px var(--bdc);
 	}
-}
-.b--alert {
-	--fluid--minW: 16em;
-	background-color: var(--bgc);
-	border: solid 1px var(--bdc);
-	padding: var(--p--box--s);
-	align-items: center;
-	border-radius: var(--radius--2);
-	gap: var(--p--box--s); //0.75em;
-	line-height: var(--lh--s);
 
 	// color-mixのサポートチェック
 	// srgb-linear
 	@supports (color: color-mix(in srgb, #000, #fff)) {
-		// color: color-mix(in srgb, var(--keycolor), var(--c--base) 90%);
 		--bdc: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bd));
 		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bg));
 
@@ -35,20 +28,14 @@
 			var(--keycolor),
 			var(--c, var(--c--base)) var(--cMixPer--text)
 		);
+		--code--c: var(--link--c);
+		--code--bgc: var(--bgc);
+		--code--bdc: var(--bgc);
 	}
 }
 
-.b--alert__icon {
+.c--alert__icon {
 	color: var(--icon--c);
 	font-size: var(--icon--size);
-	// width: var(--icon--size);
-	// height: var(--icon--size);
+	flex-shrink: 0;
 }
-
-// .-scale: で上書きできる詳細度で
-// :where(.b--alert__icon > .e--icon){
-// 	scale: 1.125;
-// }
-
-// .b--alert[data-preset] {
-// }

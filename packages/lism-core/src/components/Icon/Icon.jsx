@@ -1,5 +1,6 @@
 import React from 'react';
 import { Lism } from '../Lism';
+import { IconPresets } from '../../config/components';
 
 export default function Icon({
 	lismClass = {},
@@ -21,6 +22,9 @@ export default function Icon({
 	// iconに ReactElement が渡されてきた場合、childrenとして扱う
 	if (React.isValidElement(icon)) {
 		children = icon;
+	} else if (typeof icon === 'string' && IconPresets[icon]) {
+		// presetsの取得
+		icon = IconPresets[icon];
 	}
 
 	if (scale) lismStyle['--scale'] = scale;

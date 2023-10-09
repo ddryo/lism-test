@@ -1,0 +1,50 @@
+// Note は --keycolor が常に渡ってくる
+.c--note {
+	:where(&) {
+		--keycolor: var(--b800);
+		--head--c: var(--keycolor);
+		--bdc: var(--keycolor);
+		position: relative;
+		padding: var(--p--box);
+		gap: var(--space--20);
+		border-radius: var(--radius--1);
+		line-height: var(--ls--s);
+		border-inline-start: solid 4px var(--bdc);
+	}
+}
+
+// デフォルトスタイル
+:where(.c--note:not([class*='c--note--'])) {
+	// color-mixのサポートチェック
+	@supports (color: color-mix(in srgb, #000, #fff)) {
+		--head--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
+		--link--c: var(--head--c);
+		background-color: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bg));
+	}
+}
+
+.c--note__icon {
+	margin-left: -0.125em;
+}
+.c--note__head {
+	color: var(--head--c);
+	align-items: center;
+	font-weight: 700;
+	gap: 0.325em;
+}
+
+// bump
+
+// [data-variant='bump']
+.c--note--bump {
+	:where(&) {
+		border: solid 1px var(--bdc);
+		background-color: transparent;
+	}
+	:where(& > .c--note__head) {
+		background-color: var(--bgc--base);
+		margin-inline: var(--space--30);
+		padding-inline: 0.5em;
+		// border-radius: 4px;
+	}
+}

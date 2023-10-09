@@ -61,7 +61,7 @@ Lism設計では、①ではなく②を前提としています。
 
 
 
-<Note caption='なぜ?' preset="memo">
+<Note heading="なぜ?" preset="note">
 `.entry-content`エリアの中で**全幅コンテンツ**を作る場合、基本的に`width:100%`にするだけでよくなるので非常にシンプルになるためです。
 サイドバーありの2カラムレイアウトと、シンプルな1カラムレイアウトがサイト内に混在するケースでも対応しやすくなります。
 
@@ -238,7 +238,7 @@ Lism設計では、①ではなく②を前提としています。
 全幅用の`.alignfull` の幅調整が必要な特例はこの1点のみとなりますので、全体を通して非常にシンプルな実装になっています。  
 
 
-{/* <Note caption='.is--constrained と .has--gutter を分ける理由' preset='memo'>
+{/* <Note heading='.is--constrained と .has--gutter を分ける理由' preset="note">
 	`.is--constrained` に `.has--gutter`と同じ機能もつけて一つのクラスにまとめてしまえばもっとシンプルじゃないか、と思うかもしれません。
 	多くの場合はそれで十分かもしれないですが、より柔軟なケースにも対応できるように、クラスを分けています。
 </Note> */}
@@ -429,7 +429,7 @@ flowGap用のトークンとして`s`,`m`,`l`があり、ユーティリティ�
 
 `flowGap`にカスタム値を指定した要素の直下で、さらに`is--flow`を配置すると、子要素側が自身の `--flowGap` に干渉してしまいます。
 
-<Note preset='success' caption='次の位置でのネストは問題ありません'>
+<Note preset='success' heading='次の位置でのネストは問題ありません'>
 	- `flowGap`の指定がないシンプルな`.is--flow`の直下
 	- `flowGap` がユーティリティクラス（ `-flowGap:[s~l]`）で指定されている`.is--flow`の直下
 </Note>

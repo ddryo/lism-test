@@ -1,4 +1,4 @@
-import { Badge, Cluster, Icon, Center, FluidFix } from '@lism/core';
+import { Container, Badge, Cluster, Icon, Center, FluidFix } from '@lism/core';
 import {
 	Smiley,
 	Horse,
@@ -40,15 +40,17 @@ import {
 - `size`: アイコンのサイズを指定できます。初期値は`1em`になっています。
 - `label`: `aria-label`として出力したい文字列を指定できます。
 - `isInline`: 指定すると、`.e--icon--inline`クラスも出力されます。（`.e--icon`の Modifierクラス ）
+- `scale` アイコンの scaleを指定できます。
 
+### 補足説明
 
-### 追加の仕様説明
-
-- `icon`に文字列を渡すと、`data-icon`にその文字列が出力され、CSSと併用してアイコンの表示を行うことができます。  
-	→ デフォルトでは、`"triangle"`のみサポートされています。
+- `icon`に文字列を渡した場合、以下の2パターンの挙動に分かれます。
+	1. プリセット定義済みの文字列 → 準備済みのアイコンの呼び出しを行います。（数は少ないですが、追加のパッケージをインストールせずにアイコンを呼び出せます。）
+		- ※ プリセットアイコンには[Phosphor Icons](https://phosphoricons.com/)を使用しています。
+	2. その他の文字列 → `data-icon`にその文字列が出力され、CSSと併用してアイコンの表示を行うことができます。  
+		- デフォルトでは、`"triangle"`のみサポートされています。
 - `icon`にコンポーネントの指定があれば、`size`に指定した値が`width`, `height`として渡されます。それ以外の場合は`--size`として出力されます。
 - `label`の指定がある場合、`role="img"`が出力され、ない場合は`aria-hidden="true"`が出力されます。
-- `scale` アイコンの scale
 
 {/* ## 補足事項
 - fillがcurrentColorになっているアイコンのみ、色を変えられる。 */}
@@ -148,23 +150,67 @@ svgをそのまま利用するなら、普通にsvgにクラスを指定して�
 
 ### `icon`に文字列を指定する
 
-`icon="foo"`を指定すると `data-icon="foo"`が出力されるので、CSSで調整してください。
+#### プリセット値の場合
 
-Lismコアでは`"triangle"`のみ予め用意しています。
+事前`@lism/core`に組み込み済みのアイコンを呼び出します。
 
-これ"triangle"...?
+- `"alert"`: <Icon d="inline" size="1.25em" icon="alert" />
+- `"warning"`: <Icon d="inline" size="1.25em" icon="warning" />
+- `"info"`: <Icon d="inline" size="1.25em" icon="info" />
+- `"help"`: <Icon d="inline" size="1.25em" icon="help" />
+- `"check"`: <Icon d="inline" size="1.25em" icon="check" />
+- `"lightbulb"`: <Icon d="inline" size="1.25em" icon="lightbulb" />
+- `"note"`: <Icon d="inline" size="1.25em" icon="note" />
+- `"good"`: <Icon d="inline" size="1.25em" icon="good" />
+- `"bad"`: <Icon d="inline" size="1.25em" icon="bad" />
 
 <Demo>
-	<Demo.Title>`icon="triangle"`</Demo.Title>
+	<Demo.Title>プリセット指定例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Icon icon="triangle" size="3em" />
+		<Cluster>
+			<Icon icon="alert" size="1.25em" />
+			<Icon icon="warning" size="1.25em" />
+			<Icon icon="help" size="1.25em" />
+			<Icon icon="check" size="1.25em" />
+			<Icon icon="lightbulb" size="1.25em" />
+		</Cluster>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Icon icon="triangle" size="3em" />
+<Cluster>
+	<Icon icon="alert" size="1.25em" />
+	<Icon icon="warning" size="1.25em" />
+	<Icon icon="help" size="1.25em" />
+	<Icon icon="check" size="1.25em" />
+	<Icon icon="lightbulb" size="1.25em" />
+</Cluster>
 ```
 	</Demo.Code>
 </Demo>
+
+
+#### その他の文字列の場合
+
+
+`icon="foo"`を指定すると `data-icon="foo"`が出力されるので、CSSで調整してください。
+
+Lismコアでは`"accordion-toggle"`のみ用意しています。
+
+<Demo>
+	<Demo.Title>`icon="accordion-toggle"`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Icon icon="accordion-toggle" size="2em" />
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Icon icon="accordion-toggle" size="2em" />
+```
+	</Demo.Code>
+</Demo>
+
+<Alert preset="info">
+	プリセットアイコンには[Phosphor Icons](https://phosphoricons.com/)を使用しています。
+</Alert>
 
 
 ### 絵文字

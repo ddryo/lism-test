@@ -6,11 +6,11 @@ import { AccContext } from './context';
 
 // import classnames from 'classnames';
 
-const caretSvg = (
-	<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>
-		<polygon points='13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 ' />
-	</svg>
-);
+// const caretSvg = (
+// 	<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='1em' height='1em'>
+// 		<polygon points='13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 ' />
+// 	</svg>
+// );
 
 export default function AccordionHeader({
 	children,
@@ -61,7 +61,7 @@ export default function AccordionHeader({
 	} else {
 		Icons = (
 			<Core {...iconProps}>
-				<Icon icon={icon || caretSvg} size={iconSize} />
+				<Icon icon={icon || 'accordion-toggle'} size={iconSize} />
 			</Core>
 		);
 	}

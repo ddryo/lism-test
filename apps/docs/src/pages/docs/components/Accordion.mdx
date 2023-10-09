@@ -18,7 +18,8 @@ import Script from 'next/script';
 - `<Accordion>`
 	- `clickable="icon"`
 - `<AccordionHeader>`
-	- `icon`: "" | "triangle" | コンポーネント
+	- `icon`: アイコンを指定できます。内部の[`<Icon>`](/docs/components/Icon)コンポーネントに渡されます。
+		- デフォルト: `"accordion-toggle"`
 		- `openIcon`, `closeIcon` に分けて指定することも可能。
 	- `iconPosition`: "right" | "left"
 	- `labelTag`: ヘッダーテキストのHTMLタグ。
@@ -108,7 +109,7 @@ export const AccDemoContent = () => {
 				</AccordionBody>
 			</Accordion>
 			<Accordion>
-				<AccordionHeader icon="triangle">アコーディオンのタイトル</AccordionHeader>
+				<AccordionHeader icon="accordion-toggle">アコーディオンのタイトル</AccordionHeader>
 				<AccordionBody>
 					<AccDemoContent />
 				</AccordionBody>
@@ -122,7 +123,7 @@ export const AccDemoContent = () => {
 	<AccordionBody>...</AccordionBody>
 </Accordion>
 <Accordion>
-	<AccordionHeader icon="triangle">アコーディオンのタイトル</AccordionHeader>
+	<AccordionHeader icon="accordion-toggle">アコーディオンのタイトル</AccordionHeader>
 	<AccordionBody>...</AccordionBody>
 </Accordion>
 ```

@@ -17,9 +17,8 @@ export default function Button({
 	isGrid,
 	...props
 }) {
-	let btnClass = 'c--button';
-	if (variant) btnClass += ` c--button--${variant}`;
-	lismClass.c = btnClass;
+	lismClass.c = 'c--button';
+	if (variant) lismClass.c += ` c--button--${variant}`;
 
 	if (iconOffset) {
 		lismStyle['--icon--offset'] = iconOffset;

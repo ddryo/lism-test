@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lism } from '../Lism';
+import { Core } from '../Core';
 // import { InlineIcon } from '../Icon';
 // import { Flex } from '../Flex';
 // import { Icon } from '../Icon';
@@ -8,25 +8,25 @@ import { Lism } from '../Lism';
 export default function Badge({
 	// icon,
 	// label,
-	variant = 'fill',
-	color = 'basic',
+	lismClass = {},
+	// lismStyle = {},
+	variant,
+	// color,
 	hasIcon,
-	style = {},
-	children,
 	...props
 }) {
+	lismClass.c = 'c--badge';
+	if (variant) lismClass.c += ` c--badge--${variant}`;
+
 	const blockProps = {
 		tag: 'span',
-		lismClass: 'e--badge',
-		keycolor: color,
-		// radius: '-',
-		// p: '-',
-		// fz: 's',
-		style,
-		'data-variant': variant,
-		...props,
 	};
 
+	// if (color) {
+	// 	blockProps.keycolor = color;
+	// }
+
+	// data-has-iconとかでいいかも
 	if (hasIcon) {
 		blockProps.d = 'inline-flex';
 		blockProps.ai = 'center';
@@ -44,5 +44,5 @@ export default function Badge({
 	// 	blockProps.keycolor = color;
 	// }
 
-	return <Lism {...blockProps}>{children}</Lism>;
+	return <Core lismClass={lismClass} {...blockProps} {...props} />;
 }

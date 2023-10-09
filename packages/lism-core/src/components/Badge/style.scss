@@ -1,6 +1,6 @@
 @layer lism-module {
-	.e--badge {
-		// --keycolor: ;
+	.c--badge {
+		--keycolor: var(--b900);
 		--c: var(--c--filled);
 		--bgc: var(--keycolor);
 		--bdc: transparent;
@@ -13,19 +13,21 @@
 		gap: 0.2em;
 		padding: 0.125em 0.5em;
 		border-radius: var(--radius--1);
+		display: inline-flex;
+		align-items: center; // flexした時用
 	}
 }
 
 // fill=default
-// .e--badge[data-variant="fill"]{}
+// .c--badge[data-variant="fill"]{}
 
-.e--badge[data-variant='outline'] {
+.c--badge--outline {
 	--bdc: currentColor;
 	--bgc: transparent;
 	--c: var(--keycolor);
 }
 
-.e--badge[data-variant='subtle'] {
+.c--badge--subtle {
 	@supports (color: color-mix(in srgb, #000, #fff)) {
 		--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
 		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bg));

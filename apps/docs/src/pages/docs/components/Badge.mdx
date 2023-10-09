@@ -7,14 +7,22 @@ import {
 
 # Badge
 
-- `<Badge>`
-- Lismクラス: `.e--badge`
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+		```jsx
+		<span class="c--badge">Badge</span>
+		```
+	</Demo.Code>
+</Demo>
+
 
 
 ## 主なprops
-- `color`: バッジのキーカラー。デフォルトは`main`カラーです。
+- `keycolor`: バッジのキーカラー。デフォルトは`main`カラーです。
 	- パレットカラーを指定できます。(`"red"`, `"blue"`, `"green"`, `"yellow"`, `"purple"`, `"orange"`, `"pink"`, `"gray"`
-- `variant`: ボタンの表示スタイル。`fill`(default)、`outline`、`text`の3種類。
+- `variant`: ボタンの表示スタイル。`outline`、`subtle`の2種類を標準で用意しています。
+	- `c--badge--{variant}`がクラスとして出力されます。
 
 ## Import
 
@@ -30,7 +38,7 @@ export const ColorDemos = ({variant = 'fill'}) => {
 		<Cluster gap={20}>
 			{["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"].map((ckey) => {
 				return (
-					<Badge color={ckey} key={ckey} variant={variant}>Badge</Badge>
+					<Badge keycolor={ckey} key={ckey} variant={variant}>Badge</Badge>
 				);
 			})}
 
@@ -58,6 +66,9 @@ export const ColorDemos = ({variant = 'fill'}) => {
 
 
 ### カラー
+
+`"red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"`などのパレットカラーの他、任意のカラーコードを指定できます。
+
 <Demo>
 	<Demo.Title>`variant="fill"`でのカラーバリエーション</Demo.Title>
 	<Demo.Preview resize p={20}>
@@ -81,32 +92,36 @@ export const ColorDemos = ({variant = 'fill'}) => {
 
 ### アイコン
 
+`display:inline-flex`, `align-item:center` を `.c--badge` に対して指定していますので、内部にアイコンを配置してもきれいに表示されます。
 <Demo>
 	<Demo.Title>`<InlineIcon>`の使用例</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<Cluster gap={20}>
-			<Badge hasIcon variant="fill"><Icon icon={Book} size="1.125em" /> Badge</Badge>
-			<Badge hasIcon variant="outline"><Icon icon={Cat} size="1.125em" /> Badge</Badge>
-			<Badge hasIcon variant="subtle"><Icon icon={Baseball} size="1.125em" /> Badge</Badge>
-		</Cluster>
-		<Cluster gap={20}>
-			<Badge hasIcon p={10} fz="l" variant="fill"><Icon icon={Book} /></Badge>
-			<Badge hasIcon p={10} fz="l" variant="outline"><Icon icon={Cat} /></Badge>
-			<Badge hasIcon p={10} fz="l" variant="subtle"><Icon icon={Baseball} /></Badge>
+			<Badge d="inline-flex"><Icon icon={Book} size="1.25em"/> Badge</Badge>
+			<Badge d="inline-flex" variant="outline"><Icon icon={Cat} size="1.25em"/> Badge</Badge>
 		</Cluster>
 	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Cluster gap={20}>
-			<Badge hasIcon variant="fill"><Icon icon={Book} size="1.125em" /> Badge</Badge>
-			<Badge hasIcon variant="outline"><Icon icon={Cat} size="1.125em" /> Badge</Badge>
-			<Badge hasIcon variant="subtle"><Icon icon={Baseball} size="1.125em" /> Badge</Badge>
-		</Cluster>
-		<Cluster gap={20}>
-			<Badge hasIcon p={10} fz="l" variant="fill"><Icon icon={Book} /></Badge>
-			<Badge hasIcon p={10} fz="l" variant="outline"><Icon icon={Cat} /></Badge>
-			<Badge hasIcon p={10} fz="l" variant="subtle"><Icon icon={Baseball} /></Badge>
-		</Cluster>
-		```
-	</Demo.Code>
+<Demo.Code>
+```jsx
+<Cluster gap={20}>
+	<Badge d="inline-flex">
+		<Icon icon={Book} size="1.25em"/> Badge
+	</Badge>
+	<Badge d="inline-flex" variant="outline">
+		<Icon icon={Cat} size="1.25em"/> Badge
+	</Badge>
+</Cluster>
+```
+</Demo.Code>
 </Demo>
+
+{/* <Cluster gap={20}>
+	<Badge><Icon isInline icon={Book} /> Badge</Badge>
+	<Badge variant="outline"><Icon isInline icon={Cat} /> Badge</Badge>
+</Cluster> */}
+
+{/* <Cluster gap={20}>
+	<Badge hasIcon p={10} fz="l" variant="fill"><Icon icon={Book} /></Badge>
+	<Badge hasIcon p={10} fz="l" variant="outline"><Icon icon={Cat} /></Badge>
+	<Badge hasIcon p={10} fz="l" variant="subtle"><Icon icon={Baseball} /></Badge>
+</Cluster> */}

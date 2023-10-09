@@ -11,15 +11,15 @@ export default function Button({
 	iconOffset,
 	leftIcon,
 	rightIcon,
-	variant = 'fill',
-	color = 'basic',
+	variant,
+	// color,
 	children,
 	isGrid,
 	...props
 }) {
 	let btnClass = 'c--button';
 	if (variant) btnClass += ` c--button--${variant}`;
-	Object.assign(lismClass, { c: btnClass });
+	lismClass.c = btnClass;
 
 	if (iconOffset) {
 		lismStyle['--icon--offset'] = iconOffset;
@@ -31,9 +31,9 @@ export default function Button({
 		// 'data-variant': variant,
 	};
 
-	if (color) {
-		blockProps.keycolor = color;
-	}
+	// if (color) {
+	// 	blockProps.keycolor = color;
+	// }
 
 	// if (undefined !== leftIcon || undefined !== rightIcon) {
 	// 	blockProps['data-has-icon'] = '1';

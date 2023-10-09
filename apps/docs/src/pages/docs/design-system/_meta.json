@@ -4,7 +4,7 @@
 	"reset-css": "ResetCSS",
 	"break-point": "Break Points",
 	"cusomize": "Cusomize",
-
+	"contents-layout": "Contents Layout",
 	"---": {
 		"type": "separator",
 		"title": ""

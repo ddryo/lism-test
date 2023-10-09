@@ -1,0 +1,47 @@
+import { Lism, Box } from '@lism/core';
+import Image from 'next/image';
+
+# Lism
+
+Lism Props を受け取るための特殊なコンポーネントです。  
+テキスト用にデフォルトで`<p>`タグが出力されるようになっています。
+
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+		```jsx
+		<p>...</p>
+		```
+	</Demo.Code>
+</Demo>
+
+## Props
+
+- `tag`: htmlタグを指定できます。デフォルトは`<p>`です。
+
+`<Lism>`とは異なり、`as`で別コンポーネントとしての展開はできません。
+
+(Memo: テキスト用のCSSプロパティをTextでのみ受け取れるようにしてもいいかもしれない...)
+
+## Import
+
+```js
+import { Text } from '@Text/core';
+```
+
+## DEMO
+
+<Demo>
+	<Demo.Title>Textの例 1</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Text c='accent' ta="c" fz="l">Lorem ipsum text.</Text>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Text c='accent' ta="c" fz="l">
+			Lorem ipsum text.
+		</Text>
+		```
+	</Demo.Code>
+</Demo>
+

@@ -80,22 +80,36 @@
 	color: var(--rev--c) !important;
 }
 
+// ------------------------------------------------------------
 // hov:media:
-// .-hov\:mediaZoom:hover .l--layer__media{
-// 	transform: none;
-// 	filter: none;
-// }
-.-hov\:mediaZoom:hover .l--layer--media {
+// .is--transitionMedia とセットで使う
+// ------------------------------------------------------------
+
+[class*='-hov:media'] {
+	--mediaFilter: unset;
+	--mediaScale: unset;
+}
+
+// .-hov:media:XXX で変化可能なメディア
+.is--transitionMedia {
+	// .-hov:media:用
+	scale: var(--mediaScale);
+	filter: var(--mediaFilter);
+	transition: filter, scale;
+	transition-duration: var(--hov--duration);
+}
+
+.-hov\:mediaZoom:hover {
 	--mediaScale: 1.1;
 }
 // ※ filter どうしの同時使用はできないことに注意
-.-hov\:mediaDark:hover .l--layer--media {
+.-hov\:mediaDark:hover {
 	--mediaFilter: brightness(0.9);
 }
-.-hov\:mediaBright:hover .l--layer--media {
+.-hov\:mediaBright:hover {
 	--mediaFilter: brightness(1.1);
 }
-.-hov\:mediaBlur:hover .l--layer--media {
+.-hov\:mediaBlur:hover {
 	--mediaFilter: blur(4px);
 }
 

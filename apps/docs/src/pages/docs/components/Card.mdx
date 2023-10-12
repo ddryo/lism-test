@@ -1,29 +1,59 @@
-import { Box, TileGrid, Card, CardMedia, CardBody, Layer, Grid, Item, MediaLayer, FilterLayer, Button, Columns } from '@lism/core';
+import { Box, TileGrid, Card, CardMedia, CardBody, Layer, Badge, Grid, Item, MediaLayer, FilterLayer, Button, Columns } from '@lism/core';
 import Image from "next/image";
 
 
 # Card
 
-コンテンツをラップしてグループ化するためのシンプルなコンポーネントです。
+カード型でコンテンツを表示できるコンポーネントです。 全体をリンク化することも可能です。
 
-- `<Card>`
-	- CardMedia
-	- CardBody
-- Lismクラス:
-	- `.b--card`
-		- `.b--card-media`
-		- `.b--card-body`
+```jsx
+<Card>
+	<CardMedia>
+		<img src="..." />
+	</CardMedia>
+	<CardBody>
+		...Content...
+	</CardBody>
+</Card>
+```
 
-## 主なprops
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+		```jsx
+		<div class="c--card [l--stack|l--flex]">
+			<div class="c--card__media l--frame">
+				<img src="..." />
+			</div>
+			<div class="c--card__body l--stack">
+				...Content...
+			</div>
+		</div>
 
-- `Card`
-	- `shadow`
-	- `radius`
-	- `href`
+		or
+
+		<a class="c--card [l--stack|l--flex] is--linkbox" href="###">
+			<div class="c--card__media l--frame">
+				<img src="..." />
+			</div>
+			<div class="c--card__body l--stack">
+				...Content...
+			</div>
+		</a>
+		```
+	</Demo.Code>
+</Demo>
+
+
+## Props
+
+- `Card`: 内部で`Stack`が使用されています。
+	- `isFlex`: 横並びにできます。`<Stack>`ではなく`<Flex>`で構成されるようになります。
+	- `href`:
 	- `hover`
-- `CardMedia`
-	- `ratio`
-	- `media`
+- `CardMedia`: `Frame`が内部で使用されています。
+	- `aspect`: メディア比率
+	- `w`: `isFlex`が指定されている場合、`<CardMedia>`の幅を指定できます。
 - `CardBody`
 	- `isLayer`?
 
@@ -53,7 +83,7 @@ import { Card, CardMedia, CardBody } from '@lism/core';
 	<Demo.Title>シンプルなカード</Demo.Title>
 	<Demo.Preview p={30} maxW="32em">
 		<Card>
-			<CardMedia>
+			<CardMedia aspect="2/1">
 				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
 			</CardMedia>
 			<CardBody>
@@ -79,6 +109,7 @@ import { Card, CardMedia, CardBody } from '@lism/core';
 
 
 `<CardMedia>`に `aspect`を指定すると、内部で`<Frame>`が使われます。
+
 <Demo>
 	<Demo.Title>`aspect`の指定</Demo.Title>
 	<Demo.Preview p={30} maxW="32em">
@@ -93,19 +124,120 @@ import { Card, CardMedia, CardBody } from '@lism/core';
 		</Card>
 	</Demo.Preview>
 	<Demo.Code>
+	```jsx
+	<Card>
+		<CardMedia aspect="2/1">
+			<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+		</CardMedia>
+		<CardBody>
+			<h3 className="-fz:l">Card Title</h3>
+			<DammyText />
+		</CardBody>
+	</Card>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo>
+	<Demo.Title>TileGrid と併用、リンクあり, radius="4"</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<TileGrid itemMinW="20rem" gap={20}>
+			<Card href="#card-demo" radius="4">
+				<CardMedia aspect="16/9">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				</CardMedia>
+				<CardBody>
+					<h3 className="-fz:l">Card Title A</h3>
+					<DammyText />
+					<Text ta="right" mt="auto" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+			<Card href="#card-demo" radius="4">
+				<CardMedia aspect="16/9">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				</CardMedia>
+				<CardBody>
+					<h3 className="-fz:l">Card Title B</h3>
+					<DammyText length="m" />
+					<Text ta="right" mt="auto" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+		</TileGrid>
+	</Demo.Preview>
+	<Demo.Code>
 		```jsx
-		<Card>
-			<CardMedia aspect="2/1">
-				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
-			</CardMedia>
-			<CardBody>
-				<h3 className="-fz:l">Card Title</h3>
-				<DammyText />
-			</CardBody>
-		</Card>
+		<TileGrid itemMinW="20rem" gap={20}>
+			<Card href="#card-demo" radius="4">
+				<CardMedia aspect="16/9">
+					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				</CardMedia>
+				<CardBody lh="s">
+					<h3 className="-fz:l">Card Title A</h3>
+					<p>...text...</p>
+					<Text ta="right" mt="auto" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+			<Card>...</Card>
+		</TileGrid>
 		```
 	</Demo.Code>
 </Demo>
+
+
+
+<Demo>
+	<Demo.Title>メディア側にBadge追加, hoverを変えてみる</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<TileGrid itemMinW="20rem" gap={20}>
+			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
+				<CardMedia aspect="2/1">
+					<Image className="is--transitionMedia" src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+					<Badge keycolor="black" pos="absolute" top="0" right="0">Category</Badge>
+				</CardMedia>
+				<CardBody lh="s">
+					<h3 className="-fz:l">Card Title A</h3>
+					<DammyText />
+					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
+				<CardMedia aspect="2/1">
+					<Image className="is--transitionMedia" src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+					<Badge keycolor="black" pos="absolute" top="0" right="0">Category</Badge>
+				</CardMedia>
+				<CardBody lh="s">
+					<h3 className="-fz:l">Card Title B</h3>
+					<DammyText length="m" />
+					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+		</TileGrid>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {2, 4,5}
+		<TileGrid itemMinW="20rem" gap={20}>
+			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
+				<CardMedia aspect="2/1">
+					<Image className="is--transitionMedia" src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+					<Badge keycolor="black" pos="absolute" top="0" right="0">Category</Badge>
+				</CardMedia>
+				<CardBody lh="s">
+					<h3 className="-fz:l">Card Title A</h3>
+					<DammyText />
+					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+				</CardBody>
+			</Card>
+			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
+				...
+			</Card>
+			<Card>...</Card>
+		</TileGrid>
+		```
+	</Demo.Code>
+</Demo>
+
 
 
 ### 横並び
@@ -142,9 +274,9 @@ import { Card, CardMedia, CardBody } from '@lism/core';
 
 
 <Demo>
-	<Demo.Title>横並びの方向を 逆順にする</Demo.Title>
+	<Demo.Title>横並びの方向を 逆順にして、リンクも設定する</Demo.Title>
 	<Demo.Preview p={20} maxW="40em">
-			<Card isFlex direction="row-reverse">
+			<Card isFlex direction="row-reverse" href="###">
 				<CardMedia>
 					<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
 				</CardMedia>
@@ -157,7 +289,7 @@ import { Card, CardMedia, CardBody } from '@lism/core';
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx {1}
-		<Card isFlex direction="row-reverse">
+		<Card isFlex direction="row-reverse" href="###">
 			<CardMedia>
 				...
 			</CardMedia>
@@ -170,18 +302,17 @@ import { Card, CardMedia, CardBody } from '@lism/core';
 </Demo>
 
 
-#### 横並び時のメディアサイズ
+#### 横並び時のメディアサイズについて
 
-`<CardMedia>`に対して `w`, `ratio` を指定することでサイズを調整します。  
-（`w`の初期値は`50%`になっています）
+`<CardMedia>`に対して `w`で横幅、`aspect`でアスペクト比率を指定することでサイズを調整できます。（`w`の初期値は`50%`になっています）
 
 
-<Alert>
-`min-height:100%`になります。これにより、コンテンツ側よりも画像の縦幅が大きくなる場合のみ、指定したアスペクト比が保持されます。
+<Alert preset="info">
+横並び時、`.c--card__media` は `min-height:100%`になっており、コンテンツよりもメディアの縦幅が大きくなる場合のみ指定したアスペクト比が保持されます。
 </Alert>
 
 <Demo>
-	<Demo.Title>`w:32%`, `ratio:3/4`, 位置反転</Demo.Title>
+	<Demo.Title>`w:32%`, `aspect:3/4`, 位置反転</Demo.Title>
 	<Demo.Preview p={20} maxW="40em" resize>
 		<Card isFlex>
 			<CardMedia w="32%" aspect="3/4">
@@ -216,7 +347,7 @@ import { Card, CardMedia, CardBody } from '@lism/core';
 				<CardMedia w="40%">
 					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
 				</CardMedia>
-				<CardBody gap={15}>
+				<CardBody gap={15} lh='s'>
 					<h3 className="-fz:l">Card Title</h3>
 					<DammyText/>
 					<Text className="l--end" fz='s'>Bottom Text</Text>
@@ -226,7 +357,7 @@ import { Card, CardMedia, CardBody } from '@lism/core';
 				<CardMedia w="40%">
 					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
 				</CardMedia>
-				<CardBody gap={15}>
+				<CardBody gap={15} lh='s'>
 					<h3 className="-fz:l">Card Title</h3>
 					<DammyText/>
 					<Text className="l--end" fz='s'>Bottom Text</Text>
@@ -254,8 +385,8 @@ import { Card, CardMedia, CardBody } from '@lism/core';
 	</Demo.Code>
 </Demo>
 
-<Demo>
-	<Demo.Title>rtl言語テスト</Demo.Title>
+{/* <Demo>
+	<Demo.Title>rtl言語でのテスト</Demo.Title>
 	<Demo.Preview p={20} maxW="40em">
 		<Card isFlex dir='rtl'>
 			<CardMedia w="40%">
@@ -270,116 +401,19 @@ import { Card, CardMedia, CardBody } from '@lism/core';
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Card shadow={null} radius={null} gap={20} bgc="none">
+		<Card isFlex dir='rtl'>
 			<CardMedia w="40%">
 				<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
 			</CardMedia>
-			<CardBody p={null} pX={10} pY={0}>
-				<h3 className="-fz:l">Card Title</h3>
-				<DammyText />
+			<CardBody>
+				<h3 className="-fz:l">ما هو "لوريم إيبسوم" ؟</h3>
+				<p>هذا نص وهمي أنا أكتب جمل ليس لها معنى معين.هذا نص وهمي أنا أكتب جمل ليس لها معنى معين.هذا نص وهمي أنا أكتب جمل ليس لها معنى معين.</p>
+				<Text className="l--end" fz='s'>النص السفلي</Text>
 			</CardBody>
 		</Card>
 		```
 	</Demo.Code>
-</Demo>
-
-
-<Demo>
-	<Demo.Title>TileGrid と併用、リンクあり, radius="4"</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<TileGrid itemMinW="20rem" gap={20}>
-			<Card href="#card-demo" radius="4">
-				<CardMedia aspect="16/9">
-					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-				</CardMedia>
-				<CardBody>
-					<h3 className="-fz:l">Card Title A</h3>
-					<DammyText />
-					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
-				</CardBody>
-			</Card>
-			<Card href="#card-demo" radius="4">
-				<CardMedia aspect="16/9">
-					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-				</CardMedia>
-				<CardBody>
-					<h3 className="-fz:l">Card Title B</h3>
-					<DammyText length="m" />
-					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
-				</CardBody>
-			</Card>
-		</TileGrid>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<TileGrid itemMinW="20rem" gap={20}>
-			<Card href="#card-demo" radius="4">
-				<CardMedia aspect="16/9">
-					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-				</CardMedia>
-				<CardBody lh="1.625">
-					<h3 className="-fz:l">Card Title A</h3>
-					<DammyText />
-					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
-				</CardBody>
-			</Card>
-			...
-		</TileGrid>
-		```
-	</Demo.Code>
-</Demo>
-
-
-
-<Demo>
-	<Demo.Title>hoverを変えてみる</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<TileGrid itemMinW="20rem" gap={20}>
-			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
-				<CardMedia aspect="2/1">
-					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-					<Layer position="top right" c="white" bgc="black" p={10} radius="1" fz="xs">Category</Layer>
-				</CardMedia>
-				<CardBody lh="1.625">
-					<h3 className="-fz:l">Card Title A</h3>
-					<DammyText />
-					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
-				</CardBody>
-			</Card>
-			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
-				<CardMedia aspect="2/1">
-					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-					<Layer position="top right" c="white" bgc="black" p={10} radius="1" fz="xs">Category</Layer>
-				</CardMedia>
-				<CardBody lh="1.625">
-					<h3 className="-fz:l">Card Title B</h3>
-					<DammyText />
-					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
-				</CardBody>
-			</Card>
-		</TileGrid>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<TileGrid itemMinW="20rem" gap={20}>
-			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
-				<CardMedia aspect="2/1">
-					<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-					<Layer position="top right" c="white" bgc="black" p={10} radius="1" fz="xs">Category</Layer>
-				</CardMedia>
-				<CardBody lh="1.625">
-					<h3 className="-fz:l">Card Title A</h3>
-					<DammyText />
-					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
-				</CardBody>
-			</Card>
-			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
-				...
-			</Card>
-		</TileGrid>
-		```
-	</Demo.Code>
-</Demo>
+</Demo> */}
 
 
 ### isLayer
@@ -396,7 +430,7 @@ import { Card, CardMedia, CardBody } from '@lism/core';
 				<Stack h="100%" gap={20}>
 					<h3 className="-fz:l">Card Title</h3>
 					<DammyText />
-					<Button className="is:end" href="#button-test" radius="99" hover="fade">Button</Button>
+					<Button className="is--end" href="#button-test" radius="99" hover="fade">Button</Button>
 				</Stack>
 			</CardBody>
 		</Card>
@@ -446,7 +480,7 @@ hoverエフェクトを自作する
 					<FilterLayer blur="4px" brightness={1.2}/>
 					<Box pos="relative" z="1" p='box' bgc="rgba(255,255,255,0.5)" c="black">
 						<h3 className="-fz:r">Card Title A</h3>
-						<Grid className="b--card__hiddenArea">
+						<Grid className="c--card__hiddenArea">
 							<Box ov="hidden">
 								<DammyText  pY={10} fz="s" lh="1.5" opacity=".75" />
 							</Box>
@@ -463,7 +497,7 @@ hoverエフェクトを自作する
 					<FilterLayer blur="4px" brightness={1.2}/>
 					<Box pos="relative" z="1" p='box' bgc="rgba(255,255,255,0.5)" c="black">
 						<h3 className="-fz:r">Card Title A</h3>
-						<Grid className="b--card__hiddenArea">
+						<Grid className="c--card__hiddenArea">
 							<Box ov="hidden">
 								<DammyText  pY={10} fz="s" lh="1.5" opacity=".75" />
 							</Box>
@@ -485,14 +519,14 @@ hoverエフェクトを自作する
 このクラスに対して、下記のCSSを追加して上記のDEMOを実装しています。
 
 ```scss
-.b--card.-hov\:contentUp .b--card__hiddenArea{
-	--gtr:0fr;
+.c--card.-hov\:contentUp .c--card__hiddenArea{
+	--gtr--val: 0fr;
 	opacity: 0;
 	transition: opacity .25s, grid-template-rows .25s;
 }
 
-.b--card.-hov\:contentUp:hover .b--card__hiddenArea{
-	--gtr: 1fr;
+.c--card.-hov\:contentUp:hover .c--card__hiddenArea{
+	--gtr--val: 1fr;
 	opacity: 1;
 }
 ```

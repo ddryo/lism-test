@@ -2,21 +2,14 @@ import React from 'react';
 import { Core } from '../Core';
 import { Grid } from '../Grid';
 import { Icon } from '../Icon';
+import { defaultProps } from '../../config/components';
+const _default = defaultProps?.Button || {};
 
 // variant
-export default function Button({
-	lismClass = {},
-	lismStyle = {},
-	icon,
-	iconOffset,
-	leftIcon,
-	rightIcon,
-	variant,
-	// color,
-	children,
-	isGrid,
-	...props
-}) {
+export default function Button({ lismClass = {}, lismStyle = {}, ...props }) {
+	props = Object.assign({}, _default, props);
+	let { icon, iconOffset, leftIcon, rightIcon, variant, children, isGrid, ...attrs } = props;
+
 	lismClass.c = 'c--button';
 	if (variant) lismClass.c += ` c--button--${variant}`;
 
@@ -44,14 +37,14 @@ export default function Button({
 	// → 別コンポーネントに切り分けるべき...?
 	if (icon) {
 		return (
-			<ButtonComponent tag='a' hover='fade' {...blockProps} p={30} {...props}>
+			<ButtonComponent tag='a' hover='fade' {...blockProps} p={30} {...attrs}>
 				<Icon icon={icon} lismClass={{ c: 'c--button__icon' }} />
 			</ButtonComponent>
 		);
 	}
 
 	return (
-		<ButtonComponent tag='a' hover='fade' {...blockProps} {...props}>
+		<ButtonComponent tag='a' hover='fade' {...blockProps} {...attrs}>
 			{leftIcon && (
 				<Icon icon={leftIcon} lismClass={{ c: 'c--button__icon' }} data-position='left' />
 			)}

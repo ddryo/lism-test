@@ -403,21 +403,22 @@ class CommonProps {
 			// if (hover?.utility) {
 			// 	this.setHoverClass(hover.utility);
 			// }
-			if (hover?.c) {
+			const { c, bgc, bdc, shadow } = hover;
+			if (c) {
 				this.addUtil('-hov:c:');
-				this.addStyle('--hov--c', getMaybeColorVar(hover.c));
+				this.addStyle('--hov--c', getMaybeColorVar(c, 'c'));
 			}
-			if (hover?.bgc) {
+			if (bgc) {
 				this.addUtil('-hov:bgc:');
-				this.addStyle('--hov--bgc', getMaybeColorVar(hover.bgc));
+				this.addStyle('--hov--bgc', getMaybeColorVar(bgc, 'bgc'));
 			}
-			if (hover?.bdc) {
+			if (bdc) {
 				this.addUtil('-hov:bdc:');
-				this.addStyle('--hov--bdc', getMaybeColorVar(hover.bdc));
+				this.addStyle('--hov--bdc', getMaybeColorVar(bdc, 'bdc'));
 			}
-			if (hover?.shadow) {
+			if (shadow) {
 				this.addUtil('-hov:shadow:');
-				this.addStyle('--hov--shadow', getMaybeShadowVar(hover.shadow));
+				this.addStyle('--hov--shadow', getMaybeShadowVar(shadow));
 			}
 		}
 	}

@@ -7,6 +7,8 @@ import {
 
 # Badge
 
+バッジを表示するコンポーネントです。
+
 <Demo>
 	<Demo.Title>対応するHTML構造</Demo.Title>
 	<Demo.Code>
@@ -129,21 +131,23 @@ export const ColorDemos = ({colors, variant}) => {
 ### アイコン
 
 `display:inline-flex`, `align-item:center` を `.c--badge` に対して指定していますので、内部にアイコンを配置してもきれいに表示されます。
+
+
 <Demo>
 	<Demo.Title>`<InlineIcon>`の使用例</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<Cluster gap={20}>
-			<Badge d="inline-flex"><Icon icon={Book} size="1.25em"/> Badge</Badge>
-			<Badge d="inline-flex" variant="outline"><Icon icon={Cat} size="1.25em"/> Badge</Badge>
+			<Badge><Icon icon={Book} size="1.25em"/> Badge</Badge>
+			<Badge variant="outline"><Icon icon={Cat} size="1.25em"/> Badge</Badge>
 		</Cluster>
 	</Demo.Preview>
 <Demo.Code>
 ```jsx
 <Cluster gap={20}>
-	<Badge d="inline-flex">
+	<Badge>
 		<Icon icon={Book} size="1.25em"/> Badge
 	</Badge>
-	<Badge d="inline-flex" variant="outline">
+	<Badge variant="outline">
 		<Icon icon={Cat} size="1.25em"/> Badge
 	</Badge>
 </Cluster>

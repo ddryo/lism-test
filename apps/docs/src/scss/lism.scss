@@ -29,15 +29,15 @@
 }
 
 // 追加したhovクラス
-.b--card.-hov\:contentUp .b--card__hiddenArea {
+.c--card.-hov\:contentUp .c--card__hiddenArea {
 	transition:
 		opacity 0.25s,
 		grid-template-rows 0.25s;
 	opacity: 0;
-	--gtr: 0fr;
+	--gtr--val: 0fr;
 }
 
-.b--card.-hov\:contentUp:hover .b--card__hiddenArea {
+.c--card.-hov\:contentUp:hover .c--card__hiddenArea {
 	opacity: 1;
-	--gtr: 1fr;
+	--gtr--val: 1fr;
 }

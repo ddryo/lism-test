@@ -2,46 +2,62 @@ import React from 'react';
 import { Frame } from '../Frame';
 import { LinkBox } from '../LinkBox';
 import { FilterLayer } from '../Layer';
-import { Lism } from '../Lism';
+import { Layer, MediaLayer } from '../Layer';
 import { getMediaLayer } from '../helper';
 // import { Box } from '../Box';
 // import classnames from 'classnames';
+import { defaultProps } from '../../config/components';
+const _default = defaultProps?.Banner || {};
 
 export default function Banner({
+	// lismState = [],
+	lismClass = {},
+	// lismStyle = {},
 	children,
-	// ratio,
-	// href,
-	media,
-	filter,
-	// flowGap,
-	// contentProps = {},
-	...attrs
+	...props
 }) {
-	const theProps = { blockClass: 'b--banner', ...attrs };
+	props = Object.assign({}, _default, props);
+	let { variant, media, filter, ...attrs } = props;
 
-	if (attrs.aspect) {
-		theProps.as = Frame;
-	}
+	lismClass.c = 'c--banner';
+	if (variant) lismClass.c += ` c--banner--${variant}`;
 
-	const Contents = (
+	// if (hasTransitionMedia) {
+	// 	lismState.push('has--transitionMedia');
+	// }
+
+	const theProps = { lismClass, ...attrs };
+
+	let Contents = (
 		<>
-			{getMediaLayer(media)}
-			{filter && <FilterLayer {...filter} />}
+			{getMediaLayer(media, -1)}
+			{filter && <FilterLayer z={-1} {...filter} />}
 			{/* <Lism blockClass='b--banner__content' isFlow flowGap={flowGap || 40}> */}
 			{children}
 			{/* </Lism> */}
 		</>
 	);
 
+	// if (hasTransitionMedia) {
+	// 	Contents = (
+	// 		<MediaLayer hasTransitionMedia lismClass={{ c: 'c--banner__media' }}></MediaLayer>
+	// 	);
+	// }
+
 	// hrefあり
 	if (attrs.href) {
 		return (
-			<LinkBox tag='a' {...theProps}>
+			<LinkBox tag='a' as={Frame} {...theProps}>
 				{Contents}
 			</LinkBox>
 		);
 	}
 
 	// ratio指定なし、href指定なし
-	return <Lism {...theProps}>{Contents}</Lism>;
+	return <Frame {...theProps}>{Contents}</Frame>;
 }
+
+// export function BannerContent({ lismClass = {}, ...props }) {
+// 	lismClass.c = 'c--banner__content';
+// 	return <Layer lismClass={lismClass} p='box' {...props} inset='0' z='1' />;
+// }

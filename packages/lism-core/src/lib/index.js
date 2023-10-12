@@ -91,9 +91,11 @@ export function getMaybeSpaceVar(space) {
 	return space;
 }
 
-export function getMaybeColorVar(color) {
+export function getMaybeColorVar(color, type) {
 	if (isPresetValue('color', color)) {
-		return 'var(--' + color + ')';
+		return `var(--${color})`;
+	} else if (type && isPresetValue(type, color)) {
+		return `var(--${type}--${color})`;
 	}
 	//  else if (isPresetValue('keycolor', color)) {
 	// 	return 'var(--c--' + color + ')';

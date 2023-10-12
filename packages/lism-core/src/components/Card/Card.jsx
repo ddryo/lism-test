@@ -1,53 +1,56 @@
 import React from 'react';
 import { Frame } from '../Frame';
-import { Lism } from '../Lism';
-import { Layer } from '../Layer';
+import { Layer, MediaLayer } from '../Layer';
 import { LinkBox } from '../LinkBox';
 import { Stack } from '../Flex/Stack';
 import { Flex } from '../Flex';
-// import { getMediaLayer } from '../helper';
-// import { Item } from '../Item';
+import { defaultProps } from '../../config/components';
+const _default = defaultProps?.Card || {};
 
-export default function Card({ children, isFlex, href, ...props }) {
-	// let bannerContents = null;
-	const blockProps = {
-		blockClass: 'b--card',
-		// gap: 0,
-		shadow: '2',
-		radius: '2',
-		...props,
-	};
+export default function Card({
+	lismClass = {},
+	// lismStyle = {},
+	children,
+	...props
+}) {
+	props = Object.assign({}, _default, props);
+	let { variant, isFlex, ...attrs } = props;
 
-	// 以下、ratio なし
-	if (href) {
+	lismClass.c = 'c--card';
+	if (variant) lismClass.c += ` c--card--${variant}`;
+
+	let CardComponent = isFlex ? Flex : Stack;
+
+	// 以下、 href なし
+	if (attrs.href) {
 		return (
-			<LinkBox href={href} as={Stack} {...blockProps}>
+			<LinkBox as={CardComponent} lismClass={lismClass} {...attrs}>
 				{children}
 			</LinkBox>
 		);
 	}
 
-	// href指定なし
-	if (isFlex) {
-		return <Flex {...blockProps}>{children}</Flex>;
-	}
-	return <Stack {...blockProps}>{children}</Stack>;
+	// href 指定なし
+	return (
+		<CardComponent lismClass={lismClass} {...attrs}>
+			{children}
+		</CardComponent>
+	);
 }
 
-export function CardMedia({ aspect, children, ...props }) {
-	// const Component = aspect ? Frame : Lism;
+export function CardMedia({ lismClass = {}, children, ...props }) {
+	lismClass.c = 'c--card__media';
 	return (
-		<Frame blockClass='b--card__media' aspect={aspect} {...props}>
+		<Frame lismClass={lismClass} {...props}>
+			{/* <MediaLayer> */}
 			{children}
+			{/* </MediaLayer> */}
 		</Frame>
 	);
 }
 
-export function CardBody({ children, isLayer, ...props }) {
+export function CardBody({ lismClass = {}, isLayer, ...props }) {
 	const Component = isLayer ? Layer : Stack;
-	return (
-		<Component blockClass='b--card__body' p='box' gap={isLayer ? null : 20} {...props}>
-			{children}
-		</Component>
-	);
+	lismClass.c = 'c--card__body';
+	return <Component lismClass={lismClass} p='box' gap={isLayer ? null : 20} {...props} />;
 }

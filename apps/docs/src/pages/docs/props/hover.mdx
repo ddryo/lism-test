@@ -1,6 +1,27 @@
 import { Fragment } from "react";
 import Link from "next/link";
-import { Button, Text, Box, Stack, Frame, FrameContent, LinkBox, Columns, Banner } from "@lism/core";
+import { Button, Media, MediaLayer, FilterLayer, Layer, Text, Box, Stack, Frame, FrameContent, LinkBox, Columns, Banner } from "@lism/core";
+import Image from 'next/image'
+
+# Hover
+
+- `hover`にhover時の挙動を指定できる。
+	- `hover="{utility}"`でユーティリティクラス `.-hov:{utility}` を出力します。。
+	- `"fade"`, `"dark"`, `"shadow"` などいくつかユーティリティクラスを標準で用意しています。
+	- `"media:XXX"`の形式でメディア用のホバークラスも用意しています。
+		- `"mediaZoom"`,...
+		- `is--transitionMedia`クラスを持つ要素に対してホバー時のスタイルを指定しています。
+- `hover={["foo", "bar"]}`で複数のユーティリティクラスを出力。
+- `hover={{c, bgc, bdc, shadow, media:{}? }}` でhover時のプロパティの変化を詳細に指定可能。
+
+
+
+## ユーティリティプリセット
+
+`"fade"`, `"dark"`, `"shadow"`, `"up"`, `"scale"`
+
+
+## Demo
 
 export const DemoBoxs = ({hover, ...attrs}) => {
 	const DEMO_BOX = [
@@ -11,7 +32,7 @@ export const DemoBoxs = ({hover, ...attrs}) => {
 		<Columns cols={[2]} gap={20}>
 			{DEMO_BOX.map((boxProps, i) => {
 				return (
-					<LinkBox key={i} href="#link" hover={hover} p={20} {...boxProps} {...attrs}>
+					<LinkBox key={i} href="#link" hover={hover} p="box" {...boxProps} {...attrs}>
 						<Text fz='fluid'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
 					</LinkBox>
 				);
@@ -20,34 +41,11 @@ export const DemoBoxs = ({hover, ...attrs}) => {
 	);
 }
 
-
-{/* // export const DEMO_UTILS_MEDIA = [
-// 	{ label: '["shadow", "up"]', hover: ["shadow", "up"] },
-// 	{ label: '["shadow", "up"]', hover: ["shadow", "up"] },
-// ]; */}
-
-
-# Hover
-
-- `hover`にhover時の挙動を指定できる。
-- `hover="_utilName_"`でユーティリティクラスを出力。
-	- `.-hov:_utilName_`が出力される。
-	- `"fade"`, `"dark"`, `"shadow"` などが指定可能。
-- `hover={["_utilName1_", "_utilName2_"]}`で複数のユーティリティクラスを出力。
-- `hover={{c,bgc,bdc,radius,shadow,utility}}` でhover時のpropを詳細に指定可能。
-	- c: color
-	- bgc: background-color
-	- bdc: border-color
-	- radius: border-radius
-	- shadow: box-shadow
-	- utility: ユーティリティクラス用のキーワード値 ( `"fade"`, `"dark"`, `"shadow"` など )
-
-
-## プリセット値
-
-`"fade"`, `"dark"`, `"shadow"`, `"up"`, `"scale"`
-
 ### 単一指定してみる
+
+`hover`プロパティにユーティリティクラス用の文字列を指定する例を紹介します。
+
+
 <Demo>
 	<Demo.Title>`hover="fade"`</Demo.Title>
 	<Demo.Preview p={20}>
@@ -55,49 +53,85 @@ export const DemoBoxs = ({hover, ...attrs}) => {
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx
-	<LinkBox href="#link" p={20} hover="fade">...</LinkBox>
+	<LinkBox href="#link" p="box" hover="fade">
+		...
+	</LinkBox>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>`hover="shadow"`</Demo.Title>
+	<Demo.Preview p={20}>
+		<DemoBoxs hover="shadow"/>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<LinkBox href="#link" p="box" hover="shadow">
+		...
+	</LinkBox>
 	```
 	</Demo.Code>
 </Demo>
 <Demo>
-	<Demo.Title>`hover="shadow"`</Demo.Title>
-	<Demo.Preview p={{Y:30}} noframe>
-		<DemoBoxs hover="shadow"/>
-	</Demo.Preview>
-</Demo>
-<Demo>
 	<Demo.Title>`hover="up"`</Demo.Title>
-	<Demo.Preview p={{Y:30}} noframe>
+	<Demo.Preview p={20}>
 		<DemoBoxs hover="up"/>
 	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<LinkBox href="#link" p="box" hover="up">
+		...
+	</LinkBox>
+	```
+	</Demo.Code>
 </Demo>
 <Demo>
 	<Demo.Title>`hover="scale"`</Demo.Title>
-	<Demo.Preview p={{Y:30}} noframe>
+	<Demo.Preview p={20}>
 		<DemoBoxs hover="scale"/>
 	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<LinkBox href="#link" p="box" hover="scale">
+		...
+	</LinkBox>
+	```
+	</Demo.Code>
 </Demo>
+
 <Demo>
 	<Demo.Title>`hover="dark"`</Demo.Title>
-	<Demo.Preview p={{Y:30}} noframe>
+	<Demo.Preview p={20}>
 		<DemoBoxs hover="dark"/>
 	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<LinkBox href="#link" p="box" hover="dark">
+		...
+	</LinkBox>
+	```
+	</Demo.Code>
 </Demo>
+
+
+bright?
 
 
 ## オブジェクト形式でより柔軟にhover時の挙動を指定できます
 
-c,bgc,bdc,shadow を受け取れます。
+`c`,`bgc`,`bdc`,`shadow` を受け取れます。
 
 <Demo>
-	<Demo.Title>`hover={{ bgc:"main", c:"white"}}`</Demo.Title>
+	<Demo.Title>`bgc`を`"main"`, `c`を`"white"`に変化させる</Demo.Title>
 	<Demo.Preview p={20}>
 		<LinkBox
 			href="#link"
 			bgc="pale"
-			p={20}
+			p="box"
 			hover={{ bgc:"main", c:"white"}}
 		>
+			<Text>LinkBox.</Text>
 			<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
 		</LinkBox>
 	</Demo.Preview>
@@ -106,14 +140,40 @@ c,bgc,bdc,shadow を受け取れます。
 		<LinkBox
 			href="#link"
 			bgc="pale"
-			p={20}
+			p="box"
 			hover={{ bgc:"main", c:"white"}}
 		>...</LinkBox>
 	```
 	</Demo.Code>
 </Demo>
 
-### 配列で複数指定可能です
+<Demo>
+	<Demo.Title>`bgc`を`"b100"`, `bdc`を`"b700"`に変化させる</Demo.Title>
+	<Demo.Preview p={20}>
+		<LinkBox
+			href="#link"
+			p="box"
+			bd={{ c:"base" }}
+			hover={{ bgc:"b100", bdc:"b700"}}
+		>
+			<Text>LinkBox.</Text>
+			<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
+		</LinkBox>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {5}
+		<LinkBox
+			href="#link"
+			p="box"
+			bd={{ c:"base" }}
+			hover={{ bgc:"b100", bdc:"b700"}}
+		>...</LinkBox>
+	```
+	</Demo.Code>
+</Demo>
+
+
+### 配列で複数の値を指定可能です
 
 <Demo>
 	<Demo.Title>`hover={[ "shadow", "up" ]}`</Demo.Title>
@@ -122,20 +182,20 @@ c,bgc,bdc,shadow を受け取れます。
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx
-	<LinkBox href="#link" p={20} hover={[ "shadow", "up" ]}>...</LinkBox>
+	<LinkBox href="#link" p="box" hover={[ "shadow", "up" ]}>...</LinkBox>
 	```
 	</Demo.Code>
 </Demo>
 
 <Demo>
-	<Demo.Title>`"up"` プリセットに加えて、shadow, bdc, bgc を指定</Demo.Title>
+	<Demo.Title>`"up"` に加えて、shadow, bdc, bgc を指定</Demo.Title>
 	<Demo.Preview p={20}>
 		<LinkBox
 			href="#link"
 			bd
 			bdw="2px"
 			bdc="base"
-			p={20}
+			p="box"
 			hover={["up", { shadow:"2", bdc:"blue", bgc: "b100" }]}
 		>
 			<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
@@ -146,7 +206,7 @@ c,bgc,bdc,shadow を受け取れます。
 		<LinkBox
 			href="#link"
 			bd={{ w:"2px", c:"base" }}
-			p={20}
+			p="box"
 			hover={["up", { shadow:"2", bdc:"blue", bgc: "b100" }]}
 		>...</LinkBox>
 	```
@@ -155,70 +215,87 @@ c,bgc,bdc,shadow を受け取れます。
 
 <h2>MediaLayerへのホバーエフェクト</h2>
 
+<Demo>
+	<Demo.Title>`["up", "mediaBright"]`</Demo.Title>
+	<Demo.Preview p={20}>
+		<Banner
+			href='#banner-link'
+			hover={["up", "mediaBright"]}
+		>
+			<img className="is--transitionMedia" src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
+		</Banner>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {3,5}
+	<Banner
+		href='#banner-link'
+		hover={["up", "mediaBright"]}
+	>
+		<img className="is--transitionMedia" src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
+	</Banner>
+	```
+	</Demo.Code>
+</Demo>
 
 <Demo>
 	<Demo.Title>`["mediaZoom", "mediaBlur"]`</Demo.Title>
 	<Demo.Preview p={20}>
 		<Banner
 			href='#banner-link'
-			c='#fff'
 			aspect='16/9'
-			p='box:l'
 			hover={["mediaZoom", "mediaBlur"]}
-			media={{ src: '/img/demo-img.jpeg', alt: '', width: 960, height: 640, loading: 'lazy' }}
-			filter={{ bgc: 'rgba(0, 0, 0, 0.5)' }}
 		>
-			<Stack gap={20}>
-				<DammyText />
-			</Stack>
+			<MediaLayer>
+				<Media as={Image} isTransitionMedia src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+			</MediaLayer>
+			<FilterLayer bgc="rgba(0, 0, 0, 0.4)" />
+			<Layer inset="0" c="white" p="box:l">
+				<DammyText length="m"/>
+			</Layer>
 		</Banner>
 	</Demo.Preview>
 	<Demo.Code>
-	```jsx
+	```jsx {4,7}
+	<Banner
+		href='#banner-link'
+		aspect='16/9'
+		hover={["mediaZoom", "mediaBlur"]}
+	>
+		<MediaLayer>
+			<Media as={Image} isTransitionMedia src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+		</MediaLayer>
+		<FilterLayer bgc="rgba(0, 0, 0, 0.4)" />
+		<Layer inset="0" c="white" p="box:l">
+			<DammyText length="m"/>
+		</Layer>
+	</Banner>
 	```
 	</Demo.Code>
 </Demo>
 
+<Alert>
+※ `mediaZoom`をかける時は、MediaLayerを使わないと拡大した時にレイアウトが崩れる可能性があります。
+</Alert>
 
-<Demo>
-	<Demo.Title>`["shadow", "up", "mediaBright"]`</Demo.Title>
-	<Demo.Preview p={20}>
-		<Banner
-			href='#banner-link'
-			c='#fff'
-			aspect='16/9'
-			p='box:l'
-			hover={["shadow", "up", "mediaBright"]}
-			media={{ src: '/img/demo-img.jpeg', alt: '', width: 960, height: 640, loading: 'lazy' }}
-			filter={{ bgc: 'rgba(0, 0, 0, 0.5)' }}
-		>
-			<Stack gap={20}>
-				<DammyText />
-			</Stack>
-		</Banner>
-	</Demo.Preview>
-	<Demo.Code>
-	```jsx
-	```
-	</Demo.Code>
-</Demo>
+
 
 
 ## reverse
 
-Button用.`reverse`
+`reverse`は、`--c`と`--bgc`を入れ替えます。
+（基本的には`<Button>`用です.）
 
 <Demo>
 	<Demo.Title>`hover="reverse"`</Demo.Title>
 	<Demo.Preview p={20}>
-		<LinkBox href="#link" p={20} hover="reverse" bd='-' bdc='#000' bgc="#f5f5f5" c="#000">
+		<LinkBox href="#link" p="box" hover="reverse" bd='-' bdc='#000' bgc="#f5f5f5" c="#000">
 			<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
 		</LinkBox>
 		<Flex gap={20}>
-			<Button href="#link" p={20} hover="reverse" variant="text" bgc="#f5f5f5" c="#000">
+			<Button href="#link" p="box" hover="reverse" variant="text" bgc="#f5f5f5" c="#000">
 				Lorem Button
 			</Button>
-			<Button href="#link" p={20} hover="reverse" color="#194f32">
+			<Button href="#link" p="box" hover="reverse" color="#194f32">
 				Lorem Button
 			</Button>
 		</Flex>
@@ -228,23 +305,6 @@ Button用.`reverse`
 	```
 	</Demo.Code>
 </Demo>
-
-
-### bgc
-
-<LinkBox hover="bgc:" href="#link" p={20}>
-	<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
-</LinkBox>
-
-{/* <LinkBox hover="bgc:b100" href="#link" p={20}>
-	<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
-</LinkBox>
-<LinkBox hover="bgc:b200" href="#link" p={20}>
-	<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
-</LinkBox>
-<LinkBox hover="bgc:b900" href="#link" p={20}>
-	<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
-</LinkBox> */}
 
 
 <h2>カスタムUtility</h2>

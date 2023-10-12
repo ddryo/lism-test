@@ -1,5 +1,30 @@
 import * as phicons from '../lib/icons/phosphoricons';
 
+export const defaultProps = {
+	Alert: {
+		// lh: 's',
+		radius: '2',
+	},
+	Note: {
+		radius: '1',
+		headProps: {
+			fw: '700',
+		},
+	},
+	Badge: {
+		radius: '1',
+		fz: 'xs',
+	},
+	Button: {
+		radius: '1',
+	},
+	Banner: {},
+	Card: {
+		shadow: '2',
+		radius: '2',
+	},
+};
+
 export const IconPresets = {
 	note: phicons.NotePencil,
 	alert: phicons.WarningCircle,
@@ -93,16 +118,3 @@ export const AlertPresets = {
 	},
 };
 export const NotePresets = AlertPresets;
-
-export const defaultProps = {
-	Alert: {
-		// lh: 's',
-		radius: '2',
-	},
-	Note: {
-		radius: '1',
-		headProps: {
-			fw: '700',
-		},
-	},
-};

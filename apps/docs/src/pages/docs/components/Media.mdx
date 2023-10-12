@@ -1,0 +1,82 @@
+import { Media, MediaLayer, Banner } from '@lism/core';
+import Image from 'next/image';
+
+# Lism
+
+Lism Props を受け取るための特殊な画像・動画用のコンポーネントです。  
+デフォルトで`<img>`タグが出力されるようになっています。
+
+<Demo>
+	<Demo.Title>対応するHTML構造</Demo.Title>
+	<Demo.Code>
+		```jsx
+		<img />
+		```
+	</Demo.Code>
+</Demo>
+
+
+## Props
+
+- `tag`: htmlタグを指定できます。デフォルトは`<img>`です。
+- `as`: 展開したいコンポーネントを指定できます。(例: `Next.js`の`Image>`コンポーネントなど）
+- `isTransitionMedia`: `is--transitionMedia`クラスを出力します。`.-hov:media:XXX`と併用してホバーエフェクトを適用できます。
+	- ※ プロパティ名、クラス名は要検討
+
+## Import
+
+```js
+import { Media } from '@Media/core';
+```
+
+## DEMO
+
+<Demo>
+	<Demo.Title>Mediaの例1: ただの画像</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+		```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo>
+	<Demo.Title>Mediaの例2: `as`でnextの`Image`を渡す</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Media as={Image} src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+	</Demo.Preview>
+<Demo.Code>
+```jsx
+import Image from 'next/image';
+
+<Media as={Image} src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+```
+</Demo.Code>
+</Demo>
+
+
+
+<Demo>
+	<Demo.Title>Mediaの例3: `isTransitionMedia`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Banner href="###" hover="mediaZoom" aspect="16/9">
+			<MediaLayer>
+				<Media as={Image} isTransitionMedia src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+			</MediaLayer>
+		</Banner>
+	</Demo.Preview>
+<Demo.Code>
+```jsx
+<Banner href="###" hover="mediaZoom" aspect="16/9">
+	<MediaLayer>
+		<Media as={Image} isTransitionMedia src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+	</MediaLayer>
+</Banner>
+```
+</Demo.Code>
+</Demo>

@@ -1,9 +1,3 @@
-:root {
-	// fill時のカラーをグローバルに定義？ → .-c:white なエリアでは #000 に反転させたりしておくと便利か。
-	// → .-c:white を用意する意味もでてくる。
-	// --c--filled: #fff;
-}
-
 @layer lism-module {
 	.c--button {
 		--keycolor: var(--b900);
@@ -53,7 +47,6 @@
 	color: var(--c);
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc); // アウトラインと並べたときにサイズに差がでないように
-	border-radius: var(--radius--1);
 	line-height: 1.25;
 	padding-block: 0.325em;
 	padding-inline: 1em;

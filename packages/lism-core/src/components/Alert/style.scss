@@ -1,7 +1,7 @@
 // Alert は --keycolor が常に渡ってくる
 .c--alert {
 	:where(&) {
-		--fluid--minW: 16em; // .l--fluidFix より優先度高くなるように注意
+		--fluid--minW: 16rem; // .l--fluidFix より優先度高くなるように注意
 		--keycolor: var(--gray);
 		--icon--c: var(--keycolor);
 		--icon--size: 1.4em; //var(--fz--xl); //1.325em;

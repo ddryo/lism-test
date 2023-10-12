@@ -1,16 +1,7 @@
-.b--banner {
-	position: relative;
-
-	// > :not(.l--layer) {
-	// 	position: relative;
-	// 	z-index: 1;
-	// }
-
-	> .l--layer--media,
-	> .l--layer--filter {
-		z-index: -1;
-	}
+.c--banner {
+	// position: relative;
 }
+
 // .b--banner__content {
 // 	position: relative;
 // 	z-index: 1;

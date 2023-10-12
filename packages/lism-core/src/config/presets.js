@@ -11,6 +11,7 @@ export default {
 		'xl',
 		'l',
 		'm',
+		'r',
 		's',
 		'xs',
 		'2xs',

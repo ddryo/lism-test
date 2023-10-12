@@ -5,6 +5,8 @@
 
 // import React from 'react';
 export { Lism } from './Lism';
+export { Text } from './Text';
+export { Media } from './Media';
 
 // Layout
 export { Box } from './Box';
@@ -33,7 +35,6 @@ export { Spacer } from './Spacer';
 export { LinkBox } from './LinkBox';
 
 // Elements
-export { Text } from './Text';
 export { Avatar } from './Avatar';
 export { Icon, InlineIcon } from './Icon';
 export { Button } from './Button';
@@ -50,9 +51,9 @@ export { Tabs, TabItem } from './Tabs';
 export { Alert } from './Alert';
 export { Note } from './Note';
 export { Banner } from './Banner';
+export { Card, CardMedia, CardBody } from './Card';
 export { FAQ } from './FAQ';
 export { ChatBubble } from './ChatBubble';
-export { Card, CardMedia, CardBody } from './Card';
 export { Section, SectionBody, SectionHeader, SectionFooter } from './Section';
 export { Glossary, GlossaryItem } from './Glossary';
 export { NavMenu, NavMenuItem } from './NavMenu';

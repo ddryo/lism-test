@@ -172,14 +172,19 @@
 	------------------------------------------------------------ */
 
 	// --color--: 文字色・背景色など共通して採用されるカラー
-	--main: #1e4e6b;
+	--hsl--main: 203 56% 27%;
+	--hsl--accent: 346 57% 47%;
+	--main: hsl(var(--hsl--main));
+	--accent: hsl(var(--hsl--accent));
+
 	// --main--c: #fff; // 背景が main の時の文字色
-	--accent: #be3455;
+	// --accent: hsl(346, 57%, 47%);
 	// --accent--c: #fff; // 背景が accent の時の文字色
 	// --bgc--base: #fdfdfd; // 背景色メイン
 
 	// ベースカラーに合わせたカラーを段階的に用意
 	--hs--basic: 215 8%;
+	// --hsl--basic: 215 8% 60%;
 	--b50: hsl(var(--hs--basic) 99%);
 	--b100: hsl(var(--hs--basic) 96%);
 	--b200: hsl(var(--hs--basic) 92%);
@@ -211,25 +216,36 @@
 	// --bdc--strong: var(--b800);
 
 	// --pallete--?
-	--black: #000;
-	--white: #fff;
-	--red: hsl(4 76% 52%); // #ef4444
-	// --red--c: var(--c--filled);
-	--orange: hsl(28 80% var(--aaaaa, 52%)); // #f97316
-	// --orange--c: var(--c--filled);
-	--yellow: hsl(52 88% 48%); //#f1b808
-	// --yellow--c: #000;
-	--green: hsl(148 84% 44%); //#10b981
-	// --green--c: #000;
-	--blue: hsl(200 80% 52%); //#0ea5e9
-	// --blue--c: var(--c--filled);
-	--purple: hsl(250 80% 60%); //#8b5cf6
-	// --purple--c: var(--c--filled);
-	--pink: hsl(325 76% 52%); //#ec4899
-	// --pink--c: var(--c--filled);
-	--gray: hsl(214 8% 48%); // #64748b;
-	// --gray--c: var(--c--filled);
+	--hsl--black: 0 0% 0%;
+	--hsl--white: 0 0% 100%;
+	--hsl--red: 4 76% 52%;
+	--hsl--orange: 28 80% 52%;
+	--hsl--yellow: 52 88% 48%;
+	--hsl--green: 148 84% 44%;
+	--hsl--blue: 200 80% 52%;
+	--hsl--purple: 250 80% 60%;
+	--hsl--pink: 325 76% 52%;
+	--hsl--gray: 214 8% 48%;
 
+	--black: hsl(var(--hsl--black));
+	--white: hsl(var(--hsl--white));
+	--red: hsl(var(--hsl--red));
+	--orange: hsl(var(--hsl--orange));
+	--yellow: hsl(var(--hsl--yellow));
+	--green: hsl(var(--hsl--green));
+	--blue: hsl(var(--hsl--blue));
+	--purple: hsl(var(--hsl--purple));
+	--pink: hsl(var(--hsl--pink));
+	--gray: hsl(var(--hsl--gray));
+
+	// --red--c: var(--c--filled);
+	// --orange--c: var(--c--filled);
+	// --yellow--c: #000;
+	// --green--c: #000;
+	// --blue--c: var(--c--filled);
+	// --purple--c: var(--c--filled);
+	// --pink--c: var(--c--filled);
+	// --gray--c: var(--c--filled);
 	// ---
 
 	--cMixPer--bg: 96%;
@@ -398,10 +414,14 @@
 	// ?
 	// --hov--bgc--base: var(--b100);
 
-	/* ------------------------------------------------------------
-	    装飾
-	------------------------------------------------------------ */
-	--glass--blur: 20px;
+	// rtlで反転させる値
+	--place--left: start;
+	--place--right: end;
+}
+
+[dir='rtl'] {
+	--place--left: end;
+	--place--right: start;
 }
 
 // ↓ space: これでもわりとしっくりくる...？ 2:.25, 3: 0.375

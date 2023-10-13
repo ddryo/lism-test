@@ -1,12 +1,7 @@
 import React from 'react';
-import { Lism } from '../Lism';
+import { Core } from '../Core';
 import { Grid } from '../Grid';
-// import { Center } from '../Flex/Center';
-// import { Text } from '../Text';
-// import { Layer } from '../Layer';
 import { Decorator } from '../Decorator';
-
-// import { Flex } from '../Flex';
 import { Avatar } from '../Avatar';
 // import { MediaLayer } from '../Layer';
 
@@ -27,45 +22,71 @@ const DECORATOR_PROPS = {
 export default function ChatBubble({
 	name,
 	icon = '',
-	variant = 'chat',
+	type = 'chat',
 	direction = 'left',
 	contentProps = {},
 	avatarProps = {},
+	nameProps = {},
 	children,
 	...props
 }) {
 	let decorators = null;
 	// const fxd = 'left' === direction ? null : 'row-reverse';
 
-	let _chatBoxProps = {};
-	// let _avatarProps = { radius: '99' };
-	let _bodyProps = {};
-	let _contentProps = {
-		isFlow: true,
-		flowGap: 30,
-		radius: '-',
-		p: '-',
+	let boxProps = {
+		// ji: direction === 'left' ? 'start' : 'end',
 	};
-	if ('box' === variant) {
-		_chatBoxProps.gap = 0;
-		_contentProps.radius = 1;
-		// _avatarProps.shadow = 1;
+	// let _avatarProps = { radius: '99' };
+	let bodyProps = {};
+	let contentPropsDefault = {
+		isFlow: true,
+		flowGap: 's',
+		radius: '3',
+		p: 'box:s',
+	};
+
+	let namePropsDefault = {
+		// d: 'flex',
+		// flex: {
+		// 	direction: direction === 'left' ? 'row' : 'row-reverse',
+		// },
+		fz: '2xs',
+		p: 10,
+		translate: '0 -100%',
+	};
+	nameProps = Object.assign(namePropsDefault, nameProps);
+
+	let gridTemplate = direction === 'left' ? 'fix:l' : 'fix:r';
+
+	if ('box' === type) {
+		gridTemplate = 'fix:t';
+		boxProps.gap = 0;
+		contentPropsDefault.radius = 2;
+		contentPropsDefault.p = 'box';
+		if (direction === 'left') {
+			nameProps.mr = 'auto';
+		} else {
+			nameProps.ml = 'auto';
+		}
+		// avatarProps = Object.assign({ radius: '1' }, avatarProps);
 	} else {
 		// console.log('DECORATOR_PROPS[direction]', DECORATOR_PROPS[direction]);
 		decorators = (
 			<>
 				<Decorator
-					type={variant}
-					direction={direction}
-					index='1'
+					variant={type}
+					data-dir={direction}
+					data-index='1'
 					bgc='-'
+					pos='absolute'
 					{...DECORATOR_PROPS[direction]}
 				/>
 				<Decorator
-					type={variant}
-					direction={direction}
-					index='2'
+					variant={type}
+					data-dir={direction}
+					data-index='2'
 					bgc='-'
+					pos='absolute'
 					{...DECORATOR_PROPS[direction]}
 				/>
 			</>
@@ -75,9 +96,10 @@ export default function ChatBubble({
 	return (
 		<Grid
 			blockClass='b--chatBubble'
-			data-variant={variant}
-			data-direction={direction}
-			{..._chatBoxProps}
+			template={gridTemplate}
+			data-type={type}
+			data-dir={direction}
+			{...boxProps}
 			{...props}
 		>
 			{icon && (
@@ -87,23 +109,26 @@ export default function ChatBubble({
 					aria-hidden='true'
 					{...avatarProps}
 				>
-					{/* {icon} */}
 					<img src={icon} alt='' width={60} height={60} loading='lazy' />
 				</Avatar>
 			)}
 
 			{/* aria-label : "name の発言" */}
 			{name && (
-				<Lism blockClass='b--chatBubble__name' fz='2xs' p={10}>
+				<Core blockClass='b--chatBubble__name' {...nameProps}>
 					{name}
-				</Lism>
+				</Core>
 			)}
-			<Lism blockClass='b--chatBubble__body' {..._bodyProps}>
-				<Lism blockClass='b--chatBubble__content' {..._contentProps} {...contentProps}>
+			<Core blockClass='b--chatBubble__body' {...bodyProps}>
+				<Core
+					blockClass='b--chatBubble__content'
+					{...contentPropsDefault}
+					{...contentProps}
+				>
 					{children}
-				</Lism>
+				</Core>
 				{decorators}
-			</Lism>
+			</Core>
 		</Grid>
 	);
 }

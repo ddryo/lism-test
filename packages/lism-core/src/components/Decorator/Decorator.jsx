@@ -1,18 +1,11 @@
 import React from 'react';
-import { Lism } from '../Lism';
+import { Core } from '../Core';
 
 // variantで受け取り、modifierにセット。→セットせずそのままmodifierのみでもいいか
-export default function Decorator({ type, index, direction, pos = 'absolute', ...props }) {
+export default function Decorator({ lismClass = {}, variant, index, ...props }) {
+	lismClass.e = 'e--decorator';
+	if (variant) lismClass.e += ` e--decorator--${variant}`;
 	return (
-		<Lism
-			tag='span'
-			lismClass='e--decorator'
-			data-type={type}
-			data-i={index}
-			data-dir={direction || null}
-			pos={pos}
-			aria-hidden='true'
-			{...props}
-		/>
+		<Core tag='span' lismClass={lismClass} data-index={index} aria-hidden='true' {...props} />
 	);
 }

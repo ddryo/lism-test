@@ -1,5 +1,5 @@
 
-import { DecoratedText } from '@/examples/test';
+import DecorationBox from '@/examples/DecorationBox';
 import Image from 'next/image'
 import { Frame, MediaLayer, FilterLayer, Layer, Center } from '@lism/core';
 
@@ -16,32 +16,8 @@ import { Frame, MediaLayer, FilterLayer, Layer, Center } from '@lism/core';
 ## Import
 
 ```js
-import { DecoratedText } from '@lism/core';
+import { DecorationBox } from '@lism/core';
 ```
-
-<Demo>
-	<Demo.Title>test</Demo.Title>
-	<Demo.Preview resize p={20}>
-	
-		<Box bdl="solid 1px" bdw="4px" >
-			<DammyText />
-		</Box>
-		<Box bdl="solid 1px" bds="solid" >
-			<DammyText />
-		</Box>
-		<Box bdl bdr bds="dashed" bdw="2px" >
-			<DammyText />
-		</Box>
-		<Box bd bds="dashed" bdw="2px" >
-			<DammyText />
-		</Box>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		...
-		```
-	</Demo.Code>
-</Demo>
 
 ## DEMO
 
@@ -49,18 +25,18 @@ import { DecoratedText } from '@lism/core';
 	<Demo.Title>Speak</Demo.Title>
 	<Demo.Preview resize p={20}>
 	
-		<DecoratedText variant="call" direction="left">
+		<DecorationBox variant="call" direction="left">
 			<DammyText />
-		</DecoratedText>
-		<DecoratedText variant="call" direction="right">
+		</DecorationBox>
+		<DecorationBox variant="call" direction="right">
 			<DammyText />
-		</DecoratedText>
-		<DecoratedText variant="call" direction="top">
+		</DecorationBox>
+		<DecorationBox variant="call" direction="top">
 			<DammyText />
-		</DecoratedText>
-		<DecoratedText variant="call" direction="bottom">
+		</DecorationBox>
+		<DecorationBox variant="call" direction="bottom">
 			<DammyText />
-		</DecoratedText>
+		</DecorationBox>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
@@ -73,50 +49,50 @@ import { DecoratedText } from '@lism/core';
 <Demo>
 	<Demo.Title>balloon bdc,bgcをどう引き継がせるか。</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoratedText variant="balloon" direction="left-center">
+		<DecorationBox variant="balloon" direction="left-center">
 			<DammyText />
 			<DammyText />
-		</DecoratedText>
-		{/* <DecoratedText variant="balloon" direction="left-top">
+		</DecorationBox>
+		{/* <DecorationBox variant="balloon" direction="left-top">
 			<DammyText />
 			<DammyText />
-		</DecoratedText>
-		<DecoratedText variant="balloon" direction="left-bottom">
+		</DecorationBox>
+		<DecorationBox variant="balloon" direction="left-bottom">
 			<DammyText />
 			<DammyText />
-		</DecoratedText> */}
-		<DecoratedText variant="balloon" direction="right-center">
+		</DecorationBox> */}
+		<DecorationBox variant="balloon" direction="right-center">
 			<DammyText />
 			<DammyText />
-		</DecoratedText>
-		{/* <DecoratedText variant="balloon" direction="right-top">
+		</DecorationBox>
+		{/* <DecorationBox variant="balloon" direction="right-top">
 			<DammyText />
 			<DammyText />
-		</DecoratedText>
-		<DecoratedText variant="balloon" direction="right-bottom">
+		</DecorationBox>
+		<DecorationBox variant="balloon" direction="right-bottom">
 			<DammyText />
 			<DammyText />
-		</DecoratedText> */}
+		</DecorationBox> */}
 
-		<DecoratedText variant="balloon" direction="bottom-center">
+		<DecorationBox variant="balloon" direction="bottom-center">
 			<DammyText />
-		</DecoratedText>
-		<DecoratedText variant="balloon" direction="top-center">
+		</DecorationBox>
+		<DecorationBox variant="balloon" direction="top-center">
 			<DammyText />
-		</DecoratedText>
-		<DecoratedText variant="balloon" direction="bottom-left">
+		</DecorationBox>
+		<DecorationBox variant="balloon" direction="bottom-left">
 			<DammyText />
-		</DecoratedText>
+		</DecorationBox>
 
-		<DecoratedText variant="balloon" direction="top-left">
+		<DecorationBox variant="balloon" direction="top-left">
 			<DammyText />
-		</DecoratedText>
-		<DecoratedText variant="balloon" direction="bottom-right">
+		</DecorationBox>
+		<DecorationBox variant="balloon" direction="bottom-right">
 			<DammyText />
-		</DecoratedText>
-		<DecoratedText variant="balloon" direction="top-right">
+		</DecorationBox>
+		<DecorationBox variant="balloon" direction="top-right">
 			<DammyText />
-		</DecoratedText>
+		</DecorationBox>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
@@ -129,13 +105,13 @@ import { DecoratedText } from '@lism/core';
 <Demo>
 	<Demo.Title>emphasis</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoratedText variant="emphasis"  direction="left">
+		<DecorationBox variant="emphasis"  direction="left">
 			<DammyText />
-		</DecoratedText>
+		</DecorationBox>
 
-		<DecoratedText variant="emphasis" direction="right">
+		<DecorationBox variant="emphasis" direction="right">
 			<DammyText />
-		</DecoratedText>
+		</DecorationBox>
 		
 	</Demo.Preview>
 	<Demo.Code>
@@ -149,9 +125,9 @@ import { DecoratedText } from '@lism/core';
 <Demo>
 	<Demo.Title>sticky</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoratedText variant="sticky">
+		<DecorationBox variant="sticky">
 			<DammyText />
-		</DecoratedText>
+		</DecorationBox>
 		
 	</Demo.Preview>
 	<Demo.Code>
@@ -164,9 +140,9 @@ import { DecoratedText } from '@lism/core';
 <Demo>
 	<Demo.Title>grid</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoratedText variant="grid">
+		<DecorationBox variant="grid">
 			<DammyText />
-		</DecoratedText>
+		</DecorationBox>
 		
 	</Demo.Preview>
 	<Demo.Code>
@@ -179,9 +155,9 @@ import { DecoratedText } from '@lism/core';
 <Demo>
 	<Demo.Title>grid</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoratedText variant="stripe">
+		<DecorationBox variant="stripe">
 			<DammyText />
-		</DecoratedText>
+		</DecorationBox>
 		
 	</Demo.Preview>
 	<Demo.Code>
@@ -195,12 +171,12 @@ import { DecoratedText } from '@lism/core';
 <Demo>
 	<Demo.Title>kakko</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoratedText variant="kakko" direction="lr">
+		<DecorationBox variant="kakko" direction="lr">
 			<DammyText />
-		</DecoratedText>
-		<DecoratedText variant="kakko" direction="tb">
+		</DecorationBox>
+		<DecorationBox variant="kakko" direction="tb">
 			<DammyText />
-		</DecoratedText>
+		</DecorationBox>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
@@ -213,12 +189,12 @@ import { DecoratedText } from '@lism/core';
 <Demo>
 	<Demo.Title>big-kakko</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoratedText variant="big-kakko" direction="lr">
+		<DecorationBox variant="big-kakko" direction="lr">
 			<DammyText />
-		</DecoratedText>
-		<DecoratedText variant="big-kakko" direction="tb">
+		</DecorationBox>
+		<DecorationBox variant="big-kakko" direction="tb">
 			<DammyText />
-		</DecoratedText>
+		</DecorationBox>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx

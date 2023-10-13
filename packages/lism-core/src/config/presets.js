@@ -36,7 +36,7 @@ export default {
 		'pink',
 		'white',
 		'black',
-		// 'gray',
+		'gray',
 		'b50',
 		'b100',
 		'b200',
@@ -63,7 +63,7 @@ export default {
 		'orange',
 		'pink',
 		'gray',
-		'basic',
+		// 'basic',
 	],
 	contentSize: ['xs', 's', 'base', 'l', 'xl'],
 
@@ -93,6 +93,8 @@ export default {
 	bg: ['glass'],
 	z: ['-1', '0', '1'],
 	aspect: ['16/9', '4/3', '3/2', '2/1', '1/1', 'golden', 'silver', 'bronze', 'ogp'],
+	gta: ['lcr', 'tcb'],
+	gt: ['fix:l', 'fix:r', 'fix:t', 'fix:b'],
 };
 
 // ユーティリティ化しないけど、変数を用意しておくもの

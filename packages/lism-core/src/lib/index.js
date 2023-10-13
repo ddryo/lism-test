@@ -92,6 +92,12 @@ export function getMaybeSpaceVar(space) {
 }
 
 export function getMaybeColorVar(color, type) {
+	// color に ':' が含まれているか
+	if (color?.includes(':')) {
+		const [colorName, alpha] = color.split(':');
+		return `hsl(var(--hsl--${colorName}) / ${alpha})`;
+	}
+
 	if (isPresetValue('color', color)) {
 		return `var(--${color})`;
 	} else if (type && isPresetValue(type, color)) {
@@ -143,4 +149,12 @@ export function getMaybeFzVar(fz) {
 		return 'var(--fz--' + fz + ')';
 	}
 	return fz;
+}
+
+export function getMaybeBgVar(bg) {
+	if (bg?.includes('gradient:')) {
+		const gradKeys = bg.split(':');
+		return `var(--gradient--${gradKeys[1]})`;
+	}
+	return bg;
 }

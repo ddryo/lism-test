@@ -18,6 +18,38 @@ gtcols
 gtrows
 */
 
+.-gt\:fix\:l {
+	grid-template: 'fix nofix' / auto 1fr;
+}
+.-gt\:fix\:r {
+	grid-template: 'nofix fix' / 1fr auto;
+}
+.-gt\:fix\:t {
+	grid-template: 'fix' auto 'nofix' 1fr;
+}
+.-gt\:fix\:b {
+	grid-template: 'nofix' 1fr 'fix' auto;
+}
+.-gta\:lcr {
+	grid-template-areas: 'left center right';
+}
+.-gta\:tcb {
+	grid-template-areas: 'top' 'center' 'bottom';
+}
+
+// rtlでも左右を反転させない
+[dir='rtl'] {
+	.-gt\:fix\:l {
+		grid-template: 'nofix fix' / 1fr auto;
+	}
+	.-gt\:fix\:r {
+		grid-template: 'fix nofix' / auto 1fr;
+	}
+	.-gta\:lcr {
+		grid-template-areas: 'right center left';
+	}
+}
+
 .-gta\: {
 	--gta--val: var(--gta);
 	grid-template-areas: var(--gta--val);

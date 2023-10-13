@@ -23,6 +23,9 @@ export const defaultProps = {
 		shadow: '2',
 		radius: '2',
 	},
+	ChatBubble: {
+		radius: '2',
+	},
 };
 
 export const IconPresets = {

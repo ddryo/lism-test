@@ -77,10 +77,12 @@ export default {
 	maxH: { style: 'maxHeight', utils: 'size', converter: 'size' },
 	minW: { style: 'minWidth', converter: 'size' },
 	minH: { style: 'minHeight', converter: 'size' },
-	// size: { style: '--size', converter: 'size' },
+	size: { style: '--size', converter: 'size' },
 
 	c: { presets: 1, converter: 'color' },
 	bgc: { presets: 1, utils: 1, converter: 'color' },
+	// bgcOpacity: { style: '--bgc-opacity' },
+
 	keycolor: { style: '--keycolor', presets: 1, converter: 'color' },
 
 	bd: {
@@ -115,7 +117,10 @@ export default {
 	radius: { name: 'bdrs', presets: 'radius' },
 	shadow: { name: 'bxsh', presets: 'shadow' },
 	aspect: { BP: 1, presets: 1 },
-	bg: { presets: 1, utils: 1 },
+	bg: { presets: 1, utils: 1, converter: 'bg' },
+
+	// gradient: {},
+	// gradientAngle: { style: '--gradient-angle' },
 	opacity: { style: 1 },
 	lis: { style: 'listStyle', utils: { none: 'n' } },
 	ovw: { style: 'overflowWrap', utils: { anywhere: 'any' } },
@@ -123,7 +128,7 @@ export default {
 	ovx: { style: 'overflowX', utils: 'ov' },
 	ovy: { style: 'overflowY', utils: 'ov' },
 	z: { style: 'zIndex', presets: 1 },
-	pos: { style: 'position', utils: 1 },
+	pos: { style: 'position', utils: 1, presets: ['static', 'sticky'] },
 	top: { style: 1, utilKey: 't', utils: 'positions', converter: 'space' },
 	left: { style: 1, utilKey: 'l', utils: 'positions', converter: 'space' },
 	right: { style: 1, utilKey: 'r', utils: 'positions', converter: 'space' },
@@ -135,6 +140,7 @@ export default {
 	transformOrigin: { style: 1, utilKey: 'trso', utils: 'origin' },
 	rotate: { style: 1, utils: 1 },
 	scale: { style: 1 },
+	clipPath: { style: 1 },
 
 	// Spacing
 	pl: { BP: 1, converter: 'space' },
@@ -211,7 +217,8 @@ const gapProps = {
 
 export const CONTEXT_PROPS = {
 	grid: {
-		areas: { name: 'gta', BP: 1 },
+		template: { style: 'gridTemplate', name: 'gt', presets: 'gt' },
+		areas: { name: 'gta', BP: 1, presets: 'gta' },
 		columns: { name: 'gtc', BP: 1 },
 		// cols: { name: 'gtc', BP: 1 }, // どっちでも受け付ける？
 		rows: { name: 'gtr', BP: 1 },
@@ -235,7 +242,7 @@ export const CONTEXT_PROPS = {
 		fxsh: { BP: 1, presets: ['0', '1'] },
 		fx: { BP: 1 },
 		fxb: { BP: 1 },
-		order: { style: 1 },
+		order: { style: 1, presets: ['0', '-1', '1'] },
 		...selfProps,
 	},
 
@@ -243,7 +250,7 @@ export const CONTEXT_PROPS = {
 		ga: { utils: 1 }, // grid-area
 		gc: { BP: 1 }, // grid-column
 		gr: { BP: 1 }, // grid-row
-		order: { style: 1 },
+		order: { style: 1, presets: ['0', '-1', '1'] },
 		...selfProps,
 	},
 };

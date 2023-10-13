@@ -5,6 +5,7 @@ import { isEmptyObj, filterEmptyObj } from '../../lib';
 export default function Grid({
 	_gridName = 'grid',
 	lismClass = {},
+	template,
 	areas,
 	columns,
 	rows,
@@ -18,6 +19,7 @@ export default function Grid({
 	...props
 }) {
 	const grid = filterEmptyObj({
+		template,
 		areas,
 		columns,
 		rows,

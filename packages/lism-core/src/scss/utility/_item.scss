@@ -17,6 +17,15 @@
 // 	flex: var(--fx);
 // }
 
+.-order\:1 {
+	order: 1;
+}
+.-order\:0 {
+	order: 0;
+}
+.-order\:-1 {
+	order: -1;
+}
 
 .-fx\:{ flex: var(--fx)}
 .-fxg\:{flex-grow:var(--fxg)}
@@ -42,6 +51,8 @@
 .-ga\:l{grid-area: left;}
 .-ga\:r{grid-area: right;}
 .-ga\:c{grid-area: center;}
+.-ga\:t{grid-area: top;}
+.-ga\:b{grid-area: bottom;}
 // .-ga\:header{--ga: header;}
 // .-ga\:footer{--ga: footer;}
 // .-ga\:body{--ga: body;}

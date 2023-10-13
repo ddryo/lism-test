@@ -19,6 +19,8 @@ import Image from 'next/image'
 import { ChatBubble } from '@lism/core';
 ```
 
+{/* ChatBubbleBody, ChatBubbleIcon */}
+
 ## DEMO
 
 <Demo>
@@ -27,7 +29,7 @@ import { ChatBubble } from '@lism/core';
 		<ChatBubble name="太郎" icon="/img/onepiece01_luffy.png">
 			<DammyText length="m" />
 		</ChatBubble>
-		<ChatBubble name="太郎" icon="/img/onepiece06_chopper.png" direction={'right'}>
+		<ChatBubble name="太郎" icon="/img/onepiece06_chopper.png" direction='right'>
 			<DammyText />
 			<DammyText length="m" />
 		</ChatBubble>
@@ -37,7 +39,7 @@ import { ChatBubble } from '@lism/core';
 		<ChatBubble name="太郎" icon="/img/onepiece01_luffy.png">
 			<DammyText length="m" />
 		</ChatBubble>
-		<ChatBubble name="太郎" icon="/img/onepiece06_chopper.png" direction={'right'}>
+		<ChatBubble name="太郎" icon="/img/onepiece06_chopper.png" direction='right'>
 			<DammyText />
 			<DammyText length="m" />
 		</ChatBubble>
@@ -48,10 +50,10 @@ import { ChatBubble } from '@lism/core';
 <Demo>
 	<Demo.Title>Thinking</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<ChatBubble variant="think" name="太郎" icon="/img/onepiece01_luffy.png">
+		<ChatBubble type="think" name="太郎" icon="/img/onepiece01_luffy.png">
 			<DammyText length="m" />
 		</ChatBubble>
-		<ChatBubble variant="think" name="太郎" icon="/img/onepiece06_chopper.png" direction={'right'}>
+		<ChatBubble type="think" name="太郎" icon="/img/onepiece06_chopper.png" direction='right'>
 			<DammyText />
 			<DammyText length="m" />
 		</ChatBubble>
@@ -67,10 +69,10 @@ import { ChatBubble } from '@lism/core';
 <Demo>
 	<Demo.Title>Box</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<ChatBubble variant="box" name="太郎" icon="/img/onepiece01_luffy.png">
+		<ChatBubble type="box" name="太郎" icon="/img/onepiece01_luffy.png">
 			<DammyText length="m" />
 		</ChatBubble>
-		<ChatBubble variant="box" name="太郎" icon="/img/onepiece06_chopper.png" direction={'right'}>
+		<ChatBubble type="box" name="太郎" icon="/img/onepiece06_chopper.png" direction='right'>
 			<DammyText />
 			<DammyText length="m" />
 		</ChatBubble>

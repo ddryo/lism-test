@@ -6,6 +6,7 @@ import {
 	getMaybeSpaceVar,
 	getMaybeFzVar,
 	getMaybeSizeVar,
+	getMaybeBgVar,
 } from './index.js';
 
 import { PROPS, CONTEXT_PROPS } from '@/config';
@@ -24,6 +25,7 @@ const CONVERTERS = {
 	space: getMaybeSpaceVar,
 	fz: getMaybeFzVar,
 	size: getMaybeSizeVar,
+	bg: getMaybeBgVar,
 };
 
 // const PROP_FULL_NAMES = {
@@ -206,6 +208,12 @@ class CommonProps {
 			if (propName === 'hover') {
 				const propVal = this.extractProp(propName);
 				this.setHoverProps(propVal);
+				return;
+			}
+
+			if (propName === 'gradient') {
+				const propVal = this.extractProp(propName);
+				this.setGradientProps(propVal);
 				return;
 			}
 
@@ -421,6 +429,43 @@ class CommonProps {
 				this.addStyle('--hov--shadow', getMaybeShadowVar(shadow));
 			}
 		}
+	}
+
+	setGradientProps(gradVal) {
+		// this.setHoverProps(gradVal);
+		if (typeof gradVal === 'string') {
+			if (isPresetValue('gradient', gradVal)) {
+				this.addUtil('-gradient:' + gradVal);
+			} else {
+				this.addUtil('-gradient:');
+				this.addStyle('--gradient', gradVal);
+			}
+			//  else if (gradVal.includes('-gradient(')) {
+			// 	// xxx-gradient() で直接書いてる場合
+			// 	this.addUtil('-gradient:');
+			// 	this.addStyle('--gradient', gradVal);
+			// } else {
+			// 	this.addUtil('-gradient:');
+			// 	this.addStyle('--gradient', `var(--gradient--${gradVal})`);
+			// }
+		} else if (typeof gradVal === 'object') {
+			const { type = 'linear', angle, colors = '' } = gradVal;
+			if (!colors) return;
+
+			this.addUtil('-gradient:');
+			let gradient = '';
+			if (angle) {
+				gradient += `${angle}, `;
+			}
+			if (colors.includes(',')) {
+				gradient += colors;
+			} else {
+				gradient += `var(--gradient-color--${colors})`;
+			}
+			this.addStyle('--gradient', `${type}-gradient(${gradient})`);
+		}
+
+		return;
 	}
 }
 

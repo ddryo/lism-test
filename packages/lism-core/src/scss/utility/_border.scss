@@ -20,7 +20,7 @@
 // bdc, bdw などでカラーや太さを上書きできるように border 自体を変数管理
 
 // root定義でもよさそう? → 入れ子のときに影響受けてしまう
-[class*='-bd:'] {
+:where([class*='-bd:']) {
 	--bds: solid;
 	--bdw: 1px;
 	--bdc: currentColor; //var(--bdc--base);

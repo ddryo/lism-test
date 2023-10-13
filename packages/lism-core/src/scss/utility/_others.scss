@@ -92,10 +92,12 @@
 
 // prop: pos
 // Layer の基点を作るためにrelativeにしたいことがある
-.-pos\:s{position: static;}
+.-pos\:static{position: static;}
 .-pos\:r{position: relative;}
 .-pos\:a{position: absolute;}
 .-pos\:f{position: fixed;}
+.-pos\:sticky{position: sticky;}
+
 
 
 // prop: ovw

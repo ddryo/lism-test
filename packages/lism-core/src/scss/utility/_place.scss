@@ -31,3 +31,12 @@
 .-ac\:e{align-content: end;}
 .-ac\:sb{align-content: space-between;}
 
+
+// rtl考慮
+// .-ji\:l{justify-items: start;}
+// .-ji\:r{justify-items: end;}
+// [dir='rtl'] {
+// 	.-ji\:l{justify-items: end;}
+// 	.-ji\:r{justify-items: start;}
+// }
+

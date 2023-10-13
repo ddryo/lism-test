@@ -25,7 +25,7 @@ export default {
 	fxd: { column: 'c', row: 'r', 'column-reverse': 'cr', 'row-reverse': 'rr' },
 
 	size: { '100%': '100', 'fit-content': 'fit' },
-	ga: { fix: 'fix', left: 'l', right: 'r', center: 'c' },
+	ga: { fix: 'fix', left: 'l', right: 'r', center: 'c', top: 't', bottom: 'b' },
 	bd: {
 		current: 'cc',
 		currentColor: 'cc',
@@ -42,7 +42,7 @@ export default {
 		'block-end': 'bl-e',
 	},
 
-	pos: { static: 's', relative: 'r', absolute: 'a', fixed: 'f' },
+	pos: { relative: 'r', absolute: 'a', fixed: 'f' },
 	positions: { '0%': '0', '50%': '50', '100%': '100' }, // top,left,right,bottom 用
 	inset: { '0%': '0' }, // inset は 0% だけ
 	ov: { hidden: 'h', auto: 'a', clip: 'c' },

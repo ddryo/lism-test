@@ -78,7 +78,7 @@
 	min-width: 8em;
 	max-width: 30em;
 	background-color: var(--bgc);
-	box-shadow: 1px 1px 2px 0px hsl(var(--shadow--hsl) / 0.08);
+	box-shadow: 1px 1px 2px 0px hsl(var(--hsl--shadow) / 0.08);
 
 	&::before {
 		position: absolute;
@@ -88,7 +88,7 @@
 		min-width: 4em;
 		width: min(50%, 12em);
 		height: 50%;
-		background-color: hsl(var(--shadow--hsl) / 0.2);
+		background-color: hsl(var(--hsl--shadow) / 0.2);
 		transform: rotate(4deg);
 		transform-origin: left bottom;
 		filter: blur(4px);

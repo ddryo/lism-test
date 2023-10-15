@@ -1,5 +1,6 @@
 import {
 	Box,
+	Media,
 	ChatBubble,
 	FilterLayer,
 	Container,
@@ -26,6 +27,8 @@ function DammyTextLong() {
 	);
 }
 
+// 流体シェイプ作成 https://toolbox.signalsupply.co/apps/blob
+// https://blobanimation.com/
 export default function DecoratorTest() {
 	const [isRtl, setIsRtl] = useState(false);
 	return (
@@ -41,6 +44,10 @@ export default function DecoratorTest() {
 						rtl toggle
 					</button>
 				</Center>
+				<hr />
+				<p>`d--` → l--boxのバリエーションでしかない。 box--hoge, box--hoge:foo とか？</p>
+				<p>... ブラウザ風など...</p>
+				<hr />
 				<h2>ChatBubble</h2>
 				<ChatBubble
 					name='るふぃ'

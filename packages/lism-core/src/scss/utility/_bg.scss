@@ -6,6 +6,9 @@
 	background: none;
 }
 
+// 罫線 : Ruled paper, lined paper, rulied lines
+
+// 方眼 : graph paper, grid paper, squared paper
 .-bg\:grid {
 	:where(&) {
 		--grid-color: hsl(var(--hs--bc) 50% / 12%); //var(--b200);

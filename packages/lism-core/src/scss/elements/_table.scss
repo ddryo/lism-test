@@ -3,23 +3,27 @@
 // ただし、スクロール時にsticky要素の border が表示されない問題があることに注意。
 // 　　　→ ベースは上下ボーダーのみにしてその問題に対処しやすくする。
 @layer lism-init {
+	:root {
+		--cell--padding: var(--p--box--s);
+	}
 	table {
 		width: 100%;
 		// max-width: 100%;
+		font-size: 0.9rem;
+		line-height: var(--lh--s);
 
 		border: none;
 		border-collapse: collapse; // memo: oveflow の指定によっては separate にしないとborderが表示されない場合があるので横スクロール時には注意。
 		border-spacing: 0;
 		--bdc: var(--bdc--base, #dcdcdc);
 		--bds: solid;
-		--bdwX: 1px;
+		--bdwX: 0px;
 		--bdwY: 1px;
-		font-size: 0.9rem;
 	}
 
 	td,
 	th {
-		padding: 0.5em;
+		padding: var(--cell--padding);
 		border-inline: var(--bds) var(--bdwX) var(--bdc);
 		border-block: var(--bds) var(--bdwY) var(--bdc);
 	}
@@ -39,10 +43,10 @@
 		border-block-end: var(--thead--border);
 	}
 
-	tbody {
-		// --th--bgc: #f8f9fa;
-		// text-align: left; // tbody 内の th が中央寄せになるのを防ぐ？
-	}
+	// tbody {
+	// 	// --th--bgc: #f8f9fa;
+	// 	// text-align: left; // tbody 内の th が中央寄せになるのを防ぐ？
+	// }
 
 	tfoot {
 		border-block-start: var(--tfoot--border);
@@ -61,8 +65,17 @@
   ----------------------
 */
 
-.scroll-table {
-	--cell-minW: 10em;
+.table--relaxed {
+	--cell--padding: var(--p--box);
+}
+
+// borderで囲む
+.table--solid > table {
+	--bdwX: 1px;
+}
+
+.table--scrollable {
+	--cell--minW: 8rem;
 	display: block;
 	width: 100%;
 	max-width: 100%;
@@ -71,51 +84,45 @@
 
 	td,
 	th {
-		min-width: var(--cell-minW);
+		min-width: var(--cell--minW);
 	}
 
 	table {
-		// width: var(--table-width, 100%) !important; // コアの.has-fixed-layoutを上書き
-		// min-width: 100%;
-		// max-width: var(--table-width, 100%) !important;
 		max-width: unset;
-		// border-collapse: separate; // 横スクロール時にborderが表示されないバグへの対処
 	}
 }
-// .scroll-table
-.fix-1st-row {
+
+.table--fix-column1 {
 	// 後ろが透過してると文字がかぶるので、何かしら背景色を初期セットする
 	--td--bgc: var(--bgc--base, white);
 	--th--bgc: var(--bgc--base, white);
 
-	// rowspan考慮必要
-	tr > :first-child {
+	// rowspan 考慮必要 → cell--nofix クラス使ってもらう
+	tr > :first-child:not(.cell--nofix) {
 		position: sticky;
 		left: 0;
-		z-index: 2; // 他のセルが relative だと上に来てしまうので z-index を少し上げておく
+		z-index: 2; // 他のセルが relative だと上に来てしまうので、 z-index を少し上げておく
 
 		// スクロール時にborderが表示されない問題への対処
-		// thead th {
-		// position: relative;
-		// border-width: 0;
-
 		border-inline: none;
 		&::before {
 			content: '';
 			position: absolute;
 			inset: 0 -1px 0 0;
-			// border-style: inherit;
-			// border-color: inherit;
-			// border-block: var(--bds) var(--bdwY) var(--bdc);
 			border-inline: var(--bds) var(--bdwX) var(--bdc);
 		}
-		// }
 	}
 }
 
-.fix-thead {
+// rowspanの考慮
+// tr:has(> [rowspan]:first-child) + tr > :first-child,
+// tr:has(> [rowspan='3']:first-child) + tr + tr > :first-child, {
+// }
+
+.table--fix-thead {
 	// 後ろが透過してると文字がかぶるので、何かしら背景色を初期セットする
 	--th--bgc: var(--bgc--base, white);
+	overflow-y: auto;
 
 	thead {
 		position: sticky;
@@ -132,22 +139,5 @@
 			border-block-start: solid var(--bdwY) var(--bdc);
 			border-block-end: var(--thead--border);
 		}
-	}
-}
-
-// test用コード
-:is(.fix-thead) {
-	max-height: 200px;
-	overflow-y: auto;
-
-	tbody {
-		line-height: 4;
-	}
-}
-
-// borderで囲む
-.is-style-table--solid {
-	table {
-		--bdwX: 1px;
 	}
 }

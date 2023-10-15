@@ -3,6 +3,10 @@ import { Container, Box, Stack, Flow, Cluster, Spacer } from '@lism/core';
 import DecoratorTest from '@/test/DecoratorTest';
 import ContainerTest from '@/test/ContainerTest';
 import GradationTest from '@/test/GradationTest';
+import HTMLTest from '@/test/HTMLTest';
+import TableTest from '@/test/TableTest';
+import ListTest from '@/test/ListTest';
+import ImgTest from '@/test/ImgTest';
 
 import { Link, useParams } from 'react-router-dom';
 
@@ -10,6 +14,10 @@ const TestComponents = {
 	decorator: DecoratorTest,
 	container: ContainerTest,
 	gradation: GradationTest,
+	html: HTMLTest,
+	list: ListTest,
+	table: TableTest,
+	img: ImgTest,
 };
 
 const TestLinks = () => {

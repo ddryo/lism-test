@@ -520,13 +520,13 @@ hoverエフェクトを自作する
 
 ```scss
 .c--card.-hov\:contentUp .c--card__hiddenArea{
-	--gtr--val: 0fr;
+	--gtr: 0fr;
 	opacity: 0;
 	transition: opacity .25s, grid-template-rows .25s;
 }
 
 .c--card.-hov\:contentUp:hover .c--card__hiddenArea{
-	--gtr--val: 1fr;
+	--gtr: 1fr;
 	opacity: 1;
 }
 ```

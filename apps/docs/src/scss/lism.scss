@@ -34,10 +34,10 @@
 		opacity 0.25s,
 		grid-template-rows 0.25s;
 	opacity: 0;
-	--gtr--val: 0fr;
+	--gtr: 0fr;
 }
 
 .c--card.-hov\:contentUp:hover .c--card__hiddenArea {
 	opacity: 1;
-	--gtr--val: 1fr;
+	--gtr: 1fr;
 }

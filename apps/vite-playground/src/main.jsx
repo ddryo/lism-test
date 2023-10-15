@@ -8,7 +8,7 @@ import HasSidebarPage from '@/routes/has-sidebar';
 import TestPage from '@/routes/test-page';
 
 import ErrorPage from '@/error-page';
-import './index.css';
+import './global.scss';
 import '@lism/core/scss/all.scss';
 
 // [React Router]: https://reactrouter.com/en/main/start/tutorial

@@ -38,19 +38,19 @@ options.style: プリセット値以外の時に出力するスタイル名を�
 options.converter: 特定のプリセット値などに変換する処理をはさみたい時に指定する
 	[string | function]
 
-	例: space系の 20 → var(--space--20)
+	例: space系の 20 → var(--s--20)
 	例: color系など
 
 options.objProcessor: 方向成分を指定できるpropで、そのオブジェクトをどう処理するかを指定する
 	[string | function]
 
-	例: p={{X:20, Y40}} → pX, pY としてそれぞれ処理
+	例: p={{x:20, y:40}} → px, py としてそれぞれ処理
 
 ↓ 未実装
 options.splitProcessor: スペース区切りで成分を指定できるpropで、その文字列をどう処理するかを指定する
 	[string | function]
 
-	例: p="20 40" → pX, pY としてそれぞれ処理
+	例: p="20 40" → px, py としてそれぞれ処理
 
 
 memo: 
@@ -67,25 +67,25 @@ memo:
 */
 
 const marginOption = { BP: 1, utils: 'margin', converter: 'space' };
-// const paddingOption = { BP: 1, presets: 'space', converter: 'space' };
+const paddingOption = { BP: 1, converter: 'space' };
 
 export default {
 	d: { BP: 1, utils: 1 },
 	w: { BP: 1, utils: 'size', converter: 'size' },
 	h: { BP: 1, utils: 'size', converter: 'size' },
-	maxW: { style: 'maxWidth', utils: 'size', converter: 'size' },
-	maxH: { style: 'maxHeight', utils: 'size', converter: 'size' },
-	minW: { style: 'minWidth', converter: 'size' },
-	minH: { style: 'minHeight', converter: 'size' },
+	maxW: { style: 'maxWidth', utils: 'maxSize', converter: 'size' },
+	maxH: { style: 'maxHeight', utils: 'maxSize', converter: 'size' },
+	minW: { style: 'minWidth', utils: 'minSize', converter: 'size' },
+	minH: { style: 'minHeight', utils: 'minSize', converter: 'size' },
 	size: { style: '--size', converter: 'size' },
-
 	c: { presets: 1, converter: 'color' },
+	bg: { style: 'background', presets: 1, utils: 1, map: 1 },
 	bgc: { presets: 1, utils: 1, converter: 'color' },
 	// bgcOpacity: { style: '--bgc-opacity' },
-
 	keycolor: { style: '--keycolor', presets: 1, converter: 'color' },
-
+	// mask: { map: 1 },
 	bd: {
+		// map: 1,
 		presets: 1,
 		utils: 1,
 		objProcessor: (d) => `bd${d[0]}`,
@@ -104,23 +104,19 @@ export default {
 	// borderWidth: { style: 1 },
 
 	// Typography
-	lh: { presets: 1 },
 	fz: { BP: 1, presets: 1, converter: 'fz' },
+	lh: { presets: 1, style: 'lineHeight' },
 	fw: { style: 'fontWeight', utils: 1 },
 	ff: { style: 'fontFamiry', presets: 1 },
+	lts: { style: 'letterSpacing', presets: 1 }, // utilityあってもいい
 	ta: { style: 'textAlign', utils: 1 },
-	lts: { style: 'letterSpacing' }, // utilityあってもいい
 	td: { style: 'textDecoration' },
-	// textDecoration: { style: 1 },
 	whs: { style: 'whiteSpace', utils: { nowrap: 'nw' } },
+
 	// others
 	radius: { name: 'bdrs', presets: 'radius' },
 	shadow: { name: 'bxsh', presets: 'shadow' },
 	aspect: { BP: 1, presets: 1 },
-	bg: { presets: 1, utils: 1, converter: 'bg' },
-
-	// gradient: {},
-	// gradientAngle: { style: '--gradient-angle' },
 	opacity: { style: 1 },
 	lis: { style: 'listStyle', utils: { none: 'n' } },
 	ovw: { style: 'overflowWrap', utils: { anywhere: 'any' } },
@@ -134,43 +130,48 @@ export default {
 	right: { style: 1, utilKey: 'r', utils: 'positions', converter: 'space' },
 	bottom: { style: 1, utilKey: 'b', utils: 'positions', converter: 'space' },
 	inset: { style: 1, utils: 1, converter: 'space' },
+	clipPath: { style: 1 },
+	// appearance: { style: 1, utils: { none: 'n' } },
 
 	//transform
 	translate: { style: 1, utils: 1, utilKey: 'trnslt' },
 	transformOrigin: { style: 1, utilKey: 'trso', utils: 'origin' },
 	rotate: { style: 1, utils: 1 },
 	scale: { style: 1 },
-	clipPath: { style: 1 },
 
 	// Spacing
-	pl: { BP: 1, converter: 'space' },
-	pr: { BP: 1, converter: 'space' },
-	pt: { BP: 1, converter: 'space' },
-	pb: { BP: 1, converter: 'space' },
-	pX: { BP: 1, presets: 'space', converter: 'space' },
-	pY: { BP: 1, presets: 'space', converter: 'space' },
-	mbs: { presets: 'space', converter: 'space' },
-	mbe: { presets: 'space', converter: 'space' },
-	ml: marginOption,
-	mr: marginOption,
-	mt: marginOption,
-	mb: marginOption,
-	mX: marginOption,
-	mY: marginOption,
 	p: {
 		BP: 1,
 		presets: 'p',
 		converter: 'space',
-		// {X, Y, top, bottom, left, right} の場合の処理. block, inline どうする？
-		// t: b: l: r: で指定してもらうようにする？
-		// bs, be, is, ie
+		// {x, y, top, bottom, left, right} だけ正常に動作
 		objProcessor: (d) => `p${d[0]}`,
 	},
+	pl: paddingOption,
+	pr: paddingOption,
+	pt: paddingOption,
+	pb: paddingOption,
+	px: Object.assign({}, paddingOption, { presets: 'space' }),
+	py: Object.assign({}, paddingOption, { presets: 'space' }),
+	ps: paddingOption,
+	pbs: paddingOption,
+	// pe: paddingOption,
+	// pbe: paddingOption,
 	m: {
 		...marginOption,
-		// {X, Y, top, bottom, left, right} の場合の処理. block, inline どうする？
+		// {x, y, top, bottom, left, right } の場合の処理.
 		objProcessor: (d) => `m${d[0]}`,
 	},
+	ml: marginOption,
+	mr: marginOption,
+	mt: marginOption,
+	mb: marginOption,
+	mx: marginOption,
+	my: marginOption,
+	ms: marginOption,
+	mbs: Object.assign({}, marginOption, { presets: 'space' }),
+	// me: marginOption,
+	// mbe: marginOption,
 
 	// isFlowでのみ有効
 	flowGap: { presets: 1, converter: 'space' },
@@ -253,4 +254,19 @@ export const CONTEXT_PROPS = {
 		order: { style: 1, presets: ['0', '-1', '1'] },
 		...selfProps,
 	},
+
+	bg: {
+		color: { name: 'bgc', presets: 1, utils: 1, converter: 'color' },
+		attachment: { style: 'backgroundAttachment' },
+		blendMode: { style: 'backgroundBlendMode' },
+		clip: { style: 'backgroundClip' },
+		image: { style: 'backgroundImage' },
+		origin: { style: 'backgroundOrigin' },
+		position: { style: 'backgroundPosition' },
+		positionX: { style: 'backgroundPositionX' },
+		positionY: { style: 'backgroundPositionY' },
+		repeat: { style: 'backgroundRepeat' },
+		size: { style: 'backgroundSize' },
+	},
+	mask: {},
 };

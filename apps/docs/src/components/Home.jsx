@@ -66,7 +66,7 @@ export default function Home() {
 
 			<Preview>
 				<Box className='a--main' tag='main'>
-					<Container as={Center} isConstrained className='a--atf' minH='50vh' pY={40} bgc='pale' gap={40}>
+					<Container as={Center} isConstrained className='a--atf' minH='50vh' py={40} bgc='pale' gap={40}>
 						<Text tag='h1' fz='4xl' ff='mono' fw='light'>
 							Lism UI
 						</Text>
@@ -81,7 +81,7 @@ export default function Home() {
 						</Text>
 					</Container>
 					{/* HTML&CSSだけでも完結できるシンプルな設計がベースにした */}
-					<Box className='a--content' pY={40}>
+					<Box className='a--content' py={40}>
 						<Box className='a--article' tag='article'>
 							<Container className='a--article__content' isFlow isConstrained hasGutter>
 								{/* 特徴 */}

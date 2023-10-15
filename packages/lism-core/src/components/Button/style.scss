@@ -37,7 +37,7 @@
 	}
 }
 
-// pYは小さめにして、minHで最低限の高さを確保.
+// py は小さめにして、minHで最低限の高さを確保.
 :where(.c--button) {
 	display: flex;
 	justify-content: center;
@@ -58,8 +58,8 @@
 // .c--button.l--grid,
 .c--button.l--grid {
 	// display: grid;
-	--gta--val: 'left center right';
-	--gtc--val: 1em 1fr 1em;
+	--gta: 'left center right';
+	--gtc: 1em 1fr 1em;
 }
 .l--grid > .c--button__text {
 	justify-self: center;

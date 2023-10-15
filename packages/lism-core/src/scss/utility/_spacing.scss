@@ -7,52 +7,55 @@ $spaces: 0, 5, 10, 15, 20, 30, 40, 50;
 @each $s in $spaces {
 	// @for $i from 0 through 5 {
 	// .-flowGap\:#{$s} {
-	// 	--flowGap: var(--space--#{$s});
+	// 	--flowGap: var(--s--#{$s});
 	// }
+
+	// .-m\:#{$s} {
+	// 	--m: var(--s--#{$s});
+	// }
+
+	// flowレイアウトで使うので mbs はユーティリティ用意する
 	.-mbs\:#{$s} {
-		--mbs: var(--space--#{$s});
+		--mbs: var(--s--#{$s});
 	}
 	// .-mbe\:#{$s} {
-	// 	--mbe: var(--space--#{$s});
+	// 	--mbe: var(--s--#{$s});
 	// }
 	.-gap\:#{$s} {
-		--gap: var(--space--#{$s});
+		--gap: var(--s--#{$s});
 	}
-
 	// .-clmg\:#{$s} {
-	// 	--clmg: var(--space--#{$s});
+	// 	--clmg: var(--s--#{$s});
 	// }
 	// .-rowg\:#{$s} {
-	// 	--rowg: var(--space--#{$s});
+	// 	--rowg: var(--s--#{$s});
 	// }
 
 	.-p\:#{$s} {
-		--p: var(--space--#{$s});
+		--p: var(--s--#{$s});
 	}
-	// .-pbs\:
-	// .-pbe\:
-	.-pX\:#{$s} {
-		--pX: var(--space--#{$s});
+	.-px\:#{$s} {
+		--px: var(--s--#{$s});
 	}
-	.-pY\:#{$s} {
-		--pY: var(--space--#{$s});
+	.-py\:#{$s} {
+		--py: var(--s--#{$s});
 	}
 	// .-pl\:#{$s} {
-	// 	--pl: var(--space--#{$s});
+	// 	--pl: var(--s--#{$s});
 	// }
 	// .-pr\:#{$s} {
-	// 	--pr: var(--space--#{$s});
+	// 	--pr: var(--s--#{$s});
 	// }
 	// .-pt\:#{$s} {
-	// 	--pt: var(--space--#{$s});
+	// 	--pt: var(--s--#{$s});
 	// }
 	// .-pb\:#{$s} {
-	// 	--pb: var(--space--#{$s});
+	// 	--pb: var(--s--#{$s});
 	// }
 }
 
 // @for $i from 0 through 10 {
 // 	[data-props~="-p:#{10*$i}"] {
-// 		--p:var(--space--#{10*$i});
+// 		--p:var(--s--#{10*$i});
 // 	}
 // }

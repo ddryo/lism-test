@@ -1,6 +1,6 @@
 import { Box, Container, Columns, Spacer } from '@lism/core';
 
-export default function ContanerTest() {
+export default function ContainerTest() {
 	return (
 		<>
 			{/* <FluidFix fixW='240px' className='has:itemGuide' gap={40} hasGutter>

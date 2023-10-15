@@ -21,6 +21,7 @@ export default {
 	],
 	// lh: ['10', '20', '30', '40', '50', '60', '70', '80', '90'],
 	lh: ['base', '2xs', 'xs', 's', 'l', 'xl', '2xl'], // 検討
+	lts: ['-3', '-2', '-1', '0', '1', '2', '3', '4', '5', '6', '7'],
 	ff: ['base', 'mono', 'emoji', 'sans', 'serif'],
 
 	// --変数化できるキーワード
@@ -65,7 +66,6 @@ export default {
 		'gray',
 		// 'basic',
 	],
-	contentSize: ['xs', 's', 'base', 'l', 'xl'],
 
 	// ユーティリティ化
 	space: spacingPresets,
@@ -90,11 +90,15 @@ export default {
 
 	//bds: dashed, solid, double, dotted,
 
-	bg: ['glass'],
+	bg: ['glass', 'stripe', 'grid'],
 	z: ['-1', '0', '1'],
 	aspect: ['16/9', '4/3', '3/2', '2/1', '1/1', 'golden', 'silver', 'bronze', 'ogp'],
-	gta: ['lcr', 'tcb'],
+	gta: ['lcr', 'tcb', 'ltr'],
 	gt: ['fix:l', 'fix:r', 'fix:t', 'fix:b'],
+	gradient: ['sunset', 'black-to-bottom'],
+
+	// size:['container', 'container:s', 'container:l'],
+	contentSize: ['xs', 's', 'base', 'l', 'xl'],
 };
 
 // ユーティリティ化しないけど、変数を用意しておくもの

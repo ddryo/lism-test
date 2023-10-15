@@ -1,16 +1,6 @@
 @use '../query' as query;
 
-// data-lism: columns grid , cluster flex, data-lism-layout...
-// data→emmet展開しずらい
-
-// lism: 使いたいやつ
-// → columns, sidefix, tileGrid reel, ratioGrid? frame?
-
-// 子要素に適用させたいものがある時、 --lism でバッティングがおきないか?
-// → -item:, -size: -self: -layout: など何種類か用意する?
-
 // @bp系のクラスなしでクエリ対応可能な 特殊な変数
-
 @layer lism-init {
 	:where(.-lismVar\:) {
 		--lism: unset;
@@ -21,23 +11,21 @@
 		--lism--lg: var(--lism--md);
 		// --lism--xl: var(--lism--lg);
 
-		// 実際に扱う変数はこの --lismVar
-		--lismVar: var(--lism);
+		// 実際に扱う変数
+		--lism--val: var(--lism);
 
 		// 各ブレイクポイント用の値をセット
 		@include query.cq('sm') {
-			--lismVar: var(--lism--sm);
+			--lism--val: var(--lism--sm);
 		}
 		@include query.cq('md') {
-			--lismVar: var(--lism--md);
+			--lism--val: var(--lism--md);
 		}
 		@include query.cq('lg') {
-			--lismVar: var(--lism--lg);
+			--lism--val: var(--lism--lg);
 		}
 		// @include query.cq('xl') {
-		// 	--lismVar: var(--lism--xl);
+		// 	--lism--val: var(--lism--xl);
 		// }
 	}
 }
-
-// .@sm:, .@md:, -@lg:

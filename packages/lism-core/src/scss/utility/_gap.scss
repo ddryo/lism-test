@@ -4,43 +4,42 @@
 	gap: var(--gap);
 }
 [class*='-clmg:'] {
-	column-gap: var(--clmg) !important;
+	column-gap: var(--clmg);
 }
 [class*='-rowg:'] {
-	row-gap: var(--rowg) !important;
+	row-gap: var(--rowg);
 }
-// gapX, gapY? tailwind: gap-x, gap-y
-// colm
+
 @include query.cq('sm') {
 	.-gap\@sm\: {
-		gap: var(--gap--sm) !important;
+		gap: var(--gap--sm);
 	}
 	.-clmg\@sm\: {
-		column-gap: var(--clmg--sm) !important;
+		column-gap: var(--clmg--sm);
 	}
 	.-rowg\@sm\: {
-		row-gap: var(--rowg--sm) !important;
+		row-gap: var(--rowg--sm);
 	}
 }
 @include query.cq('md') {
 	.-gap\@md\: {
-		gap: var(--gap--md) !important;
+		gap: var(--gap--md);
 	}
 	.-clmg\@md\: {
-		column-gap: var(--clmg--md) !important;
+		column-gap: var(--clmg--md);
 	}
 	.-rowg\@md\: {
-		row-gap: var(--rowg--md) !important;
+		row-gap: var(--rowg--md);
 	}
 }
 @include query.cq('lg') {
 	.-gap\@lg\: {
-		gap: var(--gap--lg) !important;
+		gap: var(--gap--lg);
 	}
 	.-clmg\@lg\: {
-		column-gap: var(--clmg--lg) !important;
+		column-gap: var(--clmg--lg);
 	}
 	.-rowg\@lg\: {
-		row-gap: var(--rowg--lg) !important;
+		row-gap: var(--rowg--lg);
 	}
 }

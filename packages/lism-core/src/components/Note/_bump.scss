@@ -6,7 +6,7 @@
 		--bdc: var(--keycolor);
 		position: relative;
 		padding: var(--p--box);
-		gap: var(--space--20);
+		gap: var(--s--20);
 		border-radius: var(--radius--1);
 		line-height: var(--ls--s);
 		border-inline-start: solid 4px var(--bdc);
@@ -43,7 +43,7 @@
 	}
 	:where(& > .c--note__head) {
 		background-color: var(--bgc--base);
-		margin-inline: var(--space--30);
+		margin-inline: var(--s--30);
 		padding-inline: 0.5em;
 		// border-radius: 4px;
 	}

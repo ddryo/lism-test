@@ -1,7 +1,7 @@
-// ネストされている時はpX継承できるように
+// ネストされている時は px 継承できるように
 :where(.b--navMenu:not([data-nest-level])) {
-	--item--py: var(--space--20);
-	--item--px: var(--space--30);
+	--item--py: var(--s--20);
+	--item--px: var(--s--30);
 	// --item--pl: var(--item--px);
 	--item--ml: 0;
 	--level: 0;
@@ -29,7 +29,7 @@
 .b--navMenu__text {
 	display: flex;
 	align-items: center;
-	gap: var(--space--20);
+	gap: var(--s--20);
 	padding: var(--item--py) var(--item--px);
 	color: inherit;
 	text-decoration: none;
@@ -44,7 +44,7 @@
 
 // 子項目の余白をmarginで調整する場合
 .b--navMenu[data-nest-level] {
-	--item--ml: var(--space--40);
+	--item--ml: var(--s--40);
 }
 
 .b--navMenu__acc > .l--accordion__header {

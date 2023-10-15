@@ -17,7 +17,7 @@ export const Demo02 = () => (
 	<Demo>
 		<Demo.Title>単純なBoxの例</Demo.Title>
 		<Demo.Preview resize p={20}>
-			<Box tag='section' isFlow pX={50} pY={40} bgc='whitesmoke'>
+			<Box tag='section' isFlow px={50} py={40} bgc='whitesmoke'>
 				<h3>Heading</h3>
 				<p>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugit, numquamdicta repellat ipsa

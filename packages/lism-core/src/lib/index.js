@@ -81,7 +81,7 @@ export function getMaybeSpaceVar(space) {
 	// spaceが 整数 or 整数を示す文字列 の場合
 	// if (isPresetValue('space', space)) {
 	if (typeof space === 'number' || isNumStr(space)) {
-		return `var(--space--${space})`;
+		return `var(--s--${space})`;
 	}
 
 	/* eslint-disable-next-line  eqeqeq */

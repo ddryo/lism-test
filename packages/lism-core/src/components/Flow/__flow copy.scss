@@ -26,30 +26,28 @@
 		margin-block-end: 0;
 	}
 
-	
 	// ※1: "--flowGap:" ではなく "--flowGap" (:なし} にしているのは意図的。
 	//　_Q{x} のみの指定でも mbs 上書き可能にしている。( ただし、これによりネスト時に影響受けてしまうので、※2 で調整 ）
-	&[style*="--inner--flowGap"] > * + *{
-		margin-block-start: var(--inner--flowGap, var(--ls--flowGap) );
+	&[style*='--inner--flowGap'] > * + * {
+		margin-block-start: var(--inner--flowGap, var(--ls--flowGap));
 	}
 
 	// ※2: _Q{x} に対してのみ上書き指定がある場合、noQuery の時の値をセット
-	&[style*="--inner--flowGap--"]:not([style*="--inner--flowGap:"]) {
+	&[style*='--inner--flowGap--']:not([style*='--inner--flowGap:']) {
 		--inner--flowGap: var(--ls--flowGap);
 	}
 
 	@container (max-width: 720px) {
-		&[style*="--inner--flowGap--sm:"] {
+		&[style*='--inner--flowGap--sm:'] {
 			--inner--flowGap: var(--inner--flowGap--sm) !important;
 		}
 	}
-	
+
 	@container (max-width: 440px) {
-		&[style*="--inner--flowGap--xs:"] { 
+		&[style*='--inner--flowGap--xs:'] {
 			--inner--flowGap: var(--inner--flowGap--xs) !important;
 		}
 	}
-	
 
 	> .alignleft {
 		float: left;
@@ -67,11 +65,10 @@
 		margin-right: auto !important;
 		margin-left: auto !important;
 	}
-
 }
 
 // [data-box-flowGap="s"]{
 // 	&.is--flow > * {
-// 		--gap: var(--space--30);
+// 		--gap: var(--s--30);
 // 	}
 // }

@@ -33,7 +33,7 @@ export const LismColorDemos = ({ colors = [] }) => {
 
 ## カラートークン
 
-<Demo className='-bg:stripe'>
+<Demo>
 	<Demo.Title>Point colors</Demo.Title>
 	<Demo.Preview isShadow resize p={20} flowGap="30">
 		<LismColorDemos colors={[ 'main', 'accent' ]}/>
@@ -41,19 +41,19 @@ export const LismColorDemos = ({ colors = [] }) => {
 </Demo>
 
 
-<Demo className='-bg:stripe'>
+<Demo>
 	<Demo.Title>Basic カラー</Demo.Title>
 	<Demo.Preview isShadow resize p={20} flowGap="30">
 		<LismColorDemos colors={[ 'b50', 'b100', 'b200', 'b300', 'b400', 'b500', 'b600', 'b700', 'b800', 'b900' ]}/>
 	</Demo.Preview>
 </Demo>
 
-<Alert>
+<Alert preset="info">
 Basic系カラーはデフォルトで 背景色・文字色・ボーダー色などに使われています。(50:背景色 ←→ 950:文字色)  
 `--hs--basic`で色味を一括調整可能。
 </Alert>
 
-<Demo className='-bg:stripe'>
+<Demo>
 	<Demo.Title>パレットカラー</Demo.Title>
 	<Demo.Preview isShadow resize p={20} flowGap="30">
 		<LismColorDemos colors={[ 'black', 'white', "red", "orange", "yellow", "green", "blue", "purple", "pink" ]}/>

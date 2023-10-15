@@ -3,17 +3,17 @@
 @layer lism-init {
 	.l--grid {
 		// 初期値セット
-		--gta--val: none;
-		--gtc--val: none;
-		--gtr--val: none;
+		--gta: none;
+		--gtc: none;
+		--gtr: none;
 		// --gap: 0;
 	}
 }
 .l--grid {
 	display: grid !important; // ユーティリティ的な側面もあり、組み合わせ方でレイアウトを変えることもあるので !important 付与
-	grid-template-areas: var(--gta--val);
-	grid-template-columns: var(--gtc--val);
-	grid-template-rows: var(--gtr--val);
+	grid-template-areas: var(--gta);
+	grid-template-columns: var(--gtc);
+	grid-template-rows: var(--gtr);
 	// gap: var(--gap);
 }
 // grid={areas: columns: rows: gap:}

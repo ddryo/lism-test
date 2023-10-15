@@ -28,11 +28,14 @@ export default function Columns({ cols = 1, lismStyle = {}, ...props }) {
 	const { baseValue, bpValues } = getLismMainProp(cols);
 
 	if (null != baseValue) {
-		lismStyle['--gtc'] = baseValue;
+		lismStyle['--cols'] = baseValue;
 	}
 
 	if (!isEmptyObj(bpValues)) {
-		gridProps.columns = bpValues;
+		Object.keys(bpValues).forEach((bp) => {
+			lismStyle[`--cols--${bp}`] = bpValues[bp];
+		});
+		// gridProps.columns = bpValues;
 	}
 
 	return <Grid lismStyle={lismStyle} {...gridProps} {...props} />;

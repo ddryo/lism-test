@@ -85,7 +85,7 @@ import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 <Demo>
 	<Demo.Title>Sectionの例</Demo.Title>
 	<Demo.Preview resize alignfull>
-		<Section c="dimgray" bgc="whitesmoke" pY={40}>
+		<Section c="dimgray" bgc="whitesmoke" py={40}>
 			<SectionBody>
 				<h3>見出し</h3>
 				<DammyText />
@@ -95,7 +95,7 @@ import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 	</Demo.Preview>
 	<Demo.Code alignfull>
 		```jsx
-		<Section c="dimgray" bgc="whitesmoke" pY={40}>
+		<Section c="dimgray" bgc="whitesmoke" py={40}>
 			<SectionBody>
 				<h3>...</h3>
 				<p>...</p>
@@ -111,10 +111,10 @@ import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 
 <Demo>
 	<Demo.Title>Section外との関係</Demo.Title>
-	<Demo.Preview resize alignfull p={{ Y: 50 }}>
+	<Demo.Preview resize alignfull py={50}>
 		<Container isFlow isConstrained hasGutter>
 			<p>...セクション外のコンテンツ...</p>
-			<Section c="dimgray" bgc="whitesmoke" pY={40}>
+			<Section c="dimgray" bgc="whitesmoke" py={40}>
 				<SectionBody>
 					<h3>見出し</h3>
 					<DammyText />
@@ -128,7 +128,7 @@ import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 		```jsx
 		<Container isFlow isConstrained hasGutter>
 			<p>...セクション外のコンテンツ...</p>
-			<Section c="dimgray" bgc="whitesmoke" pY={40}>
+			<Section c="dimgray" bgc="whitesmoke" py={40}>
 				<SectionBody>
 					<h3>見出し</h3>
 					<DammyText />
@@ -148,7 +148,7 @@ import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 			<SectionHeader bd="guide">
 				<div>Header</div>
 			</SectionHeader>
-			<SectionBody pY={40} bd="guide">
+			<SectionBody py={40} bd="guide">
 				<h3>見出し</h3>
 				<DammyText />
 				<DammyText length="m" />
@@ -164,7 +164,7 @@ import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 			<SectionHeader bd="guide">
 				<div>Header</div>
 			</SectionHeader>
-			<SectionBody pY={40} bd="guide">
+			<SectionBody py={40} bd="guide">
 				<h3>...</h3>
 				<p>...</p>
 			</SectionBody>
@@ -180,15 +180,15 @@ import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 	<Demo.Title>Header, Footer内のコンテンツ幅をBodyに揃える例</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Section c="dimgray" bgc="whitesmoke" innerProps={{ gap: 40 }}>
-			<SectionHeader pY={20} isConstrained hasGutter bd="guide">
+			<SectionHeader py={20} isConstrained hasGutter bd="guide">
 				<div>Header</div>
 			</SectionHeader>
-			<SectionBody pY={40} bd="guide">
+			<SectionBody py={40} bd="guide">
 				<h3>見出し</h3>
 				<DammyText />
 				<DammyText length="m" />
 			</SectionBody>
-			<SectionFooter pY={20} isConstrained hasGutter bd="guide">
+			<SectionFooter py={20} isConstrained hasGutter bd="guide">
 				<div>Footer</div>
 			</SectionFooter>
 		</Section>
@@ -196,14 +196,14 @@ import { Section, SectionBody, SectionHeader, SectionFooter } from '@lism/core';
 	<Demo.Code>
 		```jsx
 		<Section c="dimgray" bgc="whitesmoke" innerProps={{ gap: 40 }}>
-			<SectionHeader pY={20} isConstrained hasGutter bd="guide">
+			<SectionHeader py={20} isConstrained hasGutter bd="guide">
 				<div>Header</div>
 			</SectionHeader>
-			<SectionBody pY={40} bd="guide">
+			<SectionBody py={40} bd="guide">
 				<h3>...</h3>
 				<p>...</p>
 			</SectionBody>
-			<SectionFooter pY={20} isConstrained hasGutter bd="guide">
+			<SectionFooter py={20} isConstrained hasGutter bd="guide">
 				<div>Footer</div>
 			</SectionFooter>
 		</Section>
@@ -357,7 +357,7 @@ Memo: top,bottomに分けずに指定できるようにする → 同じオプ�
 
 <Demo>
 	<Demo.Title>Section外との関係</Demo.Title>
-	<Demo.Preview resize alignfull p={{ Y: 50 }}>
+	<Demo.Preview resize alignfull py={50}>
 		<Container isFlow isConstrained hasGutter>
 			<p>...セクション外のコンテンツ...</p>
 			<Section
@@ -369,7 +369,7 @@ Memo: top,bottomに分けずに指定できるようにする → 同じオプ�
 						bottom: { type: "wave3", color: "#fff" },
 					}}
 				>
-					<SectionBody pY={40} c="white">
+					<SectionBody py={40} c="white">
 						<DammyText length="l" />
 					</SectionBody>
 				</Section>
@@ -389,7 +389,7 @@ Memo: top,bottomに分けずに指定できるようにする → 同じオプ�
 				bottom: { type: "wave3", color: "#fff" },
 			}}
 		>
-			<SectionBody pY={40} c="white">
+			<SectionBody py={40} c="white">
 				<DammyText length="l" />
 			</SectionBody>
 		</Section>

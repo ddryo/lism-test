@@ -63,7 +63,7 @@ Lismでは、主要なCSSプロパティ向けのプリセット値をトーク�
 そのため、出力結果は次のようになります。
 
 ```jsx
-<div class="-p:20 -bxsh:2 -mb:" style="--mb:var(--space--40)">...</div>
+<div class="-p:20 -bxsh:2 -mb:" style="--mb:var(--s--40)">...</div>
 ```
 
 
@@ -257,7 +257,7 @@ Lism Propsの一部は、[ブレイクポイント](/docs/design-system/break-po
 これにより出力されるHTMLは以下のようになります。
 
 ```html
-<div class="l--box -p:20 -p@sm: -p@md:" style="--p--sm:var(--space--30);--p--md:var(--space--40)">
+<div class="l--box -p:20 -p@sm: -p@md:" style="--p--sm:var(--s--30);--p--md:var(--s--40)">
 	...
 </div>
 ```
@@ -286,7 +286,7 @@ Lism Propsの一部は、[ブレイクポイント](/docs/design-system/break-po
 これにより出力されるHTMLは以下のようになります。
 
 ```html
-<div class="l--box -p:20 -p@md:" style="--p--md:var(--space--40)">
+<div class="l--box -p:20 -p@md:" style="--p--md:var(--s--40)">
 	...
 </div>
 ```
@@ -324,7 +324,7 @@ BP指定との併用時における注意事項を以下に記載します。
 ```
 // p={_:{pl: [20,40], pr: 30}, sm:{}} のような指定はできないルール.
 // p=[{left,right}, {left,right}] みたいな指定はできないルール.
-// p={X: [20,40], Y: [30,40]} は一応処理的には問題ないが、そもそもそんな指定は非推奨
+// p={x: [20,40], y: [30,40]} は一応処理的には問題ないが、そもそもそんな指定は非推奨
 ```
 
 

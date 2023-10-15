@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Container, Box, Layer, Flex } from '@lism/core';
 import Preview from './Preview';
 import classnames from 'classnames';
-import { renderToString } from 'react-dom/server';
+// import { renderToString } from 'react-dom/server';
 // import Script from 'next/script';
 // import ShadowDOM from 'react-shadow';
 
@@ -29,8 +29,8 @@ const Demo = ({ children, alignfull, ...attrs }) => {
 
 // display: flex;
 // align-items: center;
-// gap: var(--space--20);
-// margin-bottom: var(--space--10);
+// gap: var(--s--20);
+// margin-bottom: var(--s--10);
 
 Demo.Title = ({ children }) => {
 	return (

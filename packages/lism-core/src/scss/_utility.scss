@@ -8,7 +8,7 @@
 @use 'utility/flex-props';
 @use 'utility/place';
 @use 'utility/item';
-
+@use 'utility/bg';
 @use 'utility/margin';
 @use 'utility/padding';
 @use 'utility/radius';
@@ -18,9 +18,3 @@
 @use 'utility/typography';
 
 @use 'utility/others';
-
-.has\:indent {
-	> p {
-		text-indent: 1em;
-	}
-}

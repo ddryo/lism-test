@@ -45,7 +45,7 @@ import {
 
 preset → type ...?
 
-<Alert>
+<Alert preset="info">
 Astroでアイコンの受け渡しどうする...。（jsxコンポーネントであれば問題なし。）
 </Alert>
 
@@ -92,11 +92,11 @@ export const AlertDemos = ({ children,variant }) => {
 		デフォルト (`preset="alert"`が初期セットされています)
 	</Demo.Title>
 	<Demo.Preview p={20}>
-		<Alert><DemoText lang="ja" /></Alert>
+		<Alert preset="info"><DemoText lang="ja" /></Alert>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Alert>...text...</Alert>
+		<Alert preset="info">...text...</Alert>
 		```
 	</Demo.Code>
 </Demo>
@@ -183,7 +183,7 @@ import { Book } from "@phosphor-icons/react";
 		```jsx
 		<Section
 			c="white"
-			pY={40}
+			py={40}
 			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
 			filter={{ blur: "8px", bgc: "rgba(0,0,0,0.6)" }}
 		>

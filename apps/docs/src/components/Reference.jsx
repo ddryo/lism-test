@@ -10,7 +10,7 @@ import {
 
 export default function Reference({ children }) {
 	return (
-		<Alert icon={BookOpenText} color='purple'>
+		<Alert icon={BookOpenText} keycolor='purple'>
 			{children}
 		</Alert>
 	);

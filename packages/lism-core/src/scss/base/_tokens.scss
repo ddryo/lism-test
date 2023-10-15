@@ -41,14 +41,18 @@
 	    1080 にしてるのは、 1920 * 1080画像がきれいに配置できるため？
 	------------------------------------------------------------ */
 	// コンテンツサイズは960 ~ 1120 くらいがよさそう. @lg よりは大きく?
-	// --contentSize--full: 0px;
-	--contentSize--base: 1120px; // = --wp--style--global--content-size.
+	--contentSize--full: 100vw;
+	--contentSize--base: var(--contentSize--m); // = --wp--style--global--content-size.
+
 	--contentSize--l: 1440px; // = --wp--style--global--wide-size. alignwide で使う.
+	--contentSize--m: 1120px; // = --wp--style--global--content-size.
 	--contentSize--s: 45rem; // slim幅1カラムテンプレートで使う. fz:16px時 = 720px
+	// --contentSize--xs: 30rem;
+
 	// --contentSize--full: 特殊
 
 	// コンテンツの左右の余白
-	--gutter: clamp(1.5rem, 4vw, 2rem); // var(--space-50) とかを使うべきか？
+	--gutter: 2rem; //clamp(1.5rem, 4vw, 2rem); // var(--s--50) とかを使うべきか？
 
 	// ボーダーカラー
 	// --ls--bdc--table: #dcdcdc;
@@ -70,16 +74,31 @@
 	// --ff--sans, --ff--serif;
 	// meta, heading
 
+	// ------------------------------
 	// letter-spacing
-	--lts--base: 0;
-	--lts--tight: 0;
-	--lts--wide: 0;
+	// ------------------------------
+	// --lts--base: normal; // 0, 0.025
+
+	--lts--N2: -0.05em;
+	--lts--N1: -0.025em;
+	--lts--0: 0em;
+	--lts--1: 0.025em;
+	--lts--2: 0.05em;
+	--lts--3: 0.075em;
+	--lts--4: 0.1em;
+	--lts--5: 0.25em;
+	--lts--6: 0.5em;
+
+	// --lts--6: 0.5em;
 
 	// --root--ff: sans-serif;
 	// --root--fz: clamp(14px, 4vw, 1rem); // 1rem: ブラウザ標準はほぼ16px
 	// --root--fz: clamp(0.875rem, 0.625rem + 1vw, 1rem); // 400 - 600
 	// --root--lh: 1.75;
 
+	// ------------------------------
+	// font-size 変数
+	// ------------------------------
 	// font-size 変数
 	--fz--root: clamp(0.875rem, 0.625rem + 1vw, 1rem); // 400 - 600
 	// --fz--hero?
@@ -109,63 +128,34 @@
 	// --fz--2xs: calc(1em * var(--fzMolecule) / (var(--fzMolecule) + 3));
 
 	// clampでテキストサイズを変化させたい領域に指定する
-	// --fz-fluid: clamp(0.9rem, 0.8rem + 0.5cqw, 1rem); // 小さい方向のみ. 320: .9rem ~ 640: 1rem
-	--fz-fluid: clamp(0.9rem, 0.75rem + 0.8cqw, 1rem); // 小さい方向のみ. 300: .9rem ~ 500: 1rem
-
+	// --fz-fluid--s: clamp(0.9rem, 0.75rem + 0.8cqw, 1rem); // 小さい方向のみ. 300: .9rem ~ 500: 1rem
 	// --fz-fluid: clamp(0.9rem, 0.8rem + 0.5cqw, 1.1rem); // 上下両方. 320: .9rem ~ 960: 1.1rem
-	// --fz-fluid: clamp(0.9rem, 0.825rem + 0.4cqw, 1.1rem); // 上下両方. 300: .9rem ~ 1100: 1.1rem
-	// --fz-fluid: clamp(0.9rem, 0.85rem + 0.27cqw, 1.05rem); // 上下両方. 300: .9rem ~ 1200: 1.05rem
 	// --fz-fluid--l: clamp(1rem, 0.9rem + 0.25cqw, 1.1rem); // 大きい方向のみ 640: 1rem a~ 960: 1.1rem
-	// clamp(0.9rem, 0.75rem + 0.75vw, 1.2rem); // 上下両方. 320: .9rem ~ 960: 1.2rem
 
 	// ------------------------------
 	// line-height 変数
 	// ------------------------------
 
 	// 1~9 だと普通の数値指定と区別がつかない.
-	--lh--10: 1;
-	--lh--20: 1.125;
-	--lh--30: 1.25;
-	--lh--40: 1.375;
-	--lh--50: 1.5;
-	--lh--60: 1.625;
-	--lh--70: 1.75;
-	--lh--80: 1.875;
-	--lh--90: 2;
-	// --lh--90: 2.5;
+	// --lh--10: 1;
+	// --lh--20: 1.125;
+	// --lh--30: 1.25;
+	// --lh--40: 1.375;
+	// --lh--50: 1.5;
+	// --lh--60: 1.625;
+	// --lh--70: 1.75;
+	// --lh--80: 1.875;
+	// --lh--90: 2;
 
-	// --lh--r:
-	// --lh:1
-
-	// --lh--4xs: var(--lh--20);
-	// --lh--3xs: var(--lh--30);
-	// --lh--2xs: var(--lh--40);
-	// --lh--xs: var(--lh--50);
-	// --lh--xs: var(--lh--30); // button, badge?
 	--lh--base: 1.75;
 	--lh--xs: calc(var(--lh--base) - 0.25);
 	--lh--s: calc(var(--lh--base) - 0.125);
 	--lh--l: calc(var(--lh--base) + 0.125);
-	// --lh--xl: var(--lh--90);
+	// --lh--xl: calc(var(--lh--base) + 0.25);
 
-	// --h1--lh:
-	// --h2--lh:
-	// --h3--lh:
-	// --h4--lh:
-
-	// --lh--xl: var(--lh--70);
 	// tight snug - relaxed loose
 	// shorter short - tall taller
 	// xs s - l xl
-
-	// --lh--base: 1.75;
-
-	// 1, xs          sm       md,  lg  xl
-	// 1, 1.25, 1.4, 1.5, 1.6,  1.75, 2,  2.5
-
-	// line-height 変数
-	// --ls--lh--contents: 1.8;
-	// --ls--lh--heading: 1.8;
 
 	/* ------------------------------------------------------------
 	  カラー: ユーザー側で定義できる仕組みも必要
@@ -183,19 +173,23 @@
 	// --bgc--base: #fdfdfd; // 背景色メイン
 
 	// ベースカラーに合わせたカラーを段階的に用意
-	--hs--basic: 215 8%;
-	// --hsl--basic: 215 8% 60%;
-	--b50: hsl(var(--hs--basic) 99%);
-	--b100: hsl(var(--hs--basic) 96%);
-	--b200: hsl(var(--hs--basic) 92%);
-	--b300: hsl(var(--hs--basic) 84%);
-	--b400: hsl(var(--hs--basic) 72%);
-	--b500: hsl(var(--hs--basic) 60%);
-	--b600: hsl(var(--hs--basic) 48%);
-	--b700: hsl(var(--hs--basic) 36%);
-	--b800: hsl(var(--hs--basic) 24%); // 淡い文字色 strong背景色
-	--b900: hsl(var(--hs--basic) 8%); // 少しだけ淡い文字色. pre code などで使用
-	// --b950: hsl(var(--hs--basic) 8%); // 文字色
+	--hs--bc: 215 8%;
+	// --hsl--bc: 215 8% 60%;
+
+	// bc50? n50?
+	--b50: hsl(var(--hs--bc) 99%);
+	--b100: hsl(var(--hs--bc) 96%);
+	--b200: hsl(var(--hs--bc) 92%);
+	--b300: hsl(var(--hs--bc) 84%);
+	--b400: hsl(var(--hs--bc) 72%);
+	--b500: hsl(var(--hs--bc) 60%);
+	--b600: hsl(var(--hs--bc) 48%);
+	--b700: hsl(var(--hs--bc) 36%);
+	--b800: hsl(var(--hs--bc) 24%); // 淡い文字色 strong背景色
+	--b900: hsl(var(--hs--bc) 8%); // 少しだけ淡い文字色. pre code などで使用
+	// --b950: hsl(var(--hs--bc) 8%); // 文字色
+
+	// pale→subtle?
 
 	// --c-: 文字色 に関するセマンティックトークン
 	--c--base: var(--b900); // 基本の文字色
@@ -282,34 +276,35 @@
 
 	// 30: 2rem 前後
 
-	--sUnit: 1rem; //var(--root--fz); //1rem;
-	--space--0: 0rem;
+	// --sUnit: 1rem;
+	--s--0: 0rem;
 
 	// 1=0.25での Fibonacci数列, 5は例外的に 0.125 をセット
-	// --space--5: calc(0.125 * var(--sUnit));
-	// --space--10: calc(0.25 * var(--sUnit));
-	// --space--15: calc(0.5 * var(--sUnit));
-	// --space--20: calc(0.75 * var(--sUnit));
-	// --space--30: calc(1.25 * var(--sUnit));
-	// --space--40: calc(2 * var(--sUnit));
-	// --space--50: calc(3.25 * var(--sUnit));
-	// --space--60: calc(5.25 * var(--sUnit));
-	// ここまでFibonacci
-	// ここから等比数列
-	// --space--70: calc(var(--space--60) * 1.5);
-	--space--80: calc(var(--space--70) * 1.5);
-	--space--90: calc(var(--space--80) * 1.5);
+	// --s--5: 0.125rem;
+	// --s--10: 0.25rem;
+	// --s--15: 0.5rem;
+	// --s--20: 0.75rem;
+	// --s--30: 1.25rem;
+	// --s--40: 2rem;
+	// --s--50: 3.25rem;
+	// --s--60: 5.25rem;
+	// --s--70: 8.5rem;
 
 	// 1=0.125 Fibonacci数列
-	--space--5: calc(0.125 * var(--sUnit));
-	--space--10: calc(0.25 * var(--sUnit));
-	--space--15: calc(0.375 * var(--sUnit));
-	--space--20: calc(0.625 * var(--sUnit));
-	--space--30: calc(1 * var(--sUnit));
-	--space--40: calc(1.625 * var(--sUnit));
-	--space--50: calc(2.625 * var(--sUnit));
-	--space--60: calc(4.25 * var(--sUnit));
-	--space--70: calc(6.875 * var(--sUnit));
+	--s--5: 0.125rem;
+	--s--10: 0.25rem;
+	--s--15: 0.375rem;
+	--s--20: 0.625rem;
+	--s--30: 1rem;
+	--s--40: 1.625rem;
+	--s--50: 2.625rem;
+	--s--60: 4.25rem;
+	--s--70: 6.875rem;
+
+	// ここから等比数列
+	// --s--70: calc(var(--s--60) * 1.5);
+	--s--80: calc(var(--s--70) * 1.5);
+	--s--90: calc(var(--s--80) * 1.5);
 
 	// --em--5: .125em;
 	// --em--10: .25em;
@@ -328,18 +323,18 @@
 	--p--box: 1em 1.125em;
 	--p--box--l: 1.5em 1.625em;
 
-	--gap--icon--s: 0.25em;
-	--gap--icon: 0.5em;
-	--gap--icon--l: 0.75em;
+	// --gap--icon--s: 0.25em;
+	// --gap--icon: 0.5em;
+	// --gap--icon--l: 0.75em;
 
 	// .is--flow の blockGap 管理用変数
-	// --flowGap--xs: var(--space--15);
-	--flowGap--m: var(--space--40);
-	--flowGap--s: var(--space--20);
-	--flowGap--l: var(--space--50);
+	// --flowGap--xs: var(--s--15);
+	--flowGap--m: var(--s--40);
+	--flowGap--s: var(--s--20);
+	--flowGap--l: var(--s--50);
 
 	// --flowGap--root: var(--flowGap--m); // global値
-	--flowGap--heading: 2.5em; // var(--space--50); // フォントサイズ依存
+	--flowGap--heading: 2.5em; // var(--s--50); // フォントサイズ依存
 
 	/* ------------------------------------------------------------
 	  radius
@@ -357,9 +352,7 @@
 	  shadow
 	------------------------------------------------------------ */
 
-	--shadow--hsl: 0 0% 0%;
-	--shadow-strength--base: 0.05;
-	--shadow-strength: 0.1;
+	--hsl--shadow: var(--hs--bc) 20%; //0 0% 0%;
 
 	// x:y = 1:2 で統一。 layer的な考え方で、10,20...ではなく 1,2,...?
 	--shadow-length--0: 0.5px 1px 2px 0px;
@@ -369,8 +362,10 @@
 	--shadow-length--4: 4px 8px 32px 0px;
 	// --shadow-length--5: 8px 16px 56px -1px;
 
-	--shadow-color--low: hsl(var(--shadow--hsl) / var(--shadow-strength--base));
-	--shadow-color: hsl(var(--shadow--hsl) / var(--shadow-strength));
+	--shadow-alpha--low: 0.05;
+	--shadow-color--low: hsl(var(--hsl--shadow) / var(--shadow-alpha--low));
+	--shadow-alpha: 0.1;
+	--shadow-color: hsl(var(--hsl--shadow) / var(--shadow-alpha));
 
 	// ポイント:
 	//    x:yのオフセット比率は一定に保つ. 1:2
@@ -378,43 +373,28 @@
 	//    base(0)のshadowを共通で付ける
 	//    1段階前のshadowを薄めてつける
 
-	--shadow--1: var(--shadow-length--0) var(--shadow-color--low),
-		var(--shadow-length--1) var(--shadow-color);
+	// 共通で使う微量のshadow
+	--shadow--0: var(--shadow-length--0) var(--shadow-color--low);
 
-	--shadow--2: var(--shadow-length--0) var(--shadow-color--low),
-		var(--shadow-length--1) var(--shadow-color--low),
+	--shadow--1: var(--shadow--0), var(--shadow-length--1) var(--shadow-color);
+	--shadow--2: var(--shadow-length--1) var(--shadow-color--low),
 		var(--shadow-length--2) var(--shadow-color);
-
-	--shadow--3: var(--shadow-length--0) var(--shadow-color--low),
-		var(--shadow-length--2) var(--shadow-color--low),
+	--shadow--3: var(--shadow-length--2) var(--shadow-color--low),
 		var(--shadow-length--3) var(--shadow-color);
-
-	--shadow--4: var(--shadow-length--0) var(--shadow-color--low),
-		var(--shadow-length--3) var(--shadow-color--low),
+	--shadow--4: var(--shadow-length--3) var(--shadow-color--low),
 		var(--shadow-length--4) var(--shadow-color);
 
-	--shadow--i1: inset var(--shadow-length--0) var(--shadow-color--low),
-		inset var(--shadow-length--1) var(--shadow-color);
-
-	--shadow--i2: inset var(--shadow-length--0) var(--shadow-color--low),
-		inset var(--shadow-length--1) var(--shadow-color--low),
+	--shadow--i1: inset var(--shadow--0), inset var(--shadow-length--1) var(--shadow-color);
+	--shadow--i2: inset var(--shadow-length--1) var(--shadow-color--low),
 		inset var(--shadow-length--2) var(--shadow-color);
-
-	--shadow--i3: inset var(--shadow-length--0) var(--shadow-color--low),
-		inset var(--shadow-length--2) var(--shadow-color--low),
+	--shadow--i3: inset var(--shadow-length--2) var(--shadow-color--low),
 		inset var(--shadow-length--3) var(--shadow-color);
-
-	--shadow--i4: inset var(--shadow-length--0) var(--shadow-color--low),
-		inset var(--shadow-length--3) var(--shadow-color--low),
+	--shadow--i4: inset var(--shadow-length--3) var(--shadow-color--low),
 		inset var(--shadow-length--4) var(--shadow-color);
 
-	// 1 にすると押し込むような感じになる
-	--shadow--hov: var(--shadow--4);
-
-	// ?
-	// --hov--bgc--base: var(--b100);
-
-	// rtlで反転させる値
+	/* ------------------------------------------------------------
+	  rtlで反転させる値
+	------------------------------------------------------------ */
 	--place--left: start;
 	--place--right: end;
 }
@@ -437,10 +417,10 @@
 // 100: 18
 
 // 暖色系テーマ
-// --hs--basic: 15 12%;
-// --b50: hsl(var(--hs--basic) 96%);
-// --b100: hsl(var(--hs--basic) 92%);
-// --b200: hsl(var(--hs--basic) 88%);
-// --b800: hsl(var(--hs--basic) 30%);
-// --b900: hsl(var(--hs--basic) 24%);
-// --b950: hsl(var(--hs--basic) 16%);
+// --hs--bc: 15 12%;
+// --b50: hsl(var(--hs--bc) 96%);
+// --b100: hsl(var(--hs--bc) 92%);
+// --b200: hsl(var(--hs--bc) 88%);
+// --b800: hsl(var(--hs--bc) 30%);
+// --b900: hsl(var(--hs--bc) 24%);
+// --b950: hsl(var(--hs--bc) 16%);

@@ -72,7 +72,7 @@ export const LayerPositionsDemo = () => {
 				"center bottom",
 				"right bottom",
 			].map((position) => (
-				<Box key={position} hasLayer pY={40} bgc="pale">
+				<Box key={position} hasLayer py={40} bgc="pale">
 					<Text fz="4xl" fw="bold" ta="c" opacity=".1">BG</Text>
 					<Layer position={position} bgc="hsl(268 50% 80% / 0.2)" bd="guide">
 						<Text fz="s" p={10} lh="1.5">"{position}"</Text>
@@ -92,7 +92,7 @@ export const LayerPositionsDemo = () => {
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx {4}
-		<Box hasLayer pY={40} bgc="pale">
+		<Box hasLayer py={40} bgc="pale">
 			<Text fz="xl" fw="bold" ta="c" opacity=".1">BG</Text>
 			<Layer
 				position={position}
@@ -117,7 +117,7 @@ export const LayerPositionsDemo = () => {
 		`top`, `left` に SPACE.20 を指定
 	</Demo.Title>
 	<Demo.Preview resize p={15}>
-		<Box hasLayer pY={40} className="has:layerGuide">
+		<Box hasLayer py={40} className="has:layerGuide">
 			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
 			<Layer top={20} left={20}>
 				<p>Layer Contents</p>
@@ -146,7 +146,7 @@ export const LayerPositionsDemo = () => {
 		コンテンツが長い場合
 	</Demo.Title>
 	<Demo.Preview resize p={15}>
-		<Box hasLayer pY={60} className="has:layerGuide">
+		<Box hasLayer py={60} className="has:layerGuide">
 			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
 			<Layer size="cover" isFlow p='box'>
 				<DammyText />
@@ -177,7 +177,7 @@ export const LayerPositionsDemo = () => {
 		`size="cover"`
 	</Demo.Title>
 	<Demo.Preview p={20}>
-		<Box hasLayer pY={40} className="has:layerGuide">
+		<Box hasLayer py={40} className="has:layerGuide">
 			<Text fz="4xl" fw="bold" ta="c">BG</Text>
 			<Layer size="cover">
 				<DammyText length='xs' />
@@ -186,7 +186,7 @@ export const LayerPositionsDemo = () => {
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx {3}
-		<Box hasLayer pY={40}>
+		<Box hasLayer py={40}>
 			...
 			<Layer size="cover">
 				<p>...</p>
@@ -203,7 +203,7 @@ export const LayerPositionsDemo = () => {
 		`size="cover"`の中に`<Center>`
 	</Demo.Title>
 	<Demo.Preview resize p={15}>
-		<Box hasLayer pY={40} className="has:layerGuide">
+		<Box hasLayer py={40} className="has:layerGuide">
 			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
 			<Layer size="cover">
 				<Center size="cover">
@@ -214,7 +214,7 @@ export const LayerPositionsDemo = () => {
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx {3,4}
-		<Box hasLayer pY={40}>
+		<Box hasLayer py={40}>
 			...
 			<Layer size="cover">
 				<Center size="cover">
@@ -235,8 +235,8 @@ export const LayerPositionsDemo = () => {
 	<Demo.Title>
 		`size="contain"`の指定なしの場合.
 	</Demo.Title>
-	<Demo.Preview resize p={{X:30, Y:60}} maxW="40rem">
-		<Box hasLayer pY={50} className="has:layerGuide">
+	<Demo.Preview resize p={{x:30, y:60}} maxW="40rem">
+		<Box hasLayer py={50} className="has:layerGuide">
 			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
 			<Layer position="center" w="75%" p='box'>
 				<DammyText length="l" />
@@ -256,8 +256,8 @@ export const LayerPositionsDemo = () => {
 	<Demo.Title>
 		`size="contain"`の指定ありの場合
 	</Demo.Title>
-	<Demo.Preview resize p={{X:30, Y:30}} maxW="40rem">
-		<Box hasLayer pY={50} className="has:layerGuide">
+	<Demo.Preview resize p={{x:30, y:30}} maxW="40rem">
+		<Box hasLayer py={50} className="has:layerGuide">
 			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
 			<Layer size="contain" position="center" w="75%" p={20}>
 				<DammyText length="l" />

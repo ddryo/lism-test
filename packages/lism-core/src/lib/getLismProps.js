@@ -161,7 +161,7 @@ class CommonProps {
 
 	// 特定の条件下で受け取るpropの処理
 	setContextProps(context, props) {
-		if (typeof props !== 'object') return;
+		// if (typeof props !== 'object') return;
 
 		const contextProps = CONTEXT_PROPS[context];
 		if (!contextProps) return;
@@ -239,7 +239,7 @@ class CommonProps {
 		const { name, BP, objProcessor, map, ...options } = propData;
 
 		// CONTET_PROPSからデータを取得する
-		if (map && null != propVal) {
+		if (map && null != propVal && typeof propVal === 'object') {
 			this.setContextProps(propName, propVal);
 			return;
 		}
@@ -437,8 +437,9 @@ class CommonProps {
 			if (isPresetValue('gradient', gradVal)) {
 				this.addUtil('-gradient:' + gradVal);
 			} else {
-				this.addUtil('-gradient:');
-				this.addStyle('--gradient', gradVal);
+				// this.addUtil('-gradient:');
+				// this.addStyle('--gradient', gradVal);
+				this.addStyle('backgroundImage', gradVal);
 			}
 			//  else if (gradVal.includes('-gradient(')) {
 			// 	// xxx-gradient() で直接書いてる場合
@@ -452,7 +453,7 @@ class CommonProps {
 			const { type = 'linear', angle, colors = '' } = gradVal;
 			if (!colors) return;
 
-			this.addUtil('-gradient:');
+			// this.addUtil('-gradient:');
 			let gradient = '';
 			if (angle) {
 				gradient += `${angle}, `;
@@ -462,7 +463,7 @@ class CommonProps {
 			} else {
 				gradient += `var(--gradient-color--${colors})`;
 			}
-			this.addStyle('--gradient', `${type}-gradient(${gradient})`);
+			this.addStyle('backgroundImage', `${type}-gradient(${gradient})`);
 		}
 
 		return;

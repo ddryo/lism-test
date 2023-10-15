@@ -18,7 +18,7 @@
 
 	// unreel時用
 	&:where([data-unreel]) {
-		--gtc--val: repeat(auto-fit, minmax(min(var(--item--basis), 100%), 1fr));
+		--gtc: repeat(auto-fit, minmax(min(var(--item--basis), 100%), 1fr));
 	}
 
 	&:where([data-snap='center']) {
@@ -44,14 +44,14 @@
 	.l--reel[data-unreel='sm'] {
 		display: grid;
 		overflow-x: revert;
-		grid-template-columns: var(--gtc--val);
+		grid-template-columns: var(--gtc);
 	}
 }
 @include query.cq('md') {
 	.l--reel[data-unreel='md'] {
 		display: grid;
 		overflow-x: revert;
-		grid-template-columns: var(--gtc--val);
+		grid-template-columns: var(--gtc);
 	}
 }
 
@@ -69,7 +69,7 @@
 
 	&:not(.no-bar) {
 		// JSでクラス切り替えしてスクロールバーが存在する時のみ指定するのが本当はよい?
-		padding-bottom: var(--space--10);
+		padding-bottom: var(--s--10);
 	}
 
 	&.no-bar {

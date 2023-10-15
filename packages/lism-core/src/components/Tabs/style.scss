@@ -9,7 +9,6 @@
 	// 		transition: none;
 	// 	}
 	// }
-
 }
 
 .l--tab__list {
@@ -36,13 +35,12 @@
 	// }
 }
 
-
 .l--tab__button {
 	--bdw: 2px;
 	position: relative;
 	display: block;
 	box-sizing: border-box;
-	padding: var(--space--30);
+	padding: var(--s--30);
 	color: inherit;
 	font-size: 13px;
 	line-height: 1;
@@ -50,11 +48,13 @@
 	border: none;
 	// border-bottom: solid 2px transparent;
 	// border-bottom: solid 2px currentColor;
-	transition: background-color .25s, color .25s;
+	transition:
+		background-color 0.25s,
+		color 0.25s;
 	min-width: 10ch;
 
-	&::before{
-		content: "";
+	&::before {
+		content: '';
 		position: absolute;
 		bottom: 0;
 		left: 0;
@@ -67,17 +67,16 @@
 		outline: none; //マウス操作ではアウトライン非表示
 	}
 
-	&[aria-selected="true"] {
+	&[aria-selected='true'] {
 		// border-bottom-color: currentColor;
 	}
-	&[aria-selected="false"] {
+	&[aria-selected='false'] {
 		// border-bottom-color: currentColor;
-		opacity: .5;
+		opacity: 0.5;
 		--bdw: 1px;
 		// border-bottom: solid 1px currentColor;
 	}
 }
-
 
 // .arkb-tabBody {
 // 	position: relative;
@@ -88,16 +87,14 @@
 	position: relative;
 	width: 100%;
 
-	&[aria-hidden="true"] {
+	&[aria-hidden='true'] {
 		display: none;
 	}
 }
 
-
-
 // @import "../../../scss/mixin/media";
 
-.l--tab[data-keep-height="1"] {
+.l--tab[data-keep-height='1'] {
 	// 親にgridで子にgrid-rowとgrid-colをそれぞれ1 / -1するともっと簡単かもです？
 	// それだけで重なるはず。
 
@@ -109,9 +106,9 @@
 		grid-column: 1 / -1;
 		transform: translateY(0);
 		transition-property: visibility, opacity, transform;
-		transition-duration: .3s;
+		transition-duration: 0.3s;
 
-		&[aria-hidden="true"] {
+		&[aria-hidden='true'] {
 			display: block;
 			visibility: hidden;
 			opacity: 0;

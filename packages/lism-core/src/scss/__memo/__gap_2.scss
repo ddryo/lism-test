@@ -1,9 +1,9 @@
 // 基本は --gap で管理し、rowg/colmg は必要に応じて上書きできるようにするパターン
 // 常に rowg/colmg を受け取れるようにはならないので、colmg を計算で使いたい時に注意が必要になる。
 .is--flex,
-.is--grid{
+.is--grid {
 	// --gapだけwidth,heightなどと同じ感じ？
-	--gap: var(--space--50); // ここで初期値与えるべきかは要検討
+	--gap: var(--s--50); // ここで初期値与えるべきかは要検討
 	--gap--sm: var(--gap);
 	--gap--xs: var(--gap--sm);
 	gap: var(--gap);
@@ -30,12 +30,20 @@
 
 @container (max-width: 720px) {
 	// .has--gap\@sm { gap: var(--gap--sm) !important;}
-	.has--rowg\@sm { column-gap: var(--rowg--sm) !important;}
-	.has--colmg\@sm { row-gap: var(--colmg--sm) !important;}
+	.has--rowg\@sm {
+		column-gap: var(--rowg--sm) !important;
+	}
+	.has--colmg\@sm {
+		row-gap: var(--colmg--sm) !important;
+	}
 }
 
 @container (max-width: 440px) {
 	// .has--gap\@xs { padding: var(--gap--xs) !important;}
-	.has--rowg\@xs { column-gap: var(--rowg--xs) !important;}
-	.has--colmg\@xs { row-gap: var(--colmg--xs) !important;}
+	.has--rowg\@xs {
+		column-gap: var(--rowg--xs) !important;
+	}
+	.has--colmg\@xs {
+		row-gap: var(--colmg--xs) !important;
+	}
 }

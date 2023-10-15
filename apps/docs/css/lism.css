@@ -146,8 +146,8 @@
   --ls--contentSize: 1120px;
   --ls--contentSize--wide: 1440px;
   --ls--contentSize--slim: 45rem;
-  --ls--flowGap: var(--space--50);
-  --ls--flowGap--heading: var(--space--60);
+  --ls--flowGap: var(--s--50);
+  --ls--flowGap--heading: var(--s--60);
   --ls--gutter: clamp(1.5rem, 4vw, 2rem);
   --hov--duration: 0.3s;
   /* ------------------------------------------------------------
@@ -212,24 +212,24 @@
   /* ------------------------------------------------------------
     カラー: ユーザー側で定義できる仕組みも必要
   ------------------------------------------------------------ */
-  --space--0: 0rem;
-  --space--5: 0.125rem;
-  --space--10: 0.25rem;
-  --space--15: 0.375rem;
-  --space--20: 0.5rem;
-  --space--25: 0.625rem;
-  --space--30: 0.75rem;
-  --space--35: 1rem;
-  --space--40: 1.25rem;
-  --space--45: 1.625rem;
-  --space--50: 2rem;
-  --space--55: 2.625rem;
-  --space--60: 3.25rem;
-  --space--65: 4.25rem;
-  --space--70: 5.25rem;
-  --space--80: 8.5rem;
-  --space--90: 13.75rem;
-  --space--100: 22.25rem;
+  --s--0: 0rem;
+  --s--5: 0.125rem;
+  --s--10: 0.25rem;
+  --s--15: 0.375rem;
+  --s--20: 0.5rem;
+  --s--25: 0.625rem;
+  --s--30: 0.75rem;
+  --s--35: 1rem;
+  --s--40: 1.25rem;
+  --s--45: 1.625rem;
+  --s--50: 2rem;
+  --s--55: 2.625rem;
+  --s--60: 3.25rem;
+  --s--65: 4.25rem;
+  --s--70: 5.25rem;
+  --s--80: 8.5rem;
+  --s--90: 13.75rem;
+  --s--100: 22.25rem;
   /* ------------------------------------------------------------
     radius
   ------------------------------------------------------------ */
@@ -484,7 +484,7 @@ listについて
   	dl
    */
   dd {
-    margin-inline-start: var(--space--50);
+    margin-inline-start: var(--s--50);
   }
   dl > :is(dt, div):not(:first-child) {
     margin-block-start: 0.5em;
@@ -538,7 +538,7 @@ listについて
     outline-offset: var(--focus--outlineOffset, revert);
   }
   pre {
-    padding: var(--space--40, 1rem);
+    padding: var(--s--40, 1rem);
     color: var(--color--n500);
     background-color: var(--color--n100);
   }
@@ -924,7 +924,7 @@ listについて
   scrollbar-width: var(--scrollbar--height);
 }
 .l--reel[data-scbar=show]:not(.no-bar) {
-  padding-bottom: var(--space--10);
+  padding-bottom: var(--s--10);
 }
 .l--reel[data-scbar=show].no-bar {
   scrollbar-width: none;
@@ -1041,7 +1041,7 @@ listについて
   position: relative;
   display: block;
   box-sizing: border-box;
-  padding: var(--space--30);
+  padding: var(--s--30);
   color: inherit;
   font-size: 13px;
   line-height: 1;
@@ -1141,9 +1141,9 @@ listについて
     --bdc: transparent;
     --bgc: transparent;
     --w: fit-content;
-    --p: var(--space--30) var(--space--40);
+    --p: var(--s--30) var(--s--40);
     --bdrs: var(--radius--1);
-    --gap: var(--space--10);
+    --gap: var(--s--10);
     --icon--scale: 1.25;
     --icon--offset: 25%;
   }
@@ -1212,7 +1212,7 @@ listについて
 }
 
 :where(.e--badge) {
-  --p: var(--space--5) var(--space--10);
+  --p: var(--s--5) var(--s--10);
   --c: #fff;
   --bgc: var(--keycolor);
   --bdc: transparent;
@@ -1279,8 +1279,8 @@ listについて
 }
 
 :where(.l--accordion__header) {
-  --p: 0 var(--space--30);
-  --gap: var(--space--30);
+  --p: 0 var(--s--30);
+  --gap: var(--s--30);
   --bdrs: var(--radius--1);
 }
 
@@ -1301,11 +1301,11 @@ listについて
 .l--accordion__label {
   flex-grow: 1;
   overflow-wrap: anywhere;
-  padding: var(--space--30) var(--space--10);
+  padding: var(--s--30) var(--s--10);
 }
 
 :where(.l--accordion__body) {
-  --p: var(--space--40);
+  --p: var(--s--40);
 }
 
 .l--accordion__body {
@@ -1318,7 +1318,7 @@ listについて
 
 .l--accordion__bodyInner {
   overflow: hidden;
-  --ls--flowGap: var(--space--40);
+  --ls--flowGap: var(--s--40);
 }
 
 .l--accordion:not(.-opened) > .l--accordion__body {
@@ -1547,8 +1547,8 @@ button.l--accordion__icon {
   --icon--c: var(--keycolor);
   --bdc: var(--keycolor);
   --bgc: transparent;
-  --p: var(--space--30);
-  --gap: var(--space--30);
+  --p: var(--s--30);
+  --gap: var(--s--30);
   --bdrs: var(--radius--2);
   background-color: var(--bgc);
   border: solid 1px var(--bdc);
@@ -1580,8 +1580,8 @@ button.l--accordion__icon {
 }
 
 :where(.b--notice) {
-  --p: var(--space--40);
-  --gap: var(--space--35);
+  --p: var(--s--40);
+  --gap: var(--s--35);
   --head--c: var(--keycolor);
   --bdc: var(--keycolor);
   position: relative;
@@ -1619,10 +1619,10 @@ button.l--accordion__icon {
 
 :where(.b--notice[data-variant=cap-onbd]) > .b--notice__head {
   background-color: var(--bgc--base);
-  margin-inline: var(--space--40);
+  margin-inline: var(--s--40);
 }
 :where(.b--notice[data-variant=cap-onbd]) > .b--notice__body {
-  margin-top: var(--space--20);
+  margin-top: var(--s--20);
 }
 
 :where(.b--chatBubble) {
@@ -1680,12 +1680,12 @@ button.l--accordion__icon {
 }
 
 :where(.b--chatBubble__content) {
-  --p: var(--space--30) calc(var(--space--30) + var(--space--5));
+  --p: var(--s--30) calc(var(--s--30) + var(--s--5));
   --bdrs: var(--radius--3);
 }
 
 :where([data-variant=box] > div > .b--chatBubble__content) {
-  --p: var(--space--40);
+  --p: var(--s--40);
   --bdrs: var(--radius--2);
 }
 
@@ -1717,7 +1717,7 @@ button.l--accordion__icon {
   --bxsh: var(--shadow--1);
   grid-area: body;
   justify-self: var(--jc);
-  margin: 0 var(--space--10);
+  margin: 0 var(--s--10);
 }
 
 .b--chatBubble__body > .e--decorator {
@@ -1866,12 +1866,12 @@ button.l--accordion__icon {
 .b--faq__q.l--flex,
 .b--faq__a.l--flex {
   align-items: baseline;
-  gap: var(--space--30);
+  gap: var(--s--30);
 }
 
 :where(.b--navMenu:not([data-nest-level])) {
-  --item-py: var(--space--20);
-  --item-px: var(--space--30);
+  --item-py: var(--s--20);
+  --item-px: var(--s--30);
   --item-ml: 0;
   --level: 0;
   --hov--bgc: var(--color--whitesmoke);
@@ -1893,14 +1893,14 @@ button.l--accordion__icon {
 .b--navMenu__text {
   display: flex;
   align-items: center;
-  gap: var(--space--20);
+  gap: var(--s--20);
   padding: var(--item-py) var(--item-px);
   color: inherit;
   text-decoration: none;
 }
 
 .b--navMenu[data-nest-level] {
-  --item-ml: var(--space--40);
+  --item-ml: var(--s--40);
 }
 
 .b--navMenu__acc > .l--accordion__header {
@@ -3112,259 +3112,259 @@ button.l--accordion__icon {
 }
 
 .-flowGap\:0 {
-  --flowGap: var(--space--0);
+  --flowGap: var(--s--0);
 }
 
 .-mbs\:0 {
-  --mbs: var(--space--0);
+  --mbs: var(--s--0);
 }
 
 .-gap\:0 {
-  --gap: var(--space--0);
+  --gap: var(--s--0);
 }
 
 .-clmg\:0 {
-  --clmg: var(--space--0);
+  --clmg: var(--s--0);
 }
 
 .-rowg\:0 {
-  --rowg: var(--space--0);
+  --rowg: var(--s--0);
 }
 
 .-p\:0 {
-  --p: var(--space--0);
+  --p: var(--s--0);
 }
 
 .-pX\:0 {
-  --pX: var(--space--0);
+  --pX: var(--s--0);
 }
 
 .-pY\:0 {
-  --pY: var(--space--0);
+  --pY: var(--s--0);
 }
 
 .-flowGap\:10 {
-  --flowGap: var(--space--10);
+  --flowGap: var(--s--10);
 }
 
 .-mbs\:10 {
-  --mbs: var(--space--10);
+  --mbs: var(--s--10);
 }
 
 .-gap\:10 {
-  --gap: var(--space--10);
+  --gap: var(--s--10);
 }
 
 .-clmg\:10 {
-  --clmg: var(--space--10);
+  --clmg: var(--s--10);
 }
 
 .-rowg\:10 {
-  --rowg: var(--space--10);
+  --rowg: var(--s--10);
 }
 
 .-p\:10 {
-  --p: var(--space--10);
+  --p: var(--s--10);
 }
 
 .-pX\:10 {
-  --pX: var(--space--10);
+  --pX: var(--s--10);
 }
 
 .-pY\:10 {
-  --pY: var(--space--10);
+  --pY: var(--s--10);
 }
 
 .-flowGap\:20 {
-  --flowGap: var(--space--20);
+  --flowGap: var(--s--20);
 }
 
 .-mbs\:20 {
-  --mbs: var(--space--20);
+  --mbs: var(--s--20);
 }
 
 .-gap\:20 {
-  --gap: var(--space--20);
+  --gap: var(--s--20);
 }
 
 .-clmg\:20 {
-  --clmg: var(--space--20);
+  --clmg: var(--s--20);
 }
 
 .-rowg\:20 {
-  --rowg: var(--space--20);
+  --rowg: var(--s--20);
 }
 
 .-p\:20 {
-  --p: var(--space--20);
+  --p: var(--s--20);
 }
 
 .-pX\:20 {
-  --pX: var(--space--20);
+  --pX: var(--s--20);
 }
 
 .-pY\:20 {
-  --pY: var(--space--20);
+  --pY: var(--s--20);
 }
 
 .-flowGap\:30 {
-  --flowGap: var(--space--30);
+  --flowGap: var(--s--30);
 }
 
 .-mbs\:30 {
-  --mbs: var(--space--30);
+  --mbs: var(--s--30);
 }
 
 .-gap\:30 {
-  --gap: var(--space--30);
+  --gap: var(--s--30);
 }
 
 .-clmg\:30 {
-  --clmg: var(--space--30);
+  --clmg: var(--s--30);
 }
 
 .-rowg\:30 {
-  --rowg: var(--space--30);
+  --rowg: var(--s--30);
 }
 
 .-p\:30 {
-  --p: var(--space--30);
+  --p: var(--s--30);
 }
 
 .-pX\:30 {
-  --pX: var(--space--30);
+  --pX: var(--s--30);
 }
 
 .-pY\:30 {
-  --pY: var(--space--30);
+  --pY: var(--s--30);
 }
 
 .-flowGap\:40 {
-  --flowGap: var(--space--40);
+  --flowGap: var(--s--40);
 }
 
 .-mbs\:40 {
-  --mbs: var(--space--40);
+  --mbs: var(--s--40);
 }
 
 .-gap\:40 {
-  --gap: var(--space--40);
+  --gap: var(--s--40);
 }
 
 .-clmg\:40 {
-  --clmg: var(--space--40);
+  --clmg: var(--s--40);
 }
 
 .-rowg\:40 {
-  --rowg: var(--space--40);
+  --rowg: var(--s--40);
 }
 
 .-p\:40 {
-  --p: var(--space--40);
+  --p: var(--s--40);
 }
 
 .-pX\:40 {
-  --pX: var(--space--40);
+  --pX: var(--s--40);
 }
 
 .-pY\:40 {
-  --pY: var(--space--40);
+  --pY: var(--s--40);
 }
 
 .-flowGap\:50 {
-  --flowGap: var(--space--50);
+  --flowGap: var(--s--50);
 }
 
 .-mbs\:50 {
-  --mbs: var(--space--50);
+  --mbs: var(--s--50);
 }
 
 .-gap\:50 {
-  --gap: var(--space--50);
+  --gap: var(--s--50);
 }
 
 .-clmg\:50 {
-  --clmg: var(--space--50);
+  --clmg: var(--s--50);
 }
 
 .-rowg\:50 {
-  --rowg: var(--space--50);
+  --rowg: var(--s--50);
 }
 
 .-p\:50 {
-  --p: var(--space--50);
+  --p: var(--s--50);
 }
 
 .-pX\:50 {
-  --pX: var(--space--50);
+  --pX: var(--s--50);
 }
 
 .-pY\:50 {
-  --pY: var(--space--50);
+  --pY: var(--s--50);
 }
 
 .-flowGap\:60 {
-  --flowGap: var(--space--60);
+  --flowGap: var(--s--60);
 }
 
 .-mbs\:60 {
-  --mbs: var(--space--60);
+  --mbs: var(--s--60);
 }
 
 .-gap\:60 {
-  --gap: var(--space--60);
+  --gap: var(--s--60);
 }
 
 .-clmg\:60 {
-  --clmg: var(--space--60);
+  --clmg: var(--s--60);
 }
 
 .-rowg\:60 {
-  --rowg: var(--space--60);
+  --rowg: var(--s--60);
 }
 
 .-p\:60 {
-  --p: var(--space--60);
+  --p: var(--s--60);
 }
 
 .-pX\:60 {
-  --pX: var(--space--60);
+  --pX: var(--s--60);
 }
 
 .-pY\:60 {
-  --pY: var(--space--60);
+  --pY: var(--s--60);
 }
 
 .-flowGap\:70 {
-  --flowGap: var(--space--70);
+  --flowGap: var(--s--70);
 }
 
 .-mbs\:70 {
-  --mbs: var(--space--70);
+  --mbs: var(--s--70);
 }
 
 .-gap\:70 {
-  --gap: var(--space--70);
+  --gap: var(--s--70);
 }
 
 .-clmg\:70 {
-  --clmg: var(--space--70);
+  --clmg: var(--s--70);
 }
 
 .-rowg\:70 {
-  --rowg: var(--space--70);
+  --rowg: var(--s--70);
 }
 
 .-p\:70 {
-  --p: var(--space--70);
+  --p: var(--s--70);
 }
 
 .-pX\:70 {
-  --pX: var(--space--70);
+  --pX: var(--s--70);
 }
 
 .-pY\:70 {
-  --pY: var(--space--70);
+  --pY: var(--s--70);
 }
 
 .-lh\: {

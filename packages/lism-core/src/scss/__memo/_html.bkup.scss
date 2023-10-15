@@ -10,17 +10,16 @@ body {
 	position: relative;
 	min-width: 100%;
 	max-width: 100%;
-	overflow-x:clip;
+	overflow-x: clip;
 	overflow-wrap: break-word;
 	-webkit-text-size-adjust: 100%;
 	container-type: inline-size;
 }
 
-
 // リスト
 ul,
 ol {
-	padding-left: var(--space--50);
+	padding-left: var(--s--50);
 }
 
 /* ---------- pre ---------- */
@@ -31,7 +30,7 @@ code {
 }
 
 pre {
-	padding: var(--space--50);
+	padding: var(--s--50);
 	overflow-x: auto;
 	background-color: var(--c--lightgray);
 
@@ -44,9 +43,8 @@ pre {
 /* ---------- 横線 ---------- */
 hr:not(.wp-block-separator) {
 	border: none;
-	border-bottom: solid 1px rgba(0, 0, 0, .1);
+	border-bottom: solid 1px rgba(0, 0, 0, 0.1);
 }
-
 
 /* ---------- インライン装飾 ---------- */
 kbd,
@@ -54,9 +52,10 @@ kbd,
 	display: inline-block;
 	color: #323232;
 	background: #edf0f3;
-	padding: 0 var(--space--10);
-	font-size: var(--fz--s);// .9em;
-	font-family: Menlo, Consolas, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "メイリオ", sans-serif;
+	padding: 0 var(--s--10);
+	font-size: var(--fz--s); // .9em;
+	font-family: Menlo, Consolas, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'メイリオ',
+		sans-serif;
 	line-height: 1.5;
 	letter-spacing: 0;
 	text-decoration: inherit;
@@ -65,7 +64,9 @@ kbd,
 
 kbd {
 	background-color: #fbfbfb;
-	box-shadow: 0 1px 0 1px rgba(0, 0, 0, .15), 0 0 1px rgba(0, 0, 0, .1);
+	box-shadow:
+		0 1px 0 1px rgba(0, 0, 0, 0.15),
+		0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 small {
@@ -80,7 +81,6 @@ caption {
 // sub {
 // 	font-size: .75em;
 // }
-
 
 //---------------------------------------
 // 表
@@ -97,7 +97,7 @@ table {
 
 td,
 th {
-	padding: var(--space--20);
+	padding: var(--s--20);
 	border: 1px solid var(--ls--bdc--table, #dcdcdc);
 }
 
@@ -114,11 +114,10 @@ thead {
 	}
 }
 
-
 // ?
 :where(table) caption {
-	margin-bottom: .25em;
-	opacity: .8;
+	margin-bottom: 0.25em;
+	opacity: 0.8;
 }
 
 //---------------------------------------
@@ -128,7 +127,7 @@ input,
 textarea,
 select,
 button {
-	padding: .25em .5em;
+	padding: 0.25em 0.5em;
 	color: #333;
 	border: 1px solid var(--ark-color--border);
 	border-radius: 0;

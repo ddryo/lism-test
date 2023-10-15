@@ -1,9 +1,31 @@
+@use '../../../scss/query' as query;
+
 // --------------------
 // カラム
 // --------------------
 .l--columns {
-	--gtc: 1; // 初期値
-	--gtc--val: var(--gtc);
+	// --gtc: var(--gtc);
 	display: grid;
-	grid-template-columns: repeat(var(--gtc--val), minmax(0, 1fr)) !important;
+	grid-template-columns: repeat(var(--cols--val), minmax(0, 1fr));
+
+	// 各ブレイクポイント用の変数に伝搬していく
+	--cols: 1; // 初期値
+	--cols--sm: var(--cols);
+	--cols--md: var(--cols--sm);
+	--cols--lg: var(--cols--md);
+	// --cols--xl: var(--cols--lg);
+
+	--cols--val: var(--cols);
+	@include query.cq('sm') {
+		--cols--val: var(--cols--sm);
+	}
+	@include query.cq('md') {
+		--cols--val: var(--cols--md);
+	}
+	@include query.cq('lg') {
+		--cols--val: var(--cols--lg);
+	}
+	// @include query.cq('xl') {
+	// 	--cols--val: var(--cols--xl);
+	// }
 }

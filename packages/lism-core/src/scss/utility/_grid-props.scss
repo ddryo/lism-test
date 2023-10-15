@@ -4,10 +4,6 @@
 Note: gta, gtc, gtrは、単体で使う時はベース指定が必須となる。
 l--gridと併用する場合は、特定のブレイクポイントから使用しても動作する。
 
---{prop}--valを用いている理由
-変数セットにすることで、Columns や RatioGridなどで、キーとなる数値の管理にも流用できるようにするため。
-かつ、importantを使わなくて済むように、 --{prop} を単純に上書きするのではなく、別の変数を実際のプロパティ指定に使うようにしている。
-
 
 grid-auto-flow,
 grid-auto-columns,
@@ -30,7 +26,9 @@ gtrows
 .-gt\:fix\:b {
 	grid-template: 'nofix' 1fr 'fix' auto;
 }
-.-gta\:lcr {
+
+.-gta\:lcr,
+.-gta\:ltr {
 	grid-template-areas: 'left center right';
 }
 .-gta\:tcb {
@@ -45,55 +43,54 @@ gtrows
 	.-gt\:fix\:r {
 		grid-template: 'fix nofix' / auto 1fr;
 	}
-	.-gta\:lcr {
+
+	// ltr？
+	.-gta\:ltr {
 		grid-template-areas: 'right center left';
 	}
 }
 
 .-gta\: {
-	--gta--val: var(--gta);
-	grid-template-areas: var(--gta--val);
+	grid-template-areas: var(--gta);
 }
 .-gtc\: {
-	--gtc--val: var(--gtc);
-	grid-template-columns: var(--gtc--val);
+	grid-template-columns: var(--gtc);
 }
 .-gtr\: {
-	--gtr--val: var(--gtr);
-	grid-template-rows: var(--gtr--val);
+	grid-template-rows: var(--gtr);
 }
 
 // 特定のポイント以降のみ指定することはないので、--prop上書きの形式で文字数も省略する.
 @include query.cq('sm') {
 	.-gta\@sm\: {
-		--gta--val: var(--gta--sm);
+		grid-template-areas: var(--gta--sm);
 	}
 	.-gtc\@sm\: {
-		--gtc--val: var(--gtc--sm);
+		grid-template-columns: var(--gtc--sm);
 	}
 	.-gtr\@sm\: {
-		--gtr--val: var(--gtr--sm);
+		grid-template-columns: var(--gtr--sm);
 	}
 }
 @include query.cq('md') {
 	.-gta\@md\: {
-		--gta--val: var(--gta--md);
+		grid-template-areas: var(--gta--md);
 	}
 	.-gtc\@md\: {
-		--gtc--val: var(--gtc--md);
+		grid-template-columns: var(--gtc--md);
 	}
 	.-gtr\@md\: {
-		--gtr--val: var(--gtr--md);
+		grid-template-columns: var(--gtr--md);
 	}
 }
 @include query.cq('lg') {
 	.-gta\@lg\: {
-		--gta--val: var(--gta--lg);
+		grid-template-areas: var(--gta--lg);
 	}
 	.-gtc\@lg\: {
-		--gtc--val: var(--gtc--lg);
+		grid-template-columns: var(--gtc--lg);
 	}
 	.-gtr\@lg\: {
-		--gtr--val: var(--gtr--lg);
+		grid-template-columns: var(--gtr--lg);
 	}
 }

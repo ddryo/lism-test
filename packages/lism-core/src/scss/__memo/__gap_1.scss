@@ -5,9 +5,9 @@
 
 // .has--gap,
 .is--flex,
-.is--grid{
+.is--grid {
 	// 入れ子になっても影響受けないように変数リセット
-	--gap: var(--space--50); // ここで初期値与えるべきかは要検討
+	--gap: var(--s--50); // ここで初期値与えるべきかは要検討
 
 	// --gap 指定あればそれを受け取るし、row,colの直接指定も可能
 	--rowg: var(--gap);
@@ -30,4 +30,3 @@
 		gap: var(--rowg--xs) var(--colmg--xs);
 	}
 }
-

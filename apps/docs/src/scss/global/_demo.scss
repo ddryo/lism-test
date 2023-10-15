@@ -4,12 +4,12 @@
 	position: relative;
 
 	&:not(:first-child) {
-		margin-top: var(--space--50);
+		margin-top: var(--s--50);
 	}
 
 	+ .nextra-code-block {
-		margin-top: var(--space--40);
-		margin-bottom: var(--space--50);
+		margin-top: var(--s--40);
+		margin-bottom: var(--s--50);
 	}
 }
 
@@ -92,8 +92,8 @@
 .b--demoBox__title {
 	display: flex;
 	align-items: center;
-	gap: var(--space--20);
-	margin-bottom: var(--space--10);
+	gap: var(--s--20);
+	margin-bottom: var(--s--10);
 
 	&::before {
 		content: '↓';

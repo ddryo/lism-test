@@ -1,12 +1,13 @@
 @use '../query' as query;
 /* stylelint-disable */
 
-:where(.-lismVar\:) {
-	--lism--xl: var(--lism--lg);
-	@include query.cq('xl') {
-		--lismVar: var(--lism--xl);
-	}
-}
+
+// :where(.-lismVar\:) {
+// 	--lism--xl: var(--lism--lg);
+// 	@include query.cq('xl') {
+// 		--lismVar: var(--lism--xl);
+// 	}
+// }
 
 
 @include query.cq('xl') {
@@ -33,13 +34,11 @@
 	.-p\@xl\: {
 		padding: var(--p--xl) !important;
 	}
-	.-pX\@xl\: {
-		padding-left: var(--pX--xl) !important;
-		padding-right: var(--pX--xl) !important;
+	.-px\@xl\: {
+		padding-inline: var(--px--xl) !important;
 	}
-	.-pY\@xl\: {
-		padding-top: var(--pY--xl) !important;
-		padding-bottom: var(--pY--xl) !important;
+	.-py\@xl\: {
+		padding-block: var(--py--xl) !important;
 	}
 	.-pt\@xl\: {
 		padding-top: var(--pt--xl) !important;
@@ -57,13 +56,11 @@
 	.-m\@xl\: {
 		margin: var(--m--xl) !important;
 	}
-	.-mX\@xl\: {
-		margin-left: var(--mX--xl) !important;
-		margin-right: var(--mX--xl) !important;
+	.-mx\@xl\: {
+		margin-inline: var(--mx--xl) !important;
 	}
-	.-mY\@xl\: {
-		margin-top: var(--mY--xl) !important;
-		margin-bottom: var(--mY--xl) !important;
+	.-my\@xl\: {
+		margin-block: var(--my--xl) !important;
 	}
 	.-mt\@xl\: {
 		margin-top: var(--mt--xl) !important;

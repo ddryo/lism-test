@@ -50,7 +50,7 @@ export default function NavMenuItem({
 	if (isAccordion) {
 		// linkProps.pr = 0;
 		// linkProps.pl = '-';
-		// linkProps.pY = '-';
+		// linkProps.py = '-';
 
 		if (href) {
 			// hrefがあればアイコンだけをクリック可能に

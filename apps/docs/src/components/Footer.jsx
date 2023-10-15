@@ -3,7 +3,7 @@ import { Container } from '@lism/core';
 
 export default function Footer() {
 	return (
-		<Container tag='footer' className='a--footer' isConstrained pY={40} w='100%'>
+		<Container tag='footer' className='a--footer' isConstrained py={40} w='100%'>
 			{/* <Preview> */}
 			<div className='a--footer__inner'>
 				<p>footer...</p>

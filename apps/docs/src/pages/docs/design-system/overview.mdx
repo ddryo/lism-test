@@ -59,7 +59,7 @@ Lismでは、WEBサイトでよく使用されるレイアウト要素を細分�
 	- フォントサイズ
 		- `--fz--s`, `--fz--xl`
 	- スペース
-		- `--space--20`, `--space--30`, `--p--box`
+		- `--s--20`, `--s--30`, `--p--box`
 </Box>
 
 
@@ -95,7 +95,7 @@ Lismで定義するユーティリティクラスには以下の2種類があり
 
 <Note preset="note" heading="例">
 - `.-{prop}:{token|value}`型
-	{/* - `.-p:20` → `padding:var(--space--20)` */}
+	{/* - `.-p:20` → `padding:var(--s--20)` */}
 	- `.-fz:l` → `font-size:var(--fz--l)`
 	- `.-ta:c` → `text-align:center`
 	
@@ -113,7 +113,7 @@ Lismで定義するユーティリティクラスには以下の2種類があり
 <!-- ↓ レスポンシブ対応 -->
 <div
 	class="-p:10 -p@sm: -p@md:"
-	style="--p--sm:var(--space--20);--p--md:var(--space--30)"
+	style="--p--sm:var(--s--20);--p--md:var(--s--30)"
 >...</div>
 ```
 

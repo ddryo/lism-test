@@ -5,7 +5,7 @@
 	--icon--bxsh: none;
 }
 .b--chatBubble {
-	// --gta--val: 'icon body';
+	// --gta: 'icon body';
 	--icon--size: clamp(48px, 24px + 7.5cqw, 72px); // 320:48px~640:72px
 	--icon--bdc: var(--bgc);
 	--body--mt: calc(var(--icon--size) * 0.6);
@@ -19,7 +19,7 @@
 
 .b--chatBubble[data-dir='right'] {
 	justify-items: var(--place--right);
-	// --gta--val: 'body icon';
+	// --gta: 'body icon';
 	// --decorator--trnslt: calc(-1 * var(--trnsltX)) var(--trnsltY);
 }
 
@@ -76,7 +76,7 @@
 	> .b--chatBubble__icon {
 		grid-area: fix;
 		justify-self: var(--jc);
-		margin: 0 var(--space--10) - 0.75em;
+		margin: 0 var(--s--10) - 0.75em;
 	}
 }
 

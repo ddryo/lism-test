@@ -41,107 +41,6 @@ export default function DecoratorTest() {
 						rtl toggle
 					</button>
 				</Center>
-				<h2>gradient</h2>
-				参考: https://webgradients.com/
-				<h3>bg=gradient:xxx</h3>
-				<Cluster>
-					<Box fz='s' bg='gradient:blue' shadow='1' p='box' h='8rem' w='12rem'>
-						gradient:blue
-					</Box>
-					<Box fz='s' bg='gradient:sunset' shadow='1' p='box' h='8rem' w='12rem'>
-						gradient:sunset
-					</Box>
-					<Box fz='s' bg='gradient:2' shadow='1' p='box' h='8rem' w='12rem'>
-						gradient:2
-					</Box>
-					<Box fz='s' bg='gradient:black-to-bottom' p='box' h='8rem' w='12rem'>
-						gradient:black-to-transparent-layer
-					</Box>
-				</Cluster>
-				<h3>gradient prop</h3>
-				<Cluster>
-					<Box
-						fz='s'
-						gradient={{ angle: 'to right', colors: 'black-to-transparent' }}
-						p='box'
-						w='12rem'
-						h='8rem'
-					>
-						colorにだけ変数を使う
-					</Box>
-					<Box
-						fz='s'
-						gradient={{ angle: 'to right', colors: 'lime' }}
-						p='box'
-						w='12rem'
-						h='8rem'
-					>
-						colorにだけ変数を使う
-					</Box>
-					<Box
-						fz='s'
-						gradient={{ angle: 'to bottom', colors: 'dense-water' }}
-						p='box'
-						w='12rem'
-						h='8rem'
-					>
-						colorにだけ変数を使う
-					</Box>
-					<Box
-						fz='s'
-						gradient={{ angle: '35deg', colors: '#ff9a9e 0%,#fad0c4 99%,#fad0c4 100%' }}
-						p='box'
-						w='12rem'
-						h='8rem'
-					>
-						{`angle:'35deg', colors:'直書き'`}
-					</Box>
-					<Box
-						fz='s'
-						gradient={{
-							type: 'radial',
-							angle: 'circle at top right',
-							colors: 'yellow, #f06d06 50%',
-						}}
-						p='box'
-						w='12rem'
-						h='8rem'
-					>
-						radial
-					</Box>
-					<Box
-						fz='s'
-						gradient={{
-							type: 'repeating-linear',
-							angle: '45deg',
-							colors: '#3f87a6, #ebf8e1 20%',
-						}}
-						p='box'
-						w='12rem'
-						h='8rem'
-					>
-						repeating-linear
-					</Box>
-					<Box
-						fz='s'
-						gradient={{ type: 'conic', colors: '#fff, #000' }}
-						p='box'
-						w='12rem'
-						h='8rem'
-					>
-						conic
-					</Box>
-					<Box
-						fz='s'
-						gradient={'conic-gradient(from -45deg, #fff, #000, #fff)'}
-						shadow='1'
-						p='box'
-						w='12rem'
-						h='8rem'
-					>
-						Lorem ipsum.
-					</Box>
-				</Cluster>
 				<h2>ChatBubble</h2>
 				<ChatBubble
 					name='るふぃ'
@@ -214,6 +113,9 @@ export default function DecoratorTest() {
 				<DecorationBox variant='balloon' direction='left' bgc='pale'>
 					<DammyText />
 				</DecorationBox>
+				<DecorationBox variant='balloon' direction='right'>
+					<DammyText />
+				</DecorationBox>
 				<DecorationBox
 					variant='balloon'
 					direction='right'
@@ -261,16 +163,16 @@ export default function DecoratorTest() {
 					<DammyText />
 				</DecorationBox>
 				<h2>BG</h2>
-				<Box className='-bg:grid' p='box:l'>
+				<Box bg='grid' p='box:l'>
 					<DammyText />
 				</Box>
-				<Box className='-bg:grid' p='box:l' bgc='black:10%'>
+				<Box bg='grid' p='box:l' bgc='black:10%'>
 					<DammyText />
 				</Box>
-				<Box className='-bg:stripe' p='box:l'>
+				<Box bg='stripe' p='box:l'>
 					<DammyText />
 				</Box>
-				<Box className='-bg:stripe' p='box:l' bgc='blue:10%'>
+				<Box bg='stripe' p='box:l' bgc='blue:10%'>
 					<DammyText />
 				</Box>
 				<h2>Glass</h2>

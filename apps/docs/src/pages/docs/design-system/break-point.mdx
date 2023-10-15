@@ -16,7 +16,7 @@ import { Box, Text, RatioGrid, Flex, Stack } from '@lism/core';
 - `lg`: width >= 960
 - `xl`: width >= 1200
 
-<Alert>
+<Alert preset="info">
 (xlサイズのサポートは、別途SCSSのインポートが必要)
 </Alert>
 
@@ -41,7 +41,7 @@ Lismでは、ブレイクポイントでの切り替えに対応しているCSS�
 ```html
 <div
 	class="-p:10 -p@sm: -p@md:"
-	style="--p--sm:var(--space--20);--p--md:var(--space--30)"
+	style="--p--sm:var(--s--20);--p--md:var(--s--30)"
 >...</div>
 
 <div

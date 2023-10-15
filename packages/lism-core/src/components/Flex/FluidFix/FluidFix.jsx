@@ -3,7 +3,7 @@ import Flex from '../Flex';
 
 export default function FluidFix({ lismStyle = {}, fixW, fluidMinW, fix = 'last', ...props }) {
 	if (undefined !== fluidMinW) {
-		lismStyle['--fluid--miw'] = fluidMinW;
+		lismStyle['--fluid--minW'] = fluidMinW;
 	}
 	if (undefined !== fixW) {
 		lismStyle['--fixW'] = fixW;

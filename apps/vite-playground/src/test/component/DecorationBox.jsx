@@ -74,7 +74,7 @@ const PRESETS = {
 			},
 		},
 		top: {
-			boxProps: { grid: { areas: 'lcr', jc: 'center' } },
+			boxProps: { grid: { areas: 'ltr', jc: 'center' } },
 			decoratorProps: {
 				i1: {
 					bd: 'top',
@@ -91,7 +91,7 @@ const PRESETS = {
 			},
 		},
 		bottom: {
-			boxProps: { grid: { areas: 'lcr', jc: 'center', ai: 'end' } },
+			boxProps: { grid: { areas: 'ltr', jc: 'center', ai: 'end' } },
 			decoratorProps: {
 				i1: {
 					bd: 'bottom',
@@ -171,7 +171,7 @@ const PRESETS = {
 			decoratorProps: {
 				rotate: '45deg',
 				translate: '0% 50%',
-				mX: '1.5em',
+				mx: '1.5em',
 				top: '1px',
 				// flexItem: { fxsh: '0', order: '-1' },
 				clipPath: 'polygon(0% 0%, 0% 100%, 100% 0%)',
@@ -184,7 +184,7 @@ const PRESETS = {
 			decoratorProps: {
 				rotate: '45deg',
 				translate: '0% -50%',
-				mX: '1.5em',
+				mx: '1.5em',
 				bottom: '1px',
 				clipPath: 'polygon(100% 0%, 0% 100%, 100% 100%)',
 			},

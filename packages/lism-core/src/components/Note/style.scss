@@ -33,7 +33,7 @@
 	// align-items: center;
 	// font-weight: 700;
 	gap: 0.4em;
-	margin-block-end: var(--space--20);
+	margin-block-end: var(--s--20);
 }
 
 // bump
@@ -45,7 +45,7 @@
 // 	}
 // 	:where(& > .c--note__head) {
 // 		background-color: var(--bgc--base);
-// 		margin-inline: var(--space--30);
+// 		margin-inline: var(--s--30);
 // 		padding-inline: 0.5em;
 // 		// border-radius: 4px;
 // 	}

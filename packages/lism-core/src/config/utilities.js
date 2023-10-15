@@ -25,6 +25,8 @@ export default {
 	fxd: { column: 'c', row: 'r', 'column-reverse': 'cr', 'row-reverse': 'rr' },
 
 	size: { '100%': '100', 'fit-content': 'fit' },
+	maxSize: { '100%': '100' },
+	minSize: {},
 	ga: { fix: 'fix', left: 'l', right: 'r', center: 'c', top: 't', bottom: 'b' },
 	bd: {
 		current: 'cc',

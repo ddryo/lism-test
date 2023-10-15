@@ -1,9 +1,13 @@
 // .-hov\: ユーティリティ
 
 @layer lism-init {
-	.-hov\:bgc\: {
+	:root {
+		--hov--shadow: var(--shadow--4);
 		--hov--bgc: var(--bgc--pale);
 	}
+	// .-hov\:bgc\: {
+	// 	--hov--bgc: var(--bgc--pale);
+	// }
 	.-hov\:reverse {
 		--rev--c: var(--hov--c, var(--bgc)); // .-hov:c: あれば優先
 		--rev--bgc: var(--hov--bgc, var(--c));
@@ -34,6 +38,9 @@
 .-hov\:bdc\::hover {
 	border-color: var(--hov--bdc) !important;
 }
+.-hov\:shadow\::hover {
+	box-shadow: var(--hov--shadow) !important;
+}
 
 // .-hov\:bgc\:b100 {
 // 	--hov--bgc: var(--b100);
@@ -46,9 +53,7 @@
 // }
 
 // プリセット
-.-hov\:shadow\::hover {
-	box-shadow: var(--hov--shadow) !important;
-}
+
 .-hov\:dark:hover {
 	filter: brightness(0.8) contrast(1.2); //grayscale(5%);
 }
@@ -60,8 +65,8 @@
 	opacity: 0.75;
 }
 .-hov\:shadow:hover {
-	// ユーティリティに負けないように important
-	box-shadow: var(--shadow--hov) !important;
+	// shadowユーティリティに負けないように important
+	box-shadow: var(--hov--shadow) !important;
 }
 .-hov\:up:hover {
 	translate: 0 -3px;

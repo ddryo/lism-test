@@ -21,7 +21,7 @@ import Script from 'next/script';
 |`5xl`|`--fz--5xl`|`.-fz:5xl`||
 
 
-<Alert>
+<Alert preset="info">
 	Memo:スケーリングは 4xl くらいまでにして、5xlのとこは `here` などのセマンティックトークンにしてもよさそう。2xsとかも?
 </Alert>
 
@@ -52,11 +52,11 @@ export const FzTexts = () => (
 
 各プリセット値は、数学的に美しいとされるスケーリング理論に基づいて定義することを推奨しています。
 
-<Alert>
+<Alert preset="info">
 デフォルトでは、**分子8の調和数列**ベースで設計しています。
 </Alert>
 
-<Alert>
+<Alert preset="info">
 	Memo: 英語: `8`ベース、 日本語: `9`ベース でスケーリングするのが良さそう。
 </Alert>
 
@@ -103,13 +103,10 @@ export const FzTexts = () => (
 
 ## line-height
 
-Base:  
-日本語:1.625 or 1.75 or 1.875 あたりがおすすめ  
-英語: 1.5 or 1.625 あたりがおすすめ
-
+base値をセットし、それに対して小さい・大きいで段階的に用意。
 
 <Flex gap={20} fxw='w'>
-	<Box>
+	{/* <Box>
 		|段階トークン|値|
 		|---|---|
 		|10|1|
@@ -121,20 +118,21 @@ Base:
 		|70|1.75|
 		|80|1.875|
 		|90|2|
-	</Box>
+	</Box> */}
 	<Box>
-		|トークン|値|
+		|トークン|初期値|
 		|---|---|
-		|4xs|20|
-		|3xs|30|
-		|2xs|40|
-		|xs|50|
-		|s|60|
-		|base|70|
-		|l|80|
-		|xl|90|
+		|xs|base - 0.25|
+		|s|base - 0.125|
+		|base|1.75|
+		|l|base + 0.125|
+		|xl|base + 0.25|
 	</Box>
 </Flex>
+
+<Alert preset="info">
+base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおすすめ。（英語なら `1.5`, `1.625` あたりがおすすめ）
+</Alert>
 
 <Tabs>
 	<TabItem label='日本語'>
@@ -172,6 +170,99 @@ Base:
 </Tabs>
 
 
+
+### Headings の line-height について
+
+自動計算をONにしている。（普通に初期値をセットしてもいいか。）
+<Tabs>
+	<TabItem label='自動計算'>
+		<Demo>
+			<Demo.Title>Headings</Demo.Title>
+			<Demo.Preview p={20} flowGap='20'>
+				<h1>Heading 1: <DammyText tag='span' lang='ja' /></h1>
+				<h2>Heading 2: <DammyText tag='span' lang='ja' /></h2>
+				<h3>Heading 3: <DammyText tag='span' lang='ja' /></h3>
+				<h4>Heading 4: <DammyText tag='span' lang='ja' /></h4>
+				<h5>Heading 5: <DammyText tag='span' lang='ja' /></h5>
+				<h6>Heading 6: <DammyText tag='span' lang='ja' /></h6>
+				<hr />
+				<p>Paragraph: <DammyText tag='span' lang='ja' /></p>
+				
+			</Demo.Preview>
+		</Demo>
+	</TabItem>
+
+	<TabItem label='手動セット'>
+		<Demo>
+			<Demo.Title>Headings</Demo.Title>
+			<Demo.Preview p={20} flowGap='20'>
+				<h1 className="-lh:xs">Heading 1: <DammyText tag='span' lang='ja' /></h1>
+				<h2 className="-lh:xs">Heading 2: <DammyText tag='span' lang='ja' /></h2>
+				<h3 className="-lh:s">Heading 3: <DammyText tag='span' lang='ja' /></h3>
+				<h4 className="-lh:s">Heading 4: <DammyText tag='span' lang='ja' /></h4>
+				<h5 className="">Heading 5: <DammyText tag='span' lang='ja' /></h5>
+				<h6 className="">Heading 6: <DammyText tag='span' lang='ja' /></h6>
+				<hr />
+				<p>Paragraph: <DammyText tag='span' lang='ja' /></p>
+				
+			</Demo.Preview>
+		</Demo>
+	</TabItem>
+</Tabs>
+
+<Demo>
+	<Demo.Title>Headings</Demo.Title>
+	<Demo.Preview p={20} flowGap='20'>
+		<h1>Heading 1: <DammyText tag='span' /></h1>
+		<h2>Heading 2: <DammyText tag='span' /></h2>
+		<h3>Heading 3: <DammyText tag='span' /></h3>
+		<h4>Heading 4: <DammyText tag='span' /></h4>
+		<h5>Heading 5: <DammyText tag='span' /></h5>
+		<h6>Heading 6: <DammyText tag='span' /></h6>
+		<hr />
+		<p>Paragraph: <DammyText tag='span' /></p>
+		
+	</Demo.Preview>
+</Demo>
+
+
+
+## letter spacing
+
+letter spacing...考え中
+
+<Box>
+	|トークン|変数|初期値|
+	|---|---|---|
+	|-2|--lts--N2|-0.25em|
+	|-1|--lts--N1|-0.125em|
+	|0|--lts--0|0em|
+	|1|--lts--1|0.025em|
+	|2|--lts--2|0.05em|
+	|3|--lts--3|0.075em|
+	|4|--lts--4|0.1em|
+	|5|--lts--5|0.25em|
+	|5|--lts--6|0.5em|
+
+</Box>
+
+<Demo>
+	<Demo.Title>Demo</Demo.Title>
+	<Demo.Preview p={20} flowGap='20'>
+		<p><Text tag="code" w="2em">-2</Text> : <Text tag="span" lts="-2">Lorem 0123 ロレム文字</Text></p>
+		<p><Text tag="code" w="2em">-1</Text> : <Text tag="span" lts="-1">Lorem 0123 ロレム文字</Text></p>
+		<p><Text tag="code" w="2em">0</Text> : <Text tag="span" lts="0">Lorem 0123 ロレム文字</Text></p>
+		<p><Text tag="code" w="2em">1</Text> : <Text tag="span" lts="1">Lorem 0123 ロレム文字</Text></p>
+		<p><Text tag="code" w="2em">2</Text> : <Text tag="span" lts="2">Lorem 0123 ロレム文字</Text></p>
+		<p><Text tag="code" w="2em">3</Text> : <Text tag="span" lts="3">Lorem 0123 ロレム文字</Text></p>
+		<p><Text tag="code" w="2em">4</Text> : <Text tag="span" lts="4">Lorem 0123 ロレム文字</Text></p>
+		<p><Text tag="code" w="2em">5</Text> : <Text tag="span" lts="5">Lorem 0123 ロレム文字</Text></p>
+		<p><Text tag="code" w="2em">6</Text> : <Text tag="span" lts="6">Lorem 0123 ロレム文字</Text></p>
+	</Demo.Preview>
+</Demo>
+
+
+
 ## フォントファミリー
 
 - base, code, heading
@@ -189,50 +280,6 @@ Base:
 </Demo>
 
 
-## letter spacing
-letter spacing
-<Demo>
-	<Demo.Title>Demo</Demo.Title>
-	<Demo.Preview p={20} flowGap='20'>
-		<Text>Lorem 0123</Text>
-		<Text lts="1px">Lorem 0123</Text>
-		<Text lts="2px">Lorem 0123</Text>
-	</Demo.Preview>
-</Demo>
-
-
-
-## Headings
-
-<Demo>
-	<Demo.Title>Headings</Demo.Title>
-	<Demo.Preview p={20} flowGap='20'>
-		<h1>Heading 1: <DammyText tag='span' lang='ja' /></h1>
-		<h2>Heading 2: <DammyText tag='span' lang='ja' /></h2>
-		<h3>Heading 3: <DammyText tag='span' lang='ja' /></h3>
-		<h4>Heading 4: <DammyText tag='span' lang='ja' /></h4>
-		<p>Paragraph: <DammyText tag='span' lang='ja' /></p>
-		<h5>Heading 5: <DammyText tag='span' lang='ja' /></h5>
-		<h6>Heading 6: <DammyText tag='span' lang='ja' /></h6>
-		
-	</Demo.Preview>
-</Demo>
-
-
-<Demo>
-	<Demo.Title>Headings</Demo.Title>
-	<Demo.Preview p={20} flowGap='20'>
-		<h1>Heading 1: <DammyText tag='span' /></h1>
-		<h2>Heading 2: <DammyText tag='span' /></h2>
-		<h3>Heading 3: <DammyText tag='span' /></h3>
-		<h4>Heading 4: <DammyText tag='span' /></h4>
-		<p>Paragraph: <DammyText tag='span' /></p>
-		<h5>Heading 5: <DammyText tag='span' /></h5>
-		<h6>Heading 6: <DammyText tag='span' /></h6>
-		
-	</Demo.Preview>
-</Demo>
-
 
 ## Customize
 
@@ -242,43 +289,7 @@ letter spacing
 ```css filename="your css"
 @layer lism-init {
 	:root{
-		
-		/* 400px:0.875rem ~ 600:1rem */
-		/* --fz--root: clamp(0.875rem, 0.625rem + 1vw, 1rem); */
-
-		/* 350px:0.875rem ~ 600:1rem */
-		--fz--root: clamp(0.875rem, 0.7rem + 0.8vw, 1rem);
-		--lh--bsae: var(--lh--70);
+		...
 	}
-
-	h1 {
-		--fz: var(--fz--3xl);
-		--lh: var(--lh--40);
-	}
-	h2 {
-		--fz: var(--fz--2xl);
-		--lh: var(--lh--50);
-	}
-	h3 {
-		--fz: var(--fz--xl);
-		--lh: var(--lh--50);
-	}
-	h4 {
-		--fz: var(--fz--l);
-		--lh: var(--lh--60);
-	}
-	h5 {
-		--fz: var(--fz--m);
-	}
-	h6 {
-		--fz: var(--fz--s);
-		--lh: var(--lh--60);
-	}
-}
-
-body{
-    font-size: 1rem;
-    line-height: var(--lh--bsae);
-}
 
 ```

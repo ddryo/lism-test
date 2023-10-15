@@ -3,8 +3,8 @@
 // --------------------
 .l--ratioGrid {
 	--gtc: 1fr 1fr; // 初期値
-	--gtc--val: var(--gtc);
+	// --gtc: var(--gtc);
 
 	display: grid;
-	grid-template-columns: var(--gtc--val);
+	grid-template-columns: var(--gtc);
 }

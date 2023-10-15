@@ -1,30 +1,31 @@
 @use '../../../scss/query' as query;
 
+// 一応 area名は . ではなく nofix で、子要素から指定できるようにしている。
 .l--switchFix {
 	--fixW: auto;
 	display: grid;
-	grid-template-areas: var(--gta--val);
-	grid-template-columns: var(--gtc--val);
+	grid-template-areas: var(--gta);
+	grid-template-columns: var(--gtc);
 
-	--gtc--val: auto;
-	--gta--val: '.' 'fix';
+	--gtc: auto;
+	--gta: 'nofix' 'fix';
 
 	// up指定がある時
 	&[data-fix~='up'] {
-		--gta--val: 'fix' '.';
+		--gta: 'fix' 'nofix';
 	}
 	// &[data-fix~='down'] {
-	// 	--gta--val: '.' 'fix';
+	// 	--gta: 'nofix' 'fix';
 	// }
 
 	// 横並び時のgridオプション
 	// &[data-fix~='left'] {
-	--gta--horizontal: 'fix .';
+	--gta--horizontal: 'fix nofix';
 	--gtc--horizontal: var(--fixW) 1fr;
 	// }
 
 	&[data-fix~='right'] {
-		--gta--horizontal: '. fix';
+		--gta--horizontal: 'nofix fix';
 		--gtc--horizontal: 1fr var(--fixW);
 	}
 
@@ -41,14 +42,14 @@
 
 .l--switchFix[data-bp='sm'] {
 	@include query.cq('sm') {
-		--gta--val: var(--gta--horizontal);
-		--gtc--val: var(--gtc--horizontal);
+		--gta: var(--gta--horizontal);
+		--gtc: var(--gtc--horizontal);
 	}
 }
 
 .l--switchFix[data-bp='md'] {
 	@include query.cq('md') {
-		--gta--val: var(--gta--horizontal);
-		--gtc--val: var(--gtc--horizontal);
+		--gta: var(--gta--horizontal);
+		--gtc: var(--gtc--horizontal);
 	}
 }

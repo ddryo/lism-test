@@ -2,17 +2,16 @@
 // ソース上は gap でまとめれるとこも分割してCSS変数が吐き出されてしまう。
 
 .is--flex,
-.is--grid{
+.is--grid {
 	// 初期値
-	--rowg: var(--space--50);
-	--colmg: var(--space--50);
+	--rowg: var(--s--50);
+	--colmg: var(--s--50);
 
 	// @
 	--rowg--sm: var(--rowg);
 	--colmg--sm: var(--colmg);
 	--rowg--xs: var(--rowg--sm);
 	--colmg--xs: var(--colmg--sm);
-
 
 	gap: var(--rowg) var(--colmg);
 
@@ -24,5 +23,3 @@
 		gap: var(--rowg--xs) var(--colmg--xs);
 	}
 }
-
-

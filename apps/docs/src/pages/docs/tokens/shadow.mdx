@@ -12,17 +12,20 @@ import { Box,Frame, Text, Columns, Flex, Stack } from '@lism/core';
 ## Variables
 
 - `--shadow--{token}`
-	- プラス値: `--shadow--1`, `--shadow--2`...
-	- マイナス値: `--shadow--i1`, `--shadow--i2`...
+	- `--shadow--1`, `--shadow--2`...
+	- (inset値) `--shadow--i1`, `--shadow--i2`...
 - 構成変数
-	- `--shadow--hsl`: `0 0% 0%`;
-	- `--shadow-strength--base`: `0.05`
-	- `--shadow-strength`: `0.1`
+	- `--hsl--shadow`: `0 0% 0%`;
+	- `--shadow-alpha`: `0.1`
+	- `--shadow-alpha--low`: `0.08`
+	- `--shadow-color` : `hsl(var(--hsl--shadow) / var(--shadow-alpha))`
+	- `--shadow-color--low`: `hsl(var(--hsl--shadow) / var(--shadow-alpha--low))`
 	- `--shadow-length--0`: `0.5px 1px 2px 0px`
 	- `--shadow-length--1`: `0.5px 1px 4px 0px`
 	- `--shadow-length--2`: `1px 2px 8px 0px`
 	- `--shadow-length--3`: `2px 4px 16px 0px`
 	- `--shadow-length--4`: `4px 8px 32px 0px`
+	- `--shadow--0`: `0.5px 1px 2px 0px`
 
 
 ## DEMOs
@@ -55,7 +58,7 @@ export const ShadowDemos = ({ shadows = [] }) => {
 <Demo>
 	<Demo.Title>inset shadows</Demo.Title>
 	<Demo.Preview nogrid p={20}>
-		<Columns cols={[2, 4, 4]} gap={20}>
+		<Columns cols={[2, 4, 4]} gap={30}>
 			<ShadowDemos shadows={[ -1, -2, -3, -4 ]}/>
 		</Columns>
 	</Demo.Preview>

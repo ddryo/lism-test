@@ -1,10 +1,5 @@
 /* stylelint-disable */
 
-.-bg\:{background: var(--bg);}
-.-bg\:n{background:none}
-
-// .-bg\:stripe{background:}
-// .-bg\:grid{background:}
 
 .-inset\:0{inset: 0;}
 .-t\:0{top: 0;}
@@ -76,19 +71,6 @@
 .-ovy\:c{overflow-y: clip;}
 .-ovy\:h{overflow-y: hidden;}
 
-
-
-// text-align
-.-ta\:c{text-align: center;}
-.-ta\:r{text-align: right;}
-.-ta\:l{text-align: left;}
-
-.-fw\:100{font-weight: 100;}
-.-fw\:300{font-weight: 300;}
-.-fw\:400{font-weight: 400;}
-.-fw\:500{font-weight: 500;}
-.-fw\:700{font-weight: 700;}
-.-fw\:900{font-weight: 900;}
 
 // prop: pos
 // Layer の基点を作るためにrelativeにしたいことがある

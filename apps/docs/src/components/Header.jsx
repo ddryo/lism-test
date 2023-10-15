@@ -3,7 +3,7 @@ import { Container, Flex, Text } from '@lism/core';
 
 export default function Header() {
 	return (
-		<Container tag='header' className='a--header' isConstrained hasGutter p={{ Y: 40 }}>
+		<Container tag='header' className='a--header' isConstrained hasGutter py={40}>
 			<Flex className='a--header__inner' jc='space-between'>
 				<div className='l--box'>
 					<h1 className='a--header__logo -c:main' style={{ lineHeight: '1.2' }}>

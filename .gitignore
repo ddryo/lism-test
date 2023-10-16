@@ -2,6 +2,7 @@
 
 demo/nextra/
 demo/next-docs/
+apps/wp-theme
 
 # production
 build/
@@ -14,7 +15,6 @@ node_modules/
 
 # testing
 /coverage
-/wp-theme
 
 
 # astro

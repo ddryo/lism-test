@@ -93,6 +93,7 @@ export default function ChatBubble({
 		);
 	}
 
+	// data-type: gutenbergのブロックで使われる
 	return (
 		<Grid
 			blockClass='b--chatBubble'

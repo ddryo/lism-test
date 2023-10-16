@@ -57,9 +57,9 @@ const COLOR = {
 
 		// dart sass コンパイル
 		try {
-			const resultCSS = sassRender(srcPath, distPath);
+			const resultCSS = sassRender(srcPath);
 			// console.log(resultCSS);
-			``;
+
 			// postcss実行
 			postcss([
 				mergeAtRules({
@@ -84,20 +84,8 @@ const COLOR = {
 	}
 })();
 
-// Dart Sass の本来の API は sass.compile()
-// function sassRender(srcPath, distPath) {
-// 	const compressed = sass.compile(
-// 		srcPath,
-// 		{
-// 			// importers: [globImporter()],
-// 			style: 'compressed',
-// 		}
-// 	);
-// 	return compressed.css;
-// }
-
-// globImporter() 使うために レガシー API （ sass.renderSync ） を使う
-function sassRender(srcPath, distPath) {
+function sassRender(srcPath) {
+	// globImporter() 使うために レガシー API （ sass.renderSync ） を使う
 	// const compressed = sass.renderSync({
 	// 	file: srcPath,
 	// 	importer: globImporter(),

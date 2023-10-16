@@ -32,6 +32,9 @@
 			"import": "./dist/index.js",
 			"require": "./dist/index.js"
 		},
+		"./components": {
+			"import": "./src/components"
+		},
 		"./components/*": "./src/components/*",
 		"./scss/*": "./src/scss/*",
 		"./css/*": "./dist/css/*",
@@ -42,8 +45,6 @@
 	},
 	"devDependencies": {
 		"@svgr/rollup": "^8.0.1",
-		"postcss-merge-at-rules": "^1.0.1",
-		"postcss-merge-rules": "^6.0.1",
 		"vite": "^4.3.9",
 		"vite-plugin-svgr": "^3.2.0",
 		"vite-react-jsx": "^1.1.2"

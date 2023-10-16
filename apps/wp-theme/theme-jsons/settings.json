@@ -1,0 +1,138 @@
+{
+	"version": 2,
+	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/theme.json",
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": false,
+		"layout": {
+			"contentSize": "1120px",
+			"wideSize": "1440px"
+		},
+		"color": {
+			"palette": [
+				{
+					"color": "var(--ls--color--bg)",
+					"name": "Background",
+					"slug": "bg"
+				},
+				{
+					"color": "var(--ls--color--text)",
+					"name": "Text",
+					"slug": "text"
+				},
+				{
+					"color": "var(--ls--color--primary)",
+					"name": "Primary",
+					"slug": "primary"
+				},
+				{
+					"color": "#345C00",
+					"name": "Secondary",
+					"slug": "secondary"
+				},
+				{
+					"color": "#F6F6F6",
+					"name": "Tertiary",
+					"slug": "tertiary"
+				}
+			]
+		},
+		"spacing": {
+			"spacingSizes": [
+				{
+					"name": "20",
+					"slug": "20",
+					"size": "var(--ls--space--20)"
+				},
+				{
+					"name": "30",
+					"slug": "30",
+					"size": "var(--ls--space--30)"
+				},
+				{
+					"name": "40",
+					"slug": "40",
+					"size": "var(--ls--space--40)"
+				},
+				{
+					"name": "50",
+					"slug": "50",
+					"size": "var(--ls--space--50)"
+				},
+				{
+					"name": "60",
+					"slug": "60",
+					"size": "var(--ls--space--60)"
+				},
+				{
+					"name": "70",
+					"slug": "70",
+					"size": "var(--ls--space--70)"
+				},
+				{
+					"name": "80",
+					"slug": "80",
+					"size": "var(--ls--space--80)"
+				}
+			]
+		},
+		"typography": {
+			"dropCap": false,
+			"customFontSize": true,
+			"fontSizes": [
+				{
+					"slug": "2s",
+					"size": "var(--ls--fz--2S)",
+					"name": "XS"
+				},
+				{
+					"slug": "s",
+					"size": "var(--ls--fz--S)",
+					"name": "S"
+				},
+				{
+					"slug": "m",
+					"size": "var(--ls--fz--M)",
+					"name": "M"
+				},
+				{
+					"slug": "l",
+					"size": "var(--ls--fz--L)",
+					"name": "L"
+				},
+				{
+					"slug": "2l",
+					"size": "var(--ls--fz--2L)",
+					"name": "2L"
+				},
+				{
+					"slug": "3l",
+					"size": "var(--ls--fz--3L)",
+					"name": "3L"
+				},
+				{
+					"slug": "4l",
+					"size": "var(--ls--fz--4L)",
+					"name": "4L"
+				},
+				{
+					"slug": "5l",
+					"size": "var(--ls--fz--5L)",
+					"name": "5L"
+				},
+				{
+					"slug": "6l",
+					"size": "var(--ls--fz--6L)",
+					"name": "6L"
+				}
+			],
+			"fontFamilies": [
+				{
+					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+					"name": "System Font",
+					"slug": "system-font"
+				}
+			]
+		}
+	}
+}

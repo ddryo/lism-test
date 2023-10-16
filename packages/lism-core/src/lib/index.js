@@ -7,7 +7,7 @@ export { default as getLismProps } from './getLismProps';
 export { default as isEmptyObj } from './helper/isEmptyObj';
 export { default as filterEmptyObj } from './helper/filterEmptyObj';
 
-import { PRESETS, UTILITIES } from '@/config';
+import { PRESETS, UTILITIES } from '../config';
 
 // value: object
 // export const addObjData = (obj, key, value) => {

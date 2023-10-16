@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+/*
+ フロントで分離読み込み可能なCSSを合わせたもの(分割読み込みがオフの時にこのファイルで一気に読み込む)
+*/
+
+// coreブロックの追加CSS
+// @import "./modules/blocks/**/*.scss";
+// @import "./modules/content/**/*.scss";
+
+// swellブロック
+// @import "../gutenberg/blocks/**/style.scss";

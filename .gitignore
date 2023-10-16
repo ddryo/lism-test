@@ -2,7 +2,7 @@
 
 demo/nextra/
 demo/next-docs/
-apps/wp-theme
+# apps/wp-theme
 
 # production
 build/

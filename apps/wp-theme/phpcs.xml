@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<ruleset name="Customize WPCS">
+	<rule ref="WordPress">
+		<!-- This rule does not apply here since the _s prefix should be changed by the theme author. -->
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.ShortPrefixPassed"/>
+
+		<exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
+		<exclude name="PSR12.Files.FileHeader.IncorrectOrder"/>
+
+		<!-- ファイルコメントに関するルールを除外 -->
+		<exclude name="Squiz.Commenting" />
+		<exclude name="Generic.Commenting" />
+
+		<!-- コードをコメントアウトした時の警告を除去 -->
+		<exclude name="Squiz.PHP.CommentedOutCode.Found" />
+
+		<!-- ifなどは1行で書いてはいけないルールを除外 -->
+		<exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed" />
+
+		<!-- クラスのファイル名を "class-" 出始めないといけないルールを除外 -->
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+
+		<!-- オブジェクトプロパティの snake_case ルールを除外 ( ->$Version などに影響) -->
+		<exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase" />
+
+		<!-- 変数の snake_case ルールを除外 ( $SETTING などに影響) -->
+		<exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.InterpolatedVariableNotSnakeCase" />
+
+		<!-- 関数の snake_case ルールを除外 -->
+		<exclude name="WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid" />
+
+		<!-- ファイル名を_から始めた時に出るエラーを除外 -->
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+
+		<!-- インデント -->
+		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
+
+		<!-- 参考演算子を許可 -->
+		<exclude name="WordPress.PHP.DisallowShortTernary.Found" />
+
+		<!-- "translation:" コメントがなくても許す -->
+		<exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
+
+
+		<!-- $_REQUEST などにエラー出さない -->
+		<exclude name="WordPress.Security.ValidatedSanitizedInput.InputNotSanitized" />
+		<exclude name="WordPress.Security.ValidatedSanitizedInput.MissingUnslash" />
+
+		<!-- PHP省略タグを許可 -->
+		<exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
+
+		<!-- array() の強制を解除 -->
+		<exclude name="WordPress.Arrays.ArrayDeclarationSpacing.NoSpaceAfterArrayOpener" />
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
+
+		<!-- 無名関数 のフックが改行されないように -->
+		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
+		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
+
+		<!-- urlencodeに警告出さない -->
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.urlencode_urlencode" />
+
+		<!-- file_get_contents に警告出さない -->
+		<exclude name="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents" />
+
+		<!-- json_encode に警告出さない -->
+		<exclude name="WordPress.WP.AlternativeFunctions.json_encode_json_encode" />
+
+		<!-- if分の中での代入を許可 -->
+		<exclude name="Squiz.PHP.DisallowMultipleAssignments.FoundInControlStructure" />
+		<exclude name="WordPress.CodeAnalysis.AssignmentInCondition.Found" />
+
+		<!-- NONCEチェック -->
+		<exclude name="WordPress.Security.NonceVerification.Missing" />
+
+		<!-- meta queryへの警告を停止 -->
+		<exclude name="WordPress.DB.SlowDBQuery.slow_db_query_meta_key" />
+
+		<!-- $wpdbの警告を停止 -->
+		<exclude name="WordPress.DB.DirectDatabaseQuery.NoCaching" />
+		<exclude name="WordPress.DB.DirectDatabaseQuery.DirectQuery" />
+		<exclude name="WordPress.DB.PreparedSQL.InterpolatedNotPrepared" />
+		<exclude name="WordPress.DB.PreparedSQL.NotPrepared" />
+
+		<!-- Yoda記法以外への警告を停止 -->
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+
+		<!-- Taxクエリ許可 -->
+		<exclude name="WordPress.DB.SlowDBQuery.slow_db_query_tax_query" />
+
+		<!-- $_POSTなどの取得にnonce必須の警告を停止 -->
+		<exclude name="WordPress.Security.NonceVerification.Recommended" />
+
+		<!-- theme/plugin prefix 必須の警告を停止 -->
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals" />
+
+		<!-- file_put_contentsを許可 -->
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents" />
+	</rule>
+	
+	<!-- array()禁止して [] を使う -->
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax.Found"/>
+
+</ruleset>

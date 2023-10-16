@@ -1,5 +1,5 @@
 import filterEmptyObj from './helper/filterEmptyObj';
-import { BREAK_POINTS } from '@/config';
+import { BREAK_POINTS } from '../config';
 const BREAK_POINTS_ALL = ['_', ...BREAK_POINTS];
 
 function hasKeys(object, keys) {

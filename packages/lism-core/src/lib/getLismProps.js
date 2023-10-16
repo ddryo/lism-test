@@ -9,7 +9,7 @@ import {
 	getMaybeBgVar,
 } from './index.js';
 
-import { PROPS, CONTEXT_PROPS } from '@/config';
+import { PROPS, CONTEXT_PROPS } from '../config';
 import getBpData from './getBpData';
 import filterEmptyObj from './helper/filterEmptyObj';
 import isEmptyObj from './helper/isEmptyObj';
@@ -154,7 +154,7 @@ class CommonProps {
 		}
 
 		// ref
-		if (undefined !== forwardedRef) {
+		if (forwardedRef) {
 			this.attrs.ref = forwardedRef;
 		}
 	}

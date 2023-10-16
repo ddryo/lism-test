@@ -15,7 +15,8 @@
 		font-size: 1rem;
 		line-height: var(--lh--base);
 		overflow-x: clip;
-		container-type: inline-size;
+		// 子孫要素の position:fixed の挙動が変わってしまうので body には使わない
+		// container-type: inline-size;
 	}
 
 	a {

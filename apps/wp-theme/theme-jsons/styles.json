@@ -1,0 +1,71 @@
+{
+	"version": 2,
+	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/theme.json",
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--bg-primary)",
+			"text": "var(--wp--preset--color--text-normal)"
+		},
+		"spacing": {
+			"blockGap": "var(--ls--blockGap)",
+			"__padding": {
+				"left": "var(--ls--space--50)",
+				"right": "var(--ls--space--50)"
+			}
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--system-font)",
+			"fontSize": "var(--ls--fz--root)",
+			"lineHeight": "var(--ls--lh--root)"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontWeight": "700"
+				}
+			},
+			"h1": {
+				"typography": {
+					"fontSize": "var(--ls--fz--4L)",
+					"lineHeight": "var(--ls--lh--for-4L)"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "var(--ls--fz--3L)",
+					"lineHeight": "var(--ls--lh--for-3L)"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontSize": "var(--ls--fz--2L)",
+					"lineHeight": "var(--ls--lh--for-2L)"
+				}
+			},
+			"h4": {
+				"typography": {
+					"fontSize": "var(--ls--fz--L)",
+					"lineHeight": "var(--ls--lh--for-L)"
+				}
+			},
+			"h5": {
+				"typography": {
+					"fontSize": "var(--ls--fz--M)"
+				}
+			},
+			"h6": {
+				"typography": {
+					"fontSize": "var(--ls--fz--S)"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var(--ls--color--link)"
+				},
+				"typography": {
+					"textDecoration": "underline"
+				}
+			}
+		}
+	}
+}

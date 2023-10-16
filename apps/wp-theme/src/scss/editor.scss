@@ -1,0 +1,17 @@
+@charset "UTF-8";
+@use "../../node_modules/@lism/core/src/scss/all.scss";
+@use "../gutenberg/index.scss";
+
+// @import "./editor/**/*.scss";
+// @import "../gutenberg/**/_common.scss";
+// @import "../gutenberg/**/_editor.scss";
+
+// .wp-block系がないと読み込まれない
+:where(.wp-block#_) {
+	color: inherit;
+}
+
+body,
+.editor-styles-wrapper {
+	container-type: inline-size;
+}

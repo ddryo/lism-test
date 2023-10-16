@@ -1,0 +1,54 @@
+{
+	"version": 2,
+	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/theme.json",
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": false,
+		"layout": {
+			"contentSize": "1120px",
+			"wideSize": "1440px"
+		}
+	},
+	"templateParts": [
+		{
+			"name": "header",
+			"title": "Header",
+			"area": "header"
+		},
+		{
+			"name": "single-header",
+			"title": "個別記事ヘッダー",
+			"area": "uncategorized"
+		},
+		{
+			"name": "single-header-big",
+			"title": "個別記事ヘッダー（BIG）",
+			"area": "uncategorized"
+		},
+		{
+			"name": "single-footer",
+			"title": "個別記事フッター",
+			"area": "uncategorized"
+		},
+		{
+			"name": "page-header",
+			"title": "固定ページヘッダー",
+			"area": "uncategorized"
+		},
+		{
+			"name": "page-header-big",
+			"title": "固定ページヘッダー（BIG）",
+			"area": "uncategorized"
+		},
+		{
+			"name": "post-list-grid",
+			"title": "記事一覧（グリッド）",
+			"area": "uncategorized"
+		},
+		{
+			"name": "footer",
+			"title": "Footer",
+			"area": "footer"
+		}
+	]
+}

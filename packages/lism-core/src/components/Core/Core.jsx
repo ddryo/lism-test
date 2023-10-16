@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 import { getLismProps } from '../../lib';
 // import classnames from 'classnames';
 

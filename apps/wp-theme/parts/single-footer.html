@@ -1,0 +1,39 @@
+<!-- wp:group {"tagName":"footer","lock":{"move":false,"remove":true},"layout":{"type":"constrained"}} -->
+<footer class="wp-block-group"><!-- wp:group {"layout":{"type":"flex","orientation":"horizontal"}} -->
+	<div class="wp-block-group"><!-- wp:post-terms {"term":"category"} /-->
+
+		<!-- wp:post-terms {"term":"post_tag"} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:post-author {"showBio":true,"byline":"memo: ここの署名ってなんだ？","isLink":true} /-->
+</footer>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"aside","lock":{"move":true,"remove":true},"layout":{"type":"constrained"}} -->
+<aside class="wp-block-group"><!-- wp:template-part {"slug":"cta","theme":"wp-theme"} /-->
+
+	<!-- wp:paragraph {"align":"center","backgroundColor":"light-green-cyan","className":""} -->
+	<p class="has-text-align-center has-light-green-cyan-background-color has-background">FBいいね &amp; Twitterフォロー ボックス
+	</p>
+	<!-- /wp:paragraph -->
+
+	<!-- wp:paragraph {"align":"center","backgroundColor":"luminous-vivid-amber","className":""} -->
+	<p class="has-text-align-center has-luminous-vivid-amber-background-color has-background">シェアボタンブロック</p>
+	<!-- /wp:paragraph -->
+
+	<!-- wp:paragraph {"align":"center","backgroundColor":"luminous-vivid-amber","className":""} -->
+	<p class="has-text-align-center has-luminous-vivid-amber-background-color has-background">
+		関連記事<br>（ブロック作るか、クエリーブロックでパーツ化）</p>
+	<!-- /wp:paragraph -->
+
+	<!-- wp:post-comments-form /-->
+
+	<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+	<div class="wp-block-group"><!-- wp:post-navigation-link {"type":"previous","showTitle":true,"arrow":"chevron"} /-->
+
+		<!-- wp:post-navigation-link {"showTitle":true,"arrow":"chevron"} /-->
+	</div>
+	<!-- /wp:group -->
+</aside>
+<!-- /wp:group -->

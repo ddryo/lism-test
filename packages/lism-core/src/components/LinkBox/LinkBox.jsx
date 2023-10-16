@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+// import { useRef } from 'react';
 import { Core } from '../Core';
 
 export default function LinkBox({
@@ -15,9 +15,13 @@ export default function LinkBox({
 	...props
 }) {
 	lismState.push('is--linkbox');
-	const ref = useRef(null);
+	// const ref = useRef(null);
 
-	const theProps = { lismState, hover, forwardedRef: ref };
+	const theProps = {
+		lismState,
+		hover,
+		//forwardedRef: ref
+	};
 
 	const linkProps = {
 		href,

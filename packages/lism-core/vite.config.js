@@ -30,7 +30,8 @@ function deleteDuplicateDir(filePath) {
 export default defineConfig({
 	plugins: [react(), svgr()],
 	resolve: {
-		alias: [{ find: '@/', replacement: '/src/' }],
+		// ここでこれやると外部からの import でエラーになる
+		// alias: [{ find: '@/', replacement: '/src/' }],
 	},
 	exportOnly: ['index'],
 	build: {
@@ -56,7 +57,7 @@ export default defineConfig({
 			formats: ['es'],
 		},
 		rollupOptions: {
-			external: ['react', 'classnames', '@/'],
+			external: ['react', 'classnames'],
 			output: {
 				dir: 'dist',
 				// 外部化された依存関係のために UMD のビルドで使用するグローバル変数を提供します

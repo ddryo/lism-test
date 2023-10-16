@@ -12,14 +12,14 @@ function register_blocks() {
 
 		// $block_data で 'style' があれば wp_register_style ...
 		// ( memo: $depsを指定して共通CSSより後ろで読み込ませたいのでphp側で処理している )
-		// if ( in_array( 'style', $block_data, true ) ) {
-		//  wp_register_style(
-		//      "lism-blocks-{$block_name}-style",
-		//      LISM_THEME_DIR . "/dist/gutenberg/blocks/{$block_name}/index.css",
-		//      [ $deps ],
-		//      Data::$file_ver
-		//  );
-		// }
+		if ( in_array( 'style', $block_data, true ) ) {
+		wp_register_style(
+			"lism-blocks-{$block_name}-style",
+			LISM_THEME_DIR . "/dist/gutenberg/blocks/{$block_name}/index.css",
+			[ $deps ],
+			Data::$file_ver
+		);
+		}
 	}
 }
 

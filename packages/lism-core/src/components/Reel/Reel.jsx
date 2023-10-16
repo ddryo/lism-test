@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Flex } from '../Flex';
 
 // snap-type, snap-stopも指定できるようにする？

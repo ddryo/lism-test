@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Core } from '../Core';
 
 // 省略可能にするかどうかは、要検討

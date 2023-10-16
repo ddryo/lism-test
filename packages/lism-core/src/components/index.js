@@ -39,8 +39,9 @@ export { Avatar } from './Avatar';
 export { Icon, InlineIcon } from './Icon';
 export { Button } from './Button';
 export { Badge } from './Badge';
-export { Decorator } from './Decorator';
 export { Delimiter } from './Delimiter';
+export { Decorator } from './Decorator';
+export { DecorationBox } from './DecorationBox';
 
 // appルーターで use client がいるもの
 export { Accordion, AccordionHeader, AccordionBody } from './Accordion';

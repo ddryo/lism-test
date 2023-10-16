@@ -10,6 +10,7 @@
 .-w\:75 { --w: 75% }
 .-w\:100 { --w: 100% }
 .-w\:fit { --w: fit-content}
+// .-h\:screen { --w: calc(100vw - var(--sbar)) }
 
 // .-h\:,
 [class*="-h:"] { height: var(--h) !important }
@@ -18,6 +19,7 @@
 .-h\:75 { --h: 75% }
 .-h\:100 { --h: 100% }
 .-h\:fit { --h: fit-content }
+.-h\:screen { --h: 100vh;--h: 100dvh; }
 
 // .-w\:text{ width: 35em }
 

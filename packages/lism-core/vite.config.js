@@ -1,21 +1,14 @@
 // vite.config.js
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-// import react from '@vitejs/plugin-react'
-import svgr from 'vite-plugin-svgr';
+import react from '@vitejs/plugin-react'; // import {useRef} from 'react'; とかした時に、React is not defined 言われないように
+import svgr from 'vite-plugin-svgr'; // svg を React Component として import できるようにする
+// import reactJsx from 'vite-react-jsx';
 // import { terser } from 'rollup-plugin-terser'
 
 const entries = {
 	index: resolve(__dirname, 'src/components/index.js'),
 };
-
-// const blocks=[
-// 	'Box',
-// 	'Columns',
-// ];
-// blocks.forEach((key) => {
-// 	entries[`${key}/index`] = resolve(__dirname, `src/components/${key}/index.js`);
-// });
 
 function deleteDuplicateDir(filePath) {
 	const componentDir = filePath.split('/').slice(-1)[0];
@@ -35,16 +28,9 @@ function deleteDuplicateDir(filePath) {
 }
 
 export default defineConfig({
-	plugins: [
-		//react()
-		svgr(),
-	],
+	plugins: [react(), svgr()],
 	resolve: {
-		alias: [
-			{ find: '@/', replacement: '/src/' },
-			// { find: '@/lib', replacement: '/src/lib' },
-			// { find: '@/components', replacement: '/src/components' },
-		],
+		alias: [{ find: '@/', replacement: '/src/' }],
 	},
 	exportOnly: ['index'],
 	build: {
@@ -74,16 +60,12 @@ export default defineConfig({
 			output: {
 				dir: 'dist',
 				// 外部化された依存関係のために UMD のビルドで使用するグローバル変数を提供します
-				// globals: {
-				// 	React: 'React',
-				// },
 				// exports: 'named',
 				preserveModules: true,
 				preserveModulesRoot: 'src',
 				entryFileNames: ({ name: fileName }) => {
 					//fileName に components が含まれているかチェックする
 					if (fileName.indexOf('components') !== -1) {
-						// console.log('fileName', fileName);
 						// 重複するディレクトリ構造を削除する
 						const componentPath = deleteDuplicateDir(fileName);
 						return `${componentPath}/index.js`;
@@ -100,16 +82,5 @@ export default defineConfig({
 			// 	})
 			// ]
 		},
-
-		// rollupOptions: {
-		// 	// ライブラリにバンドルされるべきではない依存関係を外部化するようにします
-		// 	external: ['vue'],
-		// 	output: {
-		// 		// 外部化された依存関係のために UMD のビルドで使用するグローバル変数を提供します
-		// 		globals: {
-		// 			vue: 'Vue',
-		// 		},
-		// 	},
-		// },
 	},
 });

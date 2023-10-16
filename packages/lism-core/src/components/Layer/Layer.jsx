@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Core } from '../Core';
 
 // .l--layer[data-layer="media|filter|content"] ?

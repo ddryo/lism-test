@@ -1,4 +1,4 @@
-import React from 'react';
+import { Children, cloneElement } from 'react';
 // import { Lism } from '../Lism';
 // import { TabContext } from './context';
 
@@ -12,10 +12,10 @@ export default function TabPanels({ children, tabId, activeIndex }) {
 	// console.log('children', children);
 	return (
 		<div className='l--tab__panels'>
-			{React.Children.map(children, (child, index) => {
+			{Children.map(children, (child, index) => {
 				const isActive = activeIndex === index;
 				const panelId = `${tabId}-${index}`;
-				return React.cloneElement(child, { key: index, panelId, isActive });
+				return cloneElement(child, { key: index, panelId, isActive });
 			})}
 		</div>
 	);

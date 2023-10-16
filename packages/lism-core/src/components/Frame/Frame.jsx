@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Core } from '../Core';
 
 export default function Frame({ lismClass = {}, ...props }) {

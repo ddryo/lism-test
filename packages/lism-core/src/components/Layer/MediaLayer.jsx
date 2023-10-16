@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import Layer from './Layer';
 import { Media } from '../Media';
 

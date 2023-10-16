@@ -207,10 +207,10 @@ export default function DecoratorTest() {
 					<TableDemo trCount={7} is4col />
 				</figure>
 
-				<p>↓scroll, table--fix-column1, table--fix-thead, solid</p>
+				<p>↓scroll, 1列目 & thead両方FIX, solid</p>
 
 				<figure
-					className='table--scrollable table--fix-column1 table--fix-thead table--relaxed is-style-table--solid'
+					className='table--scrollable table--fix-column1 table--fix-thead table--relaxed table--solid'
 					data-table='scrollable fix-column1 fix-thead'
 					style={{ '--th--bgc': '#f1f3fa', maxHeight: '300px' }}
 				>

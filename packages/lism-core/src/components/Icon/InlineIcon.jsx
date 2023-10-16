@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Icon } from './index';
 
 // import classnames from 'classnames';

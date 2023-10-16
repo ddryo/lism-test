@@ -14,7 +14,10 @@ const sass = require('sass');
 const postcss = require('postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
-const mqpacker = require('css-mqpacker');
+// const mqpacker = require('css-mqpacker');
+
+// https://www.npmjs.com/package/postcss-merge-at-rules
+const mergeAtRules = require('postcss-merge-at-rules');
 
 // consoleの色付け
 const COLOR = {
@@ -35,8 +38,8 @@ const COLOR = {
 	let files = [];
 	files = [
 		src + '/all.scss',
-		src + '/core-modules.scss',
-		src + '/block-modules.scss',
+		// src + '/core-modules.scss',
+		// src + '/block-modules.scss',
 
 		// src + '/base--wp.scss',
 		// src + '/components.scss',
@@ -56,9 +59,16 @@ const COLOR = {
 		try {
 			const resultCSS = sassRender(srcPath, distPath);
 			// console.log(resultCSS);
-
+			``;
 			// postcss実行
-			postcss([autoprefixer, mqpacker, cssnano])
+			postcss([
+				mergeAtRules({
+					atRulePattern: /(media|layer|supports|container)/im,
+					nest: true,
+				}),
+				autoprefixer,
+				cssnano,
+			])
 				.process(resultCSS, { from: undefined })
 				.then((postcssResult) => {
 					writeCSS(distPath, postcssResult.css);

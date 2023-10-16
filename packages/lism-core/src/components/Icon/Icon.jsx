@@ -1,4 +1,4 @@
-import React from 'react';
+import { isValidElement } from 'react';
 import { Lism } from '../Lism';
 import { IconPresets } from '../../config/components';
 
@@ -20,7 +20,7 @@ export default function Icon({
 	const iconProps = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true };
 
 	// iconに ReactElement が渡されてきた場合、childrenとして扱う
-	if (React.isValidElement(icon)) {
+	if (isValidElement(icon)) {
 		children = icon;
 	} else if (typeof icon === 'string' && IconPresets[icon]) {
 		// presetsの取得

@@ -1,4 +1,4 @@
-import React from 'react';
+// import {useContext} from 'react';
 import { Lism } from '../Lism';
 
 export default function TabItem({ panelId, isActive, children, ...attrs }) {

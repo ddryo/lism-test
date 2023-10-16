@@ -1,4 +1,4 @@
-import React from 'react';
+import { isValidElement } from 'react';
 import { MediaLayer, FilterLayer } from './index';
 
 export const getFilterLayer = (filter) => {
@@ -9,7 +9,7 @@ export const getMediaLayer = (media, z) => {
 	if (undefined !== media) {
 		if (media?.src) {
 			return <MediaLayer z={z} {...media} />;
-		} else if (React.isValidElement(media)) {
+		} else if (isValidElement(media)) {
 			return <MediaLayer z={z}>{media}</MediaLayer>;
 		}
 	}

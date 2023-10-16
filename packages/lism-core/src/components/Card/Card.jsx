@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Frame } from '../Frame';
 import { Layer, MediaLayer } from '../Layer';
 import { LinkBox } from '../LinkBox';

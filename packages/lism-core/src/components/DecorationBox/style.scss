@@ -1,0 +1,113 @@
+// :where(.e--decorator) {
+// 	position: relative;
+
+// 	--size: 1em;
+// 	width: var(--size);
+// 	height: var(--size);
+// }
+
+.d--call {
+	--bdc: currentColor;
+}
+.d--call > .e--decorator {
+	--bdc: inherit;
+}
+
+// ユーティリティクラスの importantを上書きするため、@layer
+@layer lism-init {
+	.d--balloon {
+		--bgc: var(--bgc--base);
+		--bdc: currentColor;
+		color: var(--c--base);
+		background-color: transparent !important; // innnerに背景色を渡すだけ
+	}
+}
+
+.d--balloon > .e--decorator,
+.d--balloon__body {
+	border: solid 1px var(--bdc);
+	background-color: var(--bgc);
+}
+.d--balloon__body {
+	// --bdc: inherit;
+	// background-color: var(--bgc);
+	// border: solid 1px var(--bdc);
+}
+
+// ユーティリティクラスの importantを上書きするため、@layer
+@layer lism-init {
+	.d--sticky {
+		background-color: transparent !important; // innnerに背景色を渡すだけ
+	}
+}
+.d--sticky {
+	--bgc: var(--bgc--pale);
+	--bdc: currentColor;
+	color: var(--c--base);
+}
+.d--sticky__body {
+	--bdw: 0.5em;
+	--bdc: inherit;
+	width: fit-content;
+	min-width: 8em;
+	max-width: 30em;
+	background-color: var(--bgc);
+	box-shadow: 1px 1px 2px 0px hsl(var(--hsl--shadow) / 0.08);
+
+	&::before {
+		position: absolute;
+		bottom: 4px;
+		right: 4px;
+		z-index: -1;
+		min-width: 4em;
+		width: min(50%, 12em);
+		height: 50%;
+		background-color: hsl(var(--hsl--shadow) / 0.2);
+		transform: rotate(4deg);
+		transform-origin: left bottom;
+		filter: blur(4px);
+		content: '';
+	}
+}
+
+.d--pipipi {
+	--deco--size: 0.5em;
+	--deco--trnsltX: var(--deco--size);
+	--bdc: currentColor;
+}
+.d--pipipi__body {
+	padding-top: calc(var(--deco--size) + 0.325em);
+	padding-inline: calc(var(--deco--size) + 0.5em);
+}
+.d--pipipi--right {
+	--deco--trnsltX: calc(0px - var(--deco--size));
+}
+
+// .d--pipipi > .e--decorator,
+.e--decorator--pipipi {
+	width: 1px;
+	height: var(--deco--size);
+	translate: var(--deco--trnsltX) 50%;
+	background-color: var(--bdc);
+
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		width: 1px;
+		height: 88%;
+		position: absolute;
+		background-color: inherit;
+		transform-origin: bottom;
+	}
+	&::before {
+		bottom: -0.125em;
+		left: -0.5em;
+		rotate: -30deg;
+	}
+	&::after {
+		bottom: -0.125em;
+		right: -0.5em;
+		rotate: 30deg;
+	}
+}

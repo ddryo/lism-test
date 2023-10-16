@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Core } from '../Core';
 import { Grid } from '../Grid';
 import { Decorator } from '../Decorator';

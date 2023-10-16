@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { LayoutContext } from '../contexts';
 import { Box, LinkBox } from '../index';
 // import classnames from "classnames";
@@ -13,7 +13,7 @@ const LismConsumer = ({ component, ...props }) => {
 		Component = Box;
 	}
 
-	const context = React.useContext(LayoutContext) || {};
+	const context = useContext(LayoutContext) || {};
 	const { ...itemProps } = context;
 	const childProps = {
 		...itemProps,

@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Core } from '../Core';
 import { defaultProps } from '../../config/components';
 const _default = defaultProps?.Badge || {};

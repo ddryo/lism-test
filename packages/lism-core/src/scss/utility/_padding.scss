@@ -1,6 +1,7 @@
 @use '../query' as query;
 /* stylelint-disable */
 
+
 .-p\:box { --p: var(--p--box);}
 .-p\:box\:s { --p: var(--p--box--s);}
 .-p\:box\:l { --p: var(--p--box--l);}

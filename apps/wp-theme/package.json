@@ -6,7 +6,7 @@
 	"private": true,
 	"scripts": {
 		"start": "wp-scripts start",
-		"build": "npm run build:scripts && npm run build:css && npm run po2json",
+		"_build": "npm run build:block && npm run build:css && npm run po2json",
 		"wp-env": "wp-env",
 		"env-restart": "wp-env start",
 		"env-start": "wp-env start && opener http://localhost:8888",

@@ -4,7 +4,7 @@ import { Stack } from '../Flex/Stack';
 
 export default function Glossary({ children, ...props }) {
 	return (
-		<Stack tag='dl' blockClass='b--glossary' gap={50} {...props}>
+		<Stack tag='dl' blockClass='b--glossary' gap={30} {...props}>
 			{children}
 		</Stack>
 	);

@@ -17,21 +17,24 @@ import { PriceMenu } from '@lism/core';
 
 作成中...
 
-含めるというより、組み合わせ例として紹介するだけでもいいかも？
+含めるというより、組み合わせ例として紹介するだけでもいいかも...？
 
+{/* hrはSEO的に使うべきではないか */}
 <Demo>
 	<Demo.Title>PriceMenuの例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Stack className="b--menu" gap={20}>
-			<Grid gtc="auto 1fr auto" ai="center" gap={[30, 40]}>
+		<Stack className="b--menu" gap={20} fz={['s','m']} lh="s">
+			<Grid columns="auto 1fr auto" ai="center" gap={[20]}>
 				<Lism className="b--menu__dt">ハンバーグデミグラスソースとトマトソースのスパゲッティ</Lism>
-				<Lism tag="hr" minW="2em" />
-				<Lism className="b--menu__dd -whs:nw">$1,000</Lism>
+				{/* <Lism tag="hr" minW="1.5em" /> */}
+				<Lism minW="1.5em" bd="block-start" bdc="base" />
+				<Lism className="b--menu__dd" whs="nowrap">1,000円</Lism>
 			</Grid>
-			<Grid gtc="auto 1fr auto" ai="center" gap={[30, 40]}>
+			<Grid columns="auto 1fr auto" ai="center" gap={[20]}>
 				<Lism className="b--menu__dt">Drink</Lism>
-				<Lism tag="hr" minW="2em" />
-				<Lism className="b--menu__dd -whs:nw">$500</Lism>
+				{/* <Lism tag="hr" minW="1.5em" /> */}
+				<Lism minW="1.5em" bd="block-start" bdc="base" />
+				<Lism className="b--menu__dd" whs="nowrap">500円</Lism>
 			</Grid>
 		</Stack>
 	</Demo.Preview>

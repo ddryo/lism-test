@@ -10,8 +10,9 @@ import {
 	Center,
 	Spacer,
 	Cluster,
+	DecoBox,
 } from '@lism/core';
-import DecorationBox from './component/DecorationBox.jsx';
+// import DecoBox from './component/DecoBox.jsx';
 import { useState } from 'react';
 
 function DammyText() {
@@ -98,77 +99,85 @@ export default function DecoratorTest() {
 				</ChatBubble>
 				<hr />
 				<h2>call</h2>
-				<DecorationBox variant='call' direction='left'>
+				<DecoBox variant='call' subvariant='left'>
 					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='call' direction='right' bdc='red'>
-					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='call' direction='top'>
-					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='call' direction='top'>
-					<DammyTextLong />
-				</DecorationBox>
-				<DecorationBox variant='call' direction='bottom'>
-					<DammyText />
-				</DecorationBox>
-				<h2>balloon</h2>
-				<DecorationBox variant='balloon' direction='left'>
-					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='balloon' direction='left' bgc='pale'>
-					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='balloon' direction='right'>
-					<DammyText />
-				</DecorationBox>
-				<DecorationBox
-					variant='balloon'
-					direction='right'
-					bdc='blue'
-					bgc='hsl(215deg 98% 96%)'
+				</DecoBox>
+				<DecoBox
+					variant='call'
+					subvariant='right'
+					data={{ decoratorProps: { bdc: 'red' } }}
 				>
 					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='balloon' direction='top'>
+				</DecoBox>
+				<DecoBox variant='call' subvariant='top'>
 					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='balloon' direction='bottom'>
+				</DecoBox>
+				<DecoBox variant='call' subvariant='top'>
+					<DammyTextLong />
+				</DecoBox>
+				<DecoBox variant='call' subvariant='bottom'>
 					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='balloon' direction='top-start'>
+				</DecoBox>
+				<h2>balloon</h2>
+				<DecoBox variant='balloon' subvariant='left'>
 					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='balloon' direction='bottom-start'>
+				</DecoBox>
+				<DecoBox variant='balloon' subvariant='left' bgc='pale'>
 					<DammyText />
-				</DecorationBox>
+				</DecoBox>
+				<DecoBox variant='balloon' subvariant='right'>
+					<DammyText />
+				</DecoBox>
+				<DecoBox
+					variant='balloon'
+					subvariant='right'
+					bdc='blue:40%'
+					bgc='hsl(215deg 98% 96%)'
+					data={{ decoratorProps: { size: '.875em' } }}
+				>
+					<DammyText />
+				</DecoBox>
+				<DecoBox variant='balloon' subvariant='top'>
+					<DammyText />
+				</DecoBox>
+				<DecoBox variant='balloon' subvariant='bottom'>
+					<DammyText />
+				</DecoBox>
+				<DecoBox variant='balloon' subvariant='top-start'>
+					<DammyText />
+				</DecoBox>
+				<DecoBox variant='balloon' subvariant='bottom-start'>
+					<DammyText />
+				</DecoBox>
 				<h2>pipipi</h2>
-				<DecorationBox variant='pipipi' direction='left'>
+				<DecoBox variant='pipipi' subvariant='left'>
 					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='pipipi' direction='right' bdc='blue'>
+				</DecoBox>
+				<DecoBox variant='pipipi' subvariant='right' bdc='blue'>
 					<DammyText />
-				</DecorationBox>
+				</DecoBox>
 				---
-				<DecorationBox variant='sticky'>
+				<DecoBox variant='sticky'>
 					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='sticky' bdc='blue' bgc='hsl(200 90% 90%)'>
+				</DecoBox>
+				<DecoBox
+					variant='sticky'
+					data={{ bodyProps: { bdc: 'blue:70%', bgc: 'hsl(200 90% 95%)' } }}
+				>
 					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='kakko' direction='lr'>
+				</DecoBox>
+				<DecoBox variant='kakko' subvariant='lr'>
 					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='kakko' direction='tb'>
+				</DecoBox>
+				<DecoBox variant='kakko' subvariant='tb'>
 					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='big-kakko' direction='lr'>
+				</DecoBox>
+				<DecoBox variant='big-kakko' subvariant='lr'>
 					<DammyText />
-				</DecorationBox>
-				<DecorationBox variant='big-kakko' direction='tb'>
+				</DecoBox>
+				<DecoBox variant='big-kakko' subvariant='tb'>
 					<DammyText />
-				</DecorationBox>
+				</DecoBox>
 				<h2>BG</h2>
 				<Box bg='grid' p='box:l'>
 					<DammyText />

@@ -27,8 +27,10 @@ export default function Container({
 			props['data-size'] = size;
 		} else if (isConstrained) {
 			lismStyle['--contentSize'] = size;
+			props['data-size'] = 'custom';
 		} else {
 			lismStyle['--size'] = size;
+			props['data-size'] = 'custom';
 		}
 	}
 

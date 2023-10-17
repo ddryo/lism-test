@@ -1,4 +1,4 @@
-import { Box, Flow } from '@lism/core';
+import { Container, Box, Flow, Columns } from '@lism/core';
 
 # Container
 
@@ -22,5 +22,141 @@ isConstrainedを指定した場合、`.is--container`ではなく`is--constraine
 
 ## Props
 
-- `size`
-- `isConstrained`
+- `size`: `'base'`, `'s'`, `'l'`
+- `isConstrained`: `.is--constrained` を出力するかどうか。デフォルトは `false`
+
+`isConstrained`の指定がない場合(`false`の時)は、`.is--container` が出力されます。  
+
+
+
+### `.is--constrained` と `.is--container` の違い
+
+- まず、どちらも`container-type:inline-size`が適用される点は共通です。
+- `.is--container`は基本的にそれだけの役割で、`size`指定があった場合は自身のサイズが変化します。
+- `.is--constrained` に`size`指定がある場合、自身ではなく子要素のサイズを制限します。
+
+
+## DEMO
+
+<Demo>
+<Demo.Preview className='scaleArea:1.5' p={15}>
+	<Container
+		isFlow
+		size='30rem'
+		isConstrained
+		bd={{ c: 'blue', w: '4px' }}
+	>
+		<Box>
+			`is--constrained` 直下のコンテンツ
+		</Box>
+		<Box alignfull p='box:s' bgc='b300'>
+			`is--constrained` 直下の`alignfull`
+		</Box>
+		<Box>...Contents...</Box>
+	</Container>
+	<Container
+		isFlow
+		size='30rem'
+		bd={{ c: 'red', w: '4px' }}
+	>
+		<Box>
+			`is--container` 直下のコンテンツ
+		</Box>
+		<Box alignfull p='box:s' bgc='b300'>
+			`is--container` 直下の`alignfull`<small>(※1)</small>
+		</Box>
+		<Box>...Contents...</Box>
+	</Container>
+</Demo.Preview>
+<Demo.Code>
+	```jsx {4}
+	<Container
+		isFlow
+		size='30rem'
+		isConstrained
+		bd={{ c: 'blue', w: '4px' }}
+	>
+		<Box>
+			`is--constrained` 直下のコンテンツ
+		</Box>
+		<Box alignfull p='box:s' bgc='b300'>
+			`is--constrained` 直下の`alignfull`
+		</Box>
+		<Box>...Contents...</Box>
+	</Container>
+	<Container
+		isFlow
+		size='30rem'
+		bd={{ c: 'red', w: '4px' }}
+	>
+		<Box>
+			`is--container` 直下のコンテンツ
+		</Box>
+		<Box alignfull p='box:s' bgc='b300'>
+			`is--container` 直下の`alignfull`<small>(※1)</small>
+		</Box>
+		<Box>...Contents...</Box>
+	</Container>
+	```
+</Demo.Code>
+</Demo>
+
+※1 isContainer直下のalignfullを全幅にするための --containerSize--full は`@propperty`で定義されているため、モダンブラウザでのみ使用可能です。
+
+### `.is--constrained` 直下の要素でのコンテナクエリについて
+
+コンテナクエリは直前のコンテナ要素（`.is--constrained`の子要素から見ると `.is--constrained`要素） のサイズを基準にします。
+
+なので、子要素の幅がコンテナクエリの判定基準にならないことには注意してください。
+
+```html
+<body>
+	<div class="is--constrained">
+		<div class="child">...</div>
+	</div>
+</body>
+```
+
+のようになっている場合、`.child`の最大幅は `.is--constrained` によって（デフォルトで）`1120px` に制限されています。
+
+そして次のように、`1200px`を起点にして色が青から赤に変わるようなコンテナクエリを書いているとします。
+
+```css
+.child{
+	color: blue;
+}
+@container (min-width: 1200px){
+	.child{
+		color: red;
+	}
+}
+```
+
+1600pxの画面サイズで見た場合、どっちの色になるでしょうか？
+
+`.child`の幅は`1120px`なので、`blue`が適用されるように思ってしまうかもしれません。  
+が、ここで `@container`が判断するのはコンテナサイズなので、実際は`.is--constrained`のサイズ（`1600px`）で判断され、`red`が適用されます。
+
+なので、`.child`の幅をコンテナクエリの判定基準にしたい場合は、`.child`をさらに`.is--container`でラップします。
+
+```html
+<body>
+	<div class="is--constrained">
+		<div class="is--container">
+			<div class="child">...</div>
+		</div>
+	</div>
+</body>
+```
+
+
+もしくは、内部にalignfullな要素を使わないのであれば`is--container`を使ってもいいでしょう。
+
+```html
+<body>
+	<div class="is--container" data-size="base">
+		<div class="child">...</div>
+	</div>
+</body>
+```
+

@@ -134,6 +134,10 @@
 // .-bdw\:medium{--bdw: var(--bdw--medium)}
 
 // .-bdc\:{border-color: var(--bdc);}
+
+.-bdc\: {
+	--bdc: inherit;
+}
 .-bdc\:main {
 	--bdc: var(--main);
 }
@@ -148,6 +152,9 @@
 // }
 .-bdc\:t {
 	--bdc: var(--bd--transparent);
+}
+.-bdc\:cc {
+	--bdc: currentColor;
 }
 // .-bdc\:white {
 // 	--bdc: var(--white);

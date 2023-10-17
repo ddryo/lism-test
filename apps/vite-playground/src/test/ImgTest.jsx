@@ -44,7 +44,6 @@ export default function Test() {
 			></animate>{' '}
 		</path>{' '}
 	</svg> */}
-			{/* <DecorationBox variant='pipipi' direction='left'> */}
 			<Frame aspect='1/1' maxW='400px'>
 				<Media
 					src='https://images.unsplash.com/photo-1551106652-a5bcf4b29ab6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2130&q=80'
@@ -55,7 +54,6 @@ export default function Test() {
 					shadow='2'
 				/>
 			</Frame>
-			{/* </DecorationBox> */}
 			<Frame
 				aspect='1/1'
 				maxW='400px'

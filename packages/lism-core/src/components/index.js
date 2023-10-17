@@ -41,7 +41,7 @@ export { Button } from './Button';
 export { Badge } from './Badge';
 export { Delimiter } from './Delimiter';
 export { Decorator } from './Decorator';
-export { DecorationBox } from './DecorationBox';
+export { DecoBox } from './DecoBox';
 
 // appルーターで use client がいるもの
 export { Accordion, AccordionHeader, AccordionBody } from './Accordion';

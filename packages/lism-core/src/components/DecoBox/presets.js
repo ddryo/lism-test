@@ -1,7 +1,4 @@
-// import React from 'react';
-import { Box, Lism, Decorator } from '@lism/core';
-
-const PRESETS = {
+export default {
 	// stripe:{
 	// },
 	// grid: {
@@ -9,12 +6,36 @@ const PRESETS = {
 	// 	bodyProps: {},
 	// },
 	sticky: {
+		boxProps: {
+			// bdc: 'currentColor',
+			d: 'grid',
+			grid: { template: 'fix:l' },
+		},
 		bodyProps: {
-			p: 'box',
-			bd: 'right',
-			// bgc: '-',
-			// c: '-',
 			pos: 'relative',
+			c: 'base',
+			bgc: 'pale',
+			p: 'box',
+			w: 'fit-content',
+			bd: 'right',
+			// bdc: '-',
+			bdw: '.5em',
+			// bgc: '-',
+			gridItem: { ga: 'fix' },
+			// c: '-',
+		},
+		decoratorCount: 1,
+		decoratorProps: {
+			w: '50%',
+			h: '50%',
+			gridItem: { ga: 'fix' },
+			ml: 'auto',
+			mt: 'auto',
+			z: '-1',
+			rotate: '4deg',
+			transformOrigin: 'left bottom',
+			translate: '-4px -4px',
+			// filter: blur(4px),
 		},
 	},
 	call: {
@@ -112,17 +133,24 @@ const PRESETS = {
 		decoratorCount: 1,
 		boxProps: {
 			d: 'grid',
+			c: 'base',
+			bdc: 'currentColor',
+			bgc: 'base',
 		},
 		bodyProps: {
 			p: 'box',
-			radius: 3,
+			radius: 4,
 			w: 'fit-content',
-			// bgc: '-', // 親から受け取る
+			bd: true,
+			bdc: '-',
+			bgc: '-', // 親から受け取る
 			// flexItem: { fxg: '1' },
 		},
 		decoratorProps: {
 			// pos: 'relative',
-			// bgc: '-', // 親から受け取る
+			bd: true,
+			bdc: '-',
+			bgc: '-', // 親から受け取る
 			// flexItem: { fxsh: '0' },
 			gridItem: { ga: 'fix' },
 		},
@@ -136,7 +164,6 @@ const PRESETS = {
 				clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%)',
 			},
 		},
-
 		right: {
 			boxProps: { grid: { template: 'fix:r', ai: 'center' } },
 			bodyProps: { ml: 'auto' },
@@ -193,21 +220,26 @@ const PRESETS = {
 	pipipi: {
 		decoratorCount: 1,
 		boxProps: { d: 'grid' },
-		bodyProps: {},
+		bodyProps: { p: 'box:s', pb: 0, lh: 's', mt: 10 },
 		decoratorProps: {
 			// bgc: 'currentColor',
+			size: '.5em',
 			gridItem: { ga: 'fix' },
 			variant: 'pipipi',
 		},
 		left: {
 			boxProps: { grid: { template: 'fix:l' }, ai: 'start' },
 			bodyProps: { ta: 'left' },
-			decoratorProps: { rotate: '-45deg' },
+			decoratorProps: {
+				bd: 'left',
+				rotate: '-45deg',
+				translate: '100% 50%',
+			},
 		},
 		right: {
 			boxProps: { grid: { template: 'fix:r' }, ai: 'start' },
 			bodyProps: { ta: 'right' },
-			decoratorProps: { rotate: '45deg' },
+			decoratorProps: { m: '1px', bd: 'left', rotate: '45deg', translate: '0% 50%' },
 		},
 	},
 	kakko: {
@@ -297,84 +329,3 @@ const PRESETS = {
 		},
 	},
 };
-
-export default function DecorationBox({
-	lismState = [],
-	variant = '',
-	direction = '',
-	children,
-	data,
-	// decoratorCount,
-	// decoratorProps = {},
-	// bodyProps = {},
-	...props
-}) {
-	const DATA = Object.assign({}, PRESETS[variant] || {}, data);
-	const DIR_DATA = DATA[direction] || {};
-
-	const boxProps = Object.assign({}, DATA?.boxProps, DIR_DATA?.boxProps);
-	const bodyProps = Object.assign({}, DATA?.bodyProps, DIR_DATA?.bodyProps);
-
-	// デコレーターの数
-	const decoratorCount = DATA?.decoratorCount || 0;
-
-	let decorator = null;
-	if (decoratorCount) {
-		if (1 === decoratorCount) {
-			const decoratorProps = Object.assign({}, DATA.decoratorProps, DIR_DATA.decoratorProps);
-
-			decorator = (
-				<Decorator
-					// variant={variant}
-					// direction={direction || null}
-					{...decoratorProps}
-				/>
-			);
-		} else if (1 < decoratorCount) {
-			decorator = Array.from({ length: decoratorCount }).map((_, i) => {
-				const decoratorProps = Object.assign(
-					{},
-					DATA.decoratorProps,
-					DIR_DATA.decoratorProps?.[`i${i + 1}`]
-				);
-				return (
-					<Decorator
-						key={i}
-						// variant={variant}
-						// direction={direction}
-						index={i + 1}
-						{...decoratorProps}
-					/>
-				);
-			});
-		}
-	}
-
-	let boxCntent = null;
-	if (bodyProps) {
-		const bodyClass = `d--${variant}__body`;
-		boxCntent = (
-			<Lism className={bodyClass} {...bodyProps}>
-				{children}
-			</Lism>
-		);
-	} else {
-		boxCntent = children;
-	}
-
-	lismState.push(`d--${variant}`);
-	if (direction) {
-		lismState.push(`d--${variant}--${direction}`);
-	}
-
-	// if (direction) {
-	// 	boxProps[`data-${variant}`] = direction;
-	// }
-
-	return (
-		<Box lismState={lismState} {...boxProps} {...props}>
-			{boxCntent}
-			{decorator}
-		</Box>
-	);
-}

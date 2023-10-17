@@ -38,45 +38,17 @@
 
 @include query.cq('sm') {
 	.-aspect\@sm\: {
-		aspect-ratio: var(--aspect--sm) !important;
+		aspect-ratio: var(--aspect--sm);
 	}
 }
 
 @include query.cq('md') {
 	.-aspect\@md\: {
-		aspect-ratio: var(--aspect--md) !important;
+		aspect-ratio: var(--aspect--md);
 	}
 }
 @include query.cq('lg') {
 	.-aspect\@lg\: {
-		aspect-ratio: var(--aspect--lg) !important;
+		aspect-ratio: var(--aspect--lg);
 	}
 }
-
-// max, min
-// .-maxW\: {
-// 	max-width: var(--maxW) !important;
-// }
-// .-maxH\: {
-// 	max-height: var(--maxH) !important;
-// }
-// .-minW\: {
-// 	min-width: var(--minW) !important;
-// }
-// .-minH\: {
-// 	min-height: var(--minH) !important;
-// }
-
-.-maxW\:100 {
-	max-width: 100% !important;
-}
-.-maxH\:100 {
-	max-height: 100% !important;
-}
-
-// .-w\:text{
-// 	width: 35em;
-// }
-
-// width:slim
-// width:text

@@ -24,7 +24,7 @@ export default {
 	fxw: { wrap: 'w', nowrap: 'nw' }, // nowrap → Emmet は n だが、nw にしている. (whs と揃えている)
 	fxd: { column: 'c', row: 'r', 'column-reverse': 'cr', 'row-reverse': 'rr' },
 
-	size: { '100%': '100', 'fit-content': 'fit' },
+	size: { '100%': '100', '75%': '75', '50%': '50', '25%': '25', 'fit-content': 'fit' },
 	maxSize: { '100%': '100' },
 	minSize: {},
 	ga: { fix: 'fix', left: 'l', right: 'r', center: 'c', top: 't', bottom: 'b' },

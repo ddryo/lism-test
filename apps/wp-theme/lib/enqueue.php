@@ -22,10 +22,11 @@ function enqueue_front_scripts() {
 /**
  * ファイルの読み込み
  */
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_block_editor_assets' );
-function enqueue_block_editor_assets() {
+add_action( 'enqueue_block_assets', __NAMESPACE__ . '\enqueue_block_assets' );
+function enqueue_block_assets() {
 	// editor.css
-
-	App::enqueue_style( 'lism-editor-style', '/dist/css/editor.css' );
-	// wp_add_inline_style( 'lism-editor-style', 'body.single{--wp--style--global--content-size:1200px}' );
+	if ( is_admin() ) {
+		App::enqueue_style( 'lism-editor-style', '/dist/css/editor.css' );
+		// wp_add_inline_style( 'lism-editor-style', 'body.single{--wp--style--global--content-size:1200px}' );
+	}
 }

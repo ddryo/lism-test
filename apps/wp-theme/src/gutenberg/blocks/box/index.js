@@ -16,7 +16,8 @@ import { useInnerBlocksProps } from '@/gutenberg/compatible';
  */
 import metadata from './block.json';
 import icon from './icon';
-import LismSelectorPreviewTip from '@/gutenberg/components/LismSelectorPreviewTip';
+import SelectorPreviewTip from '@/gutenberg/components/SelectorPreviewTip';
+import FlowControl from '@/gutenberg/components/FlowControl';
 import HTMLElementInspectorControls from '@/gutenberg/components/HTMLElementInspectorControls';
 
 /**
@@ -41,9 +42,18 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes }) => {
-		const { templateLock, tagName = 'div', anchor, className } = attributes;
+		const { templateLock, tagName = 'div', flowGap, anchor, className } = attributes;
+
+		const onChangeFlowGap = (value) => {
+			setAttributes({ flowGap: value });
+		}
+
+		const lismProps = {
+			isFlow: flowGap !== undefined ? flowGap : undefined,
+		};
 
 		const blockProps = useBlockProps({
+			...lismProps,
 			tag: tagName,
 		});
 
@@ -62,11 +72,12 @@ registerBlockType(metadata.name, {
 						setAttributes( { tagName: value } )
 					} }
 				/>
+				<FlowControl value={flowGap} onChange={onChangeFlowGap}/>
 				<Box
 					{...innerProps}
 					forwardedRef={ref}
 				>
-					<LismSelectorPreviewTip
+					<SelectorPreviewTip
 						icon={icon}
 						anchor={anchor}
 						className={className}

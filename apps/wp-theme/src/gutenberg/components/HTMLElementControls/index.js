@@ -1,7 +1,6 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -18,8 +17,7 @@ const DEFAULT_OPTIONS = [
 	{ label: '<footer>', value: 'footer' },
 ];
 
-export default function HTMLElementInspectorControls({tagName, options = DEFAULT_OPTIONS, onChange}){
-
+export default function HTMLElementControls({ tagName, options = DEFAULT_OPTIONS, onChange }) {
 	const htmlElementMessages = {
 		header: __(
 			'The <header> element should represent introductory content, typically a group of introductory or navigational aids.'
@@ -42,18 +40,14 @@ export default function HTMLElementInspectorControls({tagName, options = DEFAULT
 	};
 
 	return (
-		<InspectorControls group="advanced">
-			<SelectControl
-				__nextHasNoMarginBottom
-				label={ __( 'HTML element' ) }
-				options={ [
-					{ label: __( 'Default (<div>)' ), value: 'div' },
-					...options
-				] }
-				value={ tagName }
-				onChange={ onChange }
-				help={ htmlElementMessages[ tagName ] }
-			/>
-		</InspectorControls>
+		<SelectControl
+			clasName='lism-htmlElementControl'
+			__nextHasNoMarginBottom
+			label={__('HTML element')}
+			options={[{ label: __('Default (<div>)'), value: 'div' }, ...options]}
+			value={tagName}
+			onChange={onChange}
+			help={htmlElementMessages[tagName]}
+		/>
 	);
-};
+}

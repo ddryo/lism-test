@@ -3,16 +3,11 @@
 	"name": "lism-blocks/box",
 	"title": "Box",
 	"category": "lism-blocks",
-	"keywords": [
-		"group"
-	],
+	"keywords": ["group"],
 	"supports": {
 		"anchor": true,
 		"className": false,
-		"align": [
-			"wide",
-			"full"
-		],
+		"align": ["wide", "full"],
 		"color": {
 			"gradients": true,
 			"__experimentalDefaultControls": {
@@ -23,8 +18,8 @@
 	},
 	"attributes": {
 		"templateLock": {
-			"type": [ "string", "boolean" ],
-			"enum": [ "all", "insert", "contentOnly", false ]
+			"type": ["string", "boolean"],
+			"enum": ["all", "insert", "contentOnly", false]
 		},
 		"tagName": {
 			"type": "string",

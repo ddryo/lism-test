@@ -6,5 +6,4 @@ export { default as PanelColorGradientSettings } from './PanelColorGradientSetti
 export { default as UnitControl } from './UnitControl';
 
 export { default as getSettings } from './get-settings';
-export { default as useInnerBlocksProps } from './use-inner-blocks-props';
 export { default as render } from './render';

@@ -8,17 +8,25 @@ import { Box } from '@lism/core';
  */
 import { __ } from '@wordpress/i18n';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
-import { useInnerBlocksProps } from '@/gutenberg/compatible';
+import {
+	InspectorControls,
+	InnerBlocks,
+	useBlockProps,
+	useInnerBlocksProps,
+} from '@wordpress/block-editor';
+import { PanelBody } from '@wordpress/components';
 
 /**
  * @Internal dependencies
  */
 import metadata from './block.json';
 import icon from './icon';
-import SelectorPreviewTip from '@/gutenberg/components/SelectorPreviewTip';
-import FlowControl from '@/gutenberg/components/FlowControl';
-import HTMLElementInspectorControls from '@/gutenberg/components/HTMLElementInspectorControls';
+import {
+	SelectorPreviewTip,
+	FlowControl,
+	ResponsiveSpacingControl,
+	HTMLElementControls,
+} from '@/gutenberg/components';
 
 /**
  * コンテナ
@@ -46,7 +54,7 @@ registerBlockType(metadata.name, {
 
 		const onChangeFlowGap = (value) => {
 			setAttributes({ flowGap: value });
-		}
+		};
 
 		const lismProps = {
 			isFlow: flowGap !== undefined ? flowGap : undefined,
@@ -66,22 +74,24 @@ registerBlockType(metadata.name, {
 
 		return (
 			<>
-				<HTMLElementInspectorControls
-					tagName={ tagName }
-					onChange={ ( value ) => {
-						setAttributes( { tagName: value } )
-					} }
-				/>
-				<FlowControl value={flowGap} onChange={onChangeFlowGap}/>
-				<Box
-					{...innerProps}
-					forwardedRef={ref}
-				>
-					<SelectorPreviewTip
-						icon={icon}
-						anchor={anchor}
-						className={className}
+				<InspectorControls group='styles'>
+					<PanelBody title={__('Layout', 'lism-blocks')}>
+						<FlowControl value={flowGap} onChange={onChangeFlowGap} />
+					</PanelBody>
+					<PanelBody title={__('Spacing', 'lism-blocks')}>
+						<ResponsiveSpacingControl label={__('Padding', 'lism-blocks')} />
+					</PanelBody>
+				</InspectorControls>
+				<InspectorControls group='advanced'>
+					<HTMLElementControls
+						tagName={tagName}
+						onChange={(value) => {
+							setAttributes({ tagName: value });
+						}}
 					/>
+				</InspectorControls>
+				<Box {...innerProps} forwardedRef={ref}>
+					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
 					{children}
 				</Box>
 			</>

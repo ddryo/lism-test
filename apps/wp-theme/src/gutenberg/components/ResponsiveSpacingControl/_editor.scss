@@ -1,0 +1,73 @@
+.lism-spacingControl {
+	position: relative;
+
+	.__link {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	.__linked {
+		display: flex;
+		gap: 8px;
+		padding-right: 44px;
+
+		.components-input-control {
+			flex: 1;
+			margin: 0;
+
+			.components-input-control__input {
+				height: 36px;
+				min-height: 36px;
+			}
+		}
+	}
+
+	.__unlinked {
+		display: grid;
+		grid-template-areas:
+			"topLeft top topRight"
+			"left center right"
+			"bottomLeft bottom bottomRight";
+		grid-template-rows: auto auto auto;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 8px;
+
+		.__left,
+		.__right,
+		.__top,
+		.__bottom {
+
+			&.components-input-control {
+				margin: 0;
+			}
+
+			.components-input-control__input {
+				height: 36px;
+				min-height: 36px;
+			}
+		}
+
+		.__left {
+			grid-area: left;
+		}
+
+		.__right {
+			grid-area: right;
+		}
+
+		.__top {
+			grid-area: top;
+		}
+
+		.__bottom {
+			grid-area: bottom;
+		}
+
+		.__icon {
+			grid-area: center;
+			align-self: center;
+			justify-self: center;
+		}
+	}
+}

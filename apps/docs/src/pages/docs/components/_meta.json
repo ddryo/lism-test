@@ -68,6 +68,8 @@
 	"Note": "",
 	"Banner": "",
 	"Card": "",
+	"TermList": "",
+	"DecoBox": "",
 
 	"--- disclosure": {
 		"type": "separator",
@@ -82,7 +84,6 @@
 	},
 
 	"Section": "",
-	"Glossary": "",
 	"FAQ": "",
 	"NavMenu": "",
 

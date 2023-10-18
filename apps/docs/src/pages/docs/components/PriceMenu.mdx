@@ -1,10 +1,13 @@
-import { Grid, Lism } from '@lism/core';
+import { Grid, Lism, Decorator } from '@lism/core';
 
 # PriceMenu
 
-
 - `<PriceMenu>`
-- Lismクラス: `.b--`
+- Lismクラス: `.b--`?
+
+## Memo
+
+- `@lism/core` に入れるようなものではないかも..?
 
 
 ## Import
@@ -15,32 +18,38 @@ import { PriceMenu } from '@lism/core';
 
 ## DEMO
 
-作成中...
-
-含めるというより、組み合わせ例として紹介するだけでもいいかも...？
 
 {/* hrはSEO的に使うべきではないか */}
 <Demo>
-	<Demo.Title>PriceMenuの例</Demo.Title>
+	<Demo.Title>草案</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Stack className="b--menu" gap={20} fz={['s','m']} lh="s">
-			<Grid columns="auto 1fr auto" ai="center" gap={[20]}>
-				<Lism className="b--menu__dt">ハンバーグデミグラスソースとトマトソースのスパゲッティ</Lism>
-				{/* <Lism tag="hr" minW="1.5em" /> */}
-				<Lism minW="1.5em" bd="block-start" bdc="base" />
-				<Lism className="b--menu__dd" whs="nowrap">1,000円</Lism>
+		<Stack className="b--priceMenu" gap={20} fz={['s','m']} lh="s">
+			<Grid className="b--priceMenu__row" columns="auto 1fr auto" ai="center" gap={20}>
+				<Lism className="b--priceMenu__name">とても美味しいトマトソースのスパゲッティ</Lism>
+				<Lism className="e--deco" minW="1.5em" bd="block-start" bdc="base" />
+				<Lism className="b--priceMenu__price" whs="nowrap">1,000円</Lism>
 			</Grid>
-			<Grid columns="auto 1fr auto" ai="center" gap={[20]}>
-				<Lism className="b--menu__dt">Drink</Lism>
-				{/* <Lism tag="hr" minW="1.5em" /> */}
-				<Lism minW="1.5em" bd="block-start" bdc="base" />
-				<Lism className="b--menu__dd" whs="nowrap">500円</Lism>
+			<Grid columns="auto 1fr auto" ai="center" gap={20}>
+				<Lism className="b--priceMenu__name">美味しいドリンク</Lism>
+				<Lism className="e--deco" minW="1.5em" bd="block-start" bdc="base" />
+				<Lism className="b--priceMenu__price" whs="nowrap">500円</Lism>
 			</Grid>
 		</Stack>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		...
+		<Stack className="b--priceMenu" gap={20} fz={['s','m']} lh="s">
+			<Grid columns="auto 1fr auto" ai="center" gap={20}>
+				<Lism className="b--priceMenu__name">とても美味しいトマトソースのスパゲッティ</Lism>
+				<Lism className="e--deco" minW="1.5em" bd="block-start" bdc="base" />
+				<Lism className="b--priceMenu__price" whs="nowrap">1,000円</Lism>
+			</Grid>
+			<Grid columns="auto 1fr auto" ai="center" gap={20}>
+				<Lism className="b--priceMenu__name">美味しいドリンク</Lism>
+				<Lism className="e--deco" minW="1.5em" bd="block-start" bdc="base" />
+				<Lism className="b--priceMenu__price" whs="nowrap">500円</Lism>
+			</Grid>
+		</Stack>
 		```
 	</Demo.Code>
 </Demo>

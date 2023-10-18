@@ -166,6 +166,7 @@ export default function DecoratorTest() {
 				>
 					<DammyText />
 				</DecoBox>
+				<h2>kakko</h2>
 				<DecoBox variant='kakko' subvariant='lr'>
 					<DammyText />
 				</DecoBox>

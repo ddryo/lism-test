@@ -168,7 +168,7 @@ export default {
 	mb: marginOption,
 	mx: marginOption,
 	my: marginOption,
-	ms: marginOption,
+	ms: Object.assign({}, marginOption, { presets: 'space' }),
 	mbs: Object.assign({}, marginOption, { presets: 'space' }),
 	// me: marginOption,
 	// mbe: marginOption,

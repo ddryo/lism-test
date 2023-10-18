@@ -1,16 +1,29 @@
 
 import Image from 'next/image'
-import { Frame, MediaLayer, FilterLayer, Layer, Center,DecoBox } from '@lism/core';
+import { Frame, Media, MediaLayer, FilterLayer, Layer, Center, DecoBox } from '@lism/core';
 
 
 # DecoBox
 
-`hasDecoration` , `has--decoration[data-decoration="xxx"]`とか？
-{/* or, l--box--decoration */}
-{/* l--text--decoration */}
-{/* l--box s--kakko, s--stripe, s--glass, s--gridnote */}
-{/* l--box -box:kakko, -box:stripe, -deco:hoge, -style:hoge */}
+コンテンツを装飾するためのボックスモジュール。
 
+対応クラスは`.c--decoBox--{variant}`。  
+(基本的にどういう装飾を行うかの指定が必須で`.c--decoBox`に何かスタイルがあるわけではないので、modifier付きクラス単体で使う）
+
+
+## Props
+
+- variant
+- subvariant
+- data
+	- decoratorCount
+	- boxProps
+	- bodyProps
+	- decoratorProps
+- isFlow, flowGap は body側に渡されます.
+
+
+variant, subvariant に対しての 各Props をプリセット登録できるようにする予定。プリセット登録せずに装飾内容を指定する場合は `data` に直接指定する。
 
 ## Import
 
@@ -20,98 +33,90 @@ import { DecoBox } from '@lism/core';
 
 ## DEMO
 
+
+### call
 <Demo>
-	<Demo.Title>Speak</Demo.Title>
+	<Demo.Title>Call</Demo.Title>
 	<Demo.Preview resize p={20}>
+		<DecoBox variant='call' subvariant='left'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='call' subvariant='right'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='call' subvariant='top'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='call' subvariant='bottom'>
+			<DammyText />
+		</DecoBox>
 	
-		<DecoBox variant="call" direction="left">
-			<DammyText />
-		</DecoBox>
-		<DecoBox variant="call" direction="right">
-			<DammyText />
-		</DecoBox>
-		<DecoBox variant="call" direction="top">
-			<DammyText />
-		</DecoBox>
-		<DecoBox variant="call" direction="bottom">
-			<DammyText />
-		</DecoBox>
 	</Demo.Preview>
 	<Demo.Code>
-		```jsx
-		...
-		```
+	```jsx
+	...
+	```
 	</Demo.Code>
 </Demo>
 
 
 <Demo>
-	<Demo.Title>balloon bdc,bgcをどう引き継がせるか。</Demo.Title>
+	<Demo.Title>bdc, bgc は `<DecoBox>`に直接指定したら内部で引き継がれるようにしている。</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoBox variant="balloon" direction="left-center">
-			<DammyText />
-			<DammyText />
-		</DecoBox>
-		{/* <DecoBox variant="balloon" direction="left-top">
-			<DammyText />
-			<DammyText />
-		</DecoBox>
-		<DecoBox variant="balloon" direction="left-bottom">
-			<DammyText />
-			<DammyText />
-		</DecoBox> */}
-		<DecoBox variant="balloon" direction="right-center">
-			<DammyText />
-			<DammyText />
-		</DecoBox>
-		{/* <DecoBox variant="balloon" direction="right-top">
-			<DammyText />
-			<DammyText />
-		</DecoBox>
-		<DecoBox variant="balloon" direction="right-bottom">
-			<DammyText />
-			<DammyText />
-		</DecoBox> */}
-
-		<DecoBox variant="balloon" direction="bottom-center">
-			<DammyText />
-		</DecoBox>
-		<DecoBox variant="balloon" direction="top-center">
-			<DammyText />
-		</DecoBox>
-		<DecoBox variant="balloon" direction="bottom-left">
-			<DammyText />
-		</DecoBox>
-
-		<DecoBox variant="balloon" direction="top-left">
-			<DammyText />
-		</DecoBox>
-		<DecoBox variant="balloon" direction="bottom-right">
-			<DammyText />
-		</DecoBox>
-		<DecoBox variant="balloon" direction="top-right">
+		<DecoBox
+			variant='call'
+			subvariant='left'
+			bdc="red"
+		>
 			<DammyText />
 		</DecoBox>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		...
+		<DecoBox
+			variant='call'
+			subvariant='right'
+			data={{ decoratorProps: { bdc: 'red' } }}
+		>
+			<DammyText />
+		</DecoBox>
 		```
 	</Demo.Code>
 </Demo>
 
+{/* long text
+<DecoBox variant='call' subvariant='left'>
+	<DammyText length="l" />
+</DecoBox>
+<DecoBox variant='call' subvariant='top'>
+	<DammyText length="l" />
+</DecoBox> */}
+
+
+
+### balloon
 
 <Demo>
-	<Demo.Title>emphasis</Demo.Title>
+	<Demo.Title>balloon</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoBox variant="emphasis"  direction="left">
+		<DecoBox variant='balloon' subvariant='left'>
 			<DammyText />
 		</DecoBox>
-
-		<DecoBox variant="emphasis" direction="right">
+		<DecoBox variant='balloon' subvariant='right'>
 			<DammyText />
 		</DecoBox>
-		
+		<DecoBox variant='balloon' subvariant='top'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='balloon' subvariant='bottom'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='balloon' subvariant='top-start'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='balloon' subvariant='bottom-start'>
+			<DammyText />
+		</DecoBox>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
@@ -120,62 +125,118 @@ import { DecoBox } from '@lism/core';
 	</Demo.Code>
 </Demo>
 
+<Demo>
+	<Demo.Title>bdc, bgc は `<DecoBox>`に直接指定したら内部で引き継がれるようにしている。</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<DecoBox variant='balloon' subvariant='left' bgc='pale'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox
+			variant='balloon'
+			subvariant='right'
+			bdc='blue:40%'
+			bgc='hsl(215deg 98% 96%)'
+		>
+			<DammyText />
+		</DecoBox>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<DecoBox variant='balloon' subvariant='left' bgc='pale'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox
+			variant='balloon'
+			subvariant='right'
+			bdc='blue:40%'
+			bgc='hsl(215deg 98% 96%)'
+		>
+			<DammyText />
+		</DecoBox>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### pipipi
+<Demo>
+	<Demo.Title>pipipi</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<DecoBox variant='pipipi' subvariant='left'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='pipipi' subvariant='right' bdc='blue'>
+			<DammyText />
+		</DecoBox>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<DecoBox variant='pipipi' subvariant='left'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='pipipi' subvariant='right' bdc='blue'>
+			<DammyText />
+		</DecoBox>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### sticky
 
 <Demo>
 	<Demo.Title>sticky</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoBox variant="sticky">
+		<DecoBox variant='sticky'>
 			<DammyText />
 		</DecoBox>
-		
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		...
+		<DecoBox variant='sticky'>
+			<DammyText />
+		</DecoBox>
 		```
 	</Demo.Code>
 </Demo>
+
+カラー指定は bodyProps で
 
 <Demo>
-	<Demo.Title>grid</Demo.Title>
+	<Demo.Title>sticky</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoBox variant="grid">
+		<DecoBox
+			variant='sticky'
+			data={{ bodyProps: { bdc: 'blue:70%', bgc: 'hsl(200 90% 95%)' } }}
+		>
 			<DammyText />
 		</DecoBox>
-		
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		...
+		<DecoBox
+			variant='sticky'
+			data={{ bodyProps: { bdc: 'blue:70%', bgc: 'hsl(200 90% 95%)' } }}
+		>
+			<DammyText />
+		</DecoBox>
 		```
 	</Demo.Code>
 </Demo>
 
-<Demo>
-	<Demo.Title>grid</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<DecoBox variant="stripe">
-			<DammyText />
-		</DecoBox>
-		
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		...
-		```
-	</Demo.Code>
-</Demo>
 
+### kakko
 
 <Demo>
 	<Demo.Title>kakko</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoBox variant="kakko" direction="lr">
+		<DecoBox variant='kakko' subvariant='lr'>
 			<DammyText />
 		</DecoBox>
-		<DecoBox variant="kakko" direction="tb">
+		<DecoBox variant='kakko' subvariant='tb'>
 			<DammyText />
 		</DecoBox>
+		
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
@@ -188,10 +249,12 @@ import { DecoBox } from '@lism/core';
 <Demo>
 	<Demo.Title>big-kakko</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<DecoBox variant="big-kakko" direction="lr">
+		<DecoBox variant='big-kakko' subvariant='lr' isFlow>
+			<DammyText />
 			<DammyText />
 		</DecoBox>
-		<DecoBox variant="big-kakko" direction="tb">
+		<DecoBox variant='big-kakko' subvariant='tb' isFlow>
+			<DammyText />
 			<DammyText />
 		</DecoBox>
 	</Demo.Preview>
@@ -203,36 +266,108 @@ import { DecoBox } from '@lism/core';
 </Demo>
 
 
+### bg
 
-
-`<GlassBox>` とか完全に分けてもいいレベルか？
-でもCardとかでも使いたい。
 <Demo>
-	<Demo.Title>glass</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Frame aspect="2/1">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-			<FilterLayer brightness="1.1"/>
-			<Layer inset="0" gap={20} p={20} bg='glass' inset={50} c="white" shadow={2}>
-				<Center gap={20} size="cover">
-					<DammyText length="m" />
-				</Center>
-			</Layer>
-		</Frame>
-		
-		<Frame aspect="2/1">
-			<MediaLayer src="https://images.unsplash.com/photo-1501949997128-2fdb9f6428f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80" alt="" width='960' height='640' />
-			<Layer inset="0" gap={20} p={20} bg='glass' inset={50} c="black" shadow={4}>
-				<Center gap={20} size="cover">
-					<DammyText length="m" />
-				</Center>
-			</Layer>
-		</Frame>
-		
+	<Demo.Title>grid, stripe</Demo.Title>
+	<Demo.Preview resize nogrid p={20}>
+		<Box bg='grid' p='box:l'>
+			<DammyText />
+		</Box>
+		<Box bg='stripe' p='box:l'>
+			<DammyText />
+		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		...
+		<Box bg='grid' p='box:l'>
+			<DammyText />
+		</Box>
+		<Box bg='stripe' p='box:l'>
+			<DammyText />
+		</Box>
+		```
+	</Demo.Code>
+</Demo>
+
+
+
+<Demo>
+	<Demo.Title>grid, stripe</Demo.Title>
+	<Demo.Preview resize nogrid p={20}>
+		<Box bg='grid' p='box:l' bgc='black:10%'>
+			<DammyText />
+		</Box>
+		<Box bg='stripe' p='box:l' bgc='blue:10%'>
+			<DammyText />
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Box bg='grid' p='box:l' bgc='black:10%'>
+			<DammyText />
+		</Box>
+		<Box bg='stripe' p='box:l' bgc='blue:10%'>
+			<DammyText />
+		</Box>
+		```
+	</Demo.Code>
+</Demo>
+
+
+
+#### Glass
+
+<Demo>
+	<Demo.Title>glass</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Frame aspect='16/9'>
+			<Media
+				src='https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80'
+				alt='' width='960' height='640'
+			/>
+			<Layer p={20} bg='glass' inset={0}>
+				<Center p='box' size='cover' bg='glass' c='white' radius={2} shadow={2}>
+					<DammyText />
+				</Center>
+			</Layer>
+		</Frame>
+		<Frame aspect='16/9'>
+			<Media
+				src='https://images.unsplash.com/photo-1501949997128-2fdb9f6428f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80'
+				alt='' width='960' height='640'
+			/>
+			<Layer p={20} inset={0}>
+				<Center p='box' size='cover' bg='glass' c='black' radius={5} shadow={4}>
+					<DammyText />
+				</Center>
+			</Layer>
+		</Frame>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Frame aspect='16/9'>
+			<Media
+				src='https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80'
+				alt='' width='960' height='640'
+			/>
+			<Layer p={20} bg='glass' inset={0}>
+				<Center p='box' size='cover' bg='glass' c='white' radius={2} shadow={2}>
+					<DammyText />
+				</Center>
+			</Layer>
+		</Frame>
+		<Frame aspect='16/9'>
+			<Media
+				src='https://images.unsplash.com/photo-1501949997128-2fdb9f6428f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80'
+				alt='' width='960' height='640'
+			/>
+			<Layer p={20} inset={0}>
+				<Center p='box' size='cover' bg='glass' c='black' radius={5} shadow={4}>
+					<DammyText />
+				</Center>
+			</Layer>
+		</Frame>
 		```
 	</Demo.Code>
 </Demo>

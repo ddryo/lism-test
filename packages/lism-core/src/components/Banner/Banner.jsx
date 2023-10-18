@@ -32,9 +32,7 @@ export default function Banner({
 		<>
 			{getMediaLayer(media, -1)}
 			{filter && <FilterLayer z={-1} {...filter} />}
-			{/* <Lism blockClass='b--banner__content' isFlow flowGap={flowGap || 40}> */}
 			{children}
-			{/* </Lism> */}
 		</>
 	);
 

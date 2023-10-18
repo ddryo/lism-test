@@ -135,7 +135,9 @@
 
 // .-bdc\:{border-color: var(--bdc);}
 
-.-bdc\: {
+// .-bdc\: {}
+.-bdc\:i {
+	// --bdc は .-bd に対して初期セットされていて自動継承できないので、inherit できるようにする
 	--bdc: inherit;
 }
 .-bdc\:main {

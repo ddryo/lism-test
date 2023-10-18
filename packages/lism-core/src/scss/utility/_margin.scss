@@ -5,63 +5,61 @@
 // --------------------
 
 // [class*="..."] にする...？
-.-m\: { margin: var(--m) !important; }
-.-mt\: { margin-top: var(--mt) !important; }
-.-mb\: { margin-bottom: var(--mb) !important; }
-.-ml\: { margin-left: var(--ml) !important; }
-.-mr\: { margin-right: var(--mr) !important; }
-.-mx\: { margin-inline: var(--mx) !important;}
-.-my\: { margin-block: var(--my) !important;}
-.-ms\: { margin-inline-start: var(--ms) !important;}
+.-m\: { margin: var(--m) !important }
+.-mt\: { margin-top: var(--mt) !important }
+.-mb\: { margin-bottom: var(--mb) !important }
+.-ml\: { margin-left: var(--ml) !important }
+.-mr\: { margin-right: var(--mr) !important }
+.-mx\: { margin-inline: var(--mx) !important }
+.-my\: { margin-block: var(--my) !important }
+
 
 // utilityあり
-[class*="-mbs:"]{
-	margin-block-start: var(--mbs) !important;
-}
-
-.-m\:a{margin: auto;}
-.-mt\:a{margin-top: auto;}
-.-mb\:a{margin-bottom: auto;}
-.-ml\:a{margin-left: auto;}
-.-mr\:a{margin-right: auto;}
-.-mx\:a{margin-inline: auto;}
-.-my\:a{margin-block: auto;}
-.-ms\:a{margin-inline-start: auto;}
+[class*="-ms:"] { margin-inline-start: var(--ms) !important}
+[class*="-mbs:"] { margin-block-start: var(--mbs) !important}
+.-m\:a{margin: auto !important}
+.-mt\:a{margin-top: auto !important}
+.-mb\:a{margin-bottom: auto !important}
+.-ml\:a{margin-left: auto !important}
+.-mr\:a{margin-right: auto !important}
+.-mx\:a{margin-inline: auto !important}
+.-my\:a{margin-block: auto !important}
+.-ms\:a{--ms: auto;}
 .-mbs\:a{--mbs: auto;}
 
 @include query.cq('sm'){
-	.-m\@sm\: { margin: var(--m--sm) !important;}
-	.-mx\@sm\: { margin-inline: var(--mx--sm) !important;}
-	.-my\@sm\: { margin-block: var(--my--sm) !important;}
-	.-mt\@sm\: { margin-top: var(--mt--sm) !important;}
-	.-mr\@sm\: { margin-right: var(--mr--sm) !important;}
-	.-mb\@sm\: { margin-bottom: var(--mb--sm) !important;}
-	.-ml\@sm\: { margin-left: var(--ml--sm) !important;}
-	.-ms\@sm\: { margin-inline-start: var(--ms--sm) !important;}
-	.-mbs\@sm\: { margin-block-start: var(--mbs--sm) !important;}
+	.-m\@sm\: { margin: var(--m--sm) !important }
+	.-mx\@sm\: { margin-inline: var(--mx--sm) !important }
+	.-my\@sm\: { margin-block: var(--my--sm) !important }
+	.-mt\@sm\: { margin-top: var(--mt--sm) !important }
+	.-mr\@sm\: { margin-right: var(--mr--sm) !important }
+	.-mb\@sm\: { margin-bottom: var(--mb--sm) !important }
+	.-ml\@sm\: { margin-left: var(--ml--sm) !important }
+	.-ms\@sm\: { margin-inline-start: var(--ms--sm) !important }
+	.-mbs\@sm\: { margin-block-start: var(--mbs--sm) !important }
 }
 
 @include query.cq('md'){
-	.-m\@md\: { margin: var(--m--md) !important;}
-	.-mx\@md\: { margin-inline: var(--mx--md) !important;}
-	.-my\@md\: { margin-block: var(--my--md) !important;}
-	.-mt\@md\: { margin-top: var(--mt--md) !important;}
-	.-mr\@md\: { margin-right: var(--mr--md) !important;}
-	.-mb\@md\: { margin-bottom: var(--mb--md) !important;}
-	.-ml\@md\: { margin-left: var(--ml--md) !important;}
-	.-ms\@md\: { margin-inline-start: var(--ms--md) !important;}
-	.-mbs\@md\: { margin-block-start: var(--mbs--md) !important;}
+	.-m\@md\: { margin: var(--m--md) !important }
+	.-mx\@md\: { margin-inline: var(--mx--md) !important }
+	.-my\@md\: { margin-block: var(--my--md) !important }
+	.-mt\@md\: { margin-top: var(--mt--md) !important }
+	.-mr\@md\: { margin-right: var(--mr--md) !important }
+	.-mb\@md\: { margin-bottom: var(--mb--md) !important }
+	.-ml\@md\: { margin-left: var(--ml--md) !important }
+	.-ms\@md\: { margin-inline-start: var(--ms--md) !important }
+	.-mbs\@md\: { margin-block-start: var(--mbs--md) !important }
 }
 
 @include query.cq('lg'){
-	.-m\@lg\: { margin: var(--m--lg) !important;}
-	.-mx\@lg\: { margin-inline: var(--mx--lg) !important;}
-	.-my\@lg\: { margin-block: var(--my--lg) !important;}
-	.-mt\@lg\: { margin-top: var(--mt--lg) !important;}
-	.-mr\@lg\: { margin-right: var(--mr--lg) !important;}
-	.-mb\@lg\: { margin-bottom: var(--mb--lg) !important;}
-	.-ml\@lg\: { margin-left: var(--ml--lg) !important;}
-	.-ms\@lg\: { margin-inline-start: var(--ms--lg) !important;}
-	.-mbs\@lg\: { margin-block-start: var(--mbs--lg) !important;}
+	.-m\@lg\: { margin: var(--m--lg) !important }
+	.-mx\@lg\: { margin-inline: var(--mx--lg) !important }
+	.-my\@lg\: { margin-block: var(--my--lg) !important }
+	.-mt\@lg\: { margin-top: var(--mt--lg) !important }
+	.-mr\@lg\: { margin-right: var(--mr--lg) !important }
+	.-mb\@lg\: { margin-bottom: var(--mb--lg) !important }
+	.-ml\@lg\: { margin-left: var(--ml--lg) !important }
+	.-ms\@lg\: { margin-inline-start: var(--ms--lg) !important }
+	.-mbs\@lg\: { margin-block-start: var(--mbs--lg) !important }
 }
 

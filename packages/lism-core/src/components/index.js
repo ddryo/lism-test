@@ -56,7 +56,7 @@ export { Card, CardMedia, CardBody } from './Card';
 export { FAQ } from './FAQ';
 export { ChatBubble } from './ChatBubble';
 export { Section, SectionBody, SectionHeader, SectionFooter } from './Section';
-export { Glossary, GlossaryItem } from './Glossary';
+export { TermList, TermListRow } from './TermList';
 export { NavMenu, NavMenuItem } from './NavMenu';
 // export { MediaText } from './MediaText';
 

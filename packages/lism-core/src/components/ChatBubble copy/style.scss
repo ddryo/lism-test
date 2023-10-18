@@ -2,17 +2,17 @@
 	--bdw: 1px;
 	--bgc: #f2f6f9;
 	--bdc: #ccdbe5;
-	// --icon--bxsh: none;
+	--icon--bxsh: none;
 }
 .b--chatBubble {
 	// --gta: 'icon body';
 	--icon--size: clamp(48px, 24px + 7.5cqw, 72px); // 320:48px~640:72px
 	--icon--bdc: var(--bgc);
-	--body--mt: calc(var(--icon--size) / 2 + 0.5rem);
-	--decorator-size: 0.875rem;
+	--body--mt: calc(var(--icon--size) * 0.6);
+	--decorator-size: 0.875rem; // clamp(12px, 8px + 1.25cqw, 16px); //320:12px~640:16px
 	// --decorator--trnslt: var(--trnsltX) var(--trnsltY);
 
-	gap: calc(var(--decorator-size) - 0.125rem);
+	gap: 0.75rem; //calc(var(--decorator-size) * 0.8);
 	justify-items: var(--place--left);
 	align-items: start;
 }
@@ -31,7 +31,7 @@
 	background-color: var(--bgc--base);
 	border: solid 2px var(--icon--bdc);
 	width: var(--icon--size);
-	// box-shadow: var(--icon--bxsh);
+	box-shadow: var(--icon--bxsh);
 }
 
 .b--chatBubble__body {
@@ -49,104 +49,86 @@
 
 .b--chatBubble__content {
 	position: relative;
-	// z-index: 0;
-	border: solid var(--bdw) var(--bdc);
+	z-index: 1;
+	border: solid 1px var(--bdc);
 	background-color: var(--bgc);
 	max-width: 40em;
 }
 
-.b--chatBubble--chat[data-dir='left'] .b--chatBubble__content {
+:where([data-type='chat'][data-dir='left']) > div > .b--chatBubble__content {
 	border-top-left-radius: 0 !important;
 }
 
-.b--chatBubble--chat[data-dir='right'] .b--chatBubble__content {
+:where([data-type='chat'][data-dir='right']) > div > .b--chatBubble__content {
 	border-top-right-radius: 0 !important;
 }
 
-.b--chatBubble--box {
-	// --icon--bxsh: var(--shadow--1);
-	--body--mt: calc(var(--icon--size) - 1.5rem);
-	// --bdw: 2px;
-	--icon--bdc: var(--bdc);
-	--body--mt--add: 1em;
+:where([data-type='box']) {
+	&.b--chatBubble {
+		--icon--bxsh: var(--shadow--1);
+		--body--mt: 0;
+	}
 
 	> .b--chatBubble__name {
-		margin-inline: 0.25em;
+		margin-inline: calc(var(--icon--size) + 0.75em);
 	}
 
 	> .b--chatBubble__icon {
 		grid-area: fix;
 		justify-self: var(--jc);
-		// margin: 0 var(--s--10) -0.75em;
-		margin-bottom: -0.75em;
-	}
-
-	&[data-dir='left'] .b--chatBubble__content {
-		margin-left: -1.5em;
-	}
-	&[data-dir='right'] .b--chatBubble__content {
-		margin-right: -1.5em;
+		margin: 0 var(--s--10) - 0.75em;
 	}
 }
 
 // decorator
-// .e--deco[data-type="chat"]{
+// .e--decorator[data-type="chat"]{
 // 	--size: var(--decorator-size);
 // }
-// .e--deco[data-type="think"]{
+// .e--decorator[data-type="think"]{
 // 	--size: var(--decorator-size);
 // }
 
-.b--chatBubble .e--deco {
+.b--chatBubble__body > .e--decorator {
 	--size: var(--decorator-size);
-	// z-index: 0;
-
-	&::before,
-	&::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		clip-path: var(--clipPath);
-		translate: var(--trnsltX) var(--trnsltY);
-		background-color: var(--bgc);
-	}
+	clip-path: var(--clipPath);
+	translate: var(--trnsltX) var(--trnsltY);
+}
+.b--chatBubble__body > [data-dir='right'] {
+	// Xだけマイナスに反転
+	translate: calc(-1 * var(--trnsltX)) var(--trnsltY);
 }
 
-// あとで: flip:X みたいなクラス作る
-.b--chatBubble[data-dir='right'] .e--deco {
-	transform: rotateY(180deg);
-}
-
-.e--deco--chat {
+.e--decorator--chat {
 	--clipPath: polygon(50% 0%, 100% 0%, 100% 100%);
 }
-
-.e--deco--chat::before {
+.e--decorator--chat[data-dir='right'] {
+	--clipPath: polygon(50% 0%, 0% 0%, 0% 100%);
+}
+.e--decorator--chat[data-index='1'] {
 	// z-index: -1;
 	--bgc: var(--bdc);
 	--trnsltX: 1px;
 	--trnsltY: 0;
 }
-.e--deco--chat::after {
-	// z-index: 2;
+.e--decorator--chat[data-index='2'] {
+	z-index: 2;
 	--trnsltX: calc(1px + var(--bdw) * 1.5);
 	--trnsltY: var(--bdw);
 }
 
 // think
-.e--deco--think {
+.e--decorator--think {
 	--bgc: var(--bdc);
-	z-index: -1;
 }
-.e--deco--think::before {
+.e--decorator--think[data-index='1'] {
 	// --bgc: var(--bdc);
 	--clipPath: circle(24%);
-	--trnsltX: calc(var(--size) * -0.125);
-	--trnsltY: calc(var(--size) * -0.125);
+	--trnsltX: calc(var(--decorator-size) * -0.125);
+	--trnsltY: calc(var(--decorator-size) * -0.125);
 }
-.e--deco--think::after {
+.e--decorator--think[data-index='2'] {
 	// --bgc: var(--bdc);
 	--clipPath: circle(44%);
-	--trnsltX: calc(var(--size) * 0.375);
-	--trnsltY: calc(var(--size) * 0.5);
+	--trnsltX: calc(var(--decorator-size) * 0.375);
+	--trnsltY: calc(var(--decorator-size) * 0.5);
 }

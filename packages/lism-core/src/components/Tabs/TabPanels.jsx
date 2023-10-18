@@ -10,6 +10,7 @@ export default function TabPanels({ children, tabId, activeIndex }) {
 	// const { className, style, attrs } = getLismProps(props, { lismClass: 'l--tab' });
 
 	// console.log('children', children);
+
 	return (
 		<div className='l--tab__panels'>
 			{Children.map(children, (child, index) => {

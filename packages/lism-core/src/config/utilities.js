@@ -3,7 +3,7 @@ export default {
 	// color: {},
 	// c: {},
 	bgc: { none: 't', transparent: 't', currentColor: 'cc' },
-	bdc: { none: 't', transparent: 't' },
+	bdc: { none: 't', transparent: 't', inherit: 'i' },
 	bg: { none: 'n' },
 	margin: { auto: 'a' },
 	place: {

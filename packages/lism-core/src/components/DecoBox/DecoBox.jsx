@@ -1,6 +1,6 @@
 // import React from 'react';
 import { Box } from '../Box';
-// import { Core } from '../Core';
+import { Core } from '../Core';
 import { Decorator } from '../Decorator';
 import PRESETS from './presets';
 
@@ -11,6 +11,8 @@ export default function DecoBox({
 	subvariant = '',
 	children,
 	data = {},
+	isFlow,
+	flowGap,
 	// sub_data = {},
 	// decoratorCount,
 	// decoratorProps = {},
@@ -21,7 +23,7 @@ export default function DecoBox({
 	// lismState.push(`d--${variant}`);
 
 	if (variant) {
-		lismClass.c += `--${variant}`;
+		lismClass.c += ` c--decoBox--${variant}`;
 	}
 	// if (subvariant) {
 	// 	lismClass.c += ` deco--${variant}--${subvariant}`;
@@ -61,6 +63,13 @@ export default function DecoBox({
 		}
 	}
 
+	if (isFlow) {
+		bodyProps.isFlow = isFlow;
+	}
+	if (flowGap) {
+		bodyProps.flowGap = flowGap;
+	}
+
 	let boxCntent = null;
 	if (bodyProps) {
 		boxCntent = <Box {...bodyProps}>{children}</Box>;
@@ -78,9 +87,9 @@ export default function DecoBox({
 	}
 
 	return (
-		<Box lismClass={lismClass} lismState={lismState} {...boxProps} {...props}>
+		<Core lismClass={lismClass} lismState={lismState} {...boxProps} {...props}>
 			{boxCntent}
 			{decorator}
-		</Box>
+		</Core>
 	);
 }

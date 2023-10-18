@@ -1,9 +1,6 @@
-:where(.e--decorator) {
+:where(.e--deco) {
 	position: relative;
-	--size: 1em;
-	width: var(--size);
-	height: var(--size);
 }
-// .e--decorator {
+// .e--deco {
 // 	display: block;
 // }

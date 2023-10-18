@@ -18,7 +18,7 @@ export default {
 			p: 'box',
 			w: 'fit-content',
 			bd: 'right',
-			// bdc: '-',
+			// bdc: 'inherit',
 			bdw: '.5em',
 			// bgc: '-',
 			gridItem: { ga: 'fix' },
@@ -42,13 +42,11 @@ export default {
 		decoratorCount: 2,
 		boxProps: {
 			d: 'grid',
+			bdc: 'currentColor',
 		},
 		bodyProps: { p: 'box:s' },
 		decoratorProps: {
-			// flexItem: { fxsh: 0 },
-			// bgc: 'currentColor',
-			// pos: 'absolute',
-			// size: '1em',
+			bdc: 'inherit',
 		},
 		left: {
 			// rtl言語を考慮してleftも明示的にセット
@@ -95,7 +93,7 @@ export default {
 			},
 		},
 		top: {
-			boxProps: { grid: { areas: 'ltr', jc: 'center' } },
+			boxProps: { ta: 'c', grid: { areas: 'ltr', jc: 'center' } },
 			decoratorProps: {
 				i1: {
 					bd: 'top',
@@ -112,7 +110,7 @@ export default {
 			},
 		},
 		bottom: {
-			boxProps: { grid: { areas: 'ltr', jc: 'center', ai: 'end' } },
+			boxProps: { ta: 'c', grid: { areas: 'ltr', jc: 'center', ai: 'end' } },
 			decoratorProps: {
 				i1: {
 					bd: 'bottom',
@@ -142,14 +140,14 @@ export default {
 			radius: 4,
 			w: 'fit-content',
 			bd: true,
-			bdc: '-',
+			bdc: 'inherit',
 			bgc: '-', // 親から受け取る
 			// flexItem: { fxg: '1' },
 		},
 		decoratorProps: {
 			// pos: 'relative',
 			bd: true,
-			bdc: '-',
+			bdc: 'inherit',
 			bgc: '-', // 親から受け取る
 			// flexItem: { fxsh: '0' },
 			gridItem: { ga: 'fix' },

@@ -23,12 +23,10 @@ listについて
 	/*
 		dl
 	 */
-	dd {
-		// padding-inline-start: var(--dd-padding, 1.25em);
-		margin-inline-start: var(--s--50);
-	}
-	// dt {font-weight: bold;}
-	dl > :is(dt, div):not(:first-child) {
-		margin-block-start: 0.5em;
-	}
+	// dd {
+	// 	margin-inline-start: var(--s--40);
+	// }
+	// dl > dt:not(:first-child) {
+	// 	margin-block-start: 0.5em;
+	// }
 }

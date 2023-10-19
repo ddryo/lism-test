@@ -1,0 +1,258 @@
+import { Box } from '@lism/core';
+import Reference from '@/components/Reference';
+
+# All Props
+
+[Lismコンポーネント](/docs/components/overview)で受け取れる 主要な Lism Props について紹介します。
+
+
+## Colors
+
+|Prop|CSS Property|Token,Utility|
+|---|---|---|
+|c|color|COLOR,<br/>`"base"`,`"pale"`, `"opposite"`|
+|bgc|background-color|COLOR,<br/> `"base"`, `"pale"`, `"opposite"`|
+|bdc|border-color|COLOR,<br/> `"base"`|
+|keycolor|`--keycolor`|COLOR|
+
+
+※ `bdc`は[`bd`との併用が必要](/docs/props/border)です。
+
+<Reference>
+[COLOR Tokens](/docs/tokens/color)
+</Reference>
+
+
+## Typography
+
+|Prop|CSS Property|Token|Utility|BP|
+|---|---|---|---|---|
+|fz|font-size|FONT_SIZE|○|○|
+|lh|line-height|LINE_HEIGHT|○|-|
+|ff|font-family|`"base"`,`"mono"`,`"emoji"`|○|-|
+|lts|letter-spacing|LETTER_SPACING|○|-|
+|ta|text-align|-|`"c"`,`"l"`,`"r"`|-|
+|whs|white-space|-|`"nw"`|-|
+
+{/* |font?|font|inherit?|-|-|
+|td?|text-decoration|-|-|-| */}
+
+
+
+## Width & Height
+
+|Prop|CSS Property|Token|Utility|BP|
+|---|---|---|---|---|
+|w|width|SIZE|25,50,75,100,fit|○|
+|h|height|SIZE|25,50,75,100,fit|○|
+|maxW|max-width|SIZE|100|-|
+|maxH|max-height|SIZE|100|-|
+|minW|min-width|||-|
+|minH|min-height|||-|
+
+SIZE:contentsize= s,m,l?
+
+
+## Bg
+
+|Prop|CSS Property|Token|Utility|BP|
+|---|---|---|---|---|
+|bg|||`"grid"`, `"stripe"`, `"glass"`|-|
+|bg.image||||-|
+|bg.color||||-|
+|bg.size||||-|
+|bg.position||||-|
+|gradient||||-|
+
+
+## Margin and padding
+
+|Prop|CSS Property|Token|Utility|BP|
+|---|---|---|---|---|
+|p|padding|SPACE|○, `"box"`, `"box:s"`, `"box:l"`|○|
+|pl|padding-left|SPACE|-|○|
+|pr|padding-right|SPACE|-|○|
+|pt|padding-top|SPACE|-|○|
+|pb|padding-bottom|SPACE|-|○|
+|px|padding-left, padding-right|SPACE|○|○|
+|py|padding-top, padding-bottom|SPACE|○|○|
+|ps|padding-start|SPACE|-|○|
+|pbs|padding-block-start|SPACE|-|○|
+|m|margin|SPACE|`"auto"`|○|
+|ml|margin-left|SPACE|`"auto"`|○|
+|mr|margin-right|SPACE|`"auto"`|○|
+|mt|margin-top|SPACE|`"auto"`|○|
+|mb|margin-bottom|SPACE|`"auto"`|○|
+|mx|margin-left, margin-right|SPACE|`"auto"`|○|
+|my|margin-top, margin-bottom|SPACE|`"auto"`|○|
+|ms|margin-start|SPACE|○, `"auto"`|○|
+|mbs|margin-block-start|SPACE|○, `"auto"`|○|
+
+<Reference>
+[SPACE Tokens](/docs/tokens/spacing)
+</Reference>
+
+Utility Class: 
+- paddings
+	- `-[p|px|py]:[0|5|10|15|20|30|40|50]`
+	- `-p:box`, `-p:box:[s|l]`
+- margins
+	- `-[ms|mbs]:[0|5|10|15|20|30|40|50]`
+	- `-[m|ml|mr|mt|mb|my|mx|ms|mbs]:auto`
+
+全てBP対応?
+
+<Note>
+論理プロパティは ps, pbs だけでいいかどうかは要検討.
+
+- inline-start, block-start だけでいいか。end方向はX,Yとstartの併用で擬似的に指定できる。
+- px,pyをinline,blockとしてもいいかもしれない。
+</Note>
+
+<Demo>
+	<Demo.Title>Examples</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Box m={40}>...</Box>
+	<Box pb='20px'>...</Box>
+	<Box mx='auto'>...</Box>
+	<Box p='box' py={[null, 50]}>...</Box>
+	<Text px={[20, 30]}>...</Text>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>各方向の値をp,mに対してオブジェクトで指定することも可能</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Box m={{left:20, bottom: 30}}>...</Box>
+	<Box p={{x:30, y: 40}}>...</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+<Alert preset="info">
+オブジェクト指定は x,y,top,right,bottom,left にのみ対応しています。 
+</Alert>
+
+
+
+
+## Grid & Flex
+
+### grid
+
+|Prop|CSS Property|Token|Utility|BP|
+|---|---|---|---|---|
+|grid.template|grid-template|||○|
+|grid.areas|grid-template-areas||`"lcr"`, `"tcb"`, `"ltr"`|○|
+|grid.columns|grid-template-columns|||○|
+|grid.rows|grid-template-rows|||○|
+|gridItem.area|grid-area|||○|
+|gridItem.column|grid-column|||○|
+|gridItem.row|grid-row|||○|
+{/* autoFlow, autoRows, autoCols */}
+{/* area → fix: 'fix', left: 'l', right: 'r', center: 'c', top: 't', bottom: 'b' */}
+
+※: `-gta:ltr`クラスは`[dir='rtl']`時に方向が反転するようになっており、rtl言語でも方向を揃えることができます。
+
+
+### flex
+
+|Prop|CSS Property|Token|Utility|BP|
+|---|---|---|---|---|
+|flex.wrap|flex-wrap||`"w"`, `"nw"`|○|
+|flex.direction|flex-direction||`"c"`, `"cr"`, `"r"`, `"rr"`|○|
+|flexItem.shrink|flex-shrink||`"0"`, `"1"`|○|
+|flexItem.grow|flex-grow||`"0"`, `"1"`|○|
+|flexItem.basis|flex-basis|||○|
+|flex<sup>※1</sup>|flex|||-|
+
+- <sup>※1</sup> : `flex`を文字列で指定すると普通に`flex`としてスタイルに出力されます。
+
+### gap
+
+|Prop|CSS Property|Token|Utility|BP|
+|---|---|---|---|---|
+|[flex\|grid].gap|gap|SPACE|○|○|
+|[flex\|grid]rowGap|row-gap|SPACE|---|○|
+|[flex\|grid]columnGap|column-gap|SPACE|---|○|
+
+{/* <Alert>Flex, Grid で指定できます。</Alert> */}
+
+<Reference>
+[SPACE Tokens](/docs/tokens/spacing)
+</Reference>
+
+Utility Class: 
+- `-gap:[0|5|10|15|20|30|40|50]`
+
+
+<Demo>
+	<Demo.Title>Examples</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Flex gap={40}>...</Flex>
+	<Grid gap="1rem">...</Grid>
+	<Columns rowGap={[15, 20]} columnGap={[20, 30]}>...</Columns>
+	```
+	</Demo.Code>
+</Demo>
+
+{/* <Demo>
+	<Demo.Title>各方向の値をgapに対してオブジェクトで指定することも可能？</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Columns gap={{row:20, column:30}}>...</Columns>
+	```
+	</Demo.Code>
+</Demo> */}
+
+
+### places
+
+|Prop|CSS Property|Token|Utility|BP|
+|---|---|---|---|---|
+|[flex\|grid].ai|align-items||`"c"`, `"s"`, `"e"`, `"str"`|-|
+|[flex\|grid].ac|align-content||`"c"`, `"s"`, `"e"`, `"str"`|-|
+|[flex\|grid].ji|justify-items||`"c"`, `"s"`, `"e"`, `"str"`|-|
+|[flex\|grid].jc|justify-content||`"c"`, `"s"`, `"e"`, `"str"`|-|
+|[flex\|grid]Item.alignSelf|align-self||-|-|
+|[flex\|grid]Item.justifySelf|justify-self||-|-|
+|[flex\|grid]Item.placeSelf|place-self||-|-|
+|[flex\|grid]Item.order|order|`"-1"`, `"0"`, `"1"`|-|
+
+
+- c: center
+- s: start
+- e: end
+- str: stretch
+
+
+
+## Others
+
+|Prop|CSS Property|Token,Utility|
+|---|---|---|
+|d|display|`"none"`,`"block"`,`"flex"`,`"grid"`,`"inline"`,`"inline-block"`,`"inline-flex"`,`"inline-grid"`|
+|bxsh, shadow|box-shadow|SHADOW|
+|bdrs, radius|border-radius|RADIUS|
+|aspect|aspect-ratio||
+|opacity(op?)|opacity||
+|translate|translate||
+|rotate|rotate||
+|scale|scale||
+|transformOrigin|transformOrigin||
+|top|top||
+|left|left||
+|right|right||
+|bottom|bottom||
+|inset|inset||
+|z|z-index||
+|pos|position||
+|lis|listStyle|`"none"`|
+|ovw|overflowWrap|`"anywhere"`|
+|ov|overflow|`"hidden"`,`"auto"`,`"clip"`,`"scroll"`?|
+|ovx|overflow-x|`"hidden"`,`"auto"`,`"clip"`,`"scroll"`?|
+|ovy|overflow-y|`"hidden"`,`"auto"`,`"clip"`,`"scroll"`?|

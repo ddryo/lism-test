@@ -1,9 +1,8 @@
 {
 	"overview": "",
-	"lism-props": "Lism Props",
+	"all-props": "All Props",
 	"is-flow": "isFlow",
 	"flex": "Flex Props",
 	"grid": "Grid Props",
-	"border": "",
-	"container-control": ""
+	"border": ""
 }

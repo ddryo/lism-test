@@ -47,7 +47,7 @@ import { SwitchFix, Item } from '@lism/core';
 
 固定幅にしたい要素に対して`<Item area="fix">`を使うか、`<Box gridItem={{area:"fix"}}>`を使用してください。
 
-( memo → ブロック化する時は、`ga="fix"`付きの`<Item>`になっている専用の子ブロックを用意する。)
+( memo → ブロック化する時は、`area="fix"`付きの`<Item>`になっている専用の子ブロックを用意する。)
 
 {/* Memo: grid-areaで場所を指定する理由: → DOM自体の順番を自由にできるため。（大きいサイドバー要素を左に固定するけどDOMの順番はあとに回したい、ということがある。） */}
 
@@ -68,14 +68,14 @@ import { SwitchFix } from '@lism/core';
 	<Demo.Preview resize p={20}>
 		<SwitchFix fix="right down" lismState={["has--itemGuide"]}>
 			<Item>Main Contents</Item>
-			<Item ga="fix" bgc="pale">Side</Item>
+			<Item area="fix" bgc="pale">Side</Item>
 		</SwitchFix>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<SwitchFix fix="right down">
 			<Item>Main Contents</Item>
-			<Item ga="fix" bgc="pale">Side</Item>
+			<Item area="fix" bgc="pale">Side</Item>
 		</SwitchFix>
 		```
 	</Demo.Code>
@@ -84,19 +84,19 @@ import { SwitchFix } from '@lism/core';
 
 <Demo>
 	<Demo.Title>
-		`fix="left down"`, `fixW` を指定, breakPoint: `md`
+		`fix="left down"`, `fixW` を指定
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<SwitchFix breakPoint="md" fix="left down" fixW='16em' gap={20} lismState={["has--itemGuide"]}>
+		<SwitchFix fix="left down" fixW='16em' gap={20} lismState={["has--itemGuide"]}>
 			<Item>Main Contents</Item>
-			<Item ga="fix" bgc="pale">Side</Item>
+			<Item area="fix" bgc="pale">Side</Item>
 		</SwitchFix>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<SwitchFix breakPoint="md" fix="left down" fixW='16em' gap={20}>
+		<SwitchFix fix="left down" fixW='16em' gap={20}>
 			<Item>Main Contents</Item>
-			<Item ga="fix" bgc="pale">Side</Item>
+			<Item area="fix" bgc="pale">Side</Item>
 		</SwitchFix>
 		```
 	</Demo.Code>
@@ -113,7 +113,7 @@ export const SwitchFixDemos = () => {
 					<Demo.Preview resize p={20}>
 						<SwitchFix fix={datFix} gap={20} lismState={["has--itemGuide"]}>
 							<Item>Main Contents</Item>
-							<Item ga="fix" bgc="pale">Side</Item>
+							<Item area="fix" bgc="pale">Side</Item>
 						</SwitchFix>
 					</Demo.Preview>
 				</Demo>
@@ -137,14 +137,14 @@ export const SwitchFixDemos = () => {
 	<Demo.Preview resize p={20}>
 		<SwitchFix fix="left up" breakPoint="sm">
 			<Item>Main Contents</Item>
-			<Item ga="fix">Side</Item>
+			<Item area="fix">Side</Item>
 		</SwitchFix>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<SwitchFix fix="left up" breakPoint="sm">
 			<Item>Main Contents</Item>
-			<Item ga="fix">Side</Item>
+			<Item area="fix">Side</Item>
 		</SwitchFix>
 		```
 	</Demo.Code>
@@ -155,14 +155,14 @@ export const SwitchFixDemos = () => {
 	<Demo.Preview resize p={20}>
 		<SwitchFix fix="left up" breakPoint="md">
 			<Item>Main Contents</Item>
-			<Item ga="fix">Side</Item>
+			<Item area="fix">Side</Item>
 		</SwitchFix>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<SwitchFix fix="left up" breakPoint="md">
 			<Item>Main Contents</Item>
-			<Item ga="fix">Side</Item>
+			<Item area="fix">Side</Item>
 		</SwitchFix>
 		```
 	</Demo.Code>
@@ -174,14 +174,14 @@ export const SwitchFixDemos = () => {
 	<Demo.Preview resize p={20}>
 		<SwitchFix fix="left up" breakPoint="lg">
 			<Item>Main Contents</Item>
-			<Item ga="fix">Side</Item>
+			<Item area="fix">Side</Item>
 		</SwitchFix>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<SwitchFix fix="left up" breakPoint="lg">
 			<Item>Main Contents</Item>
-			<Item ga="fix">Side</Item>
+			<Item area="fix">Side</Item>
 		</SwitchFix>
 		```
 	</Demo.Code>

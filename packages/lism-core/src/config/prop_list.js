@@ -114,8 +114,10 @@ export default {
 	whs: { style: 'whiteSpace', utils: { nowrap: 'nw' } },
 
 	// others
-	radius: { name: 'bdrs', presets: 'radius' },
-	shadow: { name: 'bxsh', presets: 'shadow' },
+	radius: { name: 'bdrs', presets: 1 },
+	shadow: { name: 'bxsh', presets: 1 },
+	bdrs: { presets: 'radius' },
+	bxsh: { presets: 'shadow' },
 	aspect: { BP: 1, presets: 1 },
 	opacity: { style: 1 },
 	lis: { style: 'listStyle', utils: { none: 'n' } },
@@ -177,7 +179,7 @@ export default {
 	flowGap: { presets: 1, converter: 'space' },
 
 	// flexItem
-	flex: { map: 1 },
+	flex: { map: 1, style: 1 },
 	grid: { map: 1 },
 	flexItem: { map: 1 },
 	gridItem: { map: 1 },
@@ -221,7 +223,6 @@ export const CONTEXT_PROPS = {
 		template: { style: 'gridTemplate', name: 'gt', presets: 'gt' },
 		areas: { name: 'gta', BP: 1, presets: 'gta' },
 		columns: { name: 'gtc', BP: 1 },
-		// cols: { name: 'gtc', BP: 1 }, // どっちでも受け付ける？
 		rows: { name: 'gtr', BP: 1 },
 		// autoFlow, autoRows, autoCols
 		...placeProps,
@@ -229,8 +230,8 @@ export const CONTEXT_PROPS = {
 	},
 
 	flex: {
-		wrap: { name: 'fxw', BP: 1, utils: 1 },
-		direction: { name: 'fxd', BP: 1, utils: 1 },
+		wrap: { name: 'fxw', BP: 1, utils: 'fxw' },
+		direction: { name: 'fxd', BP: 1, utils: 'fxd' },
 		// fxw: { BP: 1, utils: 1 },
 		// fxd: { BP: 1, utils: 1 },
 		// placement: { context: 1 },
@@ -238,19 +239,24 @@ export const CONTEXT_PROPS = {
 		...gapProps,
 	},
 
+	// item?
 	flexItem: {
-		fxg: { BP: 1, presets: ['0', '1'] },
-		fxsh: { BP: 1, presets: ['0', '1'] },
-		fx: { BP: 1 },
-		fxb: { BP: 1 },
+		flex: { style: 1 }, // `flexItem.flex`もうけつける
+		grow: { name: 'fxg', BP: 1, presets: ['0', '1'] },
+		shrink: { name: 'fxsh', BP: 1, presets: ['0', '1'] },
+		basis: { name: 'fxb', BP: 1 },
+		// fx,fxsh,fxg,fxb
 		order: { style: 1, presets: ['0', '-1', '1'] },
 		...selfProps,
 	},
 
 	gridItem: {
-		ga: { utils: 1 }, // grid-area
-		gc: { BP: 1 }, // grid-column
-		gr: { BP: 1 }, // grid-row
+		area: { name: 'ga', utils: 'ga' }, // grid-area
+		column: { name: 'gc', BP: 1 }, // grid-column
+		row: { name: 'gr', BP: 1 }, // grid-row
+		// ga: { utils: 1 }, // grid-area
+		// gc: { BP: 1 }, // grid-column
+		// gr: { BP: 1 }, // grid-row
 		order: { style: 1, presets: ['0', '-1', '1'] },
 		...selfProps,
 	},

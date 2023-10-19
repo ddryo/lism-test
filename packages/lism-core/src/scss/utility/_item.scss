@@ -17,26 +17,20 @@
 // 	flex: var(--fx);
 // }
 
-.-order\:1 {
-	order: 1;
-}
-.-order\:0 {
-	order: 0;
-}
-.-order\:-1 {
-	order: -1;
-}
+.-order\:1 {order: 1;}
+.-order\:0 {order: 0;}
+.-order\:-1 {order: -1;}
 
-.-fx\:{ flex: var(--fx)}
-.-fxg\:{flex-grow:var(--fxg)}
-.-fxsh\:{flex-shrink:var(--fxsh)}
-.-fxb\: {flex-basis:var(--fxb)}
+// .-fx\:{ flex: var(--fx)}
+.-fxg\: {flex-grow: var(--fxg)}
+.-fxsh\: {flex-shrink: var(--fxsh)}
+.-fxb\: {flex-basis: var(--fxb)}
 
-.-fxg\:1{flex-grow:1}
-.-fxg\:0{flex-grow:0}
+.-fxg\:1 {flex-grow: 1}
+.-fxg\:0 {flex-grow: 0}
 
-.-fxsh\:1{flex-shrink:1}
-.-fxsh\:0{flex-shrink:0}
+.-fxsh\:1 {flex-shrink: 1}
+.-fxsh\:0 {flex-shrink: 0}
 
 // .-fxb\:100 {flex-basis:100%}
 // .-fxb\:a {flex-basis:auto}

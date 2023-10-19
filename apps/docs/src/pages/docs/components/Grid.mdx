@@ -73,9 +73,9 @@ import { Grid } from '@lism/core';
 			ai="center"
 			ji="center"
 		>
-			<Item ga="L" px={20} bgc="pale">L</Item>
-			<Item ga="C" px={20} bgc="pale">{`Center`}</Item>
-			<Item ga="R" px={20} bgc="pale">R</Item>
+			<Item area="L" px={20} bgc="pale">L</Item>
+			<Item area="C" px={20} bgc="pale">{`Center`}</Item>
+			<Item area="R" px={20} bgc="pale">R</Item>
 		</Grid>
 	</Demo.Preview>
 </Demo>
@@ -88,9 +88,9 @@ import { Grid } from '@lism/core';
 	ai="center"
 	ji="center"
 >
-	<Item ga="L" px={20} bgc="pale">L</Item>
-	<Item ga="C" px={20} bgc="pale">Center</Item>
-	<Item ga="R" px={20} bgc="pale">R</Item>
+	<Item area="L" px={20} bgc="pale">L</Item>
+	<Item area="C" px={20} bgc="pale">Center</Item>
+	<Item area="R" px={20} bgc="pale">R</Item>
 </Grid>
 ```
 
@@ -108,15 +108,15 @@ import { Grid } from '@lism/core';
 			columns={["1fr 1fr", "5em 1fr 5em"]}
 			gap={20}
 		>
-			<Item ga="L" p={20} bgc="pale">
+			<Item area="L" p={20} bgc="pale">
 				Left
 			</Item>
-			<Item ga="top">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</Item>
-			<Item ga="bottom">
+			<Item area="top">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</Item>
+			<Item area="bottom">
 				Unde ratione blanditiis aperiam sed eos assumenda veniam, culpa sint qui enim rerum
 				doloribus quod dolor deleniti?
 			</Item>
-			<Item ga="R" p={20} bgc="pale">
+			<Item area="R" p={20} bgc="pale">
 				Right
 			</Item>
 		</Grid>
@@ -135,15 +135,15 @@ import { Grid } from '@lism/core';
 	columns={["1fr 1fr", "5em 1fr 5em"]}
 	gap={20}
 >
-	<Item ga="L" p={20} bgc="pale">
+	<Item area="L" p={20} bgc="pale">
 		Left
 	</Item>
-	<Item ga="A">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</Item>
-	<Item ga="B">
+	<Item area="A">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</Item>
+	<Item area="B">
 		Unde ratione blanditiis aperiam sed eos assumenda veniam, culpa sint qui enim rerum
 		doloribus quod dolor deleniti?
 	</Item>
-	<Item ga="R" p={20} bgc="pale">
+	<Item area="R" p={20} bgc="pale">
 		Right
 	</Item>
 </Grid>

@@ -139,13 +139,13 @@ Flexの子要素で使用できるプロパティは、`flexItem` にオブジ�
 {/* flexBasis,flexGrow,flexShrink,flex,alignSelf,justifySelf の値を指定できます。 */}
 
 
-- `fxb`: flex-basisの値を指定できます。
-- `fxg`: flex-growの値を指定できます。
-- `fxsh`: flex-shrinkの値を指定できます。
-- `fx`: flexの値を指定できます。
+- `fx`, `flex`: flex の値を指定できます。
+- `fxsh`, `shrink`: flex-shrink の値を指定できます。
+- `fxg`, `grow`: flex-grow の値を指定できます。
+- `fxb`, `basis`: flex-basis の値を指定できます。
 - `alignSelf`: align-self の値を指定できます。
 - `justifySelf`: justifySelf の値を指定できます。
-- order
+- `order`
 
 <Demo>
 	<Demo.Title>flexItem</Demo.Title>
@@ -263,23 +263,23 @@ Flexの子要素で使用できるプロパティは、`flexItem` にオブジ�
 <Demo>
 	<Demo.Title>fxsh,fxbにBP指定</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex fxw="nowrap" gap={20} lismState={["has--itemGuide"]}>
-			<Item fx="1 1 50%" bgc="pale">
+		<Flex gap={20} lismState={["has--itemGuide"]}>
+			<Item flex="1 1 50%" bgc="pale">
 				<DammyText length="xs"/>
 			</Item>
 
-			<Item fxsh={["1", "0"]} fxb={["50%", "60%"]} bgc="pale">
+			<Item shrink={["1", "0"]} basis={["50%", "60%"]} bgc="pale">
 				<DammyText length="m"/>
 			</Item>
 		</Flex>
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx {2,5}
-	<Flex fxw="nowrap" gap={20}>
-		<Item fx="1 1 50%" bgc="pale">
+	<Flex gap={20}>
+		<Item flex="1 1 50%" bgc="pale">
 			<p>...</p>
 		</Item>
-		<Item fxsh={["1", "0"]} fxb={["50%", "60%"]} bgc="pale">
+		<Item shrink={["1", "0"]} basis={["50%", "60%"]} bgc="pale">
 			<p>...</p>
 		</Item>
 	</Flex>

@@ -93,11 +93,11 @@ Lismコンポーネントでは `grid` Propにオブジェクト形式でflexの
 gridの子要素で使用できるプロパティは、`gridItem` にオブジェクト形式で指定するか、もしくは、`<Item>`コンポーネントを使うことでコンポーネントに直接指定できます。
 
 - `ga`: `grid-area` の値を指定できます。
-- `gc`:  `grid-column` の値を指定できます。
-- `gr`:  `grid-row` の値を指定できます。
+- `gc`: `grid-column` の値を指定できます。
+- `gr`: `grid-row` の値を指定できます。
 - `alignSelf`: align-self の値を指定できます。
-- `justifySelf`: justifySelf の値を指定できます。
-- order
+- `justifySelf`: justify-self の値を指定できます。
+- `order`
 
 <Demo>
 	<Demo.Title>`<Item>`コンポーネントに指定</Demo.Title>
@@ -105,15 +105,15 @@ gridの子要素で使用できるプロパティは、`gridItem` にオブジ�
 		<Grid columns="1fr 1fr" gap={20} lismState={["has--itemGuide"]}>
 			<Item>コンテンツ</Item>
 			<Item>コンテンツ</Item>
-			<Item gc="span 2">コンテンツ</Item>
+			<Item column="span 2">コンテンツ</Item>
 		</Grid>
 	</Demo.Preview>
-	<Demo.Code>
+	<Demo.Code> 
 	```jsx {4}
 	<Grid columns="1fr 1fr" gap={20}>
 		<Item>コンテンツ</Item>
 		<Item>コンテンツ</Item>
-		<Item gc="span 2">コンテンツ</Item>
+		<Item column="span 2">コンテンツ</Item>
 	</Grid>
 	```
 	</Demo.Code>
@@ -126,7 +126,7 @@ gridの子要素で使用できるプロパティは、`gridItem` にオブジ�
 		<Grid columns="1fr 1fr" gap={20} lismState={["has--itemGuide"]}>
 			<Box>コンテンツ</Box>
 			<Box>コンテンツ</Box>
-			<Box gridItem={{ gc: "span 2" }}>コンテンツ</Box>
+			<Box gridItem={{ column: "span 2" }}>コンテンツ</Box>
 		</Grid>
 	</Demo.Preview>
 	<Demo.Code>
@@ -134,7 +134,7 @@ gridの子要素で使用できるプロパティは、`gridItem` にオブジ�
 	<Grid columns="1fr 1fr" gap={20}>
 		<Box>コンテンツ</Box>
 		<Box>コンテンツ</Box>
-		<Box gridItem={{ gc: "span 2" }}>コンテンツ</Box>
+		<Box gridItem={{ column: "span 2" }}>コンテンツ</Box>
 	</Grid>
 	```
 	</Demo.Code>
@@ -152,8 +152,8 @@ gridの子要素で使用できるプロパティは、`gridItem` にオブジ�
 	<Demo.Preview resize p={20}>
 		<Grid columns={["1fr 1fr", "1fr 1fr 1fr"]} gap={20} lismState={["has--itemGuide"]}>
 			<Item>コンテンツ</Item>
-			<Item gc={[null, "span 2"]}>コンテンツ</Item>
-			<Item gc={["span 2", "span 3"]}>コンテンツ</Item>
+			<Item column={[null, "span 2"]}>コンテンツ</Item>
+			<Item column={["span 2", "span 3"]}>コンテンツ</Item>
 		</Grid>
 	</Demo.Preview>
 	<Demo.Code>
@@ -163,8 +163,8 @@ gridの子要素で使用できるプロパティは、`gridItem` にオブジ�
 		gap={20}
 	>
 		<Item>コンテンツ</Item>
-		<Item gc={[null, "span 2"]}>コンテンツ</Item>
-		<Item gc={["span 2", "span 3"]}>コンテンツ</Item>
+		<Item column={[null, "span 2"]}>コンテンツ</Item>
+		<Item column={["span 2", "span 3"]}>コンテンツ</Item>
 	</Grid>
 	```
 	</Demo.Code>

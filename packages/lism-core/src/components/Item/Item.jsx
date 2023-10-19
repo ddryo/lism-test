@@ -6,10 +6,17 @@ import { isEmptyObj, filterEmptyObj } from '../../lib';
 export function Item({
 	children,
 	as,
+	flex,
+	shrink,
+	grow,
+	basis,
 	fxg,
 	fxsh,
 	fx,
 	fxb,
+	area,
+	column,
+	row,
 	ga,
 	gc,
 	gr,
@@ -21,15 +28,15 @@ export function Item({
 	const Item = as || Core;
 
 	const flexProps = filterEmptyObj({
-		fxg,
-		fxsh,
-		fx,
-		fxb,
+		flex: flex || fx,
+		shrink: shrink || fxsh,
+		grow: grow || fxg,
+		basis: basis || fxb,
 	});
 	const gridProps = filterEmptyObj({
-		ga,
-		gc,
-		gr,
+		area: area || ga,
+		column: column || gc,
+		row: row || gr,
 	});
 
 	const selfPlaceProps = filterEmptyObj({

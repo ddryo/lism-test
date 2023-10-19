@@ -1,8 +1,8 @@
 {
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"name": "lism-blocks/box",
-	"title": "Box",
+	"name": "lism-blocks/flex",
+	"title": "Flex",
 	"category": "lism-blocks",
 	"keywords": ["group"],
 	"supports": {
@@ -26,11 +26,34 @@
 			"type": "string",
 			"default": "div"
 		},
-		"flowGap": {
+		"flexWrap": {
+			"type": "string",
+			"default": "nowrap"
+		},
+		"flexDirection": {
+			"type": "string",
+			"default": "row"
+		},
+		"gap": {
 			"type": "string"
+		},
+		"alignItems": {
+			"type": "string",
+			"default": "flex-start"
+		},
+		"alignContent": {
+			"type": "string",
+			"default": "flex-start"
+		},
+		"justifyItems": {
+			"type": "string",
+			"default": "flex-start"
+		},
+		"justifyContent": {
+			"type": "string",
+			"default": "flex-start"
 		}
 	},
 	"editorScript": "file:./index.js",
-	"style": "lism-blocks-container-style",
 	"textdomain": "lism-blocks"
 }

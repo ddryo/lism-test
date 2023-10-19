@@ -1,5 +1,5 @@
 /**
- * WordPress dependencies
+ * @WordPress dependencies
  */
 import {
 	ToggleControl,
@@ -9,10 +9,6 @@ import {
 	__experimentalUseCustomUnits as useCustomUnits,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
-/**
- * Internal dependencies
- */
 
 const OPTIONS = [
 	{

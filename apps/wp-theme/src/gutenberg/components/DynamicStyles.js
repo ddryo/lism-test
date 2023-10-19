@@ -1,5 +1,5 @@
 /**
- * WordPress dependencies
+ * @WordPress dependencies
  */
 import { BlockList } from '@wordpress/block-editor';
 import { useContext, createPortal, Platform } from '@wordpress/element';

@@ -1,5 +1,5 @@
 /**
- * WordPress dependencies
+ * @WordPress dependencies
  */
 import { TabPanel } from '@wordpress/components';
 import { BaseControl } from '@wordpress/components';
@@ -7,7 +7,7 @@ import { Icon, globe } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 
 /**
- * Internal dependencies
+ * @Internal dependencies
  */
 
 const DEFAULT_TABS = [

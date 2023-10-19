@@ -11,26 +11,22 @@ import {
 	__experimentalUseCustomUnits as useCustomUnits,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
-import { sidesAll, sidesTop, sidesRight, sidesBottom, sidesLeft } from '@wordpress/icons';
+import { sidesAll, sidesVertical, sidesHorizontal } from '@wordpress/icons';
 
 const DEFAULT_UNITS = ['px', 'em', 'rem'];
 
 const LABELS = {
 	all: __('All'),
-	top: __('Top'),
-	bottom: __('Bottom'),
-	left: __('Left'),
-	right: __('Right'),
+	row: __('Row'),
+	column: __('Column'),
 };
 
 const ICONS = {
-	top: sidesTop,
-	right: sidesRight,
-	bottom: sidesBottom,
-	left: sidesLeft,
+	row: sidesVertical,
+	column: sidesHorizontal,
 };
 
-export default function SpacingControl({ units: _units = DEFAULT_UNITS }) {
+export default function GapControl({ units: _units = DEFAULT_UNITS }) {
 	const [isLinked, setIsLinked] = useState(false);
 	const [side, setSide] = useState();
 	const units = useCustomUnits({ availableUnits: _units });
@@ -39,7 +35,7 @@ export default function SpacingControl({ units: _units = DEFAULT_UNITS }) {
 		: __('Link Sides', 'lism-blocks');
 
 	return (
-		<VStack className='lism-spacingControl'>
+		<VStack className='lism-gapControl'>
 			<Button
 				className='__link'
 				variant={isLinked ? 'primary' : 'secondary'}
@@ -54,8 +50,8 @@ export default function SpacingControl({ units: _units = DEFAULT_UNITS }) {
 					}
 				}}
 			/>
-			{isLinked ? (
-				<div className='__linked'>
+			{isLinked && (
+				<div className='__row'>
 					<Icon icon={sidesAll} className='__icon' />
 					<UnitControl
 						size='__unstable-large'
@@ -66,13 +62,13 @@ export default function SpacingControl({ units: _units = DEFAULT_UNITS }) {
 						min={0}
 					/>
 				</div>
-			) : (
-				<div className='__unlinked'>
-					<Icon icon={side ? ICONS[side] : sidesAll} className='__icon' />
-					{['top', 'right', 'bottom', 'left'].map((side) => (
+			)}
+			{!isLinked &&
+				['row', 'column'].map((side) => (
+					<div className='__row' key={side}>
+						<Icon icon={side ? ICONS[side] : sidesAll} className='__icon' />
 						<UnitControl
 							key={side}
-							className={`__${side}`}
 							size='__unstable-large'
 							__nextHasNoMarginBottom
 							label={LABELS[side]}
@@ -81,9 +77,8 @@ export default function SpacingControl({ units: _units = DEFAULT_UNITS }) {
 							min={0}
 							onFocus={() => setSide(side)}
 						/>
-					))}
-				</div>
-			)}
+					</div>
+				))}
 			<Button className='__reset' variant='secondary' size='small'>
 				{__('Clear', 'lism-blocks')}
 			</Button>

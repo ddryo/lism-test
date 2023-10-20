@@ -1,3 +1,277 @@
-import { Box, Flex, Stack } from '@lism/core';
+import { Columns, Box, Frame, Flex, TileGrid, Cluster } from '@lism/core';
 
 # Gradient
+
+
+`gradient`を指定することで、背景にグラデーションをつけることができます。
+
+文字列またはオブジェクト形式で指定できます。
+
+- 文字列指定の場合、下記の2パターンに分かれます。
+	- 登録済みのプリセット値と一致する場合はユーティリティクラスとして出力されます。
+	- それ以外の場合、background-imageにそのまま出力されます。
+- オブジェクト指定では、以下のプロパティを指定できます。
+	- `type`: linear | radial | repeating-linear | repeating-radial | conic
+	- `angle`: `45deg`, `to left`など、カラー入力前に指定できるアングル値。typeによって何が有効か値かは異なります。
+	- `colors`: プリセット値と一致していれば、`var(--gradient-color--xxx)`変数が出力され、それ以外の場合はそのまま文字列が出力されます。
+
+
+<Demo>
+	<Demo.Title>文字列で直書き</Demo.Title>
+	<Demo.Preview resize p={20}>
+	<Columns cols={[2,3,4]} gap={30} fz='xs' itemMinW="12rem">
+		<Frame
+			aspect="16/9"
+			gradient="linear-gradient(to top, #a8edea 0%, #fed6e3 100%)"
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient="conic-gradient(#000 0%, #fff 100%)"
+		></Frame>
+	</Columns>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {3,7}
+		<Frame
+			aspect="16/9"
+			gradient="linear-gradient(to top, #a8edea 0%, #fed6e3 100%)"
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient="conic-gradient(#000 0%, #fff 100%)"
+		></Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>オブジェクト指定</Demo.Title>
+	<Demo.Preview resize p={20}>
+	<TileGrid gap={30} fz='xs' itemMinW="12rem">
+		<Frame
+			aspect="16/9"
+			gradient={{
+				angle: '35deg',
+				colors: '#ff9a9e 0%, #fad0c4 99%, #fad0c4 100%'
+			}}
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient={{
+				type: 'radial',
+				angle: 'circle at top right',
+				colors: 'yellow, #f06d06 50%',
+			}}
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient={{
+				type: 'repeating-linear',
+				angle: '45deg',
+				colors: '#3f87a6, #ebf8e1 20%',
+			}}
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient={{
+				type: 'conic',
+				angle: 'from -45deg',
+				colors: '#fff, #000, #fff',
+			}}
+		></Frame>
+	</TileGrid>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Frame
+			aspect="16/9"
+			gradient={{
+				angle: '35deg',
+				colors: '#ff9a9e 0%, #fad0c4 99%, #fad0c4 100%'
+			}}
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient={{
+				type: 'radial',
+				angle: 'circle at top right',
+				colors: 'yellow, #f06d06 50%',
+			}}
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient={{
+				type: 'repeating-linear',
+				angle: '45deg',
+				colors: '#3f87a6, #ebf8e1 20%',
+			}}
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient={{
+				type: 'conic',
+				angle: 'from -45deg',
+				colors: '#fff, #000, #fff',
+			}}
+		></Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+### 登録済みのcolor変数を指定する
+オブジェクト指定時、`colors`に渡した文字列に`,`がない場合、`var(--gradient-color--{colors})` として出力されます。  
+事前にカラー変数を定義しておくことで、同じカラーセットを流用して異なるグラデーションを作成することができます。
+
+Lismが標準で用意しているのは`--gradient-color--to-black`のみです。
+
+<Demo>
+	<Demo.Title>Lismで用意しているto-blackを指定する</Demo.Title>
+	<Demo.Preview resize p={20}>
+	<Columns cols={[2,3,4]} gap={30} fz='s'>
+		<Frame
+			aspect="16/9"
+			gradient={{ angle: 'to right', colors: 'to-black' }}
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient={{ type: 'radial', colors: 'to-black' }}
+		></Frame>
+	</Columns>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Frame
+			aspect="16/9"
+			gradient={{ angle: 'to right', colors: 'to-black' }}
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient={{ type: 'radial', colors: 'to-black' }}
+		></Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>別途用意した場合の例</Demo.Title>
+	<Demo.Preview resize p={20}>
+	<Columns cols={[2,3,4]} gap={30} fz='s'>
+		<Frame
+			aspect="16/9"
+			gradient={{ angle: 'to right', colors: 'lime' }}
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient={{ angle: 'to bottom', colors: 'dense-water' }}
+		></Frame>
+	</Columns>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Frame
+			aspect="16/9"
+			gradient={{ angle: 'to right', colors: 'lime' }}
+		></Frame>
+		<Frame
+			aspect="16/9"
+			gradient={{ angle: 'to bottom', colors: 'dense-water' }}
+		></Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+
+上記の例では、以下のように追加で変数を定義しているものを呼び出しています。
+
+```css
+:root {
+	--gradient-color--lime: #abecd6 0%, #fbed96 100%;
+	--gradient-color--dense-water: #3ab5b0 0%, #3d99be 31%, #56317a 100%;
+}
+```
+
+
+### Utilityクラスでの呼び出し
+
+`gradient`に渡した文字列が事前に登録しているプリセット値と一致する場合、ユーティリティクラスとして出力されます。
+
+{/* <Alert preset="info">
+カラー変数とは違い
+</Alert> */}
+
+Lismが標準で用意しているのは `black-to-bottom`です。
+
+<Demo>
+	<Demo.Title>`black-to-bottom`を使う</Demo.Title>
+	<Demo.Preview resize p={20}>
+	<Frame
+		aspect='4/3'
+		gradient='black-to-bottom'
+		maxW='20rem'
+	></Frame>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {3}
+		<Frame
+			aspect='4/3'
+			gradient='black-to-bottom'
+			maxW='20rem'
+		></Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+
+
+#### 独自のユーティリティクラスの登録
+
+まず、`config.presets.gradient`に`"sunset"`を追加してユーティリティ化します。
+
+
+```
+...
+```
+
+次に、CSSを追記します。
+
+```css
+.-gradient\:sunset{
+	background-image: linear-gradient(
+		to top,
+		#3f51b1 0%,
+		#5a55ae 13%,
+		#7b5fac 25%,
+		#8f6aae 38%,
+		#a86aa4 50%,
+		#cc6b8e 62%,
+		#f18271 75%,
+		#f3a469 87%,
+		#f7c978 100%
+	);
+}
+```
+
+すると、次のようになります。
+
+<Demo>
+	<Demo.Title>`gradient="sunset"`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Frame
+			aspect='4/3'
+			gradient='sunset'
+			maxW='20rem'
+		></Frame>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {3}
+		<Frame
+			aspect='4/3'
+			gradient='sunset'
+			maxW='20rem'
+		></Frame>
+		```
+	</Demo.Code>
+</Demo>
+

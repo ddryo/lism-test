@@ -1,18 +1,10 @@
 {
 	"concepts": "",
 	"getting-started": "",
-	"playground": "Playground",
-	"todo": "",
 	"design-system": "Design System",
 	"tokens": "Tokens",
 	"props": "Props",
 	"components": {
 		"title": "Components"
-	},
-	"__": {
-		"title": "Components",
-		"theme": {
-			"toc": false
-		}
 	}
 }

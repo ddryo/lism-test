@@ -42,8 +42,8 @@ export default {
 	faviconGlyph: 'L',
 	logo: <span>Lism</span>,
 	project: {
-		// ↓ デフォルトでgithubアイコン
-		link: 'https://github.com/ddryo/lism-test/',
+		// ↓ デフォルトでgithubアイコンがでる
+		link: 'https://github.com/loos/lism',
 	},
 	// 上部に表示するバナー
 	banner: {

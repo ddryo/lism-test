@@ -13,6 +13,8 @@ import {
 	Columns,
 } from '@lism/core';
 import Preview from '@/components/Preview';
+import { GithubLogo, BookOpenText } from '@phosphor-icons/react';
+
 // import { useConfig } from 'nextra-theme-docs';
 
 const POINTS = [
@@ -27,13 +29,13 @@ const POINTS = [
 		icon: null,
 		title: 'ユーティリティファースト',
 		desc: `
-			事前のプリセット定義と、それを活用したユーティリティクラスを活用します。
+			事前にトークンとプリセット値を定義し、それらを流用します。主要なCSSプロパティにはユーティリティクラスも提供します。
 		`,
 	},
 	{
 		icon: null,
-		title: 'HTML&CSSだけで完結',
-		desc: 'Lismはあくまで設計理論。専用コンポーネントでそれを手軽に利用できるようにしていますが、生のHTMLコーディングにも活用できます。',
+		title: 'あくまでHTML&CSS',
+		desc: 'Lismはただの設計理論。専用コンポーネントでそれを手軽に利用できるようにしていますが、素のHTMLコーディングにも活用できます。',
 	},
 	{
 		icon: null,
@@ -51,7 +53,7 @@ const POINTS = [
 		icon: null,
 		title: 'WordPressフレンドリー',
 		desc: `
-			ビルド処理が必須ではない分、WordPressでの制作ベースにも採用可能です。専用テーマも用意しています。（予定）
+			ビルド処理が必須ではないので、WordPressでの制作にも採用可能です。（専用テーマも準備中です）
 		`,
 	},
 ];
@@ -71,9 +73,12 @@ export default function Home() {
 							Lism
 						</Text>
 						<Flex mbs={40} gap={20}>
-							<Button href='/docs/getting-started'>Docs</Button>
+							<Button href='/docs/concepts' leftIcon={BookOpenText}>
+								Docs
+							</Button>
 							<Button
-								href='https://github.com/ddryo/lism-test/tree/main/packages/lism-core'
+								leftIcon={GithubLogo}
+								href='https://github.com/loos/lism'
 								variant='outline'
 								target='_blank'
 								rel='noopener noreferrer'

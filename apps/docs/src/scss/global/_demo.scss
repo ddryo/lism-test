@@ -238,3 +238,9 @@
 .setLhParent--onlyProp {
 	line-height: 1.2;
 }
+
+:root {
+	/* // グラデーション用のカラープリセット */
+	--gradient-color--lime: #abecd6 0%, #fbed96 100%;
+	--gradient-color--dense-water: #3ab5b0 0%, #3d99be 31%, #56317a 100%;
+}

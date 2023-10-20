@@ -130,15 +130,16 @@ export function getMaybeSizeVar(size) {
 // 	return fz;
 // }
 
-// export function getMaybeRadiusVar(radius) {
-// 	if (isPresetValue('radius', radius)) {
-// 		return 'var(--radius--' + radius + ')';
-// 	}
-// 	return radius;
-// }
+export function getMaybeRadiusVar(radius) {
+	if (isPresetValue('radius', radius)) {
+		return 'var(--radius--' + radius + ')';
+	}
+	return radius;
+}
 
 export function getMaybeShadowVar(shadow) {
 	if (isPresetValue('shadow', shadow)) {
+		shadow = shadow + ''; // 数値でも渡ってくるので文字列化
 		return 'var(--shadow--' + shadow.replace('-', 'i') + ')';
 	}
 	return shadow;

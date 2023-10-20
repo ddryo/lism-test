@@ -2,11 +2,12 @@ import {
 	isPresetValue,
 	getUtilValue,
 	getMaybeColorVar,
-	getMaybeShadowVar,
 	getMaybeSpaceVar,
 	getMaybeFzVar,
 	getMaybeSizeVar,
 	getMaybeBgVar,
+	getMaybeShadowVar,
+	getMaybeRadiusVar,
 } from './index.js';
 
 import { PROPS, CONTEXT_PROPS } from '../config';
@@ -26,6 +27,8 @@ const CONVERTERS = {
 	fz: getMaybeFzVar,
 	size: getMaybeSizeVar,
 	bg: getMaybeBgVar,
+	shadow: getMaybeShadowVar,
+	radius: getMaybeRadiusVar,
 };
 
 // const PROP_FULL_NAMES = {

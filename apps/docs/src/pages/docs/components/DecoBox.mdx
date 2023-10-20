@@ -1,6 +1,6 @@
 
 import Image from 'next/image'
-import { Frame, Media, MediaLayer, FilterLayer, Layer, Center, DecoBox } from '@lism/core';
+import { DecoBox } from '@lism/core';
 
 
 # DecoBox
@@ -261,113 +261,6 @@ import { DecoBox } from '@lism/core';
 	<Demo.Code>
 		```jsx
 		...
-		```
-	</Demo.Code>
-</Demo>
-
-
-### bg
-
-<Demo>
-	<Demo.Title>grid, stripe</Demo.Title>
-	<Demo.Preview resize nogrid p={20}>
-		<Box bg='grid' p='box:l'>
-			<DammyText />
-		</Box>
-		<Box bg='stripe' p='box:l'>
-			<DammyText />
-		</Box>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Box bg='grid' p='box:l'>
-			<DammyText />
-		</Box>
-		<Box bg='stripe' p='box:l'>
-			<DammyText />
-		</Box>
-		```
-	</Demo.Code>
-</Demo>
-
-
-
-<Demo>
-	<Demo.Title>grid, stripe</Demo.Title>
-	<Demo.Preview resize nogrid p={20}>
-		<Box bg='grid' p='box:l' bgc='black:10%'>
-			<DammyText />
-		</Box>
-		<Box bg='stripe' p='box:l' bgc='blue:10%'>
-			<DammyText />
-		</Box>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Box bg='grid' p='box:l' bgc='black:10%'>
-			<DammyText />
-		</Box>
-		<Box bg='stripe' p='box:l' bgc='blue:10%'>
-			<DammyText />
-		</Box>
-		```
-	</Demo.Code>
-</Demo>
-
-
-
-#### Glass
-
-<Demo>
-	<Demo.Title>glass</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Frame aspect='16/9'>
-			<Media
-				src='https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80'
-				alt='' width='960' height='640'
-			/>
-			<Layer p={20} bg='glass' inset={0}>
-				<Center p='box' size='cover' bg='glass' c='white' radius={2} shadow={2}>
-					<DammyText />
-				</Center>
-			</Layer>
-		</Frame>
-		<Frame aspect='16/9'>
-			<Media
-				src='https://images.unsplash.com/photo-1501949997128-2fdb9f6428f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80'
-				alt='' width='960' height='640'
-			/>
-			<Layer p={20} inset={0}>
-				<Center p='box' size='cover' bg='glass' c='black' radius={5} shadow={4}>
-					<DammyText />
-				</Center>
-			</Layer>
-		</Frame>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Frame aspect='16/9'>
-			<Media
-				src='https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80'
-				alt='' width='960' height='640'
-			/>
-			<Layer p={20} bg='glass' inset={0}>
-				<Center p='box' size='cover' bg='glass' c='white' radius={2} shadow={2}>
-					<DammyText />
-				</Center>
-			</Layer>
-		</Frame>
-		<Frame aspect='16/9'>
-			<Media
-				src='https://images.unsplash.com/photo-1501949997128-2fdb9f6428f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80'
-				alt='' width='960' height='640'
-			/>
-			<Layer p={20} inset={0}>
-				<Center p='box' size='cover' bg='glass' c='black' radius={5} shadow={4}>
-					<DammyText />
-				</Center>
-			</Layer>
-		</Frame>
 		```
 	</Demo.Code>
 </Demo>

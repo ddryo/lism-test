@@ -114,10 +114,10 @@ export default {
 	whs: { style: 'whiteSpace', utils: { nowrap: 'nw' } },
 
 	// others
-	radius: { name: 'bdrs', presets: 1 },
-	shadow: { name: 'bxsh', presets: 1 },
-	bdrs: { presets: 'radius' },
-	bxsh: { presets: 'shadow' },
+	radius: { name: 'bdrs', presets: 'radius', converter: 'radius' },
+	shadow: { name: 'bxsh', presets: 'shadow', converter: 'shadow' },
+	bdrs: { presets: 'radius', converter: 'radius' },
+	bxsh: { presets: 'shadow', converter: 'shadow' },
 	aspect: { BP: 1, presets: 1 },
 	opacity: { style: 1 },
 	lis: { style: 'listStyle', utils: { none: 'n' } },

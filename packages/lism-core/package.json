@@ -10,7 +10,6 @@
 	"keywords": [
 		"framework",
 		"css-framework",
-		"wordpress",
 		"react",
 		"front-end",
 		"design-system"
@@ -33,13 +32,20 @@
 			"import": "./dist/index.js",
 			"require": "./dist/index.js"
 		},
-		"./components": {
-			"import": "./src/components"
-		},
+		"./components": "./src/components",
 		"./components/*": "./src/components/*",
 		"./scss/*": "./src/scss/*",
 		"./css/*": "./dist/css/*",
 		"./lib": "./src/lib/index.js"
+	},
+	"homepage": "https://www.lism.style",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ddryo/lism-test.git",
+		"directory": "packages/lism-core"
+	},
+	"bugs": {
+		"url": "https://github.com/ddryo/lism-test/issues"
 	},
 	"dependencies": {
 		"classnames": "^2.3.2"

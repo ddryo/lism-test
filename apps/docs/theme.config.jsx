@@ -16,6 +16,7 @@ export default {
 	// 	// { locale: 'zh', text: '中文' },
 	// ],
 	//
+	darkMode: false,
 	main: ({ children }) => {
 		const { asPath } = useRouter();
 		return (

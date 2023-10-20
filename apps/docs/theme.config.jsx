@@ -40,10 +40,10 @@ export default {
 	// 	},
 	// },
 	faviconGlyph: 'L',
-	logo: <span>Lism UI</span>,
+	logo: <span>Lism</span>,
 	project: {
 		// ↓ デフォルトでgithubアイコン
-		link: 'https://github.com/shuding/nextra',
+		link: 'https://github.com/ddryo/lism-test/',
 	},
 	// 上部に表示するバナー
 	banner: {
@@ -61,17 +61,17 @@ export default {
 		const { asPath } = useRouter();
 
 		if (['/'].includes(asPath)) {
-			return { titleTemplate: 'Lism UI' };
+			return { titleTemplate: 'Lism' };
 		}
 
-		return { titleTemplate: `%s | Lism UI` };
+		return { titleTemplate: `%s | Lism` };
 	},
 	head: () => {
 		const { asPath } = useRouter();
 		const { frontMatter } = useConfig();
 
 		const ogConfig = {
-			title: 'Lism UI',
+			title: 'Lism',
 			description: '...',
 			author: {
 				twitter: 'ddryo_loos',

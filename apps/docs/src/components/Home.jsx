@@ -68,11 +68,16 @@ export default function Home() {
 				<Box className='a--main' tag='main'>
 					<Container as={Center} isConstrained className='a--atf' minH='50vh' py={40} bgc='pale' gap={40}>
 						<Text tag='h1' fz='4xl' ff='mono' fw='light'>
-							Lism UI
+							Lism
 						</Text>
 						<Flex mbs={40} gap={20}>
 							<Button href='/docs/getting-started'>Docs</Button>
-							<Button href='/' variant='outline'>
+							<Button
+								href='https://github.com/ddryo/lism-test/tree/main/packages/lism-core'
+								variant='outline'
+								target='_blank'
+								rel='noopener noreferrer'
+							>
 								Github
 							</Button>
 						</Flex>

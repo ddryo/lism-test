@@ -16,7 +16,7 @@ export default {
 	// 	// { locale: 'zh', text: '中文' },
 	// ],
 	//
-	darkMode: 'light',
+	darkMode: 'Light',
 	main: ({ children }) => {
 		const { asPath } = useRouter();
 		return (
@@ -53,7 +53,7 @@ export default {
 				<span className='e--icon' data-emoji>
 					⚠️
 				</span>{' '}
-				Still in β.
+				Still in β. Lightモードで御覧ください。
 			</>
 		),
 	},

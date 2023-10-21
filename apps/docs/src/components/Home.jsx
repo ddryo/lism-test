@@ -107,20 +107,16 @@ export default function Home() {
 										);
 									})}
 								</Columns>
-
 								<h2>About &quot;Lism&quot; ?</h2>
-								<p>....</p>
 								<p>
-									ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
+									Every Layout + TailwindCSS + Bootstrap + Chakra UI を
+									混ぜ合わせたようなイメージです。
 								</p>
 								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio culpa at hic aliquid
-									iste, neque reiciendis vero optio perspiciatis nesciunt, id autem pariatur esse.
-									Reprehenderit corporis dolores perspiciatis quasi incidunt. Lorem ipsum dolor sit
-									amet consectetur adipisicing elit. Vitae sunt maiores consequuntur obcaecati magni
-									nesciunt quos tenetur totam rerum quis quae veniam repellat amet ea, asperiores
-									provident quibusdam enim perferendis!
+									Next.js, Astro などで利用できる<a href='/docs/components'>コンポーネント</a>
+									を配布しています。
 								</p>
+								<p>LismベースのWordPress用ブロックテーマも鋭意開発中です！</p>
 							</Container>
 						</Box>
 					</Box>

@@ -68,7 +68,16 @@ export default function Home() {
 
 			<Preview>
 				<Box className='a--main' tag='main'>
-					<Container as={Center} isConstrained className='a--atf' minH='50vh' py={40} bgc='pale' gap={40}>
+					<Container
+						as={Center}
+						isConstrained
+						hasGutter
+						className='a--atf'
+						minH='50vh'
+						py={40}
+						bgc='pale'
+						gap={40}
+					>
 						<Text tag='h1' fz='4xl' ff='mono' fw='light'>
 							Lism
 						</Text>
@@ -108,6 +117,7 @@ export default function Home() {
 									})}
 								</Columns>
 								<h2>About &quot;Lism&quot; ?</h2>
+								<p>CSSフレームワーク + Reactコンポーネントライブラリ。</p>
 								<p>
 									Every Layout + TailwindCSS + Bootstrap + Chakra UI を
 									混ぜ合わせたようなイメージです。

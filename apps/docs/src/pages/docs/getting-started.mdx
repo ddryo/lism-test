@@ -4,14 +4,12 @@ description: '...'
 ---
 
 import { Tabs, TabItem } from '@lism/core';
+import { SmileyXEyes } from "@phosphor-icons/react";
 
 # Installation
 
 <Alert>
 今はまだパッケージの公開をしていません。[github](https://github.com/ddryo/lism-test)からソースコードをダウンロードしてビルド後、そのソース内の`apps/vite-playground`などで利用できます。
-</Alert>
-<Alert>
-しかも`@lism`がすでにnpm上で使われていたので、譲渡申請が通らなければ変更予定。
 </Alert>
 
 <Tabs>
@@ -32,6 +30,10 @@ import { Tabs, TabItem } from '@lism/core';
 	</TabItem>
 </Tabs>
 
+<Alert icon={SmileyXEyes} keycolor="blue">
+しかも`@lism`がすでにnpm上で使われていたので、譲渡申請が通らなければ変更予定です...。
+</Alert>
+
 
 ## CSSの読み込み
 
@@ -39,11 +41,11 @@ import { Tabs, TabItem } from '@lism/core';
 <Tabs>
 	<TabItem label='Next.js'>
 		```js filename="_app.js or layout.js"
-		import '@lism/core/scss/...';
+		import '@lism/core/scss/all.scss';
 		```
 	</TabItem>
 
-	<TabItem label='HTML'>
+	<TabItem label='HTML(CDN)'>
 		```html filename="index.html"
 		<link ...>
 		```
@@ -87,7 +89,23 @@ import { Tabs, TabItem } from '@lism/core';
 </Tabs>
 
 
+### Use Components
+
+```jsx
+import { Box, Cluster, ... } from '@lism/core';
+
+<Box p={20}>
+	<Cluster>...</Cluster>
+	...
+</Box>
+```
+
+
 ## lism.config
+
+Lism Propsのカスタマイズなどを行うためのファイルです。（未実装）
+
+トークン値のカスタマイズや、どの値をユーティリティクラス化するかを設定できます。
 
 ```js filename="lism.config.js"
 ...

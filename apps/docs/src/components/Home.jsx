@@ -82,7 +82,7 @@ export default function Home() {
 							Lism
 						</Text>
 						<Flex mbs={40} gap={20}>
-							<Button href='/docs/concepts' leftIcon={BookOpenText}>
+							<Button href='/docs/getting-started' leftIcon={BookOpenText}>
 								Docs
 							</Button>
 							<Button

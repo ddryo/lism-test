@@ -7,7 +7,11 @@ import { ThumbsUp, SmileyXEyes } from "@phosphor-icons/react";
 # コンセプト
 
 "**Lism**" は、WEBサイト制作を効率化するためのフレームワークです。  
-WEBサイトで一般的によく使われるレイアウト・デザイン要素を細分化し、汎用的に使い回せるようにしました。
+独自の**CSS設計理論**を元にした**Reactコンポーネントライブラリ**を提供します。
+
+WEBサイトで一般的によく使われるレイアウト・デザイン要素を細分化し、汎用的に使い回せるようになっています。
+
+
 
 <Box p="box" bd={{c: 'b400', w: '2px'}} radius="4">
 	WEBサイト制作の完成度8割までを爆速化できる軽量なフレームワーク
@@ -24,27 +28,22 @@ WEBサイトで一般的によく使われるレイアウト・デザイン要�
 
 これらを活用することで、**少量のCSSで柔軟なデザインを組める**ようになっています。
 
-また、Lism設計理論を簡単に扱えるようにした専用のコンポーネント集も配布しています。
-
 [Every Layout](https://every-layout.dev/) + [TailwindCSS](https://tailwindcss.com/) + [Bootstrap](https://getbootstrap.com/) を 混ぜ合わせたようなイメージです。
 
 
+{/* また、Lism設計理論を簡単に扱えるようにした専用のコンポーネント集も配布しています。 */}
 <Demo>
-	<Demo.Title>こんな感じで使います</Demo.Title>
+	<Demo.Title>専用のコンポーネントはこんな感じで使います</Demo.Title>
 	<Demo.Code>
 ```jsx
-<Container isConstrained hasGutter py={40} gap={40} bgc='pale'>
-	<Center size="cover">
-		<Text tag='h1' fz='4xl'>
-			Lism
-		</Text>
+<Container isConstrained hasGutter py={40} bgc='pale'>
+	<Center size="cover" gap={40} >
+		<Text tag='h1' fz='4xl'>Lism</Text>
 		<Flex mbs={40} gap={20}>
-			<Button href='###' leftIcon={BookOpenText}>Docs</Button>
-			<Button leftIcon={GithubLogo} href='###' variant='outline'>Github</Button>
+			<Button href='###'>Docs</Button>
+			<Button href='###' variant='outline'>Github</Button>
 		</Flex>
-		<Text c='pale' fw='700'>
-			description text...
-		</Text>
+		<Text c='pale' fw='700'>description text...</Text>
 	</Center>
 	<Columns cols={[2, 2, 3]} gap={30}>
 		{POINTS.map((point, i) => {
@@ -63,7 +62,6 @@ WEBサイトで一般的によく使われるレイアウト・デザイン要�
 ```
 	</Demo.Code>
 </Demo>
-
 
 
 

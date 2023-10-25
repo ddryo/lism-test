@@ -1,8 +1,8 @@
 {
-    "core": null,
-    "themes": [ "." ],
-    "config": {
-        "WP_DEBUG": true,
+	"core": "WordPress/WordPress",
+	"themes": [ "." ],
+	"config": {
+		"WP_DEBUG": true,
 		"WP_DEBUG_SCRIPT": true
-    }
+	}
 }

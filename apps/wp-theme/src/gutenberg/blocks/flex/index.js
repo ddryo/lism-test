@@ -1,7 +1,7 @@
 /**
  * @External dependencies
  */
-import { Box } from '@lism/core';
+import { Flex } from '@lism/core';
 
 /**
  * @WordPress dependencies
@@ -14,7 +14,12 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
-import { PanelBody } from '@wordpress/components';
+import {
+	Flex as GutenbergFlex,
+	FlexItem,
+	PanelBody,
+	__experimentalVStack as VStack,
+} from '@wordpress/components';
 
 /**
  * @Internal dependencies
@@ -23,8 +28,10 @@ import metadata from './block.json';
 import icon from './icon';
 import {
 	SelectorPreviewTip,
-	FlowControl,
-	ResponsiveSpacingControl,
+	AlignJustifyControl,
+	FlexDirectionControl,
+	FlexWrapControl,
+	ResponsiveGapControl,
 	HTMLElementControls,
 } from '@/gutenberg/components';
 
@@ -32,9 +39,9 @@ import {
  * Box
  */
 registerBlockType(metadata.name, {
-	title: __('Box', 'lism-blocks'),
+	title: __('Flex', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
-	icon: icon,
+	// icon: icon,
 	transforms: {
 		from: [
 			{
@@ -50,10 +57,28 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes }) => {
-		const { templateLock, tagName = 'div', flowGap, anchor, className } = attributes;
+		const {
+			templateLock,
+			tagName = 'div',
+			flexWrap,
+			flexDirection,
+			gap,
+			alignItems,
+			alignContent,
+			justifyItems,
+			justifyContent,
+			anchor,
+			className,
+		} = attributes;
 
 		const lismProps = {
-			isFlow: flowGap !== undefined ? flowGap : undefined,
+			wrap: flexWrap,
+			direction: flexDirection,
+			ai: alignItems,
+			ac: alignContent,
+			ji: justifyItems,
+			jc: justifyContent,
+			gap: '16px',
 		};
 
 		const blockProps = useBlockProps({
@@ -72,15 +97,40 @@ registerBlockType(metadata.name, {
 			<>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
-						<FlowControl
-							value={flowGap}
-							onChange={(value) => {
-								setAttributes({ flowGap: value });
-							}}
-						/>
+						<VStack>
+							<GutenbergFlex>
+								<FlexItem>
+									<FlexWrapControl
+										value={flexWrap}
+										onChange={(value) => {
+											setAttributes({ flexWrap: value });
+										}}
+									/>
+								</FlexItem>
+								<FlexItem>
+									<FlexDirectionControl
+										value={flexDirection}
+										onChange={(value) => {
+											setAttributes({ flexDirection: value });
+										}}
+									/>
+								</FlexItem>
+							</GutenbergFlex>
+							<AlignJustifyControl
+								values={{
+										alignItems,
+										alignContent,
+										justifyItems,
+										justifyContent,
+									}}
+								onChange={(values) => {
+									setAttributes({ ...attributes, ...values });
+								}}
+							/>
+						</VStack>
 					</PanelBody>
 					<PanelBody title={__('Spacing', 'lism-blocks')}>
-						<ResponsiveSpacingControl label={__('Padding', 'lism-blocks')} />
+						<ResponsiveGapControl label={__('Gap', 'lism-blocks')} />
 					</PanelBody>
 				</InspectorControls>
 				<InspectorControls group='advanced'>
@@ -91,10 +141,10 @@ registerBlockType(metadata.name, {
 						}}
 					/>
 				</InspectorControls>
-				<Box {...innerProps} forwardedRef={ref}>
+				<Flex {...innerProps} forwardedRef={ref}>
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
 					{children}
-				</Box>
+				</Flex>
 			</>
 		);
 	},
@@ -108,9 +158,9 @@ registerBlockType(metadata.name, {
 		});
 
 		return (
-			<Box {...blockProps}>
+			<Flex {...blockProps}>
 				<InnerBlocks.Content />
-			</Box>
+			</Flex>
 		);
 	},
 });

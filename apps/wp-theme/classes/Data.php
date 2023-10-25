@@ -19,7 +19,7 @@ class Data {
 	 */
 	const BLOCKS = [
 		'box' => [],
-		// 'hoge' => [ 'style' ],
+		'flex' => [],
 	];
 
 	/**

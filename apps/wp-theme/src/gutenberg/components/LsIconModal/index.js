@@ -14,7 +14,7 @@ import {
 } from '@wordpress/components';
 
 /**
- * @Others dependencies
+ * @External dependencies
  */
 import classnames from 'classnames';
 

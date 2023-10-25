@@ -1,0 +1,29 @@
+.lism-gapControl {
+	position: relative;
+
+	.__link {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	.__row {
+		display: flex;
+		gap: 8px;
+		padding-right: 44px;
+
+		.components-input-control {
+			flex: 1;
+			margin: 0;
+
+			.components-input-control__input {
+				height: 36px;
+				min-height: 36px;
+			}
+		}
+	}
+
+	.__reset {
+		align-self: flex-end;
+	}
+}

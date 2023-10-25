@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React from 'react';
 import { Core } from '../Core';
 import { Icon } from '../Icon';
 import { getLismProps } from '../../lib';
@@ -42,7 +42,7 @@ export default function AccordionHeader({
 	};
 
 	// clickable=iconなら、iconをbuttunに
-	const { clickable } = useContext(AccContext);
+	const { clickable } = React.useContext(AccContext);
 	if (clickable === 'icon') {
 		iconProps.tag = 'button';
 	} else {

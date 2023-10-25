@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import React from 'react';
 import setEvent from './setEvent';
 import { getLismProps } from '../../lib';
 import { AccContext } from './context';
@@ -7,9 +7,9 @@ import { AccContext } from './context';
 
 // duration: [s]
 export default function Accordion({ children, clickable, duration = 0.3, ...props }) {
-	const ref = useRef(null);
+	const ref = React.useRef(null);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (!ref.current) return;
 		return setEvent(ref.current, duration, clickable || 'header');
 	}, [duration]);

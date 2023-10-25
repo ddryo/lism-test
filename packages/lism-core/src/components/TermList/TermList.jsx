@@ -1,4 +1,4 @@
-import { Children, cloneElement } from 'react';
+import React from 'react';
 import { Stack } from '../Flex/Stack';
 // import classnames from 'classnames';
 
@@ -17,8 +17,8 @@ export default function TermList({
 		fixW = fixW || '10rem';
 		fluidMinW = fluidMinW || '15rem';
 
-		children = Children.map(children, (child, index) => {
-			return cloneElement(child, { key: index, mode });
+		children = React.Children.map(children, (child, index) => {
+			return React.cloneElement(child, { key: index, mode });
 		});
 	}
 

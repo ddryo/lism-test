@@ -3,7 +3,7 @@
 
 // import cn from 'clsx';
 
-import { Box, Text, Flex, Stack, Note, Alert } from '@loos/lism-core';
+import { Box, Badge, Text, Flex, Stack, Note, Alert } from '@loos/lism-core';
 import Demo from '@/components/Demo';
 import Preview from '@/components/Preview';
 import Reference from '@/components/Reference';
@@ -34,6 +34,14 @@ const DammyText = ({ length = 's', lang = 'en', ...props }) => {
 	return <Text {...props}>{LOREM_TEXT[lang][length]}</Text>;
 };
 
+const MemoBadge = ({ children }) => {
+	return (
+		<Badge fz='11px' lh='1' p='10' variant='subtle' keycolor='orange' bd bdc='orange:20%'>
+			{children}
+		</Badge>
+	);
+};
+
 export const getMyComponents = () => {
 	return {
 		p: ({ children }) => <p>{children}</p>,
@@ -62,5 +70,6 @@ export const getMyComponents = () => {
 		Preview,
 		DammyText,
 		Reference,
+		MemoBadge,
 	};
 };

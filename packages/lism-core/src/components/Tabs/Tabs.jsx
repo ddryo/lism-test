@@ -1,4 +1,4 @@
-import { useId, useState, Children, cloneElement } from 'react';
+import React from 'react';
 import { Lism } from '../Lism';
 // import { TabContext } from './context';
 // import classnames from 'classnames';
@@ -18,8 +18,8 @@ export default function Tabs({
 	// エディタ上での開閉状態を管理
 	// const [actTab, setActTab] = useState(activeTab);
 
-	const theTabId = useId();
-	const [activeIndex, setActiveIndex] = useState(defaultIndex || 0);
+	const theTabId = React.useId();
+	const [activeIndex, setActiveIndex] = React.useState(defaultIndex || 0);
 	// const [tabs, setTabs] = useState([]);
 	// const [tabId, setTabId] = useState(customTabId || theTabId);
 	const tabId = customTabId || theTabId;
@@ -34,7 +34,7 @@ export default function Tabs({
 	const items = [];
 	const panels = [];
 
-	Children.forEach(children, (child, index) => {
+	React.Children.forEach(children, (child, index) => {
 		const lebel = child.props?.label || '';
 
 		const isActive = activeIndex === index;
@@ -52,7 +52,7 @@ export default function Tabs({
 				{lebel}
 			</button>
 		);
-		panels.push(cloneElement(child, { key: controlId, panelId: controlId, isActive }));
+		panels.push(React.cloneElement(child, { key: controlId, panelId: controlId, isActive }));
 	});
 
 	return (

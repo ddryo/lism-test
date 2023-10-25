@@ -1,6 +1,6 @@
 {
 	"name": "@loos/lism-next",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"description": "",
 	"main": "components/index.js",
 	"type": "module",
@@ -20,8 +20,7 @@
 		"@loos/lism-core": "workspace:*"
 	},
 	"peerDependencies": {
-		"@loos/lism-core": ">=0.0.1",
-		"astro": ">=3.0.0"
+		"@loos/lism-core": ">=0.0.1"
 	},
 	"sideEffects": false
 }

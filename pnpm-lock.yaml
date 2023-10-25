@@ -311,10 +311,6 @@ importers:
         version: 1.1.2(vite@4.3.9)
 
   packages/lism-next:
-    dependencies:
-      astro:
-        specifier: '>=3.0.0'
-        version: 3.2.3(sass@1.66.1)
     devDependencies:
       '@loos/lism-core':
         specifier: workspace:*

@@ -4,7 +4,7 @@ import { useConfig } from 'nextra-theme-docs';
 
 // import Demo from '@/components/Demo';
 import Footer from '@/components/Footer';
-import { Container } from '@lism/core';
+import { Container } from '@loos/lism-core';
 
 import { getMyComponents } from '@/theme/mdx-components';
 

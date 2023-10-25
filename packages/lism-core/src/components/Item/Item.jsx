@@ -3,7 +3,7 @@ import { Core } from '../Core';
 import { isEmptyObj, filterEmptyObj } from '../../lib';
 // import classnames from 'classnames';
 
-export function Item({
+export default function Item({
 	children,
 	as,
 	flex,

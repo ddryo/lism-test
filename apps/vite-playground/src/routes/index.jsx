@@ -1,5 +1,5 @@
 import OneColumn from '@/layouts/one-column';
-import { Container, Flow, Spacer } from '@lism/core';
+import { Container, Flow, Spacer } from '@loos/lism-core';
 
 export default function Index() {
 	return (

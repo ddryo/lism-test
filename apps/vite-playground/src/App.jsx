@@ -2,7 +2,7 @@
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
 
-import { Box, Container, Columns, Spacer } from '@lism/core';
+import { Box, Container, Columns, Spacer } from '@loos/lism-core';
 import ContanerTest from './test/ContanerTest.jsx';
 import DecoratorTest from './test/DecoratorTest.jsx';
 

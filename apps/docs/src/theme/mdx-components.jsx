@@ -3,7 +3,7 @@
 
 // import cn from 'clsx';
 
-import { Box, Text, Flex, Stack, Note, Alert } from '@lism/core';
+import { Box, Text, Flex, Stack, Note, Alert } from '@loos/lism-core';
 import Demo from '@/components/Demo';
 import Preview from '@/components/Preview';
 import Reference from '@/components/Reference';

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-// import { Lism } from '@lism/core';
+// import { Lism } from '@loos/lism-core';
 
 import { renderToString } from 'react-dom/server';
 

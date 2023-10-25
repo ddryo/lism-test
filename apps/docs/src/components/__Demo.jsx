@@ -3,7 +3,7 @@ import { useState } from 'react';
 import classnames from 'classnames';
 import MarkDown from '@/components/MarkDown';
 import Code from '@/components/Code';
-import { Box, Layer, Flex } from '@lism/core';
+import { Box, Layer, Flex } from '@loos/lism-core';
 
 // import { renderToString } from "react-dom/server";
 

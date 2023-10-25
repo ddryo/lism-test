@@ -11,7 +11,7 @@ import {
 	// LismConsumer as Consumer,
 	Container,
 	Columns,
-} from '@lism/core';
+} from '@loos/lism-core';
 import Preview from '@/components/Preview';
 import { GithubLogo, BookOpenText } from '@phosphor-icons/react';
 

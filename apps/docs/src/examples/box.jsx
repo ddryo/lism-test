@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@lism/core';
+import { Box } from '@loos/lism-core';
 import Demo from '@/components/Demo';
 
 export const Demo01 = () => (

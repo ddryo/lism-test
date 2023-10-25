@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Text, Flex, Container, Cluster } from '@lism/core';
+import { Text, Flex, Container, Cluster } from '@loos/lism-core';
 export default function Header() {
 	return (
 		<Container isConstrained hasGutter shadow='1'>

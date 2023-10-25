@@ -11,7 +11,7 @@
 		"delete-cache": "rm -rf .next/cache"
 	},
 	"dependencies": {
-		"@lism/core": "workspace:*",
+		"@loos/lism-core": "workspace:*",
 		"@phosphor-icons/react": "^2.0.10",
 		"classnames": "^2.3.2",
 		"eslint-config-next": "13.4.12",

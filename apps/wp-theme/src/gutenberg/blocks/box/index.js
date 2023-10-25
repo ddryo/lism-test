@@ -1,7 +1,7 @@
 /**
  * @External dependencies
  */
-import { Box } from '@lism/core';
+import { Box } from '@loos/lism-core';
 
 /**
  * @WordPress dependencies

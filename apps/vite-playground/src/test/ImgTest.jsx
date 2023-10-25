@@ -1,4 +1,4 @@
-import { Container, Box, Frame, Media } from '@lism/core';
+import { Container, Box, Frame, Media } from '@loos/lism-core';
 export default function Test() {
 	return (
 		<Container hasGutter isFlow isConstrained>

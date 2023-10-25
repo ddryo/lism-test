@@ -1,5 +1,5 @@
 {
-	"name": "@lism/core",
+	"name": "@loos/lism-core",
 	"version": "0.0.1",
 	"description": "",
 	"author": {
@@ -28,14 +28,13 @@
 		"src"
 	],
 	"exports": {
-		".": {
-			"import": "./dist/index.js",
-			"require": "./dist/index.js"
-		},
-		"./components": "./src/components",
-		"./components/*": "./src/components/*",
+		".": "./dist/index.js",
+		"./*": "./dist/*",
+		"./___components": "./dist/components",
+		"./___components/*": "./dist/components/*",
+		"./___css/*": "./dist/css/*",
 		"./scss/*": "./src/scss/*",
-		"./css/*": "./dist/css/*",
+		"./src/*": "./src/*",
 		"./lib": "./src/lib/index.js"
 	},
 	"homepage": "https://www.lism.style",

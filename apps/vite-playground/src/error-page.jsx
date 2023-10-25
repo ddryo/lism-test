@@ -3,7 +3,7 @@ import {
 	//Container, Grid, Item,Flow,
 	Stack,
 	Center,
-} from '@lism/core';
+} from '@loos/lism-core';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 

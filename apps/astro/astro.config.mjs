@@ -43,10 +43,10 @@ export default defineConfig({
 	],
 	vite: {
 		// ssr: {
-		// 	noExternal: ['@lism/core'],
+		// 	noExternal: ['@loos/lism-core'],
 		// },
 		resolve: {
-			// dedupe: ['@lism/core'],
+			// dedupe: ['@loos/lism-core'],
 			alias: {
 				react: path.join(__dirname, 'node_modules/react'),
 			},

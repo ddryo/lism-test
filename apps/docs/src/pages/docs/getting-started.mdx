@@ -3,7 +3,7 @@ title: 'Getting Started'
 description: '...'
 ---
 
-import { Tabs, TabItem } from '@lism/core';
+import { Tabs, TabItem } from '@loos/lism-core';
 import { SmileyXEyes } from "@phosphor-icons/react";
 
 # Installation
@@ -15,33 +15,32 @@ import { SmileyXEyes } from "@phosphor-icons/react";
 <Tabs>
 	<TabItem label='npm'>
 		```bash
-		npm i @lism/core
+		npm i @loos/lism-core
 		```
 	</TabItem>
 	<TabItem label='pnpm'>
 		```bash
-		pnpm add @lism/core
+		pnpm add @loos/lism-core
 		```
 	</TabItem>
 		<TabItem label='yarn'>
 		```bash
-		yarn add @lism/core
+		yarn add @loos/lism-core
 		```
 	</TabItem>
 </Tabs>
 
 <Alert icon={SmileyXEyes} keycolor="blue">
-しかも`@lism`がすでにnpm上で使われていたので、譲渡申請が通らなければ変更予定です...。
+本当は`@lism/core`にしたいのですが、すでに`@lism`がnpm上で取得されてしまっていたので、譲渡申請が通らなければ変更予定です...。
 </Alert>
 
 
 ## CSSの読み込み
 
-
 <Tabs>
 	<TabItem label='Next.js'>
 		```js filename="_app.js or layout.js"
-		import '@lism/core/scss/all.scss';
+		import '@loos/lism-core/scss/all.scss';
 		```
 	</TabItem>
 
@@ -60,30 +59,30 @@ import { SmileyXEyes } from "@phosphor-icons/react";
 <Tabs>
 	<TabItem label='React'>
 		```bash
-		npm i @lism/core
+		npm i @loos/lism-core
 		```
 
 		```js
-		import { Box, ... } from '@lism/core';
+		import { Box, ... } from '@loos/lism-core';
 		```
 	</TabItem>
 	<TabItem label='Next.js'>
 		```bash
-		npm i @lism/core @lism/next
+		npm i @loos/lism-core @loos/lism-next
 		```
 
 		```js
-		import { Box, ... } from '@lism/next';
+		import { Box, ... } from '@loos/lism-next';
 		```
 	</TabItem>
 
 	<TabItem label='Astro'>
 		```bash
-		npm i @lism/core @lism/astro
+		npm i @loos/lism-core @loos/lism-astro
 		```
 
 		```js
-		import { Box, ... } from '@lism/astro';
+		import { Box, ... } from '@loos/lism-astro';
 		```
 	</TabItem>
 </Tabs>
@@ -92,7 +91,7 @@ import { SmileyXEyes } from "@phosphor-icons/react";
 ### Use Components
 
 ```jsx
-import { Box, Cluster, ... } from '@lism/core';
+import { Box, Cluster, ... } from '@loos/lism-core';
 
 <Box p={20}>
 	<Cluster>...</Cluster>

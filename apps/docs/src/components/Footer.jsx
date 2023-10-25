@@ -1,4 +1,4 @@
-import { Container } from '@lism/core';
+import { Container } from '@loos/lism-core';
 // import Preview from '@/components/Preview';
 
 export default function Footer() {

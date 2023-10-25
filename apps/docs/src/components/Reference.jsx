@@ -1,4 +1,4 @@
-import { Alert } from '@lism/core';
+import { Alert } from '@loos/lism-core';
 
 import {
 	// Book,

@@ -1,4 +1,4 @@
-import { Box, Container, Columns, Spacer } from '@lism/core';
+import { Box, Container, Columns, Spacer } from '@loos/lism-core';
 
 export default function ContainerTest() {
 	return (

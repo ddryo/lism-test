@@ -11,7 +11,7 @@ import {
 	Spacer,
 	Cluster,
 	DecoBox,
-} from '@lism/core';
+} from '@loos/lism-core';
 // import DecoBox from './component/DecoBox.jsx';
 import { useState } from 'react';
 

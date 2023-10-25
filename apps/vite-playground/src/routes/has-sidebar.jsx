@@ -1,5 +1,5 @@
 import TwoColumn from '@/layouts/two-column';
-import { Flow } from '@lism/core';
+import { Flow } from '@loos/lism-core';
 
 export default function Page() {
 	return (

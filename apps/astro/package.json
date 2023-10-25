@@ -1,5 +1,5 @@
 {
-	"name": "@lism/astro-test",
+	"name": "@loos/lism-astro-test",
 	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
@@ -13,8 +13,8 @@
 	"dependencies": {
 		"@astrojs/mdx": "^1.0.0",
 		"@astrojs/react": "^3.0.0",
-		"@lism/astro": "workspace:*",
-		"@lism/core": "workspace:*",
+		"@loos/lism-astro": "workspace:*",
+		"@loos/lism-core": "workspace:*",
 		"@phosphor-icons/react": "^2.0.10",
 		"@types/react": "^18.0.21",
 		"@types/react-dom": "^18.0.6",

@@ -1,5 +1,5 @@
 import OneColumn from '@/layouts/one-column';
-import { Box } from '@lism/core';
+import { Box } from '@loos/lism-core';
 
 export default function Index() {
 	return (

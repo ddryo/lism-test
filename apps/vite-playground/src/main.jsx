@@ -9,7 +9,7 @@ import TestPage from '@/routes/test-page';
 
 import ErrorPage from '@/error-page';
 import './global.scss';
-import '@lism/core/scss/all.scss';
+import '@loos/lism-core/scss/all.scss';
 
 // [React Router]: https://reactrouter.com/en/main/start/tutorial
 const router = createBrowserRouter([

@@ -1,5 +1,5 @@
 // import { Link } from 'react-router-dom';
-import { Container, Flow, FluidFix, Item } from '@lism/core';
+import { Container, Flow, FluidFix, Item } from '@loos/lism-core';
 
 const DefaultSidebar = () => {
 	return (

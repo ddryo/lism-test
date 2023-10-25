@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Container, Box, Layer, Flex } from '@lism/core';
+import { Container, Box, Layer, Flex } from '@loos/lism-core';
 import Preview from './Preview';
 import classnames from 'classnames';
 // import { renderToString } from 'react-dom/server';

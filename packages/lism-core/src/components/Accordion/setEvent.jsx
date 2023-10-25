@@ -21,23 +21,29 @@ const clickedEvent = (e, details, animationTime) => {
 		}, DELAY);
 
 		// アニメーション完了後に dataset を除去。
-		setTimeout(() => {
-			delete details.dataset.animating;
-		}, animationTime * 1000 + DELAY);
+		setTimeout(
+			() => {
+				delete details.dataset.animating;
+			},
+			animationTime * 1000 + DELAY
+		);
 	} else if (details.open) {
 		details.classList.remove('-opened'); // クラスを削除
 
 		// アニメーション完了後に open属性 を除去。（CSS側のアニメーション時間 + 少しだけ余裕をもたせている）
-		setTimeout(() => {
-			details.open = false;
-			delete details.dataset.animating;
-		}, animationTime * 1000 + DELAY);
+		setTimeout(
+			() => {
+				details.open = false;
+				delete details.dataset.animating;
+			},
+			animationTime * 1000 + DELAY
+		);
 	}
 };
 
 const toggleEvent = (e, details) => {
 	// e.preventDefault();
-	console.log('toggleEvent', e.target, e.currentTarget);
+	// console.log('toggleEvent', e.target, e.currentTarget);
 
 	const hasOpen = details.open;
 	const hasOpenedClass = details.classList.contains('-opened');
@@ -55,6 +61,8 @@ const toggleEvent = (e, details) => {
 const setEvent = (currentRef, animationTime, clickable) => {
 	const details = currentRef;
 	const clickBtn = details.querySelector(`.l--accordion__${clickable}`);
+
+	if (!clickBtn) return;
 
 	const _clickedEvent = (e) => {
 		clickedEvent(e, details, animationTime);

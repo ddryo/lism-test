@@ -1,2 +1,2 @@
 import React from 'react';
-// import { Lism, Decorator } from '@lism/core';
+// import { Lism, Decorator } from '@loos/lism-core';

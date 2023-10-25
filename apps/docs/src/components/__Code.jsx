@@ -1,4 +1,4 @@
-import { Box } from '@lism/core';
+import { Box } from '@loos/lism-core';
 
 // react-syntax-highlighterパッケージ内のprismを使う。
 // import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -15,13 +15,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 // jsx言語を登録 → なくてもあっても同じっぽい？
 // SyntaxHighlighter.registerLanguage("jsx", jsx);
 
-export default function Code({
-	children,
-	del,
-	delOnlyAfterNL = false,
-	language = 'jsx',
-	...attrs
-}) {
+export default function Code({ children, del, delOnlyAfterNL = false, language = 'jsx', ...attrs }) {
 	if (del && !delOnlyAfterNL) {
 		const reg = new RegExp(del, 'gm');
 		children = children.replace(reg, '');

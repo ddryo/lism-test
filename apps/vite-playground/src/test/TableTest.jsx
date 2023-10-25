@@ -1,4 +1,4 @@
-import { Container, Box, Note } from '@lism/core';
+import { Container, Box, Note } from '@loos/lism-core';
 
 function TableDemo({ trCount = 5, is4col, children }) {
 	return (

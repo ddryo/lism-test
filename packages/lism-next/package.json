@@ -1,0 +1,27 @@
+{
+	"name": "@loos/lism-next",
+	"version": "0.0.1",
+	"description": "",
+	"main": "components/index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"files": [
+		"components"
+	],
+	"exports": {
+		".": "./components/index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"devDependencies": {
+		"@loos/lism-core": "workspace:*"
+	},
+	"peerDependencies": {
+		"@loos/lism-core": ">=0.0.1",
+		"astro": ">=3.0.0"
+	},
+	"sideEffects": false
+}

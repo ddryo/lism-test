@@ -1,8 +1,8 @@
 // import './globals.scss';
 
-// import '@lism/core/scss/all.scss';
-// import '@lism/core/scss/core-modules.scss';
-// import '@lism/core/scss/block-modules.scss';
+// import '@loos/lism-core/scss/all.scss';
+// import '@loos/lism-core/scss/core-modules.scss';
+// import '@loos/lism-core/scss/block-modules.scss';
 
 import { Inter } from 'next/font/google';
 

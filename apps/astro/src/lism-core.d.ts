@@ -1,2 +1,2 @@
 
-declare module '@lism/core';
+declare module '@loos/lism-core';

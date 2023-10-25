@@ -1,19 +1,6 @@
-package.json の書き方についてのメモ
+## publish
 
-## 読み込み対象ファイル
-
-"main": 実際に各プロジェクトから読み込まれるファイル?。ここを cjs 形式にしてしまうと import で読み込めなかったりしそう？
-"module": ems 形式で記述したファイルで、import で読み込むとこっちになるという説明がよくされていたが、あくまで vite などの dev モードのときの話っぽい？
-→ npm link で読み込んでいる時、next の run dev でも "module" 側を読み込んだ。
-
-※ "module" にも ビルドしたファイルを読み込むようにしないと、node_modules 内のソースをパースできないことでエラーになる。
-npm link かつ next の pages の場合、Cannot read properties of null (reading 'useContext') みたいなエラーが出てしまう...
-
-export で指定すると、import,require で確実に分けれるのかも？
-
-## 依存関係
-
-"peerDependencies": 依存するがビルド後ファイルに内包しないもの。react とかを指定する。たまに消えるっぽい？ので定期的に確認して記述漏れしないように。
+npm publish --access=public
 
 ## 開発時のキャッシュ削除
 
@@ -24,40 +11,14 @@ rm -rf .next/cache
 
 next.js 13 以降の app ルーター使用時、Reat Hook を使ったコンポーネントを使う際に "use client"; の記述が必要。
 
-※ "@loos/lism-test/components" から直接インポートしてもらうようにすると Lism 側で書いておけば必要なくなる。
+※ "@loos/lism-test/components" から直接インポートしてもらうようにすると Lism 側で書いておけば必要なくなる?
+→ビルド時にエラーがでた。が、無視しても問題なさそう...？
 
-ただし、/components から直接ソース読み込む場合、`next.config.js` で下記の設定が必要
+ただし、/components から直接ソース読み込む場合、`next.config.js` で下記の設定が必要だった
 
 ```
 transpilePackages: ['@loos/lism-test'],
 ```
-
-## 開発時の注意点
-
-コンポーネントの先頭で react 読み込みは必要 ?
-import React from 'react';
-これがないと React が undefined になるっぽい
-
-"use client" を書いていると、ビルド時にエラーがでるが、無視しても問題なさそう。
-
-※ next.js 以外で使われる時に問題が発生するかもしれないから、lism-next とかで next 用 のものだけに使う？
-
-### モノレポ運用
-
-`package.json`に`workspace`を定義できる。
-→ ここで定義したものは websiteフォルダ内など他のworkspaceからパッケージとして参照したりできる。
-→ rootでpublishしたらワークスペースのパッケージたちも公開される？(未確認)
-
-`pnpm-workspace.yaml`
-→ 初期インストール(`pnpm i`)をしたとき、ここで定義したワークスペース内のpackageも一括でインストールしてきてくれる。
-
-
-@lism/core側でreactはdevDependenciesに含めず、作業環境（ドキュメントサイト用プロジェクトなど）側でreactパッケージを使う。
-
-
-## publish
-
-npm publish --access=public
 
 # Prettier と Eslint についてのメモ
 

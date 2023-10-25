@@ -1,7 +1,7 @@
 /**
  * @External dependencies
  */
-import { Flex } from '@lism/core';
+import { Flex } from '@loos/lism-core';
 
 /**
  * @WordPress dependencies
@@ -118,11 +118,11 @@ registerBlockType(metadata.name, {
 							</GutenbergFlex>
 							<AlignJustifyControl
 								values={{
-										alignItems,
-										alignContent,
-										justifyItems,
-										justifyContent,
-									}}
+									alignItems,
+									alignContent,
+									justifyItems,
+									justifyContent,
+								}}
 								onChange={(values) => {
 									setAttributes({ ...attributes, ...values });
 								}}

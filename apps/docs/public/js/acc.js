@@ -1,4 +1,4 @@
-// import { setEvent } from '../../node_modules/@lism/core/src/components/Accordion/script.js';
+// import { setEvent } from '../../node_modules/@loos/lism-core/src/components/Accordion/script.js';
 
 console.log('acc.js !');
 

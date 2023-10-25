@@ -1,5 +1,5 @@
 import OneColumn from '@/layouts/one-column';
-import { Container, Box, Stack, Flow, Cluster, Spacer } from '@lism/core';
+import { Container, Box, Stack, Flow, Cluster, Spacer } from '@loos/lism-core';
 import DecoratorTest from '@/test/DecoratorTest';
 import ContainerTest from '@/test/ContainerTest';
 import GradationTest from '@/test/GradationTest';

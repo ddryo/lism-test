@@ -1,4 +1,4 @@
-import { Container, Box, Cluster } from '@lism/core';
+import { Container, Box, Cluster } from '@loos/lism-core';
 export default function DecoratorTest() {
 	return (
 		<Container hasGutter isFlow isConstrained>

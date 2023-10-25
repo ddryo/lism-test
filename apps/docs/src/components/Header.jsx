@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Container, Flex, Text } from '@lism/core';
+import { Container, Flex, Text } from '@loos/lism-core';
 
 export default function Header() {
 	return (

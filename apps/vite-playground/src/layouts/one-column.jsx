@@ -1,5 +1,5 @@
 // import { Link } from 'react-router-dom';
-import { Container, Box } from '@lism/core';
+import { Container, Box } from '@loos/lism-core';
 export default function OneColumn({ title = '', children }) {
 	return (
 		<Box py={50}>

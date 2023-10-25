@@ -1,6 +1,6 @@
 import React from 'react';
 import { getCollection } from 'astro:content';
-import { NavMenu, NavMenuItem, Box } from '@lism/core';
+import { NavMenu, NavMenuItem, Box } from '@loos/lism-core';
 import { getLangFromURL } from '~/util';
 
 const blogEntries = await getCollection('docs');

@@ -21,6 +21,22 @@ import classnames from 'classnames';
 // 	return '_' === bp;
 // };
 
+const ProvidableProps = {
+	c: 'color',
+	bgc: 'color',
+	bdc: 'color',
+	p: 'space',
+	gap: 'space',
+	radius: 'radius',
+	shadow: 'shadow',
+};
+const HoverProps = {
+	c: 'color',
+	bgc: 'color',
+	bdc: 'color',
+	shadow: 'shadow',
+};
+
 const CONVERTERS = {
 	color: getMaybeColorVar,
 	space: getMaybeSpaceVar,
@@ -35,6 +51,23 @@ const CONVERTERS = {
 // 	padding: 'p',
 // 	margin: 'm',
 // };
+
+// CSS変数としてのみ出力する特殊処理
+const getCssVarValue = (propName, propVal, converterName) => {
+	// // css変数名
+	// const cssVarName = `${prefix}--${propName}`;
+
+	const converterFunc = CONVERTERS[converterName];
+	if (!converterFunc) return propVal;
+
+	// コンバーターを実行
+	const checkPropName = 'space' === converterName || 'color' === converterName;
+	if (checkPropName) {
+		return converterFunc(propVal, propName);
+	} else {
+		return converterFunc(propVal);
+	}
+};
 
 class CommonProps {
 	// propList = {};
@@ -68,7 +101,11 @@ class CommonProps {
 			isFlow,
 			isItem,
 			hasLayer,
+			hasDivider,
+			// hasDelimiter,
 			lismVar,
+			isProvider,
+			isConsumer,
 			...others
 		} = props;
 
@@ -107,6 +144,7 @@ class CommonProps {
 			lismState, // is, has
 			{
 				// 'has--gutter': hasGutter || false,
+				'has--divider': hasDivider || false,
 				'has--layer': hasLayer || false,
 				// 'use:lismVar': lismVar || false,
 			}
@@ -159,6 +197,23 @@ class CommonProps {
 		// ref
 		if (forwardedRef) {
 			this.attrs.ref = forwardedRef;
+		}
+
+		if (null != isProvider && typeof isProvider === 'object') {
+			this.setProvider(isProvider);
+		}
+
+		// consumer
+		// if (null != isConsumer && Array.isArray(isConsumer)) {
+		// 	this.attrs['data-lism-consumer'] = isConsumer.join(' ');
+		// }
+
+		if (null != isConsumer) {
+			if (Array.isArray(isConsumer)) {
+				this.attrs['data-lism-consumer'] = isConsumer.join(' ');
+			} else if (typeof isConsumer === 'string') {
+				this.attrs['data-lism-consumer'] = isConsumer;
+			}
 		}
 	}
 
@@ -397,40 +452,57 @@ class CommonProps {
 		this.addStyle(styleName, val);
 	}
 
-	setHoverProps(hover) {
-		if (!hover) return;
+	setProvider(providerData) {
+		let dataList = [];
 
-		// 再帰処理
-		if (Array.isArray(hover)) {
-			hover.forEach((_hov) => {
+		// providerData オブジェクトをループさせる
+		Object.keys(providerData).forEach((propName) => {
+			// プロバイダーリストに追加
+			dataList.push(propName);
+
+			// 渡す値
+			let value = providerData[propName];
+
+			// コンバーター取得
+			const converterName = ProvidableProps[propName];
+			if (converterName) {
+				value = getCssVarValue(propName, value, converterName);
+			}
+
+			this.addStyle(`--pass--${propName}`, value);
+		});
+
+		// 意味はないが一応何をしているかわかるようにdata属性にセット
+		this.attrs['data-lism-provider'] = dataList.join(' ');
+	}
+
+	setHoverProps(hoverData) {
+		if (!hoverData) return;
+
+		// 配列のときは中身を再帰処理
+		if (Array.isArray(hoverData)) {
+			hoverData.forEach((_hov) => {
 				this.setHoverProps(_hov);
 			});
 		}
 
-		if (typeof hover === 'string') {
+		if (hoverData === '-' || hoverData === true) {
+			this.addUtil(`-hov:`);
+		} else if (typeof hoverData === 'string') {
 			// this.setHoverClass(hover);
-			this.addUtil(`-hov:${hover}`);
-		} else if (typeof hover === 'object') {
-			// if (hover?.utility) {
-			// 	this.setHoverClass(hover.utility);
-			// }
-			const { c, bgc, bdc, shadow } = hover;
-			if (c) {
-				this.addUtil('-hov:c:');
-				this.addStyle('--hov--c', getMaybeColorVar(c, 'c'));
-			}
-			if (bgc) {
-				this.addUtil('-hov:bgc:');
-				this.addStyle('--hov--bgc', getMaybeColorVar(bgc, 'bgc'));
-			}
-			if (bdc) {
-				this.addUtil('-hov:bdc:');
-				this.addStyle('--hov--bdc', getMaybeColorVar(bdc, 'bdc'));
-			}
-			if (shadow) {
-				this.addUtil('-hov:shadow:');
-				this.addStyle('--hov--shadow', getMaybeShadowVar(shadow));
-			}
+			this.addUtil(`-hov:${hoverData}`);
+		} else if (typeof hoverData === 'object') {
+			Object.keys(hoverData).forEach((propName) => {
+				let value = hoverData[propName];
+
+				// コンバーター取得
+				const converterName = HoverProps[propName];
+				if (converterName) {
+					value = getCssVarValue(propName, value, converterName);
+				}
+				this.addUtil(`-hov:${propName}:`);
+				this.addStyle(`--hov--${propName}`, value);
+			});
 		}
 	}
 

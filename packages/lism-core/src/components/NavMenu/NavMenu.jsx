@@ -1,67 +1,63 @@
 // import React from 'react';
-import { Lism } from '../Lism';
+import { Core } from '../Core';
 import { Cluster } from '../Flex/Cluster';
-// import { getMaybeColorVar } from '../../lib';
+import { getMaybeColorVar, getMaybeSpaceVar } from '../../lib';
 
 export default function NavMenu({
+	lismClass = {},
+	lismStyle = {},
 	children,
 	variant,
 	nestLevel,
-	border,
+	// border,
 	direction,
-	// hovBgc,
-	// hovColor,
+	itemHovColor,
+	itemHovBgc,
 	// itemP,
 	// style = {},
+	itemPadding,
 	...props
 }) {
-	// p:0→ ulにデフォルトで付いてくる可能性の高いpaddingを削除
-
-	const lismStyle = {};
-	const navProps = {
-		tag: 'ul',
-		blockClass: 'b--navMenu',
-		p: 0,
-		// lis: 'none',
-		// style: style,
-		...props,
-	};
-
+	lismClass.c = 'c--navMenu';
 	if (variant) {
-		navProps['data-variant'] = variant;
+		// navProps['data-variant'] = variant;
+		lismClass.c += ` c--navMenu--${variant}`;
 	}
 
-	if (border)
-		if (variant === 'box') {
-			navProps.bd = '-';
-		} else if (variant === 'border') {
-			navProps.bd = '-';
-			navProps.bdl = 'none';
-			navProps.bdr = 'none';
-		}
+	if (itemHovBgc) {
+		lismStyle['--hov--bgc'] = getMaybeColorVar(itemHovBgc, 'bgc');
+	}
+	if (itemHovColor) {
+		lismStyle['--hov--c'] = getMaybeColorVar(itemHovColor, 'c');
+	}
+	if (itemPadding) {
+		lismStyle['--item--p'] = getMaybeSpaceVar(itemPadding);
+	}
+
+	// const lismStyle = {};
+	const navProps = {
+		tag: 'ul',
+		lismClass,
+		lismStyle,
+		// lh: 's',
+		// lis: 'none',
+	};
 
 	if (nestLevel) {
-		lismStyle['--level'] = parseInt(nestLevel);
+		// lismStyle['--level'] = parseInt(nestLevel);
 		navProps['data-nest-level'] = nestLevel;
 	}
 
-	// if (hovBgc) {
-	// 	lismStyle['--hov--bgc'] = getMaybeColorVar(hovBgc);
-	// }
-	// if (hovColor) {
-	// 	lismStyle['--hov--c'] = getMaybeColorVar(hovColor);
-	// }
-
 	if (direction === 'horizontal') {
 		return (
-			<Cluster {...navProps} data-direction='horizontal' lismStyle={lismStyle}>
+			<Cluster gap={0} {...navProps} {...props}>
 				{children}
 			</Cluster>
 		);
 	}
 	return (
-		<Lism {...navProps} lismStyle={lismStyle}>
+		<Core {...navProps} {...props}>
 			{children}
-		</Lism>
+		</Core>
 	);
 }

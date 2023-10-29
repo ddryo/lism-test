@@ -44,7 +44,14 @@ export { Decorator } from './Decorator';
 export { DecoBox } from './DecoBox';
 
 // appルーターで use client がいるもの
-export { Accordion, AccordionHeader, AccordionBody } from './Accordion';
+export {
+	Accordion,
+	AccordionHeader,
+	AccordionBody,
+	AccordionLabel,
+	AccordionIcon,
+	AccordionGroup,
+} from './Accordion';
 export { Tabs, TabItem } from './Tabs';
 // export { DynamicCSS } from './DynamicCSS';
 
@@ -57,7 +64,7 @@ export { FAQ } from './FAQ';
 export { ChatBubble } from './ChatBubble';
 export { Section, SectionBody, SectionHeader, SectionFooter } from './Section';
 export { TermList, TermListRow } from './TermList';
-export { NavMenu, NavMenuItem } from './NavMenu';
+export { NavMenu, NavMenuItem, NavMenuText } from './NavMenu';
 // export { MediaText } from './MediaText';
 
 // 特殊

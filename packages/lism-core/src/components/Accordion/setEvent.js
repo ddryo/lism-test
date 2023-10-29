@@ -1,9 +1,3 @@
-// import { setEvent } from '../../node_modules/@loos/lism-core/src/components/Accordion/script.js';
-
-console.log('acc.js !');
-
-window.hoge = 'hoge';
-
 // open 属性付与からクラスの付与まで、ほんの少しだけ遅らせた方が動作が安定する
 const DELAY = 5;
 
@@ -79,7 +73,8 @@ function convertToMsNumber(time) {
 const setEvent = (currentRef) => {
 	const details = currentRef;
 	// トリガーが明示的に指定されていない場合は、<summary> 要素をトリガーとする
-	const clickBtn = details.querySelector(`[data-role="trigger"]`) || details.querySelector('summary');
+	const clickBtn =
+		details.querySelector(`[data-role="trigger"]`) || details.querySelector('summary');
 
 	if (!clickBtn) return;
 
@@ -129,15 +124,4 @@ const setEvent = (currentRef) => {
 	};
 };
 
-// document.addEventListener('DOMContentLoaded', function () {
-// });
-(function () {
-	const lismDemos = document.querySelectorAll('lism-demo');
-	lismDemos.forEach((lismDemo) => {
-		const shadowRoot = lismDemo.shadowRoot; // shadow root 取得
-		const detailsAll = shadowRoot.querySelectorAll('.c--accordion');
-		detailsAll.forEach((details) => {
-			setEvent(details);
-		});
-	});
-})();
+export default setEvent;

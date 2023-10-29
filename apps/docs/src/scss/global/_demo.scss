@@ -54,7 +54,7 @@
 
 	// grid
 	:not(:is(.-noframe, .-nogrid)) > & {
-		--bgGrid--color: rgba(185, 185, 185, 0.1);
+		--bgGrid--color: rgba(185, 185, 185, 0.08);
 		background-image: linear-gradient(transparent calc(100% - 1px), var(--bgGrid--color) 50%, var(--bgGrid--color)),
 			linear-gradient(90deg, transparent calc(100% - 1px), var(--bgGrid--color) 50%, var(--bgGrid--color));
 		background-repeat: repeat;

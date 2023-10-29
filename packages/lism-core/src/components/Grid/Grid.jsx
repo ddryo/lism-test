@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Core } from '../Core';
+import { Lism } from '../Lism';
 import { isEmptyObj, filterEmptyObj } from '../../lib';
 
 export default function Grid({
@@ -36,5 +36,5 @@ export default function Grid({
 	}
 
 	lismClass.l = `l--${_gridName}`;
-	return <Core lismClass={lismClass} {...props} />;
+	return <Lism lismClass={lismClass} {...props} />;
 }

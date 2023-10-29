@@ -9,6 +9,7 @@
 	vertical-align: middle; //下にスペースができるのを防ぐ
 	font-size: var(--size);
 	font-family: var(--ff--emoji);
+	flex-shrink: 0;
 
 	// > svg {
 	// 	// display: block;

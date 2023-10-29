@@ -77,11 +77,16 @@ export const getUtilValue = (utils, value) => {
 };
 
 // console.log('Number10%', Number('10%'));
-export function getMaybeSpaceVar(space) {
+export function getMaybeSpaceVar(space, propName) {
 	// spaceが 整数 or 整数を示す文字列 の場合
 	// if (isPresetValue('space', space)) {
 	if (typeof space === 'number' || isNumStr(space)) {
 		return `var(--s--${space})`;
+	}
+
+	// box:s → --p--box--s
+	if (propName && isPresetValue(propName, space)) {
+		return `var(--${propName}--${space})`.replace(':', '--');
 	}
 
 	/* eslint-disable-next-line  eqeqeq */

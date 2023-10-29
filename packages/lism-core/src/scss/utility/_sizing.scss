@@ -9,7 +9,9 @@
 .-w\:50 { --w: 50% }
 .-w\:75 { --w: 75% }
 .-w\:100 { --w: 100% }
+// 0, auto?
 .-w\:fit { --w: fit-content}
+.-w\:un { --w: unset}
 // .-h\:screen { --w: calc(100vw - var(--sbar)) }
 
 // .-h\:,
@@ -19,6 +21,7 @@
 .-h\:75 { --h: 75% }
 .-h\:100 { --h: 100% }
 .-h\:fit { --h: fit-content }
+.-h\:un { --h: unset}
 .-h\:screen { --h: 100vh;--h: 100dvh; }
 
 // .-w\:text{ width: 35em }
@@ -37,14 +40,15 @@
 	.-h\@lg\: { height: var(--h--lg) !important }
 }
 
-// max, min
+// max
+.-maxW\:100 {max-width: 100%;}
+.-maxH\:100 {max-height: 100%;}
+.-maxW\:un {max-width: unset;}
+.-maxH\:un {max-height: unset;}
 
-.-maxW\:100 {
-	max-width: 100%;
-}
-.-maxH\:100 {
-	max-height: 100%;
-}
+// min
+.-minW\:un {min-width: unset;}
+.-minH\:un {min-height: unset;}
 
 // .-maxW\:fit {
 // 	max-width: fit-content;

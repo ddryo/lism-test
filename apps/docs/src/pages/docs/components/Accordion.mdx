@@ -1,5 +1,5 @@
-import { Stack, Text, Center, Flex, Icon, Accordion, AccordionHeader, AccordionBody } from '@loos/lism-core';
-import { CaretDown, Minus, Plus, X, Question, Selection } from "@phosphor-icons/react";
+import { Stack, Text, Center, Flex, Icon, AccordionGroup, Accordion, AccordionHeader, AccordionBody, AccordionLabel, AccordionIcon } from '@loos/lism-core';
+import { CaretDown, Minus, Plus, X, Question, Selection, SealQuestion } from "@phosphor-icons/react";
 import Script from 'next/script';
 
 # Accordion
@@ -16,7 +16,7 @@ import Script from 'next/script';
 
 ## 主なProps
 - `<Accordion>`
-	- `clickable="icon"`
+	- `trigger="icon"`
 - `<AccordionHeader>`
 	- `icon`: アイコンを指定できます。内部の[`<Icon>`](/docs/components/Icon)コンポーネントに渡されます。
 		- デフォルト: `"accordion-toggle"`
@@ -43,20 +43,24 @@ import { Accordion, AccordionHeader, AccordionBody } from '@loos/lism-core';
 
 export const AccDemoContent = () => {
 	return(
-		<>
-			<p>Accordion Contents.</p>
-		</>
+		<p>Accordion Contents.</p>
 	);
 };
+
+<Alert>
+アコーディオンが動作しない場合はリロードしてください。
+</Alert>
 
 <Script src='/js/acc.js' type="module"/>
 <Demo>
 	<Demo.Title>Accordionの例</Demo.Title>
-	<Demo.Preview resize p={20}>
+	<Demo.Preview isShadow={1} resize p={20}>
 		<Accordion>
-			<AccordionHeader>アコーディオンのタイトル</AccordionHeader>
+			<AccordionHeader>
+				<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+				<AccordionIcon />
+			</AccordionHeader>
 			<AccordionBody>
-				<AccDemoContent />
 				<DammyText length="l" />
 			</AccordionBody>
 		</Accordion>
@@ -64,7 +68,10 @@ export const AccDemoContent = () => {
 	<Demo.Code>
 ```jsx
 <Accordion>
-	<AccordionHeader>アコーディオンのタイトル</AccordionHeader>
+	<AccordionHeader>
+		<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+		<AccordionIcon />
+	</AccordionHeader>
 	<AccordionBody>
 		...
 	</AccordionBody>
@@ -74,20 +81,75 @@ export const AccDemoContent = () => {
 </Demo>
 
 <Demo>
-	<Demo.Title>Accordionの例  (variant=fill とかにする？)</Demo.Title>
-	<Demo.Preview resize p={20}>
+	<Demo.Title>アイコンを左側に表示</Demo.Title>
+	<Demo.Preview isShadow={1} resize p={20}>
 		<Accordion>
-			<AccordionHeader c="white" bgc="main" radius="0">アコーディオンのタイトル</AccordionHeader>
-			<AccordionBody bd bdc="main" bdt="none">
-				<AccDemoContent />
+			<AccordionHeader>
+				<AccordionIcon />
+				<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+			</AccordionHeader>
+			<AccordionBody>
+				<DammyText length="l" />
+			</AccordionBody>
+		</Accordion>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {3}
+	<Accordion>
+		<AccordionHeader>
+			<AccordionIcon />
+			<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+		</AccordionHeader>
+		<AccordionBody>
+			<DammyText length="l" />
+		</AccordionBody>
+	</Accordion>
+	```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>単体での装飾例</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Accordion shadow='2' radius='2'>
+			<AccordionHeader p='box' bgc="main" c="white">
+				<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+				<AccordionIcon />
+			</AccordionHeader>
+			<AccordionBody p='box' bgc="main:10%">
+				<DammyText length="l" />
+			</AccordionBody>
+		</Accordion>
+		<hr />
+		<Accordion bd bdc="b200">
+			<AccordionHeader p='box' bgc="base">
+				<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+				<AccordionIcon />
+			</AccordionHeader>
+			<AccordionBody p='box' bgc="base" bd="top" bdc="b200">
+				<DammyText length="l" />
 			</AccordionBody>
 		</Accordion>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Accordion>
-	<AccordionHeader c="white" bgc="main" radius="0">アコーディオンのタイトル</AccordionHeader>
-	<AccordionBody bd bdc="main" bdt="none">
+<Accordion shadow='2' radius='2'>
+	<AccordionHeader p='box' bgc="main" c="white">
+		<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+		<AccordionIcon />
+	</AccordionHeader>
+	<AccordionBody p='box' bgc="main:10%">
+		...
+	</AccordionBody>
+</Accordion>
+<hr />
+<Accordion bd bdc="b200">
+	<AccordionHeader p='box' bgc="base">
+		<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+		<AccordionIcon />
+	</AccordionHeader>
+	<AccordionBody p='box' bgc="base" bd="top" bdc="b200">
 		...
 	</AccordionBody>
 </Accordion>
@@ -96,79 +158,308 @@ export const AccDemoContent = () => {
 </Demo>
 
 
-### アイコンの違い
+### AccordionGroup
+
+AccordionGroupの内部は`Stack`なので、`hasDivider`を指定できます。
+
+{/* `hasDivider` を指定すると、アコーディオン間に線が表示されます。 */}
 
 <Demo>
-	<Demo.Title>デフォルトで用意しているアイコン</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Stack gap={10}>
+	<Demo.Title>AccordionGroup</Demo.Title>
+	<Demo.Preview isShadow={1} resize p={30}>
+		<AccordionGroup hasDivider>
 			<Accordion>
-				<AccordionHeader>アコーディオンのタイトル</AccordionHeader>
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
 				<AccordionBody>
-					<AccDemoContent />
+					<DammyText length="l" />
 				</AccordionBody>
 			</Accordion>
 			<Accordion>
-				<AccordionHeader icon="accordion-toggle">アコーディオンのタイトル</AccordionHeader>
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー2</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
 				<AccordionBody>
-					<AccDemoContent />
+					<DammyText length="l" />
 				</AccordionBody>
 			</Accordion>
-		</Stack>
+			<Accordion>
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー3</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
+				<AccordionBody>
+					<DammyText length="l" />
+				</AccordionBody>
+			</Accordion>
+		</AccordionGroup>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Accordion>
-	<AccordionHeader>アコーディオンのタイトル</AccordionHeader>
-	<AccordionBody>...</AccordionBody>
-</Accordion>
-<Accordion>
-	<AccordionHeader icon="accordion-toggle">アコーディオンのタイトル</AccordionHeader>
-	<AccordionBody>...</AccordionBody>
-</Accordion>
+<AccordionGroup hasDivider>
+	<Accordion>
+		<AccordionHeader>
+			<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+			<AccordionIcon />
+		</AccordionHeader>
+		<AccordionBody>
+			...
+		</AccordionBody>
+	</Accordion>
+	<Accordion>...</Accordion>
+	<Accordion>...</Accordion>
+</AccordionGroup>
 ```
 	</Demo.Code>
 </Demo>
 
-<Demo>
-	<Demo.Title>アイコンを左側に表示</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Accordion>
-			<AccordionHeader iconPosition="left">アコーディオンのタイトル</AccordionHeader>
-			<AccordionBody>
-				<AccDemoContent />
-			</AccordionBody>
-		</Accordion>
-</Demo.Preview>
-	<Demo.Code>
-```jsx
-<Accordion>
-	<AccordionHeader iconPosition="left">アコーディオンのタイトル</AccordionHeader>
-	<AccordionBody>...</AccordionBody>
-</Accordion>
-```
-	</Demo.Code>
-</Demo>
-
+`allowMultiple`を`false`に指定すると、複数のアコーディオンを同時に開くことを禁止します。
 
 <Demo>
-	<Demo.Title>openIcon, closeIconを分ける</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Stack gap={10}>
+	<Demo.Title>AccordionGroup</Demo.Title>
+	<Demo.Preview isShadow={1} resize p={30}>
+		<AccordionGroup hasDivider allowMultiple={false}>
 			<Accordion>
-				<AccordionHeader openIcon={<Plus weight="bold" />} closeIcon={<Minus weight="bold" />}>
-					{`プラス/マイナス`}
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+					<AccordionIcon />
 				</AccordionHeader>
 				<AccordionBody>
-					<AccDemoContent />
+					<DammyText length="l" />
 				</AccordionBody>
 			</Accordion>
 			<Accordion>
-				<AccordionHeader openIcon={<CaretDown weight="bold" />} closeIcon={<X weight="bold" />}>
-					{`キャレット/クローズ`}
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー2</AccordionLabel>
+					<AccordionIcon />
 				</AccordionHeader>
 				<AccordionBody>
-					<AccDemoContent />
+					<DammyText length="l" />
+				</AccordionBody>
+			</Accordion>
+			<Accordion>
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー3</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
+				<AccordionBody>
+					<DammyText length="l" />
+				</AccordionBody>
+			</Accordion>
+		</AccordionGroup>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<AccordionGroup hasDivider allowMultiple={false}>
+	<Accordion>
+		<AccordionHeader>
+			<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+			<AccordionIcon />
+		</AccordionHeader>
+		<AccordionBody>
+			...
+		</AccordionBody>
+	</Accordion>
+	<Accordion>...</Accordion>
+	<Accordion>...</Accordion>
+</AccordionGroup>
+```
+	</Demo.Code>
+</Demo>
+
+
+`AccordionGroup`に`duration`を指定すると、その子要素である`<Accordion>`全てに同じdurationが適用されます。
+
+<Demo>
+	<Demo.Title>AccordionGroup</Demo.Title>
+	<Demo.Preview isShadow={1} p={30}>
+		<AccordionGroup hasDivider bd radius='3' duration='.5s'>
+			<Accordion>
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
+				<AccordionBody>
+					<DammyText length="l" />
+				</AccordionBody>
+			</Accordion>
+			<Accordion>
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー2</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
+				<AccordionBody>
+					<DammyText length="l" />
+				</AccordionBody>
+			</Accordion>
+			<Accordion>
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー3</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
+				<AccordionBody>
+					<DammyText length="l" />
+				</AccordionBody>
+			</Accordion>
+		</AccordionGroup>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<AccordionGroup hasDivider bd radius='3' duration='.5s'>
+	<Accordion>
+		<AccordionHeader>
+			<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+			<AccordionIcon />
+		</AccordionHeader>
+		<AccordionBody>
+			...
+		</AccordionBody>
+	</Accordion>
+	<Accordion>...</Accordion>
+	<Accordion>...</Accordion>
+</AccordionGroup>
+```
+	</Demo.Code>
+</Demo>
+
+`AccordionGroup`は`Stack`で構成されているため、`gap`でアコーディオン間の余白を調整できます。
+
+<Demo>
+	<Demo.Title>AccordionGroup</Demo.Title>
+	<Demo.Preview isShadow={1} p={30}>
+		<AccordionGroup gap={20}>
+			<Accordion hasDivider bdc='b200' bgc='pale' shadow='1' radius='3'>
+				<AccordionHeader p='box'>
+					<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
+				<AccordionBody p='box'>
+					<DammyText length="l" />
+				</AccordionBody>
+			</Accordion>
+			<Accordion hasDivider bdc='b200' bgc='pale' shadow='1' radius='3'>
+				<AccordionHeader p='box'>
+					<AccordionLabel>Accordionヘッダー2</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
+				<AccordionBody p='box'>
+					<DammyText length="l" />
+				</AccordionBody>
+			</Accordion>
+			<Accordion hasDivider bdc='b200' bgc='pale' shadow='1' radius='3'>
+				<AccordionHeader p='box'>
+					<AccordionLabel>Accordionヘッダー3</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
+				<AccordionBody  p='box'>
+					<DammyText length="l" />
+				</AccordionBody>
+			</Accordion>
+		</AccordionGroup>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<AccordionGroup gap={20}>
+	<Accordion hasDivider bdc='b200' bgc='pale' shadow='1' radius='3'>
+		<AccordionHeader p='box'>
+			<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+			<AccordionIcon />
+		</AccordionHeader>
+		<AccordionBody>
+			...
+		</AccordionBody>
+	</Accordion>
+	<Accordion hasDivider bdc='b200' bgc='pale' shadow='1' radius='3'>...</Accordion>
+	<Accordion hasDivider bdc='b200' bgc='pale' shadow='1' radius='3'>...</Accordion>
+</AccordionGroup>
+```
+	</Demo.Code>
+</Demo>
+
+
+### アイコンを変更する方法
+
+`<AccordionIcon>`の`icon`propsにアイコン用のコンポーネントを指定するか、子要素(`children`)に`<Icon>`を配置できます。
+
+<Demo>
+	<Demo.Title>アイコンを変えてみる</Demo.Title>
+	<Demo.Preview isShadow={1} resize p={20}>
+		<Accordion>
+			<AccordionHeader>
+				<AccordionLabel>アコーディオンヘッダー</AccordionLabel>
+				{/* <AccordionIcon icon={<CaretDown weight="bold" />} /> */}
+				<AccordionIcon>
+					<Icon icon={CaretDown} weight="bold" />
+				</AccordionIcon>
+			</AccordionHeader>
+			<AccordionBody>
+				<DammyText length="l" />
+			</AccordionBody>
+		</Accordion>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx {6-8, 20}
+import { CaretDown } from "@phosphor-icons/react";
+
+<Accordion>
+	<AccordionHeader>
+		<AccordionLabel>アコーディオンヘッダー</AccordionLabel>
+		<AccordionIcon>
+			<Icon icon={CaretDown} weight="bold" />
+		</AccordionIcon>
+	</AccordionHeader>
+	<AccordionBody>
+		<p>...</p>
+	</AccordionBody>
+</Accordion>
+
+or
+
+<Accordion>
+	<AccordionHeader>
+		<AccordionLabel>アコーディオンヘッダー</AccordionLabel>
+		<AccordionIcon icon={<CaretDown weight="bold" />} />
+	</AccordionHeader>
+	<AccordionBody>
+		<p>...</p>
+	</AccordionBody>
+</Accordion>
+```
+	</Demo.Code>
+</Demo>
+
+
+開くアイコンと閉じるアイコンを分けるには、アイコンを2つ配置し、`data-to`属性を指定してください。
+
+<Demo>
+	<Demo.Title>openIcon, closeIconを分ける</Demo.Title>
+	<Demo.Preview isShadow={1} resize p={20}>
+		<Stack gap={10}>
+			<Accordion>
+				<AccordionHeader>
+					<AccordionLabel>プラス/マイナス</AccordionLabel>
+					<AccordionIcon>
+						<Icon icon={Plus} weight="bold" data-to="open" />
+						<Icon icon={Minus} weight="bold" data-to="close" />
+					</AccordionIcon>
+				</AccordionHeader>
+				<AccordionBody>
+					<DammyText length="m" />
+				</AccordionBody>
+			</Accordion>
+			<Accordion>
+				<AccordionHeader>
+					<AccordionLabel>キャレット/クローズ</AccordionLabel>
+					<AccordionIcon>
+						<Icon icon={CaretDown} weight="bold" data-to="open" />
+						<Icon icon={X} weight="bold" data-to="close" />
+					</AccordionIcon>
+				</AccordionHeader>
+				<AccordionBody>
+					<DammyText length="m" />
 				</AccordionBody>
 			</Accordion>
 		</Stack>
@@ -178,24 +469,31 @@ export const AccDemoContent = () => {
 import { CaretDown, Minus, Plus, X } from "@phosphor-icons/react";
 
 <Accordion>
-	<AccordionHeader
-		openIcon={<Plus weight="bold" />}
-		closeIcon={<Minus weight="bold" />}
-	>
-		プラス/マイナス
+	<AccordionHeader>
+		<AccordionLabel>プラス/マイナス</AccordionLabel>
+		<AccordionIcon>
+			<Icon icon={Plus} weight="bold" data-to="open" />
+			<Icon icon={Minus} weight="bold" data-to="close" />
+		</AccordionIcon>
 	</AccordionHeader>
-	<AccordionBody>...</AccordionBody>
-</Accordion>
-<Accordion>
-	<AccordionHeader
-		openIcon={<CaretDown weight="bold" />}
-		closeIcon={<X weight="bold" />}
-	>
-		キャレット/クローズ
-	</AccordionHeader>
-	<AccordionBody>...</AccordionBody>
+	<AccordionBody>
+		<DammyText length="m" />
+	</AccordionBody>
 </Accordion>
 
+
+<Accordion>
+	<AccordionHeader>
+		<AccordionLabel>キャレット/クローズ</AccordionLabel>
+		<AccordionIcon>
+			<Icon icon={CaretDown} weight="bold" data-to="open" />
+			<Icon icon={X} weight="bold" data-to="close" />
+		</AccordionIcon>
+	</AccordionHeader>
+	<AccordionBody>
+		<DammyText length="m" />
+	</AccordionBody>
+</Accordion>
 ```
 	</Demo.Code>
 </Demo>
@@ -207,16 +505,22 @@ import { CaretDown, Minus, Plus, X } from "@phosphor-icons/react";
 	<Demo.Title>Accordionの例</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<Accordion>
-			<AccordionHeader labelTag="h3">アコーディオンのタイトル</AccordionHeader>
+			<AccordionHeader>
+				<AccordionLabel tag="h3">アコーディオンヘッダー</AccordionLabel>
+				<AccordionIcon/>
+			</AccordionHeader>
 			<AccordionBody>
 				<AccDemoContent />
 			</AccordionBody>
 		</Accordion>
 	</Demo.Preview>
 	<Demo.Code>
-```jsx
+```jsx {3}
 <Accordion>
-	<AccordionHeader labelTag="h3">アコーディオンのタイトル</AccordionHeader>
+	<AccordionHeader>
+		<AccordionLabel tag="h3">アコーディオンヘッダー</AccordionLabel>
+		<AccordionIcon/>
+	</AccordionHeader>
 	<AccordionBody>...</AccordionBody>
 </Accordion>
 ```
@@ -225,34 +529,35 @@ import { CaretDown, Minus, Plus, X } from "@phosphor-icons/react";
 
 
 ## ヘッダーに要素を追加する
-`<AccordionHeader>`には`before`, `after`を挿入することができ、`.l--accordion__label` の前後に要素を追加できます。
+
+{/* `<AccordionHeader>`には`before`, `after`を挿入することができ、`.l--accordion__label` の前後に要素を追加できます。 */}
+
+`<AccordionHeader>` は flexで要素を並べているだけなので、例えばアイコンを２つ使用することなども可能です。
 
 <Demo>
-	<Demo.Title>アイコンを挿入してみる</Demo.Title>
-	<Demo.Preview resize p={20}>
+	<Demo.Title>アイコンをもう一つ使用する</Demo.Title>
+	<Demo.Preview isShadow={1} resize p={20}>
 		<Accordion>
-			<AccordionHeader
-				before={(<Center><Selection size='1.5em' /></Center>)}
-				after={(<Center><Selection size='1.5em' /></Center>)}
-			>
-				Accordion header label...
+			<AccordionHeader>
+				<Icon icon={SealQuestion} size="2em" />
+				<AccordionLabel>アコーディオンヘッダー</AccordionLabel>
+				<AccordionIcon />
 			</AccordionHeader>
 			<AccordionBody>
-				<DammyText />
+				<DammyText length="m" />
 			</AccordionBody>
 		</Accordion>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
 <Accordion>
-	<AccordionHeader
-		before={(<Center><Selection size='1.5em' /></Center>)}
-		after={(<Center><Selection size='1.5em' /></Center>)}
-	>
-		Accordion header label...
+	<AccordionHeader>
+		<Icon icon={SealQuestion} size="2em" />
+		<AccordionLabel>アコーディオンヘッダー</AccordionLabel>
+		<AccordionIcon />
 	</AccordionHeader>
 	<AccordionBody>
-		<DammyText />
+		...
 	</AccordionBody>
 </Accordion>
 ```
@@ -261,20 +566,21 @@ import { CaretDown, Minus, Plus, X } from "@phosphor-icons/react";
 
 
 
-
 ## アコーディオントリガーをアイコンのみにする
 
-`clickable="icon"`を指定すると、アコーディオンを展開するためのクリック範囲がアイコン部分のみになります。  
-この時、アイコン部分は少し強調されて表示されます。
+`AccordionIcon` に `isTrigger` を指定すると、`data-role="trigger"`が出力されます。  
+これにより、アコーディオンを展開するための`click`イベントがヘッダー全体ではなくアイコン部分に対して登録され、**アコーディオンヘッダー内のリンクをクリックできる**ようになります。
 
-タイトル部分にもリンクを設置したいケースで活用してください。
+
+さらに、**アイコン部分も少し強調されて表示**されます。
 
 <Demo>
 	<Demo.Title>Accordionの例</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Accordion clickable="icon">
+	<Demo.Preview isShadow={1} resize p={20}>
+		<Accordion>
 			<AccordionHeader>
-				<a href="#acc">アコーディオンのタイトル</a>
+				<AccordionLabel><a href="#acc">アコーディオンのタイトル</a></AccordionLabel>
+				<AccordionIcon isTrigger/>
 			</AccordionHeader>
 			<AccordionBody>
 				<AccDemoContent />
@@ -282,13 +588,27 @@ import { CaretDown, Minus, Plus, X } from "@phosphor-icons/react";
 		</Accordion>
 	</Demo.Preview>
 	<Demo.Code>
-```jsx
-<Accordion clickable="icon">
+```jsx {4}
+<Accordion>
 	<AccordionHeader>
-		<a href="#acc">アコーディオンのタイトル</a>
+		<AccordionLabel><a href="#acc">アコーディオンのタイトル</a></AccordionLabel>
+		<AccordionIcon isTrigger/>
 	</AccordionHeader>
 	<AccordionBody>...</AccordionBody>
 </Accordion>
 ```
 	</Demo.Code>
 </Demo>
+
+
+
+<Note heading='Note:' preset='note'>
+`<summary>`自体が`toggle`イベントを持つため、`<AccordionHeader>`内のリンク以外のエリアをクリックしてもアコーディオンは開閉します。  
+これを防いでアイコンのみだけをクリッカブルにしたい場合は、以下のようにCSSを追加してください。
+
+```css
+.c--accordion__header:has([data-role='trigger']) {
+	pointer-events: none;
+}
+```
+</Note>

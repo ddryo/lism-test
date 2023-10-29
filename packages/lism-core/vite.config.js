@@ -8,6 +8,7 @@ import svgr from 'vite-plugin-svgr'; // svg を React Component として import
 
 const entries = {
 	index: resolve(__dirname, 'src/components/index.js'),
+	'front/accordion': resolve(__dirname, 'src/components/accordion/script.js'),
 };
 
 function deleteDuplicateDir(filePath) {
@@ -60,9 +61,8 @@ export default defineConfig({
 			external: ['react', 'classnames'],
 			output: {
 				dir: 'dist',
-				// 外部化された依存関係のために UMD のビルドで使用するグローバル変数を提供します
-				// exports: 'named',
-				preserveModules: true,
+				exports: 'named',
+				preserveModules: true, // モジュールツリーの構造を保持する
 				preserveModulesRoot: 'src',
 				entryFileNames: ({ name: fileName }) => {
 					//fileName に components が含まれているかチェックする
@@ -71,6 +71,7 @@ export default defineConfig({
 						const componentPath = deleteDuplicateDir(fileName);
 						return `${componentPath}/index.js`;
 					} else {
+						// console.log('fileName', fileName);
 						return `${fileName}.js`;
 					}
 					// return `${fileName}/index.js`;

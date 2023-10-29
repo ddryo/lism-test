@@ -1,0 +1,54 @@
+.has--divider {
+	--bdc: var(--bdc--base);
+	--bdw: 1px;
+	--bds: solid;
+
+	:where(&) > * + * {
+		border-block-start: var(--bdw) var(--bds) var(--bdc);
+	}
+}
+.has--delimiter {
+	> * {
+		display: flex;
+		gap: inherit;
+	}
+	> * + *::before {
+		// font-family: Arial, sans-serif;
+		font-family: var(--ff--mono);
+		content: var(--delimiter);
+	}
+}
+
+// :where(.is--provider) {
+// 	> .is--item {
+// 		--p: var(--item--p);
+// 	}
+// }
+
+// [data-lism-provider~='p'] {
+// 	> .is--item {
+// 		padding: var(--item--p);
+// 	}
+// }
+
+[data-lism-consumer~='p'] {
+	padding: var(--pass--p);
+}
+// [data-lism-consumer~='gap'] {
+// 	gap: var(--pass--gap);
+// }
+[data-lism-consumer~='c'] {
+	color: var(--pass--c);
+}
+[data-lism-consumer~='bgc'] {
+	background-color: var(--pass--bgc);
+}
+[data-lism-consumer~='shadow'] {
+	box-shadow: var(--pass--shadow);
+}
+[data-lism-consumer~='radius'] {
+	border-radius: var(--pass--radius);
+}
+[data-lism-consumer~='bdc'] {
+	--bdc: var(--pass--bdc);
+}

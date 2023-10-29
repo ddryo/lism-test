@@ -1,17 +1,7 @@
 .e--delimiter {
-	&[data-type='/'] {
-		&::before {
-			content: '/';
-		}
-	}
-
-	&[data-type='|'] {
-		&::before {
-			content: '|';
-		}
-	}
-
-	.l--flex > & {
-		text-align: center;
-	}
+	// font-family: Arial, sans-serif;
+	font-family: var(--ff--mono);
+	// font-weight: 100;
+	// text-align: center;
+	// min-width: 1ex;
 }

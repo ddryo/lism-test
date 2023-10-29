@@ -1,63 +1,69 @@
-// ネストされている時は px 継承できるように
-:where(.b--navMenu:not([data-nest-level])) {
-	--item--py: var(--s--20);
-	--item--px: var(--s--30);
-	// --item--pl: var(--item--px);
-	--item--ml: 0;
-	--level: 0;
-	--hov--bgc: var(--b100);
+// [data-nest-level='1'] {
+// 	--level: 1;
+// }
+// [data-nest-level='2'] {
+// 	--level: 2;
+// }
+// [data-nest-level='3'] {
+// 	--level: 3;
+// }
 
-	// --bdc: var(--c--border);
-	// --bd: solid 1px var(--bdc);
+.c--navMenu {
+	--hov--c: currentColor;
+	--hov--bgc: var(--bgc--pale);
+	--list-style: none;
+	--list--padding: 0;
+	--subNav--maxW: 10em;
+
+	// provider
+	--pass--p: var(--p--box--s); // __text用
 }
-.b--navMenu {
-	list-style: none;
+
+// 子項目の余白をmarginで調整する場合
+.c--navMenu[data-nest-level] {
+	--list--padding: 1em; //var(--s--30);
+	// margin-inline-start: var(--item--ms);
 }
 
 // <li>
-.b--navMenu__item {
-	line-height: 1.5;
-	margin-left: var(--item--ml);
-}
-.l--accordion__bodyInner > .b--navMenu {
-	// アウトラインが ov:hiddenによって 見えなく鳴るのを防ぐ?
-	// padding: 2px;
-	outline-offset: -2px;
-}
+// .c--navMenu__item {
+// 	padding: var(--item--p);
+// 	// margin-inline-start: var(--item--ms);
+// }
 
 // <a> or <span>
-.b--navMenu__text {
-	display: flex;
-	align-items: center;
-	gap: var(--s--20);
-	padding: var(--item--py) var(--item--px);
+.c--navMenu__text {
 	color: inherit;
 	text-decoration: none;
-	// align-items: baseline;
-	// justify-content: space-between;
+	outline-offset: -1px;
+	// padding: var(--item--p);
+}
+a.c--navMenu__text:hover {
+	color: var(--hov--c);
+	background-color: var(--hov--bgc);
 }
 
 // 子項目の余白をpaddingで調整する場合
-// .b--navMenu[data-nest-level]{
+// .c--navMenu[data-nest-level]{
 // 	--item--pl: calc(var(--item--px) + (var(--level) * 1.25em));
 // }
 
-// 子項目の余白をmarginで調整する場合
-.b--navMenu[data-nest-level] {
-	--item--ml: var(--s--40);
-}
-
-.b--navMenu__acc > .l--accordion__header {
-	// --p: 0 var(--item--px) 0 0;
-	padding-inline-start: 0;
-	padding-inline-end: var(--item--px);
-}
-
-.b--navMenu.l--cluster {
-	.b--navMenu[data-nest-level] {
-		--item--ml: 0;
+.c--navMenu.l--cluster {
+	.c--navMenu {
+		--list--padding: 0;
 	}
-	.l--accordion__body {
+
+	.c--navMenu[data-nest-level='1'] {
+		max-width: var(--subNav--maxW);
+	}
+
+	.c--accordion__body {
 		position: absolute;
 	}
 }
+
+// .c--navMenu--line {
+// 	> .c--navMenu__item + .c--navMenu__item {
+// 		border-top: 1px solid var(--bdc);
+// 	}
+// }

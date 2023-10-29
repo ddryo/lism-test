@@ -2,12 +2,16 @@
 import { Stack } from '../Flex/Stack';
 // import { Item } from '../Item';
 import { Icon } from '../Icon';
-// import { Badge } from '../Badge';
 import { Flex } from '../Flex';
-import { Lism } from '../Lism';
+import { Core } from '../Core';
 // import { Grid } from '../Grid';
-
-import { Accordion, AccordionHeader, AccordionBody } from '../Accordion';
+import {
+	Accordion,
+	AccordionHeader,
+	AccordionBody,
+	AccordionIcon,
+	AccordionLabel,
+} from '../Accordion';
 
 export default function FAQ({
 	title,
@@ -23,55 +27,66 @@ export default function FAQ({
 	...props
 }) {
 	const Qmark = (
-		<Flex
-			blockClass='b--faq__icon'
-			c='white'
-			bgc='main'
-			p={15}
-			bd='-'
-			bdc='transparent'
-			radius='99'
-			{...qIconProps}
-		>
-			<Icon icon='Q' />
-		</Flex>
+		<Icon data-icon='Q' fz='xl'>
+			Q.
+		</Icon>
+
+		// <Flex
+		// 	blockClass='b--faq__icon'
+		// 	// c='opposite'
+		// 	// bgc='opposite'
+		// 	// p={15}
+		// 	// bd='-'
+		// 	// bdc='transparent'
+		// 	// radius='99'
+		// 	// fz='2xl'
+		// 	{...qIconProps}
+		// >
+		// 	<Icon blockClass='b--faq__icon' icon='Q' fz='xl' {...qIconProps} />
+		// </Flex>
 	);
 
 	const Qtag = 'span';
 
 	if (isAccordion) {
 		return (
-			<Accordion blockClass='b--faq' {...props}>
-				<AccordionHeader
-					blockClass='b--faq__q'
-					labelProps={{ blockClass: 'b--faq__title' }}
-					before={Qmark}
-					tag={Qtag}
-				>
-					{title}
+			<Accordion {...props}>
+				<AccordionHeader>
+					{Qmark}
+					<AccordionLabel tag={Qtag} fw='bold'>
+						{title}
+					</AccordionLabel>
+					<AccordionIcon />
 				</AccordionHeader>
-				<AccordionBody blockClass='b--faq__a'>{children}</AccordionBody>
+				<AccordionBody>{children}</AccordionBody>
 			</Accordion>
 		);
 	}
 
 	const Amark = (
-		<Flex c='main' p={15} bd='-' radius='99' {...aIconProps}>
-			<Icon icon='A' />
-		</Flex>
+		// <Flex visibility='hidden' {...aIconProps}>
+		<Icon data-icon='A' fz='xl' {...aIconProps} />
+		// </Flex>
 	);
 
 	return (
-		<Stack blockClass='b--faq' gap={20} {...props}>
-			<Flex blockClass='b--faq__q' gap={20}>
+		<Stack tag='dl' blockClass='b--faq' gap={20} {...props}>
+			<Flex tag='dt' blockClass='b--faq__header' gap={30} ai='c'>
 				{Qmark}
-				<Qtag className='b--faq__title'>{title}</Qtag>
+				<Core tag={Qtag} className='b--faq__question' fw='bold'>
+					{title}
+				</Core>
 			</Flex>
-			<Flex blockClass='b--faq__a' gap={20}>
+			<Flex tag='dd' blockClass='b--faq__body' gap={30}>
 				{Amark}
-				<Lism blockClass='b--faq__body' isFlow flowGap={flowGap || 's'}>
+				<Core
+					blockClass='b--faq__answer'
+					isFlow
+					flowGap={flowGap || 's'}
+					//ms={30}
+				>
 					{children}
-				</Lism>
+				</Core>
 			</Flex>
 		</Stack>
 	);

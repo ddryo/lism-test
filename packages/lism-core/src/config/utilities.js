@@ -18,36 +18,53 @@ export default {
 
 	// Note: 数値指定でユーティリティ化したい時、文字列で渡す。 700 → '700'
 	fw: { thin: '100', light: '300', normal: '400', medium: '500', bold: '700' },
+	fs: { italic: 'i', normal: 'n' },
+	font: { inherit: 'i' },
 	// lh: {},
 	// lts:{},
 
 	fxw: { wrap: 'w', nowrap: 'nw' }, // nowrap → Emmet は n だが、nw にしている. (whs と揃えている)
 	fxd: { column: 'c', row: 'r', 'column-reverse': 'cr', 'row-reverse': 'rr' },
 
-	size: { '100%': '100', '75%': '75', '50%': '50', '25%': '25', 'fit-content': 'fit' },
-	maxSize: { '100%': '100' },
-	minSize: {},
+	// width, height
+	size: {
+		'100%': '100',
+		'75%': '75',
+		'50%': '50',
+		'25%': '25',
+		'fit-content': 'fit',
+		unset: 'un',
+	},
+
+	// maxW, maxH
+	maxSize: { unset: 'un', '100%': '100' },
+
+	// minW, minH
+	minSize: { unset: 'un' },
+
 	ga: { fix: 'fix', left: 'l', right: 'r', center: 'c', top: 't', bottom: 'b' },
 	bd: {
-		current: 'cc',
-		currentColor: 'cc',
-		transparent: 't',
-		// left: 'l',
-		// right: 'r',
-		// top: 't',
-		// bottom: 'b',
+		// current: 'cc',
+		// currentColor: 'cc',
+		// transparent: 't',
+		left: 'l',
+		right: 'r',
+		top: 't',
+		bottom: 'b',
+		start: 's',
+		'inline-start': 's',
+		'block-start': 'bs',
 		// inline: 'inline',
 		// block: 'block',
-		'inline-start': 'in-s',
-		'inline-end': 'in-e',
-		'block-start': 'bl-s',
-		'block-end': 'bl-e',
+		// 'inline-end': 'in-e',
+		// 'block-end': 'bl-e',
 	},
 
 	pos: { relative: 'r', absolute: 'a', fixed: 'f' },
 	positions: { '0%': '0', '50%': '50', '100%': '100' }, // top,left,right,bottom 用
 	inset: { '0%': '0' }, // inset は 0% だけ
 	ov: { hidden: 'h', auto: 'a', clip: 'c' },
+	visibility: { hidden: 'h', visible: 'v' },
 	d: {
 		none: 'n',
 		block: 'b',

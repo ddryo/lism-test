@@ -1,6 +1,11 @@
-.l--accordion {
+:root {
+	--accordion--duration: 0.25s;
+}
+
+.c--accordion {
 	--isOpened: 0;
-	--duration: 0.25s;
+	--duration: var(--accordion--duration);
+	overflow: clip; // bdrs考慮
 
 	// 開いた時
 	&.-opened {
@@ -8,15 +13,12 @@
 	}
 }
 
-.l--accordion__header {
+.c--accordion__header {
 	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: var(--p--box--s);
-	gap: var(--s--20);
-	border-radius: var(--radius--1);
-	min-height: 3em;
+	// align-items: center;
+	// justify-content: space-between;
+	min-height: 3.25em;
+	outline-offset: -1px; // overflow:clip|hidden; で見えなくなってしまうので 内側へ
 
 	/* Safariで表示されるデフォルトの三角形アイコンを消します */
 	&::-webkit-details-marker {
@@ -24,39 +26,37 @@
 	}
 }
 
-.l--accordion__label {
+.c--accordion__label {
 	flex-grow: 1;
-	overflow-wrap: anywhere;
+	// overflow-wrap: anywhere;
 	line-height: var(--lh--s);
 }
 
-.l--accordion__body {
+.c--accordion__body {
 	display: grid;
 	grid-template-rows: 1fr;
 	transition-property: padding, opacity, grid-template-rows;
 	transition-duration: var(--duration);
-	padding: var(--p--box);
 }
 
-.l--accordion__bodyInner {
+.c--accordion__bodyInner {
 	overflow: hidden; // ※ 正常な animation に必須
 }
 
 // 閉じている時
-.l--accordion:not(.-opened) {
-	> .l--accordion__body {
+.c--accordion:not(.-opened) {
+	> .c--accordion__body {
 		opacity: 0.1;
 		grid-template-rows: 0fr;
 		// grid-template-rows: 0fr;
-		padding-top: 0 !important;
-		padding-bottom: 0 !important;
+		padding-block: 0 !important;
 	}
 }
 
 // アコーディオンブロックのネスト時、別のアイコンタイプにすると表示が崩れるがそこまでは考慮しない。
-.l--accordion__icon {
-	display: flex;
-	flex-shrink: 0;
+.c--accordion__icon {
+	// display: flex;
+	// flex-shrink: 0;
 	// --gta: "icon";
 
 	// __icon 自体にborderつけたりすると回転が見えてしまうので、 icon自体を回転させる。
@@ -65,10 +65,10 @@
 		transition: rotate 0.25s;
 		rotate: calc(0deg - var(--isOpened) * 180deg);
 	}
-	> .e--icon[data-to='open'] {
+	> [data-to='open'] {
 		opacity: calc(1 - var(--isOpened));
 	}
-	> .e--icon[data-to='close'] {
+	> [data-to='close'] {
 		opacity: calc(0 + var(--isOpened));
 		position: absolute;
 		rotate: calc(180deg - var(--isOpened) * 180deg);
@@ -76,20 +76,21 @@
 }
 
 // [data-clickable="icon"] のとき
-button:where(.l--accordion__icon) {
+:where(.c--accordion__icon[data-role='trigger']) {
 	padding: 0.325em;
 	border: solid 1px currentColor;
-	border-radius: var(--radius--1);
+	// border-radius: var(--radius--1);
 }
 
-[data-clickable='icon'] > .l--accordion__header {
+.c--accordion__header:has([data-role='trigger']) {
 	pointer-events: none;
 }
-.l--accordion__label > a,
-.l--accordion__icon {
+
+.c--accordion__label > a,
+.c--accordion__icon {
 	pointer-events: auto;
 }
-// .-opened > .l--accordion__header > .l--accordion__icon {
+// .-opened > .c--accordion__header > .c--accordion__icon {
 // 	transform: rotate(180deg);
 
 // 	// [data-icon-type="plus"] > .-opened でちゃんと指定したいがCSS長くなるのでdata指定なしでいく

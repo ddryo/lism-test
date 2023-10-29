@@ -67,7 +67,7 @@ memo:
 */
 
 const marginOption = { BP: 1, utils: 'margin', converter: 'space' };
-const paddingOption = { BP: 1, converter: 'space' };
+const paddingOption = { BP: 1, presets: ['0'], converter: 'space' };
 
 export default {
 	d: { BP: 1, utils: 1 },
@@ -108,6 +108,8 @@ export default {
 	lh: { presets: 1, style: 'lineHeight' },
 	fw: { style: 'fontWeight', utils: 1 },
 	ff: { style: 'fontFamiry', presets: 1 },
+	fs: { style: 'fontStyle', utils: 1 },
+	font: { style: 1, utils: 1 },
 	lts: { style: 'letterSpacing', presets: 1 }, // utilityあってもいい
 	ta: { style: 'textAlign', utils: 1 },
 	td: { style: 'textDecoration' },
@@ -121,10 +123,11 @@ export default {
 	aspect: { BP: 1, presets: 1 },
 	opacity: { style: 1 },
 	lis: { style: 'listStyle', utils: { none: 'n' } },
-	ovw: { style: 'overflowWrap', utils: { anywhere: 'any' } },
 	ov: { style: 'overflow', utils: 1 },
 	ovx: { style: 'overflowX', utils: 'ov' },
 	ovy: { style: 'overflowY', utils: 'ov' },
+	ovw: { style: 'overflowWrap', utils: { anywhere: 'any' } },
+	visibility: { style: 1, utilKey: 'v', utils: 1 },
 	z: { style: 'zIndex', presets: 1 },
 	pos: { style: 'position', utils: 1, presets: ['static', 'sticky'] },
 	top: { style: 1, utilKey: 't', utils: 'positions', converter: 'space' },
@@ -205,7 +208,7 @@ const selfProps = {
 	placeSelf: { style: 1 },
 };
 
-const gapProps = {
+export const GAP_PROPS = {
 	gap: {
 		BP: 1,
 		presets: 'space',
@@ -226,7 +229,7 @@ export const CONTEXT_PROPS = {
 		rows: { name: 'gtr', BP: 1 },
 		// autoFlow, autoRows, autoCols
 		...placeProps,
-		...gapProps,
+		...GAP_PROPS,
 	},
 
 	flex: {
@@ -236,7 +239,7 @@ export const CONTEXT_PROPS = {
 		// fxd: { BP: 1, utils: 1 },
 		// placement: { context: 1 },
 		...placeProps,
-		...gapProps,
+		...GAP_PROPS,
 	},
 
 	// item?

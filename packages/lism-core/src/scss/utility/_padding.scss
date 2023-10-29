@@ -1,6 +1,9 @@
 @use '../query' as query;
+@use '../setting' as setting;
+
 /* stylelint-disable */
 
+// 優先度が 全方向 < x,y < 個別方向 になるように注意。
 
 .-p\:box { --p: var(--p--box);}
 .-p\:box\:s { --p: var(--p--box--s);}
@@ -25,6 +28,25 @@
 .-pbs\: { padding-block-start: var(--pbs) !important;}
 // .-pe\: { padding-inline-end: var(--pe) !important;}
 // .-pbe\: { padding-block-end: var(--pbe) !important;}
+
+// 0 は全てで用意しておく
+.-pt\:0 { padding-top: 0 !important;}
+.-pb\:0 { padding-bottom: 0 !important;}
+.-pl\:0 { padding-left: 0 !important;}
+.-pr\:0 { padding-right: 0 !important;}
+.-ps\:0 { padding-inline-start: 0 !important;}
+.-pbs\:0 { padding-block-start: 0 !important;}
+
+@each $s in setting.$util_spaces {
+	.-p\:#{$s} {--p: var(--s--#{$s});}
+	.-px\:#{$s} {--px: var(--s--#{$s});}
+	.-py\:#{$s} {--py: var(--s--#{$s});}
+	// .-pl\:#{$s} {--pl: var(--s--#{$s});}
+	// .-pr\:#{$s} {--pr: var(--s--#{$s});}
+	// .-pt\:#{$s} {--pt: var(--s--#{$s});}
+	// .-pb\:#{$s} {--pb: var(--s--#{$s});}
+}
+
 
 @include query.cq('sm'){
 	.-p\@sm\: { padding: var(--p--sm) !important;}

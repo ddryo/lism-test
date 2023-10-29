@@ -1,10 +1,11 @@
 // import React from 'react';
-import { Core } from '../Core';
+import { Lism } from '../Lism';
 import { isEmptyObj, filterEmptyObj } from '../../lib';
 
 export default function Flex({
 	_flexName = 'flex',
 	lismClass = {},
+	// lismState = [],
 	direction,
 	wrap,
 	ai,
@@ -14,6 +15,9 @@ export default function Flex({
 	gap,
 	rowGap,
 	columnGap,
+	// hasDivider,
+	// hasDelimiter,
+	// delimiter,
 	...props
 }) {
 	const flex = filterEmptyObj({
@@ -32,6 +36,14 @@ export default function Flex({
 		props.flex = flex;
 	}
 
-	lismClass.l = `l--${_flexName}`;
-	return <Core lismClass={lismClass} {...props} />;
+	if (_flexName) {
+		lismClass.l = `l--${_flexName}`;
+	}
+
+	// 本当は stack だけでいいが、stack は props をシンプルに渡してるだけなのでこっちで処理してる
+	// if (hasDivider) {
+	// 	lismState.push('has--divider');
+	// }
+
+	return <Lism lismClass={lismClass} {...props} />;
 }

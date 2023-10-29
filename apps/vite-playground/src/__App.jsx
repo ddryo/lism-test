@@ -2,7 +2,15 @@
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
 
-import { Box, Container, Columns, Spacer } from '@loos/lism-core';
+import {
+	Box,
+	Container,
+	Columns,
+	Spacer,
+	Accordion,
+	AccordionBody,
+	AccordionHeader,
+} from '@loos/lism-core';
 import ContanerTest from './test/ContanerTest.jsx';
 import DecoratorTest from './test/DecoratorTest.jsx';
 
@@ -11,8 +19,6 @@ function App() {
 		<>
 			<h1>Playground</h1>
 			<Spacer h={40} />
-			<DecoratorTest />
-			{/* <ContanerTest /> */}
 			<Spacer h={40} />
 		</>
 	);

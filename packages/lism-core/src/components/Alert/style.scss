@@ -30,12 +30,12 @@
 		);
 		--code--c: var(--link--c);
 		--code--bgc: var(--bgc);
-		--code--bdc: var(--bgc);
+		// --code--bdc: var(--bgc);
 	}
 }
 
 .c--alert__icon {
 	color: var(--icon--c);
 	font-size: var(--icon--size);
-	flex-shrink: 0;
+	// flex-shrink: 0;
 }

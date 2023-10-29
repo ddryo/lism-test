@@ -68,37 +68,30 @@
 // bdl=, bdr=, → --bdl, --bdr
 
 // 一方向のみborderを出現させたい時
-.-bd\:left {
+.-bd\:l {
 	border-left: var(--bdw) var(--bds) var(--bdc);
 }
-.-bd\:right {
+.-bd\:r {
 	border-right: var(--bdw) var(--bds) var(--bdc);
 }
-.-bd\:top {
+.-bd\:t {
 	border-top: var(--bdw) var(--bds) var(--bdc);
 }
-.-bd\:bottom {
+.-bd\:b {
 	border-bottom: var(--bdw) var(--bds) var(--bdc);
 }
-
+.-bd\:s {
+	border-inline-start: var(--bdw) var(--bds) var(--bdc);
+}
+.-bd\:bs {
+	border-block-start: var(--bdw) var(--bds) var(--bdc);
+}
 // inline-startとかは？
 .-bd\:inline {
 	border-inline: var(--bdw) var(--bds) var(--bdc);
 }
 .-bd\:block {
 	border-block: var(--bdw) var(--bds) var(--bdc);
-}
-.-bd\:in-s {
-	border-inline-start: var(--bdw) var(--bds) var(--bdc);
-}
-.-bd\:in-e {
-	border-inline-end: var(--bdw) var(--bds) var(--bdc);
-}
-.-bd\:bl-s {
-	border-block-start: var(--bdw) var(--bds) var(--bdc);
-}
-.-bd\:bl-e {
-	border-block-end: var(--bdw) var(--bds) var(--bdc);
 }
 
 // bd, bdl, bdr,...

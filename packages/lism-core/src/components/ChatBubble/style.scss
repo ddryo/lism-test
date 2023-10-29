@@ -99,6 +99,8 @@
 
 .b--chatBubble .e--deco {
 	--size: var(--decorator-size);
+	width: var(--size);
+	height: var(--size);
 	// z-index: 0;
 
 	&::before,

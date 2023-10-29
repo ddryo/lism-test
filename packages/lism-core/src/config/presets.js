@@ -80,10 +80,6 @@ export default {
 		'emphasis',
 		// 'current',
 		// 'transparent',
-		'top',
-		'left',
-		'right',
-		'bottom',
 		'block',
 		'inline',
 	], // dashed?

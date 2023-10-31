@@ -6,9 +6,10 @@ import svgr from 'vite-plugin-svgr'; // svg を React Component として import
 // import reactJsx from 'vite-react-jsx';
 // import { terser } from 'rollup-plugin-terser'
 
+// front用のスクリプトファイルのビルドは要検討
 const entries = {
 	index: resolve(__dirname, 'src/components/index.js'),
-	'front/accordion': resolve(__dirname, 'src/components/accordion/script.js'),
+	// 'front/accordion': resolve(__dirname, 'src/components/accordion/script.js'),
 };
 
 function deleteDuplicateDir(filePath) {

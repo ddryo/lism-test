@@ -46,9 +46,6 @@
 	"bugs": {
 		"url": "https://github.com/ddryo/lism-test/issues"
 	},
-	"dependencies": {
-		"classnames": "^2.3.2"
-	},
 	"devDependencies": {
 		"@svgr/rollup": "^8.0.1",
 		"vite": "^4.3.9",

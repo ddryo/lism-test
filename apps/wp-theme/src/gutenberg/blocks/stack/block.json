@@ -1,0 +1,55 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/stack",
+	"title": "Stack",
+	"category": "lism-blocks",
+	"keywords": ["group"],
+	"supports": {
+		"anchor": true,
+		"className": false,
+		"align": ["wide", "full"],
+		"color": {
+			"gradients": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		}
+	},
+	"attributes": {
+		"templateLock": {
+			"type": ["string", "boolean"],
+			"enum": ["all", "insert", "contentOnly", false]
+		},
+		"tagName": {
+			"type": "string",
+			"default": "div"
+		},
+		"flexWrap": {
+			"type": "string",
+			"default": "nowrap"
+		},
+		"gap": {
+			"type": "string"
+		},
+		"alignItems": {
+			"type": "string",
+			"default": "flex-start"
+		},
+		"alignContent": {
+			"type": "string",
+			"default": "flex-start"
+		},
+		"justifyItems": {
+			"type": "string",
+			"default": "flex-start"
+		},
+		"justifyContent": {
+			"type": "string",
+			"default": "flex-start"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

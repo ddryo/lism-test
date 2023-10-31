@@ -67,9 +67,6 @@ export default function AlignJustifyControl({ values = {}, onChange }) {
 		onChange(newValues);
 	};
 
-	console.log( values );
-
-
 	return (
 		<div className='lism-alignJustifyControl'>
 			{CONTROLS.map(({ label, key }) => (

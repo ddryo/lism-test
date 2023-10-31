@@ -23,7 +23,7 @@ import metadata from './block.json';
 import icon from './icon';
 import {
 	SelectorPreviewTip,
-	AlignJustifyControl,
+	AlignItemsControl,
 	ResponsiveGapControl,
 	HTMLElementControls,
 } from '@/gutenberg/components';
@@ -34,7 +34,7 @@ import {
 registerBlockType(metadata.name, {
 	title: __('Stack', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
-	// icon: icon,
+	icon,
 	transforms: {
 		from: [
 			{
@@ -50,24 +50,11 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes }) => {
-		const {
-			templateLock,
-			tagName = 'div',
-			gap,
-			alignItems,
-			alignContent,
-			justifyItems,
-			justifyContent,
-			anchor,
-			className,
-		} = attributes;
+		const { templateLock, tagName = 'div', gap, alignItems, anchor, className } = attributes;
 
 		const lismProps = {
 			direction: 'column',
 			ai: alignItems,
-			ac: alignContent,
-			ji: justifyItems,
-			jc: justifyContent,
 			gap: '16px',
 		};
 
@@ -87,15 +74,11 @@ registerBlockType(metadata.name, {
 			<>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
-						<AlignJustifyControl
-							values={{
-								alignItems,
-								alignContent,
-								justifyItems,
-								justifyContent,
-							}}
-							onChange={(values) => {
-								setAttributes({ ...attributes, ...values });
+						<AlignItemsControl
+							value={alignItems}
+							controls={['flex-start', 'center', 'flex-end']}
+							onChange={(value) => {
+								setAttributes({ ...attributes, alignItems: value });
 							}}
 						/>
 					</PanelBody>
@@ -120,21 +103,11 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const {
-			tagName = 'div',
-			gap,
-			alignItems,
-			alignContent,
-			justifyItems,
-			justifyContent,
-		} = attributes;
+		const { tagName = 'div', gap, alignItems } = attributes;
 
 		const lismProps = {
 			direction: 'column',
 			ai: alignItems,
-			ac: alignContent,
-			ji: justifyItems,
-			jc: justifyContent,
 			gap: '16px',
 		};
 

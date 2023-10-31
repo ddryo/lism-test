@@ -41,7 +41,7 @@ import {
 registerBlockType(metadata.name, {
 	title: __('Flex', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
-	// icon: icon,
+	icon,
 	transforms: {
 		from: [
 			{

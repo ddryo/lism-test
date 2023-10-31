@@ -42,7 +42,11 @@ const OPTIONS = [
 	},
 ];
 
-export default function JustifyContentControl({ value, options = OPTIONS, onChange }) {
+export default function JustifyContentControl({ value, controls, onChange }) {
+	const options =
+		controls && !!controls.length
+			? OPTIONS.filter(({ value }) => controls.includes(value))
+			: OPTIONS;
 	return (
 		<div className='lism-justifyContentControl'>
 			<ToggleGroupControl

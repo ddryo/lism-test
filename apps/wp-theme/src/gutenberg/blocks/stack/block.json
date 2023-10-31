@@ -26,26 +26,10 @@
 			"type": "string",
 			"default": "div"
 		},
-		"flexWrap": {
-			"type": "string",
-			"default": "nowrap"
-		},
 		"gap": {
 			"type": "string"
 		},
 		"alignItems": {
-			"type": "string",
-			"default": "flex-start"
-		},
-		"alignContent": {
-			"type": "string",
-			"default": "flex-start"
-		},
-		"justifyItems": {
-			"type": "string",
-			"default": "flex-start"
-		},
-		"justifyContent": {
 			"type": "string",
 			"default": "flex-start"
 		}

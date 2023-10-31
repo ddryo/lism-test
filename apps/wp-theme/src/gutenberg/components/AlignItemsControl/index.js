@@ -42,7 +42,11 @@ const OPTIONS = [
 	},
 ];
 
-export default function AlignItemsControl({ value, options = OPTIONS, onChange }) {
+export default function AlignItemsControl({ value, controls, onChange }) {
+	const options =
+		controls && !!controls.length
+			? OPTIONS.filter(({ value }) => controls.includes(value))
+			: OPTIONS;
 	return (
 		<div className='lism-alignItemsControl'>
 			<ToggleGroupControl

@@ -1,16 +1,27 @@
 // import React from 'react';
-import { Core } from '../Core';
+import { Lism } from '../Lism';
+import { getLayoutStateData } from '../../lib';
 
-// import classnames from 'classnames';
-
-export default function AccordionBody({ lismClass = {}, children, flowGap = 's', ...props }) {
+export default function AccordionBody({ lismClass = {}, children, isFlow, ...props }) {
 	lismClass.c = 'c--accordion__body';
-	// flowGapは inner に流す
+
+	let innerClass = 'c--accordion__inner';
+	let innerStyle = null;
+
+	// isFlow は inner に流す
+	if (isFlow) {
+		const { className, style } = getLayoutStateData('is--flow', isFlow);
+		innerClass += ' ' + className;
+		innerStyle = style;
+	}
+
 	return (
-		<Core lismClass={lismClass} p='box:s' {...props}>
-			<Core lismClass='c--accordion__bodyInner' isFlow flowGap={flowGap}>
+		<Lism lismClass={lismClass} p='box:s' {...props}>
+			<div className={innerClass} style={innerStyle}>
 				{children}
-			</Core>
-		</Core>
+			</div>
+		</Lism>
 	);
 }
+
+// Inner?

@@ -2,7 +2,6 @@ import { Children, cloneElement } from 'react';
 // import { Lism } from '../Lism';
 // import { TabContext } from './context';
 
-// import classnames from 'classnames';
 // import setEvent from "./setEvent";
 
 // animationTime: [s]

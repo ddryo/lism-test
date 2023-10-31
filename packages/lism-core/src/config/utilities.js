@@ -15,6 +15,7 @@ export default {
 		'space-between': 'sb',
 	},
 	ta: { center: 'c', left: 'l', right: 'r' },
+	td: { underline: 'u', none: 'n' },
 
 	// Note: 数値指定でユーティリティ化したい時、文字列で渡す。 700 → '700'
 	fw: { thin: '100', light: '300', normal: '400', medium: '500', bold: '700' },
@@ -26,7 +27,7 @@ export default {
 	fxw: { wrap: 'w', nowrap: 'nw' }, // nowrap → Emmet は n だが、nw にしている. (whs と揃えている)
 	fxd: { column: 'c', row: 'r', 'column-reverse': 'cr', 'row-reverse': 'rr' },
 
-	// width, height
+	// width, height用のユーティリティ値
 	size: {
 		'100%': '100',
 		'75%': '75',
@@ -54,6 +55,8 @@ export default {
 		start: 's',
 		'inline-start': 's',
 		'block-start': 'bs',
+		block: 'B',
+		inline: 'I',
 		// inline: 'inline',
 		// block: 'block',
 		// 'inline-end': 'in-e',
@@ -87,7 +90,20 @@ export default {
 		'0% 100%': 'lb',
 		'100% 100%': 'rb',
 	},
-	translate: { '-50% -50%': 'XY:-50', '-50% 0': 'X:-50', '0 -50%': 'Y:-50' },
+
+	transform: {
+		'scaleX(-1)': 'flipX',
+		'scaleY(-1)': 'flipY',
+		'scaleX(-1) scaleY(-1)': 'flipXY',
+	},
+	translate: {
+		// '-100% -100%': '-100',
+		// '-100% 0': '-100X',
+		// '0 -100%': '-100Y',
+		'-50% -50%': '-50',
+		'-50% 0': '-50X',
+		'0 -50%': '-50Y',
+	},
 	aspect: { '16/9': '16/9', '4/3': '4/3', '1/1': '1/1' },
 	// aspect: { video: '16/9', photo:'4/3', square:'1/1',  },
 	// -aspcet:16/9

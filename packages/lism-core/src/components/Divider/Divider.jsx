@@ -1,8 +1,6 @@
 // import React from 'react';
-import classnames from 'classnames';
 import { Core } from '../Core';
-
-import DividerSVG from './svg';
+import ShapeDividerSVG from './ShapeDividerSVG';
 
 // const animationTypes = {
 // 	Wave1: 'loop',
@@ -14,54 +12,55 @@ import DividerSVG from './svg';
 // focusable="false"
 
 // align: full, wide, ''
-function Divider({
+export default function Divider({
 	lismClass = {},
 	lismStyle = {},
-	type = 'Wave1',
-	position = 'bottom',
+	shape = 'Wave1',
+	isFlip,
 	isAnimation,
 	level = 5, // -10~10?
-	// flip,
-	// scaleX,
 	stretch, // 1~2
 	offset, // -25% ~ 25%
-	// color,
-	...attrs
+
+	// 旧
+	type,
+	position, // = 'bottom', // place?
+	...props
 }) {
-	let flipXaxis = 'bottom' !== position; // 垂直方向の反転 ↕
-	let flipYaxis = 'bottom' !== position; // 水平方向の反転 ↔
+	if (level === 0) return null;
 
-	let _TYPE = type.charAt(0).toUpperCase() + type.slice(1); // 1文字目を大文字にする
+	// 旧type
+	if (type) shape = type;
 
-	if (level === 0) {
-		return null;
-	} else if (level < 0) {
-		level = level * -1;
+	// 旧 position
+	if (position === 'top') isFlip = true;
 
-		// type が "Circle", "Arrow" で始まるかどうか
-		if (_TYPE.match(/^(Circle|Arrow)/)) {
-			_TYPE += '_R';
+	let flipX = isFlip; // X(垂直)方向の反転 ↔
+	let flipY = isFlip; // Y(水平)方向の反転 ↕
+
+	// 1文字目を大文字にする
+	shape = shape.charAt(0).toUpperCase() + shape.slice(1);
+	if (level < 0) {
+		level = level * -1; // 正の値にする
+
+		// shape が "Circle", "Arrow" で始まるときはsvgファイルを変更する
+		if (shape.match(/^(Circle|Arrow)/)) {
+			shape += '_R';
 		} else {
-			// それ以外は左右反転するだけでOK
-			flipYaxis = !flipYaxis;
+			flipX = !flipX; // それ以外は左右反転する
 		}
 	}
 
-	const SVG = DividerSVG[_TYPE] || null;
+	// const dataFlip = classnames(flipX && 'x', flipY && 'y');
+	let dataFlip = '';
+	if (flipX) dataFlip += 'x';
+	if (flipY) dataFlip += 'y';
 
-	if (!SVG) return null;
+	const transforms = [];
+	if (flipX) transforms.push('scaleX(-1)');
+	if (flipY) transforms.push('scaleY(-1)');
 
-	const dataFlip = classnames({
-		x: flipXaxis,
-		y: flipYaxis,
-	});
-
-	const blockProps = {
-		'data-type': type,
-		'data-flip': dataFlip || null,
-		'data-animation': isAnimation ? '1' : null, //animationType;
-		...attrs,
-	};
+	if (dataFlip) props['data-flip'] = dataFlip;
 
 	lismStyle = Object.assign(lismStyle, {
 		'--level': level || null,
@@ -69,33 +68,15 @@ function Divider({
 		'--stretch': stretch || null,
 	});
 
-	const svgProps = {
-		id: null,
-		xmlSpace: null,
-		className: 'l--divider__svg',
-		'aria-hidden': 'true',
-		focusable: 'false',
-		preserveAspectRatio: 'none',
-		width: '100%',
-		height: `${level * 6}px`, // clampでの最小値
-		style: {},
-	};
+	lismClass.e = 'e--shapeDivider';
 
-	let svg = <SVG {...svgProps} />;
-	// if (isAnimation) {
-	// const animationType = 'lr'; //animationTypes[svgType] || 'lr';
-	// if ('loop' === animationType) {
-	// 	svg = (
-	// 		<><SVG {...svgProps} /><SVG {...svgProps} /></>
-	// 	);
-	// }
-	// }
-
-	lismClass.l = 'l--divider';
+	let svgClass = 'e--shapeDivider__svg';
+	if (isAnimation) svgClass += ' -animation';
 	return (
-		<Core {...blockProps} lismClass={lismClass} lismStyle={lismStyle}>
-			<div className='l--divider__inner'>{svg}</div>
+		<Core lismClass={lismClass} lismStyle={lismStyle} data-shape={shape} {...props}>
+			<Core className='e--shapeDivider__inner' transform={transforms?.join(' ') || null}>
+				<ShapeDividerSVG className={svgClass} shape={shape} level={level} />
+			</Core>
 		</Core>
 	);
 }
-export default Divider;

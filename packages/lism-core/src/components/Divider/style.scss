@@ -1,59 +1,60 @@
 // --------------------
 // divider
 // --------------------
-:where(.l--divider) {
+:where(.e--shapeDivider) {
 	--c: var(--bgc--base);
 	--level: 0;
-	--rotateX: 0deg;
-	--rotateY: 0deg;
+	// --rotateX: 0deg;
+	// --rotateY: 0deg;
 	--duration: 12s;
 	--offset: 0;
 	--stretch: 1;
 }
 
 // heightが.-h:で上書きできるかあとでチェック
-.l--divider {
+.e--shapeDivider {
 	position: relative;
-	height: clamp(
-		calc(6px * var(--level)),
-		calc(1cqw * var(--level)),
-		calc(12px * var(--level))
-	); // 600px時点を最小値, 1200px時点を最大値にして、clampで高さを変動させる
 
-	max-width: 100%; // is--constrained の影響を受けないようにする
 	overflow: hidden;
 	color: var(--c);
 
-	&[data-flip~='y'] {
-		--rotateY: 180deg;
+	// 高さを svg ではなく親でセットしているのは、 <Divider h='hoge'> で簡単に上書きできるようにするため。
+	// 600px時点を最小値, 1200px時点を最大値にして、clampで高さを変動させる
+	height: clamp(calc(6px * var(--level)), calc(1cqw * var(--level)), calc(12px * var(--level)));
+	max-width: 100%; // is--constrained の影響を受けないようにする
+
+	// 上下にわずかな隙間ができてしまうのを防ぐ
+	&[data-flip*='y'] {
+		top: -0.5px;
 	}
-	&[data-flip~='x'] {
-		--rotateX: 180deg;
-		top: -0.5px; // transform で上下反転させると隙間ができてしまう
-	}
-	&:not([data-flip~='x']) {
+	&:not([data-flip*='y']) {
 		bottom: -0.5px;
 	}
 }
-.l--divider__inner {
-	position: absolute;
-	inset: 0;
+.e--shapeDivider__inner {
+	// position: relative;
+	// inset: 0;
 	scale: var(--stretch) 1;
 	translate: var(--offset);
-	transform: rotateX(var(--rotateX)) rotateY(var(--rotateY));
+	height: 100%;
 }
 
-.l--divider__svg {
+.e--shapeDivider__svg {
+	display: block;
 	color: inherit;
 	width: 100%;
 	height: 100%;
+
 	path {
 		fill: currentColor;
 	}
 }
 
-/* 左右にスライドするだけ */
-@keyframes LsDividerMove {
+// .e--shapeDivider[data-animation] .e--shapeDivider__svg {}
+
+// has--animation?
+// 左右にスライドする
+@keyframes LismDividerSlideX {
 	0% {
 		transform: scaleX(4);
 	}
@@ -61,8 +62,9 @@
 		transform: scaleX(4) translateX(calc(100% - 25%));
 	}
 }
-.l--divider[data-animation] .l--divider__svg {
+
+.e--shapeDivider__svg.-animation {
 	/* ↓ X 100% にしてるのは translateXのcalc計算で * -1 をしなくていいように。*/
 	transform-origin: 100% 0;
-	animation: LsDividerMove var(--duration) infinite alternate linear;
+	animation: LismDividerSlideX var(--duration) infinite alternate linear;
 }

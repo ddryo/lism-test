@@ -1,5 +1,9 @@
 /* stylelint-disable */
 
+.-td\:n{text-decoration: none;}
+.-td\:u{text-decoration: underline;}
+
+.-lis\:n{list-style: none;}
 
 .-inset\:0{inset: 0;}
 .-t\:0{top: 0;}
@@ -23,13 +27,19 @@
 .-z\:1{z-index: 1;}
 
 
-// transform
-.-trnslt\:XY\:-50{translate: -50% -50%;}
-.-trnslt\:X\:-50{translate: -50% 0;}
-.-trnslt\:Y\:-50{translate: 0 -50%;}
-.-trnslt\:XY\:-100{translate: -100% -100%;}
-.-trnslt\:X\:-100{translate: -100% 0;}
-.-trnslt\:Y\:-100{translate: 0 -100%;}
+// transform系
+
+// scale との併用可。
+.-trf\:flipX {transform: scaleX(-1);}
+.-trf\:flipY {transform: scaleY(-1);} 
+.-trf\:flipXY {transform: scaleX(-1) scaleY(-1);} 
+
+.-trnslt\:-50{translate: -50% -50%;}
+.-trnslt\:-50X{translate: -50% 0;}
+.-trnslt\:-50Y{translate: 0 -50%;}
+// .-trnslt\:-100{translate: -100% -100%;}
+// .-trnslt\:-100X{translate: -100% 0;}
+// .-trnslt\:-100Y{translate: 0 -100%;}
 
 .-rotate\:45{rotate: 45deg}
 .-rotate\:-45{rotate: -45deg}
@@ -43,9 +53,7 @@
 .-trso\:lb{transform-origin: left bottom;}
 .-trso\:rb{transform-origin: right bottom;}
 
-// .-td\:n{
-// 	text-decoration: none;
-// }
+
 
 // .-filter\:darker{
 // 	filter: brightness(0.95);
@@ -87,9 +95,6 @@
 .-ovw\:any{overflow-wrap: anywhere;} // ※ ovw は emmetの正式定義ではない.
 // .-wob\:bw{word-break: break-word;} // 非推奨. -ovw:any と同じ
 
-.-lis\:n{
-	list-style: none;
-}
 
 // --------------------
 // その他

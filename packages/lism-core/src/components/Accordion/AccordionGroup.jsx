@@ -1,8 +1,6 @@
 import React from 'react';
 import { Stack } from '../Flex/Stack';
 
-// import classnames from 'classnames';
-
 // duration: [s]
 export default function AccordionGroup({
 	lismClass = {},

@@ -1,26 +1,16 @@
 // import React from 'react';
 import Flex from '../Flex';
+import { getMaybeCssVar } from '../../../lib';
 
-export default function Cluster({
-	lismStyle = {},
-	lismState = [],
-	hasDelimiter,
-	delimiter,
-	itemMinW,
-	...props
-}) {
-	if (hasDelimiter) {
-		lismState.push('has--delimiter');
+export default function Cluster({ lismStyle = {}, delimiterColor, itemMinW, ...props }) {
+	if (delimiterColor) {
+		lismStyle['--delimiter--c'] = getMaybeCssVar(delimiterColor, 'color');
 	}
-	if (delimiter) {
-		lismStyle['--delimiter'] = delimiter;
-	}
+
 	if (itemMinW) {
 		lismStyle['--item--minW'] = itemMinW;
 	}
-	return (
-		<Flex _flexName='cluster' lismStyle={lismStyle} lismState={lismState} gap={20} {...props} />
-	);
+	return <Flex _flexName='cluster' lismStyle={lismStyle} {...props} />;
 }
 
 // セパレーターを項目間に追加する

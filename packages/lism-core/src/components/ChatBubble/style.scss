@@ -2,7 +2,7 @@
 	--bdw: 1px;
 	--bgc: #f2f6f9;
 	--bdc: #ccdbe5;
-	// --icon--bxsh: none;
+	--pass--p: var(--p--box--s);
 }
 .b--chatBubble {
 	// --gta: 'icon body';
@@ -64,9 +64,8 @@
 }
 
 .b--chatBubble--box {
-	// --icon--bxsh: var(--shadow--1);
+	--pass--p: var(--p--box);
 	--body--mt: calc(var(--icon--size) - 1.5rem);
-	// --bdw: 2px;
 	--icon--bdc: var(--bdc);
 	--body--mt--add: 1em;
 

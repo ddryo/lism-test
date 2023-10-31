@@ -1,7 +1,7 @@
 // import React from 'react';
-import { Core } from '../Core';
-import { Cluster } from '../Flex/Cluster';
-import { getMaybeColorVar, getMaybeSpaceVar } from '../../lib';
+import { Lism } from '../Lism';
+import { Flex } from '../Flex';
+import { getMaybeCssVar } from '../../lib';
 
 export default function NavMenu({
 	lismClass = {},
@@ -10,12 +10,13 @@ export default function NavMenu({
 	variant,
 	nestLevel,
 	// border,
-	direction,
+	isFlex,
 	itemHovColor,
 	itemHovBgc,
 	// itemP,
 	// style = {},
-	itemPadding,
+	// itemPadding,
+	// provide = { p: null }, // data-provideの出力だけしておきたい?
 	...props
 }) {
 	lismClass.c = 'c--navMenu';
@@ -25,13 +26,10 @@ export default function NavMenu({
 	}
 
 	if (itemHovBgc) {
-		lismStyle['--hov--bgc'] = getMaybeColorVar(itemHovBgc, 'bgc');
+		lismStyle['--hov--bgc'] = getMaybeCssVar(itemHovBgc, 'color', 'bgc');
 	}
 	if (itemHovColor) {
-		lismStyle['--hov--c'] = getMaybeColorVar(itemHovColor, 'c');
-	}
-	if (itemPadding) {
-		lismStyle['--item--p'] = getMaybeSpaceVar(itemPadding);
+		lismStyle['--hov--c'] = getMaybeCssVar(itemHovColor, 'color', 'c');
 	}
 
 	// const lismStyle = {};
@@ -39,8 +37,7 @@ export default function NavMenu({
 		tag: 'ul',
 		lismClass,
 		lismStyle,
-		// lh: 's',
-		// lis: 'none',
+		// provide,
 	};
 
 	if (nestLevel) {
@@ -48,16 +45,20 @@ export default function NavMenu({
 		navProps['data-nest-level'] = nestLevel;
 	}
 
-	if (direction === 'horizontal') {
+	if (isFlex) {
 		return (
-			<Cluster gap={0} {...navProps} {...props}>
+			<Flex {...navProps} {...props}>
 				{children}
-			</Cluster>
+			</Flex>
 		);
 	}
+	if (props.hasDivider === true) {
+		props.hasDivider = 'B';
+	}
+
 	return (
-		<Core {...navProps} {...props}>
+		<Lism {...navProps} {...props}>
 			{children}
-		</Core>
+		</Lism>
 	);
 }

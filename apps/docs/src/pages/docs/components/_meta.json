@@ -39,8 +39,6 @@
 	"FilterLayer": "",
 	"MediaLayer": "",
 	"Frame": "",
-	"Spacer": "",
-	"Divider": "",
 
 	"--- state": {
 		"type": "separator",
@@ -54,9 +52,11 @@
 		"type": "separator",
 		"title": "Elements"
 	},
-	"Icon": "",
 	"Avatar": "",
 	"Delimiter": "",
+	"Divider": "",
+	"Icon": "",
+	"Spacer": "",
 
 	"--- component": {
 		"type": "separator",

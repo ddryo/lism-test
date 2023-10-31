@@ -2,15 +2,14 @@
 import { Frame } from '../Frame';
 import { LinkBox } from '../LinkBox';
 import { FilterLayer } from '../Layer';
-import { Layer, MediaLayer } from '../Layer';
+// import { Layer, MediaLayer } from '../Layer';
 import { getMediaLayer } from '../helper';
 // import { Box } from '../Box';
-// import classnames from 'classnames';
+
 import { defaultProps } from '../../config/components';
 const _default = defaultProps?.Banner || {};
 
 export default function Banner({
-	// lismState = [],
 	lismClass = {},
 	// lismStyle = {},
 	children,
@@ -22,10 +21,6 @@ export default function Banner({
 	lismClass.c = 'c--banner';
 	if (variant) lismClass.c += ` c--banner--${variant}`;
 
-	// if (hasTransitionMedia) {
-	// 	lismState.push('has--transitionMedia');
-	// }
-
 	const theProps = { lismClass, ...attrs };
 
 	let Contents = (
@@ -35,12 +30,6 @@ export default function Banner({
 			{children}
 		</>
 	);
-
-	// if (hasTransitionMedia) {
-	// 	Contents = (
-	// 		<MediaLayer hasTransitionMedia lismClass={{ c: 'c--banner__media' }}></MediaLayer>
-	// 	);
-	// }
 
 	// hrefあり
 	if (attrs.href) {

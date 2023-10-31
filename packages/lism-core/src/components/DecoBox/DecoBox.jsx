@@ -6,7 +6,6 @@ import PRESETS from './presets';
 
 export default function DecoBox({
 	lismClass = {},
-	lismState = [],
 	variant = '',
 	subvariant = '',
 	children,
@@ -77,17 +76,12 @@ export default function DecoBox({
 		boxCntent = children;
 	}
 
-	// lismState.push(`d--${variant}`);
-	// if (subvariant) {
-	// 	lismState.push(`d--${variant}--${subvariant}`);
-	// }
-
 	if (subvariant) {
 		boxProps[`data-${variant}`] = subvariant;
 	}
 
 	return (
-		<Core lismClass={lismClass} lismState={lismState} {...boxProps} {...props}>
+		<Core lismClass={lismClass} {...boxProps} {...props}>
 			{boxCntent}
 			{decorator}
 		</Core>

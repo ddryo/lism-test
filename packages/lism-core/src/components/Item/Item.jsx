@@ -1,7 +1,6 @@
 // import React from 'react';
 import { Core } from '../Core';
-import { isEmptyObj, filterEmptyObj } from '../../lib';
-// import classnames from 'classnames';
+import { isEmptyObj, filterEmptyObj } from '../../lib/helper';
 
 export default function Item({
 	children,
@@ -64,9 +63,5 @@ export default function Item({
 
 	// const noOptions = isEmptyObj(grid);
 
-	return (
-		<Item isItem {...props}>
-			{children}
-		</Item>
-	);
+	return <Item {...props}>{children}</Item>;
 }

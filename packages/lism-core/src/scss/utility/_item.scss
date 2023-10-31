@@ -2,21 +2,6 @@
 
 /* stylelint-disable */
 
-// :where(.is--item) {
-// 	--as: auto;
-// 	--js: auto;
-// 	align-self: var(--as);
-// 	justify-self: var(--js);
-// }
-
-// :where(.is--flex > .is--item) {
-// 	--fxg: 0;
-// 	--fxsh: 1;
-// 	--fxb: auto;
-// 	--fx: var(--fxg) var(--fxsh) var(--fxb);
-// 	flex: var(--fx);
-// }
-
 .-order\:1 {order: 1;}
 .-order\:0 {order: 0;}
 .-order\:-1 {order: -1;}

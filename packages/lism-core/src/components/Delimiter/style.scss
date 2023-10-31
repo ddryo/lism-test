@@ -1,7 +1,4 @@
 .e--delimiter {
-	// font-family: Arial, sans-serif;
 	font-family: var(--ff--mono);
-	// font-weight: 100;
-	// text-align: center;
-	// min-width: 1ex;
+	color: var(--delimiter--c, currentColor);
 }

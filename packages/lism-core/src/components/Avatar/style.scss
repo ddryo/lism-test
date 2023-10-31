@@ -1,7 +1,7 @@
 .e--avatar {
-	aspect-ratio: 1/1;
-	width: 80px;
-	height: auto;
+	--size: auto;
+	width: var(--size);
+	height: var(--size);
 	overflow: hidden;
 
 	> img {

@@ -65,7 +65,8 @@ export { ChatBubble } from './ChatBubble';
 export { Section, SectionBody, SectionHeader, SectionFooter } from './Section';
 export { TermList, TermListRow } from './TermList';
 export { NavMenu, NavMenuItem, NavMenuText } from './NavMenu';
+
 // export { MediaText } from './MediaText';
 
 // 特殊
-export { LismProvider, LismConsumer } from './LismProvider';
+// export { LismProvider, LismConsumer } from './LismProvider';

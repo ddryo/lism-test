@@ -10,8 +10,6 @@
 		padding: var(--p--box);
 		border-inline-start: solid 4px var(--bdc);
 		background-color: var(--bgc);
-		// line-height: var(--lh--s);
-		// border-radius: var(--radius--1);
 
 		@supports (color: color-mix(in srgb, #000, #fff)) {
 			--link--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));

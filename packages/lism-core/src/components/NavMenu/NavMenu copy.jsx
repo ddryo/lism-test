@@ -1,7 +1,7 @@
 // import React from 'react';
 import { Lism } from '../Lism';
 import { Cluster } from '../Flex/Cluster';
-// import { getMaybeColorVar } from '../../lib';
+// import { getMaybeCssVar } from '../../lib';
 
 export default function NavMenu({
 	children,
@@ -46,10 +46,10 @@ export default function NavMenu({
 	}
 
 	// if (hovBgc) {
-	// 	lismStyle['--hov--bgc'] = getMaybeColorVar(hovBgc);
+	// 	lismStyle['--hov--bgc'] = getMaybeCssVar(hovBgc, 'color', 'bgc');
 	// }
 	// if (hovColor) {
-	// 	lismStyle['--hov--c'] = getMaybeColorVar(hovColor);
+	// 	lismStyle['--hov--c'] = getMaybeCssVar(hovColor, 'color', 'c');
 	// }
 
 	if (direction === 'horizontal') {

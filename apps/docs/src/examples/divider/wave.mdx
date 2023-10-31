@@ -3,15 +3,15 @@ import { Divider, Spacer } from '@loos/lism-core';
 <Demo>
 	<Demo.Title>Wave1~3</Demo.Title>
 	<Demo.Preview resize>
-		<Divider type="wave1" c="black"/>
-		<Divider type="wave2" c="black"/>
-		<Divider type="wave3" c="black"/>
+		<Divider shape="wave1" c="black"/>
+		<Divider shape="wave2" c="black"/>
+		<Divider shape="wave3" c="black"/>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Divider type="wave1" c="black"/>
-		<Divider type="wave2" c="black"/>
-		<Divider type="wave3" c="black"/>
+		<Divider shape="wave1" c="black"/>
+		<Divider shape="wave2" c="black"/>
+		<Divider shape="wave3" c="black"/>
 		```
 	</Demo.Code>
 </Demo>
@@ -19,15 +19,15 @@ import { Divider, Spacer } from '@loos/lism-core';
 <Demo>
 	<Demo.Title>Wave1~3 `isAnimation`をON</Demo.Title>
 	<Demo.Preview resize>
-		<Divider type="wave1" isAnimation c="black"/>
-		<Divider type="wave2" isAnimation c="black"/>
-		<Divider type="wave3" isAnimation c="black"/>
+		<Divider shape="wave1" isAnimation c="black"/>
+		<Divider shape="wave2" isAnimation c="black"/>
+		<Divider shape="wave3" isAnimation c="black"/>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Divider type="wave1" isAnimation c="black"/>
-		<Divider type="wave2" isAnimation c="black"/>
-		<Divider type="wave3" isAnimation c="black"/>
+		<Divider shape="wave1" isAnimation c="black"/>
+		<Divider shape="wave2" isAnimation c="black"/>
+		<Divider shape="wave3" isAnimation c="black"/>
 		```
 	</Demo.Code>
 </Demo>
@@ -39,23 +39,23 @@ import { Divider, Spacer } from '@loos/lism-core';
 	<Demo.Title>Demo1</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave1" level={3} c="white" position="top"/>
+			<Divider shape="wave1" level={3} c="white" isFlip/>
 			<Box isFlow py={70} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="wave1" level={3} c="white" />
+			<Divider shape="wave1" level={3} c="white" />
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave1" level={3} c="white" position="top"/>
+			<Divider shape="wave1" level={3} c="white" isFlip/>
 			<Box isFlow py={70} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="wave1" level={3} c="white" />
+			<Divider shape="wave1" level={3} c="white" />
 		</Box>
 		```
 	</Demo.Code>
@@ -65,20 +65,20 @@ import { Divider, Spacer } from '@loos/lism-core';
 	<Demo.Title>Demo2</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave2" c="white" level={4} stretch={1.5} offset="10%" position="top" />
+			<Divider shape="wave2" c="white" level={4} stretch={1.5} offset="10%" isFlip />
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="wave2" c="white" level={4} stretch={1.5} offset="-25%" />
+			<Divider shape="wave2" c="white" level={4} stretch={1.5} offset="-25%" />
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave2" c="white" level={4} stretch={1.5} offset="10%" position="top" />
+			<Divider shape="wave2" c="white" level={4} stretch={1.5} offset="10%" isFlip />
 			<Box isFlow py={40} px={40}>...</Box>
-			<Divider type="wave2" c="white" level={4} stretch={1.5} offset="-25%" />
+			<Divider shape="wave2" c="white" level={4} stretch={1.5} offset="-25%" />
 		</Box>
 		```
 	</Demo.Code>
@@ -89,20 +89,20 @@ import { Divider, Spacer } from '@loos/lism-core';
 	<Demo.Title>Demo3</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave3" c="white" level={8} stretch={1.5} offset="20%" position="top" />
+			<Divider shape="wave3" c="white" level={8} stretch={1.5} offset="20%" isFlip />
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="wave3" c="white" level={8} stretch={1.5} offset="-10%" />
+			<Divider shape="wave3" c="white" level={8} stretch={1.5} offset="-10%" />
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave3" c="white" level={8} stretch={1.5} offset="20%" position="top" />
+			<Divider shape="wave3" c="white" level={8} stretch={1.5} offset="20%" isFlip />
 			<Box isFlow py={40} px={40}>...</Box>
-			<Divider type="wave3" c="white" level={8} stretch={1.5} offset="-10%" />
+			<Divider shape="wave3" c="white" level={8} stretch={1.5} offset="-10%" />
 		</Box>
 		```
 	</Demo.Code>
@@ -115,23 +115,23 @@ import { Divider, Spacer } from '@loos/lism-core';
 	<Demo.Title>Wave1</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave1" isAnimation c="white" position="top"/>
+			<Divider shape="wave1" isAnimation c="white" isFlip/>
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="wave1" isAnimation c="white" stretch={1.4} offset="20%"/>
+			<Divider shape="wave1" isAnimation c="white" stretch={1.4} offset="20%"/>
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave1" isAnimation c="white" position="top"/>
+			<Divider shape="wave1" isAnimation c="white" isFlip/>
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="wave1" isAnimation c="white" stretch={1.4} offset="20%"/>
+			<Divider shape="wave1" isAnimation c="white" stretch={1.4} offset="20%"/>
 		</Box>
 		```
 	</Demo.Code>
@@ -141,23 +141,23 @@ import { Divider, Spacer } from '@loos/lism-core';
 	<Demo.Title>wave2</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave2" isAnimation c="white" position="top"/>
+			<Divider shape="wave2" isAnimation c="white" isFlip/>
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="wave2" isAnimation c="white"/>
+			<Divider shape="wave2" isAnimation c="white"/>
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave2" isAnimation c="white" position="top"/>
+			<Divider shape="wave2" isAnimation c="white" isFlip/>
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="wave2" isAnimation c="white"/>
+			<Divider shape="wave2" isAnimation c="white"/>
 		</Box>
 		```
 	</Demo.Code>
@@ -167,20 +167,20 @@ import { Divider, Spacer } from '@loos/lism-core';
 	<Demo.Title>Wave3</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave3" isAnimation c="white" level={6} position="top" />
+			<Divider shape="wave3" isAnimation c="white" level={6} isFlip />
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="wave3" isAnimation c="white" level={6} stretch={1.2} offset="10%" />
+			<Divider shape="wave3" isAnimation c="white" level={6} stretch={1.2} offset="10%" />
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="wave3" isAnimation c="white" level={6} position="top" />
+			<Divider shape="wave3" isAnimation c="white" level={6} isFlip />
 			<Box isFlow py={40} px={40}>...</Box>
-			<Divider type="wave3" isAnimation c="white" level={6} stretch={1.2} offset="10%" />
+			<Divider shape="wave3" isAnimation c="white" level={6} stretch={1.2} offset="10%" />
 		</Box>
 		```
 	</Demo.Code>

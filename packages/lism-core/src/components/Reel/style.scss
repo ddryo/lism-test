@@ -8,7 +8,7 @@
 // }
 .l--reel {
 	// --is--unreel: 1;
-	--item--basis: 16em; // 初期値要検討
+	--item--basis: var(--size--item);
 	--snap: start;
 
 	display: flex;
@@ -28,7 +28,7 @@
 	// 	--direction: center;
 	// }
 
-	> .is--item {
+	> * {
 		flex: 0 0 var(--item--basis);
 		scroll-snap-align: var(--snap);
 	}

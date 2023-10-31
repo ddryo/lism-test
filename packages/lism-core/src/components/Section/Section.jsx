@@ -6,7 +6,6 @@ import { Grid } from '../Grid';
 import { Divider } from '../Divider';
 // import { filterEmptyObj } from '../../lib';
 import { getMediaLayer, getFilterLayer } from '../helper';
-// import classnames from 'classnames';
 
 // align: full, wide, ''
 export default function Section({

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Lism } from '../Lism';
 // import { TabContext } from './context';
-// import classnames from 'classnames';
 
 // animationTime: [s]
 export default function Tabs({

@@ -5,6 +5,9 @@
 	flex-wrap: wrap;
 }
 
-:where(.l--cluster > .is--item) {
+.l--cluster > * {
 	min-width: var(--item--minW);
+}
+.l--cluster > .e--delimiter {
+	min-width: unset;
 }

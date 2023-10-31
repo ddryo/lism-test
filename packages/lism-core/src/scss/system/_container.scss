@@ -1,99 +1,140 @@
-// .alignfull + .alignfull{
-// 	margin-block-start: 0;
-// }
-
-@layer lism-init {
-	.is--container {
-		--size: 100%;
-		--contentSize--full: 100cqw; // この時点でのcqwをセット
-		&[data-size='s'] {
-			--size: var(--contentSize--s);
-		}
-		&[data-size='base'] {
-			--size: var(--contentSize--base);
-		}
-		&[data-size='l'] {
-			--size: var(--contentSize--l);
-		}
-	}
-	.is--constrained {
-		// --contentSize: var(--contentSize--base);
-
-		&[data-size='s'] {
-			--contentSize: var(--contentSize--s);
-		}
-		&[data-size='base'] {
-			--contentSize: var(--contentSize--base);
-		}
-		&[data-size='l'] {
-			--contentSize: var(--contentSize--l);
-		}
-	}
+// Houdini カスタムプロパティ
+.-container\:s {
+	container-type: size;
 }
-
-// 内部のコンテンツ幅を制御する
-.is--constrained {
-	// --contentSize: var(--contentSize--base);
+.-container\:i {
 	container-type: inline-size;
-	// max-inline-size: 100% !important; // ネストされた時、constrained自体は幅100%で全幅にする。
-
-	// 左寄せ・右寄せ・全幅以外の要素に対して、max-widthを設定する?
-	// > :where(:not(.alignleft):not(.alignright):not(.alignfull)),
-	> * {
-		// サイズ未セット時は base をセット
-		max-inline-size: min(100%, var(--contentSize, var(--contentSize--base)));
-		margin-inline: auto;
-	}
 }
-
-// コンテナクエリの基点とする要素。コンテンツ幅を自身の幅にセットして制御したい時にも使う。
-// cnstrained より container のサイズセットの優先度高くなるように順番を注意。
-.is--container {
-	container-type: inline-size;
-
-	// size指定があれば自身のサイズをセット
-	&:where([data-size]) {
-		margin-inline: auto;
-		max-inline-size: var(--size);
-	}
-}
-
 // .has-global-padding はコア以外の要素で使うと想像した結果にならないことがあるので同じようなことをするクラスを作る
 .has--gutter {
 	padding-inline: var(--gutter);
 }
 
+// 内部のコンテンツ幅を制御する。
+:is(.is--constrained, [class*='is--constrained:']) {
+	container-type: inline-size;
+	> * {
+		max-inline-size: min(100%, var(--contentSize));
+		margin-inline: auto;
+	}
+
+	// 左寄せ・右寄せ?
+	// > :where(.alignleft, .alignright)
+}
+
+// それぞれの直下要素( > * ) に対してスタイルをセットした方が、ネスト時の影響をなくせるが、constrainedのネストが多様されることは少ないと思うので、一旦親側の変数管理のみで実装。
+.is--constrained,
+.is--constrained\:m {
+	--contentSize: var(--size--m);
+	--size--wide: var(--size--l);
+}
+.is--constrained\:s {
+	--contentSize: var(--size--s);
+	--size--wide: var(--size--m);
+}
+.is--constrained\:l {
+	--contentSize: var(--size--l);
+	--size--wide: 100%;
+}
+// .is--constrained\:
+
+// is--container かつ is--constrained を考慮するか？
+
+// コンテナクエリの基点とする要素。
+// コンテンツ幅を自身の幅にセットして制御したい時にも使う。（そのままでは幅のセットはしない）
+// cnstrained より container の（サイズセットの）優先度高くなるように順番を注意。
+:is(.is--container, [class*='is--container:']) {
+	container-type: inline-size;
+	margin-inline: auto;
+	// max-inline-size: var(--containerSize);
+}
+
+// .is--container {
+// 	--containerSize: var(--size--m);
+// }
+.is--container\: {
+	max-inline-size: var(--containerSize);
+}
+.is--container\:s {
+	max-inline-size: var(--size--s);
+}
+.is--container\:m {
+	max-inline-size: var(--size--s);
+}
+.is--container\:l {
+	max-inline-size: var(--size--l);
+}
+
+// これは → .is--container.alignfull でできる
+// .is--container\:full {
+// 	max-inline-size: 100%;
+// }
+
+// flowより強く、ユーティリティより弱く。
+:where(.alignfull) + .alignfull {
+	margin-block-start: 0;
+}
+
+// :is(.alignfull, .is--container\:full) + :where(.alignfull, .is--container\:full) {
+// 	margin-block-start: 0;
+// }
+
 .alignfull {
 	container-type: inline-size;
+	max-inline-size: 100%;
 
-	// --contentSize: 100%; // これすると内部まで影響してしまう
-	.is--constrained > & {
-		max-inline-size: 100%;
-	}
-	.is--container > & {
-		// max-inline-size: unset;
-		max-inline-size: var(--contentSize--full);
-		margin-inline: calc(50% - var(--contentSize--full) / 2);
-	}
-
-	.has--gutter > & {
+	:where(.has--gutter) > & {
 		// --contentSize 変数は min()で100%と比較してるので、直接セット
 		max-inline-size: calc(100% + var(--gutter) * 2);
 		margin-inline: calc(var(--gutter) * -1);
 	}
 }
 
-// 幅広の場合はmax-widthを上書きする
 .alignwide {
-	// --contentSize: var(--contentSize--l);
 	container-type: inline-size;
+	max-inline-size: var(--size--wide, 100%);
+}
 
-	.is--constrained > & {
-		max-inline-size: var(--contentSize--l);
+// .has--gutter\:s {
+// 	padding-inline: var(--gutter--s);
+// }
+
+// @property が使える環境であればコンテナのさらに親要素の幅を参照できるので、containerを1段階飛び出せる。
+// ↓ @property の疑似サポートチェック
+//   - @propety : chirome(85~),edge(85~),opera(71~),Samsung(14~)
+//   - content-visibility : chirome(85~),edge(85~),opera(71~), safari:x,firefox:x, Samsung(14~)
+//   - <length> lh : Safari(16.4~), Firefox(120~121 ?), Chrome,Edge(109~), Opera(95~), Samsung(21~)
+// ↓
+// @supports (content-visibility: auto) or (top: 0lh)
+@supports (content-visibility: auto) or (top: 0lh) {
+	// cqw を算出値で保持するために登録済みカスタムプロパティとして定義
+	@property --size--100cqw {
+		syntax: '<length-percentage>';
+		initial-value: 100%;
+		inherits: true;
+	}
+	@property --size--screenW {
+		syntax: '<length>';
+		initial-value: 100vw;
+		inherits: true;
 	}
 
-	// スリム幅に対する幅広 = 通常幅 → [page-template='1column']などに対してセットするか？
-	// [data-size='s'] > & {
-	// 	--contentSize: var(--contentSize--base);
+	// :is(.is--constrained, [class*='is--constrained:']) {
+	// 	--size--100cqw: 100%;
 	// }
+
+	:is(.is--container, [class*='is--container:']) {
+		--size--100cqw: 100cqw; // この時点でのcqwをセット
+
+		> .alignfull {
+			max-inline-size: var(--size--100cqw);
+			margin-inline: calc(50% - var(--size--100cqw) / 2);
+		}
+	}
+
+	// .is--extend\:screen,
+	.alignscreen {
+		max-inline-size: var(--size--screenW);
+		margin-inline: calc(50% - var(--size--screenW) / 2);
+	}
 }

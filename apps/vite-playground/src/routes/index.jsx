@@ -11,10 +11,12 @@ import {
 	AccordionIcon,
 	Stack,
 	Cluster,
+	Text,
 	Flex,
 	Lism,
 	FAQ,
 	Icon,
+	LinkBox,
 	NavMenuItem,
 	NavMenuText,
 	NavMenu,
@@ -22,6 +24,7 @@ import {
 	Box,
 	Delimiter,
 	Item,
+	Button,
 } from '@loos/lism-core';
 
 const FolderIcon = () => (
@@ -40,26 +43,57 @@ export default function Index() {
 	return (
 		<OneColumn>
 			<h1>Playground</h1>
-			<Stack hasDivider isProvider={{ p: 'box', bgc: 'pale', c: 'blue' }}>
-				<Lism isConsumer={['p', 'bgc']}>aaa</Lism>
-				<Lism isConsumer={['p', 'bgc']}>bbb</Lism>
-				<Lism isConsumer={['p', 'bgc']}>ccc</Lism>
+			<a href='#reset' aria-label='aaa'>
+				++++++++++++++
+			</a>
+			<LinkBox href='#boxlink01' isFlow='s' p='box' bgc='pale'>
+				<Text fz='l'>このBox全体がリンクです。</Text>
+				<p>...</p>
+				<Text fz='s' ta='right' mbs={10}>
+					More→
+				</Text>
+			</LinkBox>
+			<LinkBox tag='div' href='#boxlink02' isFlow flowGap='s' p='box' bgc='pale'>
+				<Text fz='l'>このBox全体がリンクです。</Text>
+				<p>...</p>
+				<p>
+					<a href='#inner-link'>linkBox内にさらにリンク</a>を配置できる。
+				</p>
+				<Text fz='s' ta='right' mbs={10}>
+					More→
+				</Text>
+			</LinkBox>
+			<LinkBox tag='div' href='#boxlink02' isFlow flowGap='s' p='box' bgc='pale'>
+				<Text fz='l'>このBox全体がリンクです。</Text>
+				<p>...</p>
+				<Button variant='outline' href='#inbtn'>
+					Button
+				</Button>
+				<Flex>
+					<Box>aaa</Box>
+					<Button variant='outline' href='#inbtn'>
+						Button
+					</Button>
+				</Flex>
+			</LinkBox>
+			<Box isFlow pos='r'>
+				<div>aaa</div>
+				<div className='is--skipFlow'>aaa</div>
+				<div>aaa</div>
+				<div>aaa</div>
+			</Box>
+			<Stack hasDivider provide={{ p: 'box', bgc: 'pale', c: 'blue' }}>
+				<Lism consume={['p', 'bgc']}>aaa</Lism>
+				<Lism consume={['p', 'bgc']}>bbb</Lism>
+				<Lism consume={['p', 'bgc']}>ccc</Lism>
 			</Stack>
-
-			<Cluster
-				className='has--delimiter'
-				style={{ '--delimiter': `"/"` }}
-				gap={null}
-				columnGap='20'
-				bd
-				p='20'
-			>
-				<Box>ロレム・イプサムの座り雨</Box>
-				<Box>トマ好き学習エリット</Box>
-				<Box>しかし時と活力</Box>
-				<Box>そのような躍動と楽しみ</Box>
-				<Box>ブラインド行うには</Box>
-				<Box>いくつかの重要な事柄に座ります</Box>
+			<Cluster hasDivider bd bdc='base' p='20'>
+				<Box px={20}>ロレム・イプサムの座り雨</Box>
+				<Box px={20}>トマ好き学習エリット</Box>
+				<Box px={20}>しかし時と活力</Box>
+				<Box px={20}>そのような躍動と楽しみ</Box>
+				<Box px={20}>ブラインド行うには</Box>
+				<Box px={20}>いくつかの重要な事柄に座ります</Box>
 			</Cluster>
 			<Cluster gap='10' rowGap={20}>
 				<Delimiter>|</Delimiter>
@@ -138,7 +172,6 @@ export default function Index() {
 				<NavMenuItem href='#menu2' text='Lorem item' />
 				<NavMenuItem href='#menu2' text='Lorem item' />
 			</NavMenu> */}
-
 			<NavMenu>
 				<NavMenuItem>
 					<NavMenuText href='#menu1'>Lorem item</NavMenuText>
@@ -169,7 +202,6 @@ export default function Index() {
 					</NavMenu>
 				</NavMenuItem>
 			</NavMenu>
-
 			<NavMenu hasDivider bd='block'>
 				<NavMenuItem>
 					<NavMenuText href='#menu1'>Lorem item</NavMenuText>
@@ -210,8 +242,7 @@ export default function Index() {
 					{/* <NavMenuText href='#menu1'>Has Child</NavMenuText> */}
 				</NavMenuItem>
 			</NavMenu>
-
-			<NavMenu direction='horizontal' lh='xs' itemPadding={20}>
+			<NavMenu isFlex hasDivider lh='xs' provide={{ p: '10 20' }}>
 				<NavMenuItem>
 					<NavMenuText href='#menu1'>Lorem item</NavMenuText>
 				</NavMenuItem>
@@ -264,14 +295,10 @@ export default function Index() {
 				</AccordionHeader>
 				<AccordionBody {...accordionBodyProps}>{children}</AccordionBody>
 			</Accordion> */}
-
 			<Spacer h={50} />
-
 			<Spacer h={50} />
-
 			<Spacer h={50} />
-
-			<Flow>
+			<Flow gap='s'>
 				<p>
 					ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
 				</p>
@@ -285,9 +312,12 @@ export default function Index() {
 						<AccordionLabel>Accordionヘッダー1</AccordionLabel>
 						<AccordionIcon />
 					</AccordionHeader>
-					<AccordionBody>
+					<AccordionBody isFlow='s'>
 						<p>
-							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
+							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
+						</p>
+						<p>
+							先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
 						</p>
 					</AccordionBody>
 				</Accordion>
@@ -376,18 +406,18 @@ export default function Index() {
 				<hr />
 				<AccordionGroup
 					gap={20}
-					isProvider={{ p: 'box', bdc: 'b200', shadow: '1', radius: '3' }}
+					provide={{ p: 'box', bdc: 'b200', shadow: '1', radius: '3' }}
 				>
 					<Accordion
 						bgc='pale'
 						//shadow='1' radius='3'
-						isConsumer='shadow radius'
+						consume='shadow radius'
 					>
-						<AccordionHeader isConsumer='p'>
+						<AccordionHeader consume='p'>
 							<AccordionLabel>Accordionヘッダー1</AccordionLabel>
 							<AccordionIcon />
 						</AccordionHeader>
-						<AccordionBody bd='t' isConsumer='p bdc'>
+						<AccordionBody bd='t' consume='p bdc'>
 							<p>
 								ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
 							</p>
@@ -396,13 +426,13 @@ export default function Index() {
 					<Accordion
 						bgc='pale'
 						//shadow='1' radius='3'
-						isConsumer='shadow radius'
+						consume='shadow radius'
 					>
-						<AccordionHeader isConsumer='p'>
+						<AccordionHeader consume='p'>
 							<AccordionLabel>Accordionヘッダー1</AccordionLabel>
 							<AccordionIcon />
 						</AccordionHeader>
-						<AccordionBody bd='t' isConsumer='p bdc'>
+						<AccordionBody bd='t' consume='p bdc'>
 							<p>
 								ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
 							</p>
@@ -411,13 +441,13 @@ export default function Index() {
 					<Accordion
 						bgc='pale'
 						//shadow='1' radius='3'
-						isConsumer='shadow radius'
+						consume='shadow radius'
 					>
-						<AccordionHeader isConsumer='p'>
+						<AccordionHeader consume='p'>
 							<AccordionLabel>Accordionヘッダー1</AccordionLabel>
 							<AccordionIcon />
 						</AccordionHeader>
-						<AccordionBody bd='t' isConsumer='p bdc'>
+						<AccordionBody bd='t' consume='p bdc'>
 							<p>
 								ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
 							</p>

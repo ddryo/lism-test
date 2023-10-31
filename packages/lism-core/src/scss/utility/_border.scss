@@ -87,10 +87,10 @@
 	border-block-start: var(--bdw) var(--bds) var(--bdc);
 }
 // inline-startとかは？
-.-bd\:inline {
+.-bd\:I {
 	border-inline: var(--bdw) var(--bds) var(--bdc);
 }
-.-bd\:block {
+.-bd\:B {
 	border-block: var(--bdw) var(--bds) var(--bdc);
 }
 

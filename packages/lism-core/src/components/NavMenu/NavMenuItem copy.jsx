@@ -5,7 +5,7 @@ import { Text } from '../Text';
 // import { Icon } from '../Icon';
 // import { Badge } from '../Badge';
 import { Accordion, AccordionHeader, AccordionBody } from '../Accordion';
-// import classnames from 'classnames';
+
 export default function NavMenuItem({
 	linkComponent,
 	href,

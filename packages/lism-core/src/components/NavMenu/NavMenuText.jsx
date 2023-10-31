@@ -10,7 +10,7 @@ export default function NavMenuText({ lismClass = {}, hover = '-', children, ...
 	}
 
 	return (
-		<Flex tag={tag} lismClass={lismClass} ai='center' hover={hover} isConsumer='p' {...props}>
+		<Flex tag={tag} lismClass={lismClass} ai='center' hover={hover} consume='p' {...props}>
 			{children}
 		</Flex>
 	);

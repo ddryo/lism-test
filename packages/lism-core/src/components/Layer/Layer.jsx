@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Core } from '../Core';
+import { Lism } from '../Lism';
 
 // .l--layer[data-layer="media|filter|content"] ?
 export default function Layer({
@@ -64,5 +64,5 @@ export default function Layer({
 
 	// const Tag = tag || 'div';
 
-	return <Core lismClass={lismClass} {...layerProps} {...props} />;
+	return <Lism lismClass={lismClass} {...layerProps} {...props} />;
 }

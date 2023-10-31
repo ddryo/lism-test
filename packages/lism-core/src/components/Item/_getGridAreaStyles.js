@@ -1,5 +1,3 @@
-// import { filterEmptyObj, getMaybeSpaceVar } from '../index.js';
-
 /* eslint eqeqeq: 0 */
 // ↑ 0 の時の判定を考慮して 「null != hoge」を使用している。
 

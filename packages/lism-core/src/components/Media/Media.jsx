@@ -1,12 +1,12 @@
 // import React from 'react';
-import { Lism } from '../Lism';
+import { Core } from '../Core';
 
-// 省略可能にするかどうかは、要検討
+// デフォルトで img にしているだけの Core
 export default function Media({ isTransitionMedia, lismState = [], tag = 'img', ...props }) {
 	if (isTransitionMedia) {
+		// 名前要検討
 		lismState.push('is--transitionMedia');
 	}
 
-	// const MediaTag = as || tag;
-	return <Lism tag={tag} lismState={lismState} {...props} />;
+	return <Core tag={tag} lismState={lismState} {...props} />;
 }

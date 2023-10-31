@@ -29,7 +29,6 @@
 .c--accordion__label {
 	flex-grow: 1;
 	// overflow-wrap: anywhere;
-	line-height: var(--lh--s);
 }
 
 .c--accordion__body {
@@ -39,7 +38,7 @@
 	transition-duration: var(--duration);
 }
 
-.c--accordion__bodyInner {
+.c--accordion__inner {
 	overflow: hidden; // ※ 正常な animation に必須
 }
 

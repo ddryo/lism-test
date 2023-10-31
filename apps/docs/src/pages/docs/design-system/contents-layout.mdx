@@ -436,14 +436,27 @@ flowGap用のトークンとして`s`,`m`,`l`があり、ユーティリティ�
 
 
 <Demo>
-	<Demo.Title>NG: `flowGap`を指定した直下で さらに`is--flow`を配置</Demo.Title>
+	<Demo.Title>NG: `flowGap`を指定した直下で さらに`flowGap`を指定</Demo.Title>
 	<Demo.Preview resize p={30}>
 		<Box isFlow flowGap="8px">
 			<p className='-bd:guide'>コンテンツ</p>
 			<p className='-bd:guide'>コンテンツ</p>
+			<Box isFlow flowGap="20px" bgc="pale">
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+
 			<Box isFlow bgc="pale">
 				<p className='-bd:guide'>ネストされたコンテンツ</p>
 				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<Box isFlow='l' bgc="blue:20%">
+					<p className='-bd:guide'>ネストされたコンテンツ</p>
+					<p className='-bd:guide'>ネストされたコンテンツ</p>
+					<Box isFlow='s' bgc="blue:20%">
+						<p className='-bd:guide'>ネストされたコンテンツ</p>
+						<p className='-bd:guide'>ネストされたコンテンツ</p>
+					</Box>
+				</Box>
 			</Box>
 			<p className='-bd:guide'>コンテンツ</p>
 			<p className='-bd:guide'>コンテンツ</p>

@@ -70,19 +70,12 @@ export default {
 	// ユーティリティ化
 	space: spacingPresets,
 	p: [...spacingPresets, 'box', 'box:s', 'box:l'],
-	flowGap: ['xs', 's', 'm', 'l', 'xl'],
+	flow: ['xs', 's', 'm', 'l', 'xl'],
 	// align-content
 	// "space-between"
 	radius: ['0', '1', '2', '3', '4', '5', '6', '99'], // 'round'
 	shadow: ['-1', '-2', '-3', '-4', '-5', '0', '1', '2', '3', '4', '5'],
-	bd: [
-		'guide',
-		'emphasis',
-		// 'current',
-		// 'transparent',
-		'block',
-		'inline',
-	], // dashed?
+	bd: ['guide', 'emphasis'], // dashed?
 
 	//bds: dashed, solid, double, dotted,
 
@@ -92,9 +85,11 @@ export default {
 	gta: ['lcr', 'tcb', 'ltr'],
 	gt: ['fix:l', 'fix:r', 'fix:t', 'fix:b'],
 	gradient: ['sunset', 'black-to-bottom'],
+	// transform: ['flip:x', 'flip:y', 'flip:xy'],
+	animation: [],
 
 	// size:['container', 'container:s', 'container:l'],
-	contentSize: ['xs', 's', 'base', 'l', 'xl'],
+	contentSize: ['item', 'xs', 's', 'm', 'l', 'xl', 'full'],
 };
 
 // ユーティリティ化しないけど、変数を用意しておくもの

@@ -1,19 +1,11 @@
 import filterEmptyObj from './helper/filterEmptyObj';
+import hasKeys from './helper/hasKeys';
 import { BREAK_POINTS } from '../config';
+
 const BREAK_POINTS_ALL = ['_', ...BREAK_POINTS];
 
-function hasKeys(object, keys) {
-	if (null == object) return false;
-	return keys.some((key) => Object.prototype.hasOwnProperty.call(object, key));
-}
-
-// 'sm', 'md' などのいずれかのbpキーが object に存在するか
-function hasBpKeys(data) {
-	return hasKeys(data, BREAK_POINTS_ALL);
-}
-
-// クエリ対応プロパティの型を調べて規格化したObjを返す
-// string, array, obj → {_, sm, md, ...} の型に変換
+// BP指定に必要な規格化した形式のオブジェクトを返す.
+//     ( string, array, obj → {_, sm, md, ...} の型のobjectに変換する. )
 export default function getBpData(propVal) {
 	let values = {};
 
@@ -26,20 +18,13 @@ export default function getBpData(propVal) {
 			values[`${BREAK_POINTS_ALL[i]}`] = r;
 		});
 	} else if (typeof propVal === 'object') {
-		// breakpoint指定のオブジェクトか、ただのプロパティの成分オブジェクトかで処理を分ける
-		if (hasBpKeys(propVal)) {
+		if (hasKeys(propVal, BREAK_POINTS_ALL)) {
+			// 'sm', 'md' などがある場合はｍbp指定のオブジェクトとみなす
 			values = propVal;
 		} else {
-			values._ = propVal;
+			values._ = propVal; // 方向ブジェクト(sides props)の場合
 		}
 	}
 
 	return filterEmptyObj(values);
-
-	// return {
-	// 	baseValue,
-	// 	bpValues,
-	// };
-
-	// return filterEmptyObj(returnObj);
 }

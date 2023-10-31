@@ -112,7 +112,7 @@ export default {
 	font: { style: 1, utils: 1 },
 	lts: { style: 'letterSpacing', presets: 1 }, // utilityあってもいい
 	ta: { style: 'textAlign', utils: 1 },
-	td: { style: 'textDecoration' },
+	td: { style: 'textDecoration', utils: 1 },
 	whs: { style: 'whiteSpace', utils: { nowrap: 'nw' } },
 
 	// others
@@ -138,11 +138,16 @@ export default {
 	clipPath: { style: 1 },
 	// appearance: { style: 1, utils: { none: 'n' } },
 
-	//transform
-	translate: { style: 1, utils: 1, utilKey: 'trnslt' },
+	transform: { style: 1, utils: 1, utilKey: 'trf' },
 	transformOrigin: { style: 1, utilKey: 'trso', utils: 'origin' },
+	translate: { style: 1, utils: 1, utilKey: 'trnslt' },
 	rotate: { style: 1, utils: 1 },
 	scale: { style: 1 },
+	animation: { style: 1, presets: 1 },
+	// flip: {},
+
+	objectFit: { style: 1 },
+	objectPosition: { style: 1 },
 
 	// Spacing
 	p: {
@@ -179,7 +184,7 @@ export default {
 	// mbe: marginOption,
 
 	// isFlowでのみ有効
-	flowGap: { presets: 1, converter: 'space' },
+	// flowGap: { presets: 1, converter: 'space' },
 
 	// flexItem
 	flex: { map: 1, style: 1 },

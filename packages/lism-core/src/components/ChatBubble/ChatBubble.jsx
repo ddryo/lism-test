@@ -44,8 +44,8 @@ export default function ChatBubble({
 	children,
 	...props
 }) {
-	lismClass.b = 'b--chatBubble';
-	if (type) lismClass.b += ` b--chatBubble--${type}`;
+	lismClass.c = 'b--chatBubble';
+	if (type) lismClass.c += ` b--chatBubble--${type}`;
 
 	let decorator = null;
 	// const fxd = 'left' === direction ? null : 'row-reverse';
@@ -57,10 +57,9 @@ export default function ChatBubble({
 	// let _avatarProps = { radius: '99' };
 	let bodyProps = {};
 	let contentPropsDefault = {
-		isFlow: true,
-		flowGap: 's',
-		radius: '3',
-		p: 'box:s',
+		isFlow: 's',
+		radius: '2',
+		consume: 'p',
 	};
 
 	let namePropsDefault = {
@@ -75,8 +74,8 @@ export default function ChatBubble({
 	if ('box' === type) {
 		// boxProps.template = 'fix:t';
 		boxProps.gap = 0;
-		contentPropsDefault.radius = 1;
-		contentPropsDefault.p = 'box';
+		// contentPropsDefault.radius = 1;
+		// contentPropsDefault.p = 'box';
 
 		if (direction === 'left') {
 			nameProps.mr = 'auto';

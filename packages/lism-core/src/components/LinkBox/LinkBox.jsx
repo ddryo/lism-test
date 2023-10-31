@@ -1,5 +1,5 @@
 // import { useRef } from 'react';
-import { Core } from '../Core';
+import { Lism } from '../Lism';
 
 export default function LinkBox({
 	as,
@@ -30,13 +30,13 @@ export default function LinkBox({
 		'aria-label': ariaLabel || null,
 	};
 
-	const Component = as || Core;
+	const Component = as || Lism;
 
 	// aタグ以外をリンク化する場合
 	if (tag !== 'a') {
 		return (
 			<Component tag={tag} {...theProps} {...props}>
-				<a href='/#linkbox' data-hidden-link {...linkProps}></a>
+				<a href='/#linkbox' className='e--stretchedLink is--skipFlow' {...linkProps}></a>
 				{children}
 			</Component>
 		);

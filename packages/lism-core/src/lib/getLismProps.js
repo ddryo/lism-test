@@ -1,21 +1,11 @@
-import {
-	isPresetValue,
-	getUtilValue,
-	getMaybeColorVar,
-	getMaybeSpaceVar,
-	getMaybeFzVar,
-	getMaybeSizeVar,
-	getMaybeBgVar,
-	getMaybeShadowVar,
-	getMaybeRadiusVar,
-} from './index.js';
+// import { isPresetValue, getMaybeUtilValue, getMaybeCssVar } from './index.js';
+import isPresetValue from './isPresetValue';
+import getMaybeUtilValue from './getMaybeUtilValue';
+import getMaybeCssVar from './getMaybeCssVar';
 
 import { PROPS, CONTEXT_PROPS } from '../config';
+import { joinAtts, isEmptyObj, filterEmptyObj } from './helper';
 import getBpData from './getBpData';
-import filterEmptyObj from './helper/filterEmptyObj';
-import isEmptyObj from './helper/isEmptyObj';
-
-import classnames from 'classnames';
 
 // const isBaseBP = (bp) => {
 // 	return '_' === bp;
@@ -37,37 +27,10 @@ const HoverProps = {
 	shadow: 'shadow',
 };
 
-const CONVERTERS = {
-	color: getMaybeColorVar,
-	space: getMaybeSpaceVar,
-	fz: getMaybeFzVar,
-	size: getMaybeSizeVar,
-	bg: getMaybeBgVar,
-	shadow: getMaybeShadowVar,
-	radius: getMaybeRadiusVar,
-};
-
 // const PROP_FULL_NAMES = {
 // 	padding: 'p',
 // 	margin: 'm',
 // };
-
-// CSS変数としてのみ出力する特殊処理
-const getCssVarValue = (propName, propVal, converterName) => {
-	// // css変数名
-	// const cssVarName = `${prefix}--${propName}`;
-
-	const converterFunc = CONVERTERS[converterName];
-	if (!converterFunc) return propVal;
-
-	// コンバーターを実行
-	const checkPropName = 'space' === converterName || 'color' === converterName;
-	if (checkPropName) {
-		return converterFunc(propVal, propName);
-	} else {
-		return converterFunc(propVal);
-	}
-};
 
 class CommonProps {
 	// propList = {};
@@ -86,26 +49,22 @@ class CommonProps {
 
 		// 受け取るpropsとそうでないpropsを分ける
 		const {
+			forwardedRef,
 			className,
 			style = {},
-			forwardedRef,
-			// _lism = {},
 			blockClass,
 			lismClass,
-			lismStyle = {},
 			lismState = [],
+			lismStyle = {},
 
 			// state
-			alignfull,
-			alignwide,
-			isFlow,
-			isItem,
-			hasLayer,
-			hasDivider,
-			// hasDelimiter,
+			// isFlow,
+			// isItem,
+			// hasLayer,
+			// hasDivider,
 			lismVar,
-			isProvider,
-			isConsumer,
+			provide,
+			consume,
 			...others
 		} = props;
 
@@ -114,49 +73,33 @@ class CommonProps {
 		this.styles = Object.assign({}, lismStyle, style);
 
 		let lismClassNames = [];
-		if (blockClass && typeof blockClass === 'string') {
-			lismClassNames.push(blockClass);
-		}
 
 		if (lismClass && typeof lismClass === 'string') {
 			lismClassNames.push(lismClass);
 		}
 		if (typeof lismClass === 'object') {
-			['b', 'c', 'l', 'e', '_'].forEach((prefix) => {
+			['c', 'l', 'e', '_'].forEach((prefix) => {
 				if (!lismClass[prefix]) return;
 				lismClassNames.push(lismClass[prefix]);
 			});
 		}
 
 		// use=['layout', 'color', 'bd' ...]とかで使うprop指定?
-		this.className = classnames(
+		this.className = joinAtts(
 			className, // ユーザー指定のクラス
-			lismClassNames, // l--
-			{
-				alignfull,
-				alignwide,
-				'is--flow': isFlow || false,
-				'is--item': isItem || false,
-				// 'is--linkbox': isLinkbox || false,
-				// 'is--container': isContainer || false,
-				// 'is--constrained': isConstrained || false,
-			},
-			lismState, // is, has
-			{
-				// 'has--gutter': hasGutter || false,
-				'has--divider': hasDivider || false,
-				'has--layer': hasLayer || false,
-				// 'use:lismVar': lismVar || false,
-			}
+			blockClass, // ブロッククラス
+			lismClassNames, // l--, c--, e-- などのクラス
+			lismState // is, has
 			// lismUtil
 		);
 
 		// propリストのセット
 		// this.setPropList(useFlexProps, useGridProps, useItemProps, useLog);
 
-		if (isFlow && isFlow !== true) {
-			this.analyzeProp('flowGap', isFlow);
-		}
+		// if (isFlow && isFlow !== true) {
+		// 	this.analyzeProp('flowGap', isFlow);
+		// }
+
 		// if (flex) {
 		// 	this.setContextProps('flex', flex);
 		// }
@@ -199,21 +142,14 @@ class CommonProps {
 			this.attrs.ref = forwardedRef;
 		}
 
-		if (null != isProvider && typeof isProvider === 'object') {
-			this.setProvider(isProvider);
+		if (null != provide && typeof provide === 'object') {
+			this.setProvider(provide);
 		}
 
-		// consumer
-		// if (null != isConsumer && Array.isArray(isConsumer)) {
-		// 	this.attrs['data-lism-consumer'] = isConsumer.join(' ');
-		// }
-
-		if (null != isConsumer) {
-			if (Array.isArray(isConsumer)) {
-				this.attrs['data-lism-consumer'] = isConsumer.join(' ');
-			} else if (typeof isConsumer === 'string') {
-				this.attrs['data-lism-consumer'] = isConsumer;
-			}
+		if (null != consume) {
+			const consumeData = Array.isArray(consume) ? consume.join(' ') : consume;
+			// if (typeof consumeData === 'string')
+			this.attrs['data-lism-consume'] = consumeData;
 		}
 	}
 
@@ -411,7 +347,7 @@ class CommonProps {
 			}
 			if (utils) {
 				if (1 === utils) utils = name; // 1 は prop名をそのままキーとして取得
-				const utilVal = getUtilValue(utils, val);
+				const utilVal = getMaybeUtilValue(utils, val);
 				if (utilVal) {
 					this.addUtil(`${utilName}${utilVal}`);
 					return;
@@ -420,7 +356,6 @@ class CommonProps {
 		}
 
 		// 以下、ユーティリティクラス化できない場合の処理
-
 		let { style, converter } = options;
 
 		// .-prop: だけ出力するケース
@@ -431,11 +366,10 @@ class CommonProps {
 
 		// converter(getMaybe...)があればそれを通す
 		if (converter) {
-			converter = options.converter;
-			if (typeof converter === 'string') {
-				converter = CONVERTERS[converter];
-			}
-			val = converter(val);
+			// memo: nameチェックでの変数化が必要なケースは、この時点でユーティリティクラス化されているのでnameの受け渡しをスキップしてもいいかも
+			val = getMaybeCssVar(val, converter, name);
+			// if (typeof converter === 'string') converter = CONVERTERS[converter];
+			// val = converter(val);
 		}
 
 		// style のみ出力
@@ -462,18 +396,19 @@ class CommonProps {
 
 			// 渡す値
 			let value = providerData[propName];
+			if (null === value) return;
 
 			// コンバーター取得
 			const converterName = ProvidableProps[propName];
 			if (converterName) {
-				value = getCssVarValue(propName, value, converterName);
+				value = getMaybeCssVar(value, converterName, propName);
 			}
 
 			this.addStyle(`--pass--${propName}`, value);
 		});
 
 		// 意味はないが一応何をしているかわかるようにdata属性にセット
-		this.attrs['data-lism-provider'] = dataList.join(' ');
+		this.attrs['data-lism-provide'] = dataList.join(' ');
 	}
 
 	setHoverProps(hoverData) {
@@ -498,7 +433,7 @@ class CommonProps {
 				// コンバーター取得
 				const converterName = HoverProps[propName];
 				if (converterName) {
-					value = getCssVarValue(propName, value, converterName);
+					value = getMaybeCssVar(value, converterName, propName);
 				}
 				this.addUtil(`-hov:${propName}:`);
 				this.addStyle(`--hov--${propName}`, value);
@@ -507,13 +442,10 @@ class CommonProps {
 	}
 
 	setGradientProps(gradVal) {
-		// this.setHoverProps(gradVal);
 		if (typeof gradVal === 'string') {
 			if (isPresetValue('gradient', gradVal)) {
 				this.addUtil('-gradient:' + gradVal);
 			} else {
-				// this.addUtil('-gradient:');
-				// this.addStyle('--gradient', gradVal);
 				this.addStyle('backgroundImage', gradVal);
 			}
 			//  else if (gradVal.includes('-gradient(')) {
@@ -528,11 +460,12 @@ class CommonProps {
 			const { type = 'linear', angle, colors = '' } = gradVal;
 			if (!colors) return;
 
-			// this.addUtil('-gradient:');
 			let gradient = '';
 			if (angle) {
 				gradient += `${angle}, `;
 			}
+
+			// カラー成分直書きしてるかどうかで分岐
 			if (colors.includes(',')) {
 				gradient += colors;
 			} else {
@@ -578,7 +511,7 @@ export default function getLismProps(props, options = {}) {
 	// CP.attrs['data-lism-prop'] = CP.utilityClasses;
 
 	return {
-		className: classnames(CP.className, CP.utilityClasses),
+		className: joinAtts(CP.className, CP.utilityClasses),
 		style: filterEmptyObj(CP.styles), //filterEmptyObj(styles), // filterEmptyObj は最後にかける
 		attrs: CP.attrs, // 処理されずに残っているprops
 	};

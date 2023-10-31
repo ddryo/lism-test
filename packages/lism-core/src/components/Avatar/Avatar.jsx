@@ -1,20 +1,17 @@
-// import React from 'react';
-import { Lism } from '../Lism';
-// import { getLismMainProp } from '../../lib';
+import { Core } from '../Core';
 
-export default function Avatar({
-	children,
-	//size,
-	...props
-}) {
-	const theProps = {
-		lismClass: 'e--avatar',
-		// lismVar: size,
-	};
+// srcがあれば自身をmediaにする？この時、objectFit適用する
+export default function Avatar({ lismClass = {}, lismStyle = {}, children, size, ...props }) {
+	lismClass.e = 'e--avatar';
+	// if (variant) lismClass.e += ` e--avatar--${variant}`;
+
+	if (size) {
+		lismStyle['--size'] = size;
+	}
 
 	return (
-		<Lism {...theProps} {...props}>
+		<Core lismClass={lismClass} lismStyle={lismStyle} radius='99' {...props}>
 			{children}
-		</Lism>
+		</Core>
 	);
 }

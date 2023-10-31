@@ -1,6 +1,5 @@
 // import React from 'react';
 import Grid from '../Grid';
-// import classnames from 'classnames';
 
 export default function TileGrid({ lismStyle = {}, itemMinW, ...props }) {
 	const gridProps = {

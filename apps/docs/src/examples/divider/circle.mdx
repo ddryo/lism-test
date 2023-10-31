@@ -4,15 +4,15 @@ import { Divider, Spacer } from '@loos/lism-core';
 <Demo>
 	<Demo.Title>Circle</Demo.Title>
 	<Demo.Preview resize>
-		<Divider type="circle1" c="black"/>
-		<Divider type="circle2" c="black"/>
-		<Divider type="circle3" c="black"/>
+		<Divider shape="circle1" c="black"/>
+		<Divider shape="circle2" c="black"/>
+		<Divider shape="circle3" c="black"/>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Divider type="circle1" c="black"/>
-		<Divider type="circle2" c="black"/>
-		<Divider type="circle3" c="black"/>
+		<Divider shape="circle1" c="black"/>
+		<Divider shape="circle2" c="black"/>
+		<Divider shape="circle3" c="black"/>
 		```
 	</Demo.Code>
 </Demo>
@@ -25,23 +25,23 @@ import { Divider, Spacer } from '@loos/lism-core';
 	<Demo.Title>Divider</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="circle1" c="white" position="top" level={2}/>
+			<Divider shape="circle1" c="white" isFlip level={2}/>
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="circle1" c="white" level={2}/>
+			<Divider shape="circle1" c="white" level={2}/>
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="circle1" c="white" position="top" level={2}/>
+			<Divider shape="circle1" c="white" isFlip level={2}/>
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="circle1" c="white" level={2}/>
+			<Divider shape="circle1" c="white" level={2}/>
 		</Box>
 		```
 	</Demo.Code>
@@ -51,23 +51,23 @@ import { Divider, Spacer } from '@loos/lism-core';
 	<Demo.Title>Divider</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="circle1" c="white" position="top" level={-2}/>
+			<Divider shape="circle1" c="white" isFlip level={-2}/>
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="circle1" c="white" level={-2}/>
+			<Divider shape="circle1" c="white" level={-2}/>
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="circle1" c="white" position="top" level={-2}/>
+			<Divider shape="circle1" c="white" isFlip level={-2}/>
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="circle1" c="white" level={-2}/>
+			<Divider shape="circle1" c="white" level={-2}/>
 		</Box>
 		```
 	</Demo.Code>
@@ -78,20 +78,20 @@ import { Divider, Spacer } from '@loos/lism-core';
 	<Demo.Title>Divider</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="circle2" c="white" level={2} stretch={1.5} offset="25%" position="top" />
+			<Divider shape="circle2" c="white" level={2} stretch={1.5} offset="25%" isFlip />
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="circle2" c="white" level={2} stretch={1.5} offset="-25%" />
+			<Divider shape="circle2" c="white" level={2} stretch={1.5} offset="-25%" />
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="circle2" c="white" level={2} stretch={1.5} offset="25%" position="top" />
+			<Divider shape="circle2" c="white" level={2} stretch={1.5} offset="25%" isFlip />
 			<Box isFlow py={40} px={40}>...</Box>
-			<Divider type="circle2" c="white" level={2} stretch={1.5} offset="-25%" />
+			<Divider shape="circle2" c="white" level={2} stretch={1.5} offset="-25%" />
 		</Box>
 		```
 	</Demo.Code>
@@ -102,20 +102,20 @@ import { Divider, Spacer } from '@loos/lism-core';
 	<Demo.Title>Divider</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="circle2" c="white" level={-2} stretch={1.5} offset="25%" position="top" />
+			<Divider shape="circle2" c="white" level={-2} stretch={1.5} offset="25%" isFlip />
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="circle2" c="white" level={-2} stretch={1.5} offset="-25%" />
+			<Divider shape="circle2" c="white" level={-2} stretch={1.5} offset="-25%" />
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="circle2" c="white" level={-2} stretch={1.5} offset="25%" position="top" />
+			<Divider shape="circle2" c="white" level={-2} stretch={1.5} offset="25%" isFlip />
 			<Box isFlow py={40} px={40}>...</Box>
-			<Divider type="circle2" c="white" level={-2} stretch={1.5} offset="-25%" />
+			<Divider shape="circle2" c="white" level={-2} stretch={1.5} offset="-25%" />
 		</Box>
 		```
 	</Demo.Code>
@@ -127,20 +127,20 @@ import { Divider, Spacer } from '@loos/lism-core';
 	<Demo.Title>Divider</Demo.Title>
 	<Demo.Preview resize alignfull>
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="circle3" c="white" level={3} position="top" />
+			<Divider shape="circle3" c="white" level={3} isFlip />
 			<Box isFlow py={40} px={40}>
 				<DammyText />
 				<DammyText length="l" />
 			</Box>
-			<Divider type="circle3" c="white" level={-3} />
+			<Divider shape="circle3" c="white" level={-3} />
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Box alignfull bgc="#e5e5e5" c="black">
-			<Divider type="circle3" c="white" level={3} position="top" />
+			<Divider shape="circle3" c="white" level={3} isFlip />
 			<Box isFlow py={40} px={40}>...</Box>
-			<Divider type="circle3" c="white" level={-3} />
+			<Divider shape="circle3" c="white" level={-3} />
 		</Box>
 		```
 	</Demo.Code>

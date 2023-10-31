@@ -61,16 +61,17 @@
 		font-size: 50%;
 	}
 
-	/* 画像を扱いやすく */
-	img,
-	svg {
+	:where(svg, img) {
 		/* 親要素をはみ出さないように */
-		/* images should never overflow past the available space */
 		max-inline-size: 100%;
-		block-size: auto; /* かつ、アスペクト比を保持 */
 
-		/* 隙間ができるのを防ぐ。 インラインな img, svg を考慮し、 display はいじらない。 */
+		/* 隙間ができるのを防ぐ。( インラインな img, svg を考慮し、 display はいじらない。) */
 		vertical-align: middle;
+	}
+
+	/* かつ、画像はアスペクト比を保持。 (svg に適用してしまうと width, height属性が効かない） */
+	img {
+		block-size: auto;
 	}
 
 	/* audio, embed, object? */

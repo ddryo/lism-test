@@ -3,8 +3,6 @@ import setEvent from './setEvent';
 import { getLismProps } from '../../lib';
 // import { AccContext } from './context';
 
-// import classnames from 'classnames';
-
 // duration: [s]
 export default function Accordion({
 	lismClass = {},

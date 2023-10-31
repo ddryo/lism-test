@@ -1,8 +1,8 @@
-import { Cluster, Badge, Item, Lism } from '@loos/lism-core';
+import { Cluster, Badge, Item, Lism, Delimiter } from '@loos/lism-core';
 
 # Cluster
 
-複数のちさな要素をFlexレイアウトで**横並び**に配置するためのコンポーネントです。
+複数の細かい要素をFlexレイアウトで**横並び**に配置するためのコンポーネントです。
 
 `flex-wrap:wrap`がデフォルトで適用されている[`<Flex>`](/docs/components/Flex)ベースのコンポーネントで、`<Flex wrap="wrap">`と機能的には同等です。
 
@@ -19,7 +19,7 @@ import { Cluster, Badge, Item, Lism } from '@loos/lism-core';
 ## Props
 
 - `itemMinW`: 子要素の最低限維持する幅
-	- ※ `.is--item, span, li, a, button`に対してのみ有効です。
+- `delimiterColor`: 内部に配置した`<Delimiter />`の色を指定できます。
 - その他、[`<Flex>`で使えるprops](/docs/components/Flex#props)が使えます。
 	- `gap`に初期値`20`が指定されています。
 
@@ -35,7 +35,7 @@ import { Cluster } from '@loos/lism-core';
 <Demo>
 	<Demo.Title>シンプルな`<Cluster>`の例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Cluster>
+		<Cluster gap={20}>
 			<Badge>Lorem ipsum</Badge>
 			<Badge>Dolor</Badge>
 			<Badge>Sit amet</Badge>
@@ -46,7 +46,7 @@ import { Cluster } from '@loos/lism-core';
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Cluster>
+<Cluster gap={20}>
 	<Badge>Lorem ipsum</Badge>
 	<Badge>Dolor</Badge>
 	<Badge>Sit amet</Badge>
@@ -60,20 +60,20 @@ import { Cluster } from '@loos/lism-core';
 
 
 <Demo>
-	<Demo.Title>`itemMinW`は`isItem`に有効</Demo.Title>
+	<Demo.Title>`itemMinW`を指定</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Cluster itemMinW="20%" ta="center">
-			<Item tag="span" bd>A</Item>
-			<Box isItem tag="span" bd>B</Box>
-			<Lism isItem tag="span" bd>C</Lism>
+		<Cluster gap={20} itemMinW="20%" ta="center">
+			<Box bd>A</Box>
+			<Box bd>B</Box>
+			<Box bd>C</Box>
 		</Cluster>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Cluster itemMinW="20%" ta="center">
-	<Item tag="span" bd>A</Item>
-	<Box isItem tag="span" bd>B</Box>
-	<Lism isItem tag="span" bd>C</Lism>
+<Cluster gap={20} itemMinW="20%" ta="center">
+	<Box bd>A</Box>
+	<Box bd>B</Box>
+	<Box bd>C</Box>
 </Cluster>
 ```
 	</Demo.Code>
@@ -83,25 +83,53 @@ import { Cluster } from '@loos/lism-core';
 
 <Demo>
 	<Demo.Title>他のpropsの活用</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Cluster itemMinW="6em" rowGap={20} columnGap={40} jc="center" ta="center" >
-			<Badge isItem>Lorem ipsum</Badge>
-			<Badge isItem>Dolor</Badge>
-			<Badge isItem>Sit amet</Badge>
-			<Badge isItem>Consectetur</Badge>
-			<Badge isItem>Adipisicing</Badge>
-			<Badge isItem>Elit</Badge>
+	<Demo.Preview resize p={20} nogrid>
+		<Cluster itemMinW="5em" hasDivider="I" jc="center" ta="center" provide={{p: '0 20'}}>
+			<Box consume='p'>Lorem ipsum</Box>
+			<Box consume='p'>Dolor</Box>
+			<Box consume='p'>Sit amet</Box>
+			<Box consume='p'>Consectetur</Box>
+			<Box consume='p'>Adipisicing</Box>
+			<Box consume='p'>Elit</Box>
+		</Cluster>
+		<hr />
+		<Cluster itemMinW="3em" rowGap={0} columnGap={20} ta="center" delimiterColor='accent'>
+			<span >Lorem ipsum</span>
+			<Delimiter>/</Delimiter>
+			<span >Dolor</span>
+			<Delimiter>/</Delimiter>
+			<span >Sit amet</span>
+			<Delimiter>/</Delimiter>
+			<span >Consectetur</span>
+			<Delimiter>/</Delimiter>
+			<span >Adipisicing</span>
+			<Delimiter>/</Delimiter>
+			<span >Elit</span>
 		</Cluster>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Cluster itemMinW="6em" rowGap={20} columnGap={40} jc="center" ta="center" >
-	<Badge isItem>Lorem ipsum</Badge>
-	<Badge isItem>Dolor</Badge>
-	<Badge isItem>Sit amet</Badge>
-	<Badge isItem>Consectetur</Badge>
-	<Badge isItem>Adipisicing</Badge>
-	<Badge isItem>Elit</Badge>
+<Cluster itemMinW="5em" hasDivider="I" jc="center" ta="center" provide={{p: '0 20'}}>
+	<Box consume='p'>Lorem ipsum</Box>
+	<Box consume='p'>Dolor</Box>
+	<Box consume='p'>Sit amet</Box>
+	<Box consume='p'>Consectetur</Box>
+	<Box consume='p'>Adipisicing</Box>
+	<Box consume='p'>Elit</Box>
+</Cluster>
+<hr />
+<Cluster itemMinW="3em" rowGap={0} columnGap={20} ta="center" delimiterColor='accent'>
+	<span >Lorem ipsum</span>
+	<Delimiter>/</Delimiter>
+	<span >Dolor</span>
+	<Delimiter>/</Delimiter>
+	<span >Sit amet</span>
+	<Delimiter>/</Delimiter>
+	<span >Consectetur</span>
+	<Delimiter>/</Delimiter>
+	<span >Adipisicing</span>
+	<Delimiter>/</Delimiter>
+	<span >Elit</span>
 </Cluster>
 ```
 	</Demo.Code>

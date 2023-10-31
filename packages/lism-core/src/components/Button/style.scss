@@ -38,7 +38,7 @@
 }
 
 // py は小さめにして、minHで最低限の高さを確保.
-:where(.c--button) {
+.c--button {
 	display: flex;
 	justify-content: center;
 	align-items: center;

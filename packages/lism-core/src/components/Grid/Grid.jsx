@@ -1,6 +1,6 @@
 // import React from 'react';
 import { Lism } from '../Lism';
-import { isEmptyObj, filterEmptyObj } from '../../lib';
+import { isEmptyObj, filterEmptyObj } from '../../lib/helper';
 
 export default function Grid({
 	_gridName = 'grid',

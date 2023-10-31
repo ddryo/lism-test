@@ -60,8 +60,8 @@ export default function Index() {
 					<TestLinks />
 				</Stack>
 			</Container>
+			<Spacer h={50} />
 			<Flow>
-				<Spacer h={40} />
 				<Content />
 			</Flow>
 			<Spacer h={50} />

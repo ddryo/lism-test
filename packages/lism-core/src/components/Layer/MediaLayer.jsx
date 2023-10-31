@@ -3,8 +3,6 @@ import Layer from './Layer';
 import { Media } from '../Media';
 
 export default function MediaLayer({
-	lismState = [],
-	// hasTransitionMedia,
 	children,
 	// tag = 'img',
 	z,
@@ -12,14 +10,10 @@ export default function MediaLayer({
 }) {
 	let mediaContent = null;
 
-	// if (hasTransitionMedia) {
-	// 	lismState.push('has--transitionMedia');
-	// }
-
 	// childrenに渡ってくる場合
 	if (children) {
 		return (
-			<Layer modifier='media' lismState={lismState} z={z} {...props}>
+			<Layer modifier='media' z={z} {...props}>
 				{children}
 			</Layer>
 		);
@@ -31,7 +25,7 @@ export default function MediaLayer({
 	}
 
 	return (
-		<Layer modifier='media' lismState={lismState} z={z}>
+		<Layer modifier='media' z={z}>
 			{mediaContent}
 		</Layer>
 	);

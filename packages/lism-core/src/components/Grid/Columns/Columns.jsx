@@ -1,6 +1,7 @@
 // import React from 'react';
 import Grid from '../Grid';
-import { isEmptyObj, getLismMainProp } from '../../../lib';
+import { isEmptyObj } from '../../../lib/helper';
+import { getBpData } from '../../../lib';
 
 // function getColumnsVars(cols) {
 // 	let baseCols = cols._ || 2;
@@ -19,13 +20,13 @@ import { isEmptyObj, getLismMainProp } from '../../../lib';
 // 	};
 // }
 
-// PRESET '1-2-3' 1-2, 1-2-4
-export default function Columns({ cols = 1, lismStyle = {}, ...props }) {
+// PRESET '1-2-3' 1-2, 1-2-4 ?
+export default function Columns({ cols = [1, 2], lismStyle = {}, ...props }) {
 	const gridProps = {
 		_gridName: 'columns',
 		gap: 20, // 初期値
 	};
-	const { baseValue, bpValues } = getLismMainProp(cols);
+	const { _: baseValue, ...bpValues } = getBpData(cols);
 
 	if (null != baseValue) {
 		lismStyle['--cols'] = baseValue;

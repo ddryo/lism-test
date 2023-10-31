@@ -26,14 +26,6 @@
 
  ------------------------------------------------------------ */
 
-// cqw を算出値で保持するために登録済みカスタムプロパティとして定義
-// Note: 対応ブラウザが少ないことに注意。
-@property --contentSize--full {
-	syntax: '<length>'; //length-percentage?
-	initial-value: 0px;
-	inherits: true;
-}
-
 :root {
 	/* ------------------------------------------------------------
 	  コンテンツサイズ: ユーザー側で定義が必要
@@ -41,13 +33,14 @@
 	    1080 にしてるのは、 1920 * 1080画像がきれいに配置できるため？
 	------------------------------------------------------------ */
 	// コンテンツサイズは960 ~ 1120 くらいがよさそう. @lg よりは大きく?
-	--contentSize--full: 100vw;
-	--contentSize--base: var(--contentSize--m); // = --wp--style--global--content-size.
+	--size--l: 1440px; // = --wp--style--global--wide-size. alignwide で使う.
+	--size--m: 1120px; // = --wp--style--global--content-size.
+	--size--s: 45rem; // slim幅1カラムテンプレートで使う. fz:16px時 = 720px
+	// --size--xs: 30rem;
+	--size--item: 16em; // タイルグリッドなどのアイテムサイズの標準値
+	// --size--base: var(--size--m); // = --wp--style--global--content-size.
 
-	--contentSize--l: 1440px; // = --wp--style--global--wide-size. alignwide で使う.
-	--contentSize--m: 1120px; // = --wp--style--global--content-size.
-	--contentSize--s: 45rem; // slim幅1カラムテンプレートで使う. fz:16px時 = 720px
-	// --contentSize--xs: 30rem;
+	// --size--s, --size--l
 
 	// --contentSize--full: 特殊
 

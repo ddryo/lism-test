@@ -150,10 +150,29 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div' } = attributes;
+		const {
+			tagName = 'div',
+			flexWrap,
+			flexDirection,
+			gap,
+			alignItems,
+			alignContent,
+			justifyItems,
+			justifyContent,
+		} = attributes;
+
+		const lismProps = {
+			wrap: flexWrap,
+			direction: flexDirection,
+			ai: alignItems,
+			ac: alignContent,
+			ji: justifyItems,
+			jc: justifyContent,
+			gap: '16px',
+		};
 
 		const blockProps = useBlockProps.save({
-			className: '',
+			...lismProps,
 			tag: tagName,
 		});
 

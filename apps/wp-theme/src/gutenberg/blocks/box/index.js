@@ -100,10 +100,14 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div' } = attributes;
+		const { tagName = 'div', flowGap } = attributes;
+
+		const lismProps = {
+			isFlow: flowGap !== undefined ? flowGap : undefined,
+		};
 
 		const blockProps = useBlockProps.save({
-			className: '',
+			...lismProps,
 			tag: tagName,
 		});
 

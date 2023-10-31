@@ -3,6 +3,11 @@ import { Container, Box, Text, Center, Columns, Layer } from '@loos/lism-core';
 
 # コンテンツに関するレイアウト
 
+<Alert>
+`-flowGap`系クラスは廃止。
+`.is--flow.-flowGap:s` → `.is--flow:s`を使う。
+</Alert>
+
 WordPressのブロックエディターと同じ設計になっています。
 
 `<Container>`コンポーネントに`isConstrained`と`hasGutter`が指定できるようになっており、これらを指定することで以下のクラスが出力され、内部のコンテンツ幅を制御できます。

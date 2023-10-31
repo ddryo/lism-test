@@ -53,7 +53,7 @@ export default function Index() {
 					More→
 				</Text>
 			</LinkBox>
-			<LinkBox tag='div' href='#boxlink02' isFlow flowGap='s' p='box' bgc='pale'>
+			<LinkBox tag='div' href='#boxlink02' isFlow='s' p='box' bgc='pale'>
 				<Text fz='l'>このBox全体がリンクです。</Text>
 				<p>...</p>
 				<p>
@@ -63,7 +63,7 @@ export default function Index() {
 					More→
 				</Text>
 			</LinkBox>
-			<LinkBox tag='div' href='#boxlink02' isFlow flowGap='s' p='box' bgc='pale'>
+			<LinkBox tag='div' href='#boxlink02' isFlow='s' p='box' bgc='pale'>
 				<Text fz='l'>このBox全体がリンクです。</Text>
 				<p>...</p>
 				<Button variant='outline' href='#inbtn'>

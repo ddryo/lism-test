@@ -21,6 +21,7 @@ export default function Lism({
 	alignfull,
 	alignwide,
 	isFlow,
+	flowGap,
 	isContainer,
 	isConstrained,
 	hasGutter,
@@ -41,8 +42,8 @@ export default function Lism({
 	}
 
 	if (isFlow) {
-		// const { className, style } = getFlowData(isFlow);
-		const { className, style } = getLayoutStateData('is--flow', isFlow);
+		// flowGap: 書き換え終わるまでのフォールバック
+		const { className, style } = getLayoutStateData('is--flow', flowGap || isFlow);
 		lismState.push(className);
 		Object.assign(lismStyle, style);
 	}

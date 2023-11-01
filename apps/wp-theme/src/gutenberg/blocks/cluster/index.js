@@ -35,9 +35,6 @@ import {
 	HTMLElementControls,
 } from '@/gutenberg/components';
 
-/**
- * Box
- */
 registerBlockType(metadata.name, {
 	title: __('Cluster', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
@@ -79,9 +76,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			...lismProps,
 			tag: tagName,
-			className: classnames( {
-				[ `has-text-align-${ textAlign }` ]: textAlign,
-			} ),
+			className: classnames({
+				[`has-text-align-${textAlign}`]: textAlign,
+			}),
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -93,12 +90,12 @@ registerBlockType(metadata.name, {
 
 		return (
 			<>
-				<BlockControls group="block">
+				<BlockControls group='block'>
 					<AlignmentControl
-						value={ textAlign }
-						onChange={ ( nextAlign ) => {
-							setAttributes( { textAlign: nextAlign } );
-						} }
+						value={textAlign}
+						onChange={(nextAlign) => {
+							setAttributes({ textAlign: nextAlign });
+						}}
 					/>
 				</BlockControls>
 				<InspectorControls group='styles'>
@@ -154,9 +151,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps.save({
 			...lismProps,
 			tag: tagName,
-			className: classnames( {
-				[ `has-text-align-${ textAlign }` ]: textAlign,
-			} ),
+			className: classnames({
+				[`has-text-align-${textAlign}`]: textAlign,
+			}),
 		});
 
 		return (

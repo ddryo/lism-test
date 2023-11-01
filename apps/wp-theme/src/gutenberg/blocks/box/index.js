@@ -53,7 +53,7 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes }) => {
-		const { templateLock, tagName = 'div', flowGap, textAlign,anchor, className } = attributes;
+		const { templateLock, tagName = 'div', flowGap, textAlign, anchor, className } = attributes;
 
 		const lismProps = {
 			isFlow: flowGap !== undefined ? flowGap : undefined,
@@ -62,9 +62,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			...lismProps,
 			tag: tagName,
-			className: classnames( {
-				[ `has-text-align-${ textAlign }` ]: textAlign,
-			} ),
+			className: classnames({
+				[`has-text-align-${textAlign}`]: textAlign,
+			}),
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -76,12 +76,12 @@ registerBlockType(metadata.name, {
 
 		return (
 			<>
-				<BlockControls group="block">
+				<BlockControls group='block'>
 					<AlignmentControl
-						value={ textAlign }
-						onChange={ ( nextAlign ) => {
-							setAttributes( { textAlign: nextAlign } );
-						} }
+						value={textAlign}
+						onChange={(nextAlign) => {
+							setAttributes({ textAlign: nextAlign });
+						}}
 					/>
 				</BlockControls>
 				<InspectorControls group='styles'>
@@ -114,7 +114,7 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div', flowGap,textAlign, } = attributes;
+		const { tagName = 'div', flowGap, textAlign } = attributes;
 
 		const lismProps = {
 			isFlow: flowGap !== undefined ? flowGap : undefined,
@@ -123,9 +123,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps.save({
 			...lismProps,
 			tag: tagName,
-			className: classnames( {
-				[ `has-text-align-${ textAlign }` ]: textAlign,
-			} ),
+			className: classnames({
+				[`has-text-align-${textAlign}`]: textAlign,
+			}),
 		});
 
 		return (

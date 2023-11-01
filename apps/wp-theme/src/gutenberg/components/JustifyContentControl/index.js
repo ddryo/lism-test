@@ -51,7 +51,7 @@ export default function JustifyContentControl({ value, controls, onChange }) {
 		<div className='lism-justifyContentControl'>
 			<ToggleGroupControl
 				__nextHasNoMarginBottom
-				label={__('Align content', 'lism-blocks')}
+				label={__('Justify content', 'lism-blocks')}
 				onChange={onChange}
 				value={value}
 			>

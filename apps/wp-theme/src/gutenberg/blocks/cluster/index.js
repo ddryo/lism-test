@@ -1,7 +1,7 @@
 /**
  * @External dependencies
  */
-import { Stack } from '@loos/lism-core';
+import { Cluster } from '@loos/lism-core';
 
 /**
  * @WordPress dependencies
@@ -14,7 +14,11 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
-import { PanelBody } from '@wordpress/components';
+import {
+	PanelBody,
+	__experimentalUnitControl as UnitControl,
+	__experimentalUseCustomUnits as useCustomUnits,
+} from '@wordpress/components';
 
 /**
  * @Internal dependencies
@@ -23,7 +27,7 @@ import metadata from './block.json';
 import icon from './icon';
 import {
 	SelectorPreviewTip,
-	AlignItemsControl,
+	JustifyContentControl,
 	ResponsiveGapControl,
 	HTMLElementControls,
 } from '@/gutenberg/components';
@@ -32,7 +36,7 @@ import {
  * Box
  */
 registerBlockType(metadata.name, {
-	title: __('Stack', 'lism-blocks'),
+	title: __('Cluster', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
 	icon,
 	transforms: {
@@ -50,11 +54,21 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes }) => {
-		const { templateLock, tagName = 'div', gap, alignItems, anchor, className } = attributes;
+		const {
+			templateLock,
+			tagName = 'div',
+			gap,
+			justifyContent,
+			itemMinWitdh,
+			anchor,
+			className,
+		} = attributes;
+
+		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem', '%'] });
 
 		const lismProps = {
-			direction: 'column',
-			ai: alignItems,
+			jc: justifyContent,
+			itemMinW: itemMinWitdh,
 			gap: '16px',
 		};
 
@@ -74,11 +88,22 @@ registerBlockType(metadata.name, {
 			<>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
-						<AlignItemsControl
-							value={alignItems}
+						<JustifyContentControl
+							value={justifyContent}
 							controls={['flex-start', 'center', 'flex-end']}
 							onChange={(value) => {
-								setAttributes({ ...attributes, alignItems: value });
+								setAttributes({ ...attributes, justifyContent: value });
+							}}
+						/>
+						<UnitControl
+							size='__unstable-large'
+							__nextHasNoMarginBottom
+							label={__('Item min width', 'lism-blocks')}
+							units={units}
+							min={0}
+							value={itemMinWitdh}
+							onChange={(value) => {
+								setAttributes({ ...attributes, itemMinWitdh: value || undefined });
 							}}
 						/>
 					</PanelBody>
@@ -94,20 +119,20 @@ registerBlockType(metadata.name, {
 						}}
 					/>
 				</InspectorControls>
-				<Stack {...innerProps} forwardedRef={ref}>
+				<Cluster {...innerProps} forwardedRef={ref}>
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
 					{children}
-				</Stack>
+				</Cluster>
 			</>
 		);
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div', gap, alignItems } = attributes;
+		const { tagName = 'div', gap, justifyContent, itemMinWitdh } = attributes;
 
 		const lismProps = {
-			direction: 'column',
-			ai: alignItems,
+			jc: justifyContent,
+			itemMinW: itemMinWitdh,
 			gap: '16px',
 		};
 
@@ -117,9 +142,9 @@ registerBlockType(metadata.name, {
 		});
 
 		return (
-			<Stack {...blockProps}>
+			<Cluster {...blockProps}>
 				<InnerBlocks.Content />
-			</Stack>
+			</Cluster>
 		);
 	},
 });

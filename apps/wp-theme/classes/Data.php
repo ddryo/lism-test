@@ -19,6 +19,7 @@ class Data {
 	 */
 	const BLOCKS = [
 		'box' => [],
+		'cluster' => [],
 		'flex' => [],
 		'stack' => [],
 	];

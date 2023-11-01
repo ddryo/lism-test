@@ -28,7 +28,6 @@ const ICONS = {
 
 export default function GapControl({ units: _units = DEFAULT_UNITS }) {
 	const [isLinked, setIsLinked] = useState(false);
-	const [side, setSide] = useState();
 	const units = useCustomUnits({ availableUnits: _units });
 	const linkButtonlabel = isLinked
 		? __('Unlink Sides', 'lism-blocks')
@@ -41,14 +40,7 @@ export default function GapControl({ units: _units = DEFAULT_UNITS }) {
 				variant={isLinked ? 'primary' : 'secondary'}
 				label={linkButtonlabel}
 				icon={isLinked ? link : linkOff}
-				onClick={() => {
-					if (isLinked) {
-						setIsLinked(false);
-						setSide(undefined);
-					} else {
-						setIsLinked(true);
-					}
-				}}
+				onClick={() => setIsLinked(!isLinked)}
 			/>
 			{isLinked && (
 				<div className='__row'>
@@ -75,7 +67,6 @@ export default function GapControl({ units: _units = DEFAULT_UNITS }) {
 							hideLabelFromVision
 							units={units}
 							min={0}
-							onFocus={() => setSide(side)}
 						/>
 					</div>
 				))}

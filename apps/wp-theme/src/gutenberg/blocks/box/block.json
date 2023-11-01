@@ -28,6 +28,9 @@
 		},
 		"flowGap": {
 			"type": "string"
+		},
+		"textAlign": {
+			"type": "string"
 		}
 	},
 	"editorScript": "file:./index.js",

@@ -2,6 +2,7 @@
  * @External dependencies
  */
 import { Flex } from '@loos/lism-core';
+import classnames from 'classnames';
 
 /**
  * @WordPress dependencies
@@ -9,6 +10,8 @@ import { Flex } from '@loos/lism-core';
 import { __ } from '@wordpress/i18n';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
 import {
+	AlignmentControl,
+	BlockControls,
 	InspectorControls,
 	InnerBlocks,
 	useBlockProps,
@@ -63,6 +66,7 @@ registerBlockType(metadata.name, {
 			flexWrap,
 			flexDirection,
 			gap,
+			textAlign,
 			alignItems,
 			alignContent,
 			justifyItems,
@@ -84,6 +88,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			...lismProps,
 			tag: tagName,
+			className: classnames( {
+				[ `has-text-align-${ textAlign }` ]: textAlign,
+			} ),
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -95,6 +102,14 @@ registerBlockType(metadata.name, {
 
 		return (
 			<>
+				<BlockControls group="block">
+					<AlignmentControl
+						value={ textAlign }
+						onChange={ ( nextAlign ) => {
+							setAttributes( { textAlign: nextAlign } );
+						} }
+					/>
+				</BlockControls>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<VStack>
@@ -155,6 +170,7 @@ registerBlockType(metadata.name, {
 			flexWrap,
 			flexDirection,
 			gap,
+			textAlign,
 			alignItems,
 			alignContent,
 			justifyItems,
@@ -174,6 +190,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps.save({
 			...lismProps,
 			tag: tagName,
+			className: classnames( {
+				[ `has-text-align-${ textAlign }` ]: textAlign,
+			} ),
 		});
 
 		return (

@@ -2,6 +2,7 @@
  * @External dependencies
  */
 import { Stack } from '@loos/lism-core';
+import classnames from 'classnames';
 
 /**
  * @WordPress dependencies
@@ -9,6 +10,8 @@ import { Stack } from '@loos/lism-core';
 import { __ } from '@wordpress/i18n';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
 import {
+	AlignmentControl,
+	BlockControls,
 	InspectorControls,
 	InnerBlocks,
 	useBlockProps,
@@ -50,7 +53,7 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes }) => {
-		const { templateLock, tagName = 'div', gap, alignItems, anchor, className } = attributes;
+		const { templateLock, tagName = 'div', gap, textAlign,alignItems, anchor, className } = attributes;
 
 		const lismProps = {
 			direction: 'column',
@@ -61,6 +64,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			...lismProps,
 			tag: tagName,
+			className: classnames( {
+				[ `has-text-align-${ textAlign }` ]: textAlign,
+			} ),
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -72,6 +78,14 @@ registerBlockType(metadata.name, {
 
 		return (
 			<>
+				<BlockControls group="block">
+					<AlignmentControl
+						value={ textAlign }
+						onChange={ ( nextAlign ) => {
+							setAttributes( { textAlign: nextAlign } );
+						} }
+					/>
+				</BlockControls>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<AlignItemsControl
@@ -103,7 +117,7 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div', gap, alignItems } = attributes;
+		const { tagName = 'div', gap, textAlign,alignItems } = attributes;
 
 		const lismProps = {
 			direction: 'column',
@@ -114,6 +128,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps.save({
 			...lismProps,
 			tag: tagName,
+			className: classnames( {
+				[ `has-text-align-${ textAlign }` ]: textAlign,
+			} ),
 		});
 
 		return (

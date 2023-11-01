@@ -29,6 +29,9 @@
 		"gap": {
 			"type": "string"
 		},
+		"textAlign": {
+			"type": "string"
+		},
 		"justifyContent": {
 			"type": "string",
 			"default": "flex-start"

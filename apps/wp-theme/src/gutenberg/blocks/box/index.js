@@ -2,6 +2,7 @@
  * @External dependencies
  */
 import { Box } from '@loos/lism-core';
+import classnames from 'classnames';
 
 /**
  * @WordPress dependencies
@@ -9,6 +10,8 @@ import { Box } from '@loos/lism-core';
 import { __ } from '@wordpress/i18n';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
 import {
+	AlignmentControl,
+	BlockControls,
 	InspectorControls,
 	InnerBlocks,
 	useBlockProps,
@@ -50,7 +53,7 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes }) => {
-		const { templateLock, tagName = 'div', flowGap, anchor, className } = attributes;
+		const { templateLock, tagName = 'div', flowGap, textAlign,anchor, className } = attributes;
 
 		const lismProps = {
 			isFlow: flowGap !== undefined ? flowGap : undefined,
@@ -59,6 +62,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			...lismProps,
 			tag: tagName,
+			className: classnames( {
+				[ `has-text-align-${ textAlign }` ]: textAlign,
+			} ),
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -70,6 +76,14 @@ registerBlockType(metadata.name, {
 
 		return (
 			<>
+				<BlockControls group="block">
+					<AlignmentControl
+						value={ textAlign }
+						onChange={ ( nextAlign ) => {
+							setAttributes( { textAlign: nextAlign } );
+						} }
+					/>
+				</BlockControls>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<FlowControl
@@ -100,7 +114,7 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div', flowGap } = attributes;
+		const { tagName = 'div', flowGap,textAlign, } = attributes;
 
 		const lismProps = {
 			isFlow: flowGap !== undefined ? flowGap : undefined,
@@ -109,6 +123,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps.save({
 			...lismProps,
 			tag: tagName,
+			className: classnames( {
+				[ `has-text-align-${ textAlign }` ]: textAlign,
+			} ),
 		});
 
 		return (

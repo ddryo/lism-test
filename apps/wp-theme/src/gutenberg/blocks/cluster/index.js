@@ -2,6 +2,7 @@
  * @External dependencies
  */
 import { Cluster } from '@loos/lism-core';
+import classnames from 'classnames';
 
 /**
  * @WordPress dependencies
@@ -9,6 +10,8 @@ import { Cluster } from '@loos/lism-core';
 import { __ } from '@wordpress/i18n';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
 import {
+	AlignmentControl,
+	BlockControls,
 	InspectorControls,
 	InnerBlocks,
 	useBlockProps,
@@ -58,6 +61,7 @@ registerBlockType(metadata.name, {
 			templateLock,
 			tagName = 'div',
 			gap,
+			textAlign,
 			justifyContent,
 			itemMinWitdh,
 			anchor,
@@ -75,6 +79,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps({
 			...lismProps,
 			tag: tagName,
+			className: classnames( {
+				[ `has-text-align-${ textAlign }` ]: textAlign,
+			} ),
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -86,6 +93,14 @@ registerBlockType(metadata.name, {
 
 		return (
 			<>
+				<BlockControls group="block">
+					<AlignmentControl
+						value={ textAlign }
+						onChange={ ( nextAlign ) => {
+							setAttributes( { textAlign: nextAlign } );
+						} }
+					/>
+				</BlockControls>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<JustifyContentControl
@@ -128,7 +143,7 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div', gap, justifyContent, itemMinWitdh } = attributes;
+		const { tagName = 'div', gap, textAlign, justifyContent, itemMinWitdh } = attributes;
 
 		const lismProps = {
 			jc: justifyContent,
@@ -139,6 +154,9 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps.save({
 			...lismProps,
 			tag: tagName,
+			className: classnames( {
+				[ `has-text-align-${ textAlign }` ]: textAlign,
+			} ),
 		});
 
 		return (

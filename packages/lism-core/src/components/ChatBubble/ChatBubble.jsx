@@ -1,5 +1,6 @@
 // import React from 'react';
 import { Core } from '../Core';
+import { Layout } from '../Layout';
 import { Grid } from '../Grid';
 import { Decorator } from '../Decorator';
 // import { DecoBox } from '../DecoBox';
@@ -115,13 +116,13 @@ export default function ChatBubble({
 				</Core>
 			)}
 			<Core blockClass='b--chatBubble__body' {...bodyProps}>
-				<Core
+				<Layout
 					blockClass='b--chatBubble__content'
 					{...contentPropsDefault}
 					{...contentProps}
 				>
 					{children}
-				</Core>
+				</Layout>
 				{decorator}
 			</Core>
 		</Grid>

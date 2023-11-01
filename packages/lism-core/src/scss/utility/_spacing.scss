@@ -6,14 +6,9 @@
 $spaces: 0, 5, 10, 15, 20, 30, 40, 50;
 @each $s in $spaces {
 	// @for $i from 0 through 5 {
-	// .-flowGap\:#{$s} {
-	// 	--flowGap: var(--s--#{$s});
-	// }
-
 	// .-m\:#{$s} {
 	// 	--m: var(--s--#{$s});
 	// }
-
 	// flowレイアウトで使うので mbs はユーティリティ用意する
 	.-mbs\:#{$s} {
 		--mbs: var(--s--#{$s});

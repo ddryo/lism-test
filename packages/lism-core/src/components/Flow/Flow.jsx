@@ -1,6 +1,6 @@
 // import React from 'react';
-import { Lism } from '../Lism';
+import { Layout } from '../Layout';
 
-export default function Flow({ gap, ...props }) {
-	return <Lism isFlow flowGap={gap} {...props} />;
+export default function Flow({ gap = true, ...props }) {
+	return <Layout isFlow={gap} {...props} />;
 }

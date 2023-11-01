@@ -11,7 +11,6 @@ export default function DecoBox({
 	children,
 	data = {},
 	isFlow,
-	flowGap,
 	// sub_data = {},
 	// decoratorCount,
 	// decoratorProps = {},
@@ -64,9 +63,6 @@ export default function DecoBox({
 
 	if (isFlow) {
 		bodyProps.isFlow = isFlow;
-	}
-	if (flowGap) {
-		bodyProps.flowGap = flowGap;
 	}
 
 	let boxCntent = null;

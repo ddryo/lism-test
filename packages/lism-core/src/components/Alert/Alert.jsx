@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Flow } from '../Flow';
+import { Layout } from '../Layout';
 import { Icon } from '../Icon';
 import { FluidFix } from '../Flex/FluidFix';
 import { Center } from '../Flex/Center';
@@ -7,12 +7,7 @@ import { defaultProps, AlertPresets } from '../../config/components';
 
 const _default = defaultProps?.Alert || {};
 
-export default function Alert({
-	lismClass = {},
-	lismStyle = {},
-
-	...props
-}) {
+export default function Alert({ lismClass = {}, lismStyle = {}, isFlow, ...props }) {
 	props = Object.assign({}, _default, props);
 	let {
 		variant,
@@ -48,13 +43,13 @@ export default function Alert({
 	return (
 		<FluidFix fix='first' lismClass={lismClass} lismStyle={lismStyle} {...attrs}>
 			{icon && (
-				<Center lismClass={{ c: 'c--alert__icon' }}>
+				<Center className='c--alert__icon'>
 					<Icon icon={icon} label={iconLabel} size='1em' />
 				</Center>
 			)}
-			<Flow lismClass={{ c: 'c--alert__body' }} gap='s'>
+			<Layout className='c--alert__body' isFlow={isFlow}>
 				{children}
-			</Flow>
+			</Layout>
 		</FluidFix>
 	);
 }

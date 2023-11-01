@@ -1,7 +1,8 @@
 // import React from 'react';
-// import { Stack } from '../Flex/Stack';
 import { Core } from '../Core';
+import { Layout } from '../Layout';
 // import { Flex } from '../Flex';
+// import { Stack } from '../Flex/Stack';
 import { Icon } from '../Icon';
 import { defaultProps, NotePresets } from '../../config/components';
 
@@ -10,7 +11,7 @@ const _default = defaultProps?.Note || {};
 export default function Note({
 	lismClass = {},
 	// lismStyle = {},
-
+	isFlow,
 	...props
 }) {
 	props = Object.assign({}, _default, props);
@@ -23,7 +24,6 @@ export default function Note({
 		preset,
 		keycolor,
 		children,
-		flowGap = 's',
 		headProps = {},
 		bodyProps = {},
 		...attrs
@@ -62,7 +62,7 @@ export default function Note({
 	// }
 
 	return (
-		<Core lismClass={lismClass} {...attrs}>
+		<Layout lismClass={lismClass} {...attrs}>
 			{heading && (
 				<Core lismClass={{ c: 'c--note__head' }} {...headProps}>
 					{icon && (
@@ -72,9 +72,9 @@ export default function Note({
 				</Core>
 			)}
 
-			<Core lismClass={{ c: 'c--note__body' }} isFlow flowGap={flowGap} {...bodyProps}>
+			<Layout lismClass={{ c: 'c--note__body' }} isFlow={isFlow} {...bodyProps}>
 				{children}
-			</Core>
-		</Core>
+			</Layout>
+		</Layout>
 	);
 }

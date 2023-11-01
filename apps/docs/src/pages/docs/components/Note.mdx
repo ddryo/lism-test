@@ -64,9 +64,12 @@ export const NoteDemos = ({ children, variant }) => {
 - Lismクラス: `.b--Note`
 
 ## 主なprops
+
 - heading
+- `isFlow`: `__body`に渡されます
 
-
+<MemoBadge>Memo:</MemoBadge>
+NoteHeader, NoteBody にわける？ → preset で色とアイコンの一括指定ができなくなる（ContextやChildren処理が必要）
 ## Import
 
 ```js
@@ -86,7 +89,9 @@ import { Note } from '@loos/lism-core';
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx
-	<Note>...text...</Note>
+	<Note>
+		<p>Lorem ipsum text...</p>
+	</Note>
 	```
 	</Demo.Code>
 </Demo>
@@ -104,7 +109,27 @@ import { Note } from '@loos/lism-core';
 	<Demo.Code>
 		```jsx
 		<Note heading="Heading text...">
-			...text...
+			<p>Lorem ipsum text...</p>
+		</Note>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>
+		`isFlow`を指定
+	</Demo.Title>
+	<Demo.Preview p={20}>
+		<Note heading="Heading text..." isFlow='s'>
+			<p>Lorem ipsum text...</p>
+			<DammyText />
+		</Note>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Note heading="Heading text..." isFlow='s'>
+			<p>Lorem ipsum text...</p>
+			<p>Lorem ipsum text...</p>
 		</Note>
 		```
 	</Demo.Code>

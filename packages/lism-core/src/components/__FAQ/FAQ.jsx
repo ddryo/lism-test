@@ -4,6 +4,7 @@ import { Stack } from '../Flex/Stack';
 import { Icon } from '../Icon';
 import { Flex } from '../Flex';
 import { Core } from '../Core';
+import { Layout } from '../Layout';
 // import { Grid } from '../Grid';
 import {
 	Accordion,
@@ -20,7 +21,7 @@ export default function FAQ({
 	qIconProps = {},
 	aIconProps = {},
 	children,
-	flowGap,
+	isFlow,
 	isAccordion,
 	// iconType,
 	// style = {},
@@ -79,14 +80,9 @@ export default function FAQ({
 			</Flex>
 			<Flex tag='dd' blockClass='b--faq__body' gap={30}>
 				{Amark}
-				<Core
-					blockClass='b--faq__answer'
-					isFlow
-					flowGap={flowGap || 's'}
-					//ms={30}
-				>
+				<Layout blockClass='b--faq__answer' isFlow={isFlow || 's'}>
 					{children}
-				</Core>
+				</Layout>
 			</Flex>
 		</Stack>
 	);

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Container, Box, Layer, Flex } from '@loos/lism-core';
+import { Layout, Box, Layer, Flex, Core } from '@loos/lism-core';
 import Preview from './Preview';
 import classnames from 'classnames';
 // import { renderToString } from 'react-dom/server';
@@ -19,10 +19,9 @@ const Demo = ({ children, alignfull, ...attrs }) => {
 
 	return (
 		<>
-			{/* <Script src='/demo.js' /> */}
-			<Container blockClass='b--demoBox' isConstrained alignfull {...attrs}>
+			<Layout blockClass='b--demoBox' isConstrained alignfull {...attrs}>
 				{children}
-			</Container>
+			</Layout>
 		</>
 	);
 };
@@ -66,41 +65,35 @@ Demo.Preview = ({
 
 	// isShadow = 1;
 	return (
-		<Box blockClass={contentClass} {...props}>
+		<Layout blockClass={contentClass} {...props}>
 			{isShadow ? (
-				<Box className={previewClass}>
+				<Core className={previewClass}>
 					<Preview>
-						<Container isFlow={isFlow} flowGap={flowGap} isConstrained={isConstrained} p={p}>
+						<Layout isFlow={flowGap || isFlow} isConstrained={isConstrained} p={p}>
 							{children}
-						</Container>
+						</Layout>
 					</Preview>
-				</Box>
+				</Core>
 			) : (
-				<Container
-					isFlow={isFlow}
-					flowGap={flowGap}
-					isConstrained={isConstrained}
-					className={previewClass}
-					p={p}
-				>
+				<Layout isFlow={flowGap || isFlow} isConstrained={isConstrained} className={previewClass} p={p}>
 					{children}
-				</Container>
+				</Layout>
 			)}
 			{resize && (
 				<Layer position='bottom right' className='b--demoBox__help -fz:xs'>
 					リサイズ可能エリアです ↑
 				</Layer>
 			)}
-		</Box>
+		</Layout>
 	);
 };
 
 Demo.Code = ({ children, isAcc, ...props }) => {
 	if (!isAcc) {
 		return (
-			<Box className='b--demoBox__code' {...props}>
+			<Layout className='b--demoBox__code' {...props}>
 				{children}
-			</Box>
+			</Layout>
 		);
 	}
 

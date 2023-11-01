@@ -96,10 +96,6 @@ class CommonProps {
 		// propリストのセット
 		// this.setPropList(useFlexProps, useGridProps, useItemProps, useLog);
 
-		// if (isFlow && isFlow !== true) {
-		// 	this.analyzeProp('flowGap', isFlow);
-		// }
-
 		// if (flex) {
 		// 	this.setContextProps('flex', flex);
 		// }

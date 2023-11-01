@@ -22,7 +22,7 @@ import {
 			<div class="c--alert__icon l--center">
 				<svg>...</svg>
 			</div>
-			<div class="c--alert__body is--flow -flowGap:s">
+			<div class="c--alert__body">
 				<p>...content...</p>
 			</div>
 		</div>
@@ -41,6 +41,7 @@ import {
 - `iconSize`: アイコンのサイズを指定できます。
 - `iconLabel`: アイコンの`aria-label`を指定できます。
 - `preset`: `keycolor`と`icon`, `iconLabel`の組み合わせのプリセット値を、いくつか用意しています。
+- `isFlow`: `__body`に渡されます
 {/* - `variant`: `"fill"` | `"outline"` ? */}
 
 preset → type ...?
@@ -128,6 +129,28 @@ import { Book } from "@phosphor-icons/react";
 </Demo.Code>
 </Demo>
 
+<Demo>
+	<Demo.Title>
+		isFlowの指定
+	</Demo.Title>
+	<Demo.Preview p={20}>
+		<Alert isFlow='s'>
+			<DammyText lang='ja' />
+			<DammyText lang='ja' length='m' />
+		</Alert>
+	</Demo.Preview>
+<Demo.Code>
+```jsx
+<Alert isFlow='s'>
+	<p>...</p>
+	<p>...</p>
+</Alert>
+```
+</Demo.Code>
+</Demo>
+
+
+
 
 ### プリセット
 
@@ -173,7 +196,7 @@ import { Book } from "@phosphor-icons/react";
 		<Box>
 			<MediaLayer src="/img/demo-img.jpeg" z='-1'/>
 			<FilterLayer blur="8px" bgc="rgba(0,0,0,0.6)" z='-1'/>
-			<Box c="white" p={20} isFlow flowGap={20}>
+			<Box c="white" p={20} isFlow='s'>
 				<DammyText />
 				<AlertDemos />
 			</Box>

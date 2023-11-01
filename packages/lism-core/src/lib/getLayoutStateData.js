@@ -27,7 +27,7 @@ export default function getLayoutStateData(stateName, value) {
 
 	if (value === true) {
 		className = stateName;
-	} else if (typeof value === 'string') {
+	} else if (value) {
 		if (tokenKey && isPresetValue(tokenKey, value)) {
 			className = `${stateName}:${value}`;
 		} else {

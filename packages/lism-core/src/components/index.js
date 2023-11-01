@@ -4,7 +4,10 @@
 // export const lismHooks = createHooks();
 
 // import React from 'react';
-export { Lism } from './Lism';
+
+export { Core } from './Core';
+export { Layout } from './Layout';
+export { Lism } from './Lism'; // あとで消す
 export { Text } from './Text';
 export { Media } from './Media';
 
@@ -60,12 +63,12 @@ export { Alert } from './Alert';
 export { Note } from './Note';
 export { Banner } from './Banner';
 export { Card, CardMedia, CardBody } from './Card';
-export { FAQ } from './FAQ';
 export { ChatBubble } from './ChatBubble';
 export { Section, SectionBody, SectionHeader, SectionFooter } from './Section';
 export { TermList, TermListRow } from './TermList';
 export { NavMenu, NavMenuItem, NavMenuText } from './NavMenu';
 
+// export { FAQ } from './FAQ';
 // export { MediaText } from './MediaText';
 
 // 特殊

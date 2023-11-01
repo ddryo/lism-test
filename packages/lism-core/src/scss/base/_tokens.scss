@@ -313,8 +313,8 @@
 	// --p:box:{padding: var(--p--box) calc(--p--box + 0.125em);}
 	// --p:box:10{--p--box: var(--em--10)}
 
-	--p--box--s: 0.625em 0.75em;
 	--p--box: 1em 1.125em;
+	--p--box--s: 0.625em 0.75em;
 	--p--box--l: 1.5em 1.625em;
 
 	// --gap--icon--s: 0.25em;
@@ -322,18 +322,16 @@
 	// --gap--icon--l: 0.75em;
 
 	// .is--flow の blockGap 管理用変数
-	// --flowGap--xs: var(--s--15);
-	--flowGap--m: var(--s--40);
-	--flowGap--s: var(--s--20);
+	--flowGap--s: var(--s--20); // --mbs--s?
+	--flowGap--m: var(--s--40); // --mbs--m?
 	--flowGap--l: var(--s--50);
-
-	// --flowGap--root: var(--flowGap--m); // global値
-	--flowGap--heading: 2.5em; // var(--s--50); // フォントサイズ依存
+	--flowGap--htag: 2.5em; // var(--s--50); // フォントサイズ依存
 
 	/* ------------------------------------------------------------
 	  radius
 	------------------------------------------------------------ */
 	// 10,20, ... ?
+	// --r--?
 	--radius--1: 0.125rem; // ≒ 2px
 	--radius--2: 0.25rem; // ≒ 4px
 	--radius--3: 0.5rem; // ≒ 8px
@@ -368,6 +366,7 @@
 	//    1段階前のshadowを薄めてつける
 
 	// 共通で使う微量のshadow
+	// --bxsh--N?
 	--shadow--0: var(--shadow-length--0) var(--shadow-color--low);
 
 	--shadow--1: var(--shadow--0), var(--shadow-length--1) var(--shadow-color);

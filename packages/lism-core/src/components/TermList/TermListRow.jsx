@@ -1,5 +1,6 @@
 // import React from 'react';
 import { Core } from '../Core';
+import { Lism } from '../Lism';
 import { FluidFix } from '../Flex/FluidFix';
 import { Stack } from '../Flex/Stack';
 // import { Flex } from '../Flex';
@@ -10,7 +11,6 @@ export default function TermListRow({
 	mode = 'stack',
 	term,
 	isFlow,
-	flowGap,
 	dtProps = {},
 	ddProps = {},
 	children,
@@ -31,18 +31,12 @@ export default function TermListRow({
 	}
 	return (
 		<Component lismClass={lismClass} {...defaultProps} {...props}>
-			<Core tag='dt' fw='bold' className='c--termList__dt' lh='s' {...dtProps}>
+			<Core tag='dt' fw='bold' className='c--termList__dt' {...dtProps}>
 				{term}
 			</Core>
-			<Core
-				tag='dd'
-				className='c--termList__dd'
-				isFlow={isFlow}
-				flowGap={flowGap}
-				{...ddProps}
-			>
+			<Lism tag='dd' className='c--termList__dd' isFlow={isFlow} {...ddProps}>
 				{children}
-			</Core>
+			</Lism>
 		</Component>
 	);
 }

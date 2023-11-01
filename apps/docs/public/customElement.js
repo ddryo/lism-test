@@ -68,7 +68,7 @@ class LismDemo extends HTMLElement {
 
 	renderContent(src) {
 		// const dataFlow = this.getAttribute('data-flow');
-		// this.flowClass = dataFlow ? `is--flow -flowGap:${dataFlow}` : '';
+		// this.flowClass = dataFlow ? `is--flow:${dataFlow}` : '';
 
 		// <template>要素を作成して、src属性からDOM作成し、コピーしたものをshadow DOMに追加する
 		// const TEMPLATE = document.createElement('template');

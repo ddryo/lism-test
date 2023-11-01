@@ -7,8 +7,7 @@
 	color: var(--c);
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc); // サイズ揃えるため, 常にborderを指定
-	line-height: 1.25;
-	gap: 0.2em;
+	line-height: 1.25; // 要検討
 	padding: 0.325em 0.5em;
 	// border-radius: var(--radius--1);
 	// font-size: var(--fz--xs);
@@ -16,6 +15,7 @@
 	// iconあるとき用
 	display: inline-flex;
 	align-items: center;
+	gap: 0.2em;
 }
 
 .c--badge--outline {
@@ -27,6 +27,8 @@
 .c--badge--subtle {
 	@supports (color: color-mix(in srgb, #000, #fff)) {
 		--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
-		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bg));
+		// badgeは背景色が透過しないように base と混ぜる
+		--bgc: color-mix(in srgb, var(--keycolor), var(--bgc--base) var(--cMixPer--bg));
+		--bdc: color-mix(in srgb, var(--keycolor), transparent 90%);
 	}
 }

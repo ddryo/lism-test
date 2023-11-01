@@ -61,9 +61,7 @@ export default function Index() {
 				</Stack>
 			</Container>
 			<Spacer h={50} />
-			<Flow>
-				<Content />
-			</Flow>
+			<Content />
 			<Spacer h={50} />
 		</>
 	);

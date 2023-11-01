@@ -8,9 +8,6 @@
 		font-weight: 700;
 		font-size: var(--fz);
 		line-height: var(--lh);
-
-		// Flowレイアウト直下の見出しの上部余白は少しだけ広くする. CSS変数を上書きしてるだけなので、 .is--flow 直下にのみ影響する
-		--flowGap: var(--flowGap--htag);
 	}
 
 	h1 {

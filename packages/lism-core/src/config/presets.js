@@ -70,7 +70,7 @@ export default {
 	// ユーティリティ化
 	space: spacingPresets,
 	p: [...spacingPresets, 'box', 'box:s', 'box:l'],
-	flow: ['xs', 's', 'm', 'l', 'xl'],
+
 	// align-content
 	// "space-between"
 	radius: ['0', '1', '2', '3', '4', '5', '6', '99'], // 'round'
@@ -89,7 +89,10 @@ export default {
 	animation: [],
 
 	// size:['container', 'container:s', 'container:l'],
-	contentSize: ['item', 'xs', 's', 'm', 'l', 'xl', 'full'],
+	size: ['item', 'xs', 's', 'm', 'l', 'xl', 'full'], // --size-- トークン
+	constrained: ['s', 'm', 'l'], // constrainedのユーティリティクラス
+	flow: ['s', 'm', 'l'], // flowのユーティリティクラス
+	// mbs: ['s', 'm', 'l'],
 };
 
 // ユーティリティ化しないけど、変数を用意しておくもの

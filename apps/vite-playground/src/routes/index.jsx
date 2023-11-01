@@ -14,7 +14,6 @@ import {
 	Text,
 	Flex,
 	Lism,
-	FAQ,
 	Icon,
 	LinkBox,
 	NavMenuItem,

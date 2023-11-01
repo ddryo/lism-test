@@ -5,7 +5,8 @@ export default function Container({ size, isConstrained, ...props }) {
 	if (isConstrained) {
 		props.isConstrained = size || isConstrained;
 	} else {
-		props.isContainer = size || true;
+		props.isContainer = true;
+		props.w = size;
 	}
 
 	return <Lism {...props} />;

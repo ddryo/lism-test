@@ -222,6 +222,8 @@ class CommonProps {
 
 	// prop解析
 	analyzeProp(propName, propVal, propData) {
+		if (null == propVal) return;
+
 		// propデータ取得
 		propData = propData || PROPS[propName] || null;
 		if (null === propData) return; // 一応 nullチェックここでも

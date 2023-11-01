@@ -1,32 +1,45 @@
 import { Container, Box, Text, Center, Columns, Layer } from '@loos/lism-core';
+import { Desktop } from "@phosphor-icons/react";
+
+# コンテンツレイアウト
 
 
-# コンテンツに関するレイアウト
+Lismでサイト構築するにあたり、コンテンツのレイアウトを行うために必要な前提知識がいくつかあります。
+このページでは、それらの紹介をしていきます。
 
-<Alert>
-`-flowGap`系クラスは廃止。
-`.is--flow.-flowGap:s` → `.is--flow:s`を使う。
+<Alert icon={Desktop} keycolor='purple'>
+このページはPCでの閲覧を推奨しています。
 </Alert>
 
-WordPressのブロックエディターと同じ設計になっています。
+## Layout State クラス
 
-`<Container>`コンポーネントに`isConstrained`と`hasGutter`が指定できるようになっており、これらを指定することで以下のクラスが出力され、内部のコンテンツ幅を制御できます。
+コンテンツの横幅や左右の統一された余白をつけたり、コンテンツ間隔を調整するための Layout State クラスを用意しています。
 
-- `.is--constrained` : そのBox直下の**コンテンツ幅**をルートで定義したMaxサイズに制限するためのクラスです。
-	- （WordPressでいうところの`is-layout-constrained`の機能にあたります。）
-- `.has--gutter` : **コンテンの左右にpaddingを追加する**ためのクラスです。
-	- （WordPressでいうところの`has-global-padding`と同じ役割です。）
+- `is--container` : コンテナ要素で、かつ**自身の横幅**を制御できるクラス
+- `is--constrained` : コンテナ要素で、かつ**子要素の横幅**を制御するためのクラス
+	{/* - （WordPressでいうところの`is-layout-constrained`の機能にあたります。） */}
+- `is--flow` : コンテンツ間隔の余白量を制御するためのクラス
+	{/* - （WordPressでいうところの`is-layout-flow`と同じ役割です。） */}
+- `has--gutter` : サイトを通してコンテンツの左右に統一された余白をつけるためのクラス
+	{/* - （WordPressでいうところの`has-global-padding`と同じ役割です。） */}
+- <MemoBadge>クラス名要検討</MemoBadge>
+	- `alignfull` : 全幅コンテンツ（親要素基準）を作るためのクラス。（is--fullwide?)
+	- `alignwide` : 幅広コンテンツを作るためのクラス（is--wide?)
+	- `alignscreen` : 全幅コンテンツ（ウィンドウ幅）を作るためのクラス (is--screenwide?)  <MemoBadge>@property対応ブラウザのみ</MemoBadge>
+{/* - alignleft,alignright, aligncenter : 左右に寄せるためのクラス */}
 
 
-また、`.alignfull` で全幅、 `.alignwide` で幅広のレイアウトを作ることができます。（**※ クラス名要検討**）
+WordPressを意識した設計になっています。
+
+`<Layout>`系列コンポーネントでは、`isConstrained`や`isFlow`,`hasGutter`など対応するpropを指定できるようになっています。
 
 
-<Alert preset="info">
-このページはデスクトップPCで御覧ください。
-</Alert>
+## コンテナクエリ採用
 
+主要なCSSプロパティに対してブレイクポイント指定が簡単にできるようになっているのがLismの特徴の一つですが、これらはコンテナクエリを採用しています。
+（メディアクエリ版のCSSファイルも用意するかは検討中）
 
-## 前提: コンテンツサイズの制御手法
+## コンテンツサイズの制御に関する推奨手法
 
 （記事ページなどにおいて）Lism設計では、基本的にコンテンツエリアのラッパー側で横幅をコントロールする**のではなく**、**コンテンツエリア直下のそれぞれの要素自身の幅を直接制御する**方式を推奨します。
 
@@ -36,7 +49,7 @@ WordPressのブロックエディターと同じ設計になっています。
 <body>
 	<header>ヘッダー</header>
 	<main>
-		<article class="entry-content">
+		<article>
 			...コンテンツ...
 		</article>
 	</main>
@@ -44,59 +57,58 @@ WordPressのブロックエディターと同じ設計になっています。
 </body>
 ```
 
-このとき、例えばコンテンツの基本幅を`800px`にしたい時、主に次の①か②の選択肢があると思います。
+このとき、例えばコンテンツエリアの基本幅を`800px`にしたい時、主に次の①か②の選択肢があると思います。
 
 ```css
-/* ① */
-.entry-content{
+/* ① コンテンツのラッパー要素の幅を制御する*/
+article{
 	max-width: 800px;
 }
 
-/* ② */
-.entry-content > * {
+/* ② コンテンツ自身（ラッパー要素の直下要素）の幅を制御する*/
+article > * {
 	max-width: 800px;
-	margin-right: auto;
-	margin-left: auto;
+	margin-inline: auto;
 }
 ```
 
-<Alert preset="point">
 Lism設計では、①ではなく②を前提としています。
-</Alert>
 
 
-
-<Note heading="なぜ?" preset="note">
-`.entry-content`エリアの中で**全幅コンテンツ**を作る場合、基本的に`width:100%`にするだけでよくなるので非常にシンプルになるためです。
+<Note heading="なぜ?" preset="note" isFlow='s'>
+コンテンツエリアの途中で**全幅コンテンツ**を作る場合の処理がシンプルになるためです。  
 サイドバーありの2カラムレイアウトと、シンプルな1カラムレイアウトがサイト内に混在するケースでも対応しやすくなります。
 
+また、**WordPressのブロックエディターの設計が②方式になっている**のも大きな理由です。
+</Note>
 
-非推奨の①のケースを採用してしまうと、その直下で全幅コンテンツを作る場合のCSSが複雑になってしまいます。
+
+①のケースを採用してしまうと、全幅コンテンツを作る場合のCSSが（汎用的な設計にしようとすると）複雑になってしまいます。
 
 ```css
-.alignfull{
+.fullwide{
 	width: 100vw;
 	max-width: 100vw;
 	left: calc(50% - 50vw);
 }
 ```
 
-みたいなCSSを書いた経験はないでしょうか。これらは、他のレイアウト条件なども考慮し始めるとかなり複雑になってしまいます。
+みたいなCSSを書いた経験はないでしょうか。
 
-</Note>
+これがベースになってしまうと、他のレイアウト条件なども考慮し始めるどんどん複雑になってしまうだけでなく、`vw`ではスクロールバーの幅を考慮できないという問題点もあります。
 
-また、**WordPressのブロックエディターでそういう設計が前提となっている**のも大きな理由です。
-特にブロックテーマを作る場合には、この設計に従うかどうかで、コンテンツの幅を制御するためのCSSの複雑度がかなり大きく変わってきます。
-（記事ページなどにおいての）
+`@property`が使える環境では楽な解決方法があるので、Lismではそちらでの対応ができるようにもしています。
+しかし、まだFirefoxでのサポート状況が怪しいため、無難に②方式を推奨します。
 
 
-## コンテンツ制御クラスについて
+### コンテンツ制御クラスについて
 
-ただし、実際には`.entry-content > *`のように特定のエリアに対してCSSを書くのではなく、**直下のコンテンツ幅を制御する役割**をもつ専用のクラス`.is--constrained`を用意しています。
-（コンテンツ幅を揃えたいエリアは複数でてくることが多いため）
+上記の①に対応できるのが `.is--container`で、②に対応するのが `is--constrained`です。
+
+ただし、`.is--container`単体ではサイズセットは行わず、containerエリアの宣言にも使えるようになっています。
+コンテナ自体へのサイズセットを行うには、`.is--container:s` や `.is--container:m` を使います。
 
 なので、Lismでは実際には次のようにHTMLを書くことになります。
-
 
 ```html
 <article class="is--constrained">
@@ -127,12 +139,16 @@ Lism設計では、①ではなく②を前提としています。
 このデモエリアが小さいため、`--contentSize`でコンテンツ幅を小さめに上書きしています。
 
 
+コンテナクエリの判定基準となる横幅が、`is--constrained`直下の要素ではラッパー要素の幅になることに注意が必要です。
+
 ### 幅広(.alignwide) と 全幅 (.alignfull) 
 
 - `.alignwide` はmax-widthが大きめに変わるだけ、
 - `.alignfull` はmax-width:100% (has--gutter直下のみネガティブマージンあり)
 
 というシンプルな実装になります。
+
+- alignwideは.is--constrainedの直下の時、サイズに合わせて変化する（1段階でかくなる）
 
 <Demo>
 	<Demo.Title>

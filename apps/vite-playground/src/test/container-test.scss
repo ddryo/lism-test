@@ -1,7 +1,65 @@
-.is--flow {
-	// color: pink;
-	border: 3px dashed pink;
+
+.has--gutter{
+	position: relative;
+}
+.l--layer.gutter-guide{
+	inset: 0;
+	max-width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	pointer-events: none;
+
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		width: var(--gutter);
+		height: 100%;
+		background-color: hsl(var(--hsl--purple) / 0.2);
+		grid-area: guide;
+	}
 }
 .alignfull.alignfull{
-	background-color: rgba(183, 143, 197, 0.554) !important;
+	
+	--stripe-color: hsl(var(--hsl--pink) / 0.1) !important;
+	background-image: repeating-linear-gradient(
+		-45deg,
+		var(--stripe-color),
+		var(--stripe-color) 2px,
+		transparent 2px,
+		transparent 7px
+	);
+}
+.alignwide.alignwide{
+	--stripe-color: hsl(var(--hsl--yellow) / 0.12) !important;
+	background-image: repeating-linear-gradient(
+		-45deg,
+		var(--stripe-color),
+		var(--stripe-color) 2px,
+		transparent 2px,
+		transparent 7px
+	);
+}
+
+.is--container{
+	border: 2px solid hsl(var(--hsl--orange) / 0.8) !important;
+}
+
+[class*="is--constrained"]{
+	border: 2px solid hsl(var(--hsl--blue) / 0.8) !important;
+}
+
+[class*="is--constrained"] > [class*="is--constrained"]{
+	border: 2px dotted hsl(var(--hsl--blue) / 0.8) !important;
+}
+
+// 小さいモニターで確認する用
+@media (width < 1200px) {
+	body{
+		// --size--xs: 30rem; // 720px
+		--size--s: 42rem;
+		--size--m: 50rem; // 800px
+		--size--l: 56rem;
+	}
 }

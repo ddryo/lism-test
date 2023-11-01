@@ -30,9 +30,10 @@ export default function Layout({
 	...props
 }) {
 	if (isContainer) {
-		const { className, style } = getLayoutStateData('is--container', isContainer);
-		lismState.push(className);
-		Object.assign(lismStyle, style);
+		lismState.push('is--container');
+		// const { className, style } = getLayoutStateData('is--container', isContainer);
+		// lismState.push(className);
+		// Object.assign(lismStyle, style);
 	}
 
 	if (isConstrained) {

@@ -23,8 +23,7 @@
 }
 
 // それぞれの直下要素( > * ) に対してスタイルをセットした方が、ネスト時の影響をなくせるが、constrainedのネストが多様されることは少ないと思うので、一旦親側の変数管理のみで実装。
-.is--constrained,
-.is--constrained\:m {
+.is--constrained {
 	--contentSize: var(--size--m);
 	--size--wide: var(--size--l);
 }
@@ -42,42 +41,26 @@
 
 // コンテナクエリの基点とする要素。
 // コンテンツ幅を自身の幅にセットして制御したい時にも使う。（そのままでは幅のセットはしない）
-// cnstrained より container の（サイズセットの）優先度高くなるように順番を注意。
-:is(.is--container, [class*='is--container:']) {
+// （実際のサイズセットは w や h を指定してもらう。 w でも maxW でもいいように、標準で max-inline:100% にしている）
+.is--container {
 	container-type: inline-size;
 	margin-inline: auto;
-	// max-inline-size: var(--containerSize);
+	max-inline-size: 100%;
 }
 
-// .is--container {
-// 	--containerSize: var(--size--m);
-// }
-.is--container\: {
-	max-inline-size: var(--containerSize);
-}
-.is--container\:s {
-	max-inline-size: var(--size--s);
-}
-.is--container\:m {
-	max-inline-size: var(--size--s);
-}
-.is--container\:l {
-	max-inline-size: var(--size--l);
-}
+// .is--container {--containerSize: var(--size--m);}
+// .is--container\: {max-inline-size: var(--containerSize);}
+// .is--container\:s {max-inline-size: var(--size--s);}
+// .is--container\:m {max-inline-size: var(--size--s);}
+// .is--container\:l {max-inline-size: var(--size--l);}
 
 // これは → .is--container.alignfull でできる
-// .is--container\:full {
-// 	max-inline-size: 100%;
-// }
+// .is--container\:full {max-inline-size: 100%;}
 
 // flowより強く、ユーティリティより弱く。
 :where(.alignfull) + .alignfull {
 	margin-block-start: 0;
 }
-
-// :is(.alignfull, .is--container\:full) + :where(.alignfull, .is--container\:full) {
-// 	margin-block-start: 0;
-// }
 
 .alignfull {
 	container-type: inline-size;
@@ -123,7 +106,7 @@
 	// 	--size--100cqw: 100%;
 	// }
 
-	:is(.is--container, [class*='is--container:']) {
+	.is--container {
 		--size--100cqw: 100cqw; // この時点でのcqwをセット
 
 		> .alignfull {

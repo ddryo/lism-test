@@ -35,10 +35,10 @@ import { Badge } from '@loos/lism-core';
 
 export const ColorDemos = ({colors, variant}) => {
 	return (
-		<Cluster gap={20}>
+		<Cluster gap={20} itemMinW='5em'>
 			{colors.map((ckey) => {
 				return (
-					<Badge keycolor={ckey} key={ckey} variant={variant || ''}>"{ckey}"</Badge>
+					<Badge keycolor={ckey} key={ckey} variant={variant || ''}>{ckey}</Badge>
 				);
 			})}
 
@@ -92,7 +92,7 @@ export const ColorDemos = ({colors, variant}) => {
 
 <Demo>
 	<Demo.Title>`variant="subtle"`でのカラーバリエーション</Demo.Title>
-	<Demo.Preview resize p={20}>
+	<Demo.Preview resize p={20} isShadow={0}>
 		<ColorDemos colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} variant="subtle" />
 	</Demo.Preview>
 </Demo>

@@ -33,10 +33,12 @@
 	    1080 にしてるのは、 1920 * 1080画像がきれいに配置できるため？
 	------------------------------------------------------------ */
 	// コンテンツサイズは960 ~ 1120 くらいがよさそう. @lg よりは大きく?
+	// --size--xl: 1600px;
 	--size--l: 1440px; // = --wp--style--global--wide-size. alignwide で使う.
 	--size--m: 1120px; // = --wp--style--global--content-size.
 	--size--s: 45rem; // slim幅1カラムテンプレートで使う. fz:16px時 = 720px
 	// --size--xs: 30rem;
+
 	--size--item: 16em; // タイルグリッドなどのアイテムサイズの標準値
 	// --size--base: var(--size--m); // = --wp--style--global--content-size.
 
@@ -205,14 +207,15 @@
 	// --pallete--?
 	--hsl--black: 0 0% 0%;
 	--hsl--white: 0 0% 100%;
-	--hsl--red: 4 76% 52%;
-	--hsl--orange: 28 80% 52%;
-	--hsl--yellow: 52 88% 48%;
-	--hsl--green: 148 84% 44%;
-	--hsl--blue: 200 80% 52%;
-	--hsl--purple: 250 80% 60%;
-	--hsl--pink: 325 76% 52%;
-	--hsl--gray: 214 8% 48%;
+	--hsl--gray: 210 12% 40%;
+
+	--hsl--red: 4 72% 48%;
+	--hsl--orange: 28 84% 48%;
+	--hsl--yellow: 46 96% 45%;
+	--hsl--green: 150 88% 40%;
+	--hsl--blue: 205 86% 48%;
+	--hsl--purple: 256 72% 52%;
+	--hsl--pink: 325 72% 48%;
 
 	--black: hsl(var(--hsl--black));
 	--white: hsl(var(--hsl--white));

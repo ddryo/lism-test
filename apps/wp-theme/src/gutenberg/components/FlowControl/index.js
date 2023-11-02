@@ -60,9 +60,9 @@ export default function FlowControl({ value, units: _units = DEFAULT_UNITS, onCh
 			)}
 			{isCustomValue && (
 				<UnitControl
-					size='__unstable-large'
+					size={'__unstable-large'}
 					__nextHasNoMarginBottom
-					label={__('Custom')}
+					label={__('Custom', 'lism-blocks')}
 					labelPosition='top'
 					hideLabelFromVision
 					value={value}

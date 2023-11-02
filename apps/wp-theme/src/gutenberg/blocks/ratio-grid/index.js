@@ -1,7 +1,7 @@
 /**
  * @External dependencies
  */
-import { Center } from '@loos/lism-core';
+import { RatioGrid } from '@loos/lism-core';
 import classnames from 'classnames';
 
 /**
@@ -17,13 +17,7 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
-import {
-	PanelBody,
-	__experimentalToggleGroupControl as ToggleGroupControl,
-	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
-	__experimentalUnitControl as UnitControl,
-	__experimentalUseCustomUnits as useCustomUnits,
-} from '@wordpress/components';
+import { PanelBody } from '@wordpress/components';
 
 /**
  * @Internal dependencies
@@ -34,25 +28,11 @@ import {
 	SelectorPreviewTip,
 	ResponsiveGapControl,
 	HTMLElementControls,
+	RatioControl,
 } from '@/gutenberg/components';
 
-const SIZE_OPTIONS = [
-	{
-		label: __('None', 'lism-blocks'),
-		value: 'none',
-	},
-	{
-		label: __('Cover', 'lism-blocks'),
-		value: 'cover',
-	},
-	{
-		label: __('Content', 'lism-blocks'),
-		value: 'content',
-	},
-];
-
 registerBlockType(metadata.name, {
-	title: __('Center', 'lism-blocks'),
+	title: __('Ratio Grid', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
 	icon,
 	transforms: {
@@ -75,17 +55,13 @@ registerBlockType(metadata.name, {
 			tagName = 'div',
 			gap,
 			textAlign,
-			height,
-			size,
+			ratio,
 			anchor,
 			className,
 		} = attributes;
 
-		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem', '%'] });
-
 		const lismProps = {
-			h: height,
-			size,
+			ratio,
 			gap: '16px',
 		};
 
@@ -116,40 +92,12 @@ registerBlockType(metadata.name, {
 				</BlockControls>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
-						<ToggleGroupControl
-							__nextHasNoMarginBottom
-							label={__('Size', 'lism-blocks')}
-							onChange={(nextSize) => {
-								const hasSize = nextSize !== 'none';
-								if (hasSize) {
-									setAttributes({
-										size: nextSize,
-										height: undefined,
-									});
-								} else {
-									setAttributes({ size: undefined });
-								}
+						<RatioControl
+							value={ratio}
+							onChange={(value) => {
+								setAttributes({ ratio: value });
 							}}
-							isBlock
-							value={size || 'none'}
-						>
-							{SIZE_OPTIONS.map(({ label, value }) => (
-								<ToggleGroupControlOption key={value} value={value} label={label} />
-							))}
-						</ToggleGroupControl>
-						{!size && (
-							<UnitControl
-								size={'__unstable-large'}
-								__nextHasNoMarginBottom
-								label={__('Height', 'lism-blocks')}
-								units={units}
-								min={0}
-								value={height}
-								onChange={(value) => {
-									setAttributes({ ...attributes, height: value || undefined });
-								}}
-							/>
-						)}
+						/>
 					</PanelBody>
 					<PanelBody title={__('Spacing', 'lism-blocks')}>
 						<ResponsiveGapControl label={__('Gap', 'lism-blocks')} />
@@ -163,20 +111,19 @@ registerBlockType(metadata.name, {
 						}}
 					/>
 				</InspectorControls>
-				<Center {...innerProps} forwardedRef={ref}>
-					{/* <SelectorPreviewTip icon={icon} anchor={anchor} className={className} /> */}
+				<RatioGrid {...innerProps} forwardedRef={ref}>
+					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
 					{children}
-				</Center>
+				</RatioGrid>
 			</>
 		);
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div', gap, textAlign, height, size } = attributes;
+		const { tagName = 'div', gap, textAlign, ratio } = attributes;
 
 		const lismProps = {
-			h: height,
-			size,
+			ratio,
 			gap: '16px',
 		};
 
@@ -189,9 +136,9 @@ registerBlockType(metadata.name, {
 		});
 
 		return (
-			<Center {...blockProps}>
+			<RatioGrid {...blockProps}>
 				<InnerBlocks.Content />
-			</Center>
+			</RatioGrid>
 		);
 	},
 });

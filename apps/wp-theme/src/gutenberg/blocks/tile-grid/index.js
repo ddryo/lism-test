@@ -96,8 +96,8 @@ registerBlockType(metadata.name, {
 				<BlockControls group='block'>
 					<AlignmentControl
 						value={textAlign}
-						onChange={(nextAlign) => {
-							setAttributes({ textAlign: nextAlign });
+						onChange={(value) => {
+							setAttributes({ textAlign: value });
 						}}
 					/>
 				</BlockControls>
@@ -118,7 +118,7 @@ registerBlockType(metadata.name, {
 							}}
 						/>
 						<UnitControl
-							size='__unstable-large'
+							size={'__unstable-large'}
 							__nextHasNoMarginBottom
 							label={__('Item min width', 'lism-blocks')}
 							units={units}

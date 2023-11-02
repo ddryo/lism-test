@@ -16,11 +16,11 @@ import { sidesAll, sidesTop, sidesRight, sidesBottom, sidesLeft } from '@wordpre
 const DEFAULT_UNITS = ['px', 'em', 'rem'];
 
 const LABELS = {
-	all: __('All'),
-	top: __('Top'),
-	bottom: __('Bottom'),
-	left: __('Left'),
-	right: __('Right'),
+	all: __('All', 'lism-blocks'),
+	top: __('Top', 'lism-blocks'),
+	bottom: __('Bottom', 'lism-blocks'),
+	left: __('Left', 'lism-blocks'),
+	right: __('Right', 'lism-blocks'),
 };
 
 const ICONS = {
@@ -58,7 +58,7 @@ export default function SpacingControl({ units: _units = DEFAULT_UNITS }) {
 				<div className='__linked'>
 					<Icon icon={sidesAll} className='__icon' />
 					<UnitControl
-						size='__unstable-large'
+						size={'__unstable-large'}
 						__nextHasNoMarginBottom
 						label={LABELS.all}
 						hideLabelFromVision
@@ -73,7 +73,7 @@ export default function SpacingControl({ units: _units = DEFAULT_UNITS }) {
 						<UnitControl
 							key={side}
 							className={`__${side}`}
-							size='__unstable-large'
+							size={'__unstable-large'}
 							__nextHasNoMarginBottom
 							label={LABELS[side]}
 							hideLabelFromVision

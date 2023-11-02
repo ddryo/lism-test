@@ -8,6 +8,7 @@ export { default as GapControl } from './GapControl';
 export { default as HTMLElementControls } from './HTMLElementControls';
 export { default as JustifyContentControl } from './JustifyContentControl';
 export { default as JustifyItemsControl } from './JustifyItemsControl';
+export { default as RatioControl } from './RatioControl';
 export { default as ResponsiveGapControl } from './ResponsiveGapControl';
 export { default as ResponsiveSpacingControl } from './ResponsiveSpacingControl';
 export { default as ResponsiveTabControl } from './ResponsiveTabControl';

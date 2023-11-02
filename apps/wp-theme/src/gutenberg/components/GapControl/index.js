@@ -5,6 +5,9 @@ import { __ } from '@wordpress/i18n';
 import { link, linkOff } from '@wordpress/icons';
 import {
 	Button,
+	Flex,
+	FlexBlock,
+	FlexItem,
 	Icon,
 	__experimentalVStack as VStack,
 	__experimentalUnitControl as UnitControl,
@@ -16,9 +19,9 @@ import { sidesAll, sidesVertical, sidesHorizontal } from '@wordpress/icons';
 const DEFAULT_UNITS = ['px', 'em', 'rem'];
 
 const LABELS = {
-	all: __('All'),
-	row: __('Row'),
-	column: __('Column'),
+	all: __('All', 'lism-blocks'),
+	row: __('Row', 'lism-blocks'),
+	column: __('Column', 'lism-blocks'),
 };
 
 const ICONS = {
@@ -43,32 +46,40 @@ export default function GapControl({ units: _units = DEFAULT_UNITS }) {
 				onClick={() => setIsLinked(!isLinked)}
 			/>
 			{isLinked && (
-				<div className='__row'>
-					<Icon icon={sidesAll} className='__icon' />
-					<UnitControl
-						size='__unstable-large'
-						__nextHasNoMarginBottom
-						label={LABELS.all}
-						hideLabelFromVision
-						units={units}
-						min={0}
-					/>
-				</div>
-			)}
-			{!isLinked &&
-				['row', 'column'].map((side) => (
-					<div className='__row' key={side}>
-						<Icon icon={side ? ICONS[side] : sidesAll} className='__icon' />
+				<Flex className='__row'>
+					<FlexItem>
+						<Icon icon={sidesAll} className='__icon' />
+					</FlexItem>
+					<FlexBlock>
 						<UnitControl
-							key={side}
-							size='__unstable-large'
+							size={'__unstable-large'}
 							__nextHasNoMarginBottom
-							label={LABELS[side]}
+							label={LABELS.all}
 							hideLabelFromVision
 							units={units}
 							min={0}
 						/>
-					</div>
+					</FlexBlock>
+				</Flex>
+			)}
+			{!isLinked &&
+				['row', 'column'].map((side) => (
+					<Flex className='__row' key={side}>
+						<FlexItem>
+							<Icon icon={side ? ICONS[side] : sidesAll} className='__icon' />
+						</FlexItem>
+						<FlexBlock>
+							<UnitControl
+								key={side}
+								size={'__unstable-large'}
+								__nextHasNoMarginBottom
+								label={LABELS[side]}
+								hideLabelFromVision
+								units={units}
+								min={0}
+							/>
+						</FlexBlock>
+					</Flex>
 				))}
 			<Button className='__reset' variant='secondary' size='small'>
 				{__('Clear', 'lism-blocks')}

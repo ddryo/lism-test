@@ -102,8 +102,8 @@ registerBlockType(metadata.name, {
 				<BlockControls group='block'>
 					<AlignmentControl
 						value={textAlign}
-						onChange={(nextAlign) => {
-							setAttributes({ textAlign: nextAlign });
+						onChange={(value) => {
+							setAttributes({ textAlign: value });
 						}}
 					/>
 				</BlockControls>

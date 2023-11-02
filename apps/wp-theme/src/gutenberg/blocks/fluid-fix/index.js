@@ -121,7 +121,7 @@ registerBlockType(metadata.name, {
 							))}
 						</ToggleGroupControl>
 						<UnitControl
-							size='__unstable-large'
+							size={'__unstable-large'}
 							__nextHasNoMarginBottom
 							label={__('Fixed element min width', 'lism-blocks')}
 							units={units}
@@ -132,7 +132,7 @@ registerBlockType(metadata.name, {
 							}}
 						/>
 						<UnitControl
-							size='__unstable-large'
+							size={'__unstable-large'}
 							__nextHasNoMarginBottom
 							label={__('Fluid element min width', 'lism-blocks')}
 							units={units}

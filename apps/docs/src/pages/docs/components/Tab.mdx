@@ -22,7 +22,7 @@ import { Tabs, TabItem } from '@loos/lism-core';
 
 
 ## 要検討
-- アコーディオンと同様に、isFlow, flowGap をデフォルトセットする？
+- アコーディオンと同様に、isFlow をデフォルトセットする？
 - Panelに 共通のpaddingなどを付けたい時、どう指定する？→ contextで渡せばいいか。
 - `variant` を用意。縦並びタブも作る。スマホではアコーディオン？ or ドロップダウンメニュー化してもいいかもしれない。
 - ナビ部分の横スクロールどうする？
@@ -79,11 +79,11 @@ import { Tab, TabItem } from '@loos/lism-core';
 	<Demo.Title>最初に開くタブを指定、高さが変わらないようにする"</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<Tabs keepHeight defaultIndex={1}>
-			<TabItem label="title1" isFlow flowGap='s'>
+			<TabItem label="title1" isFlow='s'>
 				<p>index:0</p>
 				<DammyText />
 			</TabItem>
-			<TabItem label="title2" isFlow flowGap='s'>
+			<TabItem label="title2" isFlow='s'>
 				<p>index:1</p>
 				<DammyText />
 				<DammyText length="l" />
@@ -93,11 +93,11 @@ import { Tab, TabItem } from '@loos/lism-core';
 	<Demo.Code>
 		```jsx
 		<Tabs keepHeight defaultIndex={1}>
-			<TabItem label="title1" isFlow flowGap='s'>
+			<TabItem label="title1" isFlow='s'>
 				<p>index:0</p>
 				<p>...</p>
 			</TabItem>
-			<TabItem label="title2" isFlow flowGap='s'>
+			<TabItem label="title2" isFlow='s'>
 				<p>index:1</p>
 				<p>...</p>
 				<p>...</p>

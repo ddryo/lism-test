@@ -1,9 +1,14 @@
 import { isPresetValue, getMaybeCssVar } from './index.js';
 
 const LAYOUT_STATE = {
+	'is--container': {
+		varName: '--containerSize',
+		tokenKey: 'contentSize',
+		converter: null,
+	},
 	'is--constrained': {
 		varName: '--contentSize',
-		tokenKey: 'constrained',
+		tokenKey: 'contentSize',
 		converter: 'size',
 	},
 	'is--flow': {

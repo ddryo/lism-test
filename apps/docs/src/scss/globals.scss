@@ -42,16 +42,18 @@ html:has([data-docs-path='/docs/components/Reel']) {
 // 	border: dashed 1px var(--c--guide);
 // }
 
-// .scaleArea\:1\.5 {
-// 	// 	width: 160% !important;
-// 	// max-width: 160% !important;
-// 	// scale: 0.625;
-// 	width: 125% !important;
-// 	max-width: 125% !important;
-// 	scale: 0.8;
-// 	transform-origin: left top;
-// 	// margin-bottom: calc(-);
-// }
+.scalePreview.scalePreview {
+	width: 160% !important;
+	max-width: 160% !important;
+	scale: 0.625;
+	// width: 125% !important;
+	// max-width: 125% !important;
+	// scale: 0.8;
+	transform-origin: left top;
+	margin-bottom: -40%;
+	// 2/1
+	// margin-bottom: calc(-);
+}
 
 .b--demoBox__frame {
 	width: 100%;

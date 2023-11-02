@@ -1,4 +1,4 @@
-import { Lism, Reel, Frame, Box, Columns, Cluster } from '@loos/lism-core';
+import { Lism, Item, Reel, Frame, Box, Columns, Cluster } from '@loos/lism-core';
 
 
 # Reel
@@ -175,13 +175,13 @@ export const ReelImages = () => {
 		<Reel itemBasis="60%" snap="center" gap={20}>
 			<ReelImages />
 		</Reel>
-		<Cluster gap={20} jc="c">
-			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-1">1</Lism>
-			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-2">2</Lism>
-			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-3">3</Lism>
-			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-4">4</Lism>
-			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-5">5</Lism>
-			<Lism as="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-6">6</Lism>
+		<Cluster gap={20} jc="c" lh="1" provide={{c: 'base', bgc:'b200', p:'box:s', radius: '2'}}>
+			<Item tag="a" href="#image-1" consume='c bgc p radius' hover={{bgc: "b300"}} td="none">1</Item>
+			<Item tag="a" href="#image-2" consume='c bgc p radius' hover={{bgc: "b300"}} td="none">2</Item>
+			<Item tag="a" href="#image-3" consume='c bgc p radius' hover={{bgc: "b300"}} td="none">3</Item>
+			<Item tag="a" href="#image-4" consume='c bgc p radius' hover={{bgc: "b300"}} td="none">4</Item>
+			<Item tag="a" href="#image-5" consume='c bgc p radius' hover={{bgc: "b300"}} td="none">5</Item>
+			<Item tag="a" href="#image-6" consume='c bgc p radius' hover={{bgc: "b300"}} td="none">6</Item>
 		</Cluster>
 	</Demo.Preview>
 	<Demo.Code>
@@ -198,10 +198,10 @@ export const ReelImages = () => {
 			</Frame>
 			...
 		</Reel>
-		<Cluster jc="c">
-			<Lism tag="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-1">1</Lism>
-			<Lism tag="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-2">2</Lism>
-			<Lism tag="a" bgc="b200" c="base" lh="1" p="box:s" hover={{bgc: "b300"}} td="none" radius="2" href="#image-3">3</Lism>
+		<Cluster gap={20} jc="c" lh="1" provide={{c: 'base', bgc:'b200', p:'box:s', radius: '2'}}>
+			<Item tag="a" href="#image-1" consume='c bgc p radius' hover={{bgc: "b300"}} td="none">1</Item>
+			<Item tag="a" href="#image-2" consume='c bgc p radius' hover={{bgc: "b300"}} td="none">2</Item>
+			<Item tag="a" href="#image-3" consume='c bgc p radius' hover={{bgc: "b300"}} td="none">3</Item>
 			...
 		</Cluster>
 		```

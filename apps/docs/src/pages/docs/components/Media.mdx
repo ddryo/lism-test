@@ -1,27 +1,16 @@
 import { Media, MediaLayer, Banner } from '@loos/lism-core';
 import Image from 'next/image';
 
-# Lism
+# Media
 
-Lism Props を受け取るための特殊な画像・動画用のコンポーネントです。  
-デフォルトで`<img>`タグが出力されるようになっています。
-
-<Demo>
-	<Demo.Title>対応するHTML構造</Demo.Title>
-	<Demo.Code>
-		```jsx
-		<img />
-		```
-	</Demo.Code>
-</Demo>
+メディア用にデフォルトで`<img>`タグが出力されるようになった`<Core>`コンポーネントです。
 
 
 ## Props
 
 - `tag`: htmlタグを指定できます。デフォルトは`<img>`です。
 - `as`: 展開したいコンポーネントを指定できます。(例: `Next.js`の`Image>`コンポーネントなど）
-- `isTransitionMedia`: `is--transitionMedia`クラスを出力します。`.-hov:media:XXX`と併用してホバーエフェクトを適用できます。
-	- ※ プロパティ名、クラス名は要検討
+- `isTransitionMedia`: `is--transitionMedia`クラスを出力します。`.-hov:media:XXX`と併用してホバーエフェクトを適用できます。<MemoBadge>プロパティ名、クラス名は要検討</MemoBadge>
 
 ## Import
 

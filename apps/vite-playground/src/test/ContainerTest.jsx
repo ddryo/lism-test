@@ -190,22 +190,108 @@ export default function ContainerTest() {
 				</Layout>
 				<hr />
 				<h2>Container</h2>
+				<Box bd='guide'>
+					<Layout isContainer>
+						<Text ta='c' lh='1'>
+							<TipCode text='is--container' color='orange' />
+						</Text>
+						<LoremContent />
+						<LoremContent />
+					</Layout>
+				</Box>
+				<Box bd='guide'>
+					<Container hasGutter>
+						<Text ta='c' lh='1'>
+							<TipCode text='is--container' color='orange' />
+							{' , '}
+							<TipCode text='hasGutter' color='purple' />
+						</Text>
+						<LoremContent />
+						<LoremContent />
+						<Layer className='gutter-guide' mbs='0' />
+					</Container>
+				</Box>
+				<Box hasGutter bd='guide'>
+					<Text ta='c' lh='1'>
+						<TipCode text='hasGutter' color='purple' />
+					</Text>
+					<Container>
+						<Text ta='c' lh='1'>
+							<TipCode text='is--container' color='orange' />
+						</Text>
+						<LoremContent />
+						<LoremContent />
+					</Container>
+					<Layer className='gutter-guide' mbs='0' />
+				</Box>
+				<Box bd='guide'>
+					<Container size='s'>
+						<Text ta='c' lh='1'>
+							<TipCode text='is--container:s' color='orange' />
+						</Text>
+						<LoremContent />
+						<LoremContent />
+					</Container>
+				</Box>
+				<h3>isContainer の子要素の振る舞い</h3>
+				<p>
+					@propetry
+					が有効なブラウザでは、直下のalignfullはcontainer要素のさらに親コンテナを基準とした幅まで広がります。
+				</p>
+				<Box>
+					<Container size='l' isFlow='s' hasGutter>
+						<Text ta='c' lh='1'>
+							<TipCode text='is--container:l' color='orange' />
+						</Text>
+						<LoremContent />
+						<Box alignfull ta='c' bgc='pink:10%'>
+							alignfull
+						</Box>
+						<Container size='s'>
+							<Text ta='c' lh='1'>
+								<TipCode text='is--container:s' color='orange' />
+							</Text>
+							<LoremContent />
+							<Box alignfull ta='c' bgc='pink:10%'>
+								alignfull
+							</Box>
+						</Container>
+						<Layer className='gutter-guide' mbs='0' />
+					</Container>
+				</Box>
+
+				<Container isConstrained hasGutter isFlow='s'>
+					<LoremContent />
+
+					<Container size='s'>
+						<Text ta='c' lh='1'>
+							<TipCode text='is--container:s' color='orange' />
+						</Text>
+						<LoremContent />
+						<Box alignfull ta='c' bgc='pink:10%'>
+							alignfull
+						</Box>
+					</Container>
+					<Layer className='gutter-guide' mbs='0' />
+				</Container>
 
 				<h2>ContainerとConstrainedの入れ子</h2>
 				<Layout isConstrained isFlow='s'>
 					<Text ta='c' lh='1'>
 						<TipCode text='constrained' />
 					</Text>
+					<LoremContent />
 					<Box alignfull> alignfull</Box>
 					<Box alignwide> alignwide</Box>
 					<Box bd className='alignscreen'>
 						{' '}
 						alignscreen
 					</Box>
-					<Container>
+					<Container size='s' isFlow='s'>
 						<Text ta='c' lh='1'>
 							<TipCode text='is--container' color='orange' />
 						</Text>
+						<LoremContent />
 						<Box alignfull> alignfull</Box>
 						<Box alignwide> alignwide</Box>
 						<Box bd className='alignscreen'>
@@ -214,20 +300,22 @@ export default function ContainerTest() {
 						</Box>
 					</Container>
 				</Layout>
-				<Container>
+				<Container isFlow='s'>
 					<Text ta='c' lh='1'>
 						<TipCode text='is--container' color='orange' />
 					</Text>
+					<LoremContent />
 					<Box alignfull> alignfull</Box>
 					<Box alignwide> alignwide</Box>
 					<Box bd className='alignscreen'>
 						{' '}
 						alignscreen
 					</Box>
-					<Layout isConstrained isFlow='s'>
+					<Layout isConstrained='s' isFlow='s'>
 						<Text ta='c' lh='1'>
-							<TipCode text='constrained' />
+							<TipCode text='constrained:s' />
 						</Text>
+						<LoremContent />
 						<Box alignfull> alignfull</Box>
 						<Box alignwide> alignwide</Box>
 						<Box bd className='alignscreen'>

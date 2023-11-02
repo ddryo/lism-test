@@ -89,10 +89,10 @@ export default {
 	animation: [],
 
 	// size:['container', 'container:s', 'container:l'],
-	size: ['item', 'xs', 's', 'm', 'l', 'xl', 'full'], // --size-- トークン
-	constrained: ['s', 'm', 'l'], // constrainedのユーティリティクラス
-	flow: ['s', 'm', 'l'], // flowのユーティリティクラス
-	// mbs: ['s', 'm', 'l'],
+	size: ['xs', 's', 'm', 'l', 'xl', 'item', 'screenW'], // --size--xxx トークン
+	contentSize: ['s', 'l'], // container, constrained のユーティリティクラス
+	flow: ['s', 'l'], // flowのユーティリティクラス
+	// mbs: ['s', 'm', 'l'], // --mbs--xxx トークン
 };
 
 // ユーティリティ化しないけど、変数を用意しておくもの

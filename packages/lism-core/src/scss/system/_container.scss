@@ -39,31 +39,33 @@
 
 // is--container かつ is--constrained を考慮するか？
 
-// コンテナクエリの基点とする要素。
-// コンテンツ幅を自身の幅にセットして制御したい時にも使う。（そのままでは幅のセットはしない）
-// （実際のサイズセットは w や h を指定してもらう。 w でも maxW でもいいように、標準で max-inline:100% にしている）
-.is--container {
+// コンテナクエリの基点としつつ、コンテンツ幅を揃えるためのラッパー要素に使う。
+// Note: .is--constrained より後にかく。
+:is(.is--container, [class*='is--container:']) {
 	container-type: inline-size;
 	margin-inline: auto;
-	max-inline-size: 100%;
+	max-inline-size: var(--containerSize);
 }
 
-// .is--container {--containerSize: var(--size--m);}
-// .is--container\: {max-inline-size: var(--containerSize);}
-// .is--container\:s {max-inline-size: var(--size--s);}
-// .is--container\:m {max-inline-size: var(--size--s);}
-// .is--container\:l {max-inline-size: var(--size--l);}
+.is--container {
+	--containerSize: var(--size--m);
+}
+.is--container\:s {
+	--containerSize: var(--size--s);
+}
+.is--container\:l {
+	--containerSize: var(--size--l);
+}
+// .is--container\:full {max-inline-size: 100%;} // これは → .is--container.alignfull でできる
 
-// これは → .is--container.alignfull でできる
-// .is--container\:full {max-inline-size: 100%;}
-
-// flowより強く、ユーティリティより弱く。
+// Note: flowより強く、ユーティリティより弱く。
 :where(.alignfull) + .alignfull {
 	margin-block-start: 0;
 }
 
+// Note: .is--container より後にかく。
 .alignfull {
-	container-type: inline-size;
+	// container-type: inline-size;
 	max-inline-size: 100%;
 
 	:where(.has--gutter) > & {
@@ -74,7 +76,7 @@
 }
 
 .alignwide {
-	container-type: inline-size;
+	// container-type: inline-size;
 	max-inline-size: var(--size--wide, 100%);
 }
 
@@ -91,33 +93,32 @@
 // @supports (content-visibility: auto) or (top: 0lh)
 @supports (content-visibility: auto) or (top: 0lh) {
 	// cqw を算出値で保持するために登録済みカスタムプロパティとして定義
-	@property --size--100cqw {
+	@property --size--full {
 		syntax: '<length-percentage>';
 		initial-value: 100%;
 		inherits: true;
 	}
-	@property --size--screenW {
-		syntax: '<length>';
-		initial-value: 100vw;
-		inherits: true;
-	}
 
-	// :is(.is--constrained, [class*='is--constrained:']) {
-	// 	--size--100cqw: 100%;
-	// }
-
-	.is--container {
-		--size--100cqw: 100cqw; // この時点でのcqwをセット
+	:is(.is--container, [class*='is--conta.is--container:']) {
+		--size--full: 100cqw; // is--container が配置された時点での 100cqw をセット
 
 		> .alignfull {
-			max-inline-size: var(--size--100cqw);
-			margin-inline: calc(50% - var(--size--100cqw) / 2);
+			max-inline-size: var(--size--full);
+			margin-inline: calc(50% - var(--size--full) / 2);
 		}
 	}
 
-	// .is--extend\:screen,
-	.alignscreen {
-		max-inline-size: var(--size--screenW);
-		margin-inline: calc(50% - var(--size--screenW) / 2);
-	}
+	// bodyにコンテナ適用して直下要素に100cqwをセットできればいいが、コンテナ内の fixed要素の挙動が変わるので廃止。
+	// @property --size--screenW {
+	// 	syntax: '<length-percentage>';
+	// 	initial-value: 100vw;
+	// 	inherits: true;
+	// }
+	// body {
+	// 	--size--screenW: 100cqw;
+	// }
+	// .alignscreen {
+	// 	max-inline-size: var(--size--screenW);
+	// 	margin-inline: calc(50% - var(--size--screenW) / 2);
+	// }
 }

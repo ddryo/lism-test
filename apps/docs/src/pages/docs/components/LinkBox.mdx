@@ -72,7 +72,7 @@ import { LinkBox } from '@loos/lism-core';
 		`tag='div'` で `<div>`のままリンク化することも可能。
 	</Demo.Title>
 	<Demo.Preview resize p={10}>
-		<LinkBox tag='div' href="#boxlink02" isFlow flowGap='s' p='box' bgc="pale">
+		<LinkBox tag='div' href="#boxlink02" isFlow='s' p='box' bgc="pale">
 			<Text fz="l">このBox全体がリンクです。</Text>
 			<DammyText length="l" />
 			<p><Link href="#inner-link">linkBox内にさらにリンク</Link>を配置できる。</p>
@@ -81,7 +81,7 @@ import { LinkBox } from '@loos/lism-core';
 	</Demo.Preview>
 	<Demo.Code p={20}>
 		```jsx
-		<LinkBox tag='div' href="#boxlink02" isFlow flowGap='s' p='box' bgc="pale">
+		<LinkBox tag='div' href="#boxlink02" isFlow='s' p='box' bgc="pale">
 			<Text fz="l">このBox全体がリンクです。</Text>
 			<p>...</p>
 			<p><Link href="#inner-link">linkBox内にさらにリンク</Link>を配置できる。</p>

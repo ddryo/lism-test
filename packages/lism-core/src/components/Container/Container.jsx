@@ -1,13 +1,17 @@
 // import React from 'react';
-import { Lism } from '../Lism';
+import { Layout } from '../Layout';
 
 export default function Container({ size, isConstrained, ...props }) {
+	const contentProps = {};
 	if (isConstrained) {
-		props.isConstrained = size || isConstrained;
+		contentProps.isConstrained = size || isConstrained;
 	} else {
-		props.isContainer = true;
-		props.w = size;
+		contentProps.isContainer = true;
+		if (size) {
+			// maxSize ？
+			contentProps.maxW = size;
+		}
 	}
 
-	return <Lism {...props} />;
+	return <Layout {...contentProps} {...props} />;
 }

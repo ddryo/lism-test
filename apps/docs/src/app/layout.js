@@ -1,6 +1,6 @@
 // import './globals.scss';
 
-// import '@loos/lism-core/scss/all.scss';
+import '@loos/lism-core/scss/all.scss';
 // import '@loos/lism-core/scss/core-modules.scss';
 // import '@loos/lism-core/scss/block-modules.scss';
 

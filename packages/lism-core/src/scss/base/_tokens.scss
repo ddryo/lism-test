@@ -47,7 +47,8 @@
 	// --contentSize--full: 特殊
 
 	// コンテンツの左右の余白
-	--gutter: 2rem; //clamp(1.5rem, 4vw, 2rem); // var(--s--50) とかを使うべきか？
+	// --gutter: 2rem;
+	--gutter: var(--s--40);
 
 	// ボーダーカラー
 	// --ls--bdc--table: #dcdcdc;

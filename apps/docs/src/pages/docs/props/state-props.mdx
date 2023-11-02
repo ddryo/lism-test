@@ -1,4 +1,189 @@
+import { Layout, Box, Text, Stack, Flex, Flow } from '@loos/lism-core';
 
-# State Prop
 
-isFlow
+# State Props
+
+Layout Stateクラスに対応するPropsを紹介します。
+
+
+<Alert preset='info'>
+ここで紹介するPropは、`<Layout>`系コンポーネントでのみ有効です。
+</Alert>
+
+
+## isFlow
+
+`.is--flow`に対応するPropです。
+( <MemoBadge> 参考ページ </MemoBadge> : [.is--flow について](/docs/layout-state/is--flow) )
+
+
+| Prop | Output |
+|:--|:--|
+| `isFlow` | `.is--flow` |
+| `isFlow='s'` | `.is--flow:s` |
+| `isFlow='l'` | `.is--flow:l` |
+| `isFlow={value}` | `.is--flow:` & `--flowGap:{value}` |
+
+
+<Demo>
+	<Demo.Title>`isFlow`</Demo.Title>
+	<Demo.Preview resize p={5}>
+		<Layout isFlow>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Layout>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Layout isFlow>
+		<p>...</p>
+		<p>...</p>
+		<p>...</p>
+	</Layout>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>その他の例</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Box isFlow='s'>...</Box>
+	<Box isFlow={30}>...</Box>
+	<Box isFlow='10px'>...</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+## isConstrained
+
+`.is--constrained`に対応するPropです。
+( <MemoBadge> 参考ページ </MemoBadge> : [.is--constrained について](/docs/layout-state/content-size) )
+
+
+| Prop | Output |
+|:--|:--|
+| `isConstrained` | `.is--constrained` |
+| `isConstrained='s'` | `.is--constrained:s` |
+| `isConstrained='l'` | `.is--constrained:l` |
+| `isConstrained={value}` | `.is--constrained:` & `--contentSize:{value}` |
+
+
+<Demo>
+	<Demo.Title>isConstrained</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Layout isConstrained>...</Layout>
+	<Layout isConstrained='s'>...</Layout>
+	```
+	</Demo.Code>
+</Demo>
+
+
+## isContainer
+
+`.is--container`に対応するPropです。
+( <MemoBadge> 参考ページ </MemoBadge> : [.is--container について](/docs/layout-state/content-size) )
+
+
+| Prop | Output |
+|:--|:--|
+| `isContainer` | `.is--container` |
+| `isContainer='s'` | `.is--container:s` |
+| `isContainer='l'` | `.is--container:l` |
+| `isContainer={value}` | `.is--container:` & `--contentSize:{value}` |
+
+
+<Demo>
+	<Demo.Title>isContainer</Demo.Title>
+	<Demo.Code>
+	```jsx
+	<Layout isContainer>...</Layout>
+	<Layout isContainer='s'>...</Layout>
+	```
+	</Demo.Code>
+</Demo>
+
+
+## hasGutter
+
+`.has--gutter`に対応するPropです。
+( <MemoBadge> 参考ページ </MemoBadge> : [.has--gutter について](/docs/layout-state/has--gutter) )
+
+
+| Prop | Output |
+|:--|:--|
+| `hasGutter` | `.has--gutter` |
+
+<Demo>
+	<Demo.Title>`hasGutter`</Demo.Title>
+	<Demo.Preview resize p={5}>
+		<Layout hasGutter>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Layout>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Layout hasGutter>
+		...
+	</Layout>
+	```
+	</Demo.Code>
+</Demo>
+
+
+## hasDivider
+
+`.has--divider`に対応するPropです。
+{/* ( <MemoBadge> 参考ページ </MemoBadge> : [.has--gutter について](/docs/layout-state/has--divider) ) */}
+
+
+| Prop | Output |
+|:--|:--|
+| `hasDivider` | `.has--divider:[B\|I]` (自動判定) |
+| `hasDivider='B'` | `.has--divider:B` |
+| `hasDivider='I'` | `.has--divider:I` |
+
+<Demo>
+	<Demo.Title>`hasGutter`</Demo.Title>
+	<Demo.Preview resize p={5}>
+		<Stack hasDivider>
+			<Box p={20} >Content</Box>
+			<Box p={20} >Content</Box>
+			<Box p={20} >Content</Box>
+		</Stack>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Stack hasDivider>
+		<Box p={20} >Content</Box>
+		<Box p={20} >Content</Box>
+		<Box p={20} >Content</Box>
+	</Stack>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>`hasGutter`</Demo.Title>
+	<Demo.Preview resize p={5}>
+		<Flex hasDivider>
+			<Box px={20} >Content</Box>
+			<Box px={20} >Content</Box>
+			<Box px={20} >Content</Box>
+		</Flex>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Flex hasDivider>
+		<Box px={20} >Content</Box>
+		<Box px={20} >Content</Box>
+		<Box px={20} >Content</Box>
+	</Flex>
+	```
+	</Demo.Code>
+</Demo>
+
+

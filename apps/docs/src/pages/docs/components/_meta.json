@@ -1,6 +1,7 @@
 {
 	"index": "",
-	"Lism": "",
+	"Core": "",
+	"Layout": "",
 	"Text": "",
 	"Media": "",
 	
@@ -44,8 +45,6 @@
 		"type": "separator",
 		"title": "State"
 	},
-	"Flow": "",
-	"Container": "",
 	"LinkBox": "",
 
 	"--- elements": {
@@ -84,7 +83,6 @@
 	},
 
 	"Section": "",
-	"FAQ": "",
 	"NavMenu": "",
 
 	"---": {

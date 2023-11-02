@@ -1,8 +1,7 @@
 {
 	"overview": "",
-	"all-props": "All Props",
-	"is-flow": "isFlow",
+	"css-props": "CSS Props",
+	"state-props": "State Props", 
 	"flex": "Flex Props",
-	"grid": "Grid Props",
-	"border": ""
+	"grid": "Grid Props"
 }

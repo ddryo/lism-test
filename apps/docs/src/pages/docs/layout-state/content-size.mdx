@@ -1,0 +1,118 @@
+import { Layout, Frame, Button, Center } from '@loos/lism-core';
+import { Desktop } from "@phosphor-icons/react";
+
+# コンテンツ幅の制御クラス
+
+<Alert icon={Desktop} keycolor='purple'>
+このページはPCでの閲覧を推奨しています。
+</Alert>
+
+
+## is--container
+
+コンテナ要素で、かつ**自身の横幅**を制御できるクラス
+
+| クラス名 | コンテンツサイズ |
+|:--|:--|
+| `is--container` | `--size--m` |
+| `is--container:{s\|l}` | `--size--{s\|l}` |
+
+## is--constrained
+
+コンテナ要素で、かつ**子要素の横幅**を制御するためのクラス
+
+| クラス名 | コンテンツサイズ |
+|:--|:--|
+| `is--constrained` | `--size--m` |
+| `is--constrained:{s\|l}` | `--size--{s\|l}` |
+
+さらに、それらのコンテナエリアの中で、自身のコンテンツ幅を拡張するためのクラスがあります。
+
+| クラス名 | デフォルトサイズ |
+|:--|:--|
+| `alignwide` | `--size--l` |
+| `alignfull` | `100%` |
+
+## alignwide, alignfull
+
+- `.alignwide`:
+	- `.is--constrained`系クラスの直下では、現在のコンテンツ幅よりも1段階広めのコンテンツを作ることができます。
+	- `.is--container`系クラスの直下では、コンテナ幅を超えることはありません。
+- `.alignfull`:
+	- `.is--constrained`系の直下では、 親コンテナのサイズにコンテンツを広げるためのクラスです。  
+	親が`.has--gutter`を持っていても、幅いっぱいに広がります。
+	- `.is--container`系の直下では、現在の親コンテナ幅を飛び越えて、さらに親のコンテナ幅まで広がります。（`@property` 有効な環境のみ）
+{/* - `alignscreen`:（`@property` 有効な環境のみ） */}
+
+
+
+## DEMO
+
+<Frame aspect='4/3' className='scalePreview' shadow='4' radius='3' bd bdw='3px'>
+	<Frame tag='iframe' src='/demo/container' aspect='4/3' width='1600' height='900' />
+</Frame>
+
+<Center>
+<Button href='/demo/container' target="_blank" rel='noopener noreferrer'>大きい画面で見る</Button>
+</Center>
+{/* [大きい画面で見る](/demo/container) */}
+
+
+
+## `.is--constrained` 直下の要素でのコンテナクエリについて
+
+コンテナクエリは直前のコンテナ要素（`.is--constrained`の子要素から見ると `.is--constrained`要素） のサイズを基準にします。
+
+なので、子要素の幅がコンテナクエリの判定基準にならないことには注意してください。
+
+```html
+<body>
+	<div class="is--constrained">
+		<div class="child">...</div>
+	</div>
+</body>
+```
+
+のようになっている場合、`.child`の最大幅は `.is--constrained` によって（デフォルトで）`1120px` に制限されています。
+
+そして次のように、`1200px`を起点にして色が青から赤に変わるようなコンテナクエリを書いているとします。
+
+```css
+.child{
+	color: blue;
+}
+@container (min-width: 1200px){
+	.child{
+		color: red;
+	}
+}
+```
+
+1600pxの画面サイズで見た場合、どっちの色になるでしょうか？
+
+`.child`の幅は`1120px`なので、`blue`が適用されるように思ってしまうかもしれません。  
+が、ここで `@container`が判断するのはコンテナサイズなので、実際は`.is--constrained`のサイズ（`1600px`）で判断され、`red`が適用されます。
+
+なので、`.child`の幅をコンテナクエリの判定基準にしたい場合は、`.child`をさらに`.is--container`でラップします。
+
+```html
+<body>
+	<div class="is--constrained">
+		<div class="is--container">
+			<div class="child">...</div>
+		</div>
+	</div>
+</body>
+```
+
+
+もしくは、内部にalignfullな要素を使わないのであれば`is--container`を使ってもいいでしょう。
+
+```html
+<body>
+	<div class="is--container">
+		<div class="child">...</div>
+	</div>
+</body>
+```
+

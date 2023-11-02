@@ -1,0 +1,46 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/fluid-fix",
+	"title": "Fluid Fix",
+	"category": "lism-blocks",
+	"keywords": ["group"],
+	"supports": {
+		"anchor": true,
+		"className": false,
+		"align": ["wide", "full"],
+		"color": {
+			"gradients": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		}
+	},
+	"attributes": {
+		"templateLock": {
+			"type": ["string", "boolean"],
+			"enum": ["all", "insert", "contentOnly", false]
+		},
+		"tagName": {
+			"type": "string",
+			"default": "div"
+		},
+		"gap": {
+			"type": "string"
+		},
+		"fix": {
+			"type": "string",
+			"default": "first",
+			"enum": ["first", "last"]
+		},
+		"fixedWidth": {
+			"type": "string"
+		},
+		"fluidMinWidth": {
+			"type": "string"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

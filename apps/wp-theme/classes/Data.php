@@ -22,7 +22,9 @@ class Data {
 		'center' => [],
 		'cluster' => [],
 		'flex' => [],
+		'fluid-fix' => [],
 		'stack' => [],
+		'tile-grid' => [],
 	];
 
 	/**

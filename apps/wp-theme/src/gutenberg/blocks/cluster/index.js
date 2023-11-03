@@ -102,7 +102,6 @@ registerBlockType(metadata.name, {
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<JustifyContentControl
 							value={justifyContent}
-							controls={['flex-start', 'center', 'flex-end']}
 							onChange={(value) => {
 								setAttributes({ ...attributes, justifyContent: value });
 							}}

@@ -61,7 +61,6 @@ registerBlockType(metadata.name, {
 		} = attributes;
 
 		const lismProps = {
-			direction: 'column',
 			ai: alignItems,
 			gap: '16px',
 		};
@@ -125,7 +124,6 @@ registerBlockType(metadata.name, {
 		const { tagName = 'div', gap, textAlign, alignItems } = attributes;
 
 		const lismProps = {
-			direction: 'column',
 			ai: alignItems,
 			gap: '16px',
 		};

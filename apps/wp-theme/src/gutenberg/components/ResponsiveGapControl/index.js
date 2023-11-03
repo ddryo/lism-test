@@ -8,8 +8,6 @@ import { __ } from '@wordpress/i18n';
  */
 import { GapControl, ResponsiveTabControl } from '@/gutenberg/components';
 
-const DEFAULT_LABEL = __('Gap', 'lism-blocks');
-
 export default function ResponsiveGapControl() {
 	return (
 		<div className='lism-responsiveGapControl'>

@@ -67,7 +67,7 @@ registerBlockType(metadata.name, {
 	edit: ({ attributes, setAttributes, clientId }) => {
 		const {
 			templateLock,
-			tagName = 'div',
+			tagName,
 			gap,
 			fix,
 			fixedWidth,
@@ -164,7 +164,7 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div', gap, fix, fixedWidth, fluidMinWidth } = attributes;
+		const { tagName, gap, fix, fixedWidth, fluidMinWidth } = attributes;
 
 		const lismProps = {
 			fix,

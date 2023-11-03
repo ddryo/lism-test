@@ -56,7 +56,7 @@ registerBlockType(metadata.name, {
 	edit: ({ attributes, setAttributes }) => {
 		const {
 			templateLock,
-			tagName = 'div',
+			tagName,
 			gap,
 			textAlign,
 			justifyContent,
@@ -139,7 +139,7 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div', gap, textAlign, justifyContent, itemMinWitdh } = attributes;
+		const { tagName, gap, textAlign, justifyContent, itemMinWitdh } = attributes;
 
 		const lismProps = {
 			jc: justifyContent,

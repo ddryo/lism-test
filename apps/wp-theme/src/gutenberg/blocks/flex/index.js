@@ -59,7 +59,7 @@ registerBlockType(metadata.name, {
 	edit: ({ attributes, setAttributes }) => {
 		const {
 			templateLock,
-			tagName = 'div',
+			tagName,
 			flexWrap,
 			flexDirection,
 			gap,
@@ -163,7 +163,7 @@ registerBlockType(metadata.name, {
 
 	save: ({ attributes }) => {
 		const {
-			tagName = 'div',
+			tagName,
 			flexWrap,
 			flexDirection,
 			gap,

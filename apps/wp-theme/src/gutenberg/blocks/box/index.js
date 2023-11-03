@@ -53,7 +53,7 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes }) => {
-		const { templateLock, tagName = 'div', flowGap, textAlign, anchor, className } = attributes;
+		const { templateLock, tagName, flowGap, textAlign, anchor, className } = attributes;
 
 		const lismProps = {
 			isFlow: flowGap !== undefined ? flowGap : undefined,
@@ -114,7 +114,7 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div', flowGap, textAlign } = attributes;
+		const { tagName, flowGap, textAlign } = attributes;
 
 		const lismProps = {
 			isFlow: flowGap !== undefined ? flowGap : undefined,

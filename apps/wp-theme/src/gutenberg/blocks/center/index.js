@@ -72,7 +72,7 @@ registerBlockType(metadata.name, {
 	edit: ({ attributes, setAttributes }) => {
 		const {
 			templateLock,
-			tagName = 'div',
+			tagName,
 			gap,
 			textAlign,
 			height,
@@ -172,7 +172,7 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div', gap, textAlign, height, size } = attributes;
+		const { tagName, gap, textAlign, height, size } = attributes;
 
 		const lismProps = {
 			h: height,

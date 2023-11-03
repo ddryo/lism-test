@@ -142,7 +142,7 @@ registerBlockType(metadata.name, {
 						</VStack>
 					</PanelBody>
 					<PanelBody title={__('Spacing', 'lism-blocks')}>
-						<ResponsiveGapControl label={__('Gap', 'lism-blocks')} />
+						<ResponsiveGapControl />
 					</PanelBody>
 				</InspectorControls>
 				<InspectorControls group='advanced'>

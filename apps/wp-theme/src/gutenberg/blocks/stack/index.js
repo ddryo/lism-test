@@ -50,15 +50,7 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes }) => {
-		const {
-			templateLock,
-			tagName,
-			gap,
-			textAlign,
-			alignItems,
-			anchor,
-			className,
-		} = attributes;
+		const { templateLock, tagName, gap, textAlign, alignItems, anchor, className } = attributes;
 
 		const lismProps = {
 			ai: alignItems,
@@ -94,14 +86,14 @@ registerBlockType(metadata.name, {
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<AlignItemsControl
 							value={alignItems}
-							controls={['flex-start', 'center', 'flex-end']}
+							controls={['flex-start', 'center', 'flex-end', 'stretch']}
 							onChange={(value) => {
 								setAttributes({ ...attributes, alignItems: value });
 							}}
 						/>
 					</PanelBody>
 					<PanelBody title={__('Spacing', 'lism-blocks')}>
-						<ResponsiveGapControl label={__('Gap', 'lism-blocks')} />
+						<ResponsiveGapControl />
 					</PanelBody>
 				</InspectorControls>
 				<InspectorControls group='advanced'>

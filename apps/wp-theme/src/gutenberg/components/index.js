@@ -10,6 +10,7 @@ export { default as JustifyContentControl } from './JustifyContentControl';
 export { default as JustifyItemsControl } from './JustifyItemsControl';
 export { default as RatioControl } from './RatioControl';
 export { default as ResponsiveGapControl } from './ResponsiveGapControl';
+export { default as ResponsiveRatioControl } from './ResponsiveRatioControl';
 export { default as ResponsiveSpacingControl } from './ResponsiveSpacingControl';
 export { default as ResponsiveTabControl } from './ResponsiveTabControl';
 export { default as SelectorPreviewTip } from './SelectorPreviewTip';

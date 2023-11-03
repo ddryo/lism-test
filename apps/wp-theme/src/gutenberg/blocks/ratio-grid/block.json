@@ -33,7 +33,15 @@
 			"type": "string"
 		},
 		"ratio": {
-			"type": "string"
+			"type": ["string", "array"]
+		},
+		"alignItems": {
+			"type": "string",
+			"default": "stretch"
+		},
+		"justifyItems": {
+			"type": "string",
+			"default": "stretch"
 		}
 	},
 	"editorScript": "file:./index.js",

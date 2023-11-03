@@ -70,16 +70,8 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes }) => {
-		const {
-			templateLock,
-			tagName,
-			gap,
-			textAlign,
-			height,
-			size,
-			anchor,
-			className,
-		} = attributes;
+		const { templateLock, tagName, gap, textAlign, height, size, anchor, className } =
+			attributes;
 
 		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem', '%'] });
 
@@ -152,7 +144,7 @@ registerBlockType(metadata.name, {
 						)}
 					</PanelBody>
 					<PanelBody title={__('Spacing', 'lism-blocks')}>
-						<ResponsiveGapControl label={__('Gap', 'lism-blocks')} />
+						<ResponsiveGapControl />
 					</PanelBody>
 				</InspectorControls>
 				<InspectorControls group='advanced'>

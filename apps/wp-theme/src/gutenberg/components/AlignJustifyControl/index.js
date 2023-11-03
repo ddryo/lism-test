@@ -16,28 +16,28 @@ export default function AlignJustifyControl({ values = {}, onChange }) {
 
 	return (
 		<div className='lism-alignJustifyControl'>
-			<AlignContentControl
-				value={values?.alignContent}
-				onChange={(value) => {
-					onChangeValue('alignContent', value);
-				}}
-			/>
 			<JustifyContentControl
 				value={values?.justifyContent}
 				onChange={(value) => {
 					onChangeValue('justifyContent', value);
 				}}
 			/>
-			<AlignItemsControl
-				value={values?.alignItems}
+			<AlignContentControl
+				value={values?.alignContent}
 				onChange={(value) => {
-					onChangeValue('alignItems', value);
+					onChangeValue('alignContent', value);
 				}}
 			/>
 			<JustifyItemsControl
 				value={values?.justifyItems}
 				onChange={(value) => {
 					onChangeValue('justifyItems', value);
+				}}
+			/>
+			<AlignItemsControl
+				value={values?.alignItems}
+				onChange={(value) => {
+					onChangeValue('alignItems', value);
 				}}
 			/>
 		</div>

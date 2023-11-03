@@ -34,7 +34,7 @@
 		},
 		"alignItems": {
 			"type": "string",
-			"default": "flex-start"
+			"default": "stretch"
 		}
 	},
 	"editorScript": "file:./index.js",

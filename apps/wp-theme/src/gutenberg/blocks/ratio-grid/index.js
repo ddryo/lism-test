@@ -25,10 +25,12 @@ import { PanelBody } from '@wordpress/components';
 import metadata from './block.json';
 import icon from './icon';
 import {
+	AlignItemsControl,
+	JustifyItemsControl,
 	SelectorPreviewTip,
 	ResponsiveGapControl,
 	HTMLElementControls,
-	RatioControl,
+	ResponsiveRatioControl,
 } from '@/gutenberg/components';
 
 registerBlockType(metadata.name, {
@@ -56,12 +58,16 @@ registerBlockType(metadata.name, {
 			gap,
 			textAlign,
 			ratio,
+			alignItems,
+			justifyItems,
 			anchor,
 			className,
 		} = attributes;
 
 		const lismProps = {
 			ratio,
+			ai: alignItems,
+			ji: justifyItems,
 			gap: '16px',
 		};
 
@@ -92,7 +98,21 @@ registerBlockType(metadata.name, {
 				</BlockControls>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
-						<RatioControl
+						<JustifyItemsControl
+							value={justifyItems}
+							controls={['flex-start', 'center', 'flex-end', 'stretch']}
+							onChange={(value) => {
+								setAttributes({ ...attributes, justifyItems: value });
+							}}
+						/>
+						<AlignItemsControl
+							value={alignItems}
+							controls={['flex-start', 'center', 'flex-end', 'stretch']}
+							onChange={(value) => {
+								setAttributes({ ...attributes, alignItems: value });
+							}}
+						/>
+						<ResponsiveRatioControl
 							value={ratio}
 							onChange={(value) => {
 								setAttributes({ ratio: value });
@@ -100,7 +120,7 @@ registerBlockType(metadata.name, {
 						/>
 					</PanelBody>
 					<PanelBody title={__('Spacing', 'lism-blocks')}>
-						<ResponsiveGapControl label={__('Gap', 'lism-blocks')} />
+						<ResponsiveGapControl />
 					</PanelBody>
 				</InspectorControls>
 				<InspectorControls group='advanced'>
@@ -120,10 +140,11 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName, gap, textAlign, ratio } = attributes;
-
+		const { tagName, gap, textAlign, ratio, alignItems, justifyItems } = attributes;
 		const lismProps = {
 			ratio,
+			ai: alignItems,
+			ji: justifyItems,
 			gap: '16px',
 		};
 

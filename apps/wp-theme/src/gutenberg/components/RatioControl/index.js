@@ -52,6 +52,16 @@ export default function RatioControl({ value: ratioValue = '1:1', onChange }) {
 	const isCustomValue = !OPTIONS.some((option) => option.value === ratioValue);
 	const ratioValues = ratioValue.split(':');
 
+	const options = isCustomValue
+		? [
+				...OPTIONS,
+				{
+					label: __('Custom', 'lism-blocks'),
+					value: 'custom',
+				},
+		  ]
+		: OPTIONS;
+
 	function onAddRatio() {
 		onChange(`${ratioValue}:1`);
 	}
@@ -71,14 +81,8 @@ export default function RatioControl({ value: ratioValue = '1:1', onChange }) {
 		<div className='lism-ratioControl'>
 			<SelectControl
 				__nextHasNoMarginBottom
-				label={__('Ratio', 'lism-blocks')}
-				options={[
-					...OPTIONS,
-					{
-						label: __('Custom', 'lism-blocks'),
-						value: 'custom',
-					},
-				]}
+				label={__('Preset', 'lism-blocks')}
+				options={options}
 				value={isCustomValue ? 'custom' : ratioValue}
 				onChange={(value) => {
 					onChange(value === 'custom' ? '1' : value);

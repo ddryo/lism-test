@@ -103,18 +103,18 @@ registerBlockType(metadata.name, {
 				</BlockControls>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
-						<AlignItemsControl
-							value={alignItems}
-							controls={['flex-start', 'center', 'flex-end', 'stretch']}
-							onChange={(value) => {
-								setAttributes({ ...attributes, alignItems: value });
-							}}
-						/>
 						<JustifyItemsControl
 							value={justifyItems}
 							controls={['flex-start', 'center', 'flex-end', 'stretch']}
 							onChange={(value) => {
 								setAttributes({ ...attributes, justifyItems: value });
+							}}
+						/>
+						<AlignItemsControl
+							value={alignItems}
+							controls={['flex-start', 'center', 'flex-end', 'stretch']}
+							onChange={(value) => {
+								setAttributes({ ...attributes, alignItems: value });
 							}}
 						/>
 						<UnitControl
@@ -130,7 +130,7 @@ registerBlockType(metadata.name, {
 						/>
 					</PanelBody>
 					<PanelBody title={__('Spacing', 'lism-blocks')}>
-						<ResponsiveGapControl label={__('Gap', 'lism-blocks')} />
+						<ResponsiveGapControl />
 					</PanelBody>
 				</InspectorControls>
 				<InspectorControls group='advanced'>
@@ -150,14 +150,7 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const {
-			tagName,
-			gap,
-			textAlign,
-			alignItems,
-			justifyItems,
-			itemMinWitdh,
-		} = attributes;
+		const { tagName, gap, textAlign, alignItems, justifyItems, itemMinWitdh } = attributes;
 
 		const lismProps = {
 			ai: alignItems,

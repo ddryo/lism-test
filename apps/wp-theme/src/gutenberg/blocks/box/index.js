@@ -28,6 +28,7 @@ import {
 	SelectorPreviewTip,
 	FlowControl,
 	ResponsiveSpacingControl,
+	PropsControl,
 	HTMLElementControls,
 } from '@/gutenberg/components';
 
@@ -95,6 +96,9 @@ registerBlockType(metadata.name, {
 					</PanelBody>
 					<PanelBody title={__('Spacing', 'lism-blocks')}>
 						<ResponsiveSpacingControl label={__('Padding', 'lism-blocks')} />
+					</PanelBody>
+					<PanelBody title={__('Props', 'lism-blocks')}>
+						<PropsControl label={__('Props', 'lism-blocks')} />
 					</PanelBody>
 				</InspectorControls>
 				<InspectorControls group='advanced'>

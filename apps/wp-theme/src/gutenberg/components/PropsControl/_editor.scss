@@ -1,0 +1,56 @@
+.lism-propsControl {
+
+	.components-base-control {
+		margin-bottom: 0 !important;
+	}
+
+	.components-base-control__field {
+		margin-bottom: 0 !important;
+	}
+
+	.__code {
+		display: block;
+		width: 100%;
+		overflow: hidden;
+		white-space: nowrap;
+		text-align: left;
+		text-overflow: ellipsis;
+	}
+
+	.__move,
+	.__delete {
+		display: block;
+	}
+
+	.__row.__open {
+		width: calc(100% + 16px);
+		margin-right: -8px;
+		margin-left: -8px;
+		padding: 8px;
+		border: 1px solid #ddd;
+	}
+
+	.__types {
+
+		.components-base-control__label {
+			display: block;
+		}
+
+		.components-button {
+			height: 31px;
+		}
+	}
+
+	.__invalid input {
+		border-color: #cc1818;
+
+		&:focus {
+			border-color: #cc1818;
+			box-shadow: 0 0 0 .5px #cc1818;
+		}
+	}
+
+	.__add {
+		align-self: flex-end;
+	}
+}

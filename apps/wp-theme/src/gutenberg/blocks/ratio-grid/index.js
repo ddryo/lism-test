@@ -27,6 +27,7 @@ import icon from './icon';
 import {
 	AlignItemsControl,
 	JustifyItemsControl,
+	PropsControl,
 	SelectorPreviewTip,
 	ResponsiveGapControl,
 	HTMLElementControls,
@@ -118,6 +119,9 @@ registerBlockType(metadata.name, {
 								setAttributes({ ratio: value });
 							}}
 						/>
+					</PanelBody>
+					<PanelBody title={__('Props', 'lism-blocks')}>
+						<PropsControl />
 					</PanelBody>
 					<PanelBody title={__('Spacing', 'lism-blocks')}>
 						<ResponsiveGapControl />

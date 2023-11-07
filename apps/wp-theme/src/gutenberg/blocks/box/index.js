@@ -98,7 +98,7 @@ registerBlockType(metadata.name, {
 						<ResponsiveSpacingControl label={__('Padding', 'lism-blocks')} />
 					</PanelBody>
 					<PanelBody title={__('Props', 'lism-blocks')}>
-						<PropsControl label={__('Props', 'lism-blocks')} />
+						<PropsControl />
 					</PanelBody>
 				</InspectorControls>
 				<InspectorControls group='advanced'>

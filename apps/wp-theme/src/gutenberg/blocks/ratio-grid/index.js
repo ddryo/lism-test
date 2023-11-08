@@ -61,19 +61,16 @@ registerBlockType(metadata.name, {
 			ratio,
 			alignItems,
 			justifyItems,
+			lismProps,
 			anchor,
 			className,
 		} = attributes;
 
-		const lismProps = {
+		const blockProps = useBlockProps({
 			ratio,
 			ai: alignItems,
 			ji: justifyItems,
 			gap: '16px',
-		};
-
-		const blockProps = useBlockProps({
-			...lismProps,
 			tag: tagName,
 			className: classnames({
 				[`has-text-align-${textAlign}`]: textAlign,
@@ -121,7 +118,12 @@ registerBlockType(metadata.name, {
 						/>
 					</PanelBody>
 					<PanelBody title={__('Props', 'lism-blocks')}>
-						<PropsControl />
+						<PropsControl
+							lismProps={lismProps}
+							onChange={(value) => {
+								setAttributes({ lismProps: value });
+							}}
+						/>
 					</PanelBody>
 					<PanelBody title={__('Spacing', 'lism-blocks')}>
 						<ResponsiveGapControl />

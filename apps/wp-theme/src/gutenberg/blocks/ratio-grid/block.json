@@ -42,6 +42,13 @@
 		"justifyItems": {
 			"type": "string",
 			"default": "stretch"
+		},
+		"lismProps": {
+			"type": "array",
+			"items": {
+				"type": "object"
+			},
+			"default": []
 		}
 	},
 	"editorScript": "file:./index.js",

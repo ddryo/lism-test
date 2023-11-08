@@ -54,14 +54,11 @@ registerBlockType(metadata.name, {
 		],
 	},
 	edit: ({ attributes, setAttributes }) => {
-		const { templateLock, tagName, flowGap, textAlign, anchor, className } = attributes;
-
-		const lismProps = {
-			isFlow: flowGap !== undefined ? flowGap : undefined,
-		};
+		const { templateLock, tagName, flowGap, textAlign, lismProps, anchor, className } =
+			attributes;
 
 		const blockProps = useBlockProps({
-			...lismProps,
+			isFlow: flowGap !== undefined ? flowGap : undefined,
 			tag: tagName,
 			className: classnames({
 				[`has-text-align-${textAlign}`]: textAlign,
@@ -98,7 +95,7 @@ registerBlockType(metadata.name, {
 						<ResponsiveSpacingControl label={__('Padding', 'lism-blocks')} />
 					</PanelBody>
 					<PanelBody title={__('Props', 'lism-blocks')}>
-						<PropsControl />
+						<PropsControl props={lismProps} />
 					</PanelBody>
 				</InspectorControls>
 				<InspectorControls group='advanced'>

@@ -11,20 +11,22 @@ import {
 	Flex,
 	FlexBlock,
 	FlexItem,
+	Popover,
 	__experimentalVStack as VStack,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
-import { trash } from '@wordpress/icons';
+import { info, trash } from '@wordpress/icons';
 
 /**
  * @Internal dependencies
  */
 import PropEdit from './prop-edit';
-import { getPropString } from './utils';
+import { getPropErrors, getPropString } from './utils';
 
 export default function PropsControl({ lismProps, onChange }) {
 	const [propIndex, setPropIndex] = useState(undefined);
+	const [propErrorsIndex, setPropErrorsIndex] = useState(undefined);
 
 	function onAddProp() {
 		const newLismProps = [...lismProps, {}];
@@ -51,6 +53,7 @@ export default function PropsControl({ lismProps, onChange }) {
 		<div className='lism-propsControl'>
 			<VStack spacing='3'>
 				{lismProps.map((lismProp, index) => {
+					const propErrors = getPropErrors(lismProp);
 					const propString = getPropString(lismProp.key, lismProp.value);
 					return (
 						<VStack
@@ -78,7 +81,6 @@ export default function PropsControl({ lismProps, onChange }) {
 									<Button
 										className='__delete'
 										icon={trash}
-										isDestructive
 										label={__('Delete prop', 'lism-blocks')}
 										onClick={() => onDeleteProp(index)}
 									/>
@@ -87,6 +89,7 @@ export default function PropsControl({ lismProps, onChange }) {
 							{propIndex === index && (
 								<PropEdit
 									lismProp={lismProp}
+									propErrors={propErrors}
 									onChange={(value) => onChangeProp(index, value)}
 								/>
 							)}

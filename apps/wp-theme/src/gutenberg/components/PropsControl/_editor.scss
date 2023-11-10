@@ -23,11 +23,6 @@
 		text-align: center;
 	}
 
-	.__move,
-	.__delete {
-		display: block;
-	}
-
 	.__row.__open {
 		width: calc(100% + 16px);
 		margin-right: -8px;
@@ -58,5 +53,18 @@
 
 	.__add {
 		align-self: flex-end;
+	}
+}
+
+.lism-propsControl__errors {
+
+	.components-popover__content {
+		padding: 8px;
+		color: #cc1818;
+		white-space: nowrap;
+
+		li {
+			margin: 0;
+		}
 	}
 }

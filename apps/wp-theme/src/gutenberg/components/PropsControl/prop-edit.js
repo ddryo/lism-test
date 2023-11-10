@@ -35,9 +35,10 @@ const PROP_TYPES = [
 	},
 ];
 
-export default function PropEdit({ lismProp, onChange }) {
+export default function PropEdit({ lismProp, propErrors, onChange }) {
 	const { key = '', value = '' } = lismProp;
 	const propType = getPropType(value);
+	console.log(propErrors);
 
 	function onChangeKey(newValue) {
 		onChange({
@@ -121,7 +122,7 @@ export default function PropEdit({ lismProp, onChange }) {
 	return (
 		<VStack>
 			<Flex>
-				<FlexBlock>
+				<FlexBlock style={{ position: 'relative' }}>
 					<TextControl
 						__nextHasNoMarginBottom
 						label={__('Prop key', 'lism-blocks')}
@@ -203,7 +204,6 @@ export default function PropEdit({ lismProp, onChange }) {
 										<Button
 											className='__delete'
 											icon={trash}
-											isDestructive
 											label={__('Delete value', 'lism-blocks')}
 											onClick={() => onDeleteObjectValue(index)}
 											disabled={value.length === 1}

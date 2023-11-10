@@ -15,6 +15,35 @@ export function getPropType(value) {
 	return isObject ? 'object' : 'array';
 }
 
+// propのエラーを取得する
+export function getPropErrors(prop) {
+	const { key, value } = prop;
+	const propType = getPropType(value);
+	const errors = {};
+
+	// Keyのエラーチェック
+	if (!key) {
+		errors.key = __('Key is required.', 'lism-blocks');
+	} else if (key && !/^[a-z]+$/.test(key)) {
+		errors.key = __('Key must be lowercase alphanumeric.', 'lism-blocks');
+	}
+
+	// Valueのエラーチェック (Prop TypeがStringの時)
+	if (propType === 'string' && !value) {
+		errors.value = __('Value is required.', 'lism-blocks');
+	}
+
+	// Valueのエラーチェック (Prop TypeがArrayの時)
+	if (propType === 'array') {
+	}
+
+	// Valueのエラーチェック (Prop TypeがObjectの時)
+	if (propType === 'object') {
+	}
+
+	return errors;
+}
+
 // 実際に生成されるPropsの文字列を取得する
 export function getPropString(key, value) {
 	if (!key && !value) {

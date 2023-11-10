@@ -12,6 +12,7 @@ import { PanelBody } from '@wordpress/components';
  */
 import { PropsControl } from '@/gutenberg/components';
 
+// lismPropsを有効にするブロック
 const LISM_BLOCKS = [
 	'lism-blocks/box',
 	'lism-blocks/center',
@@ -34,6 +35,7 @@ function getFilteredLismProps(props) {
 	}, {});
 }
 
+// attributesにlismPropsを追加する
 function addAttributes(settings) {
 	if (!LISM_BLOCKS.includes(settings.name)) {
 		return settings;
@@ -56,6 +58,7 @@ function addAttributes(settings) {
 	return newSettings;
 }
 
+// エディターのブロックにlismPropsを反映させる
 function addEditProps(blockType) {
 	if (!LISM_BLOCKS.includes(blockType.name)) {
 		return blockType;
@@ -79,6 +82,7 @@ function addEditProps(blockType) {
 	return blockType;
 }
 
+// lismPropsを保存する
 function addSaveProps(extraProps, blockType, attributes) {
 	if (!LISM_BLOCKS.includes(blockType.name)) {
 		return extraProps;
@@ -93,6 +97,7 @@ function addSaveProps(extraProps, blockType, attributes) {
 	};
 }
 
+// UI追加
 const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 		if (!LISM_BLOCKS.includes(props.name)) {

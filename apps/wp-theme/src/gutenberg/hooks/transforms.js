@@ -4,6 +4,7 @@
 import { addFilter } from '@wordpress/hooks';
 import { createBlock } from '@wordpress/blocks';
 
+// Groupブロックからのtransformsを有効にするブロック
 const LISM_BLOCKS = [
 	'lism-blocks/box',
 	'lism-blocks/center',
@@ -16,6 +17,7 @@ const LISM_BLOCKS = [
 	'lism-blocks/tile-grid',
 ];
 
+// Groupブロックからのtransformsを追加
 function addTransforms(settings) {
 	if (!LISM_BLOCKS.includes(settings.name)) {
 		return settings;

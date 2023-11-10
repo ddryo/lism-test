@@ -3,6 +3,7 @@
  */
 import { addFilter } from '@wordpress/hooks';
 
+// templateLockを有効にするブロック
 const LISM_BLOCKS = [
 	'lism-blocks/box',
 	'lism-blocks/center',
@@ -15,6 +16,7 @@ const LISM_BLOCKS = [
 	'lism-blocks/tile-grid',
 ];
 
+// attributesにtemplateLockを追加する
 function addAttributes(settings) {
 	if (!LISM_BLOCKS.includes(settings.name)) {
 		return settings;

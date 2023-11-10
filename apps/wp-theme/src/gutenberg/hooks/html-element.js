@@ -7,6 +7,7 @@ import { addFilter } from '@wordpress/hooks';
 import { InspectorControls } from '@wordpress/block-editor';
 import { createHigherOrderComponent } from '@wordpress/compose';
 
+// tagNameを有効にするブロック
 const LISM_BLOCKS = [
 	'lism-blocks/box',
 	'lism-blocks/center',
@@ -69,6 +70,7 @@ const HTML_ELEMENTS = [
 	},
 ];
 
+// attributesにtagNameを追加する
 function addAttributes(settings) {
 	if (!LISM_BLOCKS.includes(settings.name)) {
 		return settings;
@@ -88,6 +90,7 @@ function addAttributes(settings) {
 	return newSettings;
 }
 
+// tagNameを保存する
 function addSaveProps(extraProps, blockType, attributes) {
 	if (!LISM_BLOCKS.includes(blockType.name)) {
 		return extraProps;
@@ -96,6 +99,7 @@ function addSaveProps(extraProps, blockType, attributes) {
 	return extraProps;
 }
 
+// UI追加
 export const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 		if (!LISM_BLOCKS.includes(props.name)) {

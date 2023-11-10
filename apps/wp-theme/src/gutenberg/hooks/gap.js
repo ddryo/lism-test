@@ -12,6 +12,7 @@ import { PanelBody } from '@wordpress/components';
  */
 import { ResponsiveGapControl } from '@/gutenberg/components';
 
+// gapを有効にするブロック
 const LISM_BLOCKS = [
 	'lism-blocks/box',
 	'lism-blocks/center',
@@ -24,6 +25,7 @@ const LISM_BLOCKS = [
 	'lism-blocks/tile-grid',
 ];
 
+// attributesにgapを追加する
 function addAttributes(settings) {
 	if (!LISM_BLOCKS.includes(settings.name)) {
 		return settings;
@@ -42,8 +44,43 @@ function addAttributes(settings) {
 	return newSettings;
 }
 
-function addEditProps() {}
+// エディターのブロックにgapを反映させる
+function addEditProps(blockType) {
+	if (!LISM_BLOCKS.includes(blockType.name)) {
+		return blockType;
+	}
 
+	const existingGetEditWrapperProps = blockType.getEditWrapperProps;
+
+	blockType.getEditWrapperProps = (attributes) => {
+		const wrapperProps = existingGetEditWrapperProps
+			? existingGetEditWrapperProps(attributes)
+			: {};
+		const { gap } = attributes;
+
+		return {
+			...wrapperProps,
+			gap,
+		};
+	};
+
+	return blockType;
+}
+
+// gapを保存する
+function addSaveProps(extraProps, blockType, attributes) {
+	if (!LISM_BLOCKS.includes(blockType.name)) {
+		return extraProps;
+	}
+
+	const { gap } = attributes;
+	return {
+		...extraProps,
+		gap,
+	};
+}
+
+// UI追加
 const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 		if (!LISM_BLOCKS.includes(props.name)) {
@@ -67,5 +104,6 @@ const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 }, 'withInspectorControls');
 
 addFilter('blocks.registerBlockType', 'lism/gap/addAttributes', addAttributes);
-// addFilter( 'blocks.registerBlockType', 'lism/gap/addEditProps', addEditProps );
+addFilter('blocks.registerBlockType', 'lism/gap/addEditProps', addEditProps);
 addFilter('editor.BlockEdit', 'lism/gap/withInspectorControls', withInspectorControls);
+addFilter('blocks.getSaveContent.extraProps', 'lism/gap/addSaveProps', addSaveProps);

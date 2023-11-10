@@ -10,6 +10,7 @@ import { addFilter } from '@wordpress/hooks';
 import { AlignmentControl, BlockControls } from '@wordpress/block-editor';
 import { createHigherOrderComponent } from '@wordpress/compose';
 
+// textAlignを有効にするブロック
 const LISM_BLOCKS = [
 	'lism-blocks/box',
 	'lism-blocks/center',
@@ -22,6 +23,7 @@ const LISM_BLOCKS = [
 	'lism-blocks/tile-grid',
 ];
 
+// attributesにtextAlignを追加する
 function addAttributes(settings) {
 	if (!LISM_BLOCKS.includes(settings.name)) {
 		return settings;
@@ -40,6 +42,7 @@ function addAttributes(settings) {
 	return newSettings;
 }
 
+// エディター側でブロックにクラス名を付与する
 export const withTextAlignStyles = createHigherOrderComponent(
 	(BlockListBlock) => (props) => {
 		const { name, attributes } = props;
@@ -55,9 +58,10 @@ export const withTextAlignStyles = createHigherOrderComponent(
 
 		return <BlockListBlock {...props} className={className} />;
 	},
-	'withPositionStyles'
+	'withTextAlignStyles'
 );
 
+// ブロックのクラス名を保存する
 function addSaveProps(extraProps, blockType, attributes) {
 	if (!LISM_BLOCKS.includes(blockType.name)) {
 		return extraProps;
@@ -72,6 +76,7 @@ function addSaveProps(extraProps, blockType, attributes) {
 	return extraProps;
 }
 
+// UI追加
 const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 		if (!LISM_BLOCKS.includes(props.name)) {

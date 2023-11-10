@@ -8,7 +8,7 @@ import classnames from 'classnames';
  * @WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { registerBlockType } from '@wordpress/blocks';
 import {
 	AlignmentControl,
 	BlockControls,
@@ -34,36 +34,17 @@ import {
 	AlignJustifyControl,
 	FlexDirectionControl,
 	FlexWrapControl,
-	ResponsiveGapControl,
-	HTMLElementControls,
 } from '@/gutenberg/components';
 
 registerBlockType(metadata.name, {
 	title: __('Flex', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
 	icon,
-	transforms: {
-		from: [
-			{
-				type: 'block',
-				blocks: ['core/group'],
-				transform: (attributes, content) => {
-					const newAttrs = {
-						tagName: attributes.tagName,
-					};
-					return createBlock(metadata.name, newAttrs, content);
-				},
-			},
-		],
-	},
 	edit: ({ attributes, setAttributes }) => {
 		const {
 			templateLock,
-			tagName,
 			flexWrap,
 			flexDirection,
-			gap,
-			textAlign,
 			alignItems,
 			alignContent,
 			justifyItems,
@@ -72,22 +53,13 @@ registerBlockType(metadata.name, {
 			className,
 		} = attributes;
 
-		const lismProps = {
+		const blockProps = useBlockProps({
 			wrap: flexWrap,
 			direction: flexDirection,
 			ai: alignItems,
 			ac: alignContent,
 			ji: justifyItems,
 			jc: justifyContent,
-			gap: '16px',
-		};
-
-		const blockProps = useBlockProps({
-			...lismProps,
-			tag: tagName,
-			className: classnames({
-				[`has-text-align-${textAlign}`]: textAlign,
-			}),
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -99,14 +71,6 @@ registerBlockType(metadata.name, {
 
 		return (
 			<>
-				<BlockControls group='block'>
-					<AlignmentControl
-						value={textAlign}
-						onChange={(value) => {
-							setAttributes({ textAlign: value });
-						}}
-					/>
-				</BlockControls>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<VStack>
@@ -141,17 +105,6 @@ registerBlockType(metadata.name, {
 							/>
 						</VStack>
 					</PanelBody>
-					<PanelBody title={__('Spacing', 'lism-blocks')}>
-						<ResponsiveGapControl />
-					</PanelBody>
-				</InspectorControls>
-				<InspectorControls group='advanced'>
-					<HTMLElementControls
-						tagName={tagName}
-						onChange={(value) => {
-							setAttributes({ tagName: value });
-						}}
-					/>
 				</InspectorControls>
 				<Flex {...innerProps} forwardedRef={ref}>
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
@@ -162,34 +115,16 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const {
-			tagName,
-			flexWrap,
-			flexDirection,
-			gap,
-			textAlign,
-			alignItems,
-			alignContent,
-			justifyItems,
-			justifyContent,
-		} = attributes;
+		const { flexWrap, flexDirection, alignItems, alignContent, justifyItems, justifyContent } =
+			attributes;
 
-		const lismProps = {
+		const blockProps = useBlockProps.save({
 			wrap: flexWrap,
 			direction: flexDirection,
 			ai: alignItems,
 			ac: alignContent,
 			ji: justifyItems,
 			jc: justifyContent,
-			gap: '16px',
-		};
-
-		const blockProps = useBlockProps.save({
-			...lismProps,
-			tag: tagName,
-			className: classnames({
-				[`has-text-align-${textAlign}`]: textAlign,
-			}),
 		});
 
 		return (

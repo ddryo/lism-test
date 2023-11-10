@@ -1,1 +1,1 @@
-console.log('gutenberg/index.js');
+import './hooks';

@@ -18,20 +18,6 @@
 		}
 	},
 	"attributes": {
-		"templateLock": {
-			"type": ["string", "boolean"],
-			"enum": ["all", "insert", "contentOnly", false]
-		},
-		"tagName": {
-			"type": "string",
-			"default": "div"
-		},
-		"gap": {
-			"type": "string"
-		},
-		"textAlign": {
-			"type": "string"
-		},
 		"ratio": {
 			"type": ["string", "array"]
 		},
@@ -42,13 +28,6 @@
 		"justifyItems": {
 			"type": "string",
 			"default": "stretch"
-		},
-		"lismProps": {
-			"type": "array",
-			"items": {
-				"type": "object"
-			},
-			"default": []
 		}
 	},
 	"editorScript": "file:./index.js",

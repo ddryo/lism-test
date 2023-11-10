@@ -18,26 +18,8 @@
 		}
 	},
 	"attributes": {
-		"templateLock": {
-			"type": ["string", "boolean"],
-			"enum": ["all", "insert", "contentOnly", false]
-		},
-		"tagName": {
-			"type": "string",
-			"default": "div"
-		},
 		"flowGap": {
 			"type": "string"
-		},
-		"textAlign": {
-			"type": "string"
-		},
-		"lismProps": {
-			"type": "array",
-			"items": {
-				"type": "object"
-			},
-			"default": []
 		}
 	},
 	"editorScript": "file:./index.js",

@@ -18,14 +18,6 @@
 		}
 	},
 	"attributes": {
-		"templateLock": {
-			"type": ["string", "boolean"],
-			"enum": ["all", "insert", "contentOnly", false]
-		},
-		"tagName": {
-			"type": "string",
-			"default": "div"
-		},
 		"flexWrap": {
 			"type": "string",
 			"default": "nowrap"
@@ -33,12 +25,6 @@
 		"flexDirection": {
 			"type": "string",
 			"default": "row"
-		},
-		"gap": {
-			"type": "string"
-		},
-		"textAlign": {
-			"type": "string"
 		},
 		"alignItems": {
 			"type": "string",

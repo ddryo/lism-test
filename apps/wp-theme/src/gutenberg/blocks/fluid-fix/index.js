@@ -7,7 +7,7 @@ import { FluidFix } from '@loos/lism-core';
  * @WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { registerBlockType } from '@wordpress/blocks';
 import { useSelect } from '@wordpress/data';
 import {
 	InspectorControls,
@@ -29,11 +29,7 @@ import {
  */
 import metadata from './block.json';
 import icon from './icon';
-import {
-	SelectorPreviewTip,
-	ResponsiveGapControl,
-	HTMLElementControls,
-} from '@/gutenberg/components';
+import { SelectorPreviewTip } from '@/gutenberg/components';
 
 const FIX_OPTIONS = [
 	{
@@ -50,23 +46,8 @@ registerBlockType(metadata.name, {
 	title: __('Fluid Fix', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
 	icon,
-	transforms: {
-		from: [
-			{
-				type: 'block',
-				blocks: ['core/group'],
-				transform: (attributes, content) => {
-					const newAttrs = {
-						tagName: attributes.tagName,
-					};
-					return createBlock(metadata.name, newAttrs, content);
-				},
-			},
-		],
-	},
 	edit: ({ attributes, setAttributes, clientId }) => {
-		const { templateLock, tagName, gap, fix, fixedWidth, fluidMinWidth, anchor, className } =
-			attributes;
+		const { templateLock, fix, fixedWidth, fluidMinWidth, anchor, className } = attributes;
 
 		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem', '%'] });
 
@@ -75,16 +56,10 @@ registerBlockType(metadata.name, {
 			[clientId]
 		);
 
-		const lismProps = {
+		const blockProps = useBlockProps({
 			fix,
 			fixW: fixedWidth,
 			fluidMinW: fluidMinWidth,
-			gap: '16px',
-		};
-
-		const blockProps = useBlockProps({
-			...lismProps,
-			tag: tagName,
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -135,17 +110,6 @@ registerBlockType(metadata.name, {
 							}}
 						/>
 					</PanelBody>
-					<PanelBody title={__('Spacing', 'lism-blocks')}>
-						<ResponsiveGapControl />
-					</PanelBody>
-				</InspectorControls>
-				<InspectorControls group='advanced'>
-					<HTMLElementControls
-						tagName={tagName}
-						onChange={(value) => {
-							setAttributes({ tagName: value });
-						}}
-					/>
 				</InspectorControls>
 				<FluidFix {...innerProps} forwardedRef={ref}>
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
@@ -156,18 +120,12 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName, gap, fix, fixedWidth, fluidMinWidth } = attributes;
+		const { fix, fixedWidth, fluidMinWidth } = attributes;
 
-		const lismProps = {
+		const blockProps = useBlockProps.save({
 			fix,
 			fixW: fixedWidth,
 			fluidMinW: fluidMinWidth,
-			gap: '16px',
-		};
-
-		const blockProps = useBlockProps.save({
-			...lismProps,
-			tag: tagName,
 		});
 
 		return (

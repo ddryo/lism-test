@@ -97,4 +97,11 @@ class App {
 	public static function enqueue_style( $handle, $path, $deps = [] ) {
 		wp_enqueue_style( $handle, LISM_THEME_URI . $path, $deps, Data::$file_ver );
 	}
+
+	/**
+	 * wp_enqueue_script
+	 */
+	public static function enqueue_scripts( $handle, $path, $deps = [], $in_footer = false ) {
+		wp_enqueue_script( $handle, LISM_THEME_URI . $path, $deps, Data::$file_ver, [ 'in_footer' => $in_footer ] );
+	}
 }

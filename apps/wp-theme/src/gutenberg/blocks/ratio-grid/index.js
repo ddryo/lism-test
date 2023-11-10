@@ -8,7 +8,7 @@ import classnames from 'classnames';
  * @WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { registerBlockType } from '@wordpress/blocks';
 import {
 	AlignmentControl,
 	BlockControls,
@@ -27,10 +27,7 @@ import icon from './icon';
 import {
 	AlignItemsControl,
 	JustifyItemsControl,
-	PropsControl,
 	SelectorPreviewTip,
-	ResponsiveGapControl,
-	HTMLElementControls,
 	ResponsiveRatioControl,
 } from '@/gutenberg/components';
 
@@ -38,43 +35,13 @@ registerBlockType(metadata.name, {
 	title: __('Ratio Grid', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
 	icon,
-	transforms: {
-		from: [
-			{
-				type: 'block',
-				blocks: ['core/group'],
-				transform: (attributes, content) => {
-					const newAttrs = {
-						tagName: attributes.tagName,
-					};
-					return createBlock(metadata.name, newAttrs, content);
-				},
-			},
-		],
-	},
 	edit: ({ attributes, setAttributes }) => {
-		const {
-			templateLock,
-			tagName,
-			gap,
-			textAlign,
-			ratio,
-			alignItems,
-			justifyItems,
-			lismProps,
-			anchor,
-			className,
-		} = attributes;
+		const { templateLock, ratio, alignItems, justifyItems, anchor, className } = attributes;
 
 		const blockProps = useBlockProps({
 			ratio,
 			ai: alignItems,
 			ji: justifyItems,
-			gap: '16px',
-			tag: tagName,
-			className: classnames({
-				[`has-text-align-${textAlign}`]: textAlign,
-			}),
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -86,14 +53,6 @@ registerBlockType(metadata.name, {
 
 		return (
 			<>
-				<BlockControls group='block'>
-					<AlignmentControl
-						value={textAlign}
-						onChange={(value) => {
-							setAttributes({ textAlign: value });
-						}}
-					/>
-				</BlockControls>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<JustifyItemsControl
@@ -117,25 +76,6 @@ registerBlockType(metadata.name, {
 							}}
 						/>
 					</PanelBody>
-					<PanelBody title={__('Props', 'lism-blocks')}>
-						<PropsControl
-							lismProps={lismProps}
-							onChange={(value) => {
-								setAttributes({ lismProps: value });
-							}}
-						/>
-					</PanelBody>
-					<PanelBody title={__('Spacing', 'lism-blocks')}>
-						<ResponsiveGapControl />
-					</PanelBody>
-				</InspectorControls>
-				<InspectorControls group='advanced'>
-					<HTMLElementControls
-						tagName={tagName}
-						onChange={(value) => {
-							setAttributes({ tagName: value });
-						}}
-					/>
 				</InspectorControls>
 				<RatioGrid {...innerProps} forwardedRef={ref}>
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
@@ -146,20 +86,12 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName, gap, textAlign, ratio, alignItems, justifyItems } = attributes;
-		const lismProps = {
+		const { ratio, alignItems, justifyItems } = attributes;
+
+		const blockProps = useBlockProps.save({
 			ratio,
 			ai: alignItems,
 			ji: justifyItems,
-			gap: '16px',
-		};
-
-		const blockProps = useBlockProps.save({
-			...lismProps,
-			tag: tagName,
-			className: classnames({
-				[`has-text-align-${textAlign}`]: textAlign,
-			}),
 		});
 
 		return (

@@ -20,7 +20,7 @@ function enqueue_front_scripts() {
 
 
 /**
- * ファイルの読み込み
+ * エディターで読み込むCSSファイル
  */
 add_action( 'enqueue_block_assets', __NAMESPACE__ . '\enqueue_block_assets' );
 function enqueue_block_assets() {
@@ -29,4 +29,12 @@ function enqueue_block_assets() {
 		App::enqueue_style( 'lism-editor-style', '/dist/css/editor.css' );
 		// wp_add_inline_style( 'lism-editor-style', 'body.single{--wp--style--global--content-size:1200px}' );
 	}
+}
+
+/**
+ * エディターで読み込むJSファイル
+ */
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_block_editor_assets' );
+function enqueue_block_editor_assets() {
+	App::enqueue_scripts( 'lism-editor-style', '/dist/gutenberg/index.js' );
 }

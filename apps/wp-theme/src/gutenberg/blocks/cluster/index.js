@@ -8,7 +8,7 @@ import classnames from 'classnames';
  * @WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { registerBlockType } from '@wordpress/blocks';
 import {
 	AlignmentControl,
 	BlockControls,
@@ -28,57 +28,20 @@ import {
  */
 import metadata from './block.json';
 import icon from './icon';
-import {
-	SelectorPreviewTip,
-	JustifyContentControl,
-	ResponsiveGapControl,
-	HTMLElementControls,
-} from '@/gutenberg/components';
+import { SelectorPreviewTip, JustifyContentControl } from '@/gutenberg/components';
 
 registerBlockType(metadata.name, {
 	title: __('Cluster', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
 	icon,
-	transforms: {
-		from: [
-			{
-				type: 'block',
-				blocks: ['core/group'],
-				transform: (attributes, content) => {
-					const newAttrs = {
-						tagName: attributes.tagName,
-					};
-					return createBlock(metadata.name, newAttrs, content);
-				},
-			},
-		],
-	},
 	edit: ({ attributes, setAttributes }) => {
-		const {
-			templateLock,
-			tagName,
-			gap,
-			textAlign,
-			justifyContent,
-			itemMinWitdh,
-			anchor,
-			className,
-		} = attributes;
+		const { templateLock, justifyContent, itemMinWitdh, anchor, className } = attributes;
 
 		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem', '%'] });
 
-		const lismProps = {
+		const blockProps = useBlockProps({
 			jc: justifyContent,
 			itemMinW: itemMinWitdh,
-			gap: '16px',
-		};
-
-		const blockProps = useBlockProps({
-			...lismProps,
-			tag: tagName,
-			className: classnames({
-				[`has-text-align-${textAlign}`]: textAlign,
-			}),
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -90,14 +53,6 @@ registerBlockType(metadata.name, {
 
 		return (
 			<>
-				<BlockControls group='block'>
-					<AlignmentControl
-						value={textAlign}
-						onChange={(value) => {
-							setAttributes({ textAlign: value });
-						}}
-					/>
-				</BlockControls>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<JustifyContentControl
@@ -118,17 +73,6 @@ registerBlockType(metadata.name, {
 							}}
 						/>
 					</PanelBody>
-					<PanelBody title={__('Spacing', 'lism-blocks')}>
-						<ResponsiveGapControl />
-					</PanelBody>
-				</InspectorControls>
-				<InspectorControls group='advanced'>
-					<HTMLElementControls
-						tagName={tagName}
-						onChange={(value) => {
-							setAttributes({ tagName: value });
-						}}
-					/>
 				</InspectorControls>
 				<Cluster {...innerProps} forwardedRef={ref}>
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
@@ -139,20 +83,11 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { tagName, gap, textAlign, justifyContent, itemMinWitdh } = attributes;
-
-		const lismProps = {
-			jc: justifyContent,
-			itemMinW: itemMinWitdh,
-			gap: '16px',
-		};
+		const { justifyContent, itemMinWitdh } = attributes;
 
 		const blockProps = useBlockProps.save({
-			...lismProps,
-			tag: tagName,
-			className: classnames({
-				[`has-text-align-${textAlign}`]: textAlign,
-			}),
+			jc: justifyContent,
+			itemMinW: itemMinWitdh,
 		});
 
 		return (

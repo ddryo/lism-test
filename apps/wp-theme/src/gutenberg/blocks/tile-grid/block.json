@@ -18,20 +18,6 @@
 		}
 	},
 	"attributes": {
-		"templateLock": {
-			"type": ["string", "boolean"],
-			"enum": ["all", "insert", "contentOnly", false]
-		},
-		"tagName": {
-			"type": "string",
-			"default": "div"
-		},
-		"gap": {
-			"type": "string"
-		},
-		"textAlign": {
-			"type": "string"
-		},
 		"alignItems": {
 			"type": "string",
 			"default": "stretch"

@@ -18,15 +18,15 @@ class Data {
 	 * ブロック一覧
 	 */
 	const BLOCKS = [
-		'box' => [],
-		'center' => [],
-		'cluster' => [],
-		'columns' => [],
-		'flex' => [],
-		'fluid-fix' => [],
+		'box'        => [],
+		'center'     => [],
+		'cluster'    => [],
+		'columns'    => [],
+		'flex'       => [],
+		'fluid-fix'  => [],
 		'ratio-grid' => [],
-		'stack' => [],
-		'tile-grid' => [],
+		'stack'      => [],
+		'tile-grid'  => [],
 	];
 
 	/**

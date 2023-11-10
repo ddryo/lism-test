@@ -24,6 +24,16 @@ const LISM_BLOCKS = [
 	'lism-blocks/tile-grid',
 ];
 
+function getFilteredLismProps(props) {
+	return props.reduce((acc, { key, value }) => {
+		if (!key || !value) {
+			return acc;
+		}
+		acc[key] = value;
+		return acc;
+	}, {});
+}
+
 function addAttributes(settings) {
 	if (!LISM_BLOCKS.includes(settings.name)) {
 		return settings;
@@ -46,7 +56,42 @@ function addAttributes(settings) {
 	return newSettings;
 }
 
-function addEditProps() {}
+function addEditProps(blockType) {
+	if (!LISM_BLOCKS.includes(blockType.name)) {
+		return blockType;
+	}
+
+	const existingGetEditWrapperProps = blockType.getEditWrapperProps;
+
+	blockType.getEditWrapperProps = (attributes) => {
+		const wrapperProps = existingGetEditWrapperProps
+			? existingGetEditWrapperProps(attributes)
+			: {};
+		const { lismProps = [] } = attributes;
+		const filteredLismProps = getFilteredLismProps(lismProps);
+
+		return {
+			...wrapperProps,
+			...filteredLismProps,
+		};
+	};
+
+	return blockType;
+}
+
+function addSaveProps(extraProps, blockType, attributes) {
+	if (!LISM_BLOCKS.includes(blockType.name)) {
+		return extraProps;
+	}
+
+	const { lismProps = [] } = attributes;
+	const filteredLismProps = getFilteredLismProps(lismProps);
+
+	return {
+		...extraProps,
+		...filteredLismProps,
+	};
+}
 
 const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
@@ -76,5 +121,6 @@ const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 }, 'withInspectorControls');
 
 addFilter('blocks.registerBlockType', 'lism/lismProps/addAttributes', addAttributes);
-// addFilter( 'blocks.registerBlockType', 'lism/lismProps/addEditProps', addEditProps );
+addFilter('blocks.registerBlockType', 'lism/lismProps/addEditProps', addEditProps);
 addFilter('editor.BlockEdit', 'lism/lismProps/withInspectorControls', withInspectorControls);
+addFilter('blocks.getSaveContent.extraProps', 'lism/lismProps/addSaveProps', addSaveProps);

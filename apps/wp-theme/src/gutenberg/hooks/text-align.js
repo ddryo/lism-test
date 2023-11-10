@@ -58,15 +58,18 @@ export const withTextAlignStyles = createHigherOrderComponent(
 	'withPositionStyles'
 );
 
-function addSaveProps(props, blockType, attributes) {
+function addSaveProps(extraProps, blockType, attributes) {
 	if (!LISM_BLOCKS.includes(blockType.name)) {
-		return props;
+		return extraProps;
 	}
 
 	const { textAlign } = attributes;
-	props.className = classnames(props.className, { [`has-text-align-${textAlign}`]: textAlign });
 
-	return props;
+	extraProps.className = textAlign
+		? classnames(extraProps.className, `has-text-align-${textAlign}`)
+		: extraProps.className;
+
+	return extraProps;
 }
 
 const withInspectorControls = createHigherOrderComponent((BlockEdit) => {

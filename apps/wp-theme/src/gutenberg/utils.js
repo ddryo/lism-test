@@ -33,8 +33,8 @@ export function getPropErrors(prop) {
 	// Keyのエラーチェック
 	if (!key) {
 		error.key = __('Key is required.', 'lism-blocks');
-	} else if (key && !/^[a-z]+$/.test(key)) {
-		// 半角英字のみを許可
+	} else if (key && !/^[a-zA-Z]+$/.test(key)) {
+		// 半角英字(小文字・大文字)のみを許可
 		error.key = __('Key must be lowercase alphabetic.', 'lism-blocks');
 	}
 

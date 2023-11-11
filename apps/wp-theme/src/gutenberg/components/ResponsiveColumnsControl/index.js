@@ -44,8 +44,6 @@ export default function ResponsiveColumnsControl({
 		// }
 	}
 
-	console.log(isSynced);
-
 	return (
 		<BaseControl className='lism-responsiveColumnsControl' label={label}>
 			<VStack>

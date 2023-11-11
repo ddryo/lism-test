@@ -1,10 +1,16 @@
 /**
+ * @External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * @WordPress dependencies
  */
 import {
 	BaseControl,
 	Button,
 	ButtonGroup,
+	ComboboxControl,
 	Flex,
 	FlexBlock,
 	FlexItem,
@@ -17,7 +23,7 @@ import { trash } from '@wordpress/icons';
 /**
  * @Internal dependencies
  */
-import { BREAKPOINTS } from '@/gutenberg/constants';
+import { ALL_PROP_KEYS, OBJECT_PROPS, BREAKPOINTS } from '@/gutenberg/constants';
 import { getPropErrors, getPropType, transformPropValue } from '@/gutenberg/utils';
 
 const PROP_TYPES = [
@@ -119,12 +125,15 @@ export default function PropEdit({ lismProp, onChange }) {
 
 	return (
 		<VStack>
-			<Flex>
+			<Flex align='flex-start'>
 				<FlexBlock>
-					<TextControl
+					<ComboboxControl
 						__nextHasNoMarginBottom
 						label={__('Prop key', 'lism-blocks')}
-						className={propErrors.key && '__invalid'}
+						options={ALL_PROP_KEYS.map((key) => {
+							return { value: key, label: key };
+						})}
+						className={classnames('__key', { __invalid: propErrors.key })}
 						value={key || ''}
 						onChange={onChangeKey}
 					/>
@@ -178,42 +187,68 @@ export default function PropEdit({ lismProp, onChange }) {
 				<>
 					<BaseControl label={__('Prop values', 'lism-blocks')} className='__values'>
 						<VStack>
-							{(value || []).map((object, index) => (
-								<Flex key={index}>
-									<FlexBlock>
-										<TextControl
-											__nextHasNoMarginBottom
-											value={object.key || ''}
-											placeholder='key'
-											className={
-												propErrors?.values?.[index]?.key && '__invalid'
-											}
-											onChange={(value) => onChangeObjectKey(index, value)}
-										/>
-									</FlexBlock>
-									<FlexItem>:</FlexItem>
-									<FlexBlock>
-										<TextControl
-											__nextHasNoMarginBottom
-											value={object.value || ''}
-											placeholder='value'
-											className={
-												propErrors?.values?.[index]?.value && '__invalid'
-											}
-											onChange={(value) => onChangeObjectValue(index, value)}
-										/>
-									</FlexBlock>
-									<FlexItem>
-										<Button
-											className='__delete'
-											icon={trash}
-											label={__('Delete value', 'lism-blocks')}
-											onClick={() => onDeleteObjectValue(index)}
-											disabled={value.length === 1}
-										/>
-									</FlexItem>
-								</Flex>
-							))}
+							{(value || []).map((object, index) => {
+								const { contexts } = OBJECT_PROPS.find((prop) => prop.key === key);
+								return (
+									<Flex key={index} align='flex-start'>
+										<FlexBlock>
+											{contexts?.length > 0 ? (
+												<ComboboxControl
+													__nextHasNoMarginBottom
+													options={contexts.map((context) => {
+														return { value: context, label: context };
+													})}
+													className={
+														propErrors?.values?.[index]?.key &&
+														'__invalid'
+													}
+													value={object.key || ''}
+													onChange={(value) =>
+														onChangeObjectKey(index, value)
+													}
+												/>
+											) : (
+												<TextControl
+													__nextHasNoMarginBottom
+													value={object.key || ''}
+													placeholder='key'
+													className={
+														propErrors?.values?.[index]?.key &&
+														'__invalid'
+													}
+													onChange={(value) =>
+														onChangeObjectKey(index, value)
+													}
+												/>
+											)}
+										</FlexBlock>
+										<FlexItem>:</FlexItem>
+										<FlexBlock>
+											<TextControl
+												__nextHasNoMarginBottom
+												value={object.value || ''}
+												placeholder='value'
+												className={
+													propErrors?.values?.[index]?.value &&
+													'__invalid'
+												}
+												onChange={(value) =>
+													onChangeObjectValue(index, value)
+												}
+											/>
+										</FlexBlock>
+										<FlexItem>
+											<Button
+												className='__delete'
+												icon={trash}
+												label={__('Delete value', 'lism-blocks')}
+												onClick={() => onDeleteObjectValue(index)}
+												disabled={value.length === 1}
+											/>
+										</FlexItem>
+									</Flex>
+								);
+							})}
 						</VStack>
 					</BaseControl>
 					<Button

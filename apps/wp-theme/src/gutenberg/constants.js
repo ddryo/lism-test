@@ -1,4 +1,34 @@
 /**
+ * @External dependencies
+ */
+import { PROPS, CONTEXT_PROPS } from '@loos/lism-core/src/config';
+
+const collator = new Intl.Collator('en');
+
+// 全てのpropキー一覧
+export const ALL_PROP_KEYS = Object.keys(PROPS).sort(collator.compare);
+
+// Prop TypeとしてObjectが使えるprop一覧
+// objProcessor または map データを持つもの。ただし、`p`と `m` は除く
+export const OBJECT_PROPS = Object.keys(PROPS).reduce((acc, key) => {
+	if (key === 'p' || key === 'm') {
+		return acc;
+	}
+	if (!PROPS[key].objProcessor && !PROPS[key].map) {
+		return acc;
+	}
+	const prop = {
+		key,
+	};
+	if (CONTEXT_PROPS[key]) {
+		prop.contexts = Object.keys(CONTEXT_PROPS[key]);
+	}
+
+	acc.push(prop);
+	return acc;
+}, []);
+
+/**
  * @WordPress dependencies
  */
 import { Icon, globe } from '@wordpress/icons';

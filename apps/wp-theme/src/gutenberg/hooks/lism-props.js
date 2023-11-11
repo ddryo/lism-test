@@ -11,7 +11,7 @@ import { PanelBody } from '@wordpress/components';
  * @Internal dependencies
  */
 import { PropsControl } from '@/gutenberg/components';
-import { getPropErrors } from '@/gutenberg/utils';
+import { getPropErrors, getPropType } from '@/gutenberg/utils';
 
 // lismPropsを有効にするブロック
 const LISM_BLOCKS = [
@@ -77,7 +77,17 @@ function addEditProps(blockType) {
 			if (propErrors) {
 				return acc;
 			}
-			acc[prop.key] = prop.value;
+
+			const propType = getPropType(prop.value);
+			if (propType === 'object') {
+				const objectValue = prop.value.reduce((acc, { key, value }) => {
+					acc[key] = value;
+					return acc;
+				}, {});
+				acc[prop.key] = objectValue;
+			} else {
+				acc[prop.key] = prop.value;
+			}
 			return acc;
 		}, {});
 

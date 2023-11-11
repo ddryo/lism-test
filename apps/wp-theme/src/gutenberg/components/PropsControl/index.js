@@ -11,25 +11,23 @@ import {
 	Flex,
 	FlexBlock,
 	FlexItem,
-	Popover,
 	__experimentalVStack as VStack,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
-import { info, trash } from '@wordpress/icons';
+import { trash } from '@wordpress/icons';
 
 /**
  * @Internal dependencies
  */
 import PropEdit from './prop-edit';
-import { getPropErrors, getPropString } from './utils';
+import { getPropString } from '@/gutenberg/utils';
 
 export default function PropsControl({ lismProps, onChange }) {
 	const [propIndex, setPropIndex] = useState(undefined);
-	const [propErrorsIndex, setPropErrorsIndex] = useState(undefined);
 
 	function onAddProp() {
-		const newLismProps = [...lismProps, {}];
+		const newLismProps = [...lismProps, { key: '', value: '' }];
 		onChange(newLismProps);
 		setPropIndex(undefined);
 	}
@@ -53,8 +51,7 @@ export default function PropsControl({ lismProps, onChange }) {
 		<div className='lism-propsControl'>
 			<VStack spacing='3'>
 				{lismProps.map((lismProp, index) => {
-					const propErrors = getPropErrors(lismProp);
-					const propString = getPropString(lismProp.key, lismProp.value);
+					const propString = getPropString(lismProp);
 					return (
 						<VStack
 							className={classnames('__row', {
@@ -89,7 +86,6 @@ export default function PropsControl({ lismProps, onChange }) {
 							{propIndex === index && (
 								<PropEdit
 									lismProp={lismProp}
-									propErrors={propErrors}
 									onChange={(value) => onChangeProp(index, value)}
 								/>
 							)}

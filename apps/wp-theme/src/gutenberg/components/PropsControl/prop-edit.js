@@ -13,12 +13,12 @@ import {
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { trash } from '@wordpress/icons';
-import { getPropType, transformPropValue } from './utils';
 
 /**
  * @Internal dependencies
  */
-const { BREAKPOINTS } = require('../../constants');
+import { BREAKPOINTS } from '@/gutenberg/constants';
+import { getPropErrors, getPropType, transformPropValue } from '@/gutenberg/utils';
 
 const PROP_TYPES = [
 	{
@@ -35,10 +35,10 @@ const PROP_TYPES = [
 	},
 ];
 
-export default function PropEdit({ lismProp, propErrors, onChange }) {
+export default function PropEdit({ lismProp, onChange }) {
 	const { key = '', value = '' } = lismProp;
 	const propType = getPropType(value);
-	console.log(propErrors);
+	const propErrors = getPropErrors(lismProp);
 
 	function onChangeKey(newValue) {
 		onChange({
@@ -49,8 +49,6 @@ export default function PropEdit({ lismProp, propErrors, onChange }) {
 
 	function onChangePropType(newPropType) {
 		const newValue = transformPropValue(value, newPropType);
-		console.log(newValue);
-
 		onChange({
 			...lismProp,
 			value: newValue,
@@ -122,11 +120,11 @@ export default function PropEdit({ lismProp, propErrors, onChange }) {
 	return (
 		<VStack>
 			<Flex>
-				<FlexBlock style={{ position: 'relative' }}>
+				<FlexBlock>
 					<TextControl
 						__nextHasNoMarginBottom
 						label={__('Prop key', 'lism-blocks')}
-						className={!key && '__invalid'}
+						className={propErrors.key && '__invalid'}
 						value={key || ''}
 						onChange={onChangeKey}
 					/>
@@ -152,7 +150,7 @@ export default function PropEdit({ lismProp, propErrors, onChange }) {
 				<TextControl
 					__nextHasNoMarginBottom
 					label={__('Prop value', 'lism-blocks')}
-					className={!value && '__invalid'}
+					className={propErrors.value && '__invalid'}
 					value={value || ''}
 					onChange={onChangeStringValue}
 				/>
@@ -167,6 +165,7 @@ export default function PropEdit({ lismProp, propErrors, onChange }) {
 									<TextControl
 										__nextHasNoMarginBottom
 										value={value?.[index] || ''}
+										className={propErrors?.values?.[index] && '__invalid'}
 										onChange={(value) => onChangeArrayValue(index, value)}
 									/>
 								</FlexBlock>
@@ -186,7 +185,9 @@ export default function PropEdit({ lismProp, propErrors, onChange }) {
 											__nextHasNoMarginBottom
 											value={object.key || ''}
 											placeholder='key'
-											className={!object.key && '__invalid'}
+											className={
+												propErrors?.values?.[index]?.key && '__invalid'
+											}
 											onChange={(value) => onChangeObjectKey(index, value)}
 										/>
 									</FlexBlock>
@@ -196,7 +197,9 @@ export default function PropEdit({ lismProp, propErrors, onChange }) {
 											__nextHasNoMarginBottom
 											value={object.value || ''}
 											placeholder='value'
-											className={!object.value && '__invalid'}
+											className={
+												propErrors?.values?.[index]?.value && '__invalid'
+											}
 											onChange={(value) => onChangeObjectValue(index, value)}
 										/>
 									</FlexBlock>

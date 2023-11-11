@@ -2,7 +2,6 @@
  * @External dependencies
  */
 import { Cluster } from '@loos/lism-core';
-import classnames from 'classnames';
 
 /**
  * @WordPress dependencies
@@ -10,8 +9,6 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import {
-	AlignmentControl,
-	BlockControls,
 	InspectorControls,
 	InnerBlocks,
 	useBlockProps,

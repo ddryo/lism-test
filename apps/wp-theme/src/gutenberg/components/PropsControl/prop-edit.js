@@ -188,14 +188,14 @@ export default function PropEdit({ lismProp, onChange }) {
 					<BaseControl label={__('Prop values', 'lism-blocks')} className='__values'>
 						<VStack>
 							{(value || []).map((object, index) => {
-								const { contexts } = OBJECT_PROPS.find((prop) => prop.key === key);
+								const objectProps = OBJECT_PROPS.find((prop) => prop.key === key);
 								return (
 									<Flex key={index} align='flex-start'>
 										<FlexBlock>
-											{contexts?.length > 0 ? (
+											{objectProps?.contexts?.length > 0 ? (
 												<ComboboxControl
 													__nextHasNoMarginBottom
-													options={contexts.map((context) => {
+													options={objectProps.contexts.map((context) => {
 														return { value: context, label: context };
 													})}
 													className={

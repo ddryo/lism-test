@@ -6,7 +6,7 @@ import { PROPS, CONTEXT_PROPS } from '@loos/lism-core/src/config';
 const collator = new Intl.Collator('en');
 
 // 全てのpropキー一覧
-export const ALL_PROP_KEYS = Object.keys(PROPS).sort(collator.compare);
+export const ALL_PROP_KEYS = [...Object.keys(PROPS), 'hover'].sort(collator.compare);
 
 // Prop TypeとしてObjectが使えるprop一覧
 // objProcessor または map データを持つもの。ただし、`p`と `m` は除く

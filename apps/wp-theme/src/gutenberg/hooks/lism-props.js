@@ -27,13 +27,24 @@ const LISM_BLOCKS = [
 ];
 
 function getFilteredLismProps(props) {
-	return props.reduce((acc, { key, value }) => {
-		if (!key || !value) {
+	return props.reduce((acc, prop) => {
+			const propErrors = getPropErrors(prop);
+			if (propErrors) {
+				return acc;
+			}
+
+			const propType = getPropType(prop.value);
+			if (propType === 'object') {
+				const objectValue = prop.value.reduce((acc, { key, value }) => {
+					acc[key] = value;
+					return acc;
+				}, {});
+				acc[prop.key] = objectValue;
+			} else {
+				acc[prop.key] = prop.value;
+			}
 			return acc;
-		}
-		acc[key] = value;
-		return acc;
-	}, {});
+		}, {});
 }
 
 // attributesにlismPropsを追加する
@@ -72,24 +83,7 @@ function addEditProps(blockType) {
 			? existingGetEditWrapperProps(attributes)
 			: {};
 		const { lismProps = [] } = attributes;
-		const filteredLismProps = lismProps.reduce((acc, prop) => {
-			const propErrors = getPropErrors(prop);
-			if (propErrors) {
-				return acc;
-			}
-
-			const propType = getPropType(prop.value);
-			if (propType === 'object') {
-				const objectValue = prop.value.reduce((acc, { key, value }) => {
-					acc[key] = value;
-					return acc;
-				}, {});
-				acc[prop.key] = objectValue;
-			} else {
-				acc[prop.key] = prop.value;
-			}
-			return acc;
-		}, {});
+		const filteredLismProps = getFilteredLismProps(lismProps);
 
 		return {
 			...wrapperProps,

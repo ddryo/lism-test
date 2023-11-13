@@ -13,7 +13,9 @@ const collator = new Intl.Collator('en');
 
 // 全てのpropキー一覧
 // prop_listに無いprovide, hover, consumeも追加
-export const ALL_PROP_KEYS = [...Object.keys(PROPS), 'hover', 'provide', 'consume'].sort(collator.compare);
+export const ALL_PROP_KEYS = [...Object.keys(PROPS), 'hover', 'provide', 'consume'].sort(
+	collator.compare
+);
 
 // Prop TypeとしてObjectが使えるprop一覧
 // objProcessor または map データを持つもの。ただし、`p`と `m` は除く

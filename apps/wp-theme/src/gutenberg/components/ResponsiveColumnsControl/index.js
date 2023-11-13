@@ -9,25 +9,22 @@ import {
 	Flex,
 	FlexBlock,
 	FlexItem,
-	Icon,
 	RangeControl,
 	ToggleControl,
 	__experimentalVStack as VStack,
 } from '@wordpress/components';
-import { globe } from '@wordpress/icons';
+
+/**
+ * @Internal dependencies
+ */
+import { BREAKPOINTS } from '@/gutenberg/constants';
 
 const DEFAULT_LABEL = __('Columns', 'lism-blocks');
 
-const TABS = [
-	<Icon icon={globe} />,
-	__('sm', 'lism-blocks'),
-	__('md', 'lism-blocks'),
-	__('lg', 'lism-blocks'),
-];
-
 export default function ResponsiveColumnsControl({
 	label = DEFAULT_LABEL,
-	value: columnValue = '2',
+	value: columnValue = '',
+	defaultValue = '2',
 	onChange,
 }) {
 	const isSingleValue = typeof columnValue === 'string';
@@ -39,9 +36,23 @@ export default function ResponsiveColumnsControl({
 
 	function onChangeIsSynced() {
 		setIsSynced(!isSynced);
-		// if (!isSingleValue) {
-		// 	onChange(parsedValue[0]);
-		// }
+		if (!isSingleValue) {
+			onChange(parsedValue[0]);
+		}
+	}
+
+	function onChangeAll(value) {
+		onChange(value.toString());
+	}
+
+	function onChangePercial(value, index) {
+		const newValue = [...parsedValue];
+		newValue[index] = value.toString();
+		onChange(newValue);
+	}
+
+	function onReset() {
+		onChange(defaultValue);
 	}
 
 	return (
@@ -59,29 +70,31 @@ export default function ResponsiveColumnsControl({
 							__nextHasNoMarginBottom
 							label={__('all', 'lism-blocks')}
 							hideLabelFromVision
-							value={columnValue}
+							value={parseInt(parsedValue[0]) || 1}
 							min={0}
-							max={20}
+							max={10}
+							onChange={onChangeAll}
 						/>
 					</div>
 				) : (
-					TABS.map((tab, index) => (
-						<Flex className='__row' key={index}>
-							<FlexItem className='__title'>{tab}</FlexItem>
+					BREAKPOINTS.map(({ name, title }, index) => (
+						<Flex className='__row' key={name}>
+							<FlexItem className='__title'>{title}</FlexItem>
 							<FlexBlock>
 								<RangeControl
 									__nextHasNoMarginBottom
 									label={__('all', 'lism-blocks')}
 									hideLabelFromVision
-									value={columnValue}
+									value={parseInt(parsedValue[index]) || 1}
 									min={0}
-									max={20}
+									max={10}
+									onChange={(value) => onChangePercial(value, index)}
 								/>
 							</FlexBlock>
 						</Flex>
 					))
 				)}
-				<Button className='__reset' variant='secondary' size='small'>
+				<Button className='__reset' variant='secondary' size='small' onClick={onReset}>
 					{__('Reset', 'lism-blocks')}
 				</Button>
 			</VStack>

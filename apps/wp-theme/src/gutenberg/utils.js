@@ -45,7 +45,7 @@ export function getPropErrors(prop) {
 	if (propType === 'string') {
 		if (!value) {
 			error.value = __('Value is required.', 'lism-blocks');
-		} else if ( !/^[a-z0-9: ]+$/.test(value)) {
+		} else if (!/^[a-z0-9: ]+$/.test(value)) {
 			// 半角英数字、半角スペース、コロンのみを許可
 			error.value = __('Contains invalid characters..', 'lism-blocks');
 		}

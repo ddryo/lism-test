@@ -19,7 +19,8 @@
 	},
 	"attributes": {
 		"columns": {
-			"type": ["string", "array"]
+			"type": ["string", "array"],
+			"default": "2"
 		},
 		"alignItems": {
 			"type": "string",

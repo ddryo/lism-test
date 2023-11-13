@@ -66,7 +66,13 @@ registerBlockType(metadata.name, {
 								setAttributes({ ...attributes, alignItems: value });
 							}}
 						/>
-						<ResponsiveColumnsControl />
+						<ResponsiveColumnsControl
+							value={columns}
+							defaultValue={metadata.attributes.columns?.default}
+							onChange={(value) => {
+								setAttributes({ columns: value });
+							}}
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<Columns {...innerProps} forwardedRef={ref}>

@@ -36,7 +36,7 @@ export function getPropErrors(prop) {
 	} else if (key && !/^[a-zA-Z]+$/.test(key)) {
 		// 半角英字(小文字・大文字)のみを許可
 		error.key = __('Key must be lowercase alphabetic.', 'lism-blocks');
-	} else if ( propType === 'object' && ! OBJECT_PROPS.some((p) => p.key === key) ) {
+	} else if (propType === 'object' && !OBJECT_PROPS.some((p) => p.key === key)) {
 		// Objectの場合は、OBJECT_PROPSに含まれるkeyのみを許可
 		error.key = __('Object Prop type cannot be used with this key.', 'lism-blocks');
 	}

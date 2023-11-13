@@ -3,29 +3,13 @@ import isPresetValue from './isPresetValue';
 import getMaybeUtilValue from './getMaybeUtilValue';
 import getMaybeCssVar from './getMaybeCssVar';
 
-import { PROPS, CONTEXT_PROPS } from '../config';
+import { PROPS, CONTEXT_PROPS, PROVIDABLE_PROPS, HOVER_PROPS } from '../config';
 import { joinAtts, isEmptyObj, filterEmptyObj } from './helper';
 import getBpData from './getBpData';
 
 // const isBaseBP = (bp) => {
 // 	return '_' === bp;
 // };
-
-const ProvidableProps = {
-	c: 'color',
-	bgc: 'color',
-	bdc: 'color',
-	p: 'space',
-	gap: 'space',
-	radius: 'radius',
-	shadow: 'shadow',
-};
-const HoverProps = {
-	c: 'color',
-	bgc: 'color',
-	bdc: 'color',
-	shadow: 'shadow',
-};
 
 // const PROP_FULL_NAMES = {
 // 	padding: 'p',
@@ -397,7 +381,7 @@ class LismPropsData {
 			if (null === value) return;
 
 			// コンバーター取得
-			const converterName = ProvidableProps[propName];
+			const converterName = PROVIDABLE_PROPS[propName];
 			if (converterName) {
 				value = getMaybeCssVar(value, converterName, propName);
 			}
@@ -429,7 +413,7 @@ class LismPropsData {
 				let value = hoverData[propName];
 
 				// コンバーター取得
-				const converterName = HoverProps[propName];
+				const converterName = HOVER_PROPS[propName];
 				if (converterName) {
 					value = getMaybeCssVar(value, converterName, propName);
 				}

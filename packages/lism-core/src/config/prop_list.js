@@ -1,4 +1,4 @@
-/* memo: 
+/* memo:
 
 options.name: 受け取るprop名と実際に出力するutilクラス名、style名がどちらも異なる場合に指定する
 	[string]
@@ -53,15 +53,15 @@ options.splitProcessor: スペース区切りで成分を指定できるpropで�
 	例: p="20 40" → px, py としてそれぞれ処理
 
 
-memo: 
+memo:
 	ユーティリティクラス化されない時の挙動パターン
 		1.  .-prop: かつ --prop ( ほとんどこれ )
 		2.  普通のstyleとして出力するだけ ( alignSelf など ) → style をもつ
 		3.  --prop のみ出力.( keycolor や --bdc など ) → withUtil:0 かつ style をもつ
 		4. propのname と 出力name が変わる ( radius → bdrs) →  name をもつ
 
-禁止パターン: 
-	styleを持っていて BP:1 
+禁止パターン:
+	styleを持っていて BP:1
 	styleを持っていて withUtil:0
 
 */
@@ -282,4 +282,20 @@ export const CONTEXT_PROPS = {
 		size: { style: 'backgroundSize' },
 	},
 	mask: {},
+};
+
+export const PROVIDABLE_PROPS = {
+	c: 'color',
+	bgc: 'color',
+	bdc: 'color',
+	p: 'space',
+	gap: 'space',
+	radius: 'radius',
+	shadow: 'shadow',
+};
+export const HOVER_PROPS = {
+	c: 'color',
+	bgc: 'color',
+	bdc: 'color',
+	shadow: 'shadow',
 };

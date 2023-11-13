@@ -3,10 +3,17 @@
  */
 import { PROPS, CONTEXT_PROPS, HOVER_PROPS, PROVIDABLE_PROPS } from '@loos/lism-core/src/config';
 
+/**
+ * @WordPress dependencies
+ */
+import { Icon, globe } from '@wordpress/icons';
+import { __ } from '@wordpress/i18n';
+
 const collator = new Intl.Collator('en');
 
 // 全てのpropキー一覧
-export const ALL_PROP_KEYS = [...Object.keys(PROPS), 'hover', 'provide'].sort(collator.compare);
+// prop_listに無いprovide, hover, consumeも追加
+export const ALL_PROP_KEYS = [...Object.keys(PROPS), 'hover', 'provide', 'consume'].sort(collator.compare);
 
 // Prop TypeとしてObjectが使えるprop一覧
 // objProcessor または map データを持つもの。ただし、`p`と `m` は除く
@@ -28,15 +35,13 @@ export const OBJECT_PROPS = [
 		acc.push(prop);
 		return acc;
 	}, []),
+	// prop_listに無いprovide, hoverを追加
 	{ key: 'provide', contexts: Object.keys(PROVIDABLE_PROPS) },
 	{ key: 'hover', contexts: Object.keys(HOVER_PROPS) },
 ];
 
-/**
- * @WordPress dependencies
- */
-import { Icon, globe } from '@wordpress/icons';
-import { __ } from '@wordpress/i18n';
+// ブレークポイントではなく配列として指定出来るキー一覧
+export const ARRAY_KEYS = ['hover'];
 
 export const BREAKPOINTS = [
 	{

@@ -23,7 +23,7 @@ import { trash } from '@wordpress/icons';
 /**
  * @Internal dependencies
  */
-import { ALL_PROP_KEYS, OBJECT_PROPS, BREAKPOINTS } from '@/gutenberg/constants';
+import { ALL_PROP_KEYS, OBJECT_PROPS, ARRAY_KEYS, BREAKPOINTS } from '@/gutenberg/constants';
 import { getPropErrors, getPropType, transformPropValue } from '@/gutenberg/utils';
 
 const PROP_TYPES = [
@@ -68,7 +68,7 @@ export default function PropEdit({ lismProp, onChange }) {
 		});
 	}
 
-	function onChangeArrayValue(index, newValue) {
+	function onChangeBreakpointValue(index, newValue) {
 		const newArrayValue = [
 			value?.[0] || null,
 			value?.[1] || null,
@@ -84,6 +84,30 @@ export default function PropEdit({ lismProp, onChange }) {
 			value: newArrayValue,
 		});
 	}
+
+	function onChangeArrayValue(index, newValue) {
+		const newArrayValue = [...value];
+		newArrayValue[index] = newValue;
+		onChange({
+			...lismProp,
+			value: newArrayValue,
+		});
+	}
+
+	function onAddArrayValue() {
+		onChange({
+			...lismProp,
+			value: [...value, ''],
+		});
+	}
+
+	function onDeleteArrayValue(index) {
+		onChange({
+			...lismProp,
+			value: value.filter((_, i) => i !== index),
+		});
+	}
+
 
 	function onChangeObjectKey(index, newValue) {
 		const newObjectValue = [...value];
@@ -164,7 +188,7 @@ export default function PropEdit({ lismProp, onChange }) {
 					onChange={onChangeStringValue}
 				/>
 			)}
-			{propType === 'array' && (
+			{propType === 'array' && !ARRAY_KEYS.includes(key) && (
 				<BaseControl label={__('Prop values', 'lism-blocks')} className='__values'>
 					<VStack>
 						{BREAKPOINTS.map(({ name, title, index }) => (
@@ -175,13 +199,51 @@ export default function PropEdit({ lismProp, onChange }) {
 										__nextHasNoMarginBottom
 										value={value?.[index] || ''}
 										className={propErrors?.values?.[index] && '__invalid'}
-										onChange={(value) => onChangeArrayValue(index, value)}
+										onChange={(value) => onChangeBreakpointValue(index, value)}
 									/>
 								</FlexBlock>
 							</Flex>
 						))}
 					</VStack>
 				</BaseControl>
+			)}
+			{propType === 'array' && ARRAY_KEYS.includes(key) && (
+				<>
+					<BaseControl label={__('Prop values', 'lism-blocks')} className='__values'>
+						<VStack>
+							{(value || []).map((valueElement, index) => (
+								<Flex key={index}>
+									<FlexBlock>
+										<TextControl
+											__nextHasNoMarginBottom
+											value={valueElement || ''}
+											className={propErrors?.values?.[index] && '__invalid'}
+											onChange={(value) => onChangeArrayValue(index, value)}
+										/>
+									</FlexBlock>
+									<FlexItem>
+										<Button
+											className='__delete'
+											icon={trash}
+											label={__('Delete value', 'lism-blocks')}
+											onClick={() => onDeleteArrayValue(index)}
+											disabled={value.length === 1}
+										/>
+									</FlexItem>
+								</Flex>
+							))}
+						</VStack>
+					</BaseControl>
+					<Button
+						className='__add'
+						variant='primary'
+						size='small'
+						onClick={onAddArrayValue}
+						disabled={value.length >= 5}
+					>
+						{__('Add value', 'lism-blocks')}
+					</Button>
+				</>
 			)}
 			{propType === 'object' && (
 				<>

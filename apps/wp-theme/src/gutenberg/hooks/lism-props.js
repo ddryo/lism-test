@@ -28,23 +28,23 @@ const LISM_BLOCKS = [
 
 function getFilteredLismProps(props) {
 	return props.reduce((acc, prop) => {
-			const propErrors = getPropErrors(prop);
-			if (propErrors) {
-				return acc;
-			}
-
-			const propType = getPropType(prop.value);
-			if (propType === 'object') {
-				const objectValue = prop.value.reduce((acc, { key, value }) => {
-					acc[key] = value;
-					return acc;
-				}, {});
-				acc[prop.key] = objectValue;
-			} else {
-				acc[prop.key] = prop.value;
-			}
+		const propErrors = getPropErrors(prop);
+		if (propErrors) {
 			return acc;
-		}, {});
+		}
+
+		const propType = getPropType(prop.value);
+		if (propType === 'object') {
+			const objectValue = prop.value.reduce((acc, { key, value }) => {
+				acc[key] = value;
+				return acc;
+			}, {});
+			acc[prop.key] = objectValue;
+		} else {
+			acc[prop.key] = prop.value;
+		}
+		return acc;
+	}, {});
 }
 
 // attributesにlismPropsを追加する

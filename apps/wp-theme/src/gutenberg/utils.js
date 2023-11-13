@@ -45,9 +45,9 @@ export function getPropErrors(prop) {
 	if (propType === 'string') {
 		if (!value) {
 			error.value = __('Value is required.', 'lism-blocks');
-		} else if (!/^[a-z0-9]+$/.test(value)) {
-			// 半角英数字のみを許可
-			error.value = __('Value must be lowercase alphanumeric.', 'lism-blocks');
+		} else if ( !/^[a-z0-9: ]+$/.test(value)) {
+			// 半角英数字、半角スペース、コロンのみを許可
+			error.value = __('Contains invalid characters..', 'lism-blocks');
 		}
 		const hasError = error.key || error.value;
 		if (!hasError) {
@@ -58,9 +58,9 @@ export function getPropErrors(prop) {
 	// Valueのエラーチェック (Prop TypeがArrayの時)
 	if (propType === 'array') {
 		error.values = BREAKPOINTS.map((_, index) => {
-			// 数字のみを許可
-			if (value?.[index] && !/^[0-9]+$/.test(value[index])) {
-				return __('Value must be numeric.', 'lism-blocks');
+			// 半角英数字、半角スペース、コロンのみを許可
+			if (value?.[index] && !/^[a-z0-9: ]+$/.test(value[index])) {
+				return __('Contains invalid characters.', 'lism-blocks');
 			}
 			return null;
 		});
@@ -84,11 +84,11 @@ export function getPropErrors(prop) {
 				valueError.key = __('Key must be lowercase alphabetic.', 'lism-blocks');
 			}
 
-			// valueは半角英数字のみを許可
+			// valueは半角英数字、半角スペース、コロンのみを許可
 			if (!v.value) {
 				valueError.value = __('Value is required.', 'lism-blocks');
-			} else if (!/^[a-z0-9]+$/.test(v.value)) {
-				valueError.value = __('Value must be lowercase alphanumeric.', 'lism-blocks');
+			} else if (!/^[a-z0-9: ]+$/.test(v.value)) {
+				valueError.value = __('Contains invalid characters.', 'lism-blocks');
 			}
 			return valueError;
 		});

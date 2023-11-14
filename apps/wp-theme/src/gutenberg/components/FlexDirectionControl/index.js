@@ -35,7 +35,6 @@ export default function FlexDirectionControl({ value = 'row', onChange }) {
 	return (
 		<div className='lism-flexWrapControl'>
 			<ToggleGroupControl
-				__nextHasNoMarginBottom
 				label={__('Flex direction', 'lism-blocks')}
 				onChange={(value) => onChange(value)}
 				value={value}

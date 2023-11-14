@@ -1,7 +1,7 @@
 /**
  * @External dependencies
  */
-import { FluidFix } from '@loos/lism-core';
+import { SwitchFix } from '@loos/lism-core';
 
 /**
  * @WordPress dependencies
@@ -18,6 +18,7 @@ import {
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
+	SelectControl,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 	__experimentalUnitControl as UnitControl,
@@ -42,15 +43,35 @@ const FIXED_ELEMENT_OPTIONS = [
 	},
 ];
 
+const FIXED_POSITION_OPTIONS = [
+	{
+		label: __('Left Up', 'lism-blocks'),
+		value: 'left up',
+	},
+	{
+		label: __('Left Down', 'lism-blocks'),
+		value: 'left down',
+	},
+	{
+		label: __('Right Up', 'lism-blocks'),
+		value: 'right up',
+	},
+	{
+		label: __('Right Down', 'lism-blocks'),
+		value: 'right down',
+	},
+];
+
 registerBlockType(metadata.name, {
-	title: __('Fluid Fix', 'lism-blocks'),
+	title: __('Switch Fix', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
 	icon,
 	edit: ({ attributes, setAttributes, clientId }) => {
-		const { templateLock, fixedElement, fixedWidth, fluidMinWidth, anchor, className } =
-			attributes;
+		const { fixedElementPosition, fixedWidth, anchor, className } = attributes;
 
 		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem', '%'] });
+
+		function onChangeFixedElement(value) {}
 
 		const innerBlocksLength = useSelect(
 			(select) => select(blockEditorStore).getBlocks(clientId).length,
@@ -58,14 +79,13 @@ registerBlockType(metadata.name, {
 		);
 
 		const blockProps = useBlockProps({
-			fix: fixedElement,
+			fix: fixedElementPosition,
 			fixW: fixedWidth,
-			fluidMinW: fluidMinWidth,
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
 			template: [['core/paragraph'], ['core/paragraph']],
-			templateLock,
+			templateLock: 'all',
 			renderAppender: innerBlocksLength < 2 ? InnerBlocks.ButtonBlockAppender : false,
 		});
 
@@ -77,19 +97,24 @@ registerBlockType(metadata.name, {
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<ToggleGroupControl
 							label={__('Fixed element', 'lism-blocks')}
-							onChange={(nextFixedElement) => {
-								setAttributes({ fixedElement: nextFixedElement });
-							}}
+							onChange={onChangeFixedElement}
 							isBlock
-							value={fixedElement}
 						>
 							{FIXED_ELEMENT_OPTIONS.map(({ label, value }) => (
 								<ToggleGroupControlOption key={value} value={value} label={label} />
 							))}
 						</ToggleGroupControl>
+						<SelectControl
+							label={__('Fixed element position', 'lism-blocks')}
+							options={FIXED_POSITION_OPTIONS}
+							value={fixedElementPosition}
+							onChange={(value) => {
+								setAttributes({fixedElementPosition: value});
+							}}
+						/>
 						<UnitControl
 							size={'__unstable-large'}
-							label={__('Fixed element min width', 'lism-blocks')}
+							label={__('Fluid element width', 'lism-blocks')}
 							units={units}
 							min={0}
 							value={fixedWidth}
@@ -97,39 +122,27 @@ registerBlockType(metadata.name, {
 								setAttributes({ fixedWidth: value || undefined });
 							}}
 						/>
-						<UnitControl
-							size={'__unstable-large'}
-							label={__('Fluid element min width', 'lism-blocks')}
-							units={units}
-							min={0}
-							value={fluidMinWidth}
-							onChange={(value) => {
-								setAttributes({fluidMinWidth: value || undefined });
-							}}
-						/>
 					</PanelBody>
 				</InspectorControls>
-				<FluidFix {...innerProps} forwardedRef={ref}>
-					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
+				<SwitchFix {...innerProps} forwardedRef={ref}>
+					{/* <SelectorPreviewTip icon={icon} anchor={anchor} className={className} /> */}
 					{children}
-				</FluidFix>
+				</SwitchFix>
 			</>
 		);
 	},
-
 	save: ({ attributes }) => {
-		const { fixedElement, fixedWidth, fluidMinWidth } = attributes;
+		const { fixedElementPosition, fixedWidth } = attributes;
 
 		const blockProps = useBlockProps.save({
-			fix: fixedElement,
+			fix: fixedElementPosition,
 			fixW: fixedWidth,
-			fluidMinW: fluidMinWidth,
 		});
 
 		return (
-			<FluidFix {...blockProps}>
+			<SwitchFix {...blockProps}>
 				<InnerBlocks.Content />
-			</FluidFix>
+			</SwitchFix>
 		);
 	},
 });

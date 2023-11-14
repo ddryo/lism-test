@@ -50,7 +50,6 @@ export default function JustifyItemsControl({ value, controls, onChange }) {
 	return (
 		<div className='lism-justifyItemsControl'>
 			<ToggleGroupControl
-				__nextHasNoMarginBottom
 				label={__('Justify items', 'lism-blocks')}
 				onChange={onChange}
 				value={value}

@@ -50,7 +50,6 @@ export default function AlignItemsControl({ value, controls, onChange }) {
 	return (
 		<div className='lism-alignItemsControl'>
 			<ToggleGroupControl
-				__nextHasNoMarginBottom
 				label={__('Align items', 'lism-blocks')}
 				onChange={onChange}
 				value={value}

@@ -80,7 +80,6 @@ export default function RatioControl({ value: ratioValue = '1:1', onChange }) {
 	return (
 		<div className='lism-ratioControl'>
 			<SelectControl
-				__nextHasNoMarginBottom
 				label={__('Preset', 'lism-blocks')}
 				options={options}
 				value={isCustomValue ? 'custom' : ratioValue}
@@ -100,7 +99,6 @@ export default function RatioControl({ value: ratioValue = '1:1', onChange }) {
 								<FlexBlock>
 									<TextControl
 										hideLabelFromVision
-										__nextHasNoMarginBottom
 										label={__('Ratio value', 'lism-blocks')}
 										min={0}
 										max={10}

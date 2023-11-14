@@ -1,8 +1,8 @@
 {
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"name": "lism-blocks/fluid-fix",
-	"title": "Fluid Fix",
+	"name": "lism-blocks/switch-fix",
+	"title": "Switch Fix",
 	"category": "lism-blocks",
 	"keywords": ["group"],
 	"supports": {
@@ -18,15 +18,12 @@
 		}
 	},
 	"attributes": {
-		"fixedElement": {
+		"fixedElementPosition": {
 			"type": "string",
-			"default": "first",
-			"enum": ["first", "last"]
+			"default": "right down",
+			"enum": ["left up", "left down", "right up", "right down"]
 		},
 		"fixedWidth": {
-			"type": "string"
-		},
-		"fluidMinWidth": {
 			"type": "string"
 		}
 	},

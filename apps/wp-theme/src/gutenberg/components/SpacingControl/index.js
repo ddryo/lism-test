@@ -59,7 +59,6 @@ export default function SpacingControl({ units: _units = DEFAULT_UNITS }) {
 					<Icon icon={sidesAll} className='__icon' />
 					<UnitControl
 						size={'__unstable-large'}
-						__nextHasNoMarginBottom
 						label={LABELS.all}
 						hideLabelFromVision
 						units={units}
@@ -74,7 +73,6 @@ export default function SpacingControl({ units: _units = DEFAULT_UNITS }) {
 							key={side}
 							className={`__${side}`}
 							size={'__unstable-large'}
-							__nextHasNoMarginBottom
 							label={LABELS[side]}
 							hideLabelFromVision
 							units={units}

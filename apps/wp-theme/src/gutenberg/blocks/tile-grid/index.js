@@ -58,25 +58,24 @@ registerBlockType(metadata.name, {
 							value={justifyItems}
 							controls={['flex-start', 'center', 'flex-end', 'stretch']}
 							onChange={(value) => {
-								setAttributes({ ...attributes, justifyItems: value });
+								setAttributes({ justifyItems: value });
 							}}
 						/>
 						<AlignItemsControl
 							value={alignItems}
 							controls={['flex-start', 'center', 'flex-end', 'stretch']}
 							onChange={(value) => {
-								setAttributes({ ...attributes, alignItems: value });
+								setAttributes({ alignItems: value });
 							}}
 						/>
 						<UnitControl
 							size={'__unstable-large'}
-							__nextHasNoMarginBottom
 							label={__('Item min width', 'lism-blocks')}
 							units={units}
 							min={0}
 							value={itemMinWitdh}
 							onChange={(value) => {
-								setAttributes({ ...attributes, itemMinWitdh: value || undefined });
+								setAttributes({ itemMinWitdh: value || undefined });
 							}}
 						/>
 					</PanelBody>

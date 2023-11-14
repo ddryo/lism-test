@@ -70,7 +70,6 @@ registerBlockType(metadata.name, {
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<ToggleGroupControl
-							__nextHasNoMarginBottom
 							label={__('Size', 'lism-blocks')}
 							onChange={(nextSize) => {
 								const hasSize = nextSize !== 'none';
@@ -93,13 +92,12 @@ registerBlockType(metadata.name, {
 						{!size && (
 							<UnitControl
 								size={'__unstable-large'}
-								__nextHasNoMarginBottom
 								label={__('Height', 'lism-blocks')}
 								units={units}
 								min={0}
 								value={height}
 								onChange={(value) => {
-									setAttributes({ ...attributes, height: value || undefined });
+									setAttributes({height: value || undefined });
 								}}
 							/>
 						)}

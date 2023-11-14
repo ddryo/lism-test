@@ -56,14 +56,14 @@ registerBlockType(metadata.name, {
 							value={justifyItems}
 							controls={['flex-start', 'center', 'flex-end', 'stretch']}
 							onChange={(value) => {
-								setAttributes({ ...attributes, justifyItems: value });
+								setAttributes({ justifyItems: value });
 							}}
 						/>
 						<AlignItemsControl
 							value={alignItems}
 							controls={['flex-start', 'center', 'flex-end', 'stretch']}
 							onChange={(value) => {
-								setAttributes({ ...attributes, alignItems: value });
+								setAttributes({ alignItems: value });
 							}}
 						/>
 						<ResponsiveColumnsControl

@@ -55,18 +55,17 @@ registerBlockType(metadata.name, {
 						<JustifyContentControl
 							value={justifyContent}
 							onChange={(value) => {
-								setAttributes({ ...attributes, justifyContent: value });
+								setAttributes({ justifyContent: value });
 							}}
 						/>
 						<UnitControl
 							size={'__unstable-large'}
-							__nextHasNoMarginBottom
 							label={__('Item min width', 'lism-blocks')}
 							units={units}
 							min={0}
 							value={itemMinWitdh}
 							onChange={(value) => {
-								setAttributes({ ...attributes, itemMinWitdh: value || undefined });
+								setAttributes({ itemMinWitdh: value || undefined });
 							}}
 						/>
 					</PanelBody>

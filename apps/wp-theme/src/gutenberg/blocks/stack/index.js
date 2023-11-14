@@ -49,7 +49,7 @@ registerBlockType(metadata.name, {
 							value={alignItems}
 							controls={['flex-start', 'center', 'flex-end', 'stretch']}
 							onChange={(value) => {
-								setAttributes({ ...attributes, alignItems: value });
+								setAttributes({ alignItems: value });
 							}}
 						/>
 					</PanelBody>

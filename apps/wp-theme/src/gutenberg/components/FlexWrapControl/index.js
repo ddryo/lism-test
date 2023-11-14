@@ -30,7 +30,6 @@ export default function FlexWrapControl({ value, onChange }) {
 	return (
 		<div className='lism-flexWrapControl'>
 			<ToggleGroupControl
-				__nextHasNoMarginBottom
 				label={__('Flex wrap', 'lism-blocks')}
 				onChange={(value) => onChange(value)}
 				value={value}

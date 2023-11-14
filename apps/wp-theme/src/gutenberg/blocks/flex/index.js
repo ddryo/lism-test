@@ -97,7 +97,7 @@ registerBlockType(metadata.name, {
 									justifyContent,
 								}}
 								onChange={(values) => {
-									setAttributes({ ...attributes, ...values });
+									setAttributes({ values });
 								}}
 							/>
 						</VStack>

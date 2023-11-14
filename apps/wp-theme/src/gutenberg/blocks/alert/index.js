@@ -41,9 +41,9 @@ registerBlockType(metadata.name, {
 		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem'] });
 
 		function onChangePreset(value) {
-			const preset = ALERT_PRESETS.find(({value: _value}) => _value === value);
-			if ( preset ) {
-				const iconPreset = ICON_PRESETS.find(({value: _value}) => _value === preset.icon);
+			const preset = ALERT_PRESETS.find(({ value: _value }) => _value === value);
+			if (preset) {
+				const iconPreset = ICON_PRESETS.find(({ value: _value }) => _value === preset.icon);
 				setAttributes({
 					keyColor: preset.color,
 					iconLabel: preset.label,
@@ -110,12 +110,12 @@ registerBlockType(metadata.name, {
 									label: __('Default', 'lism-blocks'),
 									value: 'default',
 								},
-								...ALERT_PRESETS.map(({value}) => {
+								...ALERT_PRESETS.map(({ value }) => {
 									return {
 										label: value,
-										value
+										value,
 									};
-								})
+								}),
 							]}
 							onChange={onChangePreset}
 						/>
@@ -126,15 +126,17 @@ registerBlockType(metadata.name, {
 									label: __('Default', 'lism-blocks'),
 									value: 'default',
 								},
-								...ICON_PRESETS.map(({value}) => {
+								...ICON_PRESETS.map(({ value }) => {
 									return {
 										label: value,
-										value
+										value,
 									};
-								})
+								}),
 							]}
 							onChange={(value) => {
-								setAttributes({ iconSlug: value !== 'default' ? value : undefined });
+								setAttributes({
+									iconSlug: value !== 'default' ? value : undefined,
+								});
 							}}
 						/>
 						<UnitControl

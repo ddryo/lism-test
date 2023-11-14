@@ -50,7 +50,6 @@ export default function AlignContentControl({ value, controls, onChange }) {
 	return (
 		<div className='lism-alignContentControl'>
 			<ToggleGroupControl
-				__nextHasNoMarginBottom
 				label={__('Align content', 'lism-blocks')}
 				onChange={onChange}
 				value={value}

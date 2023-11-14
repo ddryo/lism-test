@@ -27,6 +27,7 @@ class Data {
 		'fluid-fix'  => [],
 		'ratio-grid' => [],
 		'stack'      => [],
+		'switch-fix' => [],
 		'tile-grid'  => [],
 	];
 

@@ -59,7 +59,6 @@ export default function ResponsiveColumnsControl({
 		<BaseControl className='lism-responsiveColumnsControl' label={label}>
 			<VStack>
 				<ToggleControl
-					__nextHasNoMarginBottom
 					label={__('Synced', 'lism-blocks')}
 					checked={isSynced}
 					onChange={onChangeIsSynced}
@@ -67,7 +66,6 @@ export default function ResponsiveColumnsControl({
 				{isSynced ? (
 					<div className='__row'>
 						<RangeControl
-							__nextHasNoMarginBottom
 							label={__('all', 'lism-blocks')}
 							hideLabelFromVision
 							value={parseInt(parsedValue[0]) || 1}
@@ -82,7 +80,6 @@ export default function ResponsiveColumnsControl({
 							<FlexItem className='__title'>{title}</FlexItem>
 							<FlexBlock>
 								<RangeControl
-									__nextHasNoMarginBottom
 									label={__('all', 'lism-blocks')}
 									hideLabelFromVision
 									value={parseInt(parsedValue[index]) || 1}

@@ -151,7 +151,6 @@ export default function PropEdit({ lismProp, onChange }) {
 			<Flex align='flex-start'>
 				<FlexBlock>
 					<ComboboxControl
-						__nextHasNoMarginBottom
 						label={__('Prop key', 'lism-blocks')}
 						options={ALL_PROP_KEYS.map((key) => {
 							return { value: key, label: key };
@@ -180,7 +179,6 @@ export default function PropEdit({ lismProp, onChange }) {
 			</Flex>
 			{propType === 'string' && (
 				<TextControl
-					__nextHasNoMarginBottom
 					label={__('Prop value', 'lism-blocks')}
 					className={propErrors.value && '__invalid'}
 					value={value || ''}
@@ -195,7 +193,6 @@ export default function PropEdit({ lismProp, onChange }) {
 								<FlexItem className='__breakpoint'>{title}</FlexItem>
 								<FlexBlock>
 									<TextControl
-										__nextHasNoMarginBottom
 										value={value?.[index] || ''}
 										className={propErrors?.values?.[index] && '__invalid'}
 										onChange={(value) => onChangeBreakpointValue(index, value)}
@@ -214,7 +211,6 @@ export default function PropEdit({ lismProp, onChange }) {
 								<Flex key={index}>
 									<FlexBlock>
 										<TextControl
-											__nextHasNoMarginBottom
 											value={valueElement || ''}
 											className={propErrors?.values?.[index] && '__invalid'}
 											onChange={(value) => onChangeArrayValue(index, value)}
@@ -255,7 +251,6 @@ export default function PropEdit({ lismProp, onChange }) {
 										<FlexBlock>
 											{objectProps?.contexts?.length > 0 ? (
 												<ComboboxControl
-													__nextHasNoMarginBottom
 													options={objectProps.contexts.map((context) => {
 														return { value: context, label: context };
 													})}
@@ -270,7 +265,6 @@ export default function PropEdit({ lismProp, onChange }) {
 												/>
 											) : (
 												<TextControl
-													__nextHasNoMarginBottom
 													value={object.key || ''}
 													placeholder='key'
 													className={
@@ -286,7 +280,6 @@ export default function PropEdit({ lismProp, onChange }) {
 										<FlexItem>:</FlexItem>
 										<FlexBlock>
 											<TextControl
-												__nextHasNoMarginBottom
 												value={object.value || ''}
 												placeholder='value'
 												className={

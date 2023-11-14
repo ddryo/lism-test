@@ -10,7 +10,6 @@ const LISM_BLOCKS = [
 	'lism-blocks/cluster',
 	'lism-blocks/columns',
 	'lism-blocks/flex',
-	'lism-blocks/fluid-fix',
 	'lism-blocks/ratio-grid',
 	'lism-blocks/stack',
 	'lism-blocks/tile-grid',

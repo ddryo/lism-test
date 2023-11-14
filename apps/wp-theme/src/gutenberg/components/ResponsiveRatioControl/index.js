@@ -44,7 +44,6 @@ export default function ResponsiveRatioControl({
 	return (
 		<BaseControl className='lism-responsiveRatioControl' label={label}>
 			<ToggleControl
-				__nextHasNoMarginBottom
 				label={__('Synced', 'lism-blocks')}
 				checked={isSynced}
 				onChange={onChangeIsSynced}

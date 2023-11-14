@@ -35,7 +35,6 @@ export default function FlowControl({ value, units: _units = DEFAULT_UNITS, onCh
 	return (
 		<div className='lism-flowControl'>
 			<ToggleControl
-				__nextHasNoMarginBottom
 				label={__('Use flow layout', 'lism-blocks')}
 				checked={value !== undefined}
 				onChange={(value) => {
@@ -44,7 +43,6 @@ export default function FlowControl({ value, units: _units = DEFAULT_UNITS, onCh
 			/>
 			{value !== undefined && (
 				<ToggleGroupControl
-					__nextHasNoMarginBottom
 					isBlock
 					label={__('Flow gap', 'lism-blocks')}
 					onChange={(value) => {
@@ -61,7 +59,6 @@ export default function FlowControl({ value, units: _units = DEFAULT_UNITS, onCh
 			{isCustomValue && (
 				<UnitControl
 					size={'__unstable-large'}
-					__nextHasNoMarginBottom
 					label={__('Custom', 'lism-blocks')}
 					labelPosition='top'
 					hideLabelFromVision

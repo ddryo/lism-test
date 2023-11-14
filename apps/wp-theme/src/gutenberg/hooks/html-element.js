@@ -17,6 +17,7 @@ const LISM_BLOCKS = [
 	'lism-blocks/fluid-fix',
 	'lism-blocks/ratio-grid',
 	'lism-blocks/stack',
+	'lism-blocks/switch-fix',
 	'lism-blocks/tile-grid',
 ];
 
@@ -113,7 +114,6 @@ export const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 			<>
 				<InspectorControls group='advanced'>
 					<SelectControl
-						__nextHasNoMarginBottom
 						label={__('HTML element', 'lism-blocks')}
 						options={[
 							{ label: __('Default (<div>)'), value: 'div' },

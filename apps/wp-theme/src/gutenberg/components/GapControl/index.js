@@ -53,7 +53,6 @@ export default function GapControl({ units: _units = DEFAULT_UNITS }) {
 					<FlexBlock>
 						<UnitControl
 							size={'__unstable-large'}
-							__nextHasNoMarginBottom
 							label={LABELS.all}
 							hideLabelFromVision
 							units={units}
@@ -72,7 +71,6 @@ export default function GapControl({ units: _units = DEFAULT_UNITS }) {
 							<UnitControl
 								key={side}
 								size={'__unstable-large'}
-								__nextHasNoMarginBottom
 								label={LABELS[side]}
 								hideLabelFromVision
 								units={units}

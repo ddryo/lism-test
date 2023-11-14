@@ -1,0 +1,47 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/alert",
+	"title": "Alert",
+	"category": "lism-blocks",
+	"keywords": ["alert", "notice"],
+	"supports": {
+		"anchor": true,
+		"className": false,
+		"color": {
+			"__experimentalDefaultControls": {
+				"text": true
+			}
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalFontWeight": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalTextTransform": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		}
+	},
+	"attributes": {
+		"keyColor": {
+			"type": "string"
+		},
+		"iconSize": {
+			"type": "string"
+		},
+		"iconLabel": {
+			"type": "string"
+		},
+		"iconSlug": {
+			"type": "string"
+		},
+		"flowGap": {
+			"type": "string"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

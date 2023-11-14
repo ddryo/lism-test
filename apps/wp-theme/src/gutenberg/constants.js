@@ -1,7 +1,14 @@
 /**
  * @External dependencies
  */
-import { PROPS, CONTEXT_PROPS, HOVER_PROPS, PROVIDABLE_PROPS } from '@loos/lism-core/src/config';
+import {
+	PROPS,
+	CONTEXT_PROPS,
+	HOVER_PROPS,
+	PROVIDABLE_PROPS,
+	AlertPresets,
+	IconPresets,
+} from '@loos/lism-core/src/config';
 
 /**
  * @WordPress dependencies
@@ -67,3 +74,22 @@ export const BREAKPOINTS = [
 		index: 3,
 	},
 ];
+
+// アラートプリセット一覧
+export const ALERT_PRESETS = Object.keys(AlertPresets).map((key) => {
+	const preset = AlertPresets[key];
+	return {
+		value: key,
+		icon: preset.icon,
+		color: preset.color,
+		label: preset.label,
+	};
+});
+
+// アイコンプリセット一覧
+export const ICON_PRESETS = Object.keys(IconPresets).map((key) => {
+	return {
+		value: key,
+		icon: IconPresets[key],
+	};
+});

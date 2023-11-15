@@ -104,21 +104,21 @@ registerBlockType(metadata.name, {
 			[clientId]
 		);
 
-		useEffect( () => {
-			if ( innerBlocks.length !== 2 ) {
+		useEffect(() => {
+			if (innerBlocks.length !== 2) {
 				return;
 			}
 			const hasFixedChildBlock = innerBlocks.some(({ attributes }) => {
 				return attributes.isFixed;
 			});
-			if ( hasFixedChildBlock ) {
+			if (hasFixedChildBlock) {
 				return;
 			}
 			// 子ブロックの数が2つ、かつどちらもfixedでない場合は、一方をfixedにする
 			updateBlockAttributes(innerBlocks[1].clientId, {
 				isFixed: true,
 			});
-		}, [innerBlocks.length] );
+		}, [innerBlocks.length]);
 
 		function onChangeFixedElement(value) {
 			// 子ブロックの一方をfixedにする

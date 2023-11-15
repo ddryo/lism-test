@@ -29,7 +29,7 @@ registerBlockType(metadata.name, {
 			isActive: (blockAttributes) => {
 				return blockAttributes.isFixed;
 			},
-			scope: [ 'block' ],
+			scope: ['block'],
 		},
 	],
 	edit: ({ attributes }) => {

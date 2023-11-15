@@ -8,11 +8,8 @@ import { Spacer } from '@loos/lism-core';
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import { useRef} from '@wordpress/element';
-import {
-	InspectorControls,
-	useBlockProps,
-} from '@wordpress/block-editor';
+import { useRef } from '@wordpress/element';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
 import { resizeCornerNE as icon } from '@wordpress/icons';
 
@@ -24,7 +21,7 @@ import {
 	AlignItemsControl,
 	JustifyItemsControl,
 	SelectorPreviewTip,
-	ResponsiveColumnsControl,
+	ResponsiveWidthControl,
 } from '@/gutenberg/components';
 
 registerBlockType(metadata.name, {
@@ -43,12 +40,13 @@ registerBlockType(metadata.name, {
 				backgroundColor: 'rgba(0,0,0,.1)',
 			},
 		});
-		const {ref, ...restBlockProps } = blockProps;
+		const { ref, ...restBlockProps } = blockProps;
 
 		return (
 			<>
 				<InspectorControls>
 					<PanelBody title={__('Setting', 'lism-blocks')}>
+						<ResponsiveWidthControl />
 					</PanelBody>
 				</InspectorControls>
 				<Spacer {...restBlockProps} forwardedRef={ref} />
@@ -64,8 +62,6 @@ registerBlockType(metadata.name, {
 			h: height,
 		});
 
-		return (
-			<Spacer {...blockProps} />
-		);
+		return <Spacer {...blockProps} />;
 	},
 });

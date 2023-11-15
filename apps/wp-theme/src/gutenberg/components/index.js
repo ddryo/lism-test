@@ -14,5 +14,6 @@ export { default as ResponsiveColumnsControl } from './ResponsiveColumnsControl'
 export { default as ResponsiveRatioControl } from './ResponsiveRatioControl';
 export { default as ResponsiveSpacingControl } from './ResponsiveSpacingControl';
 export { default as ResponsiveTabControl } from './ResponsiveTabControl';
+export { default as ResponsiveWidthControl } from './ResponsiveWidthControl';
 export { default as SelectorPreviewTip } from './SelectorPreviewTip';
 export { default as SpacingControl } from './SpacingControl';

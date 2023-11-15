@@ -8,7 +8,8 @@ import { SwitchFix } from '@loos/lism-core';
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import { useSelect } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
+import { useSelect, useDispatch } from '@wordpress/data';
 import {
 	InspectorControls,
 	InnerBlocks,
@@ -35,11 +36,11 @@ import { SelectorPreviewTip } from '@/gutenberg/components';
 const FIXED_ELEMENT_OPTIONS = [
 	{
 		label: __('First', 'lism-blocks'),
-		value: 'first',
+		value: 0,
 	},
 	{
 		label: __('Last', 'lism-blocks'),
-		value: 'last',
+		value: 1,
 	},
 ];
 
@@ -62,31 +63,82 @@ const FIXED_POSITION_OPTIONS = [
 	},
 ];
 
+const BREAKPOINTS = [
+	{
+		label: __('sm', 'lism-blocks'),
+		value: 'sm',
+	},
+	{
+		label: __('md', 'lism-blocks'),
+		value: 'md',
+	},
+];
+
+const TEMPLATE = [
+	['lism-blocks/switch-fix-item', { isFixed: true }],
+	['lism-blocks/switch-fix-item'],
+];
+
 registerBlockType(metadata.name, {
 	title: __('Switch Fix', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
 	icon,
 	edit: ({ attributes, setAttributes, clientId }) => {
-		const { fixedElementPosition, fixedWidth, anchor, className } = attributes;
+		const { fixedElementPosition, fixedWidth, breakPoint, anchor, className } = attributes;
 
 		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem', '%'] });
+		const { updateBlockAttributes } = useDispatch(blockEditorStore);
 
-		function onChangeFixedElement(value) {}
-
-		const innerBlocksLength = useSelect(
-			(select) => select(blockEditorStore).getBlocks(clientId).length,
+		const { innerBlocks, fixedChildBlockIndex } = useSelect(
+			(select) => {
+				const { getBlocks } = select(blockEditorStore);
+				const innerBlocks = getBlocks(clientId);
+				const fixedChildBlockIndex = innerBlocks.findIndex(({ attributes }) => {
+					return attributes.isFixed;
+				});
+				return {
+					innerBlocks,
+					fixedChildBlockIndex,
+				};
+			},
 			[clientId]
 		);
+
+		useEffect( () => {
+			if ( innerBlocks.length !== 2 ) {
+				return;
+			}
+			const hasFixedChildBlock = innerBlocks.some(({ attributes }) => {
+				return attributes.isFixed;
+			});
+			if ( hasFixedChildBlock ) {
+				return;
+			}
+			// 子ブロックの数が2つ、かつどちらもfixedでない場合は、一方をfixedにする
+			updateBlockAttributes(innerBlocks[1].clientId, {
+				isFixed: true,
+			});
+		}, [innerBlocks.length] );
+
+		function onChangeFixedElement(value) {
+			// 子ブロックの一方をfixedにする
+			innerBlocks?.forEach((childBlock, index) => {
+				updateBlockAttributes(childBlock.clientId, {
+					isFixed: index === value,
+				});
+			});
+		}
 
 		const blockProps = useBlockProps({
 			fix: fixedElementPosition,
 			fixW: fixedWidth,
+			breakPoint,
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
-			template: [['core/paragraph'], ['core/paragraph']],
-			templateLock: 'all',
-			renderAppender: innerBlocksLength < 2 ? InnerBlocks.ButtonBlockAppender : false,
+			template: TEMPLATE,
+			allowedBlocks: ['lism-blocks/switch-fix-item'],
+			renderAppender: innerBlocks.length < 2 ? undefined : false,
 		});
 
 		const { children, ref, ...innerProps } = innerBlocksProps;
@@ -99,6 +151,7 @@ registerBlockType(metadata.name, {
 							label={__('Fixed element', 'lism-blocks')}
 							onChange={onChangeFixedElement}
 							isBlock
+							value={fixedChildBlockIndex === 0 ? 0 : 1}
 						>
 							{FIXED_ELEMENT_OPTIONS.map(({ label, value }) => (
 								<ToggleGroupControlOption key={value} value={value} label={label} />
@@ -109,7 +162,7 @@ registerBlockType(metadata.name, {
 							options={FIXED_POSITION_OPTIONS}
 							value={fixedElementPosition}
 							onChange={(value) => {
-								setAttributes({fixedElementPosition: value});
+								setAttributes({ fixedElementPosition: value });
 							}}
 						/>
 						<UnitControl
@@ -122,6 +175,18 @@ registerBlockType(metadata.name, {
 								setAttributes({ fixedWidth: value || undefined });
 							}}
 						/>
+						<ToggleGroupControl
+							label={__('Breakpoint', 'lism-blocks')}
+							onChange={(value) => {
+								setAttributes({ breakPoint: value });
+							}}
+							isBlock
+							value={breakPoint}
+						>
+							{BREAKPOINTS.map(({ label, value }) => (
+								<ToggleGroupControlOption key={value} value={value} label={label} />
+							))}
+						</ToggleGroupControl>
 					</PanelBody>
 				</InspectorControls>
 				<SwitchFix {...innerProps} forwardedRef={ref}>
@@ -132,11 +197,12 @@ registerBlockType(metadata.name, {
 		);
 	},
 	save: ({ attributes }) => {
-		const { fixedElementPosition, fixedWidth } = attributes;
+		const { fixedElementPosition, fixedWidth, breakPoint } = attributes;
 
 		const blockProps = useBlockProps.save({
 			fix: fixedElementPosition,
 			fixW: fixedWidth,
+			breakPoint,
 		});
 
 		return (

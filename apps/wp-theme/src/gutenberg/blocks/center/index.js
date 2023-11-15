@@ -97,7 +97,7 @@ registerBlockType(metadata.name, {
 								min={0}
 								value={height}
 								onChange={(value) => {
-									setAttributes({height: value || undefined });
+									setAttributes({ height: value || undefined });
 								}}
 							/>
 						)}

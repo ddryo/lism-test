@@ -104,7 +104,7 @@ registerBlockType(metadata.name, {
 							min={0}
 							value={fluidMinWidth}
 							onChange={(value) => {
-								setAttributes({fluidMinWidth: value || undefined });
+								setAttributes({ fluidMinWidth: value || undefined });
 							}}
 						/>
 					</PanelBody>

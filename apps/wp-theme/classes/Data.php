@@ -18,17 +18,18 @@ class Data {
 	 * ブロック一覧
 	 */
 	const BLOCKS = [
-		'alert'      => [],
-		'box'        => [],
-		'center'     => [],
-		'cluster'    => [],
-		'columns'    => [],
-		'flex'       => [],
-		'fluid-fix'  => [],
-		'ratio-grid' => [],
-		'stack'      => [],
-		'switch-fix' => [],
-		'tile-grid'  => [],
+		'alert'           => [],
+		'box'             => [],
+		'center'          => [],
+		'cluster'         => [],
+		'columns'         => [],
+		'flex'            => [],
+		'fluid-fix'       => [],
+		'ratio-grid'      => [],
+		'stack'           => [],
+		'switch-fix'      => [],
+		'switch-fix-item' => [],
+		'tile-grid'       => [],
 	];
 
 	/**

@@ -3,6 +3,7 @@
 
 	> .components-base-control__field {
 		position: relative;
+		margin-bottom: 0;
 		padding: 24px 8px 8px;
 		border: 1px solid #ddd;
 
@@ -26,7 +27,8 @@
 
 	.__row {
 
-		.components-range-control {
+		.components-range-control,
+		.components-base-control__field {
 			margin-bottom: 0;
 		}
 	}

@@ -104,7 +104,7 @@ registerBlockType(metadata.name, {
 					</PanelBody>
 				</InspectorControls>
 				<Center {...innerProps} forwardedRef={ref}>
-					{/* <SelectorPreviewTip icon={icon} anchor={anchor} className={className} /> */}
+					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
 					{children}
 				</Center>
 			</>

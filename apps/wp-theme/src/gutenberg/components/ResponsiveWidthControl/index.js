@@ -5,6 +5,7 @@ import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import {
 	BaseControl,
+	Button,
 	Flex,
 	FlexBlock,
 	FlexItem,
@@ -21,15 +22,16 @@ import SingleValueControl from './SingleValueControl';
 
 const DEFAULT_LABEL = __('Width', 'lism-blocks');
 const DEFAULT_UNITS = ['px', 'em', 'rem', '%'];
+const DEFAULT_VALUE = '100px';
 
 export default function ResponsiveWidthControl({
 	label = DEFAULT_LABEL,
 	value: widthValue = '',
-	defaultValue = '',
+	defaultValue = DEFAULT_VALUE,
 	units: _units = DEFAULT_UNITS,
 	onChange,
 }) {
-	const isSingleValue = typeof widthValue === 'string';
+	const isSingleValue = typeof widthValue === 'string' || typeof widthValue === 'number';
 	const [isSynced, setIsSynced] = useState(isSingleValue);
 	const units = useCustomUnits({ availableUnits: _units });
 
@@ -45,13 +47,17 @@ export default function ResponsiveWidthControl({
 	}
 
 	function onChangeAll(value) {
-		onChange(value.toString());
+		onChange(value);
 	}
 
 	function onChangePercial(value, index) {
 		const newValue = [...parsedValue];
-		newValue[index] = value.toString();
+		newValue[index] = value;
 		onChange(newValue);
+	}
+
+	function onReset() {
+		onChange(defaultValue);
 	}
 
 	return (
@@ -64,18 +70,29 @@ export default function ResponsiveWidthControl({
 				/>
 				{isSynced ? (
 					<div className='__row'>
-						<SingleValueControl units={units} />
+						<SingleValueControl
+							units={units}
+							value={parsedValue[0]}
+							onChange={onChangeAll}
+						/>
 					</div>
 				) : (
 					BREAKPOINTS.map(({ name, title }, index) => (
 						<Flex className='__row' key={name}>
 							<FlexItem className='__title'>{title}</FlexItem>
 							<FlexBlock>
-								<SingleValueControl units={units} />
+								<SingleValueControl
+									units={units}
+									value={parsedValue[index]}
+									onChange={(value) => onChangePercial(value, index)}
+								/>
 							</FlexBlock>
 						</Flex>
 					))
 				)}
+				<Button className='__reset' variant='secondary' size='small' onClick={onReset}>
+					{__('Reset', 'lism-blocks')}
+				</Button>
 			</VStack>
 		</BaseControl>
 	);

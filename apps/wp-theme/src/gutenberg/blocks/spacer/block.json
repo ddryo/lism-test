@@ -9,11 +9,14 @@
 		"className": false
 	},
 	"attributes": {
-		"width": {
-			"type": ["number", "string", "array"]
+		"orientation": {
+			"type": ["string"],
+			"enum": ["vertical", "horizontal"],
+			"default": "vertical"
 		},
 		"height": {
-			"type": ["number", "string", "array"]
+			"type": ["number", "string", "array"],
+			"default": "100px"
 		}
 	},
 	"editorScript": "file:./index.js",

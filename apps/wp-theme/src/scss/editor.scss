@@ -7,5 +7,6 @@
 // @import "../gutenberg/**/_editor.scss";
 
 .editor-styles-wrapper {
-	container-type: inline-size;
+	// ブロック挿入後、ブロックが見えなくなるので、一旦コメントアウト
+	// container-type: inline-size;
 }

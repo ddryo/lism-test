@@ -20,11 +20,12 @@ import {
 import { BREAKPOINTS } from '@/gutenberg/constants';
 
 const DEFAULT_LABEL = __('Columns', 'lism-blocks');
+const DEFAULT_VALUE = '2';
 
 export default function ResponsiveColumnsControl({
 	label = DEFAULT_LABEL,
 	value: columnValue = '',
-	defaultValue = '2',
+	defaultValue = DEFAULT_VALUE,
 	onChange,
 }) {
 	const isSingleValue = typeof columnValue === 'string';

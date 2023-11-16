@@ -23,6 +23,7 @@ class Data {
 		'center'          => [],
 		'cluster'         => [],
 		'columns'         => [],
+		'divider'         => [],
 		'flex'            => [],
 		'fluid-fix'       => [],
 		'ratio-grid'      => [],

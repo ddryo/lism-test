@@ -66,23 +66,23 @@ registerBlockType(metadata.name, {
 				type: 'block',
 				blocks: ['core/spacer'],
 				transform: ({ height }) => {
-					const getHeight = ( height ) => {
-						if ( typeof height === 'string' ) {
+					const getHeight = (height) => {
+						if (typeof height === 'string') {
 							return height;
-						} else if( typeof height === 'number' ) {
+						} else if (typeof height === 'number') {
 							return `${height}px`;
 						}
-						if ( !height[0] ) {
+						if (!height[0]) {
 							return undefined;
 						}
 						return typeof height[0] === 'string' ? height[0] : `${height[0]}px`;
-					}
+					};
 					return createBlock('core/spacer', {
 						height: getHeight(height),
 					});
 				},
-			}
-		]
+			},
+		],
 	},
 	edit: (props) => {
 		const { attributes, setAttributes } = props;

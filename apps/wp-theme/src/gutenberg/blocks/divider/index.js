@@ -14,12 +14,7 @@ import {
 	__experimentalUseColorProps as useColorProps,
 	__experimentalGetColorClassesAndStyles as getColorClassesAndStyles,
 } from '@wordpress/block-editor';
-import {
-	PanelBody,
-	RangeControl,
-	SelectControl,
-	ToggleControl,
-} from '@wordpress/components';
+import { PanelBody, RangeControl, SelectControl, ToggleControl } from '@wordpress/components';
 
 /**
  * @Internal dependencies
@@ -53,13 +48,30 @@ registerBlockType(metadata.name, {
 	// icon,
 	edit: (props) => {
 		const { attributes, setAttributes } = props;
-		const { shape, level, isFlip, isAnimation } = attributes;
+		const { shape, level, stretch, offset, isFlip, isAnimation } = attributes;
 		const colorProps = useColorProps(attributes);
+
+		// 横方向の伸縮率が変わった時に、シェイプが見切れないようにオフセット値を丸める
+		function roundOffsetValueFromStretch(stretchValue) {
+			const offsetMinValue = Math.ceil((stretchValue - 1) * -50);
+			const offsetMaxValue = Math.floor((stretchValue - 1) * 50);
+			if (offset < offsetMinValue) {
+				setAttributes({ offset: offsetMinValue });
+			} else if (offset > offsetMaxValue) {
+				setAttributes({ offset: offsetMaxValue });
+			}
+		}
+
+		// 横方向の伸縮率が1ではない時に、シェイプが見切れないオフセット範囲を計算する
+		const offsetMinValue = stretch && stretch !== 1 ? Math.ceil((stretch - 1) * -50) : 0;
+		const offsetMaxValue = stretch && stretch !== 1 ? Math.floor((stretch - 1) * 50) : 0;
 
 		const blockProps = useBlockProps({
 			c: colorProps?.style?.backgroundColor || 'inherit',
 			shape,
 			level,
+			stretch,
+			offset: offset ? `${offset}%` : undefined,
 			isFlip,
 			isAnimation,
 		});
@@ -77,7 +89,7 @@ registerBlockType(metadata.name, {
 									value,
 								};
 							})}
-							value={ shape || 'Wave1' }
+							value={shape || 'Wave1'}
 							onChange={(value) => {
 								setAttributes({ shape: value });
 							}}
@@ -90,6 +102,33 @@ registerBlockType(metadata.name, {
 							step={0.1}
 							onChange={(value) => {
 								setAttributes({ level: value });
+							}}
+							allowReset
+						/>
+						<RangeControl
+							label={__('Stretch horizontally', 'lism-blocks')}
+							value={stretch}
+							min={1}
+							max={3}
+							step={0.05}
+							onChange={(value) => {
+								setAttributes({ stretch: value || 1 });
+								if (!value) {
+									setAttributes({ offset: undefined });
+								} else {
+									roundOffsetValueFromStretch(value);
+								}
+							}}
+							allowReset
+						/>
+						<RangeControl
+							label={__('Horizontal offset (%)', 'lism-blocks')}
+							value={stretch !== 1 ? offset : 0}
+							min={offsetMinValue}
+							max={offsetMaxValue}
+							disabled={stretch === 1}
+							onChange={(value) => {
+								setAttributes({ offset: value });
 							}}
 							allowReset
 						/>
@@ -115,13 +154,14 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { shape, level, isFlip, isAnimation } = attributes;
+		const { shape, level, stretch, offset, isFlip, isAnimation } = attributes;
 		const colorProps = getColorClassesAndStyles(attributes);
-
 		const blockProps = useBlockProps.save({
 			c: colorProps?.style?.backgroundColor || 'inherit',
 			shape,
-			level,
+			level: level ? level.toString() : '5',
+			stretch: stretch ? stretch.toString() : '0',
+			offset: offset ? `${offset}%` : undefined,
 			isFlip,
 			isAnimation,
 		});

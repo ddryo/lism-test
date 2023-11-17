@@ -31,6 +31,8 @@ class Data {
 		'stack'           => [],
 		'switch-fix'      => [],
 		'switch-fix-item' => [],
+		'term-list'       => [],
+		'term-list-row'   => [],
 		'tile-grid'       => [],
 	];
 

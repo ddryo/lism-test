@@ -12,6 +12,8 @@ const LISM_BLOCKS = [
 	'lism-blocks/flex',
 	'lism-blocks/ratio-grid',
 	'lism-blocks/stack',
+	'lism-blocks/term-list',
+	'lism-blocks/term-list-row',
 	'lism-blocks/tile-grid',
 ];
 

@@ -273,7 +273,7 @@ export const CONTEXT_PROPS = {
 		color: { name: 'bgc', presets: 1, utils: 1, converter: 'color' },
 		attachment: { style: 'backgroundAttachment' },
 		blendMode: { style: 'backgroundBlendMode' },
-		clip: { style: 'backgroundClip' },
+		clip: { style: 'backgroundClip', utils: 'bgcp', utilKey: 'bgcp' },
 		image: { style: 'backgroundImage' },
 		origin: { style: 'backgroundOrigin' },
 		position: { style: 'backgroundPosition' },

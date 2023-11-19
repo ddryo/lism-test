@@ -1,6 +1,5 @@
-// import React from 'react';
 import { Core } from '../Core';
-import { Layout } from '../Layout';
+import { Layouter } from '../Layouter';
 // import { Flex } from '../Flex';
 // import { Stack } from '../Flex/Stack';
 import { Icon } from '../Icon';
@@ -62,7 +61,7 @@ export default function Note({
 	// }
 
 	return (
-		<Layout lismClass={lismClass} {...attrs}>
+		<Layouter lismClass={lismClass} {...attrs}>
 			{heading && (
 				<Core lismClass={{ c: 'c--note__head' }} {...headProps}>
 					{icon && (
@@ -72,9 +71,9 @@ export default function Note({
 				</Core>
 			)}
 
-			<Layout lismClass={{ c: 'c--note__body' }} isFlow={isFlow} {...bodyProps}>
+			<Layouter lismClass={{ c: 'c--note__body' }} isFlow={isFlow} {...bodyProps}>
 				{children}
-			</Layout>
-		</Layout>
+			</Layouter>
+		</Layouter>
 	);
 }

@@ -1,0 +1,41 @@
+---
+import { LismProps } from './types';
+import { Lism, Frame, LinkBox, FilterLayer } from '@loos/lism-core';
+import { getLismProps } from '@loos/lism-core/lib';
+import { MediaLayer } from '../MediaLayer/index.js';
+
+const { lismClass = {}, lismStyle = {}, children, duration, ...props } = Astro.props || {};
+
+lismClass.c = 'c--accordion';
+
+const theProps = props;
+if (props.ratio) theProps.as = Frame;
+let Component = null;
+if (props.href) {
+	Component = LinkBox;
+} else {
+	Component = Lism;
+}
+
+lismClass.c = 'c--accordion';
+
+// duration: [s]
+if (duration) lismStyle['--duration'] = duration;
+
+const lismProps = getLismProps(props, { lismClass, lismStyle });
+---
+
+<details {...lismProps}>
+	<slot />
+</details>
+
+<script>
+	import setEvent from './setEvent';
+
+	const accs = document.querySelectorAll('.c--accordion');
+	console.log('accs', accs);
+	accs.forEach((acc) => {
+		console.log('acc', acc);
+		setEvent(acc);
+	});
+</script>

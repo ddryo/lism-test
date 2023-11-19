@@ -7,7 +7,7 @@ import { getLismProps } from '../../lib';
  * tag: string. htmlタグ名。
  */
 export default function Core({ children, as, tag, ...props }) {
-	const { className, style, attrs } = getLismProps(props);
+	const lismProps = getLismProps(props);
 
 	// tagは文字列のみ。（asはコンポーネントも指定できる。）
 	if (tag && typeof tag !== 'string') {
@@ -15,9 +15,5 @@ export default function Core({ children, as, tag, ...props }) {
 	}
 
 	const JSX = as || tag || 'div';
-	return (
-		<JSX className={className} style={style} {...attrs}>
-			{children}
-		</JSX>
-	);
+	return <JSX {...lismProps}>{children}</JSX>;
 }

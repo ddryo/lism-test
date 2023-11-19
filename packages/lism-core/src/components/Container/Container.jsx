@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Layout } from '../Layout';
+import { Layouter } from '../Layouter';
 
 export default function Container({ size, isConstrained, ...props }) {
 	const contentProps = {};
@@ -13,5 +13,5 @@ export default function Container({ size, isConstrained, ...props }) {
 		}
 	}
 
-	return <Layout {...contentProps} {...props} />;
+	return <Layouter {...contentProps} {...props} />;
 }

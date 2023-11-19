@@ -1,0 +1,39 @@
+---
+import { LismProps } from '../types';
+import Core from '../Core.astro';
+import { Icon } from '@loos/lism-core'; // .astroに書き換えたいが複雑なので後回し
+
+// Propsの定義
+interface Props extends LismProps {
+	isTrigger?: boolean;
+	icon?: string;
+	size?: string;
+	iconProps?: Object;
+}
+
+let {
+	lismClass = {},
+	icon = 'svg-caret-down-fill', // accordion-toggle
+	isTrigger,
+	iconProps = {},
+	size = '1em',
+	...props
+} = Astro.props || {};
+
+lismClass.c = 'c--accordion__icon';
+
+// trigger=iconなら、iconをbuttunに
+if (isTrigger) {
+	props.tag = 'button';
+	props['data-role'] = 'trigger';
+	if (!props.bgc) props.bgc = 'transparent';
+} else {
+	props['aria-hidden'] = 'true';
+}
+
+// const icons = children || <Icon icon={icon} size={size} {...iconProps} />;
+---
+
+<Core tag='span' lismClass={lismClass} d='inline-flex' flexItem={{ shrink: '0' }} {...props}>
+	{Astro.slots.has('default') ? <slot /> : <Icon icon={icon} size={size} {...iconProps} />}
+</Core>

@@ -1,10 +1,9 @@
 {
 	"index": "",
 	"Core": "",
-	"Layout": "",
 	"Text": "",
 	"Media": "",
-	
+	"Layouter": "",
 	"--- layout": {
 		"type": "separator",
 		"title": "Layout"

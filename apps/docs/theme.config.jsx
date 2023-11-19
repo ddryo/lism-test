@@ -4,7 +4,7 @@ import { useConfig } from 'nextra-theme-docs';
 
 // import Demo from '@/components/Demo';
 import Footer from '@/components/Footer';
-import { Layout } from '@loos/lism-core';
+import { Layouter } from '@loos/lism-core';
 
 import { getMyComponents } from '@/theme/mdx-components';
 
@@ -20,9 +20,9 @@ export default {
 	main: ({ children }) => {
 		const { asPath } = useRouter();
 		return (
-			<Layout className='a--main' isConstrained isFlow lh='1.75' data-docs-path={asPath}>
+			<Layouter className='a--main' isConstrained isFlow lh='1.75' data-docs-path={asPath}>
 				{children}
-			</Layout>
+			</Layouter>
 		);
 	},
 

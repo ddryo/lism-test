@@ -6,7 +6,7 @@
 // import React from 'react';
 
 export { Core } from './Core';
-export { Layout } from './Layout';
+export { Layouter } from './Layouter';
 export { Lism } from './Lism'; // あとで消す
 export { Text } from './Text';
 export { Media } from './Media';
@@ -55,7 +55,7 @@ export {
 	AccordionIcon,
 	AccordionGroup,
 } from './Accordion';
-export { Tabs, TabItem } from './Tabs';
+export { Tab, Tabs, TabItem } from './Tabs';
 // export { DynamicCSS } from './DynamicCSS';
 
 // Blocks

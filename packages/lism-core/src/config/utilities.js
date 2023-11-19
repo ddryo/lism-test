@@ -5,6 +5,7 @@ export default {
 	bgc: { none: 't', transparent: 't', currentColor: 'cc' },
 	bdc: { none: 't', transparent: 't', inherit: 'i' },
 	bg: { none: 'n' },
+	bgcp: { text: 'tx' },
 	margin: { auto: 'a' },
 	place: {
 		center: 'c',

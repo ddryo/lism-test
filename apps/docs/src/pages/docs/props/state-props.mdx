@@ -1,13 +1,13 @@
-import { Layout, Box, Text, Stack, Flex, Flow } from '@loos/lism-core';
+import { Layouter, Box, Text, Stack, Flex, Flow } from '@loos/lism-core';
 
 
 # State Props
 
-Layout Stateクラスに対応するPropsを紹介します。
+LayoutStateクラスに対応するPropsを紹介します。
 
 
 <Alert preset='info'>
-ここで紹介するPropは、`<Layout>`系コンポーネントでのみ有効です。
+ここで紹介するPropは、`<Layouter>`系コンポーネントでのみ有効です。
 </Alert>
 
 
@@ -28,19 +28,19 @@ Layout Stateクラスに対応するPropsを紹介します。
 <Demo>
 	<Demo.Title>`isFlow`</Demo.Title>
 	<Demo.Preview resize p={5}>
-		<Layout isFlow>
+		<Layouter isFlow>
 			<p className='-bd:guide'>コンテンツ</p>
 			<p className='-bd:guide'>コンテンツ</p>
 			<p className='-bd:guide'>コンテンツ</p>
-		</Layout>
+		</Layouter>
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx
-	<Layout isFlow>
+	<Layouter isFlow>
 		<p>...</p>
 		<p>...</p>
 		<p>...</p>
-	</Layout>
+	</Layouter>
 	```
 	</Demo.Code>
 </Demo>
@@ -75,8 +75,8 @@ Layout Stateクラスに対応するPropsを紹介します。
 	<Demo.Title>isConstrained</Demo.Title>
 	<Demo.Code>
 	```jsx
-	<Layout isConstrained>...</Layout>
-	<Layout isConstrained='s'>...</Layout>
+	<Layouter isConstrained>...</Layouter>
+	<Layouter isConstrained='s'>...</Layouter>
 	```
 	</Demo.Code>
 </Demo>
@@ -100,8 +100,8 @@ Layout Stateクラスに対応するPropsを紹介します。
 	<Demo.Title>isContainer</Demo.Title>
 	<Demo.Code>
 	```jsx
-	<Layout isContainer>...</Layout>
-	<Layout isContainer='s'>...</Layout>
+	<Layouter isContainer>...</Layouter>
+	<Layouter isContainer='s'>...</Layouter>
 	```
 	</Demo.Code>
 </Demo>
@@ -120,15 +120,15 @@ Layout Stateクラスに対応するPropsを紹介します。
 <Demo>
 	<Demo.Title>`hasGutter`</Demo.Title>
 	<Demo.Preview resize p={5}>
-		<Layout hasGutter>
+		<Layouter hasGutter>
 			<p className='-bd:guide'>コンテンツ</p>
-		</Layout>
+		</Layouter>
 	</Demo.Preview>
 	<Demo.Code>
 	```jsx
-	<Layout hasGutter>
+	<Layouter hasGutter>
 		...
-	</Layout>
+	</Layouter>
 	```
 	</Demo.Code>
 </Demo>

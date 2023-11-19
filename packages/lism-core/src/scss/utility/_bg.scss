@@ -6,6 +6,17 @@
 	background: none;
 }
 
+// background-clip: text;は -webkit- いるのでユーティリティクラスで。
+.-bgcp\:tx {
+	background-clip: text;
+	// -webkit-background-clip: text;
+}
+:where(.-bgcp\:tx) {
+	color: transparent;
+}
+
+// bgcp:bb, bgcp:pb, bgcp:cb, bgcp:nc
+
 // 罫線 : Ruled paper, lined paper, rulied lines
 
 // 方眼 : graph paper, grid paper, squared paper

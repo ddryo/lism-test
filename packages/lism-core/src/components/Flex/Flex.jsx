@@ -1,45 +1,18 @@
 // import React from 'react';
 import { Lism } from '../Lism';
-import { isEmptyObj, filterEmptyObj } from '../../lib/helper';
+import { getFlexProps } from '../../lib';
 
-export default function Flex({
-	_flexName = 'flex',
-	lismClass = {},
-	direction,
-	wrap,
-	ai,
-	ac,
-	ji,
-	jc,
-	gap,
-	rowGap,
-	columnGap,
-	hasDivider,
-	...props
-}) {
-	const flex = filterEmptyObj({
-		direction,
-		wrap,
-		ai,
-		ac,
-		ji,
-		jc,
-		gap,
-		rowGap,
-		columnGap,
-	});
-
-	if (!isEmptyObj(flex)) {
-		props.flex = flex;
-	}
-
+export default function Flex({ _flexName = 'flex', lismClass = {}, hasDivider, ...props }) {
 	if (_flexName) {
 		lismClass.l = `l--${_flexName}`;
 	}
 
+	// flex 系の props をまとめる
+	props = getFlexProps(props);
+
 	// stack方向 は divider が B になる
 	if (hasDivider && hasDivider === true) {
-		if (_flexName === 'stack' || direction === 'column') {
+		if (_flexName === 'stack' || props.flex?.direction === 'column') {
 			hasDivider = 'B';
 		} else {
 			hasDivider = 'I';

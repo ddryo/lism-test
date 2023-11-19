@@ -1,17 +1,17 @@
-.l--tab {
+.c--tab {
 	--arkb-tab-width: unset;
 	--arkb-tab-min-width: unset;
 	--arkb-tab-list-wrap: nowrap;
 	position: relative;
 
 	// &[data-has-tab-link] {
-	// 	.l--tab__button {
+	// 	.c--tab__button {
 	// 		transition: none;
 	// 	}
 	// }
 }
 
-.l--tab__list {
+.c--tab__list {
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -26,16 +26,9 @@
 	// &[data-justify="right"] {
 	// 	justify-content: flex-end;
 	// }
-
-	// .arkb-tabList__item {
-	// 	flex-basis: var(--arkb-tab-width);
-	// 	min-width: var(--arkb-tab-min-width);
-	// 	margin: 0; // .c-postContent ul li のmarginを打ち消す
-	// 	text-align: center;
-	// }
 }
 
-.l--tab__button {
+.c--tab__button {
 	--bdw: 2px;
 	position: relative;
 	display: block;
@@ -83,7 +76,7 @@
 // 	padding: 1.5em;
 // }
 
-.l--tab__panel {
+.c--tab__panel {
 	position: relative;
 	width: 100%;
 
@@ -94,14 +87,14 @@
 
 // @import "../../../scss/mixin/media";
 
-.l--tab[data-keep-height='1'] {
+.c--tab[data-keep-height='1'] {
 	// 親にgridで子にgrid-rowとgrid-colをそれぞれ1 / -1するともっと簡単かもです？
 	// それだけで重なるはず。
 
-	.l--tab__panels {
+	.c--tab__panels {
 		display: grid;
 	}
-	.l--tab__panel {
+	.c--tab__panel {
 		grid-row: 1 / -1;
 		grid-column: 1 / -1;
 		transform: translateY(0);

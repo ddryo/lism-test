@@ -1,0 +1,24 @@
+---
+import { LismProps } from '../types';
+import Core from '../Core.astro';
+
+interface Props extends LismProps {
+	tag?: string;
+}
+
+let { lismClass = {}, tag, ...props } = Astro.props || {};
+
+lismClass.c = 'c--accordion__label';
+
+const labelTag = tag || 'span';
+
+// span以外になっても見た目は変わらないように
+if ('span' !== labelTag) {
+	// hタグになっても文字サイズなどは変わらないように.
+	props = Object.assign({ font: 'inherit' }, props);
+}
+---
+
+<Core tag={labelTag} lismClass={lismClass} {...props}>
+	<slot />
+</Core>

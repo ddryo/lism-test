@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Layout } from '../Layout';
+import { Layouter } from '../Layouter';
 import { Icon } from '../Icon';
 import { FluidFix } from '../Flex/FluidFix';
 import { Center } from '../Flex/Center';
@@ -47,9 +47,9 @@ export default function Alert({ lismClass = {}, lismStyle = {}, isFlow, ...props
 					<Icon icon={icon} label={iconLabel} size='1em' />
 				</Center>
 			)}
-			<Layout className='c--alert__body' isFlow={isFlow}>
+			<Layouter className='c--alert__body' isFlow={isFlow}>
 				{children}
-			</Layout>
+			</Layouter>
 		</FluidFix>
 	);
 }

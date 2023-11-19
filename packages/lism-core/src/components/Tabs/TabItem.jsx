@@ -1,15 +1,18 @@
 // import {useContext} from 'react';
 import { Lism } from '../Lism';
 
-export default function TabItem({ panelId, isActive, children, ...attrs }) {
+// Note: <Tabs>側でループして色々処理される。
+export default function TabItem({ panelId, isActive, label, children, ...attrs }) {
 	// const { tabId, activeIndex } = useContext(TabContext);
 
-	// 表示対象になっているタブのみコンテンツ描画
+	// label: ボタンのテキスト
+	// children: パネルの中身
 	return (
 		<Lism
-			lismClass='l--tab__panel'
-			role='tabpanel'
+			lismClass='c--tab__panel'
 			id={panelId}
+			role='tabpanel'
+			label={label}
 			aria-hidden={isActive ? 'false' : 'true'}
 			{...attrs}
 		>

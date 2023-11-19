@@ -81,6 +81,34 @@ export const AccDemoContent = () => {
 </Demo>
 
 <Demo>
+	<Demo.Title>Accordionアイコン `svg-caret-down`</Demo.Title>
+	<Demo.Preview isShadow={1} resize p={20}>
+		<Accordion>
+			<AccordionHeader>
+				<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+				<AccordionIcon icon='svg-caret-down'/>
+			</AccordionHeader>
+			<AccordionBody>
+				<DammyText length="l" />
+			</AccordionBody>
+		</Accordion>
+	</Demo.Preview>
+	<Demo.Code>
+```jsx
+<Accordion>
+	<AccordionHeader>
+		<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+		<AccordionIcon icon='svg-caret-down'/>
+	</AccordionHeader>
+	<AccordionBody>
+		...
+	</AccordionBody>
+</Accordion>
+```
+	</Demo.Code>
+</Demo>
+
+<Demo>
 	<Demo.Title>アイコンを左側に表示</Demo.Title>
 	<Demo.Preview isShadow={1} resize p={20}>
 		<Accordion>

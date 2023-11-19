@@ -32,7 +32,7 @@ const HoverProps = {
 // 	margin: 'm',
 // };
 
-class CommonProps {
+class LismPropsData {
 	// propList = {};
 	// styles = {};
 	// className = '';
@@ -485,32 +485,22 @@ class CommonProps {
  */
 
 // styleを生成するための共通処理
+// options:初期値などが渡ってくる
 export default function getLismProps(props, options = {}) {
-	// const beforeMethod = performance.now();
-
-	props = { ...options, ...props }; // options:初期値などが渡ってくる
-
+	props = Object.assign(options, props);
 	if (props.length === 0) {
-		return {
-			className: '',
-			style: {},
-			attrs: {},
-		};
+		return {};
 	}
 
-	const CP = new CommonProps(props);
-
+	// const beforeMethod = performance.now();
+	const propObj = new LismPropsData(props);
 	// const afterMethod = performance.now();
 	// const theTime = afterMethod - beforeMethod;
-	// if (theTime > 0) {
-	// console.log('TIME ' + theTime + ' ms');
-	// }
+	// if (theTime > 0) console.log('TIME ' + theTime + ' ms');
 
-	// CP.attrs['data-lism-prop'] = CP.utilityClasses;
-
-	return {
-		className: joinAtts(CP.className, CP.utilityClasses),
-		style: filterEmptyObj(CP.styles), //filterEmptyObj(styles), // filterEmptyObj は最後にかける
-		attrs: CP.attrs, // 処理されずに残っているprops
-	};
+	return filterEmptyObj({
+		className: joinAtts(propObj.className, propObj.utilityClasses),
+		style: filterEmptyObj(propObj.styles), //filterEmptyObj(styles), // filterEmptyObj は最後にかける
+		...propObj.attrs, // 処理されずに残っているprops
+	});
 }

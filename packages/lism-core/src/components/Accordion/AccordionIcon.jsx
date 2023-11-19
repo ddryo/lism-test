@@ -5,7 +5,7 @@ import { Icon } from '../Icon';
 
 export default function AccordionIcon({
 	lismClass = {},
-	icon = 'accordion-toggle',
+	icon = 'svg-caret-down-fill', // accordion-toggle
 	isTrigger,
 	children,
 	iconProps = {},

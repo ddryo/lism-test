@@ -1,0 +1,24 @@
+---
+// import React from 'react';
+import { Lism } from '@loos/lism-core';
+
+interface Props {
+	lismClass?: object;
+	isFlow?: string | boolean;
+	[key: string]: any; // 任意のプロパティを受け取る
+}
+
+let {
+	lismClass = {}, //lismStyle = {},
+	isFlow,
+	...props
+} = Astro.props || {};
+
+lismClass.c = 'c--accordion__body';
+---
+
+<Lism lismClass={lismClass} p='box:s' {...props}>
+	<Lism class='c--accordion__inner' isFlow={isFlow}>
+		<slot />
+	</Lism>
+</Lism>

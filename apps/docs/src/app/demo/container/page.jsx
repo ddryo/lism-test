@@ -1,4 +1,4 @@
-import { Box, Container, Layer, Layout, Text, Badge, Note } from '@loos/lism-core';
+import { Box, Container, Layer, Layouter, Text, Badge, Note } from '@loos/lism-core';
 import './style.scss';
 
 function TipCode({ text, color = 'blue', ...props }) {
@@ -38,20 +38,20 @@ function AlignFull({ text, children, ...props }) {
 
 export default function ContainerTest() {
 	return (
-		<Layout isFlow hasGutter py={50} isContainer alignfull id='demo-wrapper'>
+		<Layouter isFlow hasGutter py={50} isContainer alignfull id='demo-wrapper'>
 			<Note heading='このページの注意点' preset='warning'>
 				<p>
 					小めの画面でも確認しやすいように、各コンテナサイズをLismのデフォルト値よりも狭くなるように上書きセットしています。
 				</p>
 			</Note>
 			<h2>is--constrained</h2>
-			<Layout isConstrained>
+			<Layouter isConstrained>
 				<Text ta='c' lh='1'>
 					<TipCode text='is--constrained' />
 				</Text>
 				<LoremContent />
 				<LoremContent />
-			</Layout>
+			</Layouter>
 			<Container isConstrained='s' isFlow>
 				<Text ta='c' lh='1'>
 					<TipCode text='is--constrained:s' />
@@ -61,7 +61,7 @@ export default function ContainerTest() {
 				<LoremContent />
 				<LoremContent />
 			</Container>
-			<Layout isConstrained hasGutter isFlow='s'>
+			<Layouter isConstrained hasGutter isFlow='s'>
 				<Text ta='c' lh='1'>
 					<TipCode text='is--constrained' />
 					{' , '}
@@ -72,7 +72,7 @@ export default function ContainerTest() {
 				<LoremContent />
 				<LoremContent />
 				<Layer className='gutter-guide' mbs='0' />
-			</Layout>
+			</Layouter>
 			{/* <Container isConstrained='400px' isFlow='s'>
 				<Text ta='c' lh='1'>
 					<TipCode text='isConstrained=400px' />
@@ -89,7 +89,7 @@ export default function ContainerTest() {
 
 			<h3>alignfull</h3>
 			<p>alignfull は、親が has--gutter を持っていても全幅に広がります。</p>
-			<Layout isConstrained hasGutter isFlow='s'>
+			<Layouter isConstrained hasGutter isFlow='s'>
 				{/* <Text ta='c' lh='1'>
 						<TipCode text='hasGutter' color='purple' />
 					</Text> */}
@@ -103,11 +103,11 @@ export default function ContainerTest() {
 
 				<LoremContent />
 				<Layer className='gutter-guide' mbs='0' />
-			</Layout>
+			</Layouter>
 			<h3>alignwide</h3>
 			<p>constrainedの幅によってかわります。</p>
 
-			<Layout isConstrained='s' isFlow='s'>
+			<Layouter isConstrained='s' isFlow='s'>
 				<Text ta='c' lh='1'>
 					<TipCode text='is--constrained:s' />
 				</Text>
@@ -117,8 +117,8 @@ export default function ContainerTest() {
 					: <code>--size--m</code>
 				</AlignWide>
 				{/* <LoremContent /> */}
-			</Layout>
-			<Layout isConstrained isFlow='s'>
+			</Layouter>
+			<Layouter isConstrained isFlow='s'>
 				<Text ta='c' lh='1'>
 					<TipCode text='is--constrained' />
 				</Text>
@@ -127,8 +127,8 @@ export default function ContainerTest() {
 					: <code>--size--l</code>
 				</AlignWide>
 				{/* <LoremContent /> */}
-			</Layout>
-			<Layout isConstrained='l' isFlow='s'>
+			</Layouter>
+			<Layouter isConstrained='l' isFlow='s'>
 				<Text ta='c' lh='1'>
 					<TipCode text='is--constrained:l' />
 				</Text>
@@ -137,7 +137,7 @@ export default function ContainerTest() {
 					: <code>100%</code>
 				</AlignWide>
 				{/* <LoremContent /> */}
-			</Layout>
+			</Layouter>
 
 			<h3>is--constrainedのネスト</h3>
 			<p>
@@ -145,21 +145,21 @@ export default function ContainerTest() {
 				<br />
 				(alignfullで全幅にしつつネストすれば回避できる。)
 			</p>
-			<Layout isConstrained hasGutter isFlow='s'>
+			<Layouter isConstrained hasGutter isFlow='s'>
 				<Text ta='c' lh='1'>
 					<TipCode text='is--constrained' />
 					{' , '}
 					<TipCode text='hasGutter' color='purple' />
 				</Text>
 				<LoremContent />
-				<Layout isConstrained='s' isFlow='s'>
+				<Layouter isConstrained='s' isFlow='s'>
 					<Text ta='c' lh='1'>
 						<TipCode text='is--constrained:s' />
 					</Text>
 					<LoremContent />
 					<LoremContent />
-				</Layout>
-				<Layout isConstrained='s' alignfull isFlow='s' bgc='pink:.01' bg='stripe'>
+				</Layouter>
+				<Layouter isConstrained='s' alignfull isFlow='s' bgc='pink:.01' bg='stripe'>
 					<Text ta='c' lh='1'>
 						<TipCode text='is--constrained:s' />
 						{' , '}
@@ -167,10 +167,10 @@ export default function ContainerTest() {
 					</Text>
 					<LoremContent bg='' bgc='gray:.15' />
 					<LoremContent bg='' bgc='gray:.15' />
-				</Layout>
+				</Layouter>
 				{/* guide */}
 				<Layer className='gutter-guide' mbs='0' />
-			</Layout>
+			</Layouter>
 
 			<hr />
 
@@ -178,7 +178,7 @@ export default function ContainerTest() {
 			<p>
 				コンテナ幅の判定値に注意。直下要素での判定値は親要素の幅になる。コンテンツの幅でしっかり判定したい時は、その要素をコンテナで囲んでください。
 			</p>
-			<Layout isConstrained isFlow='s'>
+			<Layouter isConstrained isFlow='s'>
 				<Text ta='c' lh='1'>
 					<TipCode text='is--constrained' />
 				</Text>
@@ -206,17 +206,17 @@ export default function ContainerTest() {
 						<Text d={['n', null, null, 'inline-block']}>@lg~で表示</Text>
 					</Box>
 				</Container>
-			</Layout>
+			</Layouter>
 			<hr />
 			<h2>Container</h2>
 			<Box bd='guide'>
-				<Layout isContainer>
+				<Layouter isContainer>
 					<Text ta='c' lh='1'>
 						<TipCode text='is--container' color='orange' />
 					</Text>
 					<LoremContent />
 					<LoremContent />
-				</Layout>
+				</Layouter>
 			</Box>
 			<Box bd='guide'>
 				<Container hasGutter>
@@ -289,7 +289,7 @@ export default function ContainerTest() {
 			</Container>
 
 			<h2>container と constrained の入れ子</h2>
-			<Layout isConstrained isFlow='s' hasGutter>
+			<Layouter isConstrained isFlow='s' hasGutter>
 				<Text ta='c' lh='1'>
 					<TipCode text='is--constrained' />
 				</Text>
@@ -311,8 +311,8 @@ export default function ContainerTest() {
 					</Box> */}
 				</Container>
 				<Layer className='gutter-guide' mbs='0' />
-			</Layout>
-			<Layout hasGutter bd='guide'>
+			</Layouter>
+			<Layouter hasGutter bd='guide'>
 				<Container isFlow='s'>
 					<Text ta='c' lh='1'>
 						<TipCode text='is--container' color='orange' />
@@ -323,7 +323,7 @@ export default function ContainerTest() {
 					{/* <Box bd className='alignscreen'>
 					alignscreen
 				</Box> */}
-					<Layout isConstrained='s' isFlow='s'>
+					<Layouter isConstrained='s' isFlow='s'>
 						<Text ta='c' lh='1'>
 							<TipCode text='is--constrained:s' />
 						</Text>
@@ -334,10 +334,10 @@ export default function ContainerTest() {
 							{' '}
 							alignscreen
 						</Box>
-					</Layout>
+					</Layouter>
 				</Container>
 				<Layer className='gutter-guide' mbs='0' />
-			</Layout>
-		</Layout>
+			</Layouter>
+		</Layouter>
 	);
 }

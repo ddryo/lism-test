@@ -1,0 +1,39 @@
+---
+import { LismProps } from '../types';
+import Flex from '../Flex.astro';
+
+interface Props extends LismProps {
+	consume?: string | string[];
+}
+
+interface DefaultProps {
+	gap?: string | number;
+	p?: string | number;
+	consume?: string | string[];
+}
+
+let { lismClass = {}, consume, ...props } = Astro.props || {};
+
+lismClass.c = 'c--accordion__header';
+
+const theProps: DefaultProps = { gap: 20, p: 'box:s' };
+
+if (null !== consume) {
+	if (typeof consume === 'string') consume = consume.split(' ');
+
+	// consume に 'p', 'gap' が含まれている場合、p, gap のデフォルト値を消す
+	if (Array.isArray(consume)) {
+		if (consume.includes('p')) {
+			delete theProps.p;
+		}
+		if (consume.includes('gap')) {
+			delete theProps.gap;
+		}
+		theProps.consume = consume;
+	}
+}
+---
+
+<Flex tag='summary' lismClass={lismClass} ai='center' {...theProps} {...props}>
+	<slot />
+</Flex>

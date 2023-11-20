@@ -23,9 +23,6 @@ import metadata from './block.json';
 import icon from './icon';
 import { SelectorPreviewTip, FlowControl } from '@/gutenberg/components';
 
-/**
- * Box
- */
 registerBlockType(metadata.name, {
 	title: __('Box', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),

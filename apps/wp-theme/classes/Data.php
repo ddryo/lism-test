@@ -27,6 +27,7 @@ class Data {
 		'flex'            => [],
 		'fluid-fix'       => [],
 		'ratio-grid'      => [],
+		'reel'            => [],
 		'spacer'          => [],
 		'stack'           => [],
 		'switch-fix'      => [],

@@ -21,6 +21,7 @@ const LISM_BLOCKS = [
 	'lism-blocks/flex',
 	'lism-blocks/fluid-fix',
 	'lism-blocks/ratio-grid',
+	'lism-blocks/reel',
 	'lism-blocks/stack',
 	'lism-blocks/switch-fix',
 	'lism-blocks/tile-grid',

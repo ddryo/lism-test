@@ -1,5 +1,6 @@
 export { default as AlignContentControl } from './AlignContentControl';
 export { default as AlignItemsControl } from './AlignItemsControl';
+export { default as AspectControl } from './AspectControl';
 export { default as AlignJustifyControl } from './AlignJustifyControl';
 export { default as FlexDirectionControl } from './FlexDirectionControl';
 export { default as FlexWrapControl } from './FlexWrapControl';

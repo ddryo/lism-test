@@ -10,7 +10,7 @@
 	},
 	"attributes": {
 		"orientation": {
-			"type": ["string"],
+			"type": "string",
 			"enum": ["vertical", "horizontal"],
 			"default": "vertical"
 		},

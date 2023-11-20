@@ -71,20 +71,20 @@ registerBlockType(metadata.name, {
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
 	icon,
 	edit: ({ attributes, setAttributes }) => {
-		const { templateLock, itemWidth, snap, direction, unreel, aspect, anchor, className } = attributes;
+		const { templateLock, itemWidth, snap, direction, unreel, aspect, anchor, className } =
+			attributes;
 		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem', '%'] });
 
 		const blockProps = useBlockProps({
 			itemBasis: itemWidth,
 			snap,
-			direction : direction === 'vertical' ? 'column' : undefined,
+			direction: direction === 'vertical' ? 'column' : undefined,
 			unreel,
 			aspect,
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
 			template: [['lism-blocks/box']],
-			allowedBlocks: ['lism-blocks/box'],
 			templateLock,
 		});
 
@@ -162,7 +162,7 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps.save({
 			itemBasis: itemWidth,
 			snap,
-			direction : direction === 'vertical' ? 'column' : undefined,
+			direction: direction === 'vertical' ? 'column' : undefined,
 			unreel,
 			aspect,
 		});

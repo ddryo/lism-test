@@ -13,7 +13,7 @@ import { __ } from '@wordpress/i18n';
 
 const OPTIONS = [
 	{
-		label : __('Auto', 'lism-blocks'),
+		label: __('Auto', 'lism-blocks'),
 		value: 'auto',
 	},
 	{
@@ -48,16 +48,13 @@ const OPTIONS = [
 
 const DEFAULT_LABEL = __('Aspect', 'lism-blocks');
 
-export default function AspectControl({
-	label = DEFAULT_LABEL,
-	value: aspectValue,
-	onChange,
-}) {
+export default function AspectControl({ label = DEFAULT_LABEL, value: aspectValue, onChange }) {
 	const isCustomValue = !OPTIONS.some((option) => option.value === aspectValue);
 	const aspectValues = (aspectValue || '').split('/').map((value) => {
 		return isNaN(parseFloat(value)) ? 1 : parseFloat(value);
 	});
-	const selectedValue = aspectValue === undefined ? 'auto' : isCustomValue ? 'custom' : aspectValue;
+	const selectedValue =
+		aspectValue === undefined ? 'auto' : isCustomValue ? 'custom' : aspectValue;
 
 	const options = isCustomValue
 		? [
@@ -83,9 +80,9 @@ export default function AspectControl({
 				options={options}
 				value={selectedValue}
 				onChange={(value) => {
-					if ( value === 'auto' ) {
+					if (value === 'auto') {
 						onChange(undefined);
-					} else if ( value === 'custom' ) {
+					} else if (value === 'custom') {
 						onChange('1/1');
 					} else {
 						onChange(value);

@@ -20,6 +20,7 @@ const LISM_BLOCKS = [
 	'lism-blocks/columns',
 	'lism-blocks/flex',
 	'lism-blocks/fluid-fix',
+	'lism-blocks/gap',
 	'lism-blocks/ratio-grid',
 	'lism-blocks/reel',
 	'lism-blocks/stack',

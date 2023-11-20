@@ -21,6 +21,7 @@ const LISM_BLOCKS = [
 	'lism-blocks/columns',
 	'lism-blocks/flex',
 	'lism-blocks/fluid-fix',
+	'lism-blocks/frame',
 	'lism-blocks/ratio-grid',
 	'lism-blocks/reel',
 	'lism-blocks/stack',
@@ -125,7 +126,7 @@ const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
 			<>
 				<BlockEdit {...props} />
 				<InspectorControls group='styles'>
-					<PanelBody title={__('Props', 'lism-blocks')}>
+					<PanelBody title={__('Lism props', 'lism-blocks')}>
 						<PropsControl
 							lismProps={lismProps}
 							onChange={(value) => {

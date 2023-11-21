@@ -243,7 +243,6 @@ letter spacing...考え中
 	|4|--lts--4|0.1em|
 	|5|--lts--5|0.25em|
 	|5|--lts--6|0.5em|
-
 </Box>
 
 <Demo>
@@ -265,23 +264,36 @@ letter spacing...考え中
 
 ## フォントファミリー
 
-- base, code, heading
+|トークン|変数|初期値|
+|---|---|---|
+|sans|--ff--sans||
+|serif|--ff--serif||
+|mono|--ff--mono||
+|emoji|--ff--emoji||
+|base|--ff--base|--ff--sans|
+|heading|--ff--heading|--ff--sans|
+
 <Demo>
 	<Demo.Title>Demo</Demo.Title>
 	<Demo.Preview p={20} flowGap='20'>
-		<DammyText />
-		<DammyText ff='mono' />
 		<DammyText ff='sans' />
 		<DammyText ff='serif' />
-		<Text ff='emoji'>💡 ✔️ ✅ 👍 ✍️ ⚡ 🚫 Lorem 0123</Text>
-		<Text ff='mono'>💡 ✔️ ✅ 👍 ✍️ ⚡ 🚫 Lorem 0123</Text>
-		<Text>💡 ✔️ ✅ 👍 ✍️ ⚡ 🚫 Lorem 0123</Text>
+		<DammyText ff='mono' />
+		<Text ff='emoji'>💡 ✔️ ✅ 👍 ✍️ ⚡ 🚫</Text>
 	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<Text ff='sans'>...</Text>
+	<Text ff='serif'>...</Text>
+	<Text ff='mono'>...</Text>
+	<Text ff='emoji'>💡 ✔️ ✅ 👍 ✍️ ⚡ 🚫</Text>
+	```
+	</Demo.Code>
 </Demo>
 
 
 
-## Customize
+{/* ## Customize
 
 以下が初期値です。
 スタイルシートにコピーして別の値へカスタマイズしてください。
@@ -292,4 +304,4 @@ letter spacing...考え中
 		...
 	}
 
-```
+``` */}

@@ -1,5 +1,7 @@
 @use '../query' as query;
 
+/* stylelint-disable */
+
 /*
 Note: gta, gtc, gtrは、単体で使う時はベース指定が必須となる。
 l--gridと併用する場合は、特定のブレイクポイントから使用しても動作する。
@@ -50,47 +52,45 @@ gtrows
 	}
 }
 
-.-gta\: {
-	grid-template-areas: var(--gta);
-}
-.-gtc\: {
-	grid-template-columns: var(--gtc);
-}
-.-gtr\: {
-	grid-template-rows: var(--gtr);
-}
+.-gta\: { grid-template-areas: var(--gta); }
+.-gtc\: { grid-template-columns: var(--gtc); }
+.-gtr\: { grid-template-rows: var(--gtr); }
 
-// 特定のポイント以降のみ指定することはないので、--prop上書きの形式で文字数も省略する.
+
+.-ga\:{ grid-area: var(--ga) }
+.-gc\:{ grid-column: var(--gc) }
+.-gr\:{ grid-row: var(--gr) }
+
+.-ga\:fix{ grid-area: fix; }
+.-ga\:l{ grid-area: left; }
+.-ga\:r{ grid-area: right; }
+.-ga\:c{ grid-area: center; }
+.-ga\:t{ grid-area: top; }
+.-ga\:b{ grid-area: bottom; }
+// .-ga\:header{--ga: header; }
+// .-ga\:footer{--ga: footer; }
+// .-ga\:body{--ga: body; }
+
+
+// 特定のポイント以降のみ指定することはないので、--prop上書きの形式で文字数も省略する.`
 @include query.cq('sm') {
-	.-gta\@sm\: {
-		grid-template-areas: var(--gta--sm);
-	}
-	.-gtc\@sm\: {
-		grid-template-columns: var(--gtc--sm);
-	}
-	.-gtr\@sm\: {
-		grid-template-columns: var(--gtr--sm);
-	}
+	.-gta\@sm\: { grid-template-areas: var(--gta--sm) }
+	.-gtc\@sm\: { grid-template-columns: var(--gtc--sm) }
+	.-gtr\@sm\: { grid-template-columns: var(--gtr--sm) }
+	.-gc\@sm\: { grid-column: var(--gc--sm) }
+	.-gr\@sm\: { grid-row: var(--gr--sm) }
 }
 @include query.cq('md') {
-	.-gta\@md\: {
-		grid-template-areas: var(--gta--md);
-	}
-	.-gtc\@md\: {
-		grid-template-columns: var(--gtc--md);
-	}
-	.-gtr\@md\: {
-		grid-template-columns: var(--gtr--md);
-	}
+	.-gta\@md\: { grid-template-areas: var(--gta--md) }
+	.-gtc\@md\: { grid-template-columns: var(--gtc--md) }
+	.-gtr\@md\: { grid-template-columns: var(--gtr--md) }
+	.-gc\@md\: { grid-column: var(--gc--md) }
+	.-gr\@md\: { grid-row: var(--gr--md) }
 }
 @include query.cq('lg') {
-	.-gta\@lg\: {
-		grid-template-areas: var(--gta--lg);
-	}
-	.-gtc\@lg\: {
-		grid-template-columns: var(--gtc--lg);
-	}
-	.-gtr\@lg\: {
-		grid-template-columns: var(--gtr--lg);
-	}
+	.-gta\@lg\: { grid-template-areas: var(--gta--lg) }
+	.-gtc\@lg\: { grid-template-columns: var(--gtc--lg) }
+	.-gtr\@lg\: { grid-template-columns: var(--gtr--lg) }
+	.-gc\@lg\: { grid-column: var(--gc--lg) }
+	.-gr\@lg\: { grid-row: var(--gr--lg) }
 }

@@ -60,15 +60,17 @@
 	    タイポグラフィ
 	------------------------------------------------------------ */
 
-	// --ff--base: sans-serif;
-	// --ff--base: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
-	--ff--base: -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+	// --ff--sans: sans-serif;
+	--ff--serif: serif;
+	// --ff--sans: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+	--ff--sans: -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
 		Meiryo, sans-serif, 'Segoe UI Emoji';
+	--ff--mono: Menlo, Consolas, monaco, monospace;
 	--ff--emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji',
 		'Segoe UI Symbol';
-	--ff--mono: Menlo, Consolas, monaco, monospace;
-	// --ff--sans, --ff--serif;
-	// meta, heading
+
+	--ff--base: var(--ff--sans);
+	--ff--heading: var(--ff--sans);
 
 	// ------------------------------
 	// letter-spacing
@@ -277,9 +279,8 @@
 	--s--0: 0rem;
 
 	// 1=0.25での Fibonacci数列, 5は例外的に 0.125 をセット
-	// --s--5: 0.125rem;
-	// --s--10: 0.25rem;
-	// --s--15: 0.5rem;
+	// --s--5: 0.25rem;
+	// --s--10: 0.5rem;
 	// --s--20: 0.75rem;
 	// --s--30: 1.25rem;
 	// --s--40: 2rem;
@@ -288,42 +289,40 @@
 	// --s--70: 8.5rem;
 
 	// 1=0.125 Fibonacci数列
-	--s--5: 0.125rem;
-	--s--10: 0.25rem;
-	--s--15: 0.375rem;
+	// --s--5: 0.125rem;
+	--s--5: 0.25rem;
+	--s--10: 0.375rem;
+	// --s--15: 0.375rem;
 	--s--20: 0.625rem;
-	// --s--25: 0.875rem; // 例外
 	--s--30: 1rem;
 	--s--40: 1.625rem;
 	--s--50: 2.625rem;
 	--s--60: 4.25rem;
 	--s--70: 6.875rem;
+	--s--80: 11.125rem;
+	--s--90: 18rem;
 
-	// ここから等比数列
+	// ここから等比数列?
 	// --s--70: calc(var(--s--60) * 1.5);
-	--s--80: calc(var(--s--70) * 1.5);
-	--s--90: calc(var(--s--80) * 1.5);
+	// --s--80: calc(var(--s--70) * 1.5);
+	// --s--90: calc(var(--s--80) * 1.5);
 
-	// --em--5: .125em;
-	// --em--10: .25em;
-	// --em--20: .5em;
-	// --em--30: .75em;
-	// --em--40: 1em;
-	// --em--50: 1.25em;
-
-	// --p--box-10: 0.5em 0.625em;
+	--em--1: 0.125em;
+	--em--2: 0.25em;
+	--em--3: 0.375em;
+	--em--4: 0.5em;
+	--em--5: 0.75em;
+	--em--10: 1em;
+	--em--15: 1.5em;
+	--em--20: 2em;
+	--em--25: 2.5em;
+	--em--30: 3em;
 
 	// --p--box--s: 0.75em 0.875em;
 	// --p:box:{padding: var(--p--box) calc(--p--box + 0.125em);}
-	// --p:box:10{--p--box: var(--em--10)}
-
+	--p--box--s: 0.75em 0.875em;
 	--p--box: 1em 1.125em;
-	--p--box--s: 0.625em 0.75em;
 	--p--box--l: 1.5em 1.625em;
-
-	// --gap--icon--s: 0.25em;
-	// --gap--icon: 0.5em;
-	// --gap--icon--l: 0.75em;
 
 	// .is--flow の blockGap 管理用変数
 	--flowGap--s: var(--s--20); // --mbs--s?

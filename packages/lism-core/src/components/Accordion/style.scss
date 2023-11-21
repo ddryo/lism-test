@@ -76,7 +76,7 @@
 
 // [data-clickable="icon"] のとき
 :where(.c--accordion__icon[data-role='trigger']) {
-	padding: 0.325em;
+	padding: 0.375em;
 	border: solid 1px currentColor;
 	border-radius: var(--radius--1);
 }

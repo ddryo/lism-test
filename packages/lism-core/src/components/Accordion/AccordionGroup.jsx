@@ -20,12 +20,12 @@ export default function AccordionGroup({
 
 	const theProps = {};
 
-	if (variant === 'line') {
-		theProps.bd = 'block';
-		lismStyle['--accordion--outline'] = '1px solid var(--color--border)';
-	} else if (variant === 'box') {
-		theProps.gap = 15;
-	}
+	// if (variant === 'line') {
+	// 	theProps.bd = 'block';
+	// 	lismStyle['--accordion--outline'] = '1px solid var(--color--border)';
+	// } else if (variant === 'box') {
+	// 	theProps.gap = 10;
+	// }
 
 	if (!allowMultiple) {
 		theProps['data-multiple'] = 'disallow';

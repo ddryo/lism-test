@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Core } from '../Core';
+import { Flex } from '../Flex';
 import { Grid } from '../Grid';
 import { Icon } from '../Icon';
 import { defaultProps } from '../../config/components';
@@ -13,16 +13,6 @@ export default function Button({ lismClass = {}, lismStyle = {}, ...props }) {
 	lismClass.c = 'c--button';
 	if (variant) lismClass.c += ` c--button--${variant}`;
 
-	if (iconOffset) {
-		lismStyle['--icon--offset'] = iconOffset;
-	}
-
-	const blockProps = {
-		lismClass,
-		lismStyle,
-		// 'data-variant': variant,
-	};
-
 	// if (color) {
 	// 	blockProps.keycolor = color;
 	// }
@@ -31,26 +21,62 @@ export default function Button({ lismClass = {}, lismStyle = {}, ...props }) {
 	// 	blockProps['data-has-icon'] = '1';
 	// }
 
-	const ButtonComponent = isGrid ? Grid : Core;
+	const btnProps = {
+		hover: 'fade',
+		// gap: 'em4',
+		// py: 'em3',
+		// px: 'em10',
+		jc: 'center',
+		ai: 'center',
+	};
+	const leftIconProps = { 'data-position': 'left' };
+	const rightIconProps = { 'data-position': 'right' };
+	const textProps = {};
+	const ButtonComponent = isGrid ? Grid : Flex;
+
+	if (isGrid) {
+		btnProps.areas = '"left center right"';
+		leftIconProps.gridItem = { area: 'left' };
+		rightIconProps.gridItem = { area: 'right' };
+		textProps.gridItem = { area: 'center' };
+	}
 
 	// iconボタン
-	// → 別コンポーネントに切り分けるべき...?
 	if (icon) {
 		return (
-			<ButtonComponent tag='a' hover='fade' {...blockProps} p={30} {...attrs}>
+			<ButtonComponent
+				tag='a'
+				p={30}
+				lismClass={lismClass}
+				lismStyle={lismStyle}
+				{...btnProps}
+				{...attrs}
+			>
 				<Icon icon={icon} lismClass={{ c: 'c--button__icon' }} />
 			</ButtonComponent>
 		);
 	}
 
+	if (iconOffset) {
+		lismStyle['--icon--offset'] = iconOffset;
+	}
 	return (
-		<ButtonComponent tag='a' hover='fade' {...blockProps} {...attrs}>
+		<ButtonComponent
+			tag='a'
+			lismClass={lismClass}
+			lismStyle={lismStyle}
+			lh='xs'
+			{...btnProps}
+			{...attrs}
+		>
 			{leftIcon && (
-				<Icon icon={leftIcon} lismClass={{ c: 'c--button__icon' }} data-position='left' />
+				<Icon lismClass={{ c: 'c--button__icon' }} icon={leftIcon} {...leftIconProps} />
 			)}
-			<span className='c--button__text'>{children}</span>
+			<span className='c--button__text' {...textProps}>
+				{children}
+			</span>
 			{rightIcon && (
-				<Icon icon={rightIcon} lismClass={{ c: 'c--button__icon' }} data-position='right' />
+				<Icon lismClass={{ c: 'c--button__icon' }} icon={rightIcon} {...rightIconProps} />
 			)}
 		</ButtonComponent>
 	);

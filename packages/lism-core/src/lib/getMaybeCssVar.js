@@ -2,6 +2,7 @@
 
 import isNumStr from './helper/isNumStr';
 import isPresetValue from './isPresetValue';
+import isTokenValue from './isTokenValue';
 
 // 対応するCSS変数があれば返す
 export default function getMaybeCssVar(value, converter, propName = '') {
@@ -33,6 +34,17 @@ export function getMaybeSpaceVar(value, propName) {
 		return `var(--s--${value})`;
 	}
 
+	// emトークン
+	if (value.startsWith('em')) {
+		const emVal = value.replace('em', '');
+		// if (isTokenValue('em')) {
+		return `var(--em--${emVal})`;
+		// }
+	}
+
+	// + があれば calcで足す
+	// ...
+
 	// スペース区切りで一括指定されている場合
 	if (typeof value === 'string' && value.includes(' ')) {
 		// spaceを' 'で配列化して、数値なら変数化する
@@ -61,13 +73,13 @@ export function getMaybeColorVar(value, propType) {
 		const [colorName, alpha] = value.split(':');
 
 		// α値の指定が可能なのはカラートークンの値のみ
-		if (isPresetValue('color', colorName)) {
+		if (isTokenValue('color', colorName)) {
 			return `hsl(var(--hsl--${colorName}) / ${alpha})`;
 		}
 	}
 
 	// 単純なカラートークンかどうか
-	if (isPresetValue('color', value)) {
+	if (isTokenValue('color', value)) {
 		return `var(--${value})`;
 	} else if (propType && isPresetValue(propType, value)) {
 		// c,bgc などの各プロパティ専用トークン値の場合
@@ -78,7 +90,7 @@ export function getMaybeColorVar(value, propType) {
 }
 
 export function getMaybeSizeVar(size) {
-	if (isPresetValue('size', size)) {
+	if (isTokenValue('size', size)) {
 		return `var(--size--${size})`;
 	}
 	// else if (isPresetValue('size', size)) {
@@ -89,14 +101,14 @@ export function getMaybeSizeVar(size) {
 }
 
 export function getMaybeRadiusVar(radius) {
-	if (isPresetValue('radius', radius)) {
+	if (isTokenValue('radius', radius)) {
 		return 'var(--radius--' + radius + ')';
 	}
 	return radius;
 }
 
 export function getMaybeShadowVar(value) {
-	if (isPresetValue('shadow', value)) {
+	if (isTokenValue('shadow', value)) {
 		value = value + ''; // 数値でも渡ってくるので文字列化
 		return 'var(--shadow--' + value.replace('-', 'i') + ')';
 	}
@@ -104,7 +116,7 @@ export function getMaybeShadowVar(value) {
 }
 
 export function getMaybeFzVar(value) {
-	if (isPresetValue('fz', value)) {
+	if (isTokenValue('fz', value)) {
 		return 'var(--fz--' + value + ')';
 	}
 	return value;

@@ -1,47 +1,46 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Box, Container, Center, Flex, Icon, InlineIcon } from '@loos/lism-astro';
-import {
-	Smiley,
-	Aperture,
-	AppleLogo,
-	Horse,
-	Book,
-	
-	Cat,
-	Baseball,
-} from "@phosphor-icons/react";
-
+import { Smiley, Aperture, AppleLogo, Horse, Book, Cat, Baseball } from '@phosphor-icons/react';
 ---
 
-<Layout title="Welcome to Astro.">
-	<Container isConstrained hasGutter pY="40" isFlow>
-		<Box bgc="pale" p="40">aaa</Box>
-		<Center p="20" bd>
-			<Icon size="4em" icon={Smiley} />
-			<Icon size="4em">
+<Layout title='Welcome to Astro.'>
+	<Container isConstrained hasGutter pY='40' isFlow>
+		<Box bgc='pale' p='40'>aaa</Box>
+		<Center p='20' bd>
+			<Icon size='4em' icon={Smiley} />
+			<Icon size='4em'>
 				<Smiley size={24} />
 			</Icon>
 		</Center>
 
 		<div>
-			<Icon icon="triangle" size="2em"/>
-			aaa<Icon icon="triangle" isInline />
+			<Icon icon='triangle' size='2em' />
+			 aaa<Icon icon='triangle' isInline />
 		</div>
 		<div>
-			<Icon size="2rem">🍱✍️</Icon>
+			<Icon size='2rem'>🍱✍️</Icon>
 		</div>
 
-		
+		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
 
+		<Icon size='4rem' icon={Smiley} />
 		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-		
-		<Icon size="4rem" icon={Smiley} />
+		<p>
+			Lorem, ipsum dolor sit amet consectetur adipisicing elit.<Icon
+				isInline
+				size='2em'
+				icon={Smiley}
+			/>
+		</p>
+		<p>
+			Lorem, ipsum dolor sit amet consectetur adipisicing elit.<Icon
+				size='2em'
+				icon={Smiley}
+			/>
+		</p>
 		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<Icon isInline size="2em" icon={Smiley}/></p>
-		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<Icon size="2em" icon={Smiley}/></p>
-		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-		<Box bgc="pale" p="10"><Icon size="4rem" icon={Smiley} /></Box>
+		<Box bgc='pale' p='10'><Icon size='4rem' icon={Smiley} /></Box>
 		<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
 
 		<div>
@@ -49,19 +48,36 @@ import {
 		</div>
 
 		<p>
-			Hoge Text X<Icon isInline><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#000000" viewBox="0 0 256 256"><path d="M223.3,169.59a8.07,8.07,0,0,0-2.8-3.4C203.53,154.53,200,134.64,200,120c0-17.67,13.47-33.06,21.5-40.67a8,8,0,0,0,0-11.62C208.82,55.74,187.82,48,168,48a72.2,72.2,0,0,0-40,12.13,71.56,71.56,0,0,0-90.71,9.09A74.63,74.63,0,0,0,16,123.4a127.06,127.06,0,0,0,40.14,89.73A39.8,39.8,0,0,0,83.59,224h87.68a39.84,39.84,0,0,0,29.12-12.57,125,125,0,0,0,17.82-24.6C225.23,174,224.33,172,223.3,169.59Zm-34.63,30.94a23.76,23.76,0,0,1-17.4,7.47H83.59a23.82,23.82,0,0,1-16.44-6.51A111.14,111.14,0,0,1,32,123,58.5,58.5,0,0,1,48.65,80.47,54.81,54.81,0,0,1,88,64h.78A55.45,55.45,0,0,1,123,76.28a8,8,0,0,0,10,0A55.44,55.44,0,0,1,168,64a70.64,70.64,0,0,1,36,10.35c-13,14.52-20,30.47-20,45.65,0,23.77,7.64,42.73,22.18,55.3A105.82,105.82,0,0,1,188.67,200.53ZM128.23,30A40,40,0,0,1,167,0h1a8,8,0,0,1,0,16h-1a24,24,0,0,0-23.24,18,8,8,0,1,1-15.5-4Z"></path></svg></Icon>
+			Hoge Text X<Icon isInline>
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					width='1em'
+					height='1em'
+					fill='#000000'
+					viewBox='0 0 256 256'
+					><path
+						d='M223.3,169.59a8.07,8.07,0,0,0-2.8-3.4C203.53,154.53,200,134.64,200,120c0-17.67,13.47-33.06,21.5-40.67a8,8,0,0,0,0-11.62C208.82,55.74,187.82,48,168,48a72.2,72.2,0,0,0-40,12.13,71.56,71.56,0,0,0-90.71,9.09A74.63,74.63,0,0,0,16,123.4a127.06,127.06,0,0,0,40.14,89.73A39.8,39.8,0,0,0,83.59,224h87.68a39.84,39.84,0,0,0,29.12-12.57,125,125,0,0,0,17.82-24.6C225.23,174,224.33,172,223.3,169.59Zm-34.63,30.94a23.76,23.76,0,0,1-17.4,7.47H83.59a23.82,23.82,0,0,1-16.44-6.51A111.14,111.14,0,0,1,32,123,58.5,58.5,0,0,1,48.65,80.47,54.81,54.81,0,0,1,88,64h.78A55.45,55.45,0,0,1,123,76.28a8,8,0,0,0,10,0A55.44,55.44,0,0,1,168,64a70.64,70.64,0,0,1,36,10.35c-13,14.52-20,30.47-20,45.65,0,23.77,7.64,42.73,22.18,55.3A105.82,105.82,0,0,1,188.67,200.53ZM128.23,30A40,40,0,0,1,167,0h1a8,8,0,0,1,0,16h-1a24,24,0,0,0-23.24,18,8,8,0,1,1-15.5-4Z'
+					></path></svg>
+			</Icon>
 		</p>
 
 		<div>
 			<!-- <Icon icon={<Smiley />} /> -->
-			Hoge Text X<Icon isInline icon={Aperture} />
+			 Hoge Text X<Icon isInline icon={Aperture} />
 		</div>
 
 		<p>
-			Hoge Text X<Icon isInline><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="#000000" viewBox="0 0 256 256"><path d="M201.54,54.46A104,104,0,0,0,54.46,201.54,104,104,0,0,0,201.54,54.46ZM190.23,65.78a88.18,88.18,0,0,1,11,13.48L167.55,119,139.63,40.78A87.34,87.34,0,0,1,190.23,65.78ZM155.59,133l-18.16,21.37-27.59-5L100.41,123l18.16-21.37,27.59,5ZM65.77,65.78a87.34,87.34,0,0,1,56.66-25.59l17.51,49L58.3,74.32A88,88,0,0,1,65.77,65.78ZM46.65,161.54a88.41,88.41,0,0,1,2.53-72.62l51.21,9.35Zm19.12,28.68a88.18,88.18,0,0,1-11-13.48L88.45,137l27.92,78.18A87.34,87.34,0,0,1,65.77,190.22Zm124.46,0a87.34,87.34,0,0,1-56.66,25.59l-17.51-49,81.64,14.91A88,88,0,0,1,190.23,190.22Zm-34.62-32.49,53.74-63.27a88.41,88.41,0,0,1-2.53,72.62Z"></path></svg></Icon>
+			Hoge Text X<Icon isInline>
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					width='1em'
+					height='1em'
+					fill='#000000'
+					viewBox='0 0 256 256'
+					><path
+						d='M201.54,54.46A104,104,0,0,0,54.46,201.54,104,104,0,0,0,201.54,54.46ZM190.23,65.78a88.18,88.18,0,0,1,11,13.48L167.55,119,139.63,40.78A87.34,87.34,0,0,1,190.23,65.78ZM155.59,133l-18.16,21.37-27.59-5L100.41,123l18.16-21.37,27.59,5ZM65.77,65.78a87.34,87.34,0,0,1,56.66-25.59l17.51,49L58.3,74.32A88,88,0,0,1,65.77,65.78ZM46.65,161.54a88.41,88.41,0,0,1,2.53-72.62l51.21,9.35Zm19.12,28.68a88.18,88.18,0,0,1-11-13.48L88.45,137l27.92,78.18A87.34,87.34,0,0,1,65.77,190.22Zm124.46,0a87.34,87.34,0,0,1-56.66,25.59l-17.51-49,81.64,14.91A88,88,0,0,1,190.23,190.22Zm-34.62-32.49,53.74-63.27a88.41,88.41,0,0,1-2.53,72.62Z'
+					></path></svg>
+			</Icon>
 		</p>
-
-		
-		
 	</Container>
 </Layout>

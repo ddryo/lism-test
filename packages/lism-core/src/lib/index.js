@@ -1,5 +1,6 @@
 // 核となる処理
 export { default as isPresetValue } from './isPresetValue';
+export { default as isTokenValue } from './isTokenValue';
 export { default as getBpData } from './getBpData';
 export { default as getLismProps } from './getLismProps';
 export { getTheStateData, getAllLayoutStateData } from './getLayoutStateData';

@@ -46,6 +46,11 @@
 	// .-pt\:#{$s} {--pt: var(--s--#{$s});}
 	// .-pb\:#{$s} {--pb: var(--s--#{$s});}
 }
+@each $em in setting.$util_em_tokens {
+	.-p\:em#{$em} {--p: var(--em--#{$em});}
+	.-px\:em#{$em} {--px: var(--em--#{$em});}
+	.-py\:em#{$em} {--py: var(--em--#{$em});}
+}
 
 
 @include query.cq('sm'){

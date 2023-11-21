@@ -1,55 +1,17 @@
-const spacingPresets = ['0', '5', '10', '15', '20', '30', '40', '50'];
+import TOKENS from './tokens';
 
-// PRESETS
+const spacingPresets = ['0', '5', '10', '20', '30', '40', '50'];
+const emPresets = ['em1', 'em2', 'em3', 'em4', 'em5', 'em10', 'em15', 'em20', 'em25', 'em30'];
+
+// ユーティリティクラス化するキーワード
 export default {
-	fz: [
-		'root',
-		'5xl',
-		'4xl',
-		'3xl',
-		'2xl',
-		'xl',
-		'l',
-		'm',
-		'r',
-		's',
-		'xs',
-		'2xs',
-		'fluid',
-		'fluid:s',
-		'fluid:l',
-	],
-	// lh: ['10', '20', '30', '40', '50', '60', '70', '80', '90'],
-	lh: ['1', 'base', '2xs', 'xs', 's', 'l', 'xl', '2xl'], // 検討
-	lts: ['-3', '-2', '-1', '0', '1', '2', '3', '4', '5', '6', '7'],
-	ff: ['base', 'mono', 'emoji', 'sans', 'serif'],
+	radius: TOKENS.radius,
+	shadow: TOKENS.shadow,
+	fz: TOKENS.fz,
+	lh: ['1', ...TOKENS.lh], // 検討
+	lts: TOKENS.lts,
+	ff: TOKENS.ff,
 
-	// --変数化できるキーワード
-	color: [
-		'main',
-		'accent',
-		'red',
-		'blue',
-		'green',
-		'yellow',
-		'purple',
-		'orange',
-		'pink',
-		'white',
-		'black',
-		'gray',
-		'b50',
-		'b100',
-		'b200',
-		'b300',
-		'b400',
-		'b500',
-		'b600',
-		'b700',
-		'b800',
-		'b900',
-		// 'b950',
-	],
 	c: ['main', 'accent', 'base', 'pale', 'opposite'],
 	bgc: ['main', 'accent', 'base', 'pale', 'strong', 'opposite'],
 	bdc: ['main', 'accent', 'base', 'strong'],
@@ -69,12 +31,13 @@ export default {
 
 	// ユーティリティ化
 	space: spacingPresets,
-	p: [...spacingPresets, 'box', 'box:s', 'box:l'],
+	p: [...spacingPresets, ...emPresets, 'box', 'box:s', 'box:l'],
+	py: [...spacingPresets, ...emPresets],
+	gap: [...spacingPresets, ...emPresets],
 
 	// align-content
 	// "space-between"
-	radius: ['0', '1', '2', '3', '4', '5', '6', '99'], // 'round'
-	shadow: ['-1', '-2', '-3', '-4', '-5', '0', '1', '2', '3', '4', '5'],
+
 	bd: ['guide', 'emphasis'], // dashed?
 
 	//bds: dashed, solid, double, dotted,
@@ -82,14 +45,12 @@ export default {
 	bg: ['glass', 'stripe', 'grid'],
 	z: ['-1', '0', '1'],
 	aspect: ['16/9', '4/3', '3/2', '2/1', '1/1', 'golden', 'silver', 'bronze', 'ogp'],
-	gta: ['lcr', 'tcb', 'ltr'],
+	gta: ['ltr'],
 	gt: ['fix:l', 'fix:r', 'fix:t', 'fix:b'],
 	gradient: ['sunset', 'black-to-bottom'],
 	// transform: ['flip:x', 'flip:y', 'flip:xy'],
 	animation: [],
 
-	// size:['container', 'container:s', 'container:l'],
-	size: ['xs', 's', 'm', 'l', 'xl', 'item', 'screenW'], // --size--xxx トークン
 	contentSize: ['s', 'l'], // container, constrained のユーティリティクラス
 	flow: ['s', 'l'], // flowのユーティリティクラス
 	// mbs: ['s', 'm', 'l'], // --mbs--xxx トークン

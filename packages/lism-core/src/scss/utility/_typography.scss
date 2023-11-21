@@ -67,8 +67,11 @@
 	font-family
 ------------------------------------------------------------ */
 
-.-ff\:base {
-	font-family: var(--ff--base);
+.-ff\:sans {
+	font-family: var(--ff--sans);
+}
+.-ff\:serif {
+	font-family: var(--ff--serif);
 }
 .-ff\:mono {
 	font-family: var(--ff--mono);

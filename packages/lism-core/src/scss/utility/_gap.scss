@@ -1,4 +1,5 @@
 @use '../query' as query;
+@use '../setting' as setting;
 
 [class*='-gap:'] {
 	gap: var(--gap);
@@ -8,6 +9,20 @@
 }
 [class*='-rowg:'] {
 	row-gap: var(--rowg);
+}
+
+@each $s in setting.$util_spaces {
+	.-gap\:#{$s} {
+		--gap: var(--s--#{$s});
+	}
+	// .-clmg\:#{$s} {--clmg: var(--s--#{$s})}
+	// .-rowg\:#{$s} {--rowg: var(--s--#{$s})}
+}
+
+@each $em in setting.$util_em_tokens {
+	.-gap\:em#{$em} {
+		--gap: var(--em--#{$em});
+	}
 }
 
 @include query.cq('sm') {

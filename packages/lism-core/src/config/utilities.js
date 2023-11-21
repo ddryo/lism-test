@@ -44,6 +44,7 @@ export default {
 	// minW, minH
 	minSize: { unset: 'un' },
 
+	gta: { '"left center right"': 'lcr', '"top center bottom"': 'tcb' },
 	ga: { fix: 'fix', left: 'l', right: 'r', center: 'c', top: 't', bottom: 'b' },
 	bd: {
 		// current: 'cc',

@@ -161,8 +161,8 @@ export default {
 	pr: paddingOption,
 	pt: paddingOption,
 	pb: paddingOption,
-	px: Object.assign({}, paddingOption, { presets: 'space' }),
-	py: Object.assign({}, paddingOption, { presets: 'space' }),
+	px: Object.assign({}, paddingOption, { presets: 'py' }),
+	py: Object.assign({}, paddingOption, { presets: 'py' }),
 	ps: paddingOption,
 	pbs: paddingOption,
 	// pe: paddingOption,
@@ -216,9 +216,8 @@ const selfProps = {
 export const GAP_PROPS = {
 	gap: {
 		BP: 1,
-		presets: 'space',
+		presets: 'gap',
 		converter: 'space',
-
 		// gap={row, column} の場合の処理→context内での処理ができないので一旦OFF
 		// objProcessor: (d) => `${d}Gap`,
 	},
@@ -229,7 +228,7 @@ export const GAP_PROPS = {
 export const CONTEXT_PROPS = {
 	grid: {
 		template: { style: 'gridTemplate', name: 'gt', presets: 'gt' },
-		areas: { name: 'gta', BP: 1, presets: 'gta' },
+		areas: { name: 'gta', BP: 1, utils: 'gta', presets: 'gta' },
 		columns: { name: 'gtc', BP: 1 },
 		rows: { name: 'gtr', BP: 1 },
 		// autoFlow, autoRows, autoCols

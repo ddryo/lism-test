@@ -1,4 +1,5 @@
 @use '../query' as query;
+@use '../setting' as setting;
 
 /* stylelint-disable */
 
@@ -26,6 +27,16 @@
 .-my\:a{margin-block: auto !important}
 .-ms\:a{--ms: auto;}
 .-mbs\:a{--mbs: auto;}
+
+@each $s in setting.$util_spaces {
+	// .-m\:#{$s} {--m: var(--s--#{$s});}
+
+	// flowレイアウトで使うので mbs はユーティリティ用意する
+	.-ms\:#{$s} { --ms: var(--s--#{$s});}
+	.-mbs\:#{$s} { --mbs: var(--s--#{$s});}
+	// .-mbe\:#{$s} { --mbe: var(--s--#{$s});}
+}
+
 
 @include query.cq('sm'){
 	.-m\@sm\: { margin: var(--m--sm) !important }

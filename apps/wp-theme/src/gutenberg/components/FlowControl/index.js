@@ -16,10 +16,6 @@ const OPTIONS = [
 		value: 's',
 	},
 	{
-		label: __('M', 'lism-blocks'),
-		value: 'm',
-	},
-	{
 		label: __('L', 'lism-blocks'),
 		value: 'l',
 	},

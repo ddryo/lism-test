@@ -13,10 +13,11 @@ import {
 	InnerBlocks,
 	useBlockProps,
 	useInnerBlocksProps,
+	store as blockEditorStore,
 } from '@wordpress/block-editor';
+import { useSelect } from '@wordpress/data';
 import {
 	PanelBody,
-	ToggleControl,
 	__experimentalUnitControl as UnitControl,
 	__experimentalUseCustomUnits as useCustomUnits,
 } from '@wordpress/components';
@@ -26,23 +27,29 @@ import {
  */
 import metadata from './block.json';
 import icon from './icon';
-import { SelectorPreviewTip, FlowControl } from '@/gutenberg/components';
+import { SelectorPreviewTip } from '@/gutenberg/components';
 
 registerBlockType(metadata.name, {
 	title: __('Term List', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
 	icon,
-	edit: ({ attributes, setAttributes }) => {
-		const { templateLock, flowGap, isFluidMode, fixedWidth, fluidMinWidth, anchor, className } =
-			attributes;
+	edit: ({ attributes, setAttributes, clientId }) => {
+		const { templateLock, fixedWidth, fluidMinWidth, anchor, className } = attributes;
 
 		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem', '%'] });
 
+		const hasFluidChildBlock = useSelect(
+			(select) => {
+				const { getBlocks } = select(blockEditorStore);
+				const innerBlocks = getBlocks(clientId);
+				return innerBlocks.some(({ attributes }) => attributes.isFluidMode);
+			},
+			[clientId]
+		);
+
 		const blockProps = useBlockProps({
-			isFlow: flowGap !== undefined ? flowGap : undefined,
-			mode: isFluidMode ? 'fluid' : undefined,
-			fixW: isFluidMode ? fixedWidth : undefined,
-			fluidMinW: isFluidMode ? fluidMinWidth : undefined,
+			fixW: fixedWidth,
+			fluidMinW: fluidMinWidth,
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -57,43 +64,37 @@ registerBlockType(metadata.name, {
 			<>
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
-						<FlowControl
-							value={flowGap}
-							onChange={(value) => {
-								setAttributes({ flowGap: value });
-							}}
-						/>
-						<ToggleControl
-							label={__('Enable fluid mode', 'lism-blocks')}
-							checked={!!isFluidMode}
-							onChange={(value) => {
-								setAttributes({ isFluidMode: value });
-							}}
-						/>
-						{isFluidMode && (
-							<>
-								<UnitControl
-									size={'__unstable-large'}
-									label={__('Description Term width', 'lism-blocks')}
-									units={units}
-									min={0}
-									value={fixedWidth}
-									onChange={(value) => {
-										setAttributes({ fixedWidth: value || undefined });
-									}}
-								/>
-								<UnitControl
-									size={'__unstable-large'}
-									label={__('Description Details min width', 'lism-blocks')}
-									units={units}
-									min={0}
-									value={fixedWidth}
-									onChange={(value) => {
-										setAttributes({ fixedWidth: value || undefined });
-									}}
-								/>
-							</>
-						)}
+						<>
+							<UnitControl
+								size={'__unstable-large'}
+								label={__('All Description Term width', 'lism-blocks')}
+								units={units}
+								min={0}
+								value={fixedWidth}
+								onChange={(value) => {
+									setAttributes({ fixedWidth: value || undefined });
+								}}
+								disabled={!hasFluidChildBlock}
+							/>
+							<UnitControl
+								size={'__unstable-large'}
+								label={__('All Description Details min width', 'lism-blocks')}
+								units={units}
+								min={0}
+								value={fluidMinWidth}
+								onChange={(value) => {
+									setAttributes({ fluidMinWidth: value || undefined });
+								}}
+								disabled={!hasFluidChildBlock}
+								help={
+									!hasFluidChildBlock &&
+									__(
+										'To change this setting, you must have at least one Term List Row block with Fluid mode enabled.',
+										'lism-blocks'
+									)
+								}
+							/>
+						</>
 					</PanelBody>
 				</InspectorControls>
 				<TermList {...innerProps} forwardedRef={ref}>
@@ -104,13 +105,11 @@ registerBlockType(metadata.name, {
 		);
 	},
 	save: ({ attributes }) => {
-		const { flowGap, isFluidMode, fixedWidth, fluidMinWidth } = attributes;
+		const { fixedWidth, fluidMinWidth } = attributes;
 
 		const blockProps = useBlockProps.save({
-			isFlow: flowGap !== undefined ? flowGap : undefined,
-			mode: isFluidMode ? 'fluid' : undefined,
-			fixW: isFluidMode ? fixedWidth : undefined,
-			fluidMinW: isFluidMode ? fluidMinWidth : undefined,
+			fixW: fixedWidth,
+			fluidMinW: fluidMinWidth,
 		});
 
 		return (

@@ -17,10 +17,6 @@
 		}
 	},
 	"attributes": {
-		"isFluidMode": {
-			"type": "boolean",
-			"default": false
-		},
 		"fixedWidth": {
 			"type": "string"
 		},

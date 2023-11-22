@@ -23,6 +23,8 @@ const LISM_BLOCKS = [
 	'lism-blocks/reel',
 	'lism-blocks/stack',
 	'lism-blocks/switch-fix',
+	'lism-blocks/term-list',
+	'lism-blocks/term-list-row',
 	'lism-blocks/tile-grid',
 ];
 

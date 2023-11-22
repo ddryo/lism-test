@@ -31,9 +31,6 @@
 		},
 		"fluidMinWidth": {
 			"type": "string"
-		},
-		"flowGap": {
-			"type": "string"
 		}
 	},
 	"editorScript": "file:./index.js",

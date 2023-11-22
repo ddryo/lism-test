@@ -1,7 +1,7 @@
 /**
  * @External dependencies
  */
-import { Core, Lism, FluidFix, Stack, TermListRow } from '@loos/lism-core';
+import { TermListRow } from '@loos/lism-core';
 
 /**
  * @WordPress dependencies
@@ -48,12 +48,10 @@ registerBlockType(metadata.name, {
 		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem', '%'] });
 
 		const blockProps = useBlockProps({
-			lismClass: {
-				c: 'c--termList__row',
-			},
-			gap: 10,
-			ms: 30,
-			fix: isFluidMode ? 'first' : undefined,
+			isFlow: flowGap !== undefined ? flowGap : undefined,
+			mode: isFluidMode ? 'fluid' : undefined,
+			fixW: isFluidMode ? fixedWidth : undefined,
+			fluidMinW: isFluidMode ? fluidMinWidth : undefined,
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -62,12 +60,6 @@ registerBlockType(metadata.name, {
 		});
 
 		const { children, ref, ...innerProps } = innerBlocksProps;
-
-		const ddProps = {
-			isFlow: flowGap !== undefined ? flowGap : undefined,
-		};
-
-		const Component = isFluidMode ? FluidFix : Stack;
 
 		return (
 			<>
@@ -112,30 +104,29 @@ registerBlockType(metadata.name, {
 						)}
 					</PanelBody>
 				</InspectorControls>
-				<Component {...innerProps} forwardedRef={ref}>
-					{/* <SelectorPreviewTip icon={icon} anchor={anchor} className={className} /> */}
-					<Core tag='dt' fw='bold' className='c--termList__dt'>
+				<TermListRow
+					{...innerProps}
+					forwardedRef={ref}
+					term={
 						<RichText
-							aria-label={__('Write Description Term…')}
-							placeholder={__('Write Description Term…')}
+							placeholder={__('Add description...')}
 							value={term}
-							onChange={(value) => {
-								setAttributes({ term: value });
+							onChange={(newTerm) => {
+								setAttributes({ term: newTerm });
 							}}
 						/>
-					</Core>
-					<Lism tag='dd' className='c--termList__dd' {...ddProps}>
-						{children}
-					</Lism>
-				</Component>
+					}
+				>
+					{children}
+				</TermListRow>
 			</>
 		);
 	},
-	save: ({ attributes }) => {
+	save: (props) => {
+		const { attributes } = props;
 		const { term, flowGap, isFluidMode, fixedWidth, fluidMinWidth } = attributes;
 
 		const blockProps = useBlockProps.save({
-			term,
 			isFlow: flowGap !== undefined ? flowGap : undefined,
 			mode: isFluidMode ? 'fluid' : undefined,
 			fixW: isFluidMode ? fixedWidth : undefined,
@@ -143,7 +134,7 @@ registerBlockType(metadata.name, {
 		});
 
 		return (
-			<TermListRow {...blockProps}>
+			<TermListRow {...blockProps} term={<RichText.Content value={term} />}>
 				<InnerBlocks.Content />
 			</TermListRow>
 		);

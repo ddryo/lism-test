@@ -24,20 +24,27 @@ const OPTIONS = [
 
 const DEFAULT_UNITS = ['px', 'em', 'rem'];
 
-export default function FlowControl({ value, units: _units = DEFAULT_UNITS, onChange }) {
+export default function FlowControl({
+	hasToggle = true,
+	value,
+	units: _units = DEFAULT_UNITS,
+	onChange,
+}) {
 	const isCustomValue = value !== undefined && !OPTIONS.some((option) => option.value === value);
 
 	const units = useCustomUnits({ availableUnits: _units });
 
 	return (
 		<BaseControl className='lism-flowControl'>
-			<ToggleControl
-				label={__('Use flow layout', 'lism-blocks')}
-				checked={value !== undefined}
-				onChange={(value) => {
-					onChange(value ? 's' : undefined);
-				}}
-			/>
+			{hasToggle && (
+				<ToggleControl
+					label={__('Use flow layout', 'lism-blocks')}
+					checked={value !== undefined}
+					onChange={(value) => {
+						onChange(value ? 's' : undefined);
+					}}
+				/>
+			)}
 			{value !== undefined && (
 				<ToggleGroupControl
 					isBlock

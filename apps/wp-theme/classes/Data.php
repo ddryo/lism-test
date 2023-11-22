@@ -21,6 +21,7 @@ class Data {
 		'alert'           => [],
 		'box'             => [],
 		'center'          => [],
+		'chat-bubble'     => [],
 		'cluster'         => [],
 		'columns'         => [],
 		'divider'         => [],

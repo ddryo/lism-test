@@ -33,10 +33,10 @@ const TARGET_DIR = process.argv[2] || '';
 	let files = [];
 
 	// const targets = null;
-	// if ('blocks' === envTYPE) {
-	// 	src = 'src/gutenberg/blocks';
-	// 	dist = 'dist/blocks';
-	// }
+	if ('blocks' === envTYPE) {
+		src = 'src/gutenberg/blocks';
+		dist = 'dist/gutenberg/blocks';
+	}
 
 	// TYPE=front
 	if ('front' === envTYPE) {

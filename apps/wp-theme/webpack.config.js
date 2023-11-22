@@ -34,14 +34,14 @@ blocks.forEach((key) => {
 /**
  * pluginsのカスタマイズ
  */
-// const { plugins, ...defaultConfig } = wpScriptsConfigs;
-// const customizedPlugins = plugins.filter((pluginInstance) => {
-// 	// ビルド先のファイルを勝手に削除するやつをオフに。
-// 	if ('CleanWebpackPlugin' === pluginInstance.constructor.name) {
-// 		return false;
-// 	}
-// 	return true;
-// });
+const { plugins, ...defaultConfig } = wpScriptsConfigs;
+const customizedPlugins = plugins.filter((pluginInstance) => {
+	// ビルド先のファイルを勝手に削除するやつをオフに。
+	if ('CleanWebpackPlugin' === pluginInstance.constructor.name) {
+		return false;
+	}
+	return true;
+});
 
 // resolve.alias 追加
 wpScriptsConfigs.resolve.alias['@'] = path.resolve(__dirname, 'src/');
@@ -50,12 +50,12 @@ wpScriptsConfigs.resolve.alias['@'] = path.resolve(__dirname, 'src/');
  * 設定exports
  */
 module.exports = {
-	...wpScriptsConfigs, //@wordpress/scriptを引き継ぐ
+	...defaultConfig,
 	entry: entries,
 	output: {
 		path: path.resolve(__dirname, 'dist/gutenberg'),
 		filename: '[name]',
 	},
-	// plugins: customizedPlugins,
+	plugins: customizedPlugins,
 	// performance: { hints: false },
 };

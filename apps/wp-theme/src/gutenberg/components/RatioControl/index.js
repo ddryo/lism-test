@@ -2,6 +2,7 @@
  * @WordPress dependencies
  */
 import {
+	BaseControl,
 	Button,
 	Flex,
 	FlexBlock,
@@ -78,7 +79,7 @@ export default function RatioControl({ value: ratioValue = '1:1', onChange }) {
 	}
 
 	return (
-		<div className='lism-ratioControl'>
+		<BaseControl className='lism-ratioControl'>
 			<SelectControl
 				label={__('Preset', 'lism-blocks')}
 				options={options}
@@ -132,6 +133,6 @@ export default function RatioControl({ value: ratioValue = '1:1', onChange }) {
 					</Button>
 				</VStack>
 			</>
-		</div>
+		</BaseControl>
 	);
 }

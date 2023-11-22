@@ -48,21 +48,15 @@ export default function JustifyItemsControl({ value, controls, onChange }) {
 			? OPTIONS.filter(({ value }) => controls.includes(value))
 			: OPTIONS;
 	return (
-		<div className='lism-justifyItemsControl'>
-			<ToggleGroupControl
-				label={__('Justify items', 'lism-blocks')}
-				onChange={onChange}
-				value={value}
-			>
-				{options.map(({ label, value, icon }) => (
-					<ToggleGroupControlOptionIcon
-						key={value}
-						value={value}
-						icon={icon}
-						label={label}
-					/>
-				))}
-			</ToggleGroupControl>
-		</div>
+		<ToggleGroupControl
+			className='lism-justifyItemsControl'
+			label={__('Justify items', 'lism-blocks')}
+			onChange={onChange}
+			value={value}
+		>
+			{options.map(({ label, value, icon }) => (
+				<ToggleGroupControlOptionIcon key={value} value={value} icon={icon} label={label} />
+			))}
+		</ToggleGroupControl>
 	);
 }

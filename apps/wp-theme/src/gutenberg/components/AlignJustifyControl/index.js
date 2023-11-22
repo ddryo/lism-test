@@ -1,4 +1,9 @@
 /**
+ * @WordPress dependencies
+ */
+import { BaseControl } from '@wordpress/components';
+
+/**
  * @Internal dependencies
  */
 import {
@@ -15,7 +20,7 @@ export default function AlignJustifyControl({ values = {}, onChange }) {
 	};
 
 	return (
-		<div className='lism-alignJustifyControl'>
+		<BaseControl className='lism-alignJustifyControl'>
 			<JustifyContentControl
 				value={values?.justifyContent}
 				onChange={(value) => {
@@ -40,6 +45,6 @@ export default function AlignJustifyControl({ values = {}, onChange }) {
 					onChangeValue('alignItems', value);
 				}}
 			/>
-		</div>
+		</BaseControl>
 	);
 }

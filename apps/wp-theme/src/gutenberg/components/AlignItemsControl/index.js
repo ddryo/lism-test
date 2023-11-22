@@ -48,21 +48,15 @@ export default function AlignItemsControl({ value, controls, onChange }) {
 			? OPTIONS.filter(({ value }) => controls.includes(value))
 			: OPTIONS;
 	return (
-		<div className='lism-alignItemsControl'>
-			<ToggleGroupControl
-				label={__('Align items', 'lism-blocks')}
-				onChange={onChange}
-				value={value}
-			>
-				{options.map(({ label, value, icon }) => (
-					<ToggleGroupControlOptionIcon
-						key={value}
-						value={value}
-						icon={icon}
-						label={label}
-					/>
-				))}
-			</ToggleGroupControl>
-		</div>
+		<ToggleGroupControl
+			className='lism-alignItemsControl'
+			label={__('Align items', 'lism-blocks')}
+			onChange={onChange}
+			value={value}
+		>
+			{options.map(({ label, value, icon }) => (
+				<ToggleGroupControlOptionIcon key={value} value={value} icon={icon} label={label} />
+			))}
+		</ToggleGroupControl>
 	);
 }

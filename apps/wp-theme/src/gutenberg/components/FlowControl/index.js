@@ -2,6 +2,7 @@
  * @WordPress dependencies
  */
 import {
+	BaseControl,
 	ToggleControl,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
@@ -29,7 +30,7 @@ export default function FlowControl({ value, units: _units = DEFAULT_UNITS, onCh
 	const units = useCustomUnits({ availableUnits: _units });
 
 	return (
-		<div className='lism-flowControl'>
+		<BaseControl className='lism-flowControl'>
 			<ToggleControl
 				label={__('Use flow layout', 'lism-blocks')}
 				checked={value !== undefined}
@@ -66,6 +67,6 @@ export default function FlowControl({ value, units: _units = DEFAULT_UNITS, onCh
 					min={0}
 				/>
 			)}
-		</div>
+		</BaseControl>
 	);
 }

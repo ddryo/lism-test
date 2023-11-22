@@ -33,21 +33,15 @@ const OPTIONS = [
 
 export default function FlexDirectionControl({ value = 'row', onChange }) {
 	return (
-		<div className='lism-flexWrapControl'>
-			<ToggleGroupControl
-				label={__('Flex direction', 'lism-blocks')}
-				onChange={(value) => onChange(value)}
-				value={value}
-			>
-				{OPTIONS.map(({ label, value, icon }) => (
-					<ToggleGroupControlOptionIcon
-						key={value}
-						value={value}
-						icon={icon}
-						label={label}
-					/>
-				))}
-			</ToggleGroupControl>
-		</div>
+		<ToggleGroupControl
+			className='lism-flexWrapControl'
+			label={__('Flex direction', 'lism-blocks')}
+			onChange={(value) => onChange(value)}
+			value={value}
+		>
+			{OPTIONS.map(({ label, value, icon }) => (
+				<ToggleGroupControlOptionIcon key={value} value={value} icon={icon} label={label} />
+			))}
+		</ToggleGroupControl>
 	);
 }

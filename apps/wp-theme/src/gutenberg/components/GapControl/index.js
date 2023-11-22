@@ -4,6 +4,7 @@
 import { __ } from '@wordpress/i18n';
 import { link, linkOff } from '@wordpress/icons';
 import {
+	BaseControl,
 	Button,
 	Flex,
 	FlexBlock,
@@ -37,51 +38,53 @@ export default function GapControl({ units: _units = DEFAULT_UNITS }) {
 		: __('Link Sides', 'lism-blocks');
 
 	return (
-		<VStack className='lism-gapControl'>
-			<Button
-				className='__link'
-				variant={isLinked ? 'primary' : 'secondary'}
-				label={linkButtonlabel}
-				icon={isLinked ? link : linkOff}
-				onClick={() => setIsLinked(!isLinked)}
-			/>
-			{isLinked && (
-				<Flex className='__row'>
-					<FlexItem>
-						<Icon icon={sidesAll} className='__icon' />
-					</FlexItem>
-					<FlexBlock>
-						<UnitControl
-							size={'__unstable-large'}
-							label={LABELS.all}
-							hideLabelFromVision
-							units={units}
-							min={0}
-						/>
-					</FlexBlock>
-				</Flex>
-			)}
-			{!isLinked &&
-				['row', 'column'].map((side) => (
-					<Flex className='__row' key={side}>
+		<BaseControl className='lism-gapControl'>
+			<VStack>
+				<Button
+					className='__link'
+					variant={isLinked ? 'primary' : 'secondary'}
+					label={linkButtonlabel}
+					icon={isLinked ? link : linkOff}
+					onClick={() => setIsLinked(!isLinked)}
+				/>
+				{isLinked && (
+					<Flex className='__row'>
 						<FlexItem>
-							<Icon icon={side ? ICONS[side] : sidesAll} className='__icon' />
+							<Icon icon={sidesAll} className='__icon' />
 						</FlexItem>
 						<FlexBlock>
 							<UnitControl
-								key={side}
 								size={'__unstable-large'}
-								label={LABELS[side]}
+								label={LABELS.all}
 								hideLabelFromVision
 								units={units}
 								min={0}
 							/>
 						</FlexBlock>
 					</Flex>
-				))}
-			<Button className='__reset' variant='secondary' size='small'>
-				{__('Clear', 'lism-blocks')}
-			</Button>
-		</VStack>
+				)}
+				{!isLinked &&
+					['row', 'column'].map((side) => (
+						<Flex className='__row' key={side}>
+							<FlexItem>
+								<Icon icon={side ? ICONS[side] : sidesAll} className='__icon' />
+							</FlexItem>
+							<FlexBlock>
+								<UnitControl
+									key={side}
+									size={'__unstable-large'}
+									label={LABELS[side]}
+									hideLabelFromVision
+									units={units}
+									min={0}
+								/>
+							</FlexBlock>
+						</Flex>
+					))}
+				<Button className='__reset' variant='secondary' size='small'>
+					{__('Clear', 'lism-blocks')}
+				</Button>
+			</VStack>
+		</BaseControl>
 	);
 }

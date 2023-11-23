@@ -1,0 +1,35 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/note",
+	"title": "Note",
+	"category": "lism-blocks",
+	"keywords": [],
+	"supports": {
+		"anchor": true,
+		"className": false,
+		"color": {
+			"__experimentalDefaultControls": {
+				"text": true
+			}
+		}
+	},
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"source": "html",
+			"selector": ".c--note__heading"
+		},
+		"keyColor": {
+			"type": "string"
+		},
+		"iconSlug": {
+			"type": "string"
+		},
+		"flowGap": {
+			"type": "string"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

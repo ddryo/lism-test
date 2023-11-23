@@ -34,6 +34,8 @@ class Data {
 		'stack'           => [],
 		'switch-fix'      => [],
 		'switch-fix-item' => [],
+		'tabs'            => [],
+		'tab-item'        => [],
 		'term-list'       => [],
 		'term-list-row'   => [],
 		'tile-grid'       => [],

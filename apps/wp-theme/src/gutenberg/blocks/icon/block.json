@@ -9,6 +9,12 @@
 		"className": false
 	},
 	"attributes": {
+		"iconSize": {
+			"type": "string"
+		},
+		"iconLabel": {
+			"type": "string"
+		},
 		"iconSlug": {
 			"type": "string"
 		}

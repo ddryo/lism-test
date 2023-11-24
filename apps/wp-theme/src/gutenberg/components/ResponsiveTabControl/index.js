@@ -7,7 +7,7 @@ import { BaseControl } from '@wordpress/components';
 /**
  * @Internal dependencies
  */
-const { BREAKPOINTS } = require('../../constants');
+import { BREAKPOINTS } from '@/gutenberg/constants';
 
 export default function ResponsiveTabControl({ tabs = BREAKPOINTS, children }) {
 	return (

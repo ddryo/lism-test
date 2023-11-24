@@ -17,10 +17,7 @@ import {
 	__experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown,
 	__experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients,
 } from '@wordpress/block-editor';
-import {
-	SelectControl,
-	PanelBody,
-} from '@wordpress/components';
+import { SelectControl, PanelBody } from '@wordpress/components';
 import { warning as icon } from '@wordpress/icons';
 
 /**
@@ -28,7 +25,7 @@ import { warning as icon } from '@wordpress/icons';
  */
 import metadata from './block.json';
 import { SelectorPreviewTip, FlowControl } from '@/gutenberg/components';
-import { ALERT_PRESETS, ICON_PRESETS } from '@/gutenberg/constants';
+import { ALERT_PRESETS, LISM_ICON_PRESETS } from '@/gutenberg/constants';
 
 registerBlockType(metadata.name, {
 	title: __('Note', 'lism-blocks'),
@@ -37,33 +34,36 @@ registerBlockType(metadata.name, {
 	edit: ({ attributes, setAttributes, clientId }) => {
 		const { heading, keyColor, iconSlug, flowGap, anchor, className } = attributes;
 
-		const currentPreset = ALERT_PRESETS.find(({ icon, color }) => icon === iconSlug && color === keyColor);
+		const currentPreset = ALERT_PRESETS.find(
+			({ icon, color }) => icon === iconSlug && color === keyColor
+		);
 
 		const presets = currentPreset
-			? ICON_PRESETS.map(({ value }) => {
+			? LISM_ICON_PRESETS.map(({ value }) => {
 					return {
 						label: value,
 						value,
 					};
-				})
+			  })
 			: [
-				{
-					label: __('Select preset...', 'lism-blocks'),
-					value: 'default',
-				},
-				...ICON_PRESETS.map(({ value }) => {
-					return {
-						label: value,
-						value,
-					};
-				}),
-
-			];
+					{
+						label: __('Select preset...', 'lism-blocks'),
+						value: 'default',
+					},
+					...LISM_ICON_PRESETS.map(({ value }) => {
+						return {
+							label: value,
+							value,
+						};
+					}),
+			  ];
 
 		function onChangePreset(value) {
 			const preset = ALERT_PRESETS.find(({ value: _value }) => _value === value);
 			if (preset) {
-				const iconPreset = ICON_PRESETS.find(({ value: _value }) => _value === preset.icon);
+				const iconPreset = LISM_ICON_PRESETS.find(
+					({ value: _value }) => _value === preset.icon
+				);
 				setAttributes({
 					keyColor: preset.color,
 					iconLabel: preset.label,
@@ -134,7 +134,7 @@ registerBlockType(metadata.name, {
 									label: __('None', 'lism-blocks'),
 									value: 'none',
 								},
-								...ICON_PRESETS.map(({ value }) => {
+								...LISM_ICON_PRESETS.map(({ value }) => {
 									return {
 										label: value,
 										value,
@@ -150,13 +150,19 @@ registerBlockType(metadata.name, {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<Note {...innerProps} forwardedRef={ref} heading={<RichText
+				<Note
+					{...innerProps}
+					forwardedRef={ref}
+					heading={
+						<RichText
 							placeholder={__('Add heading text...')}
 							value={heading}
 							onChange={(newTerm) => {
 								setAttributes({ heading: newTerm });
 							}}
-						/>}>
+						/>
+					}
+				>
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
 					{children}
 				</Note>
@@ -166,9 +172,6 @@ registerBlockType(metadata.name, {
 
 	save: ({ attributes }) => {
 		const { heading, keyColor, iconSlug, flowGap } = attributes;
-		console.log( iconSlug );
-
-
 		const blockProps = useBlockProps.save({
 			isFlow: flowGap !== undefined ? flowGap : undefined,
 			keycolor: keyColor,

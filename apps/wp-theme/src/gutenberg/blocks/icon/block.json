@@ -1,0 +1,18 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/icon",
+	"title": "Icon",
+	"category": "lism-blocks",
+	"supports": {
+		"anchor": true,
+		"className": false
+	},
+	"attributes": {
+		"iconSlug": {
+			"type": "string"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

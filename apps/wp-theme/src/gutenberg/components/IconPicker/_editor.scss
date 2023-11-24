@@ -1,0 +1,50 @@
+.lism-iconPicker {
+
+	.__toggle {
+		width: 100px;
+		height: 48px;
+	}
+
+	.__toggleIcon {
+		width: 36px;
+		height: 36px;
+		margin: 0 auto;
+	}
+
+	.__toggleArrow {
+		margin-left: auto;
+	}
+}
+
+.lism-iconPickerModal {
+	width: 600px;
+	height: 100%;
+
+	.components-modal__header + div {
+		display: flex;
+		flex-flow: column;
+		gap: 16px;
+		height: 100%;
+	}
+
+	.__search {
+
+		.components-base-control__field {
+			margin-bottom: 0;
+		}
+	}
+
+	.__iconList {
+		overflow-y: auto;
+
+		.components-button {
+			width: 36px;
+			padding: 4px;
+
+			svg {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+}

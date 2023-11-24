@@ -30,7 +30,7 @@ import { warning as icon } from '@wordpress/icons';
  */
 import metadata from './block.json';
 import { SelectorPreviewTip, FlowControl } from '@/gutenberg/components';
-import { ALERT_PRESETS, ICON_PRESETS } from '@/gutenberg/constants';
+import { ALERT_PRESETS, LISM_ICON_PRESETS } from '@/gutenberg/constants';
 
 registerBlockType(metadata.name, {
 	title: __('Alert', 'lism-blocks'),
@@ -43,7 +43,9 @@ registerBlockType(metadata.name, {
 		function onChangePreset(value) {
 			const preset = ALERT_PRESETS.find(({ value: _value }) => _value === value);
 			if (preset) {
-				const iconPreset = ICON_PRESETS.find(({ value: _value }) => _value === preset.icon);
+				const iconPreset = LISM_ICON_PRESETS.find(
+					({ value: _value }) => _value === preset.icon
+				);
 				setAttributes({
 					keyColor: preset.color,
 					iconLabel: preset.label,
@@ -126,7 +128,7 @@ registerBlockType(metadata.name, {
 									label: __('Default', 'lism-blocks'),
 									value: 'default',
 								},
-								...ICON_PRESETS.map(({ value }) => {
+								...LISM_ICON_PRESETS.map(({ value }) => {
 									return {
 										label: value,
 										value,

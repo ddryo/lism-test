@@ -6,6 +6,7 @@ export { default as FlexDirectionControl } from './FlexDirectionControl';
 export { default as FlexWrapControl } from './FlexWrapControl';
 export { default as FlowControl } from './FlowControl';
 export { default as GapControl } from './GapControl';
+export { default as IconPicker } from './IconPicker';
 export { default as JustifyContentControl } from './JustifyContentControl';
 export { default as JustifyItemsControl } from './JustifyItemsControl';
 export { default as PropsControl } from './PropsControl';

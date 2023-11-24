@@ -87,7 +87,7 @@ export const ALERT_PRESETS = Object.keys(AlertPresets).map((key) => {
 });
 
 // アイコンプリセット一覧
-export const ICON_PRESETS = Object.keys(IconPresets).map((key) => {
+export const LISM_ICON_PRESETS = Object.keys(IconPresets).map((key) => {
 	return {
 		value: key,
 		icon: IconPresets[key],

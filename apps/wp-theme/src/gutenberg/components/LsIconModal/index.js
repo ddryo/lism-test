@@ -21,8 +21,7 @@ import classnames from 'classnames';
 /**
  * @Inner dependencies
  */
-import { ArkbProOnly, LsIcon } from '@components';
-import { formatSvg } from '@helper';
+import LsIcon from '@/gutenberg/components/LsIcon';
 import { ICON_STYLE_LIST, ICON_STYLE_LABELS, ICON_CATEGORIES } from './config';
 
 const IS_PRO = !!window.arkbSettings?.pfkey || false;
@@ -91,7 +90,7 @@ const IconPickerTab = ({ value = '', onChange, searchValue }) => {
 			title: <LsIcon icon={tabData.icon} />,
 		};
 	});
-	const INITIAL_TAB = ICON_TABS[0].name;
+	const INITIAL_TAB = 'ls';
 
 	let slectedTab = '';
 	if (value.startsWith('Ls')) {
@@ -152,44 +151,22 @@ const IconPickerTab = ({ value = '', onChange, searchValue }) => {
 			{/* eslint-disable-next-line no-unused-vars */}
 			{(tab) => {
 				return (
-					<>
-						<ButtonGroup className='__iconStyles'>
-							<span className='__label'>{TEXTS.style} : </span>
-							{iconStyleOptions.map((_style, idx) => {
-								return (
-									<Button
-										key={idx}
-										variant={_style.value === iconType ? 'primary' : ''}
-										onClick={() => {
-											setIconType(_style.value);
-										}}
-									>
-										{_style.label}
-									</Button>
-								);
-							})}
-						</ButtonGroup>
-						<ArkbProOnly passCheck={currentTabName === 'ls'}>
-							{(() => {
-								if (filteredIcons) {
-									return filteredIcons.length ? (
-										<IconBtns
-											icons={filteredIcons}
-											value={value}
-											onChange={onChange}
-											isFilterd={true}
-										/>
-									) : (
-										<div className='__noIcon'>{TEXTS.nofound}</div>
-									);
-								}
-								// if (value.startsWith('ls')) {
-								return (
-									<IconBtns icons={theIcons} value={value} onChange={onChange} />
-								);
-							})()}
-						</ArkbProOnly>
-					</>
+					<ButtonGroup className='__iconStyles'>
+						<span className='__label'>{TEXTS.style} : </span>
+						{iconStyleOptions.map((_style, idx) => {
+							return (
+								<Button
+									key={idx}
+									variant={_style.value === iconType ? 'primary' : ''}
+									onClick={() => {
+										setIconType(_style.value);
+									}}
+								>
+									{_style.label}
+								</Button>
+							);
+						})}
+					</ButtonGroup>
 				);
 			}}
 		</TabPanel>
@@ -213,11 +190,7 @@ const SvgInputControl = ({ value, onSet, className }) => {
 				text={TEXTS.svgInsert}
 				className='__setBtn'
 				variant='secondary'
-				onClick={() => {
-					const newSvg = formatSvg(enteredSvg);
-					setEnteredSvg(newSvg);
-					onSet(newSvg);
-				}}
+				onClick={() => {}}
 			/>
 		</Flex>
 	);

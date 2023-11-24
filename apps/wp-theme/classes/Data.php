@@ -28,6 +28,7 @@ class Data {
 		'flex'            => [],
 		'fluid-fix'       => [],
 		'frame'           => [],
+		'icon'            => [],
 		'note'            => [],
 		'ratio-grid'      => [],
 		'reel'            => [],

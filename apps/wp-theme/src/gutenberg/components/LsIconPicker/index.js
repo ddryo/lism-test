@@ -9,8 +9,8 @@ import { chevronDown } from '@wordpress/icons';
 /**
  * @Inner dependencies
  */
-import LsIcon from '@components/LsIcon';
-import LsIconModal from '@components/LsIconModal';
+import LsIcon from '@/gutenberg/components/LsIcon';
+import LsIconModal from '@/gutenberg/components/LsIconModal';
 
 /**
  * TEXT
@@ -42,9 +42,9 @@ export default ({
 				iconPosition='right'
 				icon={chevronDown}
 				text={
-					!!svg ? (
+					svg ? (
 						<RawHTML className='ls-iconPicker__prev'>{svg}</RawHTML>
-					) : !!value ? (
+					) : value ? (
 						<LsIcon icon={value} size='24px' className='ls-iconPicker__prev' />
 					) : (
 						<span className='ls-iconPicker__placeholder'>{TEXTS.search}</span>

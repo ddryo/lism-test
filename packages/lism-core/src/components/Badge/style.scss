@@ -7,15 +7,12 @@
 	color: var(--c);
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc); // サイズ揃えるため, 常にborderを指定
-	line-height: 1.25; // 要検討
-	padding: 0.375em 0.5em;
+	// line-height: 1.25; // 要検討
+	// padding: 0.375em 0.5em;
+	padding-block: var(--em--1);
+	padding-inline: var(--em--5);
 	// border-radius: var(--radius--1);
 	// font-size: var(--fz--xs);
-
-	// iconあるとき用
-	display: inline-flex;
-	align-items: center;
-	gap: 0.2em;
 }
 
 .c--badge--outline {

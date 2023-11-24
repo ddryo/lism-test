@@ -128,27 +128,30 @@ export const ColorDemos = ({colors, variant}) => {
 </Demo.Code>
 </Demo>
 
-### アイコン
+### アイコンを併用する例
 
-`display:inline-flex`, `align-item:center` を `.c--badge` に対して指定していますので、内部にアイコンを配置してもきれいに表示されます。
-
+{/* `display:inline-flex`, `align-item:center` を `.c--badge` に対して指定していますので、内部にアイコンを配置してもきれいに表示されます。 */}
+	{/* // iconあるとき用
+	display: inline-flex;
+	align-items: center;
+	gap: 0.2em; */}
 
 <Demo>
 	<Demo.Title>`<InlineIcon>`の使用例</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<Cluster gap={20}>
-			<Badge><Icon icon={Book} size="1.25em"/> Badge</Badge>
-			<Badge variant="outline"><Icon icon={Cat} size="1.25em"/> Badge</Badge>
+			<Badge d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Book} size="1.25em"/> Badge</Badge>
+			<Badge variant="outline" d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Cat} size="1.25em"/> Badge</Badge>
 		</Cluster>
 	</Demo.Preview>
 <Demo.Code>
 ```jsx
 <Cluster gap={20}>
-	<Badge>
-		<Icon icon={Book} size="1.25em"/> Badge
+	<Badge d='inline-flex' flex={{ai: 'center', gap: 'em2'}}>
+		<Icon icon={Book} size="1.25em"/>Badge
 	</Badge>
-	<Badge variant="outline">
-		<Icon icon={Cat} size="1.25em"/> Badge
+	<Badge variant="outline" d='inline-flex' flex={{ai: 'center', gap: 'em2'}}>
+		<Icon icon={Cat} size="1.25em"/>Badge
 	</Badge>
 </Cluster>
 ```

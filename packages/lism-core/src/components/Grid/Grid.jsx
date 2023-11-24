@@ -1,9 +1,10 @@
 // import React from 'react';
-import { Lism } from '../Lism';
+import { Layouter } from '../Layouter';
 import { isEmptyObj, filterEmptyObj } from '../../lib/helper';
 
 export default function Grid({
 	_gridName = 'grid',
+	variant,
 	lismClass = {},
 	template,
 	areas,
@@ -36,5 +37,8 @@ export default function Grid({
 	}
 
 	lismClass.l = `l--${_gridName}`;
-	return <Lism lismClass={lismClass} {...props} />;
+	if (variant) {
+		lismClass.l += ` l--${_gridName}--` + variant;
+	}
+	return <Layouter lismClass={lismClass} {...props} />;
 }

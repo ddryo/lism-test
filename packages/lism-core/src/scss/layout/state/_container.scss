@@ -1,15 +1,3 @@
-// Houdini カスタムプロパティ
-.-container\:s {
-	container-type: size;
-}
-.-container\:i {
-	container-type: inline-size;
-}
-// .has-global-padding はコア以外の要素で使うと想像した結果にならないことがあるので同じようなことをするクラスを作る
-.has--gutter {
-	padding-inline: var(--gutter);
-}
-
 // 内部のコンテンツ幅を制御する。
 :is(.is--constrained, [class*='is--constrained:']) {
 	container-type: inline-size;
@@ -58,13 +46,13 @@
 }
 // .is--container\:full {max-inline-size: 100%;} // これは → .is--container.alignfull でできる
 
-// Note: flowより強く、ユーティリティより弱く。
-:where(.alignfull) + .alignfull {
+// Note: 詳細度は flow より強く、ユーティリティより弱く。(flowの後で定義し、0-1-0 を超えないように)
+:where(.alignfull, .is--fullwide) + :is(.alignfull, .is--fullwide) {
 	margin-block-start: 0;
 }
 
 // Note: .is--container より後にかく。
-.alignfull {
+:is(.alignfull, .is--fullwide) {
 	// container-type: inline-size;
 	max-inline-size: 100%;
 
@@ -75,7 +63,7 @@
 	}
 }
 
-.alignwide {
+:is(.alignwide, .is--wide) {
 	// container-type: inline-size;
 	max-inline-size: var(--size--wide, 100%);
 }
@@ -102,7 +90,7 @@
 	:is(.is--container, [class*='is--conta.is--container:']) {
 		--size--full: 100cqw; // is--container が配置された時点での 100cqw をセット
 
-		> .alignfull {
+		> :is(.alignfull, .is--fullwide) {
 			max-inline-size: var(--size--full);
 			margin-inline: calc(50% - var(--size--full) / 2);
 		}

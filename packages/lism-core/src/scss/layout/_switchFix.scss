@@ -1,4 +1,4 @@
-@use '../../../scss/query' as query;
+@use '../query' as query;
 
 // 一応 area名は . ではなく nofix で、子要素から指定できるようにしている。
 .l--switchFix {

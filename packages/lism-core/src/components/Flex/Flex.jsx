@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Lism } from '../Lism';
+import { Layouter } from '../Layouter';
 import { getFlexProps } from '../../lib';
 
 export default function Flex({ _flexName = 'flex', lismClass = {}, hasDivider, ...props }) {
@@ -20,5 +20,5 @@ export default function Flex({ _flexName = 'flex', lismClass = {}, hasDivider, .
 	}
 
 	// as や state系 を処理できる
-	return <Lism lismClass={lismClass} hasDivider={hasDivider} {...props} />;
+	return <Layouter lismClass={lismClass} hasDivider={hasDivider} {...props} />;
 }

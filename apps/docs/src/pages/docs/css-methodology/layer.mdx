@@ -1,0 +1,59 @@
+# CSS Layer
+
+詳細度が複雑になりがちな問題への対策として、LismではCSSの階層構造を明確に定義しています。
+
+
+<table className="table--solid">
+	<thead>
+		<tr>
+			<th colSpan={2}>Layer</th>
+			<th>役割</th>
+			<th>最大詳細度</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colSpan={2}>Generic</td>
+			<td>scssの設定変数やトークン(カスタムプロパティ)のセット</td>
+			<td>-</td>
+		</tr>
+		{/* base */}
+		<tr>
+			<td rowSpan={2} style={{verticalAlign: 'top'}}>Base</td>
+			<td>Reset</td>
+			<td>reset CSS</td>
+			<td rowSpan={2}>0-0-1</td>
+		</tr>
+		<tr>
+			<td>Elements</td>
+			<td>HTML要素に対するスタイルの初期セット等</td>
+		</tr>
+		{/* Layout */}
+		<tr>
+			<td rowSpan={2} style={{verticalAlign: 'top'}}>Layout</td>
+			<td>Layout Module</td>
+			<td rowSpan={2}>レイアウト構成の役割を持つセレクタ</td>
+			<td rowSpan={2}>0-1-0</td>
+		</tr>
+		<tr>
+			<td>Layout State</td>
+		</tr>
+		<tr>
+			<td rowSpan={3} style={{verticalAlign: 'top'}}>Objects</td>
+			<td>Atom</td>
+			<td rowSpan={3}>具体的な役割を持つコンポーネントなどのセレクタ</td>
+			<td rowSpan={3}>0-1-0</td>
+		</tr>
+		<tr>
+			<td>Block</td>
+		</tr>
+		<tr>
+			<td>Component</td>
+		</tr>
+		<tr>
+			<td colSpan={2}>Utility</td>
+			<td>ユーティリティクラス</td>
+			<td>0-1-0</td>
+		</tr>
+	</tbody>
+</table>

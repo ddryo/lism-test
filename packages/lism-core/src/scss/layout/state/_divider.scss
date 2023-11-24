@@ -31,25 +31,3 @@
 // 		content: var(--delimiter);
 // 	}
 // }
-
-[data-lism-consume~='p'] {
-	padding: var(--pass--p);
-}
-// [data-lism-consume~='gap'] {
-// 	gap: var(--pass--gap);
-// }
-[data-lism-consume~='c'] {
-	color: var(--pass--c);
-}
-[data-lism-consume~='bgc'] {
-	background-color: var(--pass--bgc);
-}
-[data-lism-consume~='shadow'] {
-	box-shadow: var(--pass--shadow);
-}
-[data-lism-consume~='radius'] {
-	border-radius: var(--pass--radius);
-}
-[data-lism-consume~='bdc'] {
-	--bdc: var(--pass--bdc);
-}

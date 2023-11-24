@@ -1,6 +1,7 @@
 // vite.config.js
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+// import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import react from '@vitejs/plugin-react'; // import {useRef} from 'react'; とかした時に、React is not defined 言われないように
 import svgr from 'vite-plugin-svgr'; // svg を React Component として import できるようにする
 // import reactJsx from 'vite-react-jsx';
@@ -34,6 +35,10 @@ export default defineConfig({
 	resolve: {
 		// ここでこれやると外部からの import でエラーになる
 		// alias: [{ find: '@/', replacement: '/src/' }],
+		// alias: {
+		// 	fs: 'rollup-plugin-node-polyfills/polyfills/empty',
+		// 	path: 'rollup-plugin-node-polyfills/polyfills/path',
+		// },
 	},
 	exportOnly: ['index'],
 	build: {

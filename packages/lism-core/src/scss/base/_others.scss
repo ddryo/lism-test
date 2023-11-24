@@ -74,3 +74,11 @@
 	// 	font-size: var(--fz--xs);
 	// }
 }
+
+// .is--linkbox を考慮して、リンクの pointer-events: auto;は 明示的に指定しておく。
+a {
+	pointer-events: auto;
+	color: var(--link--c); // --c--link?
+	text-decoration: underline;
+	text-underline-offset: var(--link--underlineOffset);
+}

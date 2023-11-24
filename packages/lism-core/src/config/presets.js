@@ -1,7 +1,7 @@
 import TOKENS from './tokens';
 
 const spacingPresets = ['0', '5', '10', '20', '30', '40', '50'];
-const emPresets = ['em1', 'em2', 'em3', 'em4', 'em5', 'em10', 'em15', 'em20', 'em25', 'em30'];
+const emPresets = ['em1', 'em2', 'em3', 'em5', 'em7', 'em10', 'em15', 'em20', 'em25', 'em30'];
 
 // ユーティリティクラス化するキーワード
 export default {

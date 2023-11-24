@@ -70,7 +70,8 @@
 }
 
 // borderで囲む
-.table--solid > table {
+.table--solid > table,
+.table--solid {
 	--bdwX: 1px;
 }
 

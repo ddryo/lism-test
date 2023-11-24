@@ -19,7 +19,8 @@ export default function RatioGrid({ ratio, lismStyle = {}, ...props }) {
 	let { _: baseValue, ...bpValues } = objMap(getBpData(ratio), getFrs);
 
 	const gridProps = {
-		_gridName: 'ratioGrid',
+		// _gridName: 'ratioGrid',
+		variant: 'ratio',
 	};
 
 	if (null != baseValue) {

@@ -1,36 +1,9 @@
-import { Layout, Container, Box, Text, Center, Columns, Layer } from '@loos/lism-core';
-import { Desktop } from "@phosphor-icons/react";
+# About Content Layout
 
-# コンテンツレイアウト
-
-Lismでサイト構築するにあたり、コンテンツのレイアウトを行うために必要な前提知識がいくつかあります。
-このページでは、それらの紹介をしていきます。
+コンテンツのレイアウトにおいて重要なクラスについて、もう少し詳しく説明します。
 
 
-## Layout State クラス
-
-Lismには、レイアウトモジュール要素とは別に、コンテンツサイズを制御したりコンテンツ間隔を調整するためのクラスを用意しており、これらを Layout State と呼んでいます。
-
-- `is--container` : コンテナ要素で、かつ**自身の横幅**を制御できるクラス
-- `is--constrained` : コンテナ要素で、かつ**子要素の横幅**を制御するためのクラス
-	{/* - （WordPressでいうところの`is-layout-constrained`の機能にあたります。） */}
-- `is--flow` : コンテンツ間隔の余白量を制御するためのクラス
-	{/* - （WordPressでいうところの`is-layout-flow`と同じ役割です。） */}
-- `has--gutter` : サイトを通してコンテンツの左右に統一された余白をつけるためのクラス
-- etc...
-
-{/* WordPressを意識した設計になっています。 */}
-
-これらのクラスは、Lismコンポーネントを使うと`isConstrained`や`isFlow`,`hasGutter`など対応するpropを指定するだけで出力されます。
-
-
-## コンテナクエリ採用
-
-主要なCSSプロパティに対してブレイクポイント指定が簡単にできるようになっているのがLismの特徴の一つですが、これらはコンテナクエリを採用しています。
-（メディアクエリ版のCSSファイルも用意するかは検討中）
-
-
-## コンテンツサイズの制御について
+## `.is--container` と `.is--constrained` について
 
 コンテンツ幅を統一するためのクラスとして、Lismでは`.is--container`と`.is--constrained`を用意しており、2種類のアプローチが可能です。
 
@@ -105,3 +78,4 @@ LismのLayout Stateでは、
 なので、将来的には好みでどちらでも採用できるように、Lismでは①に対しては`@property`を使った方法を採用しつつ、2パターン用意しています。
 
 また、`@property`が使えない環境でも、「コンテナの中では`.alignfull`要素を使用しない」という運用をすれば①を採用しても特に問題はありません。
+

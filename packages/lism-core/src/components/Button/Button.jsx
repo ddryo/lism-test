@@ -23,7 +23,7 @@ export default function Button({ lismClass = {}, lismStyle = {}, ...props }) {
 
 	const btnProps = {
 		hover: 'fade',
-		// gap: 'em4',
+		// gap: 'em5',
 		// py: 'em3',
 		// px: 'em10',
 		jc: 'center',

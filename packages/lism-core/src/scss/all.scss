@@ -1,11 +1,18 @@
 /*
   resetした上で、 各要素の標準スタイルを定義する
 */
-@use './base.scss';
-@use './elements.scss';
-@use './system.scss';
+@use './generic/layer';
+@use './generic/tokens';
 
-@use './layout-modules.scss';
+// base
+@forward './base/index';
+
+// layout
+@forward './layout/index';
+
+// objects
+@forward './objects/index';
+// @use './layout-modules.scss';
 @use './core-modules.scss';
 @use './block-modules.scss';
 
@@ -15,3 +22,10 @@
 // 	color: red;
 // 	text-decoration: dashed underline;
 // }
+
+.l--end,
+.is--end {
+	margin-block-start: auto !important;
+	margin-block-end: 0 !important;
+	place-self: end;
+}

@@ -23,7 +23,7 @@ import {
 	Icon,
 	LinkBox,
 	NavMenuItem,
-	NavMenuText,
+	NavMenuLink,
 	NavMenu,
 	Delimiter,
 } from '@loos/lism-core';
@@ -44,47 +44,47 @@ export default function ContainerTest() {
 			<p>test...</p>
 			<NavMenu>
 				<NavMenuItem>
-					<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
-					<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
-					<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 			</NavMenu>
 			<NavMenu hasDivider bd='block'>
 				<NavMenuItem>
-					<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
-					<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
-					<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 			</NavMenu>
 			<NavMenu hasDivider bd>
 				<NavMenuItem>
-					<NavMenuText href='#menu1' gap={20}>
+					<NavMenuLink href='#menu1' gap={20}>
 						<Icon icon={FolderIcon} />
 						Lorem item
 						<Badge fz='12px' fw='700' color='dimgray' variant='outline' ms='auto'>
 							New
 						</Badge>
-					</NavMenuText>
+					</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
-					<NavMenuText href='#menu2' gap={20}>
+					<NavMenuLink href='#menu2' gap={20}>
 						<Icon icon={FolderIcon} />
 						Lorem item
-					</NavMenuText>
+					</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
-					<NavMenuText href='#menu3' gap={20}>
+					<NavMenuLink href='#menu3' gap={20}>
 						<Icon icon={FolderIcon} />
 						Lorem item
-					</NavMenuText>
+					</NavMenuLink>
 				</NavMenuItem>
 			</NavMenu>
 			{/* <NavMenu variant='outline'>
@@ -94,28 +94,28 @@ export default function ContainerTest() {
 			</NavMenu> */}
 			<NavMenu>
 				<NavMenuItem>
-					<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
-					<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
-					<NavMenuText href='#menu1'>Has Child</NavMenuText>
+					<NavMenuLink href='#menu1'>Has Child</NavMenuLink>
 					<NavMenu nestLevel={1}>
 						<NavMenuItem>
-							<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+							<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 						</NavMenuItem>
 						<NavMenuItem>
-							<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+							<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 						</NavMenuItem>
 						<NavMenuItem>
-							<NavMenuText href='#has-child'>Has Child</NavMenuText>
+							<NavMenuLink href='#has-child'>Has Child</NavMenuLink>
 							<NavMenu nestLevel={2}>
 								<NavMenuItem>
-									<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+									<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 								</NavMenuItem>
 								<NavMenuItem>
-									<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+									<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 								</NavMenuItem>
 							</NavMenu>
 						</NavMenuItem>
@@ -124,82 +124,82 @@ export default function ContainerTest() {
 			</NavMenu>
 			<NavMenu hasDivider bd='block'>
 				<NavMenuItem>
-					<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
-					<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
 					<Accordion>
 						<AccordionHeader py={0} pl={0} minH='unset'>
 							<AccordionLabel>
-								<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+								<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 							</AccordionLabel>
 							<AccordionIcon isTrigger />
 						</AccordionHeader>
 						<AccordionBody p={0}>
 							<NavMenu nestLevel={1} hasDivider bd='block-start'>
 								<NavMenuItem>
-									<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+									<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 								</NavMenuItem>
 								<NavMenuItem>
-									<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+									<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 								</NavMenuItem>
 								<NavMenuItem>
-									<NavMenuText href='#has-child'>Has Child</NavMenuText>
+									<NavMenuLink href='#has-child'>Has Child</NavMenuLink>
 									<NavMenu nestLevel={2}>
 										<NavMenuItem>
-											<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+											<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 										</NavMenuItem>
 										<NavMenuItem>
-											<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+											<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 										</NavMenuItem>
 									</NavMenu>
 								</NavMenuItem>
 							</NavMenu>
 						</AccordionBody>
 					</Accordion>
-					{/* <NavMenuText href='#menu1'>Has Child</NavMenuText> */}
+					{/* <NavMenuLink href='#menu1'>Has Child</NavMenuLink> */}
 				</NavMenuItem>
 			</NavMenu>
 			<NavMenu isFlex hasDivider lh='xs' provide={{ p: '10 20' }}>
 				<NavMenuItem>
-					<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
-					<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+					<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 				</NavMenuItem>
 				<NavMenuItem>
 					<Accordion>
 						<AccordionHeader py={0} pl={0} gap={0} minH='unset'>
 							<AccordionLabel>
-								<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+								<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 							</AccordionLabel>
 							<AccordionIcon isTrigger size='.875em' />
 						</AccordionHeader>
 						<AccordionBody p={0} shadow={3}>
 							<NavMenu nestLevel={1} hasDivider>
 								<NavMenuItem>
-									<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+									<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 								</NavMenuItem>
 								<NavMenuItem>
-									<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+									<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 								</NavMenuItem>
 								<NavMenuItem>
-									<NavMenuText href='#has-child'>Has Child</NavMenuText>
+									<NavMenuLink href='#has-child'>Has Child</NavMenuLink>
 									<NavMenu nestLevel={2} hasDivider bd='block-start'>
 										<NavMenuItem>
-											<NavMenuText href='#menu1'>Lorem item</NavMenuText>
+											<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
 										</NavMenuItem>
 										<NavMenuItem>
-											<NavMenuText href='#menu2'>Lorem item</NavMenuText>
+											<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 										</NavMenuItem>
 									</NavMenu>
 								</NavMenuItem>
 							</NavMenu>
 						</AccordionBody>
 					</Accordion>
-					{/* <NavMenuText href='#menu1'>Has Child</NavMenuText> */}
+					{/* <NavMenuLink href='#menu1'>Has Child</NavMenuLink> */}
 				</NavMenuItem>
 			</NavMenu>
 			{/* 

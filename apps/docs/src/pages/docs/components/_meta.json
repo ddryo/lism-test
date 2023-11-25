@@ -6,7 +6,7 @@
 	"Layouter": "",
 	"--- layout": {
 		"type": "separator",
-		"title": "Layout"
+		"title": "Layout Module"
 	},
 	"Box": "",
 	"--- flex": {
@@ -39,53 +39,42 @@
 	"FilterLayer": "",
 	"MediaLayer": "",
 	"Frame": "",
-
-	"--- state": {
-		"type": "separator",
-		"title": "State"
-	},
+	"Spacer": "",
 	"LinkBox": "",
-
-	"--- elements": {
+	"---after-layout": {
+		"title": "",
+		"type": "separator"
+	},
+	"---Objects": {
 		"type": "separator",
-		"title": "Elements"
+		"title": "Object Module"
 	},
 	"Avatar": "",
-	"Delimiter": "",
-	"Divider": "",
 	"Icon": "",
-	"Spacer": "",
-
-	"--- component": {
-		"type": "separator",
-		"title": "Component"
+	"Delimiter": "",
+	"---after-atom": {
+		"title": "",
+		"type": "separator"
 	},
 	"Button": "",
 	"Badge": "",
+	"Divider": "",
+	"---after-block": {
+		"title": "",
+		"type": "separator"
+	},
+	"Accordion": "",
 	"Alert": "",
 	"Note": "",
 	"Banner": "",
 	"Card": "",
-	"TermList": "",
 	"DecoBox": "",
-
-	"--- disclosure": {
-		"type": "separator",
-		"title": ""
-	},
-	"Accordion": "",
 	"Tab": "",
-
-	"--- Block": {
-		"type": "separator",
-		"title": "Block"
-	},
-
-	"Section": "",
+	"TermList": "",
 	"NavMenu": "",
 
-	"---": {
-		"type": "separator",
-		"title": "---"
+	"---after-component": {
+		"title": "",
+		"type": "separator"
 	}
 }

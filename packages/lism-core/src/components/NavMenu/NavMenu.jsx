@@ -35,6 +35,7 @@ export default function NavMenu({
 	// const lismStyle = {};
 	const navProps = {
 		tag: 'ul',
+		lh: 'xs',
 		lismClass,
 		lismStyle,
 		// provide,

@@ -23,7 +23,7 @@ import {
 	Icon,
 	LinkBox,
 	NavMenuItem,
-	NavMenuText,
+	NavMenuLink,
 	NavMenu,
 	Delimiter,
 } from '@loos/lism-core';

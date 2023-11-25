@@ -27,6 +27,6 @@ export default function Spacer({ lismClass = {}, w, h, ...props }) {
 		props.w = wObj;
 	}
 
-	lismClass.e = 'e--spacer';
+	lismClass.l = 'l--spacer';
 	return <Core lismClass={lismClass} {...props} />;
 }

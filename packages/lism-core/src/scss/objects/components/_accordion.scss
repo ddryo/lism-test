@@ -54,9 +54,9 @@
 
 // アコーディオンブロックのネスト時、別のアイコンタイプにすると表示が崩れるがそこまでは考慮しない。
 .c--accordion__icon {
-	// display: flex;
-	// flex-shrink: 0;
-	// --gta: "icon";
+	:where(&) {
+		background-color: transparent;
+	}
 
 	// __icon 自体にborderつけたりすると回転が見えてしまうので、 icon自体を回転させる。
 	> .e--icon {

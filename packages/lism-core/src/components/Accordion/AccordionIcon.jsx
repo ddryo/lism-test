@@ -19,7 +19,7 @@ export default function AccordionIcon({
 	if (isTrigger) {
 		props.tag = 'button';
 		props['data-role'] = 'trigger';
-		if (!props.bgc) props.bgc = 'transparent';
+		// if (!props.bgc) props.bgc = 'transparent';
 	} else {
 		props['aria-hidden'] = 'true';
 		// iconSize = iconSize || '1.25em';

@@ -18,14 +18,14 @@ export { Flow } from './Flow';
 export { Flex } from './Flex';
 export { Stack } from './Flex/Stack';
 export { Cluster } from './Flex/Cluster';
-export { Center } from './Flex/Center';
 export { FluidFix } from './Flex/FluidFix';
 export { Grid } from './Grid';
-export { Columns } from './Grid/Columns';
 export { TileGrid } from './Grid/TileGrid';
 export { RatioGrid } from './Grid/RatioGrid';
 export { AreaGrid } from './Grid/AreaGrid';
 export { SwitchFix } from './Grid/SwitchFix';
+export { Center } from './Center';
+export { Columns } from './Columns';
 
 export { Item } from './Item';
 
@@ -64,9 +64,10 @@ export { Note } from './Note';
 export { Banner } from './Banner';
 export { Card, CardMedia, CardBody } from './Card';
 export { ChatBubble } from './ChatBubble';
-export { Section, SectionBody, SectionHeader, SectionFooter } from './Section';
 export { TermList, TermListRow } from './TermList';
 export { NavMenu, NavMenuItem, NavMenuLink } from './NavMenu';
+export { Section, SectionBody, SectionHeader, SectionFooter } from './Section';
+export { Hero, HeroInner, HeroBody, HeroHeader, HeroFooter } from './Hero';
 
 // export { FAQ } from './FAQ';
 // export { MediaText } from './MediaText';

@@ -2,7 +2,7 @@
 import { Layouter } from '../Layouter';
 import { Icon } from '../Icon';
 import { FluidFix } from '../Flex/FluidFix';
-import { Center } from '../Flex/Center';
+import { Center } from '../Center';
 import { defaultProps, AlertPresets } from '../../config/components';
 
 const _default = defaultProps?.Alert || {};

@@ -1,7 +1,7 @@
 // import React from 'react';
-import Grid from '../Grid';
-import { isEmptyObj } from '../../../lib/helper';
-import { getBpData } from '../../../lib';
+import { Grid } from '../Grid';
+import { isEmptyObj } from '../../lib/helper';
+import { getBpData } from '../../lib';
 
 // function getColumnsVars(cols) {
 // 	let baseCols = cols._ || 2;

@@ -31,10 +31,10 @@ export default function Section({
 
 	return (
 		<Stack alignfull {...blockProps}>
-			{divider.top && <Divider {...divider.top} flip='xy' />}
+			{divider.top && <Divider {...divider.top} isFlip />}
 			{getMediaLayer(media)}
 			{getFilterLayer(filter)}
-			<Grid blockClass='b--section__inner' {...innerProps}>
+			<Grid blockClass='b--section__inner -gta:tcb' {...innerProps}>
 				{children}
 			</Grid>
 			{divider.bottom && <Divider {...divider.bottom} />}

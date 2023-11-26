@@ -16,7 +16,6 @@
 	"Flex": "",
 	"Cluster": "",
 	"Stack": "",
-	"Center": "",
 	"FluidFix": "FluidFix",
 	
 	"--- grid": {
@@ -24,7 +23,6 @@
 		"title": ""
 	},
 	"Grid": "",
-	"Columns": "",
 	"RatioGrid": "RatioGrid",
 	"TileGrid": "TileGrid",
 	"SwitchFix": "SwitchFix",
@@ -33,7 +31,8 @@
 		"type": "separator",
 		"title": ""
 	},
-	
+	"Center": "",
+	"Columns": "",
 	"Reel": "",
 	"Layer": "",
 	"FilterLayer": "",

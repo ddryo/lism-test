@@ -6,6 +6,10 @@ export default function Flex({ _flexName = 'flex', lismClass = {}, hasDivider, .
 	if (_flexName) {
 		lismClass.l = `l--${_flexName}`;
 	}
+	// まだ l クラスがない場合は l--flex を追加
+	// if (!lismClass.l) {
+	// 	lismClass.l = `l--flex`;
+	// }
 
 	// flex 系の props をまとめる
 	props = getFlexProps(props);

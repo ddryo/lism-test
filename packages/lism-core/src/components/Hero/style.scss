@@ -1,0 +1,68 @@
+:root {
+	--h--fixedTop: 0px;
+	--h--fullscreen: calc(100vh - var(--h--fixedTop));
+}
+
+.c--hero {
+	--minH: auto;
+	position: relative;
+	min-height: var(--minH);
+
+	+ .alignfull {
+		margin-block-start: 0;
+	}
+
+	.l--divider {
+		z-index: 1;
+	}
+
+	.c--hero__inner {
+		--gtc: 100%;
+		--gtr: auto 1fr auto;
+		flex-grow: 1;
+		height: 100%;
+	}
+
+	.c--hero__header {
+		// grid-area: header;
+	}
+
+	.c--hero__inner > .c--hero__body {
+		// grid-area: body;
+		align-self: center;
+		height: auto; // 100% にしない
+	}
+	.c--hero__footer {
+		// grid-area: footer;
+	}
+
+	// .c--hero__content {
+	// 	// flex-grow: 1; // height:100% が効くように
+	// 	// height: 100%;
+	// 	position: relative;
+	// 	z-index: 1;
+	// }
+
+	// data-height
+	// &[data-height="auto"] {
+	// 	--minH: 0;
+	// }
+
+	// .c--hero__bg {
+	// 	background-color: #f7f7f7;
+	// }
+
+	// stack と一緒に使う ?
+	// .c--hero__header,.c--hero__footer {
+	// 	z-index: 1;
+	// }
+
+	> :not([class*='l--layer']) {
+		z-index: 1;
+	}
+
+	&[data-fullscreen='1'] {
+		--minH: var(--h--fullscreen, 100vh);
+		// min-height: 100vh;
+	}
+}

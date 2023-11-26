@@ -25,15 +25,15 @@
 		height: 100%;
 	}
 	.b--section__header {
-		--ga: header;
+		grid-area: header;
 	}
 	.b--section__body {
-		--ga: body;
+		grid-area: body;
 		align-self: center;
 		height: auto; // 100% にしない
 	}
 	.b--section__footer {
-		--ga: footer;
+		grid-area: footer;
 	}
 
 	.b--section__content {

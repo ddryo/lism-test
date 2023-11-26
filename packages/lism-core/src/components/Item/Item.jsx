@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Core } from '../Core';
+import { Layouter } from '../Layouter';
 import { isEmptyObj, filterEmptyObj } from '../../lib/helper';
 
 export default function Item({
@@ -24,7 +24,7 @@ export default function Item({
 	placeSelf,
 	...props
 }) {
-	const Item = as || Core;
+	const Item = as || Layouter;
 
 	const flexProps = filterEmptyObj({
 		flex: flex || fx,

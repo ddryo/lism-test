@@ -405,19 +405,19 @@ Memo: top,bottomに分けずに指定できるようにする → 同じオプ�
 	<Demo.Preview resize alignfull p={{ bottom: 50 }}>
 		<Container isFlow isConstrained hasGutter>
 			<Section
-					isFullScreen
-					c="white"
-					filter={{ blur: "4px", bgc: "rgba(0,0,0,0.5)" }}
-					media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
-					divider={{ bottom: { type: "wave3", color: "#fff", isAnimation: true } }}
-				>
-					<SectionHeader bd="guide" p={20}>
-						<p>SectionHeader</p>
-					</SectionHeader>
-					<SectionBody c="white">
-						<DammyText length="l" />
-					</SectionBody>
-				</Section>
+				isFullScreen
+				c="white"
+				filter={{ blur: "4px", bgc: "rgba(0,0,0,0.5)" }}
+				media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+				divider={{ bottom: { type: "wave3", color: "#fff", isAnimation: true } }}
+			>
+				<SectionHeader bd="guide" p={20}>
+					<p>SectionHeader</p>
+				</SectionHeader>
+				<SectionBody c="white">
+					<DammyText length="l" />
+				</SectionBody>
+			</Section>
 			<p>...セクション外のコンテンツ...</p>
 		</Container>
 	</Demo.Preview>

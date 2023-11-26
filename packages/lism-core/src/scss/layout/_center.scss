@@ -1,26 +1,22 @@
 .l--center {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-	> :first-child {
-		margin-top: auto;
-	}
-	> :last-child {
-		margin-bottom: auto;
-	}
-
-	// data-zie?
-	&[data-size='cover'] {
-		width: 100%;
-		height: 100%;
-		overflow-y: auto;
-	}
-
-	// 自分自身をセンター寄せ
-	&[data-size='content'] {
-		width: fit-content;
-		height: fit-content;
-		margin-inline: auto;
-	}
+	display: grid;
+	place-content: center;
+	place-items: center;
 }
+
+// :is(.l--center__, .l--center--x, .l--center--y) {
+// 	display: flex;
+// 	flex-direction: column;
+// }
+// :is(.l--center__, .l--center--x) {
+// 	align-items: center;
+// }
+
+// :is(.l--center__, .l--center--y) {
+// 	> :first-child {
+// 		margin-top: auto;
+// 	}
+// 	> :last-child {
+// 		margin-bottom: auto;
+// 	}
+// }

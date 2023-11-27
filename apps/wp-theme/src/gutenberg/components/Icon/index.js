@@ -45,4 +45,4 @@ export default function Icon({ icon, size = '1em', className = '', returnItagIf4
 
 	// svgに変換できなければiタグで返す
 	return returnItagIf404 ? <i className={classnames(icon, className)}></i> : null;
-};
+}

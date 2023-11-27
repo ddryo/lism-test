@@ -1,7 +1,7 @@
 /**
  * @External dependencies
  */
-import { Flex } from '@loos/lism-core';
+import { Flex as LismFlex } from '@loos/lism-core';
 
 /**
  * @WordPress dependencies
@@ -14,12 +14,7 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
-import {
-	Flex as GutenbergFlex,
-	FlexItem,
-	PanelBody,
-	__experimentalVStack as VStack,
-} from '@wordpress/components';
+import { Flex, FlexItem, PanelBody, __experimentalVStack as VStack } from '@wordpress/components';
 
 /**
  * @Internal dependencies
@@ -71,7 +66,7 @@ registerBlockType(metadata.name, {
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<VStack>
-							<GutenbergFlex>
+							<Flex>
 								<FlexItem>
 									<FlexWrapControl
 										value={flexWrap}
@@ -88,7 +83,7 @@ registerBlockType(metadata.name, {
 										}}
 									/>
 								</FlexItem>
-							</GutenbergFlex>
+							</Flex>
 							<AlignJustifyControl
 								values={{
 									alignItems,
@@ -103,10 +98,10 @@ registerBlockType(metadata.name, {
 						</VStack>
 					</PanelBody>
 				</InspectorControls>
-				<Flex {...innerProps} forwardedRef={ref}>
+				<LismFlex {...innerProps} forwardedRef={ref}>
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
 					{children}
-				</Flex>
+				</LismFlex>
 			</>
 		);
 	},
@@ -125,9 +120,9 @@ registerBlockType(metadata.name, {
 		});
 
 		return (
-			<Flex {...blockProps}>
+			<LismFlex {...blockProps}>
 				<InnerBlocks.Content />
-			</Flex>
+			</LismFlex>
 		);
 	},
 });

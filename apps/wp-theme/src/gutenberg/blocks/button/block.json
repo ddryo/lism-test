@@ -1,0 +1,44 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/button",
+	"title": "Button",
+	"category": "lism-blocks",
+	"supports": {
+		"anchor": true,
+		"className": false
+	},
+	"attributes": {
+		"text": {
+			"type": "string",
+			"source": "html",
+			"selector": ".c-button"
+		},
+		"keyColor": {
+			"type": "string"
+		},
+		"variant": {
+			"type": "string",
+			"enum": ["outline", "ghost"]
+		},
+		"leftIconSlug": {
+			"type": "string"
+		},
+		"rightIconSlug": {
+			"type": "string"
+		},
+		"iconSlug": {
+			"type": "string"
+		},
+		"isGrid": {
+			"type": "boolean",
+			"default": false
+		},
+		"iconOffset": {
+			"type": "string"
+		}
+	},
+	"style": "file:./style.css",
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

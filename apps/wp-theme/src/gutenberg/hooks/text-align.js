@@ -13,6 +13,7 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 // textAlignを有効にするブロック
 const LISM_BLOCKS = [
 	'lism-blocks/box',
+	'lism-blocks/button',
 	'lism-blocks/center',
 	'lism-blocks/cluster',
 	'lism-blocks/columns',

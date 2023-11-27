@@ -1,7 +1,7 @@
 /**
  * @External dependencies
  */
-import { Icon } from '@loos/lism-core';
+import { Icon as LismIcon } from '@loos/lism-core';
 
 /**
  * @WordPress dependencies
@@ -33,7 +33,12 @@ registerBlockType(metadata.name, {
 	edit: ({ attributes, setAttributes }) => {
 		const { size, scale, label, slug, anchor, className } = attributes;
 		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem'] });
-		const blockProps = useBlockProps({});
+		const blockProps = useBlockProps();
+		const componentProps = {
+			size,
+			scale,
+			label,
+		};
 
 		return (
 			<>
@@ -91,9 +96,9 @@ registerBlockType(metadata.name, {
 				) : (
 					<div {...blockProps}>
 						<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
-						<Icon size={size} label={label} scale={scale}>
+						<LismIcon {...componentProps}>
 							<InternalIcon icon={slug} />
-						</Icon>
+						</LismIcon>
 					</div>
 				)}
 			</>
@@ -102,14 +107,19 @@ registerBlockType(metadata.name, {
 	save: ({ attributes }) => {
 		const { size, scale, label, slug } = attributes;
 		const blockProps = useBlockProps.save();
+		const componentProps = {
+			size,
+			scale,
+			label,
+		};
 
 		if (!slug) return null;
 
 		return (
 			<div {...blockProps}>
-				<Icon size={size} label={label} scale={scale}>
+				<LismIcon {...componentProps}>
 					<InternalIcon icon={slug} />
-				</Icon>
+				</LismIcon>
 			</div>
 		);
 	},

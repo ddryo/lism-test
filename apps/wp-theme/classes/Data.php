@@ -20,6 +20,7 @@ class Data {
 	const BLOCKS = [
 		'alert'           => [],
 		'box'             => [],
+		'button'          => [],
 		'center'          => [],
 		'chat-bubble'     => [],
 		'cluster'         => [],

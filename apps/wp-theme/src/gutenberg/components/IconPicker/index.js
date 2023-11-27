@@ -11,7 +11,7 @@ import { chevronDown } from '@wordpress/icons';
  */
 import { Icon, IconModal } from '@/gutenberg/components';
 
-export default function IconPicker ({
+export default function IconPicker({
 	value = '',
 	position = 'sidebar',
 	onChange,
@@ -65,4 +65,4 @@ export default function IconPicker ({
 			)}
 		</div>
 	);
-};
+}

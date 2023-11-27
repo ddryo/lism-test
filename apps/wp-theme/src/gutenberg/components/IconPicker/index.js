@@ -2,55 +2,65 @@
  * @WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
-import { Button, Flex } from '@wordpress/components';
-import { Icon, chevronDown } from '@wordpress/icons';
+import { useState, RawHTML } from '@wordpress/element';
+import { Button } from '@wordpress/components';
+import { chevronDown } from '@wordpress/icons';
 
 /**
  * @Internal dependencies
  */
-import { IconPickerModal } from '@/gutenberg/components';
-import ICONS from '@/gutenberg/icons';
+import { Icon, IconModal } from '@/gutenberg/components';
 
-export default function IconPicker({ value, onChange }) {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const ButtonLabel = ({ value }) => {
-		if (!!value && !!ICONS[value]) {
-			const Component = ICONS[value];
-			return (
-				<>
-					<Component className='__toggleIcon' />
-					<Icon icon={chevronDown} className='__toggleArrow' />
-				</>
-			);
-		}
-		return (
-			<>
-				{__('Select', 'lism-blocks')}
-				<Icon icon={chevronDown} className='__toggleArrow' />
-			</>
-		);
-	};
+export default ({
+	value = '',
+	position = 'sidebar',
+	onChange,
+	svg = '',
+	onSetSvg,
+	clearable = true,
+}) => {
+	const [isOpenIconPicker, setIsOpenIconPicker] = useState(false);
 
 	return (
 		<div className='lism-iconPicker'>
-			<Flex justify='flex-start'>
+			<Button
+				variant='secondary'
+				iconPosition='right'
+				icon={chevronDown}
+				text={
+					svg ? (
+						<RawHTML className='lism-iconPicker__prev'>{svg}</RawHTML>
+					) : value ? (
+						<Icon icon={value} size='24px' className='lism-iconPicker__prev' />
+					) : (
+						<span className='lism-iconPicker__placeholder'>{__('Search', 'lism-blocks')}</span>
+					)
+				}
+				onClick={() => {
+					setIsOpenIconPicker(true);
+				}}
+			/>
+			{clearable && (
 				<Button
-					className='__toggle'
-					variant='secondary'
-					onClick={() => setIsModalOpen(true)}
-				>
-					<ButtonLabel value={value} />
-				</Button>
-				<Button onClick={() => onChange(undefined)}>{__('Clear', 'lism-blocks')}</Button>
-			</Flex>
-			{isModalOpen && (
-				<IconPickerModal
-					value={value}
-					onChange={onChange}
-					onClose={() => setIsModalOpen(false)}
+					className='-clear'
+					size="small"
+					text={__('Clear', 'lism-blocks')}
+					onClick={() => {
+						onChange('');
+						if (svg && onSetSvg) {
+							onSetSvg('');
+						}
+					}}
+				/>
+			)}
+			{isOpenIconPicker && (
+				<IconModal
+					{...{ value, position, onChange, svg, onSetSvg }}
+					onClose={() => {
+						setIsOpenIconPicker(false);
+					}}
 				/>
 			)}
 		</div>
 	);
-}
+};

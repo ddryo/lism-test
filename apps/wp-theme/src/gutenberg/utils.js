@@ -172,3 +172,37 @@ export function transformPropValue(value, newPropType) {
 
 	return value;
 }
+
+// html文字列をminify
+export const minifyHtml = (html) => {
+	if (!html) return '';
+
+	// 改行先に削除
+	html = html.replace(/\r?\n/g, '');
+
+	// タブ → スペース
+	html = html.replace(/\t/g, ' ');
+
+	// 複数のスペースを１つに
+	html = html.replace(/\s\s+/g, ' ');
+
+	// タグとタグの間のスペースを削除
+	html = html.replace(/> </g, '><');
+
+	return html;
+};
+
+// svgを整える（直接入力されたsvg用）
+export const formatSvg = (svg) => {
+	svg = minifyHtml(svg);
+
+	// script削除
+	svg = svg.replace(/<script>.*<\/script>/gim, '');
+
+	// 念の為、xmlnsないときに付与
+	if (-1 === svg.indexOf('xmlns=')) {
+		svg = svg.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+	}
+
+	return svg;
+};

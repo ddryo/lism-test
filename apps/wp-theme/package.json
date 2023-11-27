@@ -22,6 +22,8 @@
 		"build:js": "wp-scripts build --config webpack.config.js.js",
 		"build:js:dev": "npx webpack --config webpack.config.js.js",
 		"build:js:front": "cross-env TYPE=front npx webpack",
+		"build:icons": "wp-scripts build --config webpack.config.icons.js",
+		"build:icons:dev": "wp-scripts start --config webpack.config.icons.js",
 		"build:json": "node node-json-merge.js",
 		"po2json": "po2json languages/lism-ja.po languages/lism-ja-lism-lang.json -f jed",
 		"clear-cache": "rm -rf node_modules/.cache/hard-source/",

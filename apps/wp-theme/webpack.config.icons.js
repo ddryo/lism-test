@@ -1,49 +1,29 @@
-const wpScriptsConfigs = require('@wordpress/scripts/config/webpack.config');
 const path = require('path');
+const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 
-// 対象ファイル
-const srcDir = './src/icons';
-const entries = {
-	index: path.resolve(srcDir, 'index.js'),
-	fa: path.resolve(srcDir, 'fa/index.js'),
-	io: path.resolve(srcDir, 'io/index.js'),
-	fi: path.resolve(srcDir, 'fi/index.js'),
-	ph: path.resolve(srcDir, 'ph/index.js'),
-};
+const srcDir = 'src/icons';
+const distDir = 'dist/icons';
+const entryPoints = {};
 
-/**
- * pluginsのカスタマイズ
- */
-const { plugins, ...defaultConfig } = wpScriptsConfigs;
-const customizedPlugins = plugins.filter((pluginInstance) => {
-	// ビルド先のファイルを勝手に削除するやつをオフに。
-	if ('CleanWebpackPlugin' === pluginInstance.constructor.name) {
-		return false;
-	}
-
-	// block.jsonのコピーをオフに
-	if ('CopyPlugin' === pluginInstance.constructor.name) {
-		return false;
-	}
-	return true;
+const entryFiles = ['index.js', 'ph/index.js', 'fi/index.js', 'io/index.js', 'fa/index.js'];
+entryFiles.forEach((name) => {
+	entryPoints[name] = path.resolve(__dirname, srcDir, name);
 });
 
-/**
- * exports
- * mode: 'development' || 'production' の切り替えは、package.json の scriptsで行う
- */
 module.exports = {
 	...defaultConfig, //@wordpress/scriptを引き継ぐ
-	devtool: false, // ソースマップを出さない
-	entry: entries,
+
+	mode: 'production', // より圧縮させる
+
+	entry: entryPoints,
 	output: {
-		path: path.resolve(__dirname, 'build/icons'), // pathを元に他のファイルを削除するので、 icons フォルダを基点にする
-		filename: '[name].js',
+		path: path.resolve(__dirname, distDir),
+		filename: '[name]',
 	},
-	plugins: customizedPlugins,
-	// resolve: {
-	// 	alias: {
-	// 	},
-	// },
-	performance: { hints: false },
+
+	resolve: {
+		alias: {
+			'@components': path.resolve(__dirname, 'src/gutenberg/components'),
+		},
+	},
 };

@@ -3,11 +3,9 @@
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import { useState } from '@wordpress/element';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	BaseControl,
-	Button,
 	PanelBody,
 	Placeholder,
 	TextControl,
@@ -20,7 +18,7 @@ import {
  */
 import metadata from './block.json';
 import icon from './icon';
-import { SelectorPreviewTip, IconPicker, IconPickerModal } from '@/gutenberg/components';
+import { SelectorPreviewTip, IconPicker } from '@/gutenberg/components';
 
 registerBlockType(metadata.name, {
 	title: __('Icon', 'lism-blocks'),
@@ -28,7 +26,6 @@ registerBlockType(metadata.name, {
 	icon,
 	edit: ({ attributes, setAttributes }) => {
 		const { iconSize, iconLabel, iconSlug, anchor, className } = attributes;
-		const [isIconPickerOpen, setIsIconPickerOpen] = useState(false);
 		const units = useCustomUnits({ availableUnits: ['px', 'em', 'rem'] });
 		const blockProps = useBlockProps({});
 
@@ -67,15 +64,10 @@ registerBlockType(metadata.name, {
 				{!iconSlug ? (
 					<div {...blockProps}>
 						<Placeholder icon={icon} label={__('Icon', 'lism-blocks')}>
-							<Button variant='primary' onClick={() => setIsIconPickerOpen(true)}>
-								{__('Select icon', 'lism-blocks')}
-							</Button>
-							{isIconPickerOpen && (
-								<IconPickerModal
-									onChange={(value) => setAttributes({ iconSlug: value })}
-									onClose={() => setIsIconPickerOpen(false)}
-								/>
-							)}
+							<IconPicker
+								onChange={(value) => setAttributes({ iconSlug: value })}
+								clearable={false}
+							/>
 						</Placeholder>
 					</div>
 				) : (

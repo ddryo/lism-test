@@ -11,14 +11,14 @@ import { chevronDown } from '@wordpress/icons';
  */
 import { Icon, IconModal } from '@/gutenberg/components';
 
-export default ({
+export default function IconPicker ({
 	value = '',
 	position = 'sidebar',
 	onChange,
 	svg = '',
 	onSetSvg,
 	clearable = true,
-}) => {
+}) {
 	const [isOpenIconPicker, setIsOpenIconPicker] = useState(false);
 
 	return (
@@ -33,7 +33,9 @@ export default ({
 					) : value ? (
 						<Icon icon={value} size='24px' className='lism-iconPicker__prev' />
 					) : (
-						<span className='lism-iconPicker__placeholder'>{__('Search', 'lism-blocks')}</span>
+						<span className='lism-iconPicker__placeholder'>
+							{__('Search', 'lism-blocks')}
+						</span>
 					)
 				}
 				onClick={() => {
@@ -43,7 +45,7 @@ export default ({
 			{clearable && (
 				<Button
 					className='-clear'
-					size="small"
+					size='small'
 					text={__('Clear', 'lism-blocks')}
 					onClick={() => {
 						onChange('');

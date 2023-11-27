@@ -6,19 +6,23 @@
 	"category": "lism-blocks",
 	"supports": {
 		"anchor": true,
-		"className": false
+		"align": ["left", "center", "right"]
 	},
 	"attributes": {
-		"iconSize": {
+		"size": {
 			"type": "string"
 		},
-		"iconLabel": {
+		"scale": {
+			"type": "number"
+		},
+		"label": {
 			"type": "string"
 		},
-		"iconSlug": {
+		"slug": {
 			"type": "string"
 		}
 	},
+	"style": "file:./style.css",
 	"editorScript": "file:./index.js",
 	"textdomain": "lism-blocks"
 }

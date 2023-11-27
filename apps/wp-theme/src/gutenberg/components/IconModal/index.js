@@ -145,7 +145,9 @@ const IconPickerTab = ({ value = '', onChange, searchValue }) => {
 									isFilterd={true}
 								/>
 							) : (
-								<div className='__noIcon'>{__('Icon not found.', 'lism-blocks')}</div>
+								<div className='__noIcon'>
+									{__('Icon not found.', 'lism-blocks')}
+								</div>
 							);
 						}
 						return <IconBtns icons={theIcons} value={value} onChange={onChange} />;
@@ -165,9 +167,9 @@ const SvgInputControl = ({ value, onSet, className }) => {
 				rows={2}
 				value={enteredSvg || ''}
 				placeholder={__(
-		'You can enter SVG tags directly here (script tags are removed).',
-		'lism-blocks'
-	)}
+					'You can enter SVG tags directly here (script tags are removed).',
+					'lism-blocks'
+				)}
 				onChange={(val) => {
 					setEnteredSvg(val);
 				}}
@@ -186,7 +188,15 @@ const SvgInputControl = ({ value, onSet, className }) => {
 	);
 };
 
-export default function IconModal({ value, help, onChange, onClose, svg, onSetSvg, position = 'sidebar' }) {
+export default function IconModal({
+	value,
+	help,
+	onChange,
+	onClose,
+	svg,
+	onSetSvg,
+	position = 'sidebar',
+}) {
 	const [searchValue, setSearchValue] = useState('');
 
 	return (

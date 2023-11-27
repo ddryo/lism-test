@@ -8,7 +8,7 @@ import classnames from 'classnames';
  */
 import { ICON_NAMESPACE } from '../IconModal/config';
 
-export default ({ icon, size = '1em', className = '', returnItagIf404 = true }) => {
+export default function Icon({ icon, size = '1em', className = '', returnItagIf404 = true }) {
 	let iconPrefix = '';
 	const ICON_DATA = window[ICON_NAMESPACE] || {};
 	const ALL_ICONS = ICON_DATA.src || {};

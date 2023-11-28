@@ -10,7 +10,7 @@ import { ResponsiveTabControl, SpacingControl } from '@/gutenberg/components';
 
 export default function ResponsiveSpacingControl({ label }) {
 	return (
-		<BaseControl className='lism-responsiveSpacingControl'>
+		<BaseControl className='lism-responsiveSpacingControl' label={label}>
 			<ResponsiveTabControl>
 				{(tab) => {
 					return <SpacingControl />;

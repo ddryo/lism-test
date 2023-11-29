@@ -6,8 +6,6 @@ import { Decorator } from '../Decorator';
 // import { DecoBox } from '../DecoBox';
 import { Avatar } from '../Avatar';
 // import { MediaLayer } from '../Layer';
-import ChatBubbleName from './ChatBubbleName';
-import ChatBubbleIcon from './ChatBubbleIcon';
 
 const DECORATOR_PROPS = {
 	// chat: {
@@ -37,40 +35,37 @@ const DECORATOR_PROPS = {
 
 export default function ChatBubble({
 	lismClass = {},
-	name,
-	iconSrc,
-	variant,
-	direction = 'left',
-	// nameProps = {},
+	// variant = 'chat',
+	src = '',
 	children,
+	imgProps = {},
 	...props
 }) {
-	lismClass.c = `b--chat b--chat--${direction}`;
-	if (variant) lismClass.c += ` b--chat--${variant}`;
+	lismClass.c = 'b--chat__icon';
+	// if (variant) lismClass.c += ` b--chat__icon`;
 
-	// let decorator = null;
-	// const fxd = 'left' === direction ? null : 'row-reverse';
-
-	let boxProps = {
-		template: direction === 'left' ? 'fix:l' : 'fix:r',
-		// ji: direction === 'left' ? 'start' : 'end',
-	};
-
-	// let namePropsDefault = {
-	// 	fz: '2xs',
-	// 	p: 10,
-	// 	translate: '0 -100%',
-	// };
-	// nameProps = Object.assign(namePropsDefault, nameProps);
-
-	// let gridTemplate = direction === 'left' ? 'fix:l' : 'fix:r';
-
+	// loading? decode?
+	const img = children || (
+		<img
+			src={src}
+			alt=''
+			width={60}
+			height={60}
+			loading='lazy'
+			//decoding='async'
+			{...imgProps}
+		/>
+	);
 	return (
-		<Grid lismClass={lismClass} data-dir={direction} {...boxProps} {...props}>
-			{/* aria-label : "name の発言" */}
-			{name && <ChatBubbleName>{name}</ChatBubbleName>}
-			{iconSrc && <ChatBubbleIcon src={iconSrc} />}
-			{children}
-		</Grid>
+		<Avatar
+			lismClass={lismClass}
+			bgc='base'
+			radius='99'
+			gridItem={{ area: 'fix' }}
+			aria-hidden='true'
+			{...props}
+		>
+			{img}
+		</Avatar>
 	);
 }

@@ -1,13 +1,11 @@
 // import React from 'react';
-import { Core } from '../Core';
+import { Item } from '../Item';
 import { Layouter } from '../Layouter';
 import { Grid } from '../Grid';
 import { Decorator } from '../Decorator';
 // import { DecoBox } from '../DecoBox';
 import { Avatar } from '../Avatar';
 // import { MediaLayer } from '../Layer';
-import ChatBubbleName from './ChatBubbleName';
-import ChatBubbleIcon from './ChatBubbleIcon';
 
 const DECORATOR_PROPS = {
 	// chat: {
@@ -32,45 +30,53 @@ const DECORATOR_PROPS = {
 	right: {
 		top: '0',
 		left: '100%',
+		transform: 'scaleX(-1)',
 	},
 };
 
 export default function ChatBubble({
 	lismClass = {},
-	name,
-	iconSrc,
-	variant,
+	type = 'chat',
 	direction = 'left',
-	// nameProps = {},
+	wrapperProps = {},
 	children,
 	...props
 }) {
 	lismClass.c = `b--chat b--chat--${direction}`;
-	if (variant) lismClass.c += ` b--chat--${variant}`;
+	if (type) lismClass.c += ` b--chat--${type}`;
 
-	// let decorator = null;
-	// const fxd = 'left' === direction ? null : 'row-reverse';
+	let decorator = null;
 
-	let boxProps = {
-		template: direction === 'left' ? 'fix:l' : 'fix:r',
-		// ji: direction === 'left' ? 'start' : 'end',
+	let defaultProps = {
+		isFlow: 's',
+		consume: 'p',
+		// radius: '2',
 	};
 
-	// let namePropsDefault = {
-	// 	fz: '2xs',
-	// 	p: 10,
-	// 	translate: '0 -100%',
-	// };
-	// nameProps = Object.assign(namePropsDefault, nameProps);
-
-	// let gridTemplate = direction === 'left' ? 'fix:l' : 'fix:r';
+	if ('chat' === type || 'think' === type) {
+		decorator = (
+			<Decorator
+				variant={type}
+				// data-dir={direction}
+				pos='absolute'
+				{...DECORATOR_PROPS[direction]}
+			/>
+		);
+	}
 
 	return (
-		<Grid lismClass={lismClass} data-dir={direction} {...boxProps} {...props}>
-			{/* aria-label : "name の発言" */}
-			{name && <ChatBubbleName>{name}</ChatBubbleName>}
-			{iconSrc && <ChatBubbleIcon src={iconSrc} />}
-			{children}
-		</Grid>
+		<Item className='b--chat__body' area='nofix' {...wrapperProps}>
+			<Layouter
+				className='b--chat__content'
+				maxW='s'
+				data-dir={direction}
+				data-type={type}
+				{...defaultProps}
+				{...props}
+			>
+				{children}
+			</Layouter>
+			{decorator}
+		</Item>
 	);
 }

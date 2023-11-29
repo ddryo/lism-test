@@ -21,11 +21,6 @@
 // .-fxb\:a {flex-basis:auto}
 
 
-// -self系 → そこまで使われるものではないのでシンプルにstyle属性で出力.
-// .-as\:{align-self:var(--as) !important;}
-// .-js\:{justify-self:var(--js) !important;}
-
-
 @include query.cq('sm'){
 	.-fxg\@sm\: { flex-grow: var(--fxg--sm)}
 	.-fxsh\@sm\: { flex-shrink: var(--fxsh--sm)}

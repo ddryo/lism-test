@@ -13,7 +13,17 @@ export default {
 		start: 's',
 		end: 'e',
 		between: 'sb',
+		'flex-start': 'fs',
+		'flex-end': 'fe',
 		'space-between': 'sb',
+	},
+	selfPlace: {
+		center: 'c',
+		strech: 'str',
+		start: 's',
+		end: 'e',
+		'flex-start': 'fs',
+		'flex-end': 'fe',
 	},
 	ta: { center: 'c', left: 'l', right: 'r' },
 	td: { underline: 'u', none: 'n' },
@@ -45,7 +55,7 @@ export default {
 	minSize: { unset: 'un' },
 
 	gta: { '"left center right"': 'lcr', '"top center bottom"': 'tcb' },
-	ga: { fix: 'fix', left: 'l', right: 'r', center: 'c', top: 't', bottom: 'b' },
+	ga: { fix: 'f', nofix: 'nf', left: 'l', right: 'r', center: 'c', top: 't', bottom: 'b' },
 	bd: {
 		// current: 'cc',
 		// currentColor: 'cc',

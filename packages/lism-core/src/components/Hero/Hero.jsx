@@ -1,45 +1,20 @@
 // import React from 'react';
 import { Stack } from '../Flex/Stack';
-import { Lism } from '../Lism';
+// import { Layouter } from '../Layouter';
 // import { Item } from '../Item';
-import { Grid } from '../Grid';
-import { Divider } from '../Divider';
+// import { Grid } from '../Grid';
+// import { Divider } from '../Divider';
 // import { filterEmptyObj } from '../../lib';
-import { getMediaLayer, getFilterLayer } from '../helper';
+// import { getMediaLayer, getFilterLayer } from '../helper';
 
 // align: full, wide, ''
-export default function Hero({
-	lismClass = {},
-	lismStyle = {},
-	variant,
-	children,
-	minH,
-	media,
-	filter,
-	isFullScreen,
-	divider = {},
-	// p,
-	// gap = 0,
-	...attrs
-}) {
+export default function Hero({ lismClass = {}, variant, bgc = 'pale', isFullScreen, ...attrs }) {
 	lismClass.c = 'c--hero';
-	if (variant) lismClass.c += ' c--hero--' + variant;
-
-	if (isFullScreen) {
-		attrs['data-fullscreen'] = '1';
+	if (variant) {
+		lismClass.c += ` c--hero--${variant}`;
 	}
 
-	if (minH) {
-		lismStyle['--minH'] = minH;
-	}
+	const blockProps = { bgc, 'data-fullscreen': isFullScreen ? '1' : null };
 
-	return (
-		<Stack lismClass={lismClass} lismStyle={lismStyle} alignfull {...attrs}>
-			{divider.top && <Divider {...divider.top} isFlip />}
-			{getMediaLayer(media)}
-			{getFilterLayer(filter)}
-			{children}
-			{divider.bottom && <Divider {...divider.bottom} />}
-		</Stack>
-	);
+	return <Stack alignfull lismClass={lismClass} {...blockProps} {...attrs} />;
 }

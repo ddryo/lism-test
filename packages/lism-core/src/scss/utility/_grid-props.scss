@@ -61,7 +61,8 @@ gtrows
 .-gc\:{ grid-column: var(--gc) }
 .-gr\:{ grid-row: var(--gr) }
 
-.-ga\:fix{ grid-area: fix; }
+.-ga\:f{ grid-area: fix; }
+.-ga\:nf{ grid-area: nofix; }
 .-ga\:l{ grid-area: left; }
 .-ga\:r{ grid-area: right; }
 .-ga\:c{ grid-area: center; }

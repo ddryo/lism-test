@@ -1,103 +1,69 @@
-:where(.b--chatBubble) {
-	--bdw: 1px;
-	--bgc: #f2f6f9;
-	--bdc: #ccdbe5;
+.b--chat {
+	--pass--bdw: 1px;
+	--pass--bgc: #f2f6f9; //var(--b100);
+	--pass--bdc: #ccdbe5;
 	--pass--p: var(--p--box--s);
-}
-.b--chatBubble {
 	// --gta: 'icon body';
 	--icon--size: clamp(48px, 24px + 7.5cqw, 72px); // 320:48px~640:72px
-	--icon--bdc: var(--bgc);
 	--body--mt: calc(var(--icon--size) / 2 + 0.5rem);
-	--decorator-size: 0.875rem;
-	// --decorator--trnslt: var(--trnsltX) var(--trnsltY);
+	--deco--size: 0.875rem;
 
-	gap: calc(var(--decorator-size) - 0.125rem);
-	justify-items: var(--place--left);
+	gap: calc(var(--deco--size) - 0.125rem);
+	justify-items: left; //var(--place--left);
 	align-items: start;
 }
 
-.b--chatBubble[data-dir='right'] {
-	justify-items: var(--place--right);
-	// --gta: 'body icon';
-	// --decorator--trnslt: calc(-1 * var(--trnsltX)) var(--trnsltY);
+.b--chat--right {
+	justify-items: right; //var(--place--right);
 }
 
 // [data-type="think"]{}
 
-.b--chatBubble__icon {
-	grid-area: fix;
-	z-index: 2;
-	background-color: var(--bgc--base);
-	border: solid 2px var(--icon--bdc);
+.b--chat__icon {
+	--bdc: var(--b200); //var(--pass--bdc);
+	--bdw: 1px;
+	// grid-area: fix;
+	border: solid var(--bdw) var(--bdc);
 	width: var(--icon--size);
-	// box-shadow: var(--icon--bxsh);
 }
 
-.b--chatBubble__body {
+.b--chat__body {
+	// grid-area: nofix;
 	margin-top: var(--body--mt);
-	grid-area: nofix;
 	position: relative;
 }
 
-.b--chatBubble__name {
+.b--chat__name {
+	// grid-area: nofix;
 	margin-top: var(--body--mt);
-	grid-area: nofix;
-	line-height: 1.25;
 	justify-content: inherit;
 }
 
-.b--chatBubble__content {
+.b--chat__content {
+	--bdc: var(--pass--bdc);
+	--bdw: var(--pass--bdw);
+	--bdrs: var(--radius--2);
+	--bdrs--tl: var(--bdrs);
+	--bdrs--tr: var(--bdrs);
 	position: relative;
-	// z-index: 0;
 	border: solid var(--bdw) var(--bdc);
-	background-color: var(--bgc);
-	max-width: 40em;
+	background-color: var(--pass--bgc);
+	border-radius: var(--bdrs--tl) var(--bdrs--tr) var(--bdrs) var(--bdrs);
 }
 
-.b--chatBubble--chat[data-dir='left'] .b--chatBubble__content {
-	border-top-left-radius: 0 !important;
+[data-type='chat'][data-dir='left'] {
+	--bdrs--tl: 0;
 }
 
-.b--chatBubble--chat[data-dir='right'] .b--chatBubble__content {
-	border-top-right-radius: 0 !important;
-}
-
-.b--chatBubble--box {
-	--pass--p: var(--p--box);
-	--body--mt: calc(var(--icon--size) - 1.5rem);
-	--icon--bdc: var(--bdc);
-	--body--mt--add: 1em;
-
-	> .b--chatBubble__name {
-		margin-inline: 0.25em;
-	}
-
-	> .b--chatBubble__icon {
-		grid-area: fix;
-		justify-self: var(--jc);
-		// margin: 0 var(--s--10) -0.75em;
-		margin-bottom: -0.75em;
-	}
-
-	&[data-dir='left'] .b--chatBubble__content {
-		margin-left: -1.5em;
-	}
-	&[data-dir='right'] .b--chatBubble__content {
-		margin-right: -1.5em;
-	}
+[data-type='chat'][data-dir='right'] {
+	--bdrs--tr: 0;
 }
 
 // decorator
-// .e--deco[data-type="chat"]{
-// 	--size: var(--decorator-size);
-// }
-// .e--deco[data-type="think"]{
-// 	--size: var(--decorator-size);
-// }
-
-.b--chatBubble .e--deco {
-	--size: var(--decorator-size);
+:where(.b--chat__body) > .e--deco {
+	--bgc: var(--pass--bgc);
+	--bdw: var(--pass--bdw);
+	--size: var(--deco--size);
 	width: var(--size);
 	height: var(--size);
 	// z-index: 0;
@@ -113,18 +79,13 @@
 	}
 }
 
-// あとで: flip:X みたいなクラス作る
-.b--chatBubble[data-dir='right'] .e--deco {
-	transform: rotateY(180deg);
-}
-
 .e--deco--chat {
 	--clipPath: polygon(50% 0%, 100% 0%, 100% 100%);
 }
 
 .e--deco--chat::before {
 	// z-index: -1;
-	--bgc: var(--bdc);
+	--bgc: var(--pass--bdc);
 	--trnsltX: 1px;
 	--trnsltY: 0;
 }
@@ -136,7 +97,7 @@
 
 // think
 .e--deco--think {
-	--bgc: var(--bdc);
+	--bgc: var(--pass--bdc);
 	z-index: -1;
 }
 .e--deco--think::before {
@@ -150,4 +111,32 @@
 	--clipPath: circle(44%);
 	--trnsltX: calc(var(--size) * 0.375);
 	--trnsltY: calc(var(--size) * 0.5);
+}
+
+// 追加スタイル: box
+.b--chat--box {
+	--pass--p: var(--p--box);
+	--body--mt: calc(var(--icon--size) - 1.5rem);
+	--body--mt--add: 1em;
+	gap: 0;
+
+	> .b--chat__name {
+		margin-inline: 0.25em;
+	}
+
+	> .b--chat__icon {
+		--bdc: var(--pass--bdc);
+		z-index: 1;
+		// border-color: var(--bdc);
+		justify-self: var(--jc);
+		// margin: 0 var(--s--10) -0.75em;
+		margin-bottom: -0.75em;
+	}
+
+	.b--chat__content[data-dir='left'] {
+		margin-left: -1.5em;
+	}
+	.b--chat__content[data-dir='right'] {
+		margin-right: -1.5em;
+	}
 }

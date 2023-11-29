@@ -63,11 +63,13 @@ export { Alert } from './Alert';
 export { Note } from './Note';
 export { Banner } from './Banner';
 export { Card, CardMedia, CardBody } from './Card';
-export { ChatBubble } from './ChatBubble';
+
 export { TermList, TermListRow } from './TermList';
 export { NavMenu, NavMenuItem, NavMenuLink } from './NavMenu';
-export { Section, SectionBody, SectionHeader, SectionFooter } from './Section';
-export { Hero, HeroInner, HeroBody, HeroHeader, HeroFooter } from './Hero';
+// export { Section, SectionContent, SectionBody, SectionHeader, SectionFooter } from './Section';
+export { Hero, HeroContent } from './Hero';
+
+export { ChatBubble, ChatBubbleIcon, ChatBubbleName, ChatBubbleContent } from './ChatBubble';
 
 // export { FAQ } from './FAQ';
 // export { MediaText } from './MediaText';

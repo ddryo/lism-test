@@ -392,14 +392,14 @@
 	/* ------------------------------------------------------------
 	  rtlで反転させる値
 	------------------------------------------------------------ */
-	--place--left: start;
-	--place--right: end;
+	// --place--left: start;
+	// --place--right: end;
 }
 
-[dir='rtl'] {
-	--place--left: end;
-	--place--right: start;
-}
+// [dir='rtl'] {
+// 	--place--left: end;
+// 	--place--right: start;
+// }
 
 // ↓ space: これでもわりとしっくりくる...？ 2:.25, 3: 0.375
 // 10: .25

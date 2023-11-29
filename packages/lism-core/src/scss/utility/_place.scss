@@ -7,6 +7,8 @@
 .-ai\:c{align-items: center;}
 .-ai\:s{align-items: start;}
 .-ai\:e{align-items: end;}
+.-ai\:fs{align-items: flex-start;}
+.-ai\:fe{align-items: flex-end;}
 .-ai\:str{align-items: stretch;}
 
 // justify-items
@@ -14,6 +16,8 @@
 .-ji\:c{justify-items: center;}
 .-ji\:s{justify-items: start;}
 .-ji\:e{justify-items: end;}
+.-ji\:fs{justify-items: flex-start;}
+.-ji\:fe{justify-items: flex-end;}
 .-ji\:str{justify-items: stretch;}
 // .-ji\:str
 
@@ -22,6 +26,8 @@
 .-jc\:c{justify-content: center;}
 .-jc\:s{justify-content: start;}
 .-jc\:e{justify-content: end;}
+.-jc\:fs{justify-content: flex-start;}
+.-jc\:fe{justify-content: flex-end;}
 .-jc\:sb{justify-content: space-between;}
 
 // align-content
@@ -29,8 +35,28 @@
 .-ac\:c{align-content: center;}
 .-ac\:s{align-content: start;}
 .-ac\:e{align-content: end;}
+.-ac\:fs{align-content: flex-start;}
+.-ac\:fe{align-content: flex-end;}
 .-ac\:sb{align-content: space-between;}
 
+
+
+// self系
+.-as\:c{align-self: center;}
+.-as\:s{align-self: start;}
+.-as\:e{align-self: end;}
+.-as\:fs{align-self: flex-start;}
+.-as\:fe{align-self: flex-end;}
+// self-start, self-end ?
+
+.-js\:c{justify-self: center;}
+.-js\:s{justify-self: start;}
+.-js\:e{justify-self: end;}
+.-js\:fs{justify-self: flex-start;}
+.-js\:fe{justify-self: flex-end;}
+
+// .-as\:{align-self:var(--as) !important;}
+// .-js\:{justify-self:var(--js) !important;}
 
 // rtl考慮
 // .-ji\:l{justify-items: start;}

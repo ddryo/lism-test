@@ -208,8 +208,8 @@ const placeProps = {
 };
 
 const selfProps = {
-	alignSelf: { style: 1 },
-	justifySelf: { style: 1 },
+	alignSelf: { style: 1, utilKey: 'as', utils: 'selfPlace' },
+	justifySelf: { style: 1, utilKey: 'js', utils: 'selfPlace' },
 	placeSelf: { style: 1 },
 };
 

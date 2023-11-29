@@ -183,8 +183,8 @@ registerBlockType(metadata.name, {
 						<RichText
 							placeholder={__('Add name...')}
 							value={avatarName}
-							onChange={(newTerm) => {
-								setAttributes({ avatarName: newTerm });
+							onChange={(value) => {
+								setAttributes({ avatarName: value });
 							}}
 						/>
 					}

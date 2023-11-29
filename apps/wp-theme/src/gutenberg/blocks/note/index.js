@@ -157,8 +157,8 @@ registerBlockType(metadata.name, {
 						<RichText
 							placeholder={__('Add heading text...', 'lism-blocks')}
 							value={heading}
-							onChange={(newTerm) => {
-								setAttributes({ heading: newTerm });
+							onChange={(value) => {
+								setAttributes({ heading: value });
 							}}
 						/>
 					}

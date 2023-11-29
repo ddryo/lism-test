@@ -18,6 +18,7 @@ class Data {
 	 * ブロック一覧
 	 */
 	const BLOCKS = [
+		'accordion'       => [],
 		'alert'           => [],
 		'box'             => [],
 		'button'          => [],

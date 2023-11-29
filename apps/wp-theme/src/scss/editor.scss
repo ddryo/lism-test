@@ -10,3 +10,8 @@
 	// ブロック挿入後、ブロックが見えなくなるので、一旦コメントアウト
 	// container-type: inline-size;
 }
+
+// ドロップダウンメニューのアイコンが見えなくなってしまうので、Lism-Coreのスタイルを一時的に上書き
+.components-button svg {
+	max-inline-size: initial;
+}

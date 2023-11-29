@@ -18,7 +18,8 @@
 			"type": "string"
 		},
 		"iconPosition": {
-			"type": "string"
+			"type": "string",
+			"enum": ["left", "right"]
 		},
 		"avatarID": {
 			"type": "number"

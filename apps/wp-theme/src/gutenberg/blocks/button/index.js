@@ -235,9 +235,9 @@ registerBlockType(metadata.name, {
 						/>
 						<ToggleGroupControl
 							label={__('Variation', 'lism-blocks')}
-							onChange={(nextSize) => {
+							onChange={(nextVariant) => {
 								setAttributes({
-									variant: nextSize !== 'default' ? nextSize : undefined,
+									variant: nextVariant !== 'default' ? nextVariant : undefined,
 								});
 							}}
 							isBlock
@@ -342,8 +342,8 @@ registerBlockType(metadata.name, {
 								placeholder={__('Add text...', 'lism-blocks')}
 								value={text}
 								withoutInteractiveFormatting
-								onChange={(newText) => {
-									setAttributes({ text: newText });
+								onChange={(value) => {
+									setAttributes({ text: value });
 								}}
 							/>
 						)}

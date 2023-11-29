@@ -111,8 +111,8 @@ registerBlockType(metadata.name, {
 						<RichText
 							placeholder={__('Add description...')}
 							value={term}
-							onChange={(newTerm) => {
-								setAttributes({ term: newTerm });
+							onChange={(value) => {
+								setAttributes({ term: value });
 							}}
 						/>
 					}

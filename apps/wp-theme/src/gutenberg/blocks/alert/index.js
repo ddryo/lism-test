@@ -72,7 +72,7 @@ registerBlockType(metadata.name, {
 			template: [['core/paragraph']],
 		});
 
-		const { children, ref, ...innerProps } = innerBlocksProps;
+		const { children, ...innerProps } = innerBlocksProps;
 
 		const colorGradientSettings = useMultipleOriginColorsAndGradients();
 
@@ -161,7 +161,7 @@ registerBlockType(metadata.name, {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<Alert {...innerProps} forwardedRef={ref}>
+				<Alert {...innerProps}>
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
 					{children}
 				</Alert>

@@ -14,6 +14,7 @@ import { ResponsiveGapControl } from '@/gutenberg/components';
 
 // gapを有効にするブロック
 const LISM_BLOCKS = [
+	'lism-blocks/accordion-group',
 	'lism-blocks/box',
 	'lism-blocks/center',
 	'lism-blocks/cluster',

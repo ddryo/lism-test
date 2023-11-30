@@ -5,6 +5,8 @@ import { addFilter } from '@wordpress/hooks';
 
 // templateLockを有効にするブロック
 const LISM_BLOCKS = [
+	'lism-blocks/accordion',
+	'lism-blocks/accordion-group',
 	'lism-blocks/box',
 	'lism-blocks/center',
 	'lism-blocks/cluster',

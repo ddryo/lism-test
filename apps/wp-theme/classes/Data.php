@@ -19,6 +19,7 @@ class Data {
 	 */
 	const BLOCKS = [
 		'accordion'       => [],
+		'accordion-group' => [],
 		'alert'           => [],
 		'box'             => [],
 		'button'          => [],

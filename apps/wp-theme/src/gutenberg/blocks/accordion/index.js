@@ -116,6 +116,7 @@ registerBlockType(metadata.name, {
 	icon,
 	edit: ({ attributes, setAttributes, clientId }) => {
 		const {
+			templateLock,
 			summaryText,
 			iconPosition,
 			openIconSlug,
@@ -146,6 +147,7 @@ registerBlockType(metadata.name, {
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
 			template: [['core/paragraph']],
+			templateLock,
 		});
 
 		const { children, ...innerProps } = innerBlocksProps;

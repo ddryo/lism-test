@@ -9,6 +9,7 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 
 // tagNameを有効にするブロック
 const LISM_BLOCKS = [
+	'lism-blocks/accordion-group',
 	'lism-blocks/box',
 	'lism-blocks/center',
 	'lism-blocks/cluster',

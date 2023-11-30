@@ -34,7 +34,16 @@ import {
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
-import { details as icon, heading, headingLevel1, headingLevel2, headingLevel3, headingLevel4, headingLevel5, headingLevel6 } from '@wordpress/icons';
+import {
+	details as icon,
+	heading,
+	headingLevel1,
+	headingLevel2,
+	headingLevel3,
+	headingLevel4,
+	headingLevel5,
+	headingLevel6,
+} from '@wordpress/icons';
 
 /**
  * @Internal dependencies
@@ -57,37 +66,37 @@ const HEADER_ELEMENT_OPTIONS = [
 	{
 		title: __('Default (Summary)', 'lism-blocks'),
 		value: 'default',
-		icon: heading
+		icon: heading,
 	},
 	{
 		title: __('Heading 1', 'lism-blocks'),
 		value: 'h1',
-		icon: headingLevel1
+		icon: headingLevel1,
 	},
 	{
 		title: __('Heading 2', 'lism-blocks'),
 		value: 'h2',
-		icon: headingLevel2
+		icon: headingLevel2,
 	},
 	{
 		title: __('Heading 3', 'lism-blocks'),
 		value: 'h3',
-		icon: headingLevel3
+		icon: headingLevel3,
 	},
 	{
 		title: __('Heading 4', 'lism-blocks'),
 		value: 'h4',
-		icon: headingLevel4
+		icon: headingLevel4,
 	},
 	{
 		title: __('Heading 5', 'lism-blocks'),
 		value: 'h5',
-		icon: headingLevel5
+		icon: headingLevel5,
 	},
 	{
 		title: __('Heading 6', 'lism-blocks'),
 		value: 'h6',
-		icon: headingLevel6
+		icon: headingLevel6,
 	},
 ];
 
@@ -129,20 +138,16 @@ registerBlockType(metadata.name, {
 
 		// ブロックまたは子ブロックが選択されているかどうか
 		const hasSelection = useSelect(
-			( select ) => {
-				const { isBlockSelected, hasSelectedInnerBlock } =
-					select( blockEditorStore );
+			(select) => {
+				const { isBlockSelected, hasSelectedInnerBlock } = select(blockEditorStore);
 				/* Sets deep to true to also find blocks inside the details content block. */
-				return (
-					hasSelectedInnerBlock( clientId, true ) ||
-					isBlockSelected( clientId )
-				);
+				return hasSelectedInnerBlock(clientId, true) || isBlockSelected(clientId);
 			},
-			[ clientId ]
+			[clientId]
 		);
 
 		const blockProps = useBlockProps({
-			className: classnames('c--accordion', { '-opened' : hasSelection}),
+			className: classnames('c--accordion', { '-opened': hasSelection }),
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -152,30 +157,31 @@ registerBlockType(metadata.name, {
 
 		const { children, ...innerProps } = innerBlocksProps;
 
-		const toolbarHeadingIcon = headerElement ? HEADER_ELEMENT_OPTIONS.find( ( { value } ) => value === headerElement ).icon : heading;
+		const toolbarHeadingIcon = headerElement
+			? HEADER_ELEMENT_OPTIONS.find(({ value }) => value === headerElement).icon
+			: heading;
 
 		return (
 			<>
 				<BlockControls group='block'>
 					<ToolbarDropdownMenu
-						icon={ toolbarHeadingIcon }
-						label={ __( 'Change heading element', 'lism-blocks' ) }
-						controls={ HEADER_ELEMENT_OPTIONS.map( ( {icon, title, value} ) => {
+						icon={toolbarHeadingIcon}
+						label={__('Change heading element', 'lism-blocks')}
+						controls={HEADER_ELEMENT_OPTIONS.map(({ icon, title, value }) => {
 							return {
 								title,
-								icon: <Icon icon={ icon } isPressed />,
-								isActive: headerElement ? headerElement === value : value === 'default',
+								icon: <Icon icon={icon} isPressed />,
+								isActive: headerElement
+									? headerElement === value
+									: value === 'default',
 								role: 'menuitemradio',
 								onClick: () => {
 									setAttributes({
-										headerElement:
-											value !== 'default'
-												? value
-												: undefined,
+										headerElement: value !== 'default' ? value : undefined,
 									});
-								}
+								},
 							};
-						} ) }
+						})}
 					/>
 				</BlockControls>
 				<InspectorControls>
@@ -228,9 +234,9 @@ registerBlockType(metadata.name, {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<details {...innerProps} open={hasSelection} >
+				<details {...innerProps} open={hasSelection}>
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
-					<AccordionHeader  onClick={ ( event ) => event.preventDefault() }>
+					<AccordionHeader onClick={(event) => event.preventDefault()}>
 						{iconPosition === 'left' && (
 							<AccordionIcon
 								openIconSlug={openIconSlug}
@@ -273,7 +279,7 @@ registerBlockType(metadata.name, {
 		});
 
 		return (
-			<details {...blockProps} >
+			<details {...blockProps}>
 				<AccordionHeader>
 					{iconPosition === 'left' && (
 						<AccordionIcon

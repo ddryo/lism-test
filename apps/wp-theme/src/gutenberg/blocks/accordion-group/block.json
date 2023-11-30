@@ -26,7 +26,7 @@
 			"default": true
 		},
 		"duration": {
-			"type":"number"
+			"type": "number"
 		}
 	},
 	"editorScript": "file:./index.js",

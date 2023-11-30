@@ -14,11 +14,7 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
-import {
-	PanelBody,
-	RangeControl,
-	ToggleControl,
-} from '@wordpress/components';
+import { PanelBody, RangeControl, ToggleControl } from '@wordpress/components';
 import { createBlock } from '@wordpress/blocks';
 
 /**
@@ -39,15 +35,13 @@ registerBlockType(metadata.name, {
 			{
 				type: 'block',
 				isMultiBlock: true,
-				blocks: [ 'lism-blocks/accordion' ],
-				transform: (accordions) => {
+				blocks: ['lism-blocks/accordion'],
+				__experimentalConvert: (blocks) => {
 					return createBlock(
 						'lism-blocks/accordion-group',
 						{},
-						// Loop the selected buttons.
-						accordions.map( ( attributes ) =>
-							// Create singular button in the buttons block.
-							createBlock( 'lism-blocks/accordion', attributes )
+						blocks.map((block) =>
+							createBlock(block.name, block.attributes, block.innerBlocks)
 						)
 					);
 				},
@@ -82,7 +76,10 @@ registerBlockType(metadata.name, {
 							}}
 						/>
 						<ToggleControl
-							label={__('Allow multiple accordions to open at the same time', 'lism-blocks')}
+							label={__(
+								'Allow multiple accordions to open at the same time',
+								'lism-blocks'
+							)}
 							checked={!!allowMultiple}
 							onChange={(value) => {
 								setAttributes({ allowMultiple: value });
@@ -114,7 +111,7 @@ registerBlockType(metadata.name, {
 		const blockProps = useBlockProps.save({
 			hasDivider,
 			allowMultiple,
-			duration : duration !== undefined ? `${duration.toString()}s` : undefined,
+			duration: duration !== undefined ? `${duration.toString()}s` : undefined,
 		});
 
 		return (

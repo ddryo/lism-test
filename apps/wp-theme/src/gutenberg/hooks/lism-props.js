@@ -15,6 +15,7 @@ import { getPropErrors, getPropType } from '@/gutenberg/utils';
 
 // lismPropsを有効にするブロック
 const LISM_BLOCKS = [
+	'lism-blocks/accordion',
 	'lism-blocks/box',
 	'lism-blocks/center',
 	'lism-blocks/cluster',

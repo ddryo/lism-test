@@ -1,8 +1,8 @@
 /**
  * @External dependencies
  */
+import classnames from 'classnames';
 import {
-	Accordion,
 	AccordionHeader,
 	AccordionBody,
 	AccordionLabel,
@@ -141,7 +141,7 @@ registerBlockType(metadata.name, {
 		);
 
 		const blockProps = useBlockProps({
-			className: hasSelection ? '-opened' : undefined,
+			className: classnames('c--accordion', { '-opened' : hasSelection}),
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -226,7 +226,7 @@ registerBlockType(metadata.name, {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<Accordion {...innerProps} useToggleEvent={false} open={hasSelection}>
+				<details {...innerProps} open={hasSelection} >
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
 					<AccordionHeader  onClick={ ( event ) => event.preventDefault() }>
 						{iconPosition === 'left' && (
@@ -252,47 +252,49 @@ registerBlockType(metadata.name, {
 						)}
 					</AccordionHeader>
 					<AccordionBody>{children}</AccordionBody>
-				</Accordion>
+				</details>
 			</>
 		);
 	},
-	// save: ({ attributes }) => {
-	// 	const {
-	// 		summaryText,
-	// 		iconPosition,
-	// 		openIconSlug,
-	// 		closeIconSlug,
-	// 		isTriggerIcon,
-	// 		headerElement,
-	// 	} = attributes;
+	save: ({ attributes }) => {
+		const {
+			summaryText,
+			iconPosition,
+			openIconSlug,
+			closeIconSlug,
+			isTriggerIcon,
+			headerElement,
+		} = attributes;
 
-	// 	const blockProps = useBlockProps.save();
+		const blockProps = useBlockProps.save({
+			className: 'c--accordion',
+		});
 
-	// 	return (
-	// 		<Accordion {...blockProps}>
-	// 			<AccordionHeader>
-	// 				{iconPosition === 'left' && (
-	// 					<AccordionIcon
-	// 						openIconSlug={openIconSlug}
-	// 						closeIconSlug={closeIconSlug}
-	// 						isTriggerIcon={isTriggerIcon}
-	// 					/>
-	// 				)}
-	// 				<AccordionLabel tag={headerElement}>
-	// 					<RichText.Content value={summaryText} />
-	// 				</AccordionLabel>
-	// 				{iconPosition === 'right' && (
-	// 					<AccordionIcon
-	// 						openIconSlug={openIconSlug}
-	// 						closeIconSlug={closeIconSlug}
-	// 						isTriggerIcon={isTriggerIcon}
-	// 					/>
-	// 				)}
-	// 			</AccordionHeader>
-	// 			<AccordionBody>
-	// 				<InnerBlocks.Content />
-	// 			</AccordionBody>
-	// 		</Accordion>
-	// 	);
-	// },
+		return (
+			<details {...blockProps} >
+				<AccordionHeader>
+					{iconPosition === 'left' && (
+						<AccordionIcon
+							openIconSlug={openIconSlug}
+							closeIconSlug={closeIconSlug}
+							isTriggerIcon={isTriggerIcon}
+						/>
+					)}
+					<AccordionLabel tag={headerElement}>
+						<RichText.Content value={summaryText} />
+					</AccordionLabel>
+					{iconPosition === 'right' && (
+						<AccordionIcon
+							openIconSlug={openIconSlug}
+							closeIconSlug={closeIconSlug}
+							isTriggerIcon={isTriggerIcon}
+						/>
+					)}
+				</AccordionHeader>
+				<AccordionBody>
+					<InnerBlocks.Content />
+				</AccordionBody>
+			</details>
+		);
+	},
 });

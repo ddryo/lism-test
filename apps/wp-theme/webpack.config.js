@@ -31,6 +31,13 @@ blocks.forEach((key) => {
 	entries[key.replace('src/gutenberg/', '')] = path.resolve(key);
 });
 
+// フロントスクリプト
+const blockScripts = glob.sync(src + '/blocks/*/view.js', { ignore: src + '/blocks/_*' });
+blockScripts.forEach((key) => {
+	// console.log('key', key);
+	entries[key.replace('src/gutenberg/', '')] = path.resolve(key);
+});
+
 /**
  * pluginsのカスタマイズ
  */

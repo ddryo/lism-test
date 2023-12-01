@@ -82,7 +82,7 @@ registerBlockType(metadata.name, {
 				<InspectorControls>
 					<PanelBody title={__('Setting', 'lism-blocks')}>
 						<SelectControl
-							label={__('Icon', 'lism-blocks')}
+							label={__('Shape', 'lism-blocks')}
 							options={SHAPE_OPTIONS.map(({ label, value }) => {
 								return {
 									label,

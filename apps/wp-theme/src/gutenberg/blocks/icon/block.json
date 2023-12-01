@@ -6,7 +6,12 @@
 	"category": "lism-blocks",
 	"supports": {
 		"anchor": true,
-		"align": ["left", "center", "right"]
+		"align": ["left", "center", "right"],
+		"color": {
+			"__experimentalDefaultControls": {
+				"text": true
+			}
+		}
 	},
 	"attributes": {
 		"size": {

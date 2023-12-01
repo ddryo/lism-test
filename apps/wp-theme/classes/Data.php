@@ -18,8 +18,32 @@ class Data {
 	 * ブロック一覧
 	 */
 	const BLOCKS = [
-		'box' => [],
-		'flex' => [],
+		'accordion'       => [],
+		'accordion-group' => [],
+		'alert'           => [],
+		'box'             => [],
+		'button'          => [],
+		'center'          => [],
+		'chat-bubble'     => [],
+		'cluster'         => [],
+		'columns'         => [],
+		'divider'         => [],
+		'flex'            => [],
+		'fluid-fix'       => [],
+		'frame'           => [],
+		'icon'            => [],
+		'note'            => [],
+		'ratio-grid'      => [],
+		'reel'            => [],
+		'spacer'          => [],
+		'stack'           => [],
+		'switch-fix'      => [],
+		'switch-fix-item' => [],
+		'tabs'            => [],
+		'tab-item'        => [],
+		'term-list'       => [],
+		'term-list-row'   => [],
+		'tile-grid'       => [],
 	];
 
 	/**

@@ -1,0 +1,46 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/chat-bubble",
+	"title": "Chat Bubble",
+	"category": "lism-blocks",
+	"supports": {
+		"anchor": true,
+		"className": false,
+		"color": {
+			"__experimentalDefaultControls": {
+				"text": true
+			}
+		}
+	},
+	"attributes": {
+		"type": {
+			"type": "string"
+		},
+		"iconPosition": {
+			"type": "string",
+			"enum": ["left", "right"]
+		},
+		"avatarID": {
+			"type": "number"
+		},
+		"avatarURL": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "img",
+			"attribute": "src",
+			"default": "https://0.gravatar.com/avatar/00000000000000000000000000000000?s=128&d=mp&r=g"
+		},
+		"avatarName": {
+			"type": "string",
+			"source": "html",
+			"selector": ".b--chatBubble__name"
+		},
+		"flowGap": {
+			"type": "string"
+		}
+	},
+	"editorStyle": "file:./editor.css",
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

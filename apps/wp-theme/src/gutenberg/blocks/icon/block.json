@@ -1,0 +1,33 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/icon",
+	"title": "Icon",
+	"category": "lism-blocks",
+	"supports": {
+		"anchor": true,
+		"align": ["left", "center", "right"],
+		"color": {
+			"__experimentalDefaultControls": {
+				"text": true
+			}
+		}
+	},
+	"attributes": {
+		"size": {
+			"type": "string"
+		},
+		"scale": {
+			"type": "number"
+		},
+		"label": {
+			"type": "string"
+		},
+		"slug": {
+			"type": "string"
+		}
+	},
+	"style": "file:./style.css",
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

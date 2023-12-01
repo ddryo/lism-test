@@ -1,0 +1,83 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/button",
+	"title": "Button",
+	"category": "lism-blocks",
+	"supports": {
+		"anchor": true,
+		"className": false,
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalFontWeight": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalTextTransform": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		}
+	},
+	"attributes": {
+		"text": {
+			"type": "string",
+			"source": "html",
+			"selector": ".c--button__text"
+		},
+		"keyColor": {
+			"type": "string"
+		},
+		"width": {
+			"type": "string"
+		},
+		"variant": {
+			"type": "string",
+			"enum": ["outline", "ghost"]
+		},
+		"isIconOnly": {
+			"type": "boolean",
+			"default": false
+		},
+		"leftIconSlug": {
+			"type": "string"
+		},
+		"rightIconSlug": {
+			"type": "string"
+		},
+		"iconSlug": {
+			"type": "string"
+		},
+		"iconOffset": {
+			"type": "string"
+		},
+		"isGrid": {
+			"type": "boolean",
+			"default": false
+		},
+		"hoverStyle": {
+			"type": "string"
+		},
+		"url": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "a",
+			"attribute": "href"
+		},
+		"linkTarget": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "a",
+			"attribute": "target"
+		},
+		"rel": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "a",
+			"attribute": "rel"
+		}
+	},
+	"style": "file:./style.css",
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

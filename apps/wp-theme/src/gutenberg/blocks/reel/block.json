@@ -1,0 +1,43 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/reel",
+	"title": "Reel",
+	"category": "lism-blocks",
+	"keywords": ["group"],
+	"supports": {
+		"anchor": true,
+		"className": false,
+		"align": ["wide", "full"],
+		"color": {
+			"gradients": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		}
+	},
+	"attributes": {
+		"itemBasis": {
+			"type": "string"
+		},
+		"snap": {
+			"type": "string",
+			"enum": ["start", "center"],
+			"default": "start"
+		},
+		"direction": {
+			"type": "string"
+		},
+		"unreel": {
+			"type": "string",
+			"enum": ["sm", "md"]
+		},
+		"aspect": {
+			"type": "string"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "lism-blocks-container-style",
+	"textdomain": "lism-blocks"
+}

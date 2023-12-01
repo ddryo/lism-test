@@ -9,13 +9,14 @@ export default function Accordion({
 	lismStyle = {},
 	children,
 	duration,
+	useToggleEvent = true,
 	...props
 }) {
-	const ref = React.useRef(null);
+	const ref = React.useRef();
 
 	React.useEffect(() => {
 		console.log('acc useEffect!');
-		if (!ref.current) return;
+		if (!ref.current || !useToggleEvent) return;
 		return setEvent(ref.current);
 	}, []);
 
@@ -35,4 +36,4 @@ export default function Accordion({
 			{children}
 		</details>
 	);
-}
+};

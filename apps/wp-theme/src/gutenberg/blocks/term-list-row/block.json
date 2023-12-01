@@ -1,0 +1,38 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/term-list-row",
+	"title": "Term List Row",
+	"category": "lism-blocks",
+	"parent": ["lism-blocks/term-list"],
+	"supports": {
+		"anchor": true,
+		"className": false,
+		"color": {
+			"gradients": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		}
+	},
+	"attributes": {
+		"term": {
+			"type": "string",
+			"source": "html",
+			"selector": "dt"
+		},
+		"isFluidMode": {
+			"type": "boolean",
+			"default": false
+		},
+		"fixedWidth": {
+			"type": "string"
+		},
+		"fluidMinWidth": {
+			"type": "string"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

@@ -1,0 +1,79 @@
+.lism-propsControl {
+
+	.components-base-control {
+		margin-bottom: 0 !important;
+	}
+
+	.components-base-control__field {
+		margin-bottom: 0 !important;
+	}
+
+	.components-combobox-control {
+
+		li {
+			display: flex;
+			align-items: center;
+			min-height: 24px;
+			padding: 2px 4px;
+			word-break: break-all;
+		}
+	}
+
+	.__code {
+		display: block;
+		width: 100%;
+		overflow: hidden;
+		white-space: nowrap;
+		text-align: left;
+		text-overflow: ellipsis;
+	}
+
+	.__breakpoint {
+		width: 2em;
+		font-weight: 500;
+		text-align: center;
+	}
+
+	.__row.__open {
+		width: calc(100% + 16px);
+		margin-right: -8px;
+		margin-left: -8px;
+		padding: 8px;
+		border: 1px solid #ddd;
+	}
+
+	.__types {
+
+		.components-base-control__label {
+			display: block;
+		}
+
+		.components-button {
+			height: 31px;
+		}
+	}
+
+	.__invalid {
+
+		.components-combobox-control__suggestions-container {
+			border-color: #cc1818;
+
+			&:focus {
+				box-shadow: 0 0 0 .5px #cc1818;
+			}
+		}
+
+		.components-text-control__input {
+			border-color: #cc1818;
+
+			&:focus {
+				border-color: #cc1818;
+				box-shadow: 0 0 0 .5px #cc1818;
+			}
+		}
+	}
+
+	.__add {
+		align-self: flex-end;
+	}
+}

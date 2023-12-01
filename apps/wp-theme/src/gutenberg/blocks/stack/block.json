@@ -1,0 +1,28 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/stack",
+	"title": "Stack",
+	"category": "lism-blocks",
+	"keywords": ["group"],
+	"supports": {
+		"anchor": true,
+		"className": false,
+		"align": ["wide", "full"],
+		"color": {
+			"gradients": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		}
+	},
+	"attributes": {
+		"alignItems": {
+			"type": "string",
+			"default": "stretch"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

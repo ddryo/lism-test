@@ -1,0 +1,36 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/switch-fix",
+	"title": "Switch Fix",
+	"category": "lism-blocks",
+	"keywords": ["group"],
+	"supports": {
+		"anchor": true,
+		"className": false,
+		"align": ["wide", "full"],
+		"color": {
+			"gradients": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		}
+	},
+	"attributes": {
+		"fixedElementPosition": {
+			"type": "string",
+			"default": "right down",
+			"enum": ["left up", "left down", "right up", "right down"]
+		},
+		"fixedWidth": {
+			"type": "string"
+		},
+		"breakPoint": {
+			"default": "sm",
+			"enum": ["sm", "md"]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

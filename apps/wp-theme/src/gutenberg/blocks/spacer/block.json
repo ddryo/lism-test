@@ -1,0 +1,24 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/spacer",
+	"title": "Spacer",
+	"category": "lism-blocks",
+	"supports": {
+		"anchor": true,
+		"className": false
+	},
+	"attributes": {
+		"orientation": {
+			"type": "string",
+			"enum": ["vertical", "horizontal"],
+			"default": "vertical"
+		},
+		"height": {
+			"type": ["number", "string", "array"],
+			"default": "100px"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

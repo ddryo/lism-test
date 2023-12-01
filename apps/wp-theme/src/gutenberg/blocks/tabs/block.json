@@ -1,0 +1,20 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/tabs",
+	"title": "Tabs",
+	"category": "lism-blocks",
+	"supports": {
+		"anchor": true,
+		"className": false,
+		"align": ["wide", "full"],
+		"color": {
+			"__experimentalDefaultControls": {
+				"text": true
+			}
+		}
+	},
+	"attributes": {},
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

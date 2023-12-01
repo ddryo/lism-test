@@ -20,13 +20,25 @@ function enqueue_front_scripts() {
 
 
 /**
- * ファイルの読み込み
+ * エディターで読み込むCSSファイル
  */
 add_action( 'enqueue_block_assets', __NAMESPACE__ . '\enqueue_block_assets' );
 function enqueue_block_assets() {
 	// editor.css
 	if ( is_admin() ) {
-		App::enqueue_style( 'lism-editor-style', '/dist/css/editor.css' );
-		// wp_add_inline_style( 'lism-editor-style', 'body.single{--wp--style--global--content-size:1200px}' );
+		App::enqueue_style( 'lism-editor', '/dist/css/editor.css' );
 	}
+}
+
+/**
+ * エディターで読み込むJSファイル
+ */
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_block_editor_assets' );
+function enqueue_block_editor_assets() {
+	App::enqueue_scripts( 'lism-editor', '/dist/gutenberg/index.js' );
+	App::enqueue_scripts( 'lism-icon-ls', '/dist/icons/index.js', [ 'wp-element' ] );
+	App::enqueue_scripts( 'lism-icon-ph', '/dist/icons/ph/index.js', [ 'wp-element' ] );
+	App::enqueue_scripts( 'lism-icon-fi', '/dist/icons/fi/index.js', [ 'wp-element' ] );
+	App::enqueue_scripts( 'lism-icon-io', '/dist/icons/io/index.js', [ 'wp-element' ] );
+	App::enqueue_scripts( 'lism-icon-fa', '/dist/icons/fa/index.js', [ 'wp-element' ] );
 }

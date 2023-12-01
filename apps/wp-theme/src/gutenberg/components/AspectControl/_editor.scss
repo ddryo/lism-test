@@ -1,0 +1,24 @@
+.lism-ratioControl {
+
+	.__preview {
+		margin: 0 0 1em;
+	}
+
+	.__row {
+
+		.components-base-control {
+			margin-bottom: 0;
+		}
+	}
+
+	.__delete {
+		display: block;
+		min-width: 30px;
+		height: 30px;
+		padding: 0;
+	}
+
+	.__add {
+		align-self: flex-end;
+	}
+}

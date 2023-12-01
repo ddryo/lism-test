@@ -1,20 +1,21 @@
 /**
  * @WordPress dependencies
  */
+import { BaseControl } from '@wordpress/components';
 
 /**
  * @Internal dependencies
  */
 import { GapControl, ResponsiveTabControl } from '@/gutenberg/components';
 
-export default function ResponsiveGapControl({ label }) {
+export default function ResponsiveGapControl() {
 	return (
-		<div className='lism-responsiveGapControl'>
-			<ResponsiveTabControl label={label}>
+		<BaseControl className='lism-responsiveGapControl'>
+			<ResponsiveTabControl>
 				{(tab) => {
 					return <GapControl />;
 				}}
 			</ResponsiveTabControl>
-		</div>
+		</BaseControl>
 	);
 }

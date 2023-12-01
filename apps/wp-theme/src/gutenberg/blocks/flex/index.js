@@ -1,25 +1,20 @@
 /**
  * @External dependencies
  */
-import { Flex } from '@loos/lism-core';
+import { Flex as LismFlex } from '@loos/lism-core';
 
 /**
  * @WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { registerBlockType } from '@wordpress/blocks';
 import {
 	InspectorControls,
 	InnerBlocks,
 	useBlockProps,
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
-import {
-	Flex as GutenbergFlex,
-	FlexItem,
-	PanelBody,
-	__experimentalVStack as VStack,
-} from '@wordpress/components';
+import { Flex, FlexItem, PanelBody, __experimentalVStack as VStack } from '@wordpress/components';
 
 /**
  * @Internal dependencies
@@ -31,38 +26,17 @@ import {
 	AlignJustifyControl,
 	FlexDirectionControl,
 	FlexWrapControl,
-	ResponsiveGapControl,
-	HTMLElementControls,
 } from '@/gutenberg/components';
 
-/**
- * Box
- */
 registerBlockType(metadata.name, {
 	title: __('Flex', 'lism-blocks'),
 	description: __('XXXXXXXXXXXXXXXXXXXXXX', 'lism-blocks'),
-	// icon: icon,
-	transforms: {
-		from: [
-			{
-				type: 'block',
-				blocks: ['core/group'],
-				transform: (attributes, content) => {
-					const newAttrs = {
-						tagName: attributes.tagName,
-					};
-					return createBlock(metadata.name, newAttrs, content);
-				},
-			},
-		],
-	},
+	icon,
 	edit: ({ attributes, setAttributes }) => {
 		const {
 			templateLock,
-			tagName = 'div',
 			flexWrap,
 			flexDirection,
-			gap,
 			alignItems,
 			alignContent,
 			justifyItems,
@@ -71,19 +45,13 @@ registerBlockType(metadata.name, {
 			className,
 		} = attributes;
 
-		const lismProps = {
+		const blockProps = useBlockProps({
 			wrap: flexWrap,
 			direction: flexDirection,
 			ai: alignItems,
 			ac: alignContent,
 			ji: justifyItems,
 			jc: justifyContent,
-			gap: '16px',
-		};
-
-		const blockProps = useBlockProps({
-			...lismProps,
-			tag: tagName,
 		});
 
 		const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -98,7 +66,7 @@ registerBlockType(metadata.name, {
 				<InspectorControls group='styles'>
 					<PanelBody title={__('Layout', 'lism-blocks')}>
 						<VStack>
-							<GutenbergFlex>
+							<Flex>
 								<FlexItem>
 									<FlexWrapControl
 										value={flexWrap}
@@ -115,7 +83,7 @@ registerBlockType(metadata.name, {
 										}}
 									/>
 								</FlexItem>
-							</GutenbergFlex>
+							</Flex>
 							<AlignJustifyControl
 								values={{
 									alignItems,
@@ -124,43 +92,37 @@ registerBlockType(metadata.name, {
 									justifyContent,
 								}}
 								onChange={(values) => {
-									setAttributes({ ...attributes, ...values });
+									setAttributes({ values });
 								}}
 							/>
 						</VStack>
 					</PanelBody>
-					<PanelBody title={__('Spacing', 'lism-blocks')}>
-						<ResponsiveGapControl label={__('Gap', 'lism-blocks')} />
-					</PanelBody>
 				</InspectorControls>
-				<InspectorControls group='advanced'>
-					<HTMLElementControls
-						tagName={tagName}
-						onChange={(value) => {
-							setAttributes({ tagName: value });
-						}}
-					/>
-				</InspectorControls>
-				<Flex {...innerProps} forwardedRef={ref}>
+				<LismFlex {...innerProps} forwardedRef={ref}>
 					<SelectorPreviewTip icon={icon} anchor={anchor} className={className} />
 					{children}
-				</Flex>
+				</LismFlex>
 			</>
 		);
 	},
 
 	save: ({ attributes }) => {
-		const { tagName = 'div' } = attributes;
+		const { flexWrap, flexDirection, alignItems, alignContent, justifyItems, justifyContent } =
+			attributes;
 
 		const blockProps = useBlockProps.save({
-			className: '',
-			tag: tagName,
+			wrap: flexWrap,
+			direction: flexDirection,
+			ai: alignItems,
+			ac: alignContent,
+			ji: justifyItems,
+			jc: justifyContent,
 		});
 
 		return (
-			<Flex {...blockProps}>
+			<LismFlex {...blockProps}>
 				<InnerBlocks.Content />
-			</Flex>
+			</LismFlex>
 		);
 	},
 });

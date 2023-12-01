@@ -1,0 +1,45 @@
+{
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "lism-blocks/divider",
+	"title": "Divider",
+	"category": "lism-blocks",
+	"supports": {
+		"align": ["wide", "full"],
+		"className": false,
+		"color": {
+			"enableContrastChecker": false,
+			"__experimentalSkipSerialization": true,
+			"background": true,
+			"__experimentalDefaultControls": {
+				"background": true
+			}
+		}
+	},
+	"attributes": {
+		"shape": {
+			"type": "string"
+		},
+		"level": {
+			"type": "number"
+		},
+		"stretch": {
+			"type": "number",
+			"default": 1
+		},
+		"offset": {
+			"type": "number",
+			"default": 0
+		},
+		"isFlip": {
+			"type": "boolean",
+			"default": false
+		},
+		"isAnimation": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"editorScript": "file:./index.js",
+	"textdomain": "lism-blocks"
+}

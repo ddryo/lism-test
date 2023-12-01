@@ -2,6 +2,7 @@
  * @WordPress dependencies
  */
 import {
+	BaseControl,
 	ToggleControl,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
@@ -16,10 +17,6 @@ const OPTIONS = [
 		value: 's',
 	},
 	{
-		label: __('M', 'lism-blocks'),
-		value: 'm',
-	},
-	{
 		label: __('L', 'lism-blocks'),
 		value: 'l',
 	},
@@ -27,24 +24,29 @@ const OPTIONS = [
 
 const DEFAULT_UNITS = ['px', 'em', 'rem'];
 
-export default function FlowControl({ value, units: _units = DEFAULT_UNITS, onChange }) {
+export default function FlowControl({
+	hasToggle = true,
+	value,
+	units: _units = DEFAULT_UNITS,
+	onChange,
+}) {
 	const isCustomValue = value !== undefined && !OPTIONS.some((option) => option.value === value);
 
 	const units = useCustomUnits({ availableUnits: _units });
 
 	return (
-		<div className='lism-flowControl'>
-			<ToggleControl
-				__nextHasNoMarginBottom
-				label={__('Use flow layout', 'lism-blocks')}
-				checked={value !== undefined}
-				onChange={(value) => {
-					onChange(value ? 's' : undefined);
-				}}
-			/>
+		<BaseControl className='lism-flowControl'>
+			{hasToggle && (
+				<ToggleControl
+					label={__('Use flow layout', 'lism-blocks')}
+					checked={value !== undefined}
+					onChange={(value) => {
+						onChange(value ? 's' : undefined);
+					}}
+				/>
+			)}
 			{value !== undefined && (
 				<ToggleGroupControl
-					__nextHasNoMarginBottom
 					isBlock
 					label={__('Flow gap', 'lism-blocks')}
 					onChange={(value) => {
@@ -60,9 +62,8 @@ export default function FlowControl({ value, units: _units = DEFAULT_UNITS, onCh
 			)}
 			{isCustomValue && (
 				<UnitControl
-					size='__unstable-large'
-					__nextHasNoMarginBottom
-					label={__('Custom')}
+					size={'__unstable-large'}
+					label={__('Custom', 'lism-blocks')}
 					labelPosition='top'
 					hideLabelFromVision
 					value={value}
@@ -73,6 +74,6 @@ export default function FlowControl({ value, units: _units = DEFAULT_UNITS, onCh
 					min={0}
 				/>
 			)}
-		</div>
+		</BaseControl>
 	);
 }

@@ -28,22 +28,15 @@ const OPTIONS = [
 
 export default function FlexWrapControl({ value, onChange }) {
 	return (
-		<div className='lism-flexWrapControl'>
-			<ToggleGroupControl
-				__nextHasNoMarginBottom
-				label={__('Flex wrap', 'lism-blocks')}
-				onChange={(value) => onChange(value)}
-				value={value}
-			>
-				{OPTIONS.map(({ label, value, icon }) => (
-					<ToggleGroupControlOptionIcon
-						key={value}
-						value={value}
-						icon={icon}
-						label={label}
-					/>
-				))}
-			</ToggleGroupControl>
-		</div>
+		<ToggleGroupControl
+			className='lism-flexWrapControl'
+			label={__('Flex wrap', 'lism-blocks')}
+			onChange={(value) => onChange(value)}
+			value={value}
+		>
+			{OPTIONS.map(({ label, value, icon }) => (
+				<ToggleGroupControlOptionIcon key={value} value={value} icon={icon} label={label} />
+			))}
+		</ToggleGroupControl>
 	);
 }

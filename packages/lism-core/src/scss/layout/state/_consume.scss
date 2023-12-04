@@ -1,5 +1,9 @@
+// Note: utility の最初で読み込む ? layout-state?
 [data-lism-consume~='p'] {
 	padding: var(--pass--p);
+}
+[data-lism-consume~='m'] {
+	padding: var(--pass--m);
 }
 // [data-lism-consume~='gap'] {
 // 	gap: var(--pass--gap);
@@ -18,4 +22,7 @@
 }
 [data-lism-consume~='bdc'] {
 	--bdc: var(--pass--bdc);
+}
+[data-lism-consume~='bdw'] {
+	--bdw: var(--pass--bdw);
 }

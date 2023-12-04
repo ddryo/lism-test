@@ -118,7 +118,8 @@ export default {
 	// others
 	radius: { name: 'bdrs', presets: 'radius', converter: 'radius' },
 	shadow: { name: 'bxsh', presets: 'shadow', converter: 'shadow' },
-	bdrs: { presets: 'radius', converter: 'radius' },
+	bdrs: { map: 1, presets: 'radius', converter: 'radius' },
+
 	bxsh: { presets: 'shadow', converter: 'shadow' },
 	aspect: { BP: 1, presets: 1 },
 	opacity: { style: 1 },
@@ -133,6 +134,9 @@ export default {
 	top: { style: 1, utilKey: 't', utils: 'positions', converter: 'space' },
 	left: { style: 1, utilKey: 'l', utils: 'positions', converter: 'space' },
 	right: { style: 1, utilKey: 'r', utils: 'positions', converter: 'space' },
+	insetInlineStart: { style: 1, utilKey: 'iis', utils: 'positions', converter: 'space' },
+	insetInlineEnd: { style: 1, utilKey: 'iie', utils: 'positions', converter: 'space' },
+
 	bottom: { style: 1, utilKey: 'b', utils: 'positions', converter: 'space' },
 	inset: { style: 1, utils: 1, converter: 'space' },
 	clipPath: { style: 1 },
@@ -183,6 +187,8 @@ export default {
 	// me: marginOption,
 	// mbe: marginOption,
 
+	mask: { map: 1 },
+
 	// isFlowでのみ有効
 	// flowGap: { presets: 1, converter: 'space' },
 
@@ -225,6 +231,7 @@ export const GAP_PROPS = {
 	columnGap: { BP: 1, name: 'clmg', converter: 'space' },
 };
 
+const bdsidesProps = { presets: ['0'], converter: 'radius' };
 export const CONTEXT_PROPS = {
 	grid: {
 		template: { style: 'gridTemplate', name: 'gt', presets: 'gt' },
@@ -282,4 +289,16 @@ export const CONTEXT_PROPS = {
 		size: { style: 'backgroundSize' },
 	},
 	mask: {},
+
+	bdrs: {
+		shorthand: { name: 'bdrs', presets: 'radius', converter: 'radius' },
+		tl: { style: 'borderTopLeftRadius', utilKey: 'bdtlrs', ...bdsidesProps },
+		tr: { style: 'borderTopRightRadius', utilKey: 'bdtrrs', ...bdsidesProps },
+		bl: { style: 'borderBottomLeftRadius', utilKey: 'bdblrs', ...bdsidesProps },
+		br: { style: 'borderBottomRightRadius', utilKey: 'bdbrrs', ...bdsidesProps },
+		ss: { style: 'borderStartStartRadius', utilKey: 'bdssrs', ...bdsidesProps },
+		se: { style: 'borderStartEndRadius', utilKey: 'bdsers', ...bdsidesProps },
+		es: { style: 'borderEndStartRadius', utilKey: 'bdesrs', ...bdsidesProps },
+		ee: { style: 'borderEndEndRadius', utilKey: 'bdeers', ...bdsidesProps },
+	},
 };

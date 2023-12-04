@@ -1,36 +1,27 @@
-// Note は --keycolor が常に渡ってくる
+// Note は は .has--mixcolor とセットで使う
 .c--note {
-	:where(&) {
-		--keycolor: var(--b800);
-		--head--c: var(--keycolor);
-		--bdc: var(--keycolor);
-		--bgc: transparent;
-
-		position: relative;
-		padding: var(--p--box);
-		border-inline-start: solid 4px var(--bdc);
-		background-color: var(--bgc);
-
-		@supports (color: color-mix(in srgb, #000, #fff)) {
-			--link--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
-			--bgc: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bg));
-			--code--c: var(--link--c);
-			--code--bgc: var(--bgc);
-			// --code--bdc: var(--bgc);
-		}
-	}
+	--keycolor: var(--gray);
+	--bdc: var(--keycolor); // .has--mixcolor を上書き
+	padding: var(--p--box);
+	border-inline-start: solid 4px var(--bdc);
+	background-color: var(--bgc);
 }
+// @supports (color: color-mix(in srgb, #000, #fff)) {
+// 	.c--alert.has--mixcolor {
+// 		border-inline-start: solid 4px var(--mixed--base-30);
+// 	}
+// }
 
 .c--note__icon {
 	margin-left: -0.125em;
-	color: var(--keycolor);
+	color: var(--keycolor, currentColor);
 }
 
 .c--note__head {
 	// color: var(--head--c);
 	// align-items: center;
 	// font-weight: 700;
-	gap: 0.5em;
+	gap: var(--em--5);
 	margin-block-end: var(--s--20);
 }
 

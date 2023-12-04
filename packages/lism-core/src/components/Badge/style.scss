@@ -1,31 +1,32 @@
+// has--mixcolor を上書きしないように初期値セット
 :where(.c--badge) {
-	--keycolor: var(--b900);
-	--c: var(--c--filled);
-	--bgc: var(--keycolor);
+	--c: var(--keycolor);
 	--bdc: transparent;
+	--bgc: var(--bgc--pale);
+}
+.c--badge {
+	--keycolor: var(--b900);
 
 	color: var(--c);
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc); // サイズ揃えるため, 常にborderを指定
-	// line-height: 1.25; // 要検討
-	// padding: 0.375em 0.5em;
 	padding-block: var(--em--1);
 	padding-inline: var(--em--5);
-	// border-radius: var(--radius--1);
-	// font-size: var(--fz--xs);
+}
+
+// subtle
+.c--badge--subtle:where(.has--mixcolor) {
+	--c: var(--mixed--text-10);
+}
+
+.c--badge--fill {
+	--c: var(--c--filled);
+	--bgc: var(--keycolor);
+	--bdc: transparent;
 }
 
 .c--badge--outline {
-	--bdc: currentColor;
-	--bgc: transparent;
 	--c: var(--keycolor);
-}
-
-.c--badge--subtle {
-	@supports (color: color-mix(in srgb, #000, #fff)) {
-		--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
-		// badgeは背景色が透過しないように base と混ぜる
-		--bgc: color-mix(in srgb, var(--keycolor), var(--bgc--base) var(--cMixPer--bg));
-		--bdc: color-mix(in srgb, var(--keycolor), transparent 90%);
-	}
+	--bdc: var(--keycolor);
+	--bgc: transparent;
 }

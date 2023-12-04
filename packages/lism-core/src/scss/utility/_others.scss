@@ -22,6 +22,17 @@
 .-b\:50{bottom: 50%;}
 .-b\:100{bottom:100%;}
 
+.-iis\:0{inset-inline-start: 0;}
+.-iis\:50{inset-inline-start: 50%;}
+.-iis\:100{inset-inline-start:100%;}
+.-iie\:0{inset-inline-end: 0;}
+.-iie\:50{inset-inline-end: 50%;}
+.-iie\:100{inset-inline-end:100%;}
+
+.-r\:0{right: 0;}
+.-r\:50{right: 50%;}
+.-r\:100{right:100%;}
+
 .-z\:-1{z-index: -1;}
 .-z\:0{z-index: 0;}
 .-z\:1{z-index: 1;}
@@ -37,9 +48,9 @@
 .-trnslt\:-50{translate: -50% -50%;}
 .-trnslt\:-50X{translate: -50% 0;}
 .-trnslt\:-50Y{translate: 0 -50%;}
-// .-trnslt\:-100{translate: -100% -100%;}
-// .-trnslt\:-100X{translate: -100% 0;}
-// .-trnslt\:-100Y{translate: 0 -100%;}
+.-trnslt\:-100{translate: -100% -100%;}
+.-trnslt\:-100X{translate: -100% 0;}
+.-trnslt\:-100Y{translate: 0 -100%;}
 
 .-rotate\:45{rotate: 45deg}
 .-rotate\:-45{rotate: -45deg}

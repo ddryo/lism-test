@@ -1,40 +1,18 @@
-// Alert は --keycolor が常に渡ってくる
+// Alert は .has--mixcolor とセットで使う
 .c--alert {
-	:where(&) {
-		--fluid--minW: 16rem; // .l--fluidFix より優先度高くなるように注意
-		--keycolor: var(--gray);
-		--icon--c: var(--keycolor);
-		--icon--size: 1.4em; //var(--fz--xl); //1.375em;
-		--bdc: var(--keycolor);
-		--bgc: transparent;
-		padding: var(--p--box--s);
-		gap: var(--p--box--s); //0.75em;
-		// border-radius: var(--radius--2);
-		align-items: center;
-		background-color: var(--bgc);
-		border: solid 1px var(--bdc);
-	}
-
-	// color-mixのサポートチェック
-	// srgb-linear
-	@supports (color: color-mix(in srgb, #000, #fff)) {
-		--bdc: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bd));
-		--bgc: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bg));
-
-		// 親でカラー指定があればそれを引き継げるように
-		--link--c: color-mix(
-			in srgb,
-			var(--keycolor),
-			var(--c, var(--c--base)) var(--cMixPer--text)
-		);
-		--code--c: var(--link--c);
-		--code--bgc: var(--bgc);
-		// --code--bdc: var(--bgc);
-	}
+	--keycolor: var(--gray);
+	--fluid--minW: 16rem; // .l--fluidFix より優先度高くなるように注意
+	--icon--size: 1.4em; //var(--fz--xl); //1.375em;
+	// --bdc: var(--keycolor);
+	padding: var(--em--7);
+	gap: var(--em--7);
+	align-items: center;
+	border: solid 1px var(--bdc, var(--keycolor)); // .has--mixcolor 側で定義している --bdc そのまま使う
+	background-color: var(--bgc);
 }
 
 .c--alert__icon {
-	color: var(--icon--c);
+	color: var(--keycolor, currentColor);
 	font-size: var(--icon--size);
 	// flex-shrink: 0;
 }

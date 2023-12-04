@@ -19,7 +19,7 @@
 .-ji\:fs{justify-items: flex-start;}
 .-ji\:fe{justify-items: flex-end;}
 .-ji\:str{justify-items: stretch;}
-// .-ji\:str
+
 
 // justify-content
 // .-jc\:{justify-content: var(--jc);}
@@ -40,7 +40,6 @@
 .-ac\:sb{align-content: space-between;}
 
 
-
 // self系
 .-as\:c{align-self: center;}
 .-as\:s{align-self: start;}
@@ -54,6 +53,14 @@
 .-js\:e{justify-self: end;}
 .-js\:fs{justify-self: flex-start;}
 .-js\:fe{justify-self: flex-end;}
+
+// rtl言語でも左右を反転させない時に使える
+.-ji\:l{justify-items: left;}
+.-ji\:r{justify-items: right;}
+.-jc\:l{justify-content: left;}
+.-jc\:r{justify-content: right;}
+.-js\:l{justify-self: left;}
+.-js\:r{justify-self: right;}
 
 // .-as\:{align-self:var(--as) !important;}
 // .-js\:{justify-self:var(--js) !important;}

@@ -7,13 +7,13 @@ import { Core } from '../Core';
 // import { Avatar } from '../Avatar';
 // import { MediaLayer } from '../Layer';
 
-export default function ChatName({
+export default function ChatFoot({
 	lismClass = {},
 	context, // 親から渡される
 	children,
 	...props
 }) {
-	lismClass.c = 'c--chat__name';
+	lismClass.c = 'c--chat__footer';
 	// if (type) lismClass.c += ` c--chat--${type}`;
 
 	let defaultProps = {
@@ -21,6 +21,8 @@ export default function ChatName({
 		px: 'em5',
 		py: 'em1',
 		c: 'pale',
+		// pos: 'absolute',
+		// top: '100%',
 		// translate: '0 -100%',
 	};
 

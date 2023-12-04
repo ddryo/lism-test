@@ -1,34 +1,24 @@
 // import React from 'react';
 import { Core } from '../Core';
-import { defaultProps } from '../../config/components';
-const _default = defaultProps?.Badge || {};
+const defaultProps = { radius: '1', fz: 'xs' };
 
 // variant
 export default function Badge({
 	lismClass = {},
 	// lismStyle = {},
+	lismState = [],
+	variant,
 	...props
 }) {
-	props = Object.assign({}, _default, props);
-	let {
-		variant, //hasIcon,
-		...attrs
-	} = props;
-
 	lismClass.c = 'c--badge';
-	if (variant) lismClass.c += ` c--badge--${variant}`;
+	if (variant) {
+		lismClass.c += ` c--badge--${variant}`;
+	}
 
-	const blockProps = {};
-
-	// if (color) {
-	// 	blockProps.keycolor = color;
-	// }
-
-	// data-has-iconとかでいいかも
-	// if (hasIcon) {
-	// 	blockProps.d = 'inline-flex';
-	// 	blockProps.ai = 'center';
-	// }
-
-	return <Core tag='span' lismClass={lismClass} {...blockProps} {...attrs} />;
+	if ('subtle' === variant) {
+		lismState.push('has--mixcolor');
+	}
+	return (
+		<Core tag='span' lismClass={lismClass} lismState={lismState} {...defaultProps} {...props} />
+	);
 }

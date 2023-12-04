@@ -69,7 +69,7 @@ export { NavMenu, NavMenuItem, NavMenuLink } from './NavMenu';
 // export { Section, SectionContent, SectionBody, SectionHeader, SectionFooter } from './Section';
 export { Hero, HeroContent } from './Hero';
 
-export { ChatBubble, ChatBubbleIcon, ChatBubbleName, ChatBubbleContent } from './ChatBubble';
+export * from './ChatBubble';
 
 // export { FAQ } from './FAQ';
 // export { MediaText } from './MediaText';

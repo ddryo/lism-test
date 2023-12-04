@@ -1,31 +1,25 @@
 /* stylelint-disable */
 
 
-
+// bdrsは変数管理した方が便利
 [class*="-bdrs:"]{
-	border-radius: var(--bdrs) !important;
+	border-radius: var(--bdrs);
 }
-.-bdrs\:0{
-	--bdrs: 0px;
-}
-.-bdrs\:1{
-	--bdrs: var(--radius--1);
-}
-.-bdrs\:2{
-	--bdrs: var(--radius--2);
-}
-.-bdrs\:3{
-	--bdrs: var(--radius--3);
-}
-.-bdrs\:4{
-	--bdrs: var(--radius--4);
-}
-.-bdrs\:5{
-	--bdrs: var(--radius--5);
-}
-.-bdrs\:6{
-	--bdrs: var(--radius--6);
-}
-.-bdrs\:99{
-	--bdrs: var(--radius--99);
-}
+.-bdrs\:0{--bdrs: 0px;}
+.-bdrs\:1{--bdrs: var(--radius--1);}
+.-bdrs\:2{--bdrs: var(--radius--2);}
+.-bdrs\:3{--bdrs: var(--radius--3);}
+.-bdrs\:4{--bdrs: var(--radius--4);}
+.-bdrs\:5{--bdrs: var(--radius--5);}
+.-bdrs\:6{--bdrs: var(--radius--6);}
+.-bdrs\:99{--bdrs: var(--radius--99);}
+
+.-bdtlrs\:0 {border-top-left-radius: 0;}
+.-bdtrrs\:0 {border-top-right-radius: 0;}
+.-bdbrrs\:0 {border-bottom-right-radius: 0;}
+.-bdblrs\:0 {border-bottom-left-radius: 0;}
+
+.-bdssrs\:0 {border-start-start-radius: 0;}
+.-bdsers\:0 {border-start-end-radius: 0;}
+.-bdeers\:0 {border-end-end-radius: 0;}
+.-bdesrs\:0 {border-end-start-radius: 0;}

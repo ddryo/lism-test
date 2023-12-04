@@ -1,5 +1,5 @@
 import { isValidElement } from 'react';
-import { Lism } from '../Lism';
+import { Core } from '../Core';
 import { IconPresets } from '../../config/components';
 
 export default function Icon({
@@ -35,8 +35,12 @@ export default function Icon({
 		if ('1em' !== size) lismStyle['--size'] = size;
 	} else if (typeof icon === 'string') {
 		// cssでアイコンを描画する場合
+
+		// svg-で始まる場合は mask で CSSからsvgを描画する
+		if (icon.startsWith('svg-')) props.mask = '-';
+
 		iconProps.tag = 'span';
-		iconProps['data-icon'] = icon;
+		iconProps['data-icon'] = icon.replace('svg-', '');
 		if ('1em' !== size) lismStyle['--size'] = size;
 	} else if (typeof icon === 'function' || typeof icon === 'object') {
 		// component関数が渡されてきた場合は、それを使う
@@ -46,8 +50,8 @@ export default function Icon({
 	}
 
 	return (
-		<Lism tag='span' lismClass={lismClass} lismStyle={lismStyle} {...iconProps} {...props}>
+		<Core tag='span' lismClass={lismClass} lismStyle={lismStyle} {...iconProps} {...props}>
 			{children}
-		</Lism>
+		</Core>
 	);
 }

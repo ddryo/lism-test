@@ -65,6 +65,7 @@ class LismPropsData {
 			lismVar,
 			provide,
 			consume,
+
 			...others
 		} = props;
 
@@ -78,7 +79,15 @@ class LismPropsData {
 			lismClassNames.push(lismClass);
 		}
 		if (typeof lismClass === 'object') {
-			['c', 'l', 'e', '_'].forEach((prefix) => {
+			[
+				//'d',
+				'c',
+				'b',
+				'a',
+				'e',
+				'l',
+				// '_',
+			].forEach((prefix) => {
 				if (!lismClass[prefix]) return;
 				lismClassNames.push(lismClass[prefix]);
 			});

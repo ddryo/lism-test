@@ -9,7 +9,10 @@ import {
 	ChatBubbleIcon,
 	ChatBubbleName,
 	ChatBubbleContent,
+	ChatFooter,
 	Spacer,
+	Alert,
+	Note,
 	DecoBox,
 } from '@loos/lism-core';
 import DammyText from '@/components/DammyText';
@@ -24,38 +27,129 @@ import './style.scss';
 
 export default function ContainerTest() {
 	return (
-		<Layouter isFlow hasGutter py={50} isConstrained='s' alignfull id='demo-wrapper'>
+		<Layouter isFlow hasGutter py={50} isConstrained='s' alignfull id='demo-wrapper' _dir='rtl'>
 			<p>test...</p>
+			<Box className='is--cbox' bd keycolor='green' p='box'>
+				<p>Lorem ipsum text...</p>
+			</Box>
+			<Note heading='Heading text...' isFlow='s' preset='alert'>
+				<p>Lorem ipsum text...</p>
+				<DammyText />
+			</Note>
+
+			<div className='grid-container'>
+				<div className='icon-area'>アイコン</div>
+				<div className='content1'>コンテンツをここに挿入.</div>
+				<div className='content2'>コンテンツをここに挿入.</div>
+			</div>
+			<Alert preset='info'>
+				<p>
+					ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし<a href='###'>リンク文字列</a>
+					と活力はそのような木々と楽しみ。ブラインド行うにはいくつかの重要な事柄が流れます。そのような{' '}
+					<code>Liberroy, Foo</code> の取り組みの利点を提案したのなら。
+				</p>
+			</Alert>
+			<ChatBubble>
+				<ChatBubbleIcon src='/img/avatar01.jpg' />
+				<ChatBubbleName>ルフィ</ChatBubbleName>
+				<ChatBubbleContent>
+					<p>
+						ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし<a href='###'>リンク文字列</a>
+						と活力はそのような木々と楽しみ。そのような <code>Liberroy, Foo</code>{' '}
+						の取り組みの利点を提案したのなら。
+					</p>
+				</ChatBubbleContent>
+				<ChatFooter>Footer text</ChatFooter>
+			</ChatBubble>
+			<ChatBubble keycolor='gray'>
+				<ChatBubbleIcon src='/img/avatar01.jpg' />
+				<ChatBubbleName>ルフィ</ChatBubbleName>
+				<ChatBubbleContent>
+					<p>
+						ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし<a href='###'>リンク文字列</a>
+						と活力はそのような木々と楽しみ。そのような <code>Liberroy, Foo</code>{' '}
+						の取り組みの利点を提案したのなら。
+					</p>
+				</ChatBubbleContent>
+				<ChatFooter>color: gray</ChatFooter>
+			</ChatBubble>
+			<ChatBubble keycolor='green'>
+				<ChatBubbleIcon src='/img/avatar01.jpg' />
+				<ChatBubbleName>ルフィ</ChatBubbleName>
+				<ChatBubbleContent>
+					<p>
+						ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし<a href='###'>リンク文字列</a>
+						と活力はそのような木々と楽しみ。そのような <code>Liberroy, Foo</code>{' '}
+						の取り組みの利点を提案したのなら。
+					</p>
+				</ChatBubbleContent>
+				<ChatFooter>color: green</ChatFooter>
+			</ChatBubble>
+			<ChatBubble keycolor='blue' variant='think' direction='end'>
+				<ChatBubbleIcon src='/img/avatar01.jpg' />
+				{/* <ChatBubbleName>ルフィ</ChatBubbleName> */}
+				<ChatBubbleContent>
+					<p>
+						ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし<a href='###'>リンク文字列</a>
+						と活力はそのような木々と楽しみ。そのような <code>Liberroy, Foo</code>{' '}
+						の取り組みの利点を提案したのなら。
+					</p>
+				</ChatBubbleContent>
+			</ChatBubble>
+			<ChatBubble keycolor='red'>
+				<ChatBubbleIcon src='/img/avatar01.jpg' />
+				{/* <ChatBubbleName>ルフィ</ChatBubbleName> */}
+				<ChatBubbleContent>
+					<DammyText length='xs' lang='ja' />
+				</ChatBubbleContent>
+			</ChatBubble>
 			<hr />
 			<h2>ChatBubble</h2>
 			<ChatBubble>
-				<ChatBubbleIcon src='/img/onepiece01_luffy.png' />
+				<ChatBubbleIcon src='/img/avatar01.jpg' />
 				<ChatBubbleName>ルフィ</ChatBubbleName>
 				<ChatBubbleContent>
 					<DammyText length='xs' lang='ja' />
 				</ChatBubbleContent>
 			</ChatBubble>
-			<ChatBubble direction='right' name='チョッパー' iconSrc='/img/onepiece06_chopper.png'>
-				<ChatBubbleContent direction='right'>
+			<ChatBubble direction='end'>
+				<ChatBubbleIcon src='/img/avatar01.jpg' />
+				<ChatBubbleName>ルフィ</ChatBubbleName>
+				<ChatBubbleContent>
 					<DammyText length='m' lang='ja' />
 				</ChatBubbleContent>
 			</ChatBubble>
-
-			<ChatBubble>
+			<ChatBubble variant='think'>
+				<ChatBubbleIcon src='/img/avatar02.jpg' />
+				<ChatBubbleName>ルフィ</ChatBubbleName>
+				<ChatBubbleContent>
+					<DammyText length='m' lang='ja' />
+				</ChatBubbleContent>
+			</ChatBubble>
+			<ChatBubble direction='end' variant='think'>
+				<ChatBubbleIcon src='/img/avatar04.jpg' />
+				<ChatBubbleName>チョッパー</ChatBubbleName>
+				<ChatBubbleContent>
+					<DammyText length='m' lang='ja' />
+				</ChatBubbleContent>
+			</ChatBubble>
+			<hr />
+			<h2>Customize例</h2>
+			<hr />
+			<ChatBubble provide={{ bgc: 'black', c: 'white' }}>
 				<ChatBubbleIcon src='/img/onepiece01_luffy.png' />
 				<ChatBubbleName>ルフィ</ChatBubbleName>
-				<ChatBubbleContent type='think'>
-					<DammyText length='m' lang='ja' />
+				<ChatBubbleContent radius={5}>
+					<DammyText length='xs' lang='ja' />
 				</ChatBubbleContent>
 			</ChatBubble>
-			<ChatBubble direction='right' provide={{ bgc: '#eff9ef', bdc: '#bccfbd' }}>
+			{/* <ChatBubble direction='end' variant='think' provide={{ bgc: '#eff9ef', bdc: '#bccfbd' }}>
 				<ChatBubbleIcon src='/img/onepiece06_chopper.png' />
 				<ChatBubbleName>チョッパー</ChatBubbleName>
-				<ChatBubbleContent type='think' direction='right' radius='3'>
-					<DammyText length='m' lang='ja' />
+				<ChatBubbleContent wrapperProps={{ style: { filter: 'drop-shadow(2px 2px 0px #888)' } }}>
+					<DammyText lang='ja' />
 				</ChatBubbleContent>
-			</ChatBubble>
-
+			</ChatBubble> */}
 			<hr />
 			<h2>Customize例</h2>
 			<hr />
@@ -66,10 +160,10 @@ export default function ContainerTest() {
 					<DammyText length='m' lang='ja' />
 				</ChatBubbleContent>
 			</ChatBubble>
-			<ChatBubble variant='box' direction='right'>
+			<ChatBubble variant='box' direction='end'>
 				<ChatBubbleIcon src='/img/onepiece06_chopper.png' />
 				<ChatBubbleName>チョッパー</ChatBubbleName>
-				<ChatBubbleContent type='box' direction='right' radius='3'>
+				<ChatBubbleContent type='box' direction='end' radius='3'>
 					<DammyText length='m' lang='ja' />
 				</ChatBubbleContent>
 			</ChatBubble>

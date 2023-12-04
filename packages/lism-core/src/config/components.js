@@ -11,10 +11,6 @@ export const defaultProps = {
 			fw: '700',
 		},
 	},
-	Badge: {
-		radius: '1',
-		fz: 'xs',
-	},
 	Button: {
 		radius: '1',
 	},

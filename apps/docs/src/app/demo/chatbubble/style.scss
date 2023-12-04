@@ -1,3 +1,29 @@
 .test {
 	// background-clip: text;
 }
+// .grid-container {
+// 	display: grid;
+// 	grid-template-columns: auto 1fr;
+// 	// grid-template-columns: [first] 40px [line2] auto [line3] 20px [end];
+// 	column-gap: 10px;
+// 	justify-items: left;
+// 	// direction: ltr; /* アイコンエリアのみ左から右へ */
+// }
+
+// .icon-area {
+// 	// grid-column-start: end; /* 常に左側（1列目の開始位置）に配置 */
+// 	grid-column: 1;
+// 	grid-row: 1 / -1;
+// 	display: flex;
+// 	flex-direction: column;
+// 	align-items: center;
+// 	justify-content: start;
+// }
+// // [dir='rtl'] .icon-area {
+// // 	grid-column: -1;
+// // }
+// .content1,
+// .content2 {
+// 	// direction: rtl;
+// 	grid-column: 2; /* 2列目の開始位置に配置 */
+// }

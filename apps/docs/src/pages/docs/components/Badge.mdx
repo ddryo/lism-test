@@ -48,18 +48,18 @@ export const ColorDemos = ({colors, variant}) => {
 
 <Demo>
 	<Demo.Title>`<Badge>`の使用例</Demo.Title>
-	<Demo.Preview resize p={20}>
+	<Demo.Preview p={20} isShadow={0}>
 		<Cluster gap={20}>
+			<Badge>Badge</Badge>
 			<Badge variant="fill">Badge</Badge>
 			<Badge variant="outline">Badge</Badge>
-			<Badge variant="subtle">Badge</Badge>
 		</Cluster>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
+		<Badge>Badge</Badge>
 		<Badge variant="fill">Badge</Badge>
 		<Badge variant="outline">Badge</Badge>
-		<Badge variant="subtle">Badge</Badge>
 		```
 	</Demo.Code>
 </Demo>
@@ -71,8 +71,8 @@ export const ColorDemos = ({colors, variant}) => {
 
 <Demo>
 	<Demo.Title>`variant="fill"`でのカラーバリエーション</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<ColorDemos colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} />
+	<Demo.Preview p={20} isShadow={0}>
+		<ColorDemos variant="fill" colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} />
 	</Demo.Preview>
 <Demo.Code>
 ```jsx
@@ -85,44 +85,34 @@ export const ColorDemos = ({colors, variant}) => {
 
 <Demo>
 	<Demo.Title>`variant="outline"`でのカラーバリエーション</Demo.Title>
-	<Demo.Preview resize p={20}>
+	<Demo.Preview p={20} isShadow={0}>
 		<ColorDemos colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} variant="outline" />
 	</Demo.Preview>
 </Demo>
 
 <Demo>
-	<Demo.Title>`variant="subtle"`でのカラーバリエーション</Demo.Title>
-	<Demo.Preview resize p={20} isShadow={0}>
-		<ColorDemos colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} variant="subtle" />
+	<Demo.Title>`variant="subtle"`(is--cboxが出力されます) でのカラーバリエーション</Demo.Title>
+	<Demo.Preview p={20} isShadow={0}>
+		<ColorDemos variant="subtle" colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]}  />
 	</Demo.Preview>
 </Demo>
 
 
 <Demo>
 	<Demo.Title>カラーコード指定</Demo.Title>
-	<Demo.Preview resize p={20}>
+	<Demo.Preview p={20} isShadow={0}>
 		<Cluster gap={20}>
-			<Badge keycolor="#ac2c23">Badge</Badge>
-			<Badge keycolor="hsl(260deg 75% 40%)">Badge</Badge>
-			<Badge keycolor="rgb(10 80 100 / 20%)" c="base">Badge</Badge>
-		</Cluster>
-		<Cluster gap={20}>
-			<Badge variant="subtle" keycolor="#ac2c23">Badge</Badge>
+			<Badge bgc="blue:20%" c="base">Badge</Badge>
+			<Badge variant="fill" keycolor="#ac2c23">Badge</Badge>
 			<Badge variant="subtle" keycolor="hsl(260deg 75% 40%)">Badge</Badge>
-			<Badge variant="subtle" keycolor="rgb(10 80 100)" c="base">Badge</Badge>
 		</Cluster>
 	</Demo.Preview>
 <Demo.Code>
 ```jsx
 <Cluster gap={20}>
-	<Badge keycolor="#ac2c23">Badge</Badge>
-	<Badge keycolor="hsl(260deg 75% 40%)">Badge</Badge>
-	<Badge keycolor="rgb(10 80 100 / 20%)" c="base">Badge</Badge>
-</Cluster>
-<Cluster gap={20}>
-	<Badge variant="subtle" keycolor="#ac2c23">Badge</Badge>
+	<Badge bgc="blue:20%" c="base">Badge</Badge>
+	<Badge variant="fill" keycolor="#ac2c23">Badge</Badge>
 	<Badge variant="subtle" keycolor="hsl(260deg 75% 40%)">Badge</Badge>
-	<Badge variant="subtle" keycolor="rgb(10 80 100)" c="base">Badge</Badge>
 </Cluster>
 ```
 </Demo.Code>
@@ -138,19 +128,19 @@ export const ColorDemos = ({colors, variant}) => {
 
 <Demo>
 	<Demo.Title>`<InlineIcon>`の使用例</Demo.Title>
-	<Demo.Preview resize p={20}>
+	<Demo.Preview p={20}>
 		<Cluster gap={20}>
-			<Badge d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Book} size="1.25em"/> Badge</Badge>
-			<Badge variant="outline" d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Cat} size="1.25em"/> Badge</Badge>
+			<Badge variant='fill' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Book} size="1.25em"/> Badge</Badge>
+			<Badge variant='outline' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Cat} size="1.25em"/> Badge</Badge>
 		</Cluster>
 	</Demo.Preview>
 <Demo.Code>
 ```jsx
 <Cluster gap={20}>
-	<Badge d='inline-flex' flex={{ai: 'center', gap: 'em2'}}>
+	<Badge variant='fill' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}>
 		<Icon icon={Book} size="1.25em"/>Badge
 	</Badge>
-	<Badge variant="outline" d='inline-flex' flex={{ai: 'center', gap: 'em2'}}>
+	<Badge variant='outline' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}>
 		<Icon icon={Cat} size="1.25em"/>Badge
 	</Badge>
 </Cluster>
@@ -166,5 +156,5 @@ export const ColorDemos = ({colors, variant}) => {
 {/* <Cluster gap={20}>
 	<Badge hasIcon p={10} fz="l" variant="fill"><Icon icon={Book} /></Badge>
 	<Badge hasIcon p={10} fz="l" variant="outline"><Icon icon={Cat} /></Badge>
-	<Badge hasIcon p={10} fz="l" variant="subtle"><Icon icon={Baseball} /></Badge>
+	<Badge hasIcon p={10} fz="l" ><Icon icon={Baseball} /></Badge>
 </Cluster> */}

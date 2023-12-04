@@ -61,7 +61,7 @@ export default function Note({
 	// }
 
 	return (
-		<Layouter lismClass={lismClass} {...attrs}>
+		<Layouter lismClass={lismClass} lismState={['has--mixcolor']} {...attrs}>
 			{heading && (
 				<Core lismClass={{ c: 'c--note__head' }} {...headProps}>
 					{icon && (

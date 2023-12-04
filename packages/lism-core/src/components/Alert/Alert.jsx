@@ -41,7 +41,13 @@ export default function Alert({ lismClass = {}, lismStyle = {}, isFlow, ...props
 
 	// Center: 縦並び時にセンター寄せしたい
 	return (
-		<FluidFix fix='first' lismClass={lismClass} lismStyle={lismStyle} {...attrs}>
+		<FluidFix
+			fix='first'
+			lismState={['has--mixcolor']}
+			lismClass={lismClass}
+			lismStyle={lismStyle}
+			{...attrs}
+		>
 			{icon && (
 				<Center className='c--alert__icon'>
 					<Icon icon={icon} label={iconLabel} size='1em' />

@@ -50,6 +50,8 @@ export function getAllLayoutStateData({
 	hasGutter,
 	hasLayer,
 	hasDivider,
+	// isCbox,
+	//isLinkbox,
 	...props
 }) {
 	if (isContainer) {

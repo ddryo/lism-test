@@ -1,82 +1,78 @@
 // import React from 'react';
-import { Item } from '../Item';
+// import ChatText from './ChatText';
+// import ChatTextContent from './ChatTextContent';
+// import { Item } from '../Item';
 import { Layouter } from '../Layouter';
-import { Grid } from '../Grid';
+// import { Grid } from '../Grid';
 import { Decorator } from '../Decorator';
 // import { DecoBox } from '../DecoBox';
-import { Avatar } from '../Avatar';
+// import { Avatar } from '../Avatar';
 // import { MediaLayer } from '../Layer';
 
 const DECORATOR_PROPS = {
-	// chat: {
-	// 	left: { box: { template: 'fix:l' }, body: {}, content: {}, deco: {} },
-	// 	right: { box: { template: 'fix:r' }, deco: { flip: 'x' } },
-	// },
-	// think: {
-	// 	left: { box: { template: 'fix:l' }, body: {}, content: {}, deco: {} },
-	// 	right: { box: { template: 'fix:r' }, deco: { flip: 'x' } },
-	// },
-	// box: {
-	// 	content: {
-	// 		radius: 1,
-	// 		p: 'box',
-	// 	},
-	// },
-	left: {
-		// rtl言語を考慮してleftも明示的にセット
-		top: '0',
-		right: '100%',
+	start: {
+		insetInlineEnd: '100%',
 	},
-	right: {
-		top: '0',
-		left: '100%',
+	end: {
+		insetInlineStart: '100%',
 		transform: 'scaleX(-1)',
 	},
 };
 
-export default function ChatBubble({
+export default function ChatContent({
 	lismClass = {},
-	type = 'chat',
-	direction = 'left',
 	wrapperProps = {},
+	context, // 親から渡される
 	children,
 	...props
 }) {
-	lismClass.c = `b--chat b--chat--${direction}`;
-	if (type) lismClass.c += ` b--chat--${type}`;
+	lismClass.c = `c--chat__body`;
+
+	const { direction, variant } = context;
 
 	let decorator = null;
 
-	let defaultProps = {
+	let defaultContentProps = {
 		isFlow: 's',
-		consume: 'p',
+		consume: 'c bgc', //'p bgc bdc bdw',
 		// radius: '2',
 	};
 
-	if ('chat' === type || 'think' === type) {
+	if ('speak' === variant || 'think' === variant) {
 		decorator = (
 			<Decorator
-				variant={type}
-				// data-dir={direction}
+				variant={`chat-${variant}`}
+				mask='-'
 				pos='absolute'
+				top='0'
 				{...DECORATOR_PROPS[direction]}
 			/>
 		);
 	}
 
+	if ('speak' === variant && direction === 'start') {
+		defaultContentProps.bdrs = { ss: 0 };
+	} else if ('speak' === variant && direction === 'end') {
+		defaultContentProps.bdrs = { se: 0 };
+	}
+
 	return (
-		<Item className='b--chat__body' area='nofix' {...wrapperProps}>
+		<Layouter
+			lismClass={lismClass}
+			{...wrapperProps}
+			//area='nofix'
+			// data-variant={variant}
+		>
+			{decorator}
 			<Layouter
-				className='b--chat__content'
+				className='c--chat__content'
+				pos='relative'
 				maxW='s'
-				data-dir={direction}
-				data-type={type}
-				{...defaultProps}
+				{...defaultContentProps}
 				{...props}
 			>
 				{children}
 			</Layouter>
-			{decorator}
-		</Item>
+		</Layouter>
 	);
 }

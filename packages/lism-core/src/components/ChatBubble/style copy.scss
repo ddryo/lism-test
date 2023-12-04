@@ -1,0 +1,133 @@
+.c--chat {
+	--pass--bdw: 1px;
+	--pass--bgc: #f7fbfc; //var(--b100);
+	--pass--bdc: #ccdee5;
+	--pass--p: var(--em--5) var(--em--7);
+	// --pass--radius: var(--radius--2);
+	// --gta: 'icon body';
+	// --icon--size: clamp(48px, 24px + 7.5cqw, 72px); // 320:48px~640:72px
+	--icon--size: clamp(48px, 32px + 5cqw, 64px); // 320:48px~640:64px
+	--body--mt: calc(var(--icon--size) / 2 + 0.5rem);
+	--deco--size: 0.875rem;
+
+	gap: calc(var(--deco--size) - 0.125rem);
+}
+
+.c--chat__icon {
+	--size: var(--icon--size); //  savatar に渡す
+	--bdc: var(--b200); //var(--pass--bdc);
+	--bdw: 1px;
+	// grid-area: fix;
+	border: solid var(--bdw) var(--bdc);
+}
+.c--chat__name {
+	// grid-area: nofix;
+	margin-top: var(--body--mt);
+	justify-content: inherit;
+}
+
+// .b--chatText,
+.c--chat__body {
+	// grid-area: nofix;
+	margin-top: var(--body--mt);
+	position: relative;
+}
+
+.c--chat__content {
+	// consumeで受け取り: p, bgc, bdc, bdw
+	// --bdw: var(--pass--bdw);
+	// position: relative;
+	// background-color: var(--pass--bgc);
+	border: solid var(--bdw) var(--bdc);
+	border-radius: var(--radius--2);
+}
+
+// .b--chatText--chat.b--chatText--left {
+// 	--radius--tl: 0;
+// }
+
+// .b--chatText--chat.b--chatText--right {
+// 	--radius--tr: 0;
+// }
+
+// decorator
+:where(.c--chat__body) > .e--deco {
+	--bgc: var(--pass--bgc);
+	--bdw: var(--pass--bdw);
+	--size: var(--deco--size);
+	width: var(--size);
+	height: var(--size);
+	// z-index: 0;
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		clip-path: var(--clipPath);
+		translate: var(--trnsltX) var(--trnsltY);
+		background-color: var(--bgc);
+	}
+}
+
+.e--deco--chat {
+	--clipPath: polygon(50% 0%, 100% 0%, 100% 100%);
+}
+
+.e--deco--chat::before {
+	// z-index: -1;
+	--bgc: var(--pass--bdc);
+	--trnsltX: 1px;
+	--trnsltY: 0;
+}
+.e--deco--chat::after {
+	// z-index: 2;
+	--trnsltX: calc(1px + var(--bdw) * 1.5);
+	--trnsltY: var(--bdw);
+}
+
+// think
+.e--deco--think {
+	--bgc: var(--pass--bdc);
+	z-index: -1;
+}
+.e--deco--think::before {
+	// --bgc: var(--bdc);
+	--clipPath: circle(24%);
+	--trnsltX: calc(var(--size) * -0.125);
+	--trnsltY: calc(var(--size) * -0.125);
+}
+.e--deco--think::after {
+	// --bgc: var(--bdc);
+	--clipPath: circle(44%);
+	--trnsltX: calc(var(--size) * 0.375);
+	--trnsltY: calc(var(--size) * 0.5);
+}
+
+// 追加スタイル: box
+.c--chat--box {
+	--pass--p: var(--p--box);
+	--body--mt: calc(var(--icon--size) - 1.5rem);
+	--body--mt--add: 1em;
+	gap: 0;
+
+	> .c--chat__name {
+		margin-inline: 0.25em;
+	}
+
+	> .c--chat__icon {
+		--bdc: var(--pass--bdc);
+		z-index: 1;
+		// border-color: var(--bdc);
+		justify-self: var(--jc);
+		// margin: 0 var(--s--10) -0.75em;
+		margin-bottom: -0.75em;
+	}
+
+	&.c--chat--left .c--chat__content {
+		margin-left: -1.5em;
+	}
+	&.c--chat--right .c--chat__content {
+		margin-right: -1.5em;
+	}
+}

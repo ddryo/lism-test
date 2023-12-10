@@ -1,7 +1,7 @@
 // import React from 'react';
 import { Layouter } from '../Layouter';
 import { Icon } from '../Icon';
-import { FluidFix } from '../Flex/FluidFix';
+import { SideFlex } from '../Flex';
 import { Center } from '../Center';
 import { defaultProps, AlertPresets } from '../../config/components';
 
@@ -41,7 +41,7 @@ export default function Alert({ lismClass = {}, lismStyle = {}, isFlow, ...props
 
 	// Center: 縦並び時にセンター寄せしたい
 	return (
-		<FluidFix
+		<SideFlex
 			fix='first'
 			lismState={['has--mixcolor']}
 			lismClass={lismClass}
@@ -49,13 +49,13 @@ export default function Alert({ lismClass = {}, lismStyle = {}, isFlow, ...props
 			{...attrs}
 		>
 			{icon && (
-				<Center className='c--alert__icon'>
+				<Center className='c--alert__icon is--side'>
 					<Icon icon={icon} label={iconLabel} size='1em' />
 				</Center>
 			)}
 			<Layouter className='c--alert__body' isFlow={isFlow}>
 				{children}
 			</Layouter>
-		</FluidFix>
+		</SideFlex>
 	);
 }

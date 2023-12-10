@@ -13,7 +13,7 @@ export default function MediaLayer({
 	// childrenに渡ってくる場合
 	if (children) {
 		return (
-			<Layer modifier='media' z={z} {...props}>
+			<Layer variant='media' z={z} {...props}>
 				{children}
 			</Layer>
 		);
@@ -25,7 +25,7 @@ export default function MediaLayer({
 	}
 
 	return (
-		<Layer modifier='media' z={z}>
+		<Layer variant='media' z={z}>
 			{mediaContent}
 		</Layer>
 	);

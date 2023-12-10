@@ -110,23 +110,23 @@ export const LayerPositionsDemo = () => {
 
 ### positionを指定せずに使う場合
 
-`inset`,`top`,`left`,... などで直接位置を指定できます。
+`inset`,`t`,`l`,... などで直接位置を指定できます。
 
 <Demo>
 	<Demo.Title>
-		`top`, `left` に SPACE.20 を指定
+		`t`, `l` に SPACE.20 を指定
 	</Demo.Title>
 	<Demo.Preview resize p={15}>
 		<Box hasLayer py={40} className="has:layerGuide">
 			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
-			<Layer top={20} left={20}>
+			<Layer t={20} l={20}>
 				<p>Layer Contents</p>
 			</Layer>
 		</Box>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Layer top={20} left={20}>
+		<Layer t={20} l={20}>
 			<p>Layer Contents</p>
 		</Layer>
 		```

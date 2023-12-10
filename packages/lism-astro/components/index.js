@@ -8,7 +8,7 @@
 export * from '@loos/lism-core';
 
 // export { default as Columns } from './Columns';
-export { Tab, TabItem } from './Tab';
+export { Tabs, TabItem } from './Tab';
 export { Banner } from './Banner';
 export { MediaLayer } from './MediaLayer';
 

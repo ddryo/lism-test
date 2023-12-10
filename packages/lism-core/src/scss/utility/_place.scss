@@ -1,6 +1,16 @@
 @use '../query' as query;
 
 /* stylelint-disable */
+// .-pi\:c{place-items: center;}
+// .-pi\:s{place-items: start;}
+// .-pi\:e{place-items: end;}
+// .-pc\:c{place-content: center;}
+// .-pc\:s{place-content: start;}
+// .-pc\:e{place-content: end;}
+// .-ps\:c{place-content: center;}
+// .-ps\:s{place-content: start;}
+// .-ps\:e{place-content: end;}
+
 
 // align-items
 // .-ai\:{align-items: var(--ai);}
@@ -55,21 +65,11 @@
 .-js\:fe{justify-self: flex-end;}
 
 // rtl言語でも左右を反転させない時に使える
-.-ji\:l{justify-items: left;}
-.-ji\:r{justify-items: right;}
-.-jc\:l{justify-content: left;}
-.-jc\:r{justify-content: right;}
-.-js\:l{justify-self: left;}
-.-js\:r{justify-self: right;}
+// .-ji\:l{justify-items: left;}
+// .-ji\:r{justify-items: right;}
+// .-jc\:l{justify-content: left;}
+// .-jc\:r{justify-content: right;}
 
-// .-as\:{align-self:var(--as) !important;}
-// .-js\:{justify-self:var(--js) !important;}
-
-// rtl考慮
-// .-ji\:l{justify-items: start;}
-// .-ji\:r{justify-items: end;}
-// [dir='rtl'] {
-// 	.-ji\:l{justify-items: end;}
-// 	.-ji\:r{justify-items: start;}
-// }
-
+//　↓ ml:a , mr:a で左右よせはできる
+// .-js\:l{justify-self: left;}
+// .-js\:r{justify-self: right;}

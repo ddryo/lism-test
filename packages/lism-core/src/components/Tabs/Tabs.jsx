@@ -23,7 +23,7 @@ export default function Tabs({
 	// const [tabId, setTabId] = useState(customTabId || theTabId);
 	const tabId = customTabId || theTabId;
 
-	console.log('keepHeight', keepHeight);
+	// console.log('keepHeight', keepHeight);
 	if (keepHeight) {
 		props['data-keep-height'] = '1';
 	}
@@ -35,6 +35,8 @@ export default function Tabs({
 
 	React.Children.forEach(children, (child, index) => {
 		const lebel = child.props?.label || '';
+
+		// console.log('child.props', child.props);
 
 		const isActive = activeIndex === index;
 		const controlId = `${tabId}-${index}`;

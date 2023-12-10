@@ -1,10 +1,11 @@
 // import { useRef } from 'react';
-import { Lism } from '../Lism';
+import { Layouter } from '../Layouter';
 
 export default function LinkBox({
+	lismClass = {},
+	// lismState = [],
 	as,
 	tag = 'a',
-	lismState = [],
 	href,
 	target,
 	openNewTab,
@@ -14,14 +15,9 @@ export default function LinkBox({
 	children,
 	...props
 }) {
-	lismState.push('is--linkbox');
-	// const ref = useRef(null);
+	lismClass.b = 'b--linkbox';
 
-	const theProps = {
-		lismState,
-		hover,
-		//forwardedRef: ref
-	};
+	// const ref = useRef(null);
 
 	const linkProps = {
 		href,
@@ -30,21 +26,21 @@ export default function LinkBox({
 		'aria-label': ariaLabel || null,
 	};
 
-	const Component = as || Lism;
+	const Component = as || Layouter;
 
-	// aタグ以外をリンク化する場合
+	// aタグ以外をリンク化する場合、 stretchedLink でリンクを仕込む
 	if (tag !== 'a') {
 		return (
-			<Component tag={tag} {...theProps} {...props}>
-				<a href='/#linkbox' className='e--stretchedLink is--skipFlow' {...linkProps}></a>
+			<Component tag={tag} lismClass={lismClass} hover={hover} {...props}>
+				<a className='e--stretchedLink is--skipFlow' {...linkProps}></a>
 				{children}
 			</Component>
 		);
 	}
 
-	// 普通にaタグで囲む
+	// 普通にaタグで囲む場合
 	return (
-		<Component tag='a' {...theProps} {...props} {...linkProps}>
+		<Component tag='a' lismClass={lismClass} hover={hover} {...props} {...linkProps}>
 			{children}
 		</Component>
 	);

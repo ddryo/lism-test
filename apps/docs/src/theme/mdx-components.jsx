@@ -3,19 +3,28 @@
 
 // import cn from 'clsx';
 
-import { Box, Badge, Text, Flex, Stack, Note, Alert } from '@loos/lism-core';
+import { Box, Badge, Text, Flex, Stack, Note, Alert, TabItem } from '@loos/lism-core';
 import Demo from '@/components/Demo';
 import Preview from '@/components/Preview';
 import Reference from '@/components/Reference';
 import DammyText from '@/components/DammyText';
 // import { Callout, Tabs, Tab } from 'nextra/components';
 
-const MemoBadge = ({ children }) => {
+const MemoBadge = ({ children, ...props }) => {
 	return (
-		<Badge fz='11px' lh='1' p='10' variant='subtle' keycolor='orange' bd bdc='orange:20%'>
+		<Badge fz='11px' lh='1' p='10' variant='subtle' keycolor='orange' {...props}>
 			{children}
 		</Badge>
 	);
+};
+const PropBadge = ({ type = 'attr', ...props }) => {
+	let keycolor = 'blue';
+	if (type === 'attr') {
+		keycolor = 'green';
+	} else if (type === 'cssvar') {
+		keycolor = 'purple';
+	}
+	return <Badge fz='xs' lh='1' p='em2' m='em2' d='ib' variant='subtle' keycolor={keycolor} {...props} />;
 };
 
 export const getMyComponents = () => {
@@ -47,5 +56,7 @@ export const getMyComponents = () => {
 		DammyText,
 		Reference,
 		MemoBadge,
+		PropBadge,
+		TabItem,
 	};
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Core } from '../Core';
+import { FlexItem } from '../Flex';
 import { Icon } from '../Icon';
 // import { AccContext } from './context';
 
@@ -28,14 +28,8 @@ export default function AccordionIcon({
 	const icons = children || <Icon icon={icon} size={size} {...iconProps} />;
 
 	return (
-		<Core
-			tag='span'
-			lismClass={lismClass}
-			d='inline-flex'
-			flexItem={{ shrink: '0' }}
-			{...props}
-		>
+		<FlexItem tag='span' lismClass={lismClass} d='inline-flex' {...props}>
 			{icons}
-		</Core>
+		</FlexItem>
 	);
 }

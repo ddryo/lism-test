@@ -1,7 +1,6 @@
 import { Core } from '../Core';
 import { Layouter } from '../Layouter';
 // import { Flex } from '../Flex';
-// import { Stack } from '../Flex/Stack';
 import { Icon } from '../Icon';
 import { defaultProps, NotePresets } from '../../config/components';
 

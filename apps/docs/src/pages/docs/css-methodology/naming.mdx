@@ -44,7 +44,7 @@
 |分類|形式|例|
 |---|---|---|
 |プロパティと値の組み合わせ|`.-{prop}:{val\|token}`|`.-ta:c` (`text-align:center`), <br /> `.-p:50`(`padding:var(--s--50)`)|
-|変数受け取り用|`.-{prop}[@bp]:`|`.-w:` (変数 `--w` を受け取る), <br />`.-p@sm:` (`--p--sm` を受け取る)|
+|変数受け取り用|`.-{prop}[@bp]`|`.-w:` (変数 `--w` を受け取る), <br />`.-p@sm` (`--p--sm` を受け取る)|
 |一時的な状態<br /><small>js操作等によって付け外しされるもの</small>|`.-{state}`|`.-active`|
 
 {/* |ユーティリティ<br /><small>特定のプロパティ単体に紐づいているわけではないもの</small>|`.u--{utilName}`|`.u--cf`| */}
@@ -127,7 +127,7 @@ Lismで管理する範囲外だけどこんな感じで命名すると統一感�
 
 {/* <Box d="n">
 column, columnsの省略についての検討メモ...
-- col, cols → 一般的にはこれが多そうだけど、ぱっと見 color を連想してしまう。
+- col, cols → 一般的にはこれ. bootstrap も col- . ただ、ぱっと見 color を連想してしまう...。
 - colm, colms → あり。ただし Emmetが colm = columns としている...。
 - clmn, clmns → col,colsの次にけっこう一般的？
 - clm, clms → これもありか。 でも他の単語とも被りやすそう？

@@ -1,9 +1,0 @@
-// --------------------
-// TileGrid
-// --------------------
-.l--tileGrid {
-	--item--minW: var(--size--item); // var(--contentSize--xs)
-	display: grid;
-	// auto-fill or auto-fit : 親の幅に対してアイテムが少ない時に、引き伸ばすか、伸ばさないか
-	grid-template-columns: repeat(auto-fit, minmax(min(var(--item--minW), 100%), 1fr));
-}

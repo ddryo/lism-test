@@ -32,7 +32,7 @@ export default {
 	// ユーティリティ化
 	space: spacingPresets,
 	p: [...spacingPresets, ...emPresets, 'box', 'box:s', 'box:l'],
-	py: [...spacingPresets, ...emPresets],
+	pxy: [...spacingPresets, ...emPresets],
 	gap: [...spacingPresets, ...emPresets],
 
 	// align-content
@@ -45,8 +45,17 @@ export default {
 	bg: ['glass', 'stripe', 'grid'],
 	z: ['-1', '0', '1'],
 	aspect: ['16/9', '4/3', '3/2', '2/1', '1/1', 'golden', 'silver', 'bronze', 'ogp'],
-	gta: ['ltr'],
+
+	// fx: ['1'],
+	// gd: ['fix:l', 'fix:r', 'fix:t', 'fix:b'],
 	gt: ['fix:l', 'fix:r', 'fix:t', 'fix:b'],
+	gta: ['3col', '3row', '3col:ltr'],
+	gc: ['s2'],
+	gcs: ['1', '2', '3'],
+	gce: ['-1'],
+	gr: ['s2'],
+	grs: ['1', '2', '3', 's2'],
+	gre: ['-1'],
 	gradient: ['sunset', 'black-to-bottom'],
 	// transform: ['flip:x', 'flip:y', 'flip:xy'],
 	animation: [],

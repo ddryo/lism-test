@@ -1,16 +1,22 @@
 ---
-import { LismProps } from './types';
+import { LismProps } from '../types';
 import { Lism, Frame, LinkBox, FilterLayer } from '@loos/lism-core';
 import { getLismProps } from '@loos/lism-core/lib';
 import { MediaLayer } from '../MediaLayer/index.js';
 
+// Propsの定義
+interface Props extends LismProps {
+	duration?: string | number;
+}
+// propsの取得
 const { lismClass = {}, lismStyle = {}, children, duration, ...props } = Astro.props || {};
 
 lismClass.c = 'c--accordion';
 
 const theProps = props;
 if (props.ratio) theProps.as = Frame;
-let Component = null;
+
+let Component: any = null;
 if (props.href) {
 	Component = LinkBox;
 } else {
@@ -30,12 +36,10 @@ const lismProps = getLismProps(props, { lismClass, lismStyle });
 </details>
 
 <script>
-	import setEvent from './setEvent';
-
+	// import setEvent from './setEvent';
+	import setEvent from '@loos/lism-core/src/components/Accordion/setEvent';
 	const accs = document.querySelectorAll('.c--accordion');
-	console.log('accs', accs);
 	accs.forEach((acc) => {
-		console.log('acc', acc);
 		setEvent(acc);
 	});
 </script>

@@ -1,0 +1,110 @@
+/* stylelint-disable */
+
+.-td\:n{text-decoration: none;}
+.-td\:u{text-decoration: underline;}
+
+.-lis\:n{list-style: none;}
+
+// transform系
+
+// scale との併用可。
+.-trf\:flipX {transform: scaleX(-1);}
+.-trf\:flipY {transform: scaleY(-1);}
+.-trf\:flipXY {transform: scaleX(-1) scaleY(-1);}
+
+.-trnslt\:-50{translate: -50% -50%;}
+// .-trnslt\:-100{translate: -100% -100%;}
+// .-trnslt\:50X{translate: 50%;}
+.-trnslt\:-50X{translate: -50%;}
+// .-trnslt\:100X{translate: 100%;}
+.-trnslt\:-100X{translate: -100%;}
+// .-trnslt\:50Y{translate: 0 50%;}
+.-trnslt\:-50Y{translate: 0 -50%;}
+// .-trnslt\:100Y{translate: 0 100%;}
+.-trnslt\:-100Y{translate: 0 -100%;}
+
+.-rotate\:45{rotate: 45deg}
+.-rotate\:-45{rotate: -45deg}
+.-rotate\:90{rotate: 90deg}
+.-rotate\:-90{rotate: -90deg}
+.-rotate\:180{rotate: 180deg}
+
+
+// left:0%
+// center:50%
+// right:100%
+// top:0%
+// bottom:100%
+// .-trfo\:c{transform-origin: center;}
+.-trfo\:lt{transform-origin: 0% 0%;}
+.-trfo\:rt{transform-origin: 100% 0%;}
+.-trfo\:lb{transform-origin: 0% 100%;}
+.-trfo\:rb{transform-origin: 100% 100%;}
+
+
+
+// .-filter\:darker{
+// 	filter: brightness(0.95);
+// }
+// .-filter\:lighter{
+// 	filter: brightness(1.05);
+// }
+
+// overflow
+// .-ov\:v{overflow: visible;}
+.-ov\:h{overflow: hidden;}
+.-ov\:a{overflow: auto;}
+.-ov\:c{overflow: clip;}
+// .-ov\:s{overflow: scroll;}
+
+.-ovx\:a{overflow-x: auto;}
+.-ovx\:c{overflow-x: clip;}
+.-ovx\:h{overflow-x: hidden;}
+
+.-ovy\:a{overflow-y: auto;}
+.-ovy\:c{overflow-y: clip;}
+.-ovy\:h{overflow-y: hidden;}
+
+.-v\:h{visibility: hidden;}
+.-v\:v{visibility: visible;}
+
+// prop: pos
+// Layer の基点を作るためにrelativeにしたいことがある
+.-pos\:static{position: static;}
+.-pos\:r{position: relative;}
+.-pos\:a{position: absolute;}
+.-pos\:f{position: fixed;}
+.-pos\:sticky{position: sticky;}
+
+
+
+// prop: ovw
+// 単語中でも折り返しさせる
+.-ovw\:any{overflow-wrap: anywhere;} // ※ ovw は emmetの正式定義ではない.
+// .-wob\:bw{word-break: break-word;} // 非推奨. -ovw:any と同じ
+
+
+// --------------------
+// その他
+// --------------------
+// clear float
+// .-cf::after {
+// 	display: block;
+// 	clear: both;
+// 	width: 0;
+// 	height: 0;
+// 	content: "";
+// }
+
+
+// 折返し禁止
+// .i--nowrap,
+.-whs\:nw {
+	white-space: nowrap;
+}
+// .-whs\:p{
+// 	white-space: pre;
+// }
+// .-whs\:pw{
+// 	white-space: pre-wrap;
+// }

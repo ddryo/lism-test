@@ -1,0 +1,133 @@
+import { SideFlex, FlexItem, Box } from '@loos/lism-core';
+
+{/* FixFluid,FixSwitch */}
+
+
+# SideFlex
+
+
+**要素の横幅を固定してサイドに配置し、もう一方の要素幅が伸縮する**ような２カラムレイアウトで、かつ、**指定した横幅を下回ると自動で縦並びに切り替わる**を組めるモジュールです。
+
+<Alert preset="point">
+コンテナクエリに依存せずに横並びと縦並びの切り替えを行います。
+</Alert>
+
+
+## Props
+
+| プロパティ | 説明 | デフォルト値 |
+|---|---|---|
+| `sideW` <PropBadge type="cssvar">--side--w</PropBadge> | Side要素の横幅 | `auto` |
+| `mainMinW` <PropBadge type="cssvar">--main--minW</PropBadge>| もう一方の要素が維持する最小幅 |`50%`|
+
+その他、[`<Flex>`で使えるprops](/docs/components/Flex#props)が使えます。
+
+
+## Import
+
+```js
+import { SideFlex } from '@loos/lism-core';
+```
+
+## DEMO
+
+<Demo>
+	<Demo.Title>
+		`isSide`な要素を最初に配置し、`sideW="12rem"`にセット
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SideFlex gap={20} sideW="12rem">
+			<FlexItem isSide bd>Side Content</FlexItem>
+			<FlexItem bd="guide">
+				<DammyText />
+			</FlexItem>
+		</SideFlex>
+	</Demo.Preview>
+	<Demo.Codes>
+		<Demo.Code label="React">
+			```jsx
+			<SideFlex gap={20} sideW="12rem">
+				<FlexItem isSide>Side Content</FlexItem>
+				<FlexItem>
+					<p>Lorem ipsum dolor sit amet, ...</p>
+				</FlexItem>
+			</SideFlex>
+			```
+		</Demo.Code>
+		<Demo.Code label="HTML">
+			```jsx
+			<div class="l--flex l--flex--side -gap:20" style="--side--w:12rem;">
+				<div class="is--side">Side Content</div>
+				<div>
+					<p>Lorem ipsum dolor sit amet, ...</p>
+				</div>
+			</div>
+			```
+		</Demo.Code>
+	</Demo.Codes>
+</Demo>
+
+<Demo>
+	<Demo.Title>
+		`isSide`なコンテンツを後ろに配置、`sideW="12rem"`, `mainMinW="30rem"`にセット
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SideFlex gap={20} sideW="12rem" mainMinW="30rem">
+			<FlexItem bd="guide">
+				<DammyText />
+			</FlexItem>
+			<FlexItem isSide bd>Side Content</FlexItem>
+		</SideFlex>
+	</Demo.Preview>
+	<Demo.Codes>
+		<Demo.Code label="React">
+			```jsx
+			<SideFlex gap={20} sideW="12rem" mainMinW="30rem">
+				<FlexItem>
+					<p>Lorem ipsum dolor sit amet, ...</p>
+				</FlexItem>
+				<FlexItem isSide>Side Content</FlexItem>
+			</SideFlex>
+			```
+		</Demo.Code>
+		<Demo.Code label="HTML">
+			```jsx
+			<div class="l--flex l--flex--side -gap:20" style="--side--w:200px;--main--minW:32rem">
+				<div>
+					<p>Lorem ipsum dolor sit amet, ...</p>
+				</div>
+				<div class="is--side">Side Content</div>
+			</div>
+			```
+		</Demo.Code>
+	</Demo.Codes>
+</Demo>
+
+
+### 折り返さずに使う例
+
+`mainMinW`を小さな値にすることで小さいデバイスでも折り返さないことも可能です。
+
+<Demo>
+	<Demo.Title>
+		`mainMinW="1em"`にセットする
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SideFlex mainMinW='1em' gap="20">
+			<FlexItem bd="guide">
+				<DammyText />
+			</FlexItem>
+			<FlexItem isSide bd w={['12em', '16em']}>Side Content</FlexItem>
+		</SideFlex>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<SideFlex mainMinW='1em' gap="20">
+			<FlexItem>
+				<DammyText />
+			</FlexItem>
+			<FlexItem isSide w={['12em', '16em']}>Side Content</FlexItem>
+		</SideFlex>
+		```
+	</Demo.Code>
+</Demo>

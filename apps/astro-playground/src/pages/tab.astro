@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import DammyText from '../components/DammyText.astro';
 import {
 	Core,
 	Layouter,
@@ -13,6 +14,8 @@ import {
 	AccordionHeader,
 	AccordionLabel,
 	AccordionIcon,
+	Tabs,
+	TabItem,
 } from '@loos/lism-astro';
 
 // import {
@@ -27,48 +30,61 @@ import {
 ---
 
 <Layout title='Welcome to Astro.'>
-	<Container isConstrained hasGutter pY='40' isFlow>
+	<Container isConstrained hasGutter py='40' isFlow>
 		<Box bgc='pale' p='40'>aaa</Box>
 	</Container>
-	<Flex>
-		<!-- <AccordionGroup> -->Layouter
-		<Core>あああCore</Core>Layouter
-		<Layouter>あああLayouter</Layouter>
-	</Flex>
+	<Layouter isConstrained hasGutter isFlow>
+		<Flex>
+			<Core>あああCore</Core>Layouter
+			<Layouter>あああLayouter</Layouter>
+		</Flex>
+		<Tabs uuid='hoge'>
+			<TabItem>
+				<span slot='label'><i>naname</i> title1</span>
+				<p>tab1</p>
+				<!-- <DammyText /> -->
+			</TabItem>
+			<TabItem label='title2'>
+				<p>tab2</p>
+				<!-- <DammyText length='l' /> -->
+			</TabItem>
+		</Tabs>
 
-	<Accordion>
-		<AccordionHeader>
-			<AccordionLabel>Accordionヘッダー1</AccordionLabel>
-			<AccordionIcon />
-		</AccordionHeader>
-		<AccordionBody>
-			<p>
-				ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
-			</p>
-		</AccordionBody>
-	</Accordion>
+		<AccordionGroup bd>
+			<Accordion>
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
+				<AccordionBody>
+					<p>
+						ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
+					</p>
+				</AccordionBody>
+			</Accordion>
 
-	<!-- <Accordion>
-		<AccordionHeader>
-			<AccordionLabel>Accordionヘッダー1</AccordionLabel>
-			<AccordionIcon />
-		</AccordionHeader>
-		<AccordionBody>
-			<p>
-				ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
-			</p>
-		</AccordionBody>
-	</Accordion>
-	<Accordion>
-		<AccordionHeader>
-			<AccordionLabel>Accordionヘッダー1</AccordionLabel>
-			<AccordionIcon />
-		</AccordionHeader>
-		<AccordionBody>
-			<p>
-				ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
-			</p>
-		</AccordionBody>
-	</Accordion> -->
-	<!-- </AccordionGroup> -->
+			<Accordion>
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
+				<AccordionBody>
+					<p>
+						ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
+					</p>
+				</AccordionBody>
+			</Accordion>
+			<Accordion>
+				<AccordionHeader>
+					<AccordionLabel>Accordionヘッダー1</AccordionLabel>
+					<AccordionIcon />
+				</AccordionHeader>
+				<AccordionBody>
+					<p>
+						ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。長年にわたり、私は学区と長寿であれば、そのような刺激の取り組み、彼女のうち、運動の利点を分注を邪魔されたする人が来ます。クピダタットのつるの痛みになりたい宿題に、批判されてきたら痛み、マグナ逃亡しても結果の喜びを生成しません。先例クピダタットブラックは先例していない、つまり、彼らはあなたの悩みに責任がある人の、一般的な義務を捨て、魂を癒しています。
+					</p>
+				</AccordionBody>
+			</Accordion>
+		</AccordionGroup>
+	</Layouter>
 </Layout>

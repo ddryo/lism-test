@@ -1,7 +1,6 @@
-// import React from 'react';
-import { Lism } from '../Lism';
+import { Layouter } from '../Layouter';
 
-export default function Frame({ lismClass = {}, ...props }) {
-	lismClass.l = 'l--frame';
-	return <Lism lismClass={lismClass} {...props} />;
+export default function Frame({ ...props }) {
+	// lismState.l = 'l--frame';
+	return <Layouter isFrame {...props} />;
 }

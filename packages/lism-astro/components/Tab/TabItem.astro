@@ -1,16 +1,16 @@
 ---
-// lism-tab-item を 文字列置換する
-
-import AstroJsxRender from '../AstroJsxRender.jsx';
 export interface Props {
-	label: any;
+	label: string | number;
 }
 const { label = '' } = Astro.props;
 ---
 
 <lism-placeholder-tabitem>
-	<lism-placeholder-tabitem-label>
-		<AstroJsxRender src={label} />
-	</lism-placeholder-tabitem-label>
-	<slot />
+	<lism-placeholder-tablabel>
+		{Astro.slots.has('label') && <slot name='label' />}
+		{!Astro.slots.has('label') && label}
+	</lism-placeholder-tablabel>
+	<lism-placeholder-tabpanel>
+		<slot />
+	</lism-placeholder-tabpanel>
 </lism-placeholder-tabitem>

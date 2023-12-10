@@ -1,0 +1,198 @@
+import { SwapGrid, GridItem } from '@loos/lism-core';
+
+
+# SwapGrid
+
+**要素の横幅を固定してサイドに配置し、もう一方の要素幅が伸縮する**ような２カラムレイアウトで、かつ、**指定したブレイクポイントで縦並びに切り替わるレイアウト**を組めるモジュールです。
+
+
+<Note preset="note" heading={<><a href="/docs/components/SideFlex">{`<SideFlex>`}</a>と異なる点</>}>
+- 折返しタイミングをコンテナクエリで制御します。
+- 縦並びになった時に、サイド要素が上に来るか下にくるかをコントロールできます。
+</Note>
+
+
+## Props
+
+| プロパティ | 説明 | デフォルト値 / 有効な値 |
+|---|---|---|
+| `sideW` <PropBadge type="cssvar">--sideW</PropBadge> | Side要素の横幅 | `auto` |
+| `side` <PropBadge type="attr">[data-side]</PropBadge>| Side要素の位置 |`end bottom` / `start`, `end`, `top`, `bottom`|
+| `bp` <PropBadge type="attr">[data-bp]</PropBadge>| レイアウト切り替えポイント| `sm` / `sm`または`md` |
+
+
+その他、[`<Grid>`で使えるprops](/docs/components/Grid#props)が使えます。
+
+{/* `none`や`modal` */}
+
+## 使用時の注意点
+
+<Alert preset="info">
+子要素の1つに `grid-area:side`(`.-ga:side`) の指定が必須です.
+</Alert>
+
+サイド要素に対して`<GridItem ga="side">`を使うか、`gridItem={{ga:"side"}}`を使用してください。
+
+{/* ( memo → ブロック化する時は、`ga="side"`付きの`<GridItem>`になっている専用の子ブロックを用意する。) */}
+{/* Memo: grid-areaで場所を指定する理由: → DOM自体の順番を自由にできるため。（大きいサイドバー要素を左に固定するけどDOMの順番はあとに回したい、ということがある。） */}
+
+
+## Import
+
+```js
+import { SwapGrid } from '@loos/lism-core';
+```
+
+
+## DEMO
+<Demo>
+	<Demo.Title>
+		`side="start bottom"` (初期値)
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SwapGrid side="start bottom">
+			<GridItem bd='guide'>Fluid area</GridItem>
+			<GridItem ga="side" bd>SideItem</GridItem>
+		</SwapGrid>
+	</Demo.Preview>
+	<Demo.Codes>
+		<Demo.Code label="React">
+			```jsx
+			<SwapGrid side="start bottom">
+				<GridItem>Fluid area</GridItem>
+				<GridItem ga="side">SideItem</GridItem>
+			</SwapGrid>
+			```
+		</Demo.Code>
+		<Demo.Code label="HTML">
+			```jsx
+			<div class="l--grid l--grid--swap -gt@sm" data-side="start bottom">
+				<div>Fluid area</div>
+				<div class="-ga:side">SideItem</div>
+			</div>
+			```
+		</Demo.Code>
+	</Demo.Codes>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>
+		`side="end bottom"`, `sideW` を指定
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SwapGrid side="end bottom" sideW='16em' gap={20}>
+			<GridItem bd='guide'>Fluid area</GridItem>
+			<GridItem ga="side" bd>SideItem</GridItem>
+		</SwapGrid>
+	</Demo.Preview>
+	<Demo.Codes>
+		<Demo.Code label="React">
+			```jsx
+			<SwapGrid side="end bottom" sideW='16em' gap={20}>
+				<GridItem>Fluid area</GridItem>
+				<GridItem ga="side">SideItem</GridItem>
+			</SwapGrid>
+			```
+		</Demo.Code>
+		<Demo.Code label="HTML">
+			```html
+			<div class="l--grid l--grid--swap -gt@sm -gap:20" data-side="end bottom" style="--sideW:16em">
+				<div>Fluid area</div>
+				<div class="-ga:side">SideItem</div>
+			</div>
+			```
+		</Demo.Code>
+	</Demo.Codes>
+</Demo>
+
+
+### `side`指定パターン一覧
+
+export const SwapGridDemos = () => {
+	return (
+		<>
+			{["end top", "end bottom", "start top", "start bottom"].map((datSide) => (
+				<Demo key={datSide}>
+					<Demo.Title><code>side="{datSide}"</code></Demo.Title>
+					<Demo.Preview resize p={20}>
+						<SwapGrid side={datSide} gap={20}>
+							<GridItem bd='guide'>Fluid area</GridItem>
+							<GridItem ga="side" bd>SideItem</GridItem>
+						</SwapGrid>
+					</Demo.Preview>
+				</Demo>
+			))}
+		</>
+	);
+}
+
+<SwapGridDemos />
+
+
+### 並び切り替えポイントの指定
+
+`bp="{bpName}"`で指定できます。（デフォルトは`sm`.）
+
+<Alert preset="note">
+`sm`, `md`をデフォルトでサポートしていますが、`lg`などを指定することで`data-bp="lg"`を出力させることができるので、CSSを追加していただければお好きなポイントで切り替えるようにカスタマイズすることもできます。
+</Alert>
+
+<Demo>
+	<Demo.Title>`@sm`(デフォルト)</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SwapGrid side="end top" bp="sm">
+			<GridItem bd='guide'>Fluid area</GridItem>
+			<GridItem ga="side" bd>SideItem</GridItem>
+		</SwapGrid>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<SwapGrid side="end top" bp="sm">
+			<GridItem>Fluid area</GridItem>
+			<GridItem ga="side">SideItem</GridItem>
+		</SwapGrid>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>`@md`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SwapGrid side="end top" bp="md">
+			<GridItem bd='guide'>Fluid area</GridItem>
+			<GridItem ga="side" bd>SideItem</GridItem>
+		</SwapGrid>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<SwapGrid side="end top" bp="md">
+			<GridItem>Fluid area</GridItem>
+			<GridItem ga="side">SideItem</GridItem>
+		</SwapGrid>
+		```
+	</Demo.Code>
+</Demo>
+
+
+{/* <Demo>
+	<Demo.Title>`@lg`</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<SwapGrid side="end top" bp="lg">
+			<GridItem bd='guide'>Fluid area</GridItem>
+			<GridItem ga="side">SideItem</GridItem>
+		</SwapGrid>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<SwapGrid side="end top" bp="lg">
+			<GridItem bd='guide'>Fluid area</GridItem>
+			<GridItem ga="side">SideItem</GridItem>
+		</SwapGrid>
+		```
+	</Demo.Code>
+</Demo> */}
+
+
+{/* ### カスタムブレイクポイントの指定
+コンポーネントライブラリでどう実装するか検討中... */}

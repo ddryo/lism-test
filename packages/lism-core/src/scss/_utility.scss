@@ -16,14 +16,15 @@
 @use 'utility/shadow';
 @use 'utility/sizing';
 @use 'utility/typography';
-
+@use 'utility/transform';
+@use 'utility/positions';
 @use 'utility/others';
 
 // lism 移動させてよみこんでない
 
-.-container\:s {
-	container-type: size;
-}
-.-container\:i {
-	container-type: inline-size;
-}
+// .-container\:s {
+// 	container-type: size;
+// }
+// .-container\:i {
+// 	container-type: inline-size;
+// }

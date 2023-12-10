@@ -20,7 +20,7 @@ export default function AstroJsxRender({ src = '' }) {
 	}
 
 	if (React.isValidElement(src)) {
-		console.log('React.isValidElement OK!', src);
+		// console.log('React.isValidElement OK!', src);
 		return <>{src}</>;
 	}
 

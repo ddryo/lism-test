@@ -1,9 +1,7 @@
 // import React from 'react';
 import { Core } from '../Core';
-import { Lism } from '../Lism';
-import { FluidFix } from '../Flex/FluidFix';
-import { Stack } from '../Flex/Stack';
-// import { Flex } from '../Flex';
+import { Layouter } from '../Layouter';
+import { Stack, SideFlex } from '../Flex';
 
 // isFlow は ddに渡す
 export default function TermListRow({
@@ -20,23 +18,25 @@ export default function TermListRow({
 
 	let defaultProps = {};
 	let Component = Core;
+	let dtClass = 'c--termList__dt';
 	if (mode === 'stack') {
 		Component = Stack;
 		defaultProps = { gap: 10 };
-		ddProps = Object.assign({ ms: 30 }, ddProps);
+		ddProps = Object.assign({ mis: 30 }, ddProps);
 	} else if (mode === 'fluid') {
-		Component = FluidFix;
-		defaultProps = { fix: 'first', gap: 10 };
-		ddProps = Object.assign({ ms: 30 }, ddProps);
+		Component = SideFlex;
+		defaultProps = { ap: 10 };
+		dtClass += ' is--side';
+		ddProps = Object.assign({ mis: 30 }, ddProps);
 	}
 	return (
 		<Component lismClass={lismClass} {...defaultProps} {...props}>
-			<Core tag='dt' fw='bold' className='c--termList__dt' {...dtProps}>
+			<Core tag='dt' fw='bold' className={dtClass} {...dtProps}>
 				{term}
 			</Core>
-			<Lism tag='dd' className='c--termList__dd' isFlow={isFlow} {...ddProps}>
+			<Layouter tag='dd' className='c--termList__dd' isFlow={isFlow} {...ddProps}>
 				{children}
-			</Lism>
+			</Layouter>
 		</Component>
 	);
 }

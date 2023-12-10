@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Lism } from '../Lism';
+import { Layouter } from '../Layouter';
 import { Flex } from '../Flex';
 import { getMaybeCssVar } from '../../lib';
 
@@ -58,8 +58,8 @@ export default function NavMenu({
 	}
 
 	return (
-		<Lism {...navProps} {...props}>
+		<Layouter {...navProps} {...props}>
 			{children}
-		</Lism>
+		</Layouter>
 	);
 }

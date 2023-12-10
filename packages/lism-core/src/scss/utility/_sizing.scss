@@ -4,71 +4,56 @@
 // [class*="-xxx:"] を使うと ユーティリティに important 不要になる
 
 // .-w\:,
-[class*="-w:"] { width: var(--w) !important }
-.-w\:25 { --w: 25% }
-.-w\:50 { --w: 50% }
-.-w\:75 { --w: 75% }
-.-w\:100 { --w: 100% }
-// 0, auto?
-.-w\:fit { --w: fit-content}
-.-w\:un { --w: unset}
-// .-h\:screen { --w: calc(100vw - var(--sbar)) }
+.-w\: { width: var(--w) }
+.-w\:fit { width: fit-content}
+.-w\:100 { width: 100% }
+// .-w\:75 { width: 75% }
+// .-w\:50 { width: 50% }
+// .-w\:25 { width: 25% }
+// .-w\:un { width: unset}
 
 // .-h\:,
-[class*="-h:"] { height: var(--h) !important }
-.-h\:25 { --h: 25% }
-.-h\:50 { --h: 50% }
-.-h\:75 { --h: 75% }
-.-h\:100 { --h: 100% }
-.-h\:fit { --h: fit-content }
-.-h\:un { --h: unset}
-.-h\:screen { --h: 100vh;--h: 100dvh; }
-
-// .-w\:text{ width: 35em }
+.-h\: { height: var(--h) }
+.-h\:100 {  height: 100% }
+.-h\:fit {  height: fit-content }
+// .-h\:un {  height: unset}
+.-h\:screen {  height: 100vh; height: 100dvh; }
+// .-h\:screen { height: calc(100vw - var(--sbar)) }
 
 @include query.cq('sm') {
-	.-w\@sm\: { width: var(--w--sm) !important }
-	.-h\@sm\: { height: var(--h--sm) !important }
+	.-w\@sm { width: var(--w--sm) !important }
+	.-h\@sm { height: var(--h--sm) !important }
 }
 
 @include query.cq('md') {
-	.-w\@md\: { width: var(--w--md) !important }
-	.-h\@md\: { height: var(--h--md) !important }
+	.-w\@md { width: var(--w--md) !important }
+	.-h\@md { height: var(--h--md) !important }
 }
 @include query.cq('lg') {
-	.-w\@lg\: { width: var(--w--lg) !important }
-	.-h\@lg\: { height: var(--h--lg) !important }
+	.-w\@lg { width: var(--w--lg) !important }
+	.-h\@lg { height: var(--h--lg) !important }
 }
 
-// max
+// max-is, max-w, max-h ?
+.-maxW\: { max-width: var(--maxW) }
 .-maxW\:100 {max-width: 100%;}
+// .-maxW\:un {max-width: unset;}
+
+.-maxH\: { max-height: var(--maxH) }
 .-maxH\:100 {max-height: 100%;}
-.-maxW\:un {max-width: unset;}
-.-maxH\:un {max-height: unset;}
+// .-maxH\:un {max-height: unset;}
 
 // min
-.-minW\:un {min-width: unset;}
-.-minH\:un {min-height: unset;}
+.-minW\: { min-width: var(--minW) }
+.-minW\:100 {min-width: 100%;}
 
-// .-maxW\:fit {
-// 	max-width: fit-content;
-// }
-// .-maxH\:fit {
-// 	max-height: fit-content;
-// }
+.-minH\: { min-height: var(--minH) }
+.-minH\:100 {min-height: 100%;}
 
-// .-maxSize\: {
-// 	max-inline-size: var(--maxSize);
-// }
-// .-maxW\:xs {
-// 	max-width: var(--size--xs);
-// }
-// .-maxW\:s {
-// 	max-width: var(--size--s);
-// }
-// .-maxW\:m {
-// 	max-width: var(--size--m);
-// }
-// .-maxW\:l {
-// 	max-width: var(--size--l);
-// }
+// .-minW\:un {min-width: unset;}
+// .-minH\:un {min-height: unset;}
+
+// コンテンツサイズ用
+// .-maxIs\:s{ max-inline-size: var(--size--s) }
+// .-maxIs\:m{ max-inline-size: var(--size--m) }
+

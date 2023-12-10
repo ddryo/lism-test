@@ -1,32 +1,33 @@
-import { Item } from '../Item';
 import { Grid } from '../Grid';
+import { Item } from '../Item';
 
 export default function HeroContent({ type, ...props }) {
-	let defaultProps = {};
+	let defProps = {};
 	if (type === 'top') {
-		defaultProps.mb = 'auto';
+		defProps.mb = 'auto';
 	} else if (type === 'bottom') {
-		defaultProps.mt = 'auto';
+		defProps.mt = 'auto';
 	} else if (type === 'center') {
-		defaultProps = {
+		defProps = {
 			my: 'auto',
 			py: 60,
 			// isFlow: true,
 			isConstrained: true,
 			hasGutter: true,
 		};
-		defaultProps.my = 'auto';
+		defProps.my = 'auto';
 	} else if (type === 'strech') {
-		// defaultProps.as = Grid;
-		defaultProps = {
+		// defProps.as = Grid;
+		defProps = {
 			as: Grid,
 			ac: 'stretch',
-			grow: '1',
+			fxg: '1',
 			// py: 60,
 			// isFlow: true,
 			// isConstrained: true,
 			// hasGutter: true,
 		};
 	}
-	return <Item className='c--hero__content' {...defaultProps} {...props} />;
+
+	return <Item className='c--hero__content' {...defProps} {...props} />;
 }

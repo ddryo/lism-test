@@ -2,8 +2,7 @@
 import { Frame } from '../Frame';
 import { Layer, MediaLayer } from '../Layer';
 import { LinkBox } from '../LinkBox';
-import { Stack } from '../Flex/Stack';
-import { Flex } from '../Flex';
+import { Flex, Stack } from '../Flex';
 import { defaultProps } from '../../config/components';
 const _default = defaultProps?.Card || {};
 

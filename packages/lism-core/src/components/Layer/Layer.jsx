@@ -5,64 +5,68 @@ import { Lism } from '../Lism';
 export default function Layer({
 	lismClass = {},
 	// lismStyle = {},
-	modifier,
+	variant,
 	position,
 	size,
 	...props
 }) {
 	let layoutClass = 'l--layer';
-	if (modifier) {
-		layoutClass += ' l--layer--' + modifier;
+	if (variant) {
+		layoutClass += ' l--layer--' + variant;
 	}
 	lismClass.l = layoutClass;
 
-	const layerProps = {
-		'data-size': size || null,
-	};
+	// position の 文字列から、プロパティを生成
+	const layerProps = getLayerPositionProps(position);
 
+	if ('cover' === size) {
+		layerProps.inset = '0';
+	} else if ('contain' === size) {
+		layerProps.maxW = '100%';
+		layerProps.maxH = '100%';
+	}
+
+	// const Tag = tag || 'div';
+
+	return <Lism lismClass={lismClass} {...layerProps} {...props} />;
+}
+
+function getLayerPositionProps(position) {
+	const props = {};
 	if (position === 'center' || position === 'center center') {
-		layerProps.left = '50%';
-		layerProps.top = '50%';
-		layerProps.translate = '-50% -50%';
+		props.l = '50%';
+		props.t = '50%';
+		props.translate = '-50% -50%';
 	} else if (position) {
 		let hasX = false;
 		let hasY = false;
 
 		if (position.indexOf('left') !== -1) {
-			layerProps.left = '0';
+			props.l = '0';
 			hasX = true;
 		} else if (position.indexOf('right') !== -1) {
-			layerProps.right = '0';
+			props.r = '0';
 			hasX = true;
 		}
 
 		if (position.indexOf('top') !== -1) {
-			layerProps.top = '0';
+			props.t = '0';
 			hasY = true;
 		} else if (position.indexOf('bottom') !== -1) {
-			layerProps.bottom = '0';
+			props.b = '0';
 			hasY = true;
 		}
 
 		if (position.indexOf('center') !== -1) {
 			if (hasY) {
-				layerProps.left = '50%';
-				layerProps.translate = '-50% 0';
+				props.l = '50%';
+				props.translate = '-50%';
 			} else if (hasX) {
-				layerProps.top = '50%';
-				layerProps.translate = '0 -50%';
+				props.t = '50%';
+				props.translate = '0 -50%';
 			}
 		}
 	}
 
-	// if ('cover' === size) {
-	// 	layerProps.inset = '0';
-	// } else if ('contain' === size) {
-	// 	layerProps.maxW = '100%';
-	// 	layerProps.maxH = '100%';
-	// }
-
-	// const Tag = tag || 'div';
-
-	return <Lism lismClass={lismClass} {...layerProps} {...props} />;
+	return props;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack } from '../Flex/Stack';
+import { Stack } from '../Flex';
 
 export default function TermList({
 	lismClass = {},

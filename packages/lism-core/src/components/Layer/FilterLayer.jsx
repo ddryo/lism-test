@@ -33,5 +33,5 @@ export default function FilterLayer({
 		lismStyle.backdropFilter = backdropFilters.join(' ');
 	}
 
-	return <Layer modifier='filter' z={z} lismStyle={lismStyle} {...props} />;
+	return <Layer variant='filter' z={z} lismStyle={lismStyle} {...props} />;
 }

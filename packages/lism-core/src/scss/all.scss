@@ -18,6 +18,9 @@
 
 @use './utility.scss';
 
+// あとで切り分ける
+@use './rtl.scss';
+
 // [data-has-lism-error] {
 // 	color: red;
 // 	text-decoration: dashed underline;

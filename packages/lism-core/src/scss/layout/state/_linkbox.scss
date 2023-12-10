@@ -1,4 +1,4 @@
-:where(.is--linkbox) {
+:where(.b--linkbox) {
 	display: block;
 }
 
@@ -9,7 +9,7 @@
 	z-index: 0;
 }
 
-.is--linkbox {
+.b--linkbox {
 	position: relative;
 	color: inherit;
 	text-decoration: none;
@@ -23,27 +23,26 @@
 	2. その他の兄弟要素を relative にして z関係を有効にし、pointer-events: none でクリックを無効化し、背後のリンクをクリックできるようにする。
 		（この時、兄弟要素を z:1 にすることで、stretchedLink が最後に来ても動作するようにしているが、先頭配置のみを考慮するなら z指定は不要。）
 	3. 内部のリンク要素は pointer-events: auto でクリックを有効化
-	　　　
 */
 
 // 詳細度 0 で。
-:where(.is--linkbox:not(a)) > * {
+:where(.b--linkbox:not(a)) > * {
 	pointer-events: none;
 	position: relative;
 	z-index: 1;
 }
 
 // リンクは基本クリックできるように、明示的に指定しておく。
-// .is--linkbox a でより確実にクリッカブルにできるが、先祖セレクタになってしまうのでresetに任せる。
+// .b--linkbox a でより確実にクリッカブルにできるが、先祖セレクタになってしまうのでresetに任せる。
 a {
 	pointer-events: auto;
 }
 
-// .is--linkbox a {
+// .b--linkbox a {
 // 	pointer-events: auto;
 // }
 
-// .is--linkbox {
+// .b--linkbox {
 // 	color: inherit;
 // 	text-decoration: none;
 // 	position: relative;

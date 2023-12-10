@@ -3,95 +3,145 @@
 /* stylelint-disable */
 
 /*
-Note: gta, gtc, gtrは、単体で使う時はベース指定が必須となる。
-l--gridと併用する場合は、特定のブレイクポイントから使用しても動作する。
+gt, gtr, gtc は l--grid 系専用のプロパティ。
 
-
-grid-auto-flow,
-grid-auto-columns,
-grid-auto-rows,
-
-gtas
-gtcols
-gtrows
+parent側: gt, gta だけ BP対応。gd でやっちゃうと auto-flow 系も含めて全プロパティ上書きしてしまう。
+item側: row/column だけ BP対応。（areaは親側でエリアを組み替えればOK、かつ、row/columnにもエリア名を指定できるので不要と判断。)
 */
-
-.-gt\:fix\:l {
-	grid-template: 'fix nofix' / auto 1fr;
-}
-.-gt\:fix\:r {
-	grid-template: 'nofix fix' / 1fr auto;
-}
-.-gt\:fix\:t {
-	grid-template: 'fix' auto 'nofix' 1fr;
-}
-.-gt\:fix\:b {
-	grid-template: 'nofix' 1fr 'fix' auto;
-}
-
-.-gta\:lcr,
-.-gta\:ltr {
-	grid-template-areas: 'left center right';
-}
-.-gta\:tcb {
-	grid-template-areas: 'top' 'center' 'bottom';
-}
-
-// rtlでも左右を反転させない
-[dir='rtl'] {
-	.-gt\:fix\:l {
-		grid-template: 'nofix fix' / 1fr auto;
-	}
-	.-gt\:fix\:r {
-		grid-template: 'fix nofix' / auto 1fr;
-	}
-
-	// ltr？
-	.-gta\:ltr {
-		grid-template-areas: 'right center left';
-	}
-}
-
-.-gta\: { grid-template-areas: var(--gta); }
-.-gtc\: { grid-template-columns: var(--gtc); }
-.-gtr\: { grid-template-rows: var(--gtr); }
+// --------------------
+// grid
+// --------------------
 
 
+// --------------------
+// grid-template (l--grid で定義している)
+// --------------------
+// [dir='rtl'] での上書きを変数でできるので grid ではなく、gt でやっている。
+.-gt\:fix\:l { --gt: 'fix nofix' / auto 1fr; }
+.-gt\:fix\:r { --gt: 'nofix fix' / 1fr auto; }
+.-gt\:fix\:t { --gt: 'fix' auto 'nofix' 1fr; }
+.-gt\:fix\:b { --gt: 'nofix' 1fr 'fix' auto; }
+
+// --------------------
+// grid-template-areas
+// --------------------
+// .-gta\: { --gta: var(--gta); }
+[class*="-gta:"]{ grid-template-areas: var(--gta); }
+
+// grid--ltr で ga:s, ga:e を 反転させてもいいかも
+.-gta\:3col, .-gta\:3col\:ltr {
+	--gta: 'start center end';
+}
+.-gta\:3row {
+	--gta: 'start' 'center' 'end';
+}
+
+// .-gtc\: { grid-template-columns: var(--gtc); }
+// .-gtr\: { grid-template-rows: var(--gtr); }
+
+// --------------------
+// grid-auto-
+// --------------------
+.-gaf\: { grid-auto-flow: var(--gaf); }
+// default: row
+// .-gaf\:rd { grid-auto-flow: row dense; }
+// .-gaf\:c { grid-auto-flow: column; }
+// .-gaf\:cd { grid-auto-flow: column dense; }
+
+// styleでいいか？
+// .-gac\: { grid-auto-columns: var(--gac); }
+// .-gar\: { grid-auto-rows: var(--gar); }
+
+
+// --------------------
+// grid-item系
+// --------------------
+// bpサポートあるので変数
 .-ga\:{ grid-area: var(--ga) }
 .-gc\:{ grid-column: var(--gc) }
 .-gr\:{ grid-row: var(--gr) }
 
-.-ga\:f{ grid-area: fix; }
-.-ga\:nf{ grid-area: nofix; }
-.-ga\:l{ grid-area: left; }
-.-ga\:r{ grid-area: right; }
+.-ga\:side{ grid-area: side; }
+.-ga\:fix{ grid-area: fix; }
+// .-ga\:nf{ grid-area: nofix; }
+// .-ga\:l{ grid-area: left; }
+// .-ga\:r{ grid-area: right; }
+.-ga\:s{ grid-area: start; }
+.-ga\:e{ grid-area: end; }
 .-ga\:c{ grid-area: center; }
-.-ga\:t{ grid-area: top; }
-.-ga\:b{ grid-area: bottom; }
-// .-ga\:header{--ga: header; }
-// .-ga\:footer{--ga: footer; }
+// .-ga\:t{ grid-area: top; }
+// .-ga\:b{ grid-area: bottom; }
+
+// start
+// end
+// .-ga\:head{--ga: head; }
+// .-ga\:foot{--ga: foot; }
 // .-ga\:body{--ga: body; }
 
+// :where(.-gr\:){--grs: auto;--gre: auto;}
+// .-gr\:{ grid-row: var(--grs) / var(--gre) }
 
-// 特定のポイント以降のみ指定することはないので、--prop上書きの形式で文字数も省略する.`
+// grid-row
+// :where(.-gr\:){
+// 	--grs: auto;
+// 	--gre: auto;
+// 	--gr: var(--grs) / var(--gre);
+// }
+// .-gr\:{
+// 	grid-row: var(--gr);
+// }
+// .-grs\:-1{ --grs: -1 }
+// .-grs\:1{ --grs: 1 }
+// .-grs\:2{ --grs: 2 }
+// .-grs\:3{ --grs: 3 }
+// .-gre\:-1{ --gre: -1 }
+
+
+// grid-row
+// [class*="-gr:"]{ grid-row: var(--gr); }
+.-gr\:s2{ grid-row: span 2 / span 2 }
+.-grs\:1{ grid-row-start: 1 }
+.-grs\:2{ grid-row-start: 2 }
+.-grs\:3{ grid-row-start: 3 }
+.-gre\:-1{ grid-row-end: -1 }
+
+
+// grid-column
+// [class*="-gc:"]{ grid-column: var(--gc); }
+.-gc\:s2{ grid-column: span 2 / span 2 }
+.-gcs\:1{ grid-column-start: 1 }
+.-gcs\:2{ grid-column-start: 2 }
+.-gcs\:3{ grid-column-start: 3 }
+.-gce\:-1{ grid-column-end: -1 }
+
+
+// -gt:@sm:, -gt:@sm 
+
+
+// gt@sm すると　全部上書きしてしまう.--gtc, --gt をわけて使うならgtは使わないようにする必要がある。
+// gtc 変える なら gtr も変えることがほとんどだろうから、gt でやってもらう。
+// ただし、gta は独立して管理できるようにする。
 @include query.cq('sm') {
-	.-gta\@sm\: { grid-template-areas: var(--gta--sm) }
-	.-gtc\@sm\: { grid-template-columns: var(--gtc--sm) }
-	.-gtr\@sm\: { grid-template-columns: var(--gtr--sm) }
-	.-gc\@sm\: { grid-column: var(--gc--sm) }
-	.-gr\@sm\: { grid-row: var(--gr--sm) }
+	.-gt\@sm { --gt: var(--gt--sm) }
+	.-gta\@sm { --gta: var(--gta--sm) }
+	// .-gtc\@sm { --gtc: var(--gtc--sm) }
+	// .-gtr\@sm { --gtr: var(--gtr--sm) }
+	.-gc\@sm { grid-column: var(--gc--sm) }
+	.-gr\@sm { grid-row: var(--gr--sm) }
 }
 @include query.cq('md') {
-	.-gta\@md\: { grid-template-areas: var(--gta--md) }
-	.-gtc\@md\: { grid-template-columns: var(--gtc--md) }
-	.-gtr\@md\: { grid-template-columns: var(--gtr--md) }
-	.-gc\@md\: { grid-column: var(--gc--md) }
-	.-gr\@md\: { grid-row: var(--gr--md) }
+	.-gt\@md { --gt: var(--gt--md) }
+	.-gta\@md { --gta: var(--gta--md) }
+	// .-gtc\@md { --gtc: var(--gtc--md) }
+	// .-gtr\@md { --gtr: var(--gtr--md) }
+	.-gc\@md { grid-column: var(--gc--md) }
+	.-gr\@md { grid-row: var(--gr--md) }
 }
 @include query.cq('lg') {
-	.-gta\@lg\: { grid-template-areas: var(--gta--lg) }
-	.-gtc\@lg\: { grid-template-columns: var(--gtc--lg) }
-	.-gtr\@lg\: { grid-template-columns: var(--gtr--lg) }
-	.-gc\@lg\: { grid-column: var(--gc--lg) }
-	.-gr\@lg\: { grid-row: var(--gr--lg) }
+	.-gt\@lg { --gt: var(--gt--lg) }
+	.-gta\@lg { --gta: var(--gta--lg) }
+	// .-gtc\@lg { --gtc: var(--gtc--lg) }
+	// .-gtr\@lg { --gtr: var(--gtr--lg) }
+	.-gc\@lg { grid-column: var(--gc--lg) }
+	.-gr\@lg { grid-row: var(--gr--lg) }
 }

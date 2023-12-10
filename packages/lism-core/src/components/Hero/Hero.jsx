@@ -1,11 +1,5 @@
 // import React from 'react';
-import { Stack } from '../Flex/Stack';
-// import { Layouter } from '../Layouter';
-// import { Item } from '../Item';
-// import { Grid } from '../Grid';
-// import { Divider } from '../Divider';
-// import { filterEmptyObj } from '../../lib';
-// import { getMediaLayer, getFilterLayer } from '../helper';
+import { Stack } from '../Flex';
 
 // align: full, wide, ''
 export default function Hero({ lismClass = {}, variant, bgc = 'pale', isFullScreen, ...attrs }) {

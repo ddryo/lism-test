@@ -1,44 +1,16 @@
 // import React from 'react';
 import { Layouter } from '../Layouter';
-import { isEmptyObj, filterEmptyObj } from '../../lib/helper';
+import { getGridProps, getPlaceProps } from '../../lib';
 
-export default function Grid({
-	_gridName = 'grid',
-	variant,
-	lismClass = {},
-	template,
-	areas,
-	columns,
-	rows,
-	ai,
-	ac,
-	ji,
-	jc,
-	gap,
-	rowGap,
-	columnGap,
-	...props
-}) {
-	const grid = filterEmptyObj({
-		template,
-		areas,
-		columns,
-		rows,
-		ai,
-		ac,
-		ji,
-		jc,
-		gap,
-		rowGap,
-		columnGap,
-	});
-	if (!isEmptyObj(grid)) {
-		props.grid = grid;
-	}
-
+export default function Grid({ _gridName = 'grid', variant, lismClass = {}, ...props }) {
 	lismClass.l = `l--${_gridName}`;
 	if (variant) {
 		lismClass.l += ` l--${_gridName}--` + variant;
 	}
+
+	// grid 系の props をまとめる
+	props = getGridProps(props);
+	props = getPlaceProps(props);
+
 	return <Layouter lismClass={lismClass} {...props} />;
 }

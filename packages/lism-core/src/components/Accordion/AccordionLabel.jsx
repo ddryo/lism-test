@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Core } from '../Core';
+import { FlexItem } from '../Flex';
 
 export default function AccordionLabel({ lismClass = {}, tag, children, ...props }) {
 	lismClass.c = 'c--accordion__label';
@@ -13,8 +13,8 @@ export default function AccordionLabel({ lismClass = {}, tag, children, ...props
 	}
 
 	return (
-		<Core tag={labelTag} lismClass={lismClass} {...props}>
+		<FlexItem tag={labelTag} lismClass={lismClass} fx='1' {...props}>
 			{children}
-		</Core>
+		</FlexItem>
 	);
 }

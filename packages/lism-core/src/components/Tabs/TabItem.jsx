@@ -1,5 +1,5 @@
 // import {useContext} from 'react';
-import { Lism } from '../Lism';
+import { Layouter } from '../Layouter';
 
 // Note: <Tabs>側でループして色々処理される。
 export default function TabItem({ panelId, isActive, label, children, ...attrs }) {
@@ -8,7 +8,7 @@ export default function TabItem({ panelId, isActive, label, children, ...attrs }
 	// label: ボタンのテキスト
 	// children: パネルの中身
 	return (
-		<Lism
+		<Layouter
 			lismClass='c--tab__panel'
 			id={panelId}
 			role='tabpanel'
@@ -17,7 +17,7 @@ export default function TabItem({ panelId, isActive, label, children, ...attrs }
 			{...attrs}
 		>
 			{children}
-		</Lism>
+		</Layouter>
 	);
 	// return index === activeIndex ? <>{children}</> : null;
 }

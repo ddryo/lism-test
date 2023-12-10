@@ -14,6 +14,10 @@ export default function Reel({ lismStyle = {}, unreel, itemBasis, snap, ...props
 		props['data-snap'] = snap;
 	}
 
+	if (props.hasDivider === true) {
+		props.hasDivider = 'B';
+	}
+
 	// if (showScrollbar) {
 	// 	props['data-show-scrollbar'] = showScrollbar;
 	// }

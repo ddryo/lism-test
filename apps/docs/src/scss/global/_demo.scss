@@ -15,6 +15,15 @@
 
 .b--demoBox__code {
 	--codeblock--radius: 0 0 var(--radius--3) var(--radius--3);
+	background-color: var(--codeblock--bgc) !important;
+}
+.b--demoBox__code.c--tab {
+	.c--tab__list {
+		justify-content: start;
+	}
+	.c--tab__button {
+		padding: var(--em--7);
+	}
 }
 // .b--demoBox__code .nextra-code-block{
 // 	border-radius: 0;

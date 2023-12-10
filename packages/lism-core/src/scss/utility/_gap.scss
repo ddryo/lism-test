@@ -26,35 +26,35 @@
 }
 
 @include query.cq('sm') {
-	.-gap\@sm\: {
+	.-gap\@sm {
 		gap: var(--gap--sm);
 	}
-	.-clmg\@sm\: {
+	.-clmg\@sm {
 		column-gap: var(--clmg--sm);
 	}
-	.-rowg\@sm\: {
+	.-rowg\@sm {
 		row-gap: var(--rowg--sm);
 	}
 }
 @include query.cq('md') {
-	.-gap\@md\: {
+	.-gap\@md {
 		gap: var(--gap--md);
 	}
-	.-clmg\@md\: {
+	.-clmg\@md {
 		column-gap: var(--clmg--md);
 	}
-	.-rowg\@md\: {
+	.-rowg\@md {
 		row-gap: var(--rowg--md);
 	}
 }
 @include query.cq('lg') {
-	.-gap\@lg\: {
+	.-gap\@lg {
 		gap: var(--gap--lg);
 	}
-	.-clmg\@lg\: {
+	.-clmg\@lg {
 		column-gap: var(--clmg--lg);
 	}
-	.-rowg\@lg\: {
+	.-rowg\@lg {
 		row-gap: var(--rowg--lg);
 	}
 }

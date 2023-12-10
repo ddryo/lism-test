@@ -1,32 +1,29 @@
 // 特定のCSSプロパティ用キーワードをユーティリティ化するためのリスト。
+const places = {
+	center: 'c',
+	start: 's',
+	end: 'e',
+	// left: 'l',
+	// right: 'r',
+};
+const flexPlaces = {
+	'flex-start': 'fs',
+	'flex-end': 'fe',
+	// left: 'l',
+	// right: 'r',
+};
 export default {
 	// color: {},
 	// c: {},
 	bgc: { none: 't', transparent: 't', currentColor: 'cc' },
-	bdc: { none: 't', transparent: 't', inherit: 'i' },
+	bdc: { none: 't', transparent: 't' },
 	bg: { none: 'n' },
 	bgcp: { text: 'tx' },
 	margin: { auto: 'a' },
-	place: {
-		center: 'c',
-		strech: 'str',
-		start: 's',
-		end: 'e',
-		left: 'l',
-		right: 'r',
-		between: 'sb',
-		'flex-start': 'fs',
-		'flex-end': 'fe',
-		'space-between': 'sb',
-	},
-	selfPlace: {
-		center: 'c',
-		strech: 'str',
-		start: 's',
-		end: 'e',
-		'flex-start': 'fs',
-		'flex-end': 'fe',
-	},
+	place: places,
+	placeItems: { ...places, ...flexPlaces, stretch: 'str' },
+	placeContent: { ...places, ...flexPlaces, 'space-between': 'sb' },
+	selfPlace: { ...places, ...flexPlaces },
 	ta: { center: 'c', left: 'l', right: 'r' },
 	td: { underline: 'u', none: 'n' },
 
@@ -37,27 +34,44 @@ export default {
 	// lh: {},
 	// lts:{},
 
+	fx: { '1 1 0': '1' },
 	fxw: { wrap: 'w', nowrap: 'nw' }, // nowrap → Emmet は n だが、nw にしている. (whs と揃えている)
 	fxd: { column: 'c', row: 'r', 'column-reverse': 'cr', 'row-reverse': 'rr' },
 
 	// width, height用のユーティリティ値
 	size: {
 		'100%': '100',
-		'75%': '75',
-		'50%': '50',
-		'25%': '25',
+		// '75%': '75',
+		// '50%': '50',
+		// '25%': '25',
 		'fit-content': 'fit',
-		unset: 'un',
+		// unset: 'un',
 	},
 
 	// maxW, maxH
-	maxSize: { unset: 'un', '100%': '100' },
+	maxSize: {
+		//unset: 'un',
+		'100%': '100',
+	},
 
 	// minW, minH
-	minSize: { unset: 'un' },
+	minSize: {
+		//unset: 'un',
+		'100%': '100',
+	},
 
-	gta: { '"left center right"': 'lcr', '"top center bottom"': 'tcb' },
-	ga: { fix: 'f', nofix: 'nf', left: 'l', right: 'r', center: 'c', top: 't', bottom: 'b' },
+	ga: {
+		side: 'side',
+		fix: 'fix',
+		// nofix: 'nf',
+		start: 's',
+		center: 'c',
+		end: 'e',
+		// left: 'l',
+		// right: 'r',
+		// top: 't',
+		// bottom: 'b',
+	},
 	bd: {
 		// current: 'cc',
 		// currentColor: 'cc',
@@ -77,9 +91,12 @@ export default {
 		// 'block-end': 'bl-e',
 	},
 
-	pos: { relative: 'r', absolute: 'a', fixed: 'f' },
-	positions: { '0%': '0', '50%': '50', '100%': '100' }, // top,left,right,bottom 用
+	pos: {
+		relative: 'r',
+		absolute: 'a', //fixed: 'f'
+	},
 	inset: { '0%': '0' }, // inset は 0% だけ
+	insets: { '0%': '0', '50%': '50', '100%': '100' }, // top,left,right,bottom 用
 	ov: { hidden: 'h', auto: 'a', clip: 'c' },
 	visibility: { hidden: 'h', visible: 'v' },
 	d: {
@@ -111,10 +128,11 @@ export default {
 		'scaleX(-1) scaleY(-1)': 'flipXY',
 	},
 	translate: {
-		'-100% -100%': '-100',
+		// '-100% -100%': '-100',
+		'-50% -50%': '-50',
 		'-100% 0': '-100X',
 		'0 -100%': '-100Y',
-		'-50% -50%': '-50',
+		// 50%
 		'-50% 0': '-50X',
 		'0 -50%': '-50Y',
 	},

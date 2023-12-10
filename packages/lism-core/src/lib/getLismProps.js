@@ -239,44 +239,51 @@ class LismPropsData {
 
 		const { name, BP, objProcessor, map, ...options } = propData;
 
-		// CONTET_PROPSからデータを取得する
-		if (map && null != propVal && typeof propVal === 'object') {
-			this.setContextProps(propName, propVal);
-			return;
-		}
+		// ブレイクポイント指定用のオブジェクト{xs,sm,md,lg,xl}かどうかをチェック
+		const { _: baseValue, ...bpValues } = getBpData(propVal);
+		propVal = baseValue;
+		// let bpValues = null;
 
-		// BP対応あり/なしで分岐
-		if (BP) {
-			// 事前にBP指定用の { sm, md, ...} 形式で取り出す
-			const { _: baseValue, ...bpValues } = getBpData(propVal);
-			propVal = baseValue;
+		// if (typeof propVal === 'object') {
+		// }
+		// if (BP) {
+		// 	// 事前にBP指定用の { sm, md, ...} 形式で取り出す
+		// 	const { _: baseValue, ...bpData } = getBpData(propVal);
+		// 	propVal = baseValue;
+		// 	bpValues = bpData;
+		// }
 
-			// 各BP成分の処理
-			Object.keys(bpValues).forEach((bp) => {
-				this.setAttrs(name || propName, bpValues[bp], options, bp);
-			});
-		}
+		// BP指定意外で成分プロパティが指定されている場合
+		if (null != propVal && typeof propVal === 'object') {
+			// mapを持つ場合. CONTET_PROPSからデータを取得する
+			if (map) {
+				this.setContextProps(propName, propVal);
+				return;
+			}
 
-		// 方向成分を持つ場合の特殊処理
-		// context内のgapどうするかは要検討
-		if (typeof propVal === 'object') {
+			// bd のみ特殊処理
 			if (propName === 'bd') this.addUtil('-bd:');
-			this.analyzeObjValue(propVal, objProcessor);
+
+			// 各成分の解析
+			if (objProcessor) {
+				// this.analyzeSideObj(propVal, objProcessor);
+				Object.keys(propVal).forEach((dataKey) => {
+					// 指定された成分に対応する prop名 を取得
+					const propName = objProcessor(dataKey);
+
+					this.analyzeProp(propName, propVal[dataKey]);
+				});
+			}
 		} else {
 			this.setAttrs(name || propName, propVal, options);
 		}
-	}
 
-	// オブジェクト形式で方向成分を指定するような prop の解析
-	analyzeObjValue(valueObj, objProcessor) {
-		if (!objProcessor) return;
-
-		Object.keys(valueObj).forEach((dataKey) => {
-			// 指定された成分に対応する prop名 を取得
-			const propName = objProcessor(dataKey);
-
-			this.analyzeProp(propName, valueObj[dataKey]);
+		// if (null !== bpValues) {
+		// 各BP成分の処理
+		Object.keys(bpValues).forEach((bp) => {
+			this.setAttrs(name || propName, bpValues[bp], options, bp);
 		});
+		// }
 	}
 
 	addUtil(util) {
@@ -337,9 +344,15 @@ class LismPropsData {
 
 		if (bp) {
 			styleName += `--${bp}`;
-			utilName += `@${bp}:`;
+			utilName += `@${bp}`;
 		} else {
 			utilName += ':';
+		}
+
+		// "u:"ではじまっている場合、それに続く文字列を取得してユーティリティ化
+		if (typeof val === 'string' && val.startsWith('u:')) {
+			this.addUtil(`${utilName}${val.replace('u:', '')}`);
+			return;
 		}
 
 		// ユーティリティクラス化できるかどうかをチェック
@@ -382,7 +395,7 @@ class LismPropsData {
 		// style のみ出力
 		//     memo: --gtcなど、Noクエリの時に .-prop: 不要なケースがあるが、それを判定すると処理が複雑になるので一旦なくしている。
 		//       (クラスがあったほうが上書き判定できて便利なケースもあるし...)
-		if (style) {
+		if (!bp && style) {
 			if (1 === style) style = name; // 1 は prop名をそのままstyleとして使う
 			this.addStyle(style, val);
 			return;

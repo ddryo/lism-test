@@ -8,6 +8,7 @@ import {
 	Text,
 	Badge,
 	Note,
+	Stack,
 	Flow,
 	Spacer,
 	AccordionGroup,
@@ -16,25 +17,26 @@ import {
 	AccordionHeader,
 	AccordionLabel,
 	AccordionIcon,
-	Stack,
 	Cluster,
-	Flex,
-	Lism,
-	Icon,
-	LinkBox,
-	NavMenuItem,
-	NavMenuLink,
-	NavMenu,
 	Delimiter,
+	Divider,
+	Decorator,
+	Grid,
+	Core,
+	Icon,
+	Center,
+	Reel,
+	Flex,
 } from '@loos/lism-core';
 // import { FolderSimple } from '@phosphor-icons/react';
 // import { ThumbsUp, SmileyXEyes } from '@phosphor-icons/react';
 
 import './style.scss';
+import './step.scss';
 
-const FolderIcon = () => (
-	<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' fill='currentColor' viewBox='0 0 256 256'>
-		<path d='M216,72H130.67L102.93,51.2a16.12,16.12,0,0,0-9.6-3.2H40A16,16,0,0,0,24,64V200a16,16,0,0,0,16,16H216.89A15.13,15.13,0,0,0,232,200.89V88A16,16,0,0,0,216,72Zm0,128H40V64H93.33l27.74,20.8a16.12,16.12,0,0,0,9.6,3.2H216Z'></path>
+const FolderIcon = (props) => (
+	<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' fill='currentColor' viewBox='0 0 256 256' {...props}>
+		<path d='M248,216a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16H240A8,8,0,0,1,248,216Zm-24-24a8,8,0,0,0,8-8V148.32a40.13,40.13,0,0,0-29.28-38.54l-60.84-17-22.5-53.63a8,8,0,0,0-4.85-4.5l-5.47-1.82A16,16,0,0,0,88,48V77.39L58.13,68.88,47.52,39.51a8,8,0,0,0-5-4.87l-5.47-1.82A16,16,0,0,0,16,48v55.72a40.12,40.12,0,0,0,29.21,38.52L221.84,191.7A8,8,0,0,0,224,192Z'></path>
 	</svg>
 );
 
@@ -42,6 +44,207 @@ export default function ContainerTest() {
 	return (
 		<Layouter isFlow hasGutter py={50} isConstrained='s' alignfull id='demo-wrapper'>
 			<p>test...</p>
+			<h2>Timeline</h2>
+			<Stack className='c--timeline'>
+				<Grid className='c--timeline__item'>
+					<Decorator className='c--timeline__line' />
+					<Decorator className='c--timeline__line' />
+					<Decorator
+						className='c--timeline__shape -empasis'
+						aspect='1/1'
+						radius='99'
+						c='opposite'
+						bgc='opposite'
+					></Decorator>
+					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
+						<span className='c--timeline__label'>2022年5月24日</span>
+					</Core>
+					<Core className='c--timeline__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリース</Text>
+						<p>
+							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
+						</p>
+					</Core>
+				</Grid>
+				<Grid className='c--timeline__item'>
+					<Decorator className='c--timeline__line' />
+					<Decorator className='c--timeline__line' />
+					<Center className='c--timeline__shape' aspect='1/1' radius='99' c='opposite' bgc='opposite'>
+						<Icon icon={FolderIcon}></Icon>
+					</Center>
+					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
+						<span className='c--timeline__label'>2022年5月24日</span>
+					</Core>
+					<Core className='c--timeline__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリース</Text>
+						<p>
+							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
+						</p>
+					</Core>
+				</Grid>
+				<Grid className='c--timeline__item'>
+					<Decorator className='c--timeline__line' />
+					<Decorator className='c--timeline__line' />
+					<Center className='c--timeline__shape' aspect='1/1' radius='99' c='opposite' bgc='opposite'>
+						{/* <Icon icon={FolderIcon}></Icon> */}
+					</Center>
+					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
+						<span className='c--timeline__label'>2022年5月24日</span>
+					</Core>
+					<Core className='c--timeline__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリース</Text>
+						<p>
+							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
+						</p>
+					</Core>
+				</Grid>
+			</Stack>
+
+			<p>最初と最後のラインを消す</p>
+			<Stack className='c--timeline'>
+				<Grid className='c--timeline__item' style={{ '--start--space': 0 }}>
+					<Decorator className='c--timeline__line -as:e' h='50%' />
+					<Decorator className='c--timeline__line' />
+					<Decorator
+						className='c--timeline__shape -empasis'
+						aspect='1/1'
+						radius='99'
+						c='opposite'
+						bgc='opposite'
+					></Decorator>
+					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
+						<span className='c--timeline__label'>2022年5月24日</span>
+					</Core>
+					<Core className='c--timeline__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリース</Text>
+						<p>
+							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
+						</p>
+					</Core>
+				</Grid>
+				<Grid className='c--timeline__item'>
+					<Decorator className='c--timeline__line' />
+					<Decorator className='c--timeline__line' />
+					<Center className='c--timeline__shape' aspect='1/1' radius='99' c='opposite' bgc='opposite'>
+						<Icon icon={FolderIcon}></Icon>
+					</Center>
+					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
+						<span className='c--timeline__label'>2022年5月24日</span>
+					</Core>
+					<Core className='c--timeline__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリース</Text>
+						<p>
+							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
+						</p>
+					</Core>
+				</Grid>
+				<Grid className='c--timeline__item'>
+					<Decorator className='c--timeline__line' h='50%' />
+					{/* <Decorator className='c--timeline__line' /> */}
+					<Center
+						className='c--timeline__shape'
+						aspect='1/1'
+						radius='99'
+						c='opposite'
+						bgc='opposite'
+					></Center>
+					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
+						<span className='c--timeline__label'>2022年5月24日</span>
+					</Core>
+					<Core className='c--timeline__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリース</Text>
+						<p>
+							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
+						</p>
+					</Core>
+				</Grid>
+			</Stack>
+			<h2>Timeline - reel</h2>
+			{/* <Reel> */}
+			<Reel className='c--timeline'>
+				<Grid className='c--timeline__item'>
+					<Decorator className='c--timeline__line' />
+					<Decorator className='c--timeline__line' />
+					<Decorator
+						className='c--timeline__shape -empasis'
+						aspect='1/1'
+						radius='99'
+						c='opposite'
+						bgc='opposite'
+					></Decorator>
+					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
+						<span className='c--timeline__label'>2022年5月24日</span>
+					</Core>
+					<Core className='c--timeline__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリースした日。</Text>
+					</Core>
+				</Grid>
+				<Grid className='c--timeline__item'>
+					<Decorator className='c--timeline__line' />
+					<Decorator className='c--timeline__line' />
+					<Center className='c--timeline__shape' aspect='1/1' radius='99' c='opposite' bgc='opposite'>
+						<Icon icon={FolderIcon}></Icon>
+					</Center>
+					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
+						<span className='c--timeline__label'>2022年5月24日</span>
+					</Core>
+					<Core className='c--timeline__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリースした日。</Text>
+					</Core>
+				</Grid>
+				<Grid className='c--timeline__item'>
+					<Decorator className='c--timeline__line' />
+					<Decorator className='c--timeline__line' />
+					<Center className='c--timeline__shape' aspect='1/1' radius='99' c='opposite' bgc='opposite'>
+						{/* <Icon icon={FolderIcon}></Icon> */}
+					</Center>
+					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
+						<span className='c--timeline__label'>2022年5月24日</span>
+					</Core>
+					<Core className='c--timeline__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリースした日。</Text>
+					</Core>
+				</Grid>
+			</Reel>
+
+			<h2>Step</h2>
+			<Reel className='c--step'>
+				<Grid className='c--step__item'>
+					{/* <Decorator className='c--step__line' /> */}
+					<Decorator
+						className='c--step__ct -empasis'
+						aspect='1/1'
+						radius='99'
+						c='opposite'
+						bgc='opposite'
+					></Decorator>
+					<Core className='c--step__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリースした日。</Text>
+					</Core>
+					<Decorator className='c--step__line' />
+				</Grid>
+				<Grid className='c--step__item'>
+					<Decorator className='c--step__line' />
+					<Center className='c--step__ct' aspect='1/1' radius='99' c='opposite' bgc='opposite'>
+						<Icon icon={FolderIcon}></Icon>
+					</Center>
+					<Core className='c--step__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリースした日。</Text>
+					</Core>
+					<Decorator className='c--step__line' />
+				</Grid>
+				<Grid className='c--step__item'>
+					<Decorator className='c--step__line' />
+					<Center className='c--step__ct' aspect='1/1' radius='99' c='opposite' bgc='opposite'>
+						{/* <Icon icon={FolderIcon}></Icon> */}
+					</Center>
+					<Core className='c--step__body ark-keep-mt--s'>
+						<Text>WordPress 6.0 がリリースした日。</Text>
+					</Core>
+					<Decorator className='c--step__line' />
+				</Grid>
+			</Reel>
+			{/* </Reel> */}
 			<Text
 				bg={{ clip: 'text' }}
 				gradient='linear-gradient(to top, #78d4d0 0%, #b9a6da 50%, #ff8cb2 100%)'
@@ -81,7 +284,7 @@ export default function ContainerTest() {
 				</AccordionBody>
 			</Accordion>
 			<hr />
-			<Cluster gap='10' rowGap={20}>
+			<Cluster gap='10' rowg={20}>
 				<Delimiter>|</Delimiter>
 				<Box>ロレム・イプサムの座り雨</Box>
 				<Delimiter>|</Delimiter>

@@ -34,7 +34,7 @@
 .c--accordion__body {
 	display: grid;
 	grid-template-rows: 1fr;
-	transition-property: padding, opacity, grid-template-rows;
+	transition-property: padding-block, opacity, grid-template-rows;
 	transition-duration: var(--duration);
 }
 
@@ -47,7 +47,6 @@
 	> .c--accordion__body {
 		opacity: 0.1;
 		grid-template-rows: 0fr;
-		// grid-template-rows: 0fr;
 		padding-block: 0 !important;
 	}
 }

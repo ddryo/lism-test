@@ -4,27 +4,19 @@ import Image from "next/image";
 
 # Frame
 
-横縦比率(`aspect-ratio`)を指定したり、高さを指定することで、内部のコンテンツをそのサイズからはみ出さないように表示できるモジュール。
-
-<Demo>
-	<Demo.Title>対応するHTML構造</Demo.Title>
-	<Demo.Code>
-	```jsx
-	<div class="l--frame -aspect:{aspect}">...</div>
-	```
-	</Demo.Code>
-</Demo>
+横縦比率(`aspect-ratio`)や高さを指定し、内部のコンテンツをそのサイズからはみ出さないように表示できるモジュールです。
 
 
+<Alert preset="info">
+	中身としては、`is--frame` がデフォルト付与されている`<Layouter>`です。
+</Alert>
 
-## props
-- `aspect` : アスペクト比率を指定する。ブレイクポイント指定可能です。
-	- 例: `aspect="16/9"`, `aspect={["4/3", "16/9"]}`
 
-{/* <Alert preset="info">
-	一応、`aspect` は 単純に Prop としても使用できます。
-</Alert> */}
+{/* また、直下のimg,video には `object-fit:cover` が適用されるようになっています。 */}
 
+{/* ## props
+- `aspect` : (共通Prop) アスペクト比率を指定する。ブレイクポイント指定可能です。
+	- 例: `aspect="16/9"`, `aspect={["4/3", "16/9"]}` */}
 
 ## Import
 
@@ -33,7 +25,6 @@ import { Frame } from '@loos/lism-core';
 ```
 
 ## DEMO
-
 
 <Demo>
 	<Demo.Title>

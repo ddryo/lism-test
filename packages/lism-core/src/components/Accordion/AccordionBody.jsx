@@ -1,15 +1,15 @@
 // import React from 'react';
-import { Lism } from '../Lism';
+import { Layouter } from '../Layouter';
 
 export default function AccordionBody({ lismClass = {}, children, isFlow, ...props }) {
 	lismClass.c = 'c--accordion__body';
 
 	return (
-		<Lism lismClass={lismClass} p='box:s' {...props}>
-			<Lism className='c--accordion__inner' isFlow={isFlow}>
+		<Layouter lismClass={lismClass} p='box:s' {...props}>
+			<Layouter className='c--accordion__inner' isFlow={isFlow}>
 				{children}
-			</Lism>
-		</Lism>
+			</Layouter>
+		</Layouter>
 	);
 }
 

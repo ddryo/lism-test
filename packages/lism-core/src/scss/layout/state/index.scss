@@ -2,9 +2,16 @@
 @forward './flow';
 @forward './gutter';
 @forward './container'; // Note: flow より後ろで読み込む
+@forward './frame';
 @forward './linkbox';
 @forward './divider';
 @forward './consume';
+
+.has--size {
+	--size: 1em;
+	width: var(--size);
+	height: var(--size);
+}
 
 // @supports (color: color-mix(in srgb, #000, #fff)) {
 :root {

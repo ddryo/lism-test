@@ -28,7 +28,7 @@ export default function Tab({ children, tabId, defaultIndex, keepHeight, ...prop
 		theActiveIndex.set(defaultIndex || 0);
 	}, []);
 
-	console.log('$theTabID', $theTabID, $theActiveIndex, defaultIndex);
+	// console.log('$theTabID', $theTabID, $theActiveIndex, defaultIndex);
 
 	const deliverState = {
 		// tabId: uuid,

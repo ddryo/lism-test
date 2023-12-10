@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Layouter, Box, Layer, Flex, Core } from '@loos/lism-core';
+import { Layouter, Box, Layer, Flex, Core, Tabs, TabItem } from '@loos/lism-core';
 import Preview from './Preview';
 import classnames from 'classnames';
 // import { renderToString } from 'react-dom/server';
@@ -39,7 +39,7 @@ Demo.Title = ({ children }) => {
 	);
 };
 Demo.Preview = ({
-	isShadow = true,
+	isShadow = 0,
 	children,
 	noframe,
 	nogrid,
@@ -65,7 +65,10 @@ Demo.Preview = ({
 
 	// isShadow = 1;
 	return (
-		<Layouter blockClass={contentClass} {...props}>
+		<Layouter
+			blockClass={contentClass}
+			{...props} //dir='rtl'
+		>
 			{isShadow ? (
 				<Core className={previewClass}>
 					<Preview>
@@ -88,34 +91,16 @@ Demo.Preview = ({
 	);
 };
 
-Demo.Code = ({ children, isAcc, ...props }) => {
-	if (!isAcc) {
-		return (
-			<Layouter className='b--demoBox__code' {...props}>
-				{children}
-			</Layouter>
-		);
+// tabItemの時はlabel渡ってくる
+Demo.Code = ({ label, ...props }) => {
+	if (label) {
+		return <TabItem label={label} {...props} />;
 	}
+	return <Layouter className='b--demoBox__code' {...props} />;
+};
 
-	const [isOpenCode, setIsOpenCode] = useState(false);
-	return (
-		<Box p={20}>
-			<Flex>
-				<button
-					className={classnames('b--demoBox__codeBtn -fz:s', {
-						'-opened': isOpenCode,
-					})}
-					onClick={() => {
-						setIsOpenCode(!isOpenCode);
-					}}
-				>
-					{isOpenCode && '▲ ソースコードを閉じる'}
-					{!isOpenCode && '▼ ソースコードを表示する'}
-				</button>
-			</Flex>
-			{isOpenCode && <Box className='b--demoBox__code'>{children}</Box>}
-		</Box>
-	);
+Demo.Codes = (props) => {
+	return <Tabs className='b--demoBox__code' {...props} />;
 };
 
 // Demo.Shadow = ({ children }) => {

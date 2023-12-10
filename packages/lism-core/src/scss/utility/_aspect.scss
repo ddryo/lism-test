@@ -37,18 +37,18 @@
 }
 
 @include query.cq('sm') {
-	.-aspect\@sm\: {
+	.-aspect\@sm {
 		aspect-ratio: var(--aspect--sm);
 	}
 }
 
 @include query.cq('md') {
-	.-aspect\@md\: {
+	.-aspect\@md {
 		aspect-ratio: var(--aspect--md);
 	}
 }
 @include query.cq('lg') {
-	.-aspect\@lg\: {
+	.-aspect\@lg {
 		aspect-ratio: var(--aspect--lg);
 	}
 }

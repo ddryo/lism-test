@@ -2,7 +2,10 @@
 
 // --------------------
 // Reel
+// flex か grid かパッと判断できない&切り替わるので、個別にモジュール化。
+// 他の flex , grid 要素を指定することもない。
 // --------------------
+
 // :root {
 // 	--is--unreel: 0;
 // }
@@ -43,15 +46,15 @@
 @include query.cq('sm') {
 	.l--reel[data-unreel='sm'] {
 		display: grid;
+		grid: none / var(--gtc);
 		overflow-x: revert;
-		grid-template-columns: var(--gtc);
 	}
 }
 @include query.cq('md') {
 	.l--reel[data-unreel='md'] {
 		display: grid;
+		grid: none / var(--gtc);
 		overflow-x: revert;
-		grid-template-columns: var(--gtc);
 	}
 }
 

@@ -50,7 +50,7 @@ export function getAllLayoutStateData({
 	hasGutter,
 	hasLayer,
 	hasDivider,
-	// isCbox,
+	isFrame,
 	//isLinkbox,
 	...props
 }) {
@@ -74,6 +74,7 @@ export function getAllLayoutStateData({
 		Object.assign(lismStyle, style);
 	}
 
+	isFrame && lismState.push('is--frame');
 	hasGutter && lismState.push('has--gutter');
 	hasLayer && lismState.push('has--layer');
 	alignfull && lismState.push('alignfull');

@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-	console.log('lism-tab script.js');
+	// console.log('lism-tab script.js');
 	// タブへのリンクがあるかどうか
 	const nowUrl = window.location.href;
 	const hasTabLink = -1 !== nowUrl.indexOf('?lism-tab=');
 
 	const tabs = document.querySelectorAll('.l--tab');
-	console.log('tabs', tabs);
+	// console.log('tabs', tabs);
 	tabs.forEach((tab) => {
 		const tabButtons = tab.querySelectorAll('.l--tab__button');
 		tabButtons.forEach((tabBtn) => {
 			tabBtn.addEventListener('click', function (e) {
-				console.log('tabBtn click');
+				// console.log('tabBtn click');
 				// タブへのリンクをURLにセット → そこまではやりすぎな気がするのでオフ
 				// if (hasTabLink) {window.history.pushState({}, '', `?tab=${indx}#${tab.id}`);}
 				tabControl(e);

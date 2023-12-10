@@ -13,11 +13,11 @@
 
 
 @include query.cq('sm'){
-	.-d\@sm\:{display: var(--d--sm) !important;}
+	.-d\@sm{display: var(--d--sm) !important;}
 }
 @include query.cq('md'){
-	.-d\@md\:{display: var(--d--md) !important;}
+	.-d\@md{display: var(--d--md) !important;}
 }
 @include query.cq('lg'){
-	.-d\@lg\:{display: var(--d--lg) !important;}
+	.-d\@lg{display: var(--d--lg) !important;}
 }

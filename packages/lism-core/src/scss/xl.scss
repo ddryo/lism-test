@@ -11,67 +11,67 @@
 
 
 @include query.cq('xl') {
-	.-d\@xl\: {display: var(--d--xl) !important;}
-	.-w\@xl\: {width: var(--w--xl) !important;}
-	.-h\@xl\: {height: var(--h--xl) !important;}
+	.-d\@xl {display: var(--d--xl) !important;}
+	.-w\@xl {width: var(--w--xl) !important;}
+	.-h\@xl {height: var(--h--xl) !important;}
 
-	.-fxw\@xl\: {flex-wrap: var(--fxw--xl);}
-	.-fxd\@xl\: {flex-direction: var(--fxd--xl);}
+	.-fxw\@xl {flex-wrap: var(--fxw--xl);}
+	.-fxd\@xl {flex-direction: var(--fxd--xl);}
 
-	.-gta\@xl\: {grid-template-areas: var(--gta--xl);}
-	.-gtc\@xl\: {grid-template-columns: var(--gtc--xl);}
-	.-gtr\@xl\: {grid-template-rows: var(--gtr--xl);}
+	.-gta\@xl {grid-template-areas: var(--gta--xl);}
+	.-gtc\@xl {grid-template-columns: var(--gtc--xl);}
+	.-gtr\@xl {grid-template-rows: var(--gtr--xl);}
 
-	.-fxg\@xl\: {flex-grow: var(--fxg--xl);}
-	.-fxsh\@xl\: {flex-shrink: var(--fxsh--xl);}
-	.-fxb\@xl\: {flex-basis: var(--fxb--xl);}
-	.-fx\@xl\: {flex: var(--fx--xl);}
-	.-gc\@xl\: {grid-column: var(--gc--xl);}
-	.-gr\@xl\: {grid-row: var(--gr--xl);}
+	.-fxg\@xl {flex-grow: var(--fxg--xl);}
+	.-fxsh\@xl {flex-shrink: var(--fxsh--xl);}
+	.-fxb\@xl {flex-basis: var(--fxb--xl);}
+	.-fx\@xl {flex: var(--fx--xl);}
+	.-gc\@xl {grid-column: var(--gc--xl);}
+	.-gr\@xl {grid-row: var(--gr--xl);}
 }
 
 @include query.cq('xl') {
-	.-p\@xl\: {
+	.-p\@xl {
 		padding: var(--p--xl) !important;
 	}
-	.-px\@xl\: {
+	.-px\@xl {
 		padding-inline: var(--px--xl) !important;
 	}
-	.-py\@xl\: {
+	.-py\@xl {
 		padding-block: var(--py--xl) !important;
 	}
-	.-pt\@xl\: {
+	.-pt\@xl {
 		padding-top: var(--pt--xl) !important;
 	}
-	.-pr\@xl\: {
+	.-pr\@xl {
 		padding-right: var(--pr--xl) !important;
 	}
-	.-pb\@xl\: {
+	.-pb\@xl {
 		padding-bottom: var(--pb--xl) !important;
 	}
-	.-pl\@xl\: {
+	.-pl\@xl {
 		padding-left: var(--pl--xl) !important;
 	}
 
-	.-m\@xl\: {
+	.-m\@xl {
 		margin: var(--m--xl) !important;
 	}
-	.-mx\@xl\: {
+	.-mx\@xl {
 		margin-inline: var(--mx--xl) !important;
 	}
-	.-my\@xl\: {
+	.-my\@xl {
 		margin-block: var(--my--xl) !important;
 	}
-	.-mt\@xl\: {
+	.-mt\@xl {
 		margin-top: var(--mt--xl) !important;
 	}
-	.-mr\@xl\: {
+	.-mr\@xl {
 		margin-right: var(--mr--xl) !important;
 	}
-	.-mb\@xl\: {
+	.-mb\@xl {
 		margin-bottom: var(--mb--xl) !important;
 	}
-	.-ml\@xl\: {
+	.-ml\@xl {
 		margin-left: var(--ml--xl) !important;
 	}
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack } from '../Flex/Stack';
+import { Stack } from '../Flex';
 
 // duration: [s]
 export default function AccordionGroup({

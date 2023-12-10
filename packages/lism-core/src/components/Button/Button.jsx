@@ -1,4 +1,6 @@
 // import React from 'react';
+
+import { Text } from '../Text';
 import { Flex } from '../Flex';
 import { Grid } from '../Grid';
 import { Icon } from '../Icon';
@@ -35,10 +37,9 @@ export default function Button({ lismClass = {}, lismStyle = {}, ...props }) {
 	const ButtonComponent = isGrid ? Grid : Flex;
 
 	if (isGrid) {
-		btnProps.areas = '"left center right"';
-		leftIconProps.gridItem = { area: 'left' };
-		rightIconProps.gridItem = { area: 'right' };
-		textProps.gridItem = { area: 'center' };
+		leftIconProps.gridItem = { gcs: 1 };
+		rightIconProps.gridItem = { gce: -1 };
+		textProps.gridItem = { gcs: 2 };
 	}
 
 	// iconボタン
@@ -72,9 +73,9 @@ export default function Button({ lismClass = {}, lismStyle = {}, ...props }) {
 			{leftIcon && (
 				<Icon lismClass={{ c: 'c--button__icon' }} icon={leftIcon} {...leftIconProps} />
 			)}
-			<span className='c--button__text' {...textProps}>
+			<Text tag='span' className='c--button__text' {...textProps}>
 				{children}
-			</span>
+			</Text>
 			{rightIcon && (
 				<Icon lismClass={{ c: 'c--button__icon' }} icon={rightIcon} {...rightIconProps} />
 			)}

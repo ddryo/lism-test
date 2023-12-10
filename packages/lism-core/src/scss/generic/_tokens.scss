@@ -388,18 +388,7 @@
 		inset var(--shadow-length--3) var(--shadow-color);
 	--shadow--i4: inset var(--shadow-length--3) var(--shadow-color--low),
 		inset var(--shadow-length--4) var(--shadow-color);
-
-	/* ------------------------------------------------------------
-	  rtlで反転させる値
-	------------------------------------------------------------ */
-	// --place--left: start;
-	// --place--right: end;
 }
-
-// [dir='rtl'] {
-// 	--place--left: end;
-// 	--place--right: start;
-// }
 
 // ↓ space: これでもわりとしっくりくる...？ 2:.25, 3: 0.375
 // 10: .25

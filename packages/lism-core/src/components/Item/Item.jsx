@@ -1,65 +1,16 @@
 // import React from 'react';
 import { Layouter } from '../Layouter';
-import { isEmptyObj, filterEmptyObj } from '../../lib/helper';
+import { getGridItemProps, getFlexItemProps, getItemProps } from '../../lib';
 
-export default function Item({
-	children,
-	as,
-	flex,
-	shrink,
-	grow,
-	basis,
-	fxg,
-	fxsh,
-	fx,
-	fxb,
-	area,
-	column,
-	row,
-	ga,
-	gc,
-	gr,
-	alignSelf,
-	justifySelf,
-	placeSelf,
-	...props
-}) {
+// isItem で 受け取れるようにするか...? ga, gc, gtc,...
+
+export default function Item({ children, as, ...props }) {
 	const Item = as || Layouter;
 
-	const flexProps = filterEmptyObj({
-		flex: flex || fx,
-		shrink: shrink || fxsh,
-		grow: grow || fxg,
-		basis: basis || fxb,
-	});
-	const gridProps = filterEmptyObj({
-		area: area || ga,
-		column: column || gc,
-		row: row || gr,
-	});
-
-	const selfPlaceProps = filterEmptyObj({
-		alignSelf,
-		justifySelf,
-		placeSelf,
-	});
-
-	if (!isEmptyObj(flexProps)) {
-		props.flexItem = {
-			...flexProps,
-			...selfPlaceProps,
-		};
-	} else if (!isEmptyObj(gridProps)) {
-		props.gridItem = {
-			...gridProps,
-			...selfPlaceProps,
-		};
-	} else if (!isEmptyObj(selfPlaceProps)) {
-		// place系のみ指定がある場合
-		props.gridItem = {
-			...selfPlaceProps,
-		};
-	}
+	// grid 系の props をまとめる
+	props = getGridItemProps(props);
+	props = getFlexItemProps(props);
+	props = getItemProps(props);
 
 	// const noOptions = isEmptyObj(grid);
 

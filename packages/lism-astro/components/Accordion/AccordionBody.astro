@@ -1,15 +1,14 @@
 ---
-// import React from 'react';
-import { Lism } from '@loos/lism-core';
+import { LismProps } from '../types';
+import Layouter from '../Layouter.astro';
 
-interface Props {
-	lismClass?: object;
+interface Props extends LismProps {
 	isFlow?: string | boolean;
-	[key: string]: any; // 任意のプロパティを受け取る
 }
 
 let {
-	lismClass = {}, //lismStyle = {},
+	lismClass = {},
+	//lismStyle = {},
 	isFlow,
 	...props
 } = Astro.props || {};
@@ -17,8 +16,8 @@ let {
 lismClass.c = 'c--accordion__body';
 ---
 
-<Lism lismClass={lismClass} p='box:s' {...props}>
-	<Lism class='c--accordion__inner' isFlow={isFlow}>
+<Layouter lismClass={lismClass} p='box:s' {...props}>
+	<Layouter className='c--accordion__inner' isFlow={isFlow}>
 		<slot />
-	</Lism>
-</Lism>
+	</Layouter>
+</Layouter>

@@ -8,7 +8,7 @@ options.name: 受け取るprop名と実際に出力するutilクラス名、styl
 options.utilKey: 受け取るprop名と、ユーティリティクラスとして出力される時のキー名が異なる場合に指定する。
 	[string]
 
-	例: translate → '.-trnslt:{val}', top → '.-t:{val}'
+	例: translate → '.-trnslt:{val}'
 
 options.presets: 指定された値をそのままユーティリティクラス名に使用する時のリスト(またはそれを取得するキー）
 	[array, string, or 1]
@@ -66,18 +66,22 @@ memo:
 
 */
 
-const marginOption = { BP: 1, utils: 'margin', converter: 'space' };
-const paddingOption = { BP: 1, presets: ['0'], converter: 'space' };
+const marginOption = { utils: 'margin', converter: 'space' };
+const paddingOption = { presets: ['0'], converter: 'space' };
+// const placeSelfProps = {};
+const bdrsSidesProps = { presets: ['0'], converter: 'radius' };
+const insetsProps = { utils: 'insets', converter: 'space' };
 
 export default {
-	d: { BP: 1, utils: 1 },
-	w: { BP: 1, utils: 'size', converter: 'size' },
-	h: { BP: 1, utils: 'size', converter: 'size' },
-	maxW: { style: 'maxWidth', utils: 'maxSize', converter: 'size' },
-	maxH: { style: 'maxHeight', utils: 'maxSize', converter: 'size' },
-	minW: { style: 'minWidth', utils: 'minSize', converter: 'size' },
-	minH: { style: 'minHeight', utils: 'minSize', converter: 'size' },
+	d: { utils: 1 },
+	w: { utils: 'size', converter: 'size' },
+	h: { utils: 'size', converter: 'size' },
+	maxW: { utils: 'maxSize', converter: 'size' },
+	maxH: { utils: 'maxSize', converter: 'size' },
+	minW: { utils: 'minSize', converter: 'size' },
+	minH: { utils: 'minSize', converter: 'size' },
 	size: { style: '--size', converter: 'size' },
+	// is: inline-size, bs: block-size, maxI, maxB, minIs, minBs
 	c: { presets: 1, converter: 'color' },
 	bg: { style: 'background', presets: 1, utils: 1, map: 1 },
 	bgc: { presets: 1, utils: 1, converter: 'color' },
@@ -104,7 +108,7 @@ export default {
 	// borderWidth: { style: 1 },
 
 	// Typography
-	fz: { BP: 1, presets: 1, converter: 'fz' },
+	fz: { presets: 1, converter: 'fz' },
 	lh: { presets: 1, style: 'lineHeight' },
 	fw: { style: 'fontWeight', utils: 1 },
 	ff: { style: 'fontFamiry', presets: 1 },
@@ -121,7 +125,7 @@ export default {
 	bdrs: { map: 1, presets: 'radius', converter: 'radius' },
 
 	bxsh: { presets: 'shadow', converter: 'shadow' },
-	aspect: { BP: 1, presets: 1 },
+	aspect: { presets: 1 },
 	opacity: { style: 1 },
 	lis: { style: 'listStyle', utils: { none: 'n' } },
 	ov: { style: 'overflow', utils: 1 },
@@ -131,19 +135,17 @@ export default {
 	visibility: { style: 1, utilKey: 'v', utils: 1 },
 	z: { style: 'zIndex', presets: 1 },
 	pos: { style: 'position', utils: 1, presets: ['static', 'sticky'] },
-	top: { style: 1, utilKey: 't', utils: 'positions', converter: 'space' },
-	left: { style: 1, utilKey: 'l', utils: 'positions', converter: 'space' },
-	right: { style: 1, utilKey: 'r', utils: 'positions', converter: 'space' },
-	insetInlineStart: { style: 1, utilKey: 'iis', utils: 'positions', converter: 'space' },
-	insetInlineEnd: { style: 1, utilKey: 'iie', utils: 'positions', converter: 'space' },
-
-	bottom: { style: 1, utilKey: 'b', utils: 'positions', converter: 'space' },
-	inset: { style: 1, utils: 1, converter: 'space' },
-	clipPath: { style: 1 },
+	inset: { map: 1, style: 1, utils: 1, converter: 'space' },
+	t: { ...insetsProps, style: 'top' },
+	l: { ...insetsProps, style: 'left' },
+	r: { ...insetsProps, style: 'right' },
+	b: { ...insetsProps, style: 'bottom' },
+	clipPath: { style: 1 }, // cpp ?
 	// appearance: { style: 1, utils: { none: 'n' } },
 
-	transform: { style: 1, utils: 1, utilKey: 'trf' },
-	transformOrigin: { style: 1, utilKey: 'trso', utils: 'origin' },
+	transform: { map: 1, style: 1, utils: 1, utilKey: 'trf' },
+	// "trfs": "transform-style
+	transformOrigin: { style: 1, utilKey: 'trfo', utils: 'origin' },
 	translate: { style: 1, utils: 1, utilKey: 'trnslt' },
 	rotate: { style: 1, utils: 1 },
 	scale: { style: 1 },
@@ -155,35 +157,36 @@ export default {
 
 	// Spacing
 	p: {
-		BP: 1,
 		presets: 'p',
 		converter: 'space',
-		// {x, y, top, bottom, left, right} だけ正常に動作
-		objProcessor: (d) => `p${d[0]}`,
+		// {x, y, t, b, l, r, is, bs } でも指定可能にする
+		objProcessor: (d) => `p${d}`,
 	},
+	px: Object.assign({}, paddingOption, { presets: 'pxy' }),
+	py: Object.assign({}, paddingOption, { presets: 'pxy' }),
 	pl: paddingOption,
 	pr: paddingOption,
 	pt: paddingOption,
 	pb: paddingOption,
-	px: Object.assign({}, paddingOption, { presets: 'py' }),
-	py: Object.assign({}, paddingOption, { presets: 'py' }),
-	ps: paddingOption,
+	// pis, pbs, pin, pbl
+	pis: paddingOption,
 	pbs: paddingOption,
-	// pe: paddingOption,
+	// pinln, pblck
+	// pse: paddingOption,
 	// pbe: paddingOption,
 	m: {
 		...marginOption,
-		// {x, y, top, bottom, left, right } の場合の処理.
-		objProcessor: (d) => `m${d[0]}`,
+		// {x, y, t, b, l, r, is, bs } でも指定可能にする
+		objProcessor: (d) => `m${d}`,
 	},
+	mx: marginOption,
+	my: marginOption,
 	ml: marginOption,
 	mr: marginOption,
 	mt: marginOption,
 	mb: marginOption,
-	mx: marginOption,
-	my: marginOption,
-	ms: Object.assign({}, marginOption, { presets: 'space' }),
-	mbs: Object.assign({}, marginOption, { presets: 'space' }),
+	mis: marginOption,
+	mbs: { ...marginOption, presets: 'space' },
 	// me: marginOption,
 	// mbe: marginOption,
 
@@ -192,90 +195,104 @@ export default {
 	// isFlowでのみ有効
 	// flowGap: { presets: 1, converter: 'space' },
 
-	// flexItem
-	flex: { map: 1, style: 1 },
+	// gap: { map: 1 },
+	place: { map: 1 },
+	flex: { map: 1 },
 	grid: { map: 1 },
 	flexItem: { map: 1 },
 	gridItem: { map: 1 },
+	item: { map: 1 },
 
-	// lismVar
-	// lismVar: { withUtil: 0, BP: 1, style: '--lism' },
-	// ai: { style: 'alignItems', utils: 'place' },
-	// ac: { style: 'alignContent', utils: 'place' },
-	// ji: { style: 'justifyItems', utils: 'place' },
-	// jc: { style: 'justifyContent', utils: 'place' },
-};
-
-const placeProps = {
-	ai: { style: 'alignItems', utils: 'place' },
-	ac: { style: 'alignContent', utils: 'place' },
-	ji: { style: 'justifyItems', utils: 'place' },
-	jc: { style: 'justifyContent', utils: 'place' },
-};
-
-const selfProps = {
-	alignSelf: { style: 1, utilKey: 'as', utils: 'selfPlace' },
-	justifySelf: { style: 1, utilKey: 'js', utils: 'selfPlace' },
-	placeSelf: { style: 1 },
+	css: { map: 1 },
 };
 
 export const GAP_PROPS = {
 	gap: {
-		BP: 1,
 		presets: 'gap',
 		converter: 'space',
-		// gap={row, column} の場合の処理→context内での処理ができないので一旦OFF
-		// objProcessor: (d) => `${d}Gap`,
+		// gap={row, clm} の場合の処理
+		objProcessor: (d) => `${d}g`,
 	},
-	rowGap: { BP: 1, name: 'rowg', converter: 'space' },
-	columnGap: { BP: 1, name: 'clmg', converter: 'space' },
+	rowg: { converter: 'space' },
+	clmg: { converter: 'space' },
 };
 
-const bdsidesProps = { presets: ['0'], converter: 'radius' };
+// pi,pc
+
 export const CONTEXT_PROPS = {
+	place: {
+		pi: { style: 'placeItems' },
+		pc: { style: 'placeContent' },
+		ai: { style: 'alignItems', utils: 'placeItems' },
+		ac: { style: 'alignContent', utils: 'placeContent' },
+		ji: { style: 'justifyItems', utils: 'placeItems' },
+		jc: { style: 'justifyContent', utils: 'placeContent' },
+		// alignSelf: { style: 1, utilKey: 'as', utils: 'selfPlace' },
+		// justifySelf: { style: 1, utilKey: 'js', utils: 'selfPlace' },
+	},
+	item: {
+		order: { style: 1, utilKey: 'ord', presets: ['0', '-1', '1'] },
+		as: { style: 1, utilKey: 'as', utils: 'selfPlace' },
+		js: { style: 1, utilKey: 'js', utils: 'selfPlace' },
+		ps: { style: 'placeSelf' },
+	},
+	// inset={t:'0'},
+	inset: {
+		is: { style: 'insetInlineStart', utils: { '100%': '100', '0%': '0' }, converter: 'space' },
+		ie: { style: 'insetInlineEnd', utils: { '100%': '100', '0%': '0' }, converter: 'space' },
+		bs: { style: 'insetBlockStart', converter: 'space' },
+		be: { style: 'insetBlockEnd', converter: 'space' },
+	},
+
 	grid: {
-		template: { style: 'gridTemplate', name: 'gt', presets: 'gt' },
-		areas: { name: 'gta', BP: 1, utils: 'gta', presets: 'gta' },
-		columns: { name: 'gtc', BP: 1 },
-		rows: { name: 'gtr', BP: 1 },
+		gd: { style: 'grid' },
+		gt: { style: '--gt', presets: 1 },
+		gta: { style: '--gta', presets: 1 },
+		gtc: { style: '--gtc' },
+		gtr: { style: '--gtr' },
+		gaf: {},
+		gar: { style: 'gridAutoRows' },
+		gac: { style: 'gridAutoColumns' },
+
 		// autoFlow, autoRows, autoCols
-		...placeProps,
 		...GAP_PROPS,
+	},
+	gridItem: {
+		// item
+		ga: { utils: 1 }, // grid-area
+		gc: { presets: 1 }, // grid-column
+		gcs: { presets: 1, style: 'gridColumnStart' },
+		gce: { presets: 1, style: 'gridColumnEnd' },
+		gr: { presets: 1 }, // grid-row
+		grs: { presets: 1, style: 'gridRowStart' },
+		gre: { presets: 1, style: 'gridRowEnd' },
 	},
 
 	flex: {
-		wrap: { name: 'fxw', BP: 1, utils: 'fxw' },
-		direction: { name: 'fxd', BP: 1, utils: 'fxd' },
-		// fxw: { BP: 1, utils: 1 },
-		// fxd: { BP: 1, utils: 1 },
-		// placement: { context: 1 },
-		...placeProps,
+		fxf: { style: 'flex-flow' },
+		fxw: { utils: 1 },
+		fxd: { utils: 1 },
 		...GAP_PROPS,
 	},
 
 	// item?
 	flexItem: {
-		flex: { style: 1 }, // `flexItem.flex`もうけつける
-		grow: { name: 'fxg', BP: 1, presets: ['0', '1'] },
-		shrink: { name: 'fxsh', BP: 1, presets: ['0', '1'] },
-		basis: { name: 'fxb', BP: 1 },
-		// fx,fxsh,fxg,fxb
-		order: { style: 1, presets: ['0', '-1', '1'] },
-		...selfProps,
+		fx: { style: 'flex', utils: 1 },
+		fxg: { name: 'fxg', presets: ['0', '1'] },
+		fxsh: { name: 'fxsh', presets: ['0', '1'] },
+		fxb: { name: 'fxb' },
 	},
 
-	gridItem: {
-		area: { name: 'ga', utils: 'ga' }, // grid-area
-		column: { name: 'gc', BP: 1 }, // grid-column
-		row: { name: 'gr', BP: 1 }, // grid-row
-		// ga: { utils: 1 }, // grid-area
-		// gc: { BP: 1 }, // grid-column
-		// gr: { BP: 1 }, // grid-row
-		order: { style: 1, presets: ['0', '-1', '1'] },
-		...selfProps,
-	},
+	// transform: {
+	// 	// transform
+	// 	transformOrigin: { style: 1, utilKey: 'trfo', utils: 'origin' },
+	// 	translate: { style: 1, utils: 1, utilKey: 'trnslt' },
+	// 	rotate: { style: 1, utils: 1 },
+	// 	scale: { style: 1 },
+	// },
 
 	bg: {
+		// bg
 		color: { name: 'bgc', presets: 1, utils: 1, converter: 'color' },
 		attachment: { style: 'backgroundAttachment' },
 		blendMode: { style: 'backgroundBlendMode' },
@@ -290,15 +307,18 @@ export const CONTEXT_PROPS = {
 	},
 	mask: {},
 
+	// bxsh
+
+	// rad?
 	bdrs: {
 		shorthand: { name: 'bdrs', presets: 'radius', converter: 'radius' },
-		tl: { style: 'borderTopLeftRadius', utilKey: 'bdtlrs', ...bdsidesProps },
-		tr: { style: 'borderTopRightRadius', utilKey: 'bdtrrs', ...bdsidesProps },
-		bl: { style: 'borderBottomLeftRadius', utilKey: 'bdblrs', ...bdsidesProps },
-		br: { style: 'borderBottomRightRadius', utilKey: 'bdbrrs', ...bdsidesProps },
-		ss: { style: 'borderStartStartRadius', utilKey: 'bdssrs', ...bdsidesProps },
-		se: { style: 'borderStartEndRadius', utilKey: 'bdsers', ...bdsidesProps },
-		es: { style: 'borderEndStartRadius', utilKey: 'bdesrs', ...bdsidesProps },
-		ee: { style: 'borderEndEndRadius', utilKey: 'bdeers', ...bdsidesProps },
+		tl: { style: 'borderTopLeftRadius', utilKey: 'bdtlrs', ...bdrsSidesProps },
+		tr: { style: 'borderTopRightRadius', utilKey: 'bdtrrs', ...bdrsSidesProps },
+		bl: { style: 'borderBottomLeftRadius', utilKey: 'bdblrs', ...bdrsSidesProps },
+		br: { style: 'borderBottomRightRadius', utilKey: 'bdbrrs', ...bdrsSidesProps },
+		ss: { style: 'borderStartStartRadius', utilKey: 'bdssrs', ...bdrsSidesProps },
+		se: { style: 'borderStartEndRadius', utilKey: 'bdsers', ...bdrsSidesProps },
+		es: { style: 'borderEndStartRadius', utilKey: 'bdesrs', ...bdrsSidesProps },
+		ee: { style: 'borderEndEndRadius', utilKey: 'bdeers', ...bdrsSidesProps },
 	},
 };

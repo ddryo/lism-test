@@ -219,7 +219,7 @@ CSSファイル側で具体的な値を指定したい場合などに活用で�
 
 	↓
 
-	<div class="l--box -p@sm: -p: -mb: -bd: -w:"><p>Box</p></div>
+	<div class="l--box -p@sm -p: -mb: -bd: -w:"><p>Box</p></div>
 	```
 	</Demo.Code>
 </Demo>
@@ -240,7 +240,7 @@ Lism Propsの一部は、[ブレイクポイント](/docs/design-system/break-po
 
 
 <Demo>
-	<Demo.Title>例1: `p`を 20 → @sm:30 → @md:40 に切り替えていく</Demo.Title>
+	<Demo.Title>例1: `p`を 20 → @sm30 → @md40 に切り替えていく</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<Box p={[20, 30, 40]}>
 			<p>コンテンツ</p>
@@ -264,12 +264,12 @@ Lism Propsの一部は、[ブレイクポイント](/docs/design-system/break-po
 これにより出力されるHTMLは以下のようになります。
 
 ```html
-<div class="l--box -p:20 -p@sm: -p@md:" style="--p--sm:var(--s--30);--p--md:var(--s--40)">
+<div class="l--box -p:20 -p@sm -p@md" style="--p--sm:var(--s--30);--p--md:var(--s--40)">
 	...
 </div>
 ```
 <Demo>
-	<Demo.Title>例2: `p`を 20 → @md:40 に切り替える</Demo.Title>
+	<Demo.Title>例2: `p`を 20 → @md40 に切り替える</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<Box p={[20, null, 40]}>
 			<p>コンテンツ</p>
@@ -293,7 +293,7 @@ Lism Propsの一部は、[ブレイクポイント](/docs/design-system/break-po
 これにより出力されるHTMLは以下のようになります。
 
 ```html
-<div class="l--box -p:20 -p@md:" style="--p--md:var(--s--40)">
+<div class="l--box -p:20 -p@md" style="--p--md:var(--s--40)">
 	...
 </div>
 ```

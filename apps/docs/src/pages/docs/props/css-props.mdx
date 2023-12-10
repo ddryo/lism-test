@@ -1,9 +1,9 @@
 import { Box } from '@loos/lism-core';
 import Reference from '@/components/Reference';
 
-# All Props
+# All Proips
 
-[Lismコンポーネント](/docs/components/overview)で受け取れる 主要な Lism Props について紹介します。
+[Lismコンポーネント](/docs/components/overview)で受け取れる 主要な Lism Proips について紹介します。
 
 
 ## Colors
@@ -16,7 +16,7 @@ import Reference from '@/components/Reference';
 |keycolor|`--keycolor`|COLOR|
 
 
-※ `bdc`は[`bd`との併用が必要](/docs/props/border)です。
+※ `bdc`は[`bd`との併用が必要](/docs/proips/border)です。
 
 <Reference>
 [COLOR Tokens](/docs/tokens/color)
@@ -76,7 +76,7 @@ SIZE:contentsize= s,m,l?
 |pb|padding-bottom|SPACE|-|○|
 |px|padding-left, padding-right|SPACE|○|○|
 |py|padding-top, padding-bottom|SPACE|○|○|
-|ps|padding-start|SPACE|-|○|
+|pis|padding-inline-start|SPACE|-|○|
 |pbs|padding-block-start|SPACE|-|○|
 |m|margin|SPACE|`"auto"`|○|
 |ml|margin-left|SPACE|`"auto"`|○|
@@ -85,7 +85,7 @@ SIZE:contentsize= s,m,l?
 |mb|margin-bottom|SPACE|`"auto"`|○|
 |mx|margin-left, margin-right|SPACE|`"auto"`|○|
 |my|margin-top, margin-bottom|SPACE|`"auto"`|○|
-|ms|margin-start|SPACE|○, `"auto"`|○|
+|mis|margin-inline-start|SPACE|○, `"auto"`|○|
 |mbs|margin-block-start|SPACE|○, `"auto"`|○|
 
 <Reference>
@@ -97,13 +97,13 @@ Utility Class:
 	- `-[p|px|py]:[0|5|10|15|20|30|40|50]`
 	- `-p:box`, `-p:box:[s|l]`
 - margins
-	- `-[ms|mbs]:[0|5|10|15|20|30|40|50]`
-	- `-[m|ml|mr|mt|mb|my|mx|ms|mbs]:auto`
+	- `-[mis|mbs]:[0|5|10|15|20|30|40|50]`
+	- `-[m|ml|mr|mt|mb|my|mx|mis|mbs]:auto`
 
 全てBP対応?
 
 <Note>
-論理プロパティは ps, pbs だけでいいかどうかは要検討.
+論理プロパティは pis, pbs だけでいいかどうかは要検討.
 
 - inline-start, block-start だけでいいか。end方向はX,Yとstartの併用で擬似的に指定できる。
 - px,pyをinline,blockとしてもいいかもしれない。
@@ -126,7 +126,7 @@ Utility Class:
 	<Demo.Title>各方向の値をp,mに対してオブジェクトで指定することも可能</Demo.Title>
 	<Demo.Code>
 	```jsx
-	<Box m={{left:20, bottom: 30}}>...</Box>
+	<Box m={{ml:20, mb: 30}}>...</Box>
 	<Box p={{x:30, y: 40}}>...</Box>
 	```
 	</Demo.Code>
@@ -146,7 +146,7 @@ Utility Class:
 |Prop|CSS Property|Token|Utility|BP|
 |---|---|---|---|---|
 |grid.template|grid-template|||○|
-|grid.areas|grid-template-areas||`"lcr"`, `"tcb"`, `"ltr"`|○|
+|grid.areas|grid-template-areas|||○|
 |grid.columns|grid-template-columns|||○|
 |grid.rows|grid-template-rows|||○|
 |gridItem.area|grid-area|||○|
@@ -176,8 +176,8 @@ Utility Class:
 |Prop|CSS Property|Token|Utility|BP|
 |---|---|---|---|---|
 |[flex\|grid].gap|gap|SPACE|○|○|
-|[flex\|grid]rowGap|row-gap|SPACE|---|○|
-|[flex\|grid]columnGap|column-gap|SPACE|---|○|
+|[flex\|grid]rowg|row-gap|SPACE|---|○|
+|[flex\|grid]clmg|column-gap|SPACE|---|○|
 
 {/* <Alert>Flex, Grid で指定できます。</Alert> */}
 
@@ -195,7 +195,7 @@ Utility Class:
 	```jsx
 	<Flex gap={40}>...</Flex>
 	<Grid gap="1rem">...</Grid>
-	<Columns rowGap={[15, 20]} columnGap={[20, 30]}>...</Columns>
+	<Columns rowg={[15, 20]} clmg={[20, 30]}>...</Columns>
 	```
 	</Demo.Code>
 </Demo>

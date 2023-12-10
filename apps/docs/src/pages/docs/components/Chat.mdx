@@ -1,0 +1,85 @@
+import { Chat } from '@loos/lism-core';
+import Image from 'next/image'
+
+# Chat
+
+- `<Chat>`
+- Lismクラス: `.b--chatBubble`
+
+
+## Memo
+
+- `@loos/lism-core` に入れるようなものではないかも..?
+- カラー指定について考える
+
+
+## Import
+
+```js
+import { Chat } from '@loos/lism-core';
+```
+
+{/* ChatBody, ChatIcon */}
+
+## DEMO
+
+<Demo>
+	<Demo.Title>Speak</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Chat name="太郎" icon="/img/onepiece01_luffy.png">
+			<DammyText length="m" />
+		</Chat>
+		<Chat name="太郎" icon="/img/onepiece06_chopper.png" direction='right'>
+			<DammyText />
+			<DammyText length="m" />
+		</Chat>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Chat name="太郎" icon="/img/onepiece01_luffy.png">
+			<DammyText length="m" />
+		</Chat>
+		<Chat name="太郎" icon="/img/onepiece06_chopper.png" direction='right'>
+			<DammyText />
+			<DammyText length="m" />
+		</Chat>
+		```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>Thinking</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Chat type="think" name="太郎" icon="/img/onepiece01_luffy.png">
+			<DammyText length="m" />
+		</Chat>
+		<Chat type="think" name="太郎" icon="/img/onepiece06_chopper.png" direction='right'>
+			<DammyText />
+			<DammyText length="m" />
+		</Chat>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>Box</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Chat type="box" name="太郎" icon="/img/onepiece01_luffy.png">
+			<DammyText length="m" />
+		</Chat>
+		<Chat type="box" name="太郎" icon="/img/onepiece06_chopper.png" direction='right'>
+			<DammyText />
+			<DammyText length="m" />
+		</Chat>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo>

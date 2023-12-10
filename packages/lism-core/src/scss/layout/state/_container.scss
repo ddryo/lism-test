@@ -88,7 +88,7 @@
 		inherits: true;
 	}
 
-	:is(.is--container, [class*='is--conta.is--container:']) {
+	:is(.is--container, [class*='is--container:']) {
 		--size--full: 100cqw; // is--container が配置された時点での 100cqw をセット
 
 		> :is(.alignfull, .is--fullwide) {

@@ -1,0 +1,40 @@
+---
+import Core from '../Core.astro';
+import { uuidv4 } from '../../helper/index.js';
+import { LismProps } from '../types';
+import transformTabitems from './transformTabitems.js';
+
+// import TheTab from './TheTab.astro';}
+// slotsについて: https://docs.astro.build/ja/reference/api-reference/#astroslots
+
+// Propsの定義
+interface Props extends LismProps {
+	uuid?: string | number;
+	defaultIndex?: string | number;
+}
+// propsの取得
+const { lismClass = {}, lismStyle = {}, defaultIndex = 0, uuid, ...props } = Astro.props || {};
+
+// 生成したhtmlを格納する配列
+const tabID = uuid ? uuid : uuidv4();
+
+// 子要素の方から順番に処理されていくので、置換処理で大丈夫そう。
+// 厳密に処理するなら、rehype などでHTMLをパースして処理を行う。
+
+// const tabContentHTML = await Astro.slots.render('default');
+const tabContentHTML = transformTabitems(await Astro.slots.render('default'), tabID, defaultIndex);
+console.log('Astro.slots', Astro.slots);
+---
+
+<Core class='c--tabs' {...props}>
+	<Fragment set:html={tabContentHTML} />
+</Core>
+
+<script>
+	// import setEvent from './setEvent';
+	import setEvent from '@loos/lism-core/src/components/Tabs/setEvent';
+	const tabsAll = document.querySelectorAll('.c--tabs');
+	tabsAll.forEach((tabs) => {
+		setEvent(tabs);
+	});
+</script>

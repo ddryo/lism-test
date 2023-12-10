@@ -15,8 +15,8 @@
 	},
 	"Flex": "",
 	"Cluster": "",
+	"SideFlex": "SideFlex",
 	"Stack": "",
-	"FluidFix": "FluidFix",
 	
 	"--- grid": {
 		"type": "separator",
@@ -25,24 +25,29 @@
 	"Grid": "",
 	"RatioGrid": "RatioGrid",
 	"TileGrid": "TileGrid",
-	"SwitchFix": "SwitchFix",
+	"SwapGrid": "SwapGrid",
 
-	"--- other-layout": {
-		"type": "separator",
-		"title": ""
-	},
 	"Center": "",
 	"Columns": "",
 	"Reel": "",
 	"Layer": "",
 	"FilterLayer": "",
 	"MediaLayer": "",
-	"Frame": "",
 	"Spacer": "",
-	"LinkBox": "",
 	"---after-layout": {
 		"title": "",
 		"type": "separator"
+	},
+	"---States": {
+		"type": "separator",
+		"title": "State Module"
+	},
+	"Flow": "",
+	"Frame": "",
+	"Container": "",
+	"--- other-layout": {
+		"type": "separator",
+		"title": ""
 	},
 	"---Objects": {
 		"type": "separator",
@@ -58,6 +63,7 @@
 	"Button": "",
 	"Badge": "",
 	"Divider": "",
+	"LinkBox": "",
 	"---after-block": {
 		"title": "",
 		"type": "separator"

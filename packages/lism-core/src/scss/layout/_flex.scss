@@ -1,20 +1,56 @@
 @use '../query' as query;
 
-@layer lism-init {
-	// .l--flex {
-	// 	display: flex;
-	// }
-	.l--flex {
-		--fxw: nowrap;
-		--fxd: row;
-		// --gap: 0;
-	}
-}
-.l--flex {
+:is(.l--flex, .l--stack) {
+	--fxw: nowrap;
+	--fxd: row;
 	display: flex !important; // ユーティリティ的な側面もあり、組み合わせ方でレイアウトを変えることもあるので !important 付与
-	flex-wrap: var(--fxw);
-	flex-direction: var(--fxd);
+	flex-flow: var(--fxd) var(--fxw);
 	// gap: var(--gap);
 }
 
-// flex={wrap: direction:}
+.l--stack {
+	--fxd: column;
+}
+
+// .l--flex--ltr {
+// 	--fxd: row;
+// }
+
+.l--flex--rtl {
+	--fxd: row-reverse;
+}
+
+.l--flex--cluster {
+	--item--minW: 1em;
+	--fxw: wrap;
+
+	> * {
+		min-width: var(--item--minW);
+	}
+	:where(&) > .e--delimiter {
+		min-width: unset;
+	}
+}
+
+// point: fxgの比率を 1:でかい数 にして、fix側を広がらないようにする。
+// memo: flex-grow は 変数指定だと挙動が変になる。
+.l--flex--side {
+	--fxw: wrap;
+	--side--w: auto;
+	--main--minW: 50%;
+
+	// &[data-fix='first'] > :first-child,
+	// &[data-fix='last'] > :last-child,
+	:where(&) > .is--side {
+		flex-basis: var(--side--w);
+		flex-grow: 1; // fxg を 0 にすると、折り返されたときに広がらないので 1 にする必要がある
+	}
+
+	// &[data-fix='first'] > :last-child,
+	// &[data-fix='last'] > :first-child,
+	:where(&) > :not(.is--side) {
+		flex-basis: 0;
+		flex-grow: 9999999; // できるだけ fix側を 指定値ピッタリに近づける
+		min-width: min(100%, var(--main--minW)); // このサイズが折り返しポイント
+	}
+}

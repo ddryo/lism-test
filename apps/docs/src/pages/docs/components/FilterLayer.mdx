@@ -1,10 +1,12 @@
-import { Layer, MediaLayer, FilterLayer, Frame } from '@loos/lism-core';
-import Image from "next/image";
+import { Columns, Layer, Media, MediaLayer, FilterLayer, Frame } from '@loos/lism-core';
+// import Image from "next/image";
 // import './css/layer.css'
 
 # FilterLayer
 
 **背景にエフェクト効果を加える**ための、[`<Layer>`](/docs/components/Layer)の拡張モジュール。
+
+`backdrop-filter`の主要なプロパティをオブジェクトで指定できるようになっています。
 
 <Demo>
 	<Demo.Title>対応するHTML構造</Demo.Title>
@@ -17,9 +19,22 @@ import Image from "next/image";
 
 
 ## Props
-- `blur` : ブラー
-- bgc, contrast, brightness,...など
+- `backdropFilter`の個別指定
+	- `blur`,
+	- `contrast`,
+	- `brightness`,
+	- `grayscale`,
+	- `hue-rotate`,
+	- `invert`,
+	- `saturate`,
+	- `sepia`,
+- `backdropFilter` : `css.backdropFilter`に直接値を渡します。filterトークンを指定する時にはこちらを使います。
 - texture?
+
+
+<Alert preset="info">
+backdropFilterの指定がある時、blur, brightnessなどの個別指定は無視されます。
+</Alert>
 
 ## Import
 
@@ -36,18 +51,19 @@ import { FilterLayer } from '@loos/lism-core';
 		背景にブラーをかける
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Stack hasLayer p={20} gap={20}>
+		<Stack pos="relative" p={20} gap={20}>
 			<Text fz="4xl" fw="bold" ta="center">BACKGROUND</Text>
-			<DammyText length="l" />
-			<FilterLayer blur="8px" bgc="rgb(255 255 255 / 50%)" />
+			<DammyText />
+			<FilterLayer blur="3px" brightness="1.1" />
 		</Stack>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx {3}
-		<Box hasLayer p={20}>
-			...
-			<FilterLayer blur="4px" bgc="rgb(255 255 255 / 50%)" />
-		</Box>
+		<Stack pos="relative" p={20} gap={20}>
+			<Text fz="4xl" fw="bold" ta="center">BACKGROUND</Text>
+			<DammyText />
+			<FilterLayer blur="3px" brightness="1.1" />
+		</Stack>
 		```
 	</Demo.Code>
 </Demo>
@@ -55,21 +71,72 @@ import { FilterLayer } from '@loos/lism-core';
 
 <Demo className="">
 	<Demo.Title>
-		`contrast`, `grayscale`で画像の色味を変える
+		画像の色味を変える
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Frame aspect="16/9" c="white">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-			<FilterLayer contrast={1.1} grayscale={0.5}/>
-			<Layer bottom="0" right="0" p={20}>Lorem ipsum text...</Layer>
+		<Columns>
+			<Frame aspect="16/9">
+				<Media src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+				<FilterLayer brightness={1.2} contrast={0.8} grayscale={1}/>
+				<Layer position="bottom right" p='box:s' c="white" fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
+			</Frame>
+			<Frame aspect="16/9">
+				<Media src="/img/demo-img.jpeg" alt="" width="960" height="640" />
+				<FilterLayer contrast="1.2" sepia="25%" />
+				<Layer position="bottom right" p='box:s' c="white" fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
+			</Frame>
+		</Columns>
+		<Frame aspect="16/9">
+			<Media src="/img/demo-img.jpeg" alt="" width="960" height="640" />
+			<FilterLayer ml="auto" invert="1" grayscale="20%" w="50%" />
+			<Layer position="bottom center" p='box:s' c="white" fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
 		</Frame>
 	</Demo.Preview>
 	<Demo.Code>
-		```jsx {3}
-		<Frame aspect="16/9" c="white">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-			<FilterLayer contrast={1.1} grayscale={0.5}/>
-			<Layer bottom="0" right="0" p={20}>Lorem ipsum text...</Layer>
+		```jsx {3,8,13}
+		<Frame aspect="16/9">
+			<Media src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			<FilterLayer brightness={1.2} contrast={0.8} grayscale={1}/>
+			<Layer position="bottom right" p='box:s' c="white" fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
+		</Frame>
+		<Frame aspect="16/9">
+			<Media src="/img/demo-img.jpeg" alt="" width="960" height="640" />
+			<FilterLayer contrast="1.2" sepia="25%" />
+			<Layer position="bottom right" p='box:s' c="white" fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
+		</Frame>
+		<Frame aspect="16/9">
+			<Media src="/img/demo-img.jpeg" alt="" width="960" height="640" />
+			<FilterLayer ml="auto" invert="1" grayscale="20%" w="50%" />
+			<Layer position="bottom center" p='box:s' c="white" fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
+		</Frame>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo className="">
+	<Demo.Title>
+		filterトークン
+	</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Frame aspect="cinema">
+			<Media src="/img/demo-img.jpeg" alt="" width="960" height="640" />
+			<FilterLayer backdropFilter='blur' />
+		</Frame>
+		<Frame aspect="cinema">
+			<Media src="/img/demo-img.jpeg" alt="" width="960" height="640" />
+			<FilterLayer backdropFilter='lighten' />
+		</Frame>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx {3,7}
+		<Frame aspect="cinema">
+			<Media src="/img/demo-img.jpeg" alt="" width="960" height="640" />
+			<FilterLayer backdropFilter='blur' />
+		</Frame>
+		<Frame aspect="cinema">
+			<Media src="/img/demo-img.jpeg" alt="" width="960" height="640" />
+			<FilterLayer backdropFilter='lighten' />
 		</Frame>
 		```
 	</Demo.Code>

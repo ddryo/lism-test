@@ -1,5 +1,26 @@
+@forward './atoms/avatar';
+
+// blocks
 @forward './blocks/divider';
+@forward './blocks/frame';
+@forward './blocks/linkbox';
 
 // components
-@forward './components/Accordion';
-@forward './components//Tabs';
+@forward './components/accordion';
+@forward './components/tabs';
+
+// @use './layout-modules.scss';
+@forward '../../components/Decorator/style.scss';
+// @forward '../../components/Avatar/style.scss';
+@forward '../../components/Badge/style.scss';
+@forward '../../components/Icon/style.scss';
+@forward '../../components/Button/style.scss';
+@forward '../../components/Delimiter/style.scss';
+@forward '../../components/Alert/style.scss';
+@forward '../../components/Note/style.scss';
+@forward '../../components/Chat/style.scss';
+@forward '../../components/Banner/style.scss';
+@forward '../../components/Card/style.scss';
+@forward '../../components/Hero/style.scss';
+@forward '../../components/TermList/style.scss';
+@forward '../../components/NavMenu/style.scss';

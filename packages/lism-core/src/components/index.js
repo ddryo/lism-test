@@ -10,6 +10,7 @@ export { Layouter } from './Layouter';
 export { Lism } from './Lism'; // あとで消す
 export { Text } from './Text';
 export { Media } from './Media';
+export { Link } from './Link';
 export { Component } from './Component';
 
 // Layout

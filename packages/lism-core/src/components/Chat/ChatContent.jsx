@@ -11,10 +11,10 @@ import { Decorator } from '../Decorator';
 
 const DECORATOR_PROPS = {
 	start: {
-		insetInlineEnd: '100%',
+		inset: { ie: '100%' },
 	},
 	end: {
-		insetInlineStart: '100%',
+		inset: { is: '100%' },
 		transform: 'scaleX(-1)',
 	},
 };

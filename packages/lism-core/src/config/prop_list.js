@@ -238,8 +238,18 @@ export const CONTEXT_PROPS = {
 	},
 	// inset={t:'0'},
 	inset: {
-		is: { style: 'insetInlineStart', utils: { '100%': '100', '0%': '0' }, converter: 'space' },
-		ie: { style: 'insetInlineEnd', utils: { '100%': '100', '0%': '0' }, converter: 'space' },
+		is: {
+			style: 'insetInlineStart',
+			utilKey: 'iis',
+			utils: { '100%': '100', '0%': '0' },
+			converter: 'space',
+		},
+		ie: {
+			style: 'insetInlineEnd',
+			utilKey: 'iie',
+			utils: { '100%': '100', '0%': '0' },
+			converter: 'space',
+		},
 		bs: { style: 'insetBlockStart', converter: 'space' },
 		be: { style: 'insetBlockEnd', converter: 'space' },
 	},
@@ -320,5 +330,12 @@ export const CONTEXT_PROPS = {
 		se: { style: 'borderStartEndRadius', utilKey: 'bdsers', ...bdrsSidesProps },
 		es: { style: 'borderEndStartRadius', utilKey: 'bdesrs', ...bdrsSidesProps },
 		ee: { style: 'borderEndEndRadius', utilKey: 'bdeers', ...bdrsSidesProps },
+	},
+
+	css: {
+		objectFit: { style: 1, utilKey: 'obf', utils: 1 },
+		objectPosition: { style: 1, converter: 'filter' },
+		filter: { style: 1, converter: 'filter' },
+		backdropFilter: { style: 1, utilKey: 'bdFilter', presets: ['blur'], converter: 'filter' },
 	},
 };

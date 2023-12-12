@@ -14,12 +14,12 @@ export default {
 	sticky: {
 		boxProps: {
 			as: Grid,
-			gt: `'fix .' / auto 1fr`,
+			gt: 'side:s',
 		},
 		bodyProps: {
 			as: GridItem,
 			// gcs: '1',
-			ga: 'fix',
+			ga: 'side',
 			pos: 'relative',
 			c: 'base',
 			bgc: 'pale',
@@ -29,11 +29,12 @@ export default {
 			// bdc: 'inherit',
 			bdw: '.5em',
 		},
+
 		decoratorCount: 1,
 		decoratorProps: {
 			as: GridItem,
 			// gcs: '1',
-			ga: 'fix',
+			ga: 'side',
 			w: '50%',
 			h: '50%',
 			ml: 'auto',
@@ -48,18 +49,18 @@ export default {
 
 	pipipi: {
 		decoratorCount: 1,
-		boxProps: { as: Grid, gt: 'fix:l' },
+		boxProps: { as: Grid, gt: 'side:l' },
 		bodyProps: { p: 'box:s', pb: 0, lh: 's', mt: 10 },
 		decoratorProps: {
 			// bgc: 'currentColor',
 			as: GridItem,
 			hasSize: true,
 			size: '.5em',
-			ga: 'fix',
+			ga: 'side',
 			variant: 'pipipi',
 		},
 		left: {
-			boxProps: { gt: 'fix:l', ai: 'start' },
+			boxProps: { gt: 'side:l', ai: 'start' },
 			bodyProps: { ta: 'left' },
 			decoratorProps: {
 				bd: 'left',
@@ -68,7 +69,7 @@ export default {
 			},
 		},
 		right: {
-			boxProps: { gt: 'fix:r', ai: 'start' },
+			boxProps: { gt: 'side:r', ai: 'start' },
 			bodyProps: { ta: 'right' },
 			decoratorProps: { m: '1px', bd: 'left', rotate: '45deg', translate: '0% 50%' },
 		},

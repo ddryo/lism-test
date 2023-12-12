@@ -388,6 +388,14 @@
 		inset var(--shadow-length--3) var(--shadow-color);
 	--shadow--i4: inset var(--shadow-length--3) var(--shadow-color--low),
 		inset var(--shadow-length--4) var(--shadow-color);
+
+	/* ------------------------------------------------------------
+	  filter
+	------------------------------------------------------------ */
+	--filter--blur: blur(4px);
+	// --filter--blur--l: blur(8px);
+	--filter--lighten: brightness(1.15);
+	--filter--darken: brightness(0.85);
 }
 
 // ↓ space: これでもわりとしっくりくる...？ 2:.25, 3: 0.375

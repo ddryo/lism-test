@@ -32,12 +32,12 @@
 	overflow: hidden;
 }
 
-// .l--layer__media
-.l--layer--media {
-	> :where(img, video) {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-	}
-}
+// // .l--layer__media
+// .l--layer--media {
+// 	> :where(img, video) {
+// 		width: 100%;
+// 		height: 100%;
+// 		object-fit: cover;
+// 		display: block;
+// 	}
+// }

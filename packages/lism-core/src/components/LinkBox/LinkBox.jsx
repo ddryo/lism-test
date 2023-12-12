@@ -15,6 +15,7 @@ export default function LinkBox({
 	children,
 	...props
 }) {
+	// lismState.push('is--linkbox');
 	lismClass.b = 'b--linkbox';
 
 	// const ref = useRef(null);

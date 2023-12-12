@@ -1,74 +1,109 @@
-.c--tab {
-	--arkb-tab-width: unset;
-	--arkb-tab-min-width: unset;
-	--arkb-tab-list-wrap: nowrap;
-	position: relative;
-
-	// &[data-has-tab-link] {
-	// 	.c--tab__button {
-	// 		transition: none;
-	// 	}
-	// }
+.c--tabs {
+	// position: relative;
+	gap: var(--em--7);
+	--active--c: var(--c--base);
+	--active--bgc: transparent;
 }
 
-.c--tab__list {
+// [data-tab~='vertical'] {
+// 	--gtc: auto 1fr;
+// }
+
+.c--tabList {
 	position: relative;
-	display: flex;
-	justify-content: center;
-	margin: 0;
-	padding: 0;
-	// list-style: none !important;
-
-	// &[data-justify="left"] {
-	// 	justify-content: flex-start;
-	// }
-
-	// &[data-justify="right"] {
-	// 	justify-content: flex-end;
-	// }
 }
 
-.c--tab__button {
+.c--tabList--border {
+	// ovx='auto' の時にmarginネガティブだとアウト
+	// --active--bgc: var(--b100);
 	--bdw: 2px;
-	position: relative;
-	display: block;
-	box-sizing: border-box;
-	padding: var(--s--30);
-	color: inherit;
-	font-size: 13px;
-	line-height: 1;
-	background: none;
-	border: none;
-	// border-bottom: solid 2px transparent;
-	// border-bottom: solid 2px currentColor;
-	transition:
-		background-color 0.25s,
-		color 0.25s;
-	min-width: 10ch;
-
-	&::before {
+	&::after {
 		content: '';
 		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: var(--bdw);
-		background-color: currentColor;
+		inset: 0;
+		display: block;
+		z-index: -1;
+		// flex: 1;
+		// border-bottom: var(--bdw) solid var(--bdc--base);
 	}
 
-	&:hover {
-		outline: none; //マウス操作ではアウトライン非表示
+	// > .c--tab__button {
+	// 	border-bottom: var(--bdw) solid transparent;
+	// }
+
+	> [aria-selected='true'] {
+		border-color: currentColor;
 	}
+}
+.c--tabList--border:where(.l--flex)::after {
+	border-bottom: var(--bdw) solid var(--bdc--base);
+}
+
+:where(.l--flex) > .c--tab__button {
+	border-bottom: var(--bdw) solid transparent;
+}
+
+.c--tabList--border:where(.l--stack)::after {
+	border-inline-end: var(--bdw) solid var(--bdc--base);
+}
+
+:where(.l--stack) > .c--tab__button {
+	border-inline-end: var(--bdw) solid transparent;
+}
+
+.c--tabList--box {
+	--bdw: 1px;
+	--active--bgc: var(--bgc--base);
+	background-color: var(--b200);
+	padding: 0.125em;
+	gap: 0.5em;
+	border-radius: var(--radius--3);
+	> .c--tab__button {
+		border-radius: calc(var(--radius--3) - 0.125em);
+	}
+
+	> [aria-selected='true'] {
+		box-shadow: var(--shadow--1);
+	}
+}
+// .c--tabList--lifted {
+// 	--bdw: 1px;
+// 	// > .c--tab__button {}
+
+// 	> [aria-selected='false'] {
+// 		border-bottom: var(--bdw) solid var(--bdc--base);
+// 	}
+// 	> [aria-selected='true'] {
+// 		border: var(--bdw) solid var(--bdc--base);
+// 		border-bottom: none;
+// 	}
+// 	&::after {
+// 		content: '';
+// 		position: absolute;
+// 		inset: 0;
+// 		display: block;
+// 		z-index: -1;
+// 		// flex: 1;
+// 		border-bottom: var(--bdw) solid var(--bdc--base);
+// 	}
+// }
+
+.c--tab__button {
+	// margin-top: calc(var(--bdw) * -1);
+	// position: relative;
+	// box-sizing: border-box;
+	display: block;
+	padding: var(--em--5) var(--em--10);
+	// transition:
+	// 	background-color 0.25s,
+	// 	color 0.25s;
+	// min-width: 10ch;
 
 	&[aria-selected='true'] {
-		// border-bottom-color: currentColor;
+		color: var(--active--c);
+		background-color: var(--active--bgc);
 	}
-	&[aria-selected='false'] {
-		// border-bottom-color: currentColor;
-		opacity: 0.5;
-		--bdw: 1px;
-		// border-bottom: solid 1px currentColor;
-	}
+	// &[aria-selected='false'] {}
 }
 
 // .arkb-tabBody {
@@ -77,36 +112,27 @@
 // }
 
 .c--tab__panel {
-	position: relative;
+	// position: relative;
 	width: 100%;
-
+	// grid-row: 2 / -1;
+	// grid-column: 1 / -1;
 	&[aria-hidden='true'] {
 		display: none;
 	}
 }
 
-// @import "../../../scss/mixin/media";
+[data-tab~='keep-height'] {
+	// > .c--tab__panel {
+	// 	transform: translateY(0);
+	// 	transition-property: visibility, opacity, transform;
+	// 	transition-duration: 0.3s;
+	// }
 
-.c--tab[data-keep-height='1'] {
-	// 親にgridで子にgrid-rowとgrid-colをそれぞれ1 / -1するともっと簡単かもです？
-	// それだけで重なるはず。
-
-	.c--tab__panels {
-		display: grid;
-	}
-	.c--tab__panel {
-		grid-row: 1 / -1;
-		grid-column: 1 / -1;
-		transform: translateY(0);
-		transition-property: visibility, opacity, transform;
-		transition-duration: 0.3s;
-
-		&[aria-hidden='true'] {
-			display: block;
-			visibility: hidden;
-			opacity: 0;
-			transform: translateY(8px);
-			transition-duration: 0s;
-		}
+	> [aria-hidden='true'] {
+		display: block;
+		visibility: hidden;
+		opacity: 0;
+		// transform: translateY(8px);
+		// transition-duration: 0s;
 	}
 }

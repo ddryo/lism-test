@@ -1,0 +1,28 @@
+---
+import { LismProps } from './types';
+import Layouter from '../Layouter.astro';
+import { getFlexProps, getPlaceProps } from '@loos/lism-core/lib';
+
+// Propsの定義
+interface Props extends LismProps {
+	_flexName?: string;
+}
+
+let { _flexName = 'flex', lismClass = {}, variant, ...props } = Astro.props || {};
+
+if (_flexName) lismClass.l = `l--${_flexName}`;
+if (variant) lismClass.l += ` l--${_flexName}--${variant}`;
+
+// flex 系の props をまとめる
+props = getFlexProps(props);
+props = getPlaceProps(props);
+
+// stack方向 は divider が B になる
+if (props.hasDivider === true && _flexName === 'stack') {
+	props.hasDivider = 'B';
+}
+---
+
+<Layouter lismClass={lismClass} {...props}>
+	<slot />
+</Layouter>

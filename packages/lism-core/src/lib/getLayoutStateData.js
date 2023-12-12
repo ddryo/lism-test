@@ -43,6 +43,8 @@ export function getAllLayoutStateData({
 	lismStyle = {},
 	alignfull,
 	alignwide,
+	isFullWide,
+	isWide,
 	isFlow,
 	flowGap,
 	isContainer,
@@ -50,7 +52,7 @@ export function getAllLayoutStateData({
 	hasGutter,
 	hasLayer,
 	hasDivider,
-	isFrame,
+	// isFrame,
 	//isLinkbox,
 	...props
 }) {
@@ -74,11 +76,11 @@ export function getAllLayoutStateData({
 		Object.assign(lismStyle, style);
 	}
 
-	isFrame && lismState.push('is--frame');
+	// isFrame && lismState.push('is--frame');
 	hasGutter && lismState.push('has--gutter');
 	hasLayer && lismState.push('has--layer');
-	alignfull && lismState.push('alignfull');
-	alignwide && lismState.push('alignwide');
+	(alignfull || isFullWide) && lismState.push('is--fullwide');
+	(alignwide || isWide) && lismState.push('is--wide');
 
 	if (hasDivider === true) {
 		lismState.push('has--divider:B');

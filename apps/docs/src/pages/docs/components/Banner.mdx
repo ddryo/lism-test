@@ -1,4 +1,4 @@
-import { Banner, Flow, Center, Layer, FilterLayer, MediaLayer, Button } from '@loos/lism-core';
+import { Banner, Flow, Center, Layer, FilterLayer, Media, MediaLayer, Button } from '@loos/lism-core';
 import {
 	Book,
 	Cat,
@@ -55,8 +55,8 @@ import { Banner } from '@loos/lism-core';
 
 <Demo>
 	<Demo.Title>16:9のバナーリンク</Demo.Title>
-	<Demo.Preview p={15} maxW="36em">
-		<Banner href="#banner-link" aspect="16/9">
+	<Demo.Preview p={20}>
+		<Banner href="#banner-link" aspect="16/9" maxW="s">
 			<img src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
 		</Banner>
 	</Demo.Preview>
@@ -68,23 +68,27 @@ import { Banner } from '@loos/lism-core';
 		```
 	</Demo.Code>
 </Demo>
+
+
 <Demo>
-	<Demo.Title>`<Layer>`で画像に被せてコンテンツを表示</Demo.Title>
-	<Demo.Preview p={15} maxW="36em">
-		<Banner href="#banner-link" aspect="16/9">
-			<img src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
-			<Layer inset='0' isFlow='s' p='box' c="white" bgc="rgba(0, 0, 0, 0.5)">
-				<Text fz="2xl" fw="bold">16/9</Text>
+	<Demo.Title>`Layer`で画像に被せてコンテンツを表示</Demo.Title>
+	<Demo.Preview p={20}>
+		<Banner href="#banner-link" aspect="16/9"  radius="4">
+			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<FilterLayer bgc="black:40%" blur="2px" />
+			<Layer inset='0' isFlow='s' p='box' c="white">
+				<Text fz="2xl" fw="bold">Banner</Text>
 				<DammyText />
 			</Layer>
 		</Banner>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<Banner href="#banner-link" aspect="16/9">
-			<img src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
-			<Layer inset='0' isFlow='s' p='box' c="white" bgc="rgba(0, 0, 0, 0.5)">
-				<Text fz="2xl" fw="bold">16/9</Text>
+		<Banner href="#banner-link" aspect="16/9"  radius="4">
+			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<FilterLayer bgc="black:40%" blur="2px" />
+			<Layer inset='0' isFlow='s' p='box' c="white">
+				<Text fz="2xl" fw="bold">Banner</Text>
 				<DammyText />
 			</Layer>
 		</Banner>
@@ -92,20 +96,97 @@ import { Banner } from '@loos/lism-core';
 	</Demo.Code>
 </Demo>
 
-### `media`, `filter` の活用
 
-`z-index:-1`にセットされたMediaLayer, FilterLayerが呼び出されます。
+
+<Demo>
+	<Demo.Title>`hover=get:zoom` を使う時は、`MediaLayer`を使ってください。（そうしないとスクロールが発生してしまいます）</Demo.Title>
+	<Demo.Preview p={20}>
+		<Banner href="#banner-link" aspect="16/9" hover="pass" radius="4">
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" hover="get:zoom"/>
+			<FilterLayer bgc="black:20%" blur="4px" hover="get:show"/>
+			<Layer position="center" bgc="black:50%" radius="4" hover="get:show">
+				<Text length="xs" p="box" c="white" className="is--hovTarget">View More</Text>
+			</Layer>
+		</Banner>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Banner href="#banner-link" aspect="16/9" hover="pass" radius="4">
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" hover="get:zoom"/>
+			<FilterLayer bgc="black:20%" blur="4px" hover="get:show"/>
+			<Layer position="center" bgc="black:50%" radius="4" hover="get:show">
+				<Text length="xs" p="box" c="white" className="is--hovTarget">View More</Text>
+			</Layer>
+		</Banner>
+		```
+	</Demo.Code>
+</Demo>
+
+
+<Demo>
+	<Demo.Title>aspect指定せず、画像比率そのままで</Demo.Title>
+	<Demo.Preview p={20}>
+		<Banner href="#banner-link" hover={["up", "shadow", "pass"]} radius="4">
+			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<FilterLayer bgc="black:10%" blur="2px" hover="get:hide" />
+			{/* <FilterLayer bgc="black:40%" blur="2px" hover="get:show"/> */}
+			<Layer position="center" bgc="black:50%" radius="4" hover="get:hide">
+				<Text length="xs" p="box" c="white" className="is--hovTarget">View More</Text>
+			</Layer>
+		</Banner>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Banner href="#banner-link" hover={["target:dark", "target:zoom"]} radius="4">
+			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<FilterLayer bgc="black:40%" blur="2px" />
+			<Layer inset='0' isFlow='s' p='box' c="white">
+				<Text fz="2xl" fw="bold">Banner</Text>
+				<DammyText />
+			</Layer>
+		</Banner>
+		```
+	</Demo.Code>
+</Demo>
+
+
+### aspect指定なし
+
+<Demo>
+	<Demo.Title>画像ファイルそのままの比率で</Demo.Title>
+	<Demo.Preview p={20}>
+		<Banner href="#banner-link" hover={["target:zoom", "target:blur"]}>
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<Layer position="center" bgc="rgba(0,0,0,0.5)" radius="4">
+				<DammyText length="xs" p="box" c="white" />
+			</Layer>
+		</Banner>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Banner href="#banner-link" hover={["target:zoom", "target:blur"]}>
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<Layer position="center" bgc="rgba(0,0,0,0.5)" radius="4">
+				<DammyText length="xs" p="box" c="white" />
+			</Layer>
+		</Banner>
+		```
+	</Demo.Code>
+</Demo>
+
+
+{/* ### `MediaLayer`, `FilterLayer` の活用
 
 <Demo>
 	<Demo.Title>`media`, `filter` の活用</Demo.Title>
-	<Demo.Preview p={15} maxW="36em">
+	<Demo.Preview p={20}>
 		<Banner
 			href="#banner-link"
 			aspect="16/9"
-			hover={["mediaBright", "mediaZoom"]}
-			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640, isTransitionMedia: true}}
-			filter={{ bgc: "rgba(0, 0, 0, 0.5)", blur: "2px" }}
+			hover={["target:bright", "target:zoom"]}
 		>
+			<MediaLayer z={-1} src="/img/demo-img.jpeg" alt="" width="960" height="640"  />
+			<FilterLayer z={-1} bgc="black:40%" blur="2px" />
 			<Center size="cover" c="white" p='box'>
 				<Text fz="2xl" fw="bold">16/9</Text>
 				<DammyText />
@@ -117,26 +198,26 @@ import { Banner } from '@loos/lism-core';
 		<Banner
 			href="#banner-link"
 			aspect="16/9"
-			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640, isTransitionMedia: true}}
-			filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
+			filter={{ bgc: "black:40%" }}
 		>
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width="960" height="640"  />
 			<Center size="cover" c="white" p='box'>
 				...
 			</Center>
 		</Banner>
 		```
 	</Demo.Code>
-</Demo>
+</Demo> */}
 
 
 {/* <Demo>
 	<Demo.Title>LongText スクロールチェック</Demo.Title>
-	<Demo.Preview p={15} maxW="36em">
+	<Demo.Preview p={20}>
 		<Banner
 			href="#banner-link"
 			aspect="16/9"
 			media={{ tag: Image, src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
-			filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
+			filter={{ bgc: "black:40%" }}
 		>
 			<Center size="cover" p={30} c="white">
 				<Text fz="2xl" fw="bold">16/9</Text>
@@ -150,10 +231,10 @@ import { Banner } from '@loos/lism-core';
 
 <Demo>
 	<Demo.Title>test...</Demo.Title>
-	<Demo.Preview p={15} maxW="36em">
+	<Demo.Preview p={20}>
 		<Banner href="#banner-link" aspect="16/9">
 			<img src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
-			<Layer inset='0' isFlow='s' p='box' c="white" bgc="rgba(0, 0, 0, 0.5)">
+			<Layer inset='0' isFlow='s' p='box' c="white" bgc="black:40%">
 			<DammyText length="l" />
 			<DammyText length="l" />
 			<DammyText length="l" />
@@ -162,137 +243,3 @@ import { Banner } from '@loos/lism-core';
 	</Demo.Preview>
 </Demo> */}
 
-
-<Demo>
-	<Demo.Title>その他の例</Demo.Title>
-	<Demo.Preview p={15} maxW="36em">
-		<Banner
-			href="#banner-link"
-			aspect="16/9"
-			c="white"
-			p={30}
-			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
-			filter={{
-				bgc: "rgba(0, 0, 0, 0.4)",
-				blur: "4px",
-				contrast: "1.4",
-				sepia: "50%",
-			}}
-		>
-			<DammyText />
-			<Layer position="bottom right" p={20} fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
-		</Banner>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Banner
-			href="#banner-link"
-			aspect="16/9"
-			c="white"
-			p={30}
-			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
-			filter={{
-				bgc: "rgba(0, 0, 0, 0.4)",
-				blur: "4px",
-				contrast: "1.4",
-				sepia: "50%",
-			}}
-		>
-			<DammyText />
-			<Layer position="bottom right" p={20} fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
-		</Banner>
-		```
-	</Demo.Code>
-</Demo>
-
-<Demo>
-	<Demo.Title>その他の例</Demo.Title>
-	<Demo.Preview p={15} maxW="36em">
-		<Banner
-			aspect="16/9"
-			c="white"
-			radius="4"
-			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
-			filter={{ bgc: "rgba(0, 0, 0, 0.4)", blur: "4px" }}
-		>
-			<Stack gap="30" p={30} h="100%">
-				<h3>Title</h3>
-				<DammyText length="m" />
-				<Button className="is--end" href="#button-test" radius="99" variant="outline" keycolor="currentColor">Button</Button>
-			</Stack>
-		</Banner>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Banner
-			aspect="16/9"
-			c="white"
-			radius="4"
-			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
-			filter={{ bgc: "rgba(0, 0, 0, 0.4)", blur: "4px" }}
-		>
-			<Stack gap="30" p={30} h="100%">
-				<h3>Title</h3>
-				<DammyText length="m" />
-				<Button className="is--end" href="#button-test" radius="99" variant="outline" keycolor="currentColor" hover="fade">Button</Button>
-			</Stack>
-		</Banner>
-		```
-	</Demo.Code>
-</Demo>
-
-
-
-### aspect指定なし
-
-<Demo>
-	<Demo.Title>コンテンツに合わせる</Demo.Title>
-	<Demo.Preview p={15} maxW="36em">
-		<Banner
-			href="#banner-link"
-			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
-			filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
-		>
-			<Flow p="box:l" c="white">
-				<DammyText length="xs" />
-				<DammyText length="m" />
-			</Flow>
-		</Banner>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Banner
-			href="#banner-link"
-			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
-			filter={{ bgc: "rgba(0, 0, 0, 0.5)" }}
-		>
-			<Flow p="box:l" c="white">
-				<DammyText length="xs" />
-				<DammyText length="m" />
-			</Flow>
-		</Banner>
-		```
-	</Demo.Code>
-</Demo>
-
-<Demo>
-	<Demo.Title>画像ファイルそのままの比率で</Demo.Title>
-	<Demo.Preview p={15} maxW="36em">
-		<Banner href="#banner-link">
-			<img src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
-			<Layer inset="0" bgc="rgba(0,0,0,0.25)">
-				<DammyText length="m" p="box:l" c="white" />
-			</Layer>
-		</Banner>
-	</Demo.Preview>
-	<Demo.Code>
-		```jsx
-		<Banner href="#banner-link">
-			<img src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
-			<Layer inset="0" bgc="rgba(0,0,0,0.25)">
-				<DammyText length="m" p="box:l" c="white" />
-			</Layer>
-		</Banner>
-		```
-	</Demo.Code>
-</Demo>

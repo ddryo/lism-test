@@ -1,4 +1,4 @@
-import { Layer, MediaLayer, FilterLayer, Frame, Flow, Center } from '@loos/lism-core';
+import { Layer, MediaLayer, FilterLayer, Frame, Media, Center } from '@loos/lism-core';
 // import './css/layer.css'
 import Image from "next/image";
 
@@ -21,14 +21,22 @@ import Image from "next/image";
 
 ## Props
 
-- `z`: `z-index`を指定できます。
-- `tag`: メディアのHTMLタグを指定できます。デフォルトは`<img>`です。
-- `...props` : `tag`,`z`以外のpropsはメディア用データとして扱われます. （`src`, `alt` `width`, `height` など）
+{/* - `z`: `z-index`を指定できます。 */}
+- `media`: メディア用のHTMLタグ、またはコンポーネントを指定できます。デフォルトは`'img'`です。
+- 以下のメディア用Attrsは自動でメディア側へ振り分けられます。
+	- `src`, `width`, `height`, `alt`, `loading`, `decoding`
+	- `loop`, `muted`, `controls`, `autoplay`, `playsinline`, `poster`
+	- `hover`
+	- `objectFit`
+	- `objectPosition`
+- `mediaProps`: `src`等の自動で振り分けされる属性以外もmediaに対して何か指定したい場合は、`mediaProps`にオブジェクトで指定してください。
 
-<Alert preset="info">
+ただし、`children`でメディアを渡す場合、これらは全て無視されます。
+
+{/* <Alert preset="info">
 `<MediaLayer><img ... /></MediaLayer>` のように子要素(`children`)にそのままメディアを渡すこともできます。  
-この時、`<MediaLayer>`に指定するpropsは全て`<Layer>`に渡り、`tag`は無視されます。
-</Alert>
+この時、`<MediaLayer>`に指定するpropsは全て`<Layer>`に渡り、`media`は無視されます。
+</Alert> */}
 
 
 ## Import
@@ -40,68 +48,66 @@ import { MediaLayer } from '@loos/lism-core';
 
 ## DEMO
 
+`MediaLayer`に直接メディアデータを渡す場合、自動でobject-fitに`cover`が指定されます。
 
 <Demo>
 	<Demo.Title>
 		`MediaLayer`に画像用のpropsを指定する
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Box hasLayer h="200px">
+		<Frame h="200px">
 			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-		</Box>
+		</Frame>
 	</Demo.Preview>
 	<Demo.Code>
-```jsx
-<Box hasLayer h="200px">
-	<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-</Box>
-```
+		```jsx
+		<Frame h="200px">
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+		</Frame>
+		```
 	</Demo.Code>
 </Demo>
 
 
 ### `children`でメディアを渡す
 
+`children`でメディアを渡す場合は、object-fitの自動付与はされません。
+
 <Demo>
 	<Demo.Title>
 		例
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Box hasLayer aspect="2/1" bgc="#fff" shadow='2'>
+		<Frame aspect="cinema" bgc="#fff" shadow='2'>
 			<MediaLayer p={10}>
-				<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} objectFit="cover" />
 			</MediaLayer>
-		</Box>
+		</Frame>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx {3}
-		<Box hasLayer aspect="2/1" bgc="#fff" shadow='2'>
+		<Frame aspect="cinema" bgc="#fff" shadow='2'>
 			<MediaLayer p={10}>
-				<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} objectFit="cover" />
 			</MediaLayer>
-		</Box>
+		</Frame>
 		```
 	</Demo.Code>
 </Demo>
-
 
 <Demo>
 	<Demo.Title>
 		`next/image`を使う例
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Frame aspect="2/1">
-			<MediaLayer>
-				<Image src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-			</MediaLayer>
+		<Frame aspect="cinema">
+			<MediaLayer media={Image} src="/img/demo-img.jpeg" alt="" width='960' height='640' />
 		</Frame>
 	</Demo.Preview>
 	<Demo.Code>
-		```jsx {3}
-		<Frame aspect="2/1">
-			<MediaLayer>
-				<Image src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-			</MediaLayer>
+		```jsx {2}
+		<Frame aspect="cinema">
+			<MediaLayer media={Image} src="/img/demo-img.jpeg" alt="" width='960' height='640' />
 		</Frame>
 		```
 	</Demo.Code>
@@ -115,19 +121,19 @@ import { MediaLayer } from '@loos/lism-core';
 		MediaLayerを`z="-1"`でコンテンツの下へ
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Frame aspect="4/3">
+		<Frame aspect="cinema">
 			<MediaLayer z="-1" src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-			<FilterLayer z="-1" bgc="black" opacity=".4" />
+			<FilterLayer z="-1" bgc="black:.4" />
 			<Center size="cover" c="white" gap="20" p="box">
-				<DammyText length="l" />
+				<DammyText length="xs" />
 			</Center>
 		</Frame>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Frame aspect="4/3">
+<Frame aspect="cinema">
 	<MediaLayer z="-1" src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-	<FilterLayer z="-1" bgc="black" opacity=".4" />
+	<FilterLayer z="-1" bgc="black:.4" />
 	<Center size="cover" c="white" gap="20" p="box">
 		<p>...</p>
 	</Center>
@@ -143,9 +149,9 @@ import { MediaLayer } from '@loos/lism-core';
 		コンテンツもLayerで囲む
 	</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Frame aspect="4/3">
+		<Frame aspect="cinema">
 			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-			<FilterLayer bgc="black" opacity=".4" />
+			<FilterLayer bgc="black:.4" />
 			<Layer inset="0">
 				<Center size="cover" c="white" gap="20" p="box">
 					<DammyText length="l" />
@@ -154,17 +160,17 @@ import { MediaLayer } from '@loos/lism-core';
 		</Frame>
 	</Demo.Preview>
 	<Demo.Code>
-```jsx
-<Frame aspect="4/3">
-	<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-	<FilterLayer bgc="black" opacity=".4" />
-	<Layer inset="0">
-		<Center size="cover" c="white" gap="20" p="box">
-			<DammyText length="l" />
-		</Center>
-	</Layer>
-</Frame>
-```
+		```jsx
+		<Frame aspect="cinema">
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			<FilterLayer bgc="black:.4" />
+			<Layer inset="0">
+				<Center size="cover" c="white" gap="20" p="box">
+					<DammyText length="l" />
+				</Center>
+			</Layer>
+		</Frame>
+		```
 	</Demo.Code>
 </Demo>
 

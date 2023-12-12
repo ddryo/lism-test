@@ -62,6 +62,7 @@ class LismPropsData {
 			// isItem,
 			// hasLayer,
 			// hasDivider,
+			isObjectFit,
 			lismVar,
 			provide,
 			consume,
@@ -434,11 +435,14 @@ class LismPropsData {
 	setHoverProps(hoverData) {
 		if (!hoverData) return;
 
+		console.log('hoverData', hoverData);
+
 		// 配列のときは中身を再帰処理
 		if (Array.isArray(hoverData)) {
 			hoverData.forEach((_hov) => {
 				this.setHoverProps(_hov);
 			});
+			return;
 		}
 
 		if (hoverData === '-' || hoverData === true) {

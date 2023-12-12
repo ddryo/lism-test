@@ -1,5 +1,5 @@
 'use client';
-import { Layouter, Text, Box, Tab, TabItem, Spacer } from '@loos/lism-core';
+import { Layouter, Text, Box, Tabs, TabItem, TabList, TabBtn, TabPanel, Spacer } from '@loos/lism-core';
 import DammyText from '@/components/DammyText';
 // import { FolderSimple } from '@phosphor-icons/react';
 // import { ThumbsUp, SmileyXEyes } from '@phosphor-icons/react';
@@ -10,8 +10,9 @@ export default function ContainerTest() {
 	return (
 		<Layouter isFlow hasGutter py={50} isConstrained='s' alignfull id='demo-wrapper'>
 			<p>test...</p>
-			<p>Tab → TabItem</p>
-			<Tab>
+
+			<p>Tabs → TabItem</p>
+			<Tabs type='border'>
 				<TabItem label='title1'>
 					<p>index:0</p>
 					<DammyText />
@@ -20,9 +21,36 @@ export default function ContainerTest() {
 					<p>index:1</p>
 					<DammyText length='l' />
 				</TabItem>
-			</Tab>
+			</Tabs>
+			<Tabs type='border' isVertical>
+				<TabItem label='title1'>
+					<p>index:0</p>
+					<DammyText />
+				</TabItem>
+				<TabItem label='title2'>
+					<p>index:1</p>
+					<DammyText length='l' />
+				</TabItem>
+			</Tabs>
 			<Spacer h={40} bg='stripe' />
-			<Tab keepHeight defaultIndex={1}>
+			<Tabs
+				type='border'
+				ji='center'
+				// jc='center'
+				// listProps={{ w: '100', jc: 'center' }}
+			>
+				<TabItem label='title1'>
+					<p>index:0</p>
+					{/* <DammyText /> */}
+				</TabItem>
+				<TabItem label='title2'>
+					<p>index:1</p>
+					<DammyText length='l' />
+				</TabItem>
+			</Tabs>
+
+			<Spacer h={40} bg='stripe' />
+			<Tabs type='lifted' keepHeight defaultIndex={1}>
 				<TabItem label='title1' isFlow='s'>
 					<p>index:0</p>
 					<DammyText />
@@ -32,10 +60,58 @@ export default function ContainerTest() {
 					<DammyText />
 					<DammyText length='l' />
 				</TabItem>
-			</Tab>
+			</Tabs>
+			<Spacer h={40} bg='stripe' />
+			<Tabs type='box' keepHeight defaultIndex={1} ji='c'>
+				<TabItem label='title1' isFlow='s'>
+					<p>index:0</p>
+					<DammyText />
+				</TabItem>
+				<TabItem label='title2' isFlow='s'>
+					<p>index:1</p>
+					<DammyText />
+					<DammyText length='l' />
+				</TabItem>
+			</Tabs>
 			<Spacer h={40} bg='stripe' />
 
-			<p>Tabs → TabItem</p>
+			<Tabs type='box' isVertical keepHeight defaultIndex={1}>
+				<TabItem label='title1' isFlow='s'>
+					<p>index:0</p>
+					<DammyText />
+				</TabItem>
+				<TabItem label='title2' isFlow='s'>
+					<p>index:1</p>
+					<DammyText />
+					<DammyText length='l' />
+				</TabItem>
+			</Tabs>
+
+			<Tabs type='box' isVertical defaultIndex={1} ai='s'>
+				<TabItem label='title1' isFlow='s'>
+					<p>index:0</p>
+					<DammyText />
+				</TabItem>
+				<TabItem label='title2' isFlow='s'>
+					<p>index:1</p>
+					<DammyText />
+					<DammyText length='l' />
+				</TabItem>
+			</Tabs>
+
+			<p>TabList, TabBtn, TabPanel を手動配置</p>
+			{/* <Tabs>
+				<TabList variant='border'>
+					<TabBtn isActive>a</TabBtn>
+					<TabBtn>a</TabBtn>
+				</TabList>
+				<TabPanel isActive>
+					<DammyText />
+				</TabPanel>
+				<TabPanel>
+					<DammyText />
+				</TabPanel>
+			</Tabs> */}
 		</Layouter>
 	);
 }

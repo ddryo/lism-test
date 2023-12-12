@@ -119,7 +119,7 @@ export default function ContainerTest() {
 			<Spacer h={40} />
 			<h2>balloon</h2>
 
-			{/* boxProps: { grid: { gd: 'fix:l', ai: 'center' } },
+			{/* boxProps: { grid: { gd: 'side:l', ai: 'center' } },
 			bodyProps: { mr: 'auto' },
 			decoratorProps: {
 				rotate: '45deg',
@@ -131,7 +131,7 @@ export default function ContainerTest() {
 				name='balloon'
 				variant='left'
 				as={Grid}
-				gt='fix:l'
+				gt='side:l'
 				ai='center'
 				// c='base'
 				provide={{ bdc: 'currentColor', bgc: 'base' }}
@@ -145,7 +145,7 @@ export default function ContainerTest() {
 					size='0.875em'
 					bd
 					consume='bdc bgc'
-					ga='fix'
+					ga='side'
 					rotate='45deg'
 					translate='50%'
 					l='1px'
@@ -157,7 +157,7 @@ export default function ContainerTest() {
 				name='balloon'
 				variant='right'
 				as={Grid}
-				gt='fix:r'
+				gt='side:r'
 				ai='center' // start, end
 				// c='base'
 				provide={{ bdc: 'currentColor', bgc: 'pale' }}
@@ -171,7 +171,7 @@ export default function ContainerTest() {
 					size='0.875em'
 					bd
 					consume='bdc bgc'
-					ga='fix'
+					ga='side'
 					rotate='-45deg'
 					translate='-50%'
 					r='1px'
@@ -184,7 +184,7 @@ export default function ContainerTest() {
 				name='balloon'
 				variant='top'
 				as={Grid}
-				gt='fix:t'
+				// gt='side:t'
 				ji='center' // start, end
 				// c='base'
 				provide={{ bdc: 'base', bgc: 'pale', bdw: '2px' }}
@@ -198,7 +198,7 @@ export default function ContainerTest() {
 					size='0.875em'
 					bd
 					consume='bdc bgc bdw'
-					ga='fix'
+					grs='1'
 					rotate='45deg'
 					translate='0 50%'
 					t='var(--bdw)'
@@ -211,7 +211,7 @@ export default function ContainerTest() {
 				name='balloon'
 				variant='bottom'
 				as={Grid}
-				gt='fix:b'
+				// gt='side:b'
 				ji='center' // start, end
 				// c='base'
 				provide={{ bdc: 'base', bgc: 'pale', bdw: '2px' }}
@@ -225,7 +225,7 @@ export default function ContainerTest() {
 					size='0.875em'
 					bd
 					consume='bdc bgc bdw'
-					ga='fix'
+					grs='2'
 					rotate='45deg'
 					translate='0 -50%'
 					b='var(--bdw)'

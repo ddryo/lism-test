@@ -1,12 +1,12 @@
-:where(.b--linkbox) {
-	display: block;
-}
-
 // e-- かな？
 .e--stretchedLink {
 	position: absolute;
 	inset: 0;
 	z-index: 0;
+}
+
+:where(.b--linkbox) {
+	display: block;
 }
 
 .b--linkbox {

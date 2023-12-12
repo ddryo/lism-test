@@ -7,6 +7,10 @@
 // export * from '@loos/lism-core/components/index.js';
 export * from '@loos/lism-core';
 
+export { default as Core } from './Core.astro';
+export { default as Layouter } from './Layouter.astro';
+export * from './Flex';
+
 // export { default as Columns } from './Columns';
 export { Tabs, TabItem } from './Tab';
 export { Banner } from './Banner';
@@ -18,9 +22,6 @@ export { MediaLayer } from './MediaLayer';
 
 // console.log('next!');
 
-export { default as Core } from './Core.astro';
-export { default as Layouter } from './Layouter.astro';
-export { default as Flex } from './Flex.astro';
 export { default as Accordion } from './Accordion/Accordion.astro';
 export { default as AccordionHeader } from './Accordion/AccordionHeader.astro';
 export { default as AccordionBody } from './Accordion/AccordionBody.astro';

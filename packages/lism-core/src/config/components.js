@@ -14,7 +14,6 @@ export const defaultProps = {
 	Button: {
 		radius: '1',
 	},
-	Banner: {},
 	Card: {
 		shadow: '2',
 		radius: '2',

@@ -36,21 +36,23 @@ import { SmileyXEyes } from "@phosphor-icons/react";
 </Tabs>
 
 <Alert icon={SmileyXEyes} keycolor="blue">
-本当は`@lism/core`にしたいのですが、すでに`@lism`がnpm上で取得されてしまっていたので、譲渡申請が通らなければ変更予定です...。
+本当は`@lism/core`にしたいのですが、すでに`@lism`がnpm上で取得されてしまっていたので、仮のパッケージ名で公開しています。
+{/* 譲渡申請が通らなければ変更予定です...。 */}
 </Alert>
 
 
 ## CSSの読み込み
 
+Reset CSSも含めたCSSファイルを用意していますので、基本的にはそれを読み込んでご利用ください。
+
 <Tabs>
 	<TabItem label='import' p='box'>
-	reset CSSも含めたCSSファイルを用意していますので、基本的にはそれをglobalスタイルとして読み込んでご利用ください。
+	例えば、Next.jsであれば、`_app.js`や`layout.js`でglobalスタイルとして読み込んでください。
 
 	```js
 	import '@loos/lism-core/css/all.css';
 	```
 
-	例えば、Next.jsであれば`_app.js`や`layout.js`で読み込んでください。
 	</TabItem>
 
 	<TabItem label='CDN' p='box'>
@@ -85,12 +87,16 @@ import { Box, Text, ... } from '@loos/lism-core';
 
 ## 特定の環境に合わせた コンポーネントの読み込み
 
-### Next.js
+### Next.js (App Router)
 
-Next.js の **app ルーティング**を使用している場合、`<Accordion>`や`<Tab>`を使うには`"use client"`の記述が必要になります。
+{/* Next.js の **app ルーティング**を使用している場合、`<Accordion>`や`<Tab>`を使うには`"use client"`の記述が必要になりますが、 */}
 
-`@loos/lism-next`パッケージを追加すると、それを省略することができます。  
-<small>（`"use client"`が必要なものはすでに記述された状態でimportできるようになります。）</small>
+<Alert preset="info">
+`@loos/lism-next`パッケージを追加すると、Lism コンポーネントに関する`"use client"`の記述を省略することができるようになります。
+</Alert>
+
+<small>（`"use client"`が必要なものにはすでに記述された状態でimportできるようになります。）</small>
+
 
 ```bash filename="Add package"
 npm i @loos/lism-next
@@ -108,24 +114,27 @@ module.exports = nextConfig;
 ```
 
 
-これらの準備により、`<Accordion>`などの`"use client"`が必要なコンポーネントも簡単に利用できるようになります。（Boxなどの普通のコンポーネントも、`@loos/lism-next`から同時にimportできます。）
+これらの準備により、`<Tabs>`などの`"use client"`が必要なコンポーネントも簡単に利用できるようになります。  
+（Boxなどの普通のコンポーネントも、`@loos/lism-next`から同時にimportできます。）
 
 ```js
-import { Box, Accordion, AccordionHeader, AccordionBody } from '@loos/lism-next';
+import { Box, Tabs, TabItem } from '@loos/lism-next';
 
-<Accordion>
-	<AccordionHeader>accordion heading...</AccordionHeader>
-	<AccordionBody>
-		<Box>content...</Box>
-	</AccordionBody>
-</Accordion>
+<Tabs>
+	<TabItem label='tab1'>
+		<Box>...</Box>
+	</TabItem>
+	<TabItem label='tab2'>
+		<Box>...</Box>
+	</TabItem>
+</Tabs>
 ```
 
 
 
 ### Astro
 
-一部のコンポーネントに対してAstroでの利用に合わせて調整したものを配布しています。<MemoBadge>準備中</MemoBadge>
+`.jsx`ファイルではなく、`.astro`ファイルでもコンポーネントを配布しています。<MemoBadge>準備中</MemoBadge>
 
 ```bash
 npm i @loos/lism-astro
@@ -135,9 +144,9 @@ npm i @loos/lism-astro
 import { Box, ... } from '@loos/lism-astro';
 ```
 
-Astroで利用方法が変わるコンポーネントについては、各コンポーネントの解説ページで個別に説明していく予定です。
+一部のコンポーネントは、ReactとAstroで利用方法が変わるで注意してください。（各コンポーネントの解説ページで個別に説明していく予定です。）
 
-
+{/* 
 ## lism.config のセッティング
 
 Lism Propsのカスタマイズなどを行うためのファイルです。  
@@ -145,4 +154,4 @@ Lism Propsのカスタマイズなどを行うためのファイルです。
 
 ```js filename="lism.config.js"
 ...
-```
+``` */}

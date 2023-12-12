@@ -6,5 +6,6 @@ export { default as getLismProps } from './getLismProps';
 export { default as getMaybeUtilValue } from './getMaybeUtilValue';
 export { default as getMaybeCssVar } from './getMaybeCssVar';
 
-export { getTheStateData, getAllLayoutStateData } from './getLayoutStateData';
+export * from './getLayoutStateData';
 export * from './getContextProps';
+export * from './separateProps';

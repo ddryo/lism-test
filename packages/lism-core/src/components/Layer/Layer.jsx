@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Lism } from '../Lism';
+import { Layouter } from '../Layouter';
 
 // .l--layer[data-layer="media|filter|content"] ?
 export default function Layer({
@@ -28,7 +28,7 @@ export default function Layer({
 
 	// const Tag = tag || 'div';
 
-	return <Lism lismClass={lismClass} {...layerProps} {...props} />;
+	return <Layouter lismClass={lismClass} {...layerProps} {...props} />;
 }
 
 function getLayerPositionProps(position) {

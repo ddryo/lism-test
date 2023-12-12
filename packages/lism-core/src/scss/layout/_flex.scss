@@ -3,9 +3,17 @@
 :is(.l--flex, .l--stack) {
 	--fxw: nowrap;
 	--fxd: row;
+	--item--minW: auto;
 	display: flex !important; // ユーティリティ的な側面もあり、組み合わせ方でレイアウトを変えることもあるので !important 付与
 	flex-flow: var(--fxd) var(--fxw);
 	// gap: var(--gap);
+}
+
+.l--flex > * {
+	min-width: var(--item--minW);
+}
+:where(.l--flex) > .e--delimiter {
+	min-width: unset;
 }
 
 .l--stack {
@@ -23,13 +31,6 @@
 .l--flex--cluster {
 	--item--minW: 1em;
 	--fxw: wrap;
-
-	> * {
-		min-width: var(--item--minW);
-	}
-	:where(&) > .e--delimiter {
-		min-width: unset;
-	}
 }
 
 // point: fxgの比率を 1:でかい数 にして、fix側を広がらないようにする。

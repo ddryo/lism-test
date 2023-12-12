@@ -11,5 +11,6 @@ export interface LismStyle {
 export interface LismProps {
 	lismClass?: LismClass;
 	lismStyle?: LismStyle;
+	variant?: string;
 	[key: string]: any;
 }

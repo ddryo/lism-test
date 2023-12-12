@@ -44,6 +44,7 @@ export function getFlexProps({
 	gap,
 	rowg,
 	clmg,
+	// hasDi{vider,
 	// flex = {},
 	...props
 }) {
@@ -59,6 +60,15 @@ export function getFlexProps({
 	if (!isEmptyObj(flexProps)) {
 		props.flex = Object.assign({}, props.flex || {}, flexProps);
 	}
+
+	// // stack方向 は divider が B になる
+	// if (hasDivider === true) {
+	// 	if (fxd === 'column') {
+	// 		hasDivider = 'B';
+	// 	} else {
+	// 		hasDivider = 'I';
+	// 	}
+	// }
 
 	return props;
 }
@@ -105,6 +115,19 @@ export function getItemProps({ as, js, ps, order, ...props }) {
 
 	if (!isEmptyObj(itemProps)) {
 		props.item = Object.assign({}, props.item || {}, itemProps);
+	}
+
+	return props;
+}
+
+export function getMediaProps({ objectFit, objectPosition, ...props }) {
+	const mediaProps = filterEmptyObj({
+		objectFit,
+		objectPosition,
+	});
+
+	if (!isEmptyObj(mediaProps)) {
+		props.css = Object.assign({}, props.css || {}, mediaProps);
 	}
 
 	return props;

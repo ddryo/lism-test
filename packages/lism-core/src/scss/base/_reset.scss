@@ -125,13 +125,13 @@
 	label,
 	select,
 	summary,
-	[type='button'],
-	[type='reset'],
-	[type='submit'],
+	// [type='button'],
+	// [type='reset'],
+	// [type='submit'],
 	[type='radio'],
 	[type='checkbox'],
 	[role='button'],
-	[role='option'],
+	// [role='option'],
 	[aria-controls] {
 		cursor: pointer;
 	}

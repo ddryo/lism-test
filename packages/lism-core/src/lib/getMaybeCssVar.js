@@ -19,6 +19,8 @@ export default function getMaybeCssVar(value, converter, propName = '') {
 			return getMaybeShadowVar(value);
 		case 'fz':
 			return getMaybeFzVar(value);
+		case 'filter':
+			return getMaybeFilterVar(value);
 		// case 'bg':
 		// 	return getMaybeBgVar(value, propName);
 		default:
@@ -120,6 +122,17 @@ export function getMaybeFzVar(value) {
 		return 'var(--fz--' + value + ')';
 	}
 	return value;
+}
+
+export function getMaybeFilterVar(filter) {
+	if (isTokenValue('filter', filter)) {
+		return `var(--filter--${filter})`;
+	}
+	// else if (isPresetValue('size', size)) {
+	// 	return `var(--size--${size})`;
+	// }
+
+	return filter;
 }
 
 // export function getMaybeGradientVar(value) {

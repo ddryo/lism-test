@@ -25,15 +25,14 @@ import { SwapGrid, GridItem } from '@loos/lism-core';
 
 {/* `none`や`modal` */}
 
-## 使用時の注意点
-
-<Alert preset="info">
+{/* ## 使用時の注意点 */}
+{/* <Alert preset="info">
 子要素の1つに `grid-area:side`(`.-ga:side`) の指定が必須です.
 </Alert>
 
-サイド要素に対して`<GridItem ga="side">`を使うか、`gridItem={{ga:"side"}}`を使用してください。
+サイド要素に対して`<GridItem isSide>`を使うか、`gridItem={{ga:"side"}}`を使用してください。 */}
 
-{/* ( memo → ブロック化する時は、`ga="side"`付きの`<GridItem>`になっている専用の子ブロックを用意する。) */}
+{/* ( memo → ブロック化する時は、`isSide`付きの`<GridItem>`になっている専用の子ブロックを用意する。) */}
 {/* Memo: grid-areaで場所を指定する理由: → DOM自体の順番を自由にできるため。（大きいサイドバー要素を左に固定するけどDOMの順番はあとに回したい、ということがある。） */}
 
 
@@ -45,6 +44,11 @@ import { SwapGrid } from '@loos/lism-core';
 
 
 ## DEMO
+
+side要素には、`.is--side`クラスの指定が必須です。  
+（`<GridItem>` に `isSide` を指定すると、`.is--side` が付与されます。）
+
+
 <Demo>
 	<Demo.Title>
 		`side="start bottom"` (初期値)
@@ -52,7 +56,7 @@ import { SwapGrid } from '@loos/lism-core';
 	<Demo.Preview resize p={20}>
 		<SwapGrid side="start bottom">
 			<GridItem bd='guide'>Fluid area</GridItem>
-			<GridItem ga="side" bd>SideItem</GridItem>
+			<GridItem isSide bd>SideItem</GridItem>
 		</SwapGrid>
 	</Demo.Preview>
 	<Demo.Codes>
@@ -60,7 +64,7 @@ import { SwapGrid } from '@loos/lism-core';
 			```jsx
 			<SwapGrid side="start bottom">
 				<GridItem>Fluid area</GridItem>
-				<GridItem ga="side">SideItem</GridItem>
+				<GridItem isSide>SideItem</GridItem>
 			</SwapGrid>
 			```
 		</Demo.Code>
@@ -83,7 +87,7 @@ import { SwapGrid } from '@loos/lism-core';
 	<Demo.Preview resize p={20}>
 		<SwapGrid side="end bottom" sideW='16em' gap={20}>
 			<GridItem bd='guide'>Fluid area</GridItem>
-			<GridItem ga="side" bd>SideItem</GridItem>
+			<GridItem isSide bd>SideItem</GridItem>
 		</SwapGrid>
 	</Demo.Preview>
 	<Demo.Codes>
@@ -91,7 +95,7 @@ import { SwapGrid } from '@loos/lism-core';
 			```jsx
 			<SwapGrid side="end bottom" sideW='16em' gap={20}>
 				<GridItem>Fluid area</GridItem>
-				<GridItem ga="side">SideItem</GridItem>
+				<GridItem isSide>SideItem</GridItem>
 			</SwapGrid>
 			```
 		</Demo.Code>
@@ -118,7 +122,7 @@ export const SwapGridDemos = () => {
 					<Demo.Preview resize p={20}>
 						<SwapGrid side={datSide} gap={20}>
 							<GridItem bd='guide'>Fluid area</GridItem>
-							<GridItem ga="side" bd>SideItem</GridItem>
+							<GridItem isSide bd>SideItem</GridItem>
 						</SwapGrid>
 					</Demo.Preview>
 				</Demo>
@@ -143,14 +147,14 @@ export const SwapGridDemos = () => {
 	<Demo.Preview resize p={20}>
 		<SwapGrid side="end top" bp="sm">
 			<GridItem bd='guide'>Fluid area</GridItem>
-			<GridItem ga="side" bd>SideItem</GridItem>
+			<GridItem isSide bd>SideItem</GridItem>
 		</SwapGrid>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<SwapGrid side="end top" bp="sm">
 			<GridItem>Fluid area</GridItem>
-			<GridItem ga="side">SideItem</GridItem>
+			<GridItem isSide>SideItem</GridItem>
 		</SwapGrid>
 		```
 	</Demo.Code>
@@ -161,14 +165,14 @@ export const SwapGridDemos = () => {
 	<Demo.Preview resize p={20}>
 		<SwapGrid side="end top" bp="md">
 			<GridItem bd='guide'>Fluid area</GridItem>
-			<GridItem ga="side" bd>SideItem</GridItem>
+			<GridItem isSide bd>SideItem</GridItem>
 		</SwapGrid>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<SwapGrid side="end top" bp="md">
 			<GridItem>Fluid area</GridItem>
-			<GridItem ga="side">SideItem</GridItem>
+			<GridItem isSide>SideItem</GridItem>
 		</SwapGrid>
 		```
 	</Demo.Code>
@@ -180,14 +184,14 @@ export const SwapGridDemos = () => {
 	<Demo.Preview resize p={20}>
 		<SwapGrid side="end top" bp="lg">
 			<GridItem bd='guide'>Fluid area</GridItem>
-			<GridItem ga="side">SideItem</GridItem>
+			<GridItem isSide>SideItem</GridItem>
 		</SwapGrid>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<SwapGrid side="end top" bp="lg">
 			<GridItem bd='guide'>Fluid area</GridItem>
-			<GridItem ga="side">SideItem</GridItem>
+			<GridItem isSide>SideItem</GridItem>
 		</SwapGrid>
 		```
 	</Demo.Code>

@@ -12,11 +12,9 @@
 
 // objects
 @forward './objects/index';
-// @use './layout-modules.scss';
-@use './core-modules.scss';
-@use './block-modules.scss';
 
-@use './utility.scss';
+// utility
+@use './utility/index';
 
 // あとで切り分ける
 @use './rtl.scss';

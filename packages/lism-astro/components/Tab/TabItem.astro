@@ -1,8 +1,9 @@
 ---
+import Layouter from '../Layouter.astro';
 export interface Props {
 	label: string | number;
 }
-const { label = '' } = Astro.props;
+const { label = '', ...props } = Astro.props;
 ---
 
 <lism-placeholder-tabitem>
@@ -10,7 +11,7 @@ const { label = '' } = Astro.props;
 		{Astro.slots.has('label') && <slot name='label' />}
 		{!Astro.slots.has('label') && label}
 	</lism-placeholder-tablabel>
-	<lism-placeholder-tabpanel>
+	<Layouter tag='lism-placeholder-tabpanel' lismClass={{ c: 'c--tab__panel' }} {...props}>
 		<slot />
-	</lism-placeholder-tabpanel>
+	</Layouter>
 </lism-placeholder-tabitem>

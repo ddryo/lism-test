@@ -17,10 +17,12 @@ item側: row/column だけ BP対応。（areaは親側でエリアを組み替�
 // grid-template (l--grid で定義している)
 // --------------------
 // [dir='rtl'] での上書きを変数でできるので grid ではなく、gt でやっている。
-.-gt\:fix\:l { --gt: 'fix nofix' / auto 1fr; }
-.-gt\:fix\:r { --gt: 'nofix fix' / 1fr auto; }
-.-gt\:fix\:t { --gt: 'fix' auto 'nofix' 1fr; }
-.-gt\:fix\:b { --gt: 'nofix' 1fr 'fix' auto; }
+.-gt\:side\:s, .-gt\:side\:l { --gt: 'side .' / auto 1fr; }
+.-gt\:side\:e, .-gt\:side\:r { --gt: '. side' / 1fr auto; }
+
+// centerが広がる
+// .-gt\:3row { --gt: 'start' 'center' 1fr 'end'}
+// .-gt\:3col { --gt: 'start center end' / auto 1fr auto; }
 
 // --------------------
 // grid-template-areas
@@ -29,12 +31,8 @@ item側: row/column だけ BP対応。（areaは親側でエリアを組み替�
 [class*="-gta:"]{ grid-template-areas: var(--gta); }
 
 // grid--ltr で ga:s, ga:e を 反転させてもいいかも
-.-gta\:3col, .-gta\:3col\:ltr {
-	--gta: 'start center end';
-}
-.-gta\:3row {
-	--gta: 'start' 'center' 'end';
-}
+.-gta\:3col, .-gta\:3col\:ltr {--gta: 'start center end';}
+.-gta\:3row {--gta: 'start' 'center' 'end';}
 
 // .-gtc\: { grid-template-columns: var(--gtc); }
 // .-gtr\: { grid-template-rows: var(--gtr); }
@@ -61,9 +59,11 @@ item側: row/column だけ BP対応。（areaは親側でエリアを組み替�
 .-gc\:{ grid-column: var(--gc) }
 .-gr\:{ grid-row: var(--gr) }
 
-.-ga\:side{ grid-area: side; }
-.-ga\:fix{ grid-area: fix; }
-// .-ga\:nf{ grid-area: nofix; }
+:where(.l--grid) > .is--side,
+.-ga\:side {
+	grid-area: side;
+}
+// .-ga\:fix{ grid-area: fix; }
 // .-ga\:l{ grid-area: left; }
 // .-ga\:r{ grid-area: right; }
 .-ga\:s{ grid-area: start; }

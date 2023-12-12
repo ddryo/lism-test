@@ -15,23 +15,18 @@
 }
 
 [class*='-hov:'] {
-	transition: filter, opacity, box-shadow, translate, scale, border-color, color, background-color;
-	transition-duration: var(--hov--duration);
-
-	// mediaへのホバー効果
-	.l--layer__media {
-		transition: filter, scale;
-		transition-duration: var(--hov--duration);
-	}
+	// transition: filter, opacity, box-shadow, translate, scale, border-color, color, background-color;
+	// transition-duration: var(--hov--duration);
+	transition: all var(--hov--duration);
 }
-
+// ------------------------------------------------------------
 // 値指定
+// ------------------------------------------------------------
 // .-hov\:duration\:{}
 .-hov\:c\::hover {
 	color: var(--hov--c) !important;
 }
 
-// [class*='-hov:bgc:']:hover,
 .-hov\:bgc\::hover {
 	background-color: var(--hov--bgc) !important;
 }
@@ -40,6 +35,9 @@
 }
 .-hov\:shadow\::hover {
 	box-shadow: var(--hov--shadow) !important;
+}
+.-hov\:filter\::hover {
+	filter: var(--hov--filter) !important;
 }
 
 // .-hov\:bgc\:b100 {
@@ -51,16 +49,9 @@
 // .-hov\:bgc\:b900 {
 // 	--hov--bgc: var(--b900);
 // }
-
+// ------------------------------------------------------------
 // プリセット
-
-.-hov\:dark:hover {
-	filter: brightness(0.8) contrast(1.2); //grayscale(5%);
-}
-// .-hov\:bright:hover {
-// 	filter: brightness(1.2) contrast(1.2); //grayscale(5%);
-// }
-
+// ------------------------------------------------------------
 .-hov\:fade:hover {
 	opacity: 0.75;
 }
@@ -71,55 +62,80 @@
 .-hov\:up:hover {
 	translate: 0 -3px;
 }
-.-hov\:scale:hover {
-	scale: 1.05;
-}
-
-// .-hov\:reverse {
-// 	--rev--c: var(--hov--c, var(--bgc)); // .-hov:c: あれば優先
-// 	--rev--bgc: var(--hov--bgc, var(--c));
-// }
 
 .-hov\:reverse:hover {
 	background-color: var(--rev--bgc) !important;
 	color: var(--rev--c) !important;
 }
-
-// .is--fadeInItemとセットで使う
-// hov:fadeIn
+// .-hov\:dark:hover {
+// 	filter: brightness(0.8) contrast(1.2); //grayscale(5%);
+// }
+// .-hov\:bright:hover {
+// 	filter: brightness(1.2) contrast(1.2); //grayscale(5%);
+// }
+// .-hov\:scale:hover {
+// 	scale: 1.05;
+// }
 
 // ------------------------------------------------------------
 // hov:media:
-// .is--transitionMedia とセットで使う
 // ------------------------------------------------------------
 
-[class*='-hov:media'] {
-	--mediaFilter: unset;
-	--mediaScale: unset;
+// pass-get/ privide-get/throw-get/parent-child/
+.-hov\:pass {
+	--is-hover: 0;
+	&:hover {
+		--is-hover: 1;
+	}
 }
+
+// .-hov\:get\:show
+.-hov\:get\:show {
+	opacity: 0;
+	visibility: hidden;
+
+	.-hov\:pass:hover & {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+.-hov\:get\:hide {
+	opacity: calc(1 - 1 * var(--is-hover, 0));
+}
+.-hov\:get\:zoom {
+	scale: calc(1 + 0.1 * var(--is-hover, 0));
+}
+
+// [class*='-hov:media'] {
+// 	--hov--filter: unset;
+// 	--hov--scale: unset;
+// 	--hov--translate: unset;
+// }
 
 // .-hov:media:XXX で変化可能なメディア
-.is--transitionMedia {
-	// .-hov:media:用
-	scale: var(--mediaScale);
-	filter: var(--mediaFilter);
-	transition: filter, scale;
-	transition-duration: var(--hov--duration);
-}
+// .is--transitionMedia,
+// .is--hovMedia {
+// 	// .-hov:media:用
+// 	scale: var(--hov--scale);
+// 	filter: var(--hov--filter);
+// 	transition: all var(--hov--duration);
+// }
 
-.-hov\:mediaZoom:hover {
-	--mediaScale: 1.1;
-}
+// [data-hov-media="media:zoom media:bright"]
+
+// .-hov\:media\:zoom:hover {
+// 	--hov--scale: 1.1;
+// }
 // ※ filter どうしの同時使用はできないことに注意
-.-hov\:mediaDark:hover {
-	--mediaFilter: brightness(0.9);
-}
-.-hov\:mediaBright:hover {
-	--mediaFilter: brightness(1.1);
-}
-.-hov\:mediaBlur:hover {
-	--mediaFilter: blur(4px);
-}
+// .-hov\:media\:dark:hover {
+// 	--hov--filter: brightness(0.85);
+// }
+// .-hov\:media\:bright:hover {
+// 	--hov--filter: brightness(1.15);
+// }
+// .-hov\:target\:blur:hover {
+// 	--hov--filter: blur(4px);
+// }
 
 // ; transform: trf
 // hov: {c, bgc, bdc, radius, shadow, transform?, filter?}

@@ -16,22 +16,27 @@ const FILTERS = [
 
 export default function FilterLayer({
 	//texture,
-	z,
+	css,
+	backdropFilter,
 	...props
 }) {
-	const lismStyle = {};
+	// const lismStyle = {};
 	const backdropFilters = [];
 
-	FILTERS.forEach((filterName) => {
-		if (props[filterName]) {
-			backdropFilters.push(`${filterName}(${props[filterName]})`);
-			delete props[filterName];
-		}
-	});
+	if (backdropFilter) {
+		css = Object.assign({}, css, { backdropFilter });
+	} else {
+		FILTERS.forEach((filterName) => {
+			if (props[filterName]) {
+				backdropFilters.push(`${filterName}(${props[filterName]})`);
+				delete props[filterName];
+			}
+		});
 
-	if (backdropFilters.length > 0) {
-		lismStyle.backdropFilter = backdropFilters.join(' ');
+		if (backdropFilters.length > 0) {
+			css = Object.assign({}, css, { backdropFilter: backdropFilters.join(' ') });
+		}
 	}
 
-	return <Layer variant='filter' z={z} lismStyle={lismStyle} {...props} />;
+	return <Layer variant='filter' css={css} {...props} />;
 }

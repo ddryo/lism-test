@@ -1,6 +1,10 @@
 import { Layouter } from '../Layouter';
 
-export default function Frame({ ...props }) {
-	// lismState.l = 'l--frame';
-	return <Layouter isFrame {...props} />;
+export default function Frame({ lismClass = {}, ...props }) {
+	lismClass.b = 'b--frame';
+	return <Layouter lismClass={lismClass} isObjectFit {...props} />;
 }
+
+// export default function Frame({ ...props }) {
+// 	return <Layouter isFrame isObjectFit {...props} />;
+// }

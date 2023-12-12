@@ -1,25 +1,12 @@
-// import {useContext} from 'react';
-import { Layouter } from '../Layouter';
+// import { Core } from '../Core';
 
 // Note: <Tabs>側でループして色々処理される。
-export default function TabItem({ panelId, isActive, label, children, ...attrs }) {
+export default function TabItem(props) {
 	// const { tabId, activeIndex } = useContext(TabContext);
 
 	// label: ボタンのテキスト
 	// children: パネルの中身
-	return (
-		<Layouter
-			lismClass='c--tab__panel'
-			id={panelId}
-			role='tabpanel'
-			label={label}
-			aria-hidden={isActive ? 'false' : 'true'}
-			{...attrs}
-		>
-			{children}
-		</Layouter>
-	);
-	// return index === activeIndex ? <>{children}</> : null;
+	return <div {...props} />;
 }
 
 // bkup:

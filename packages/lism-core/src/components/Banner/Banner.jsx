@@ -1,50 +1,15 @@
-// import React from 'react';
 import { Frame } from '../Frame';
-import { LinkBox } from '../LinkBox';
-import { FilterLayer } from '../Layer';
-// import { Layer, MediaLayer } from '../Layer';
-import { getMediaLayer } from '../helper';
-// import { Box } from '../Box';
+import { Link } from '../Link';
 
-import { defaultProps } from '../../config/components';
-const _default = defaultProps?.Banner || {};
-
-export default function Banner({
-	lismClass = {},
-	// lismStyle = {},
-	children,
-	...props
-}) {
-	props = Object.assign({}, _default, props);
-	let { variant, media, filter, ...attrs } = props;
-
+export default function Banner({ lismClass = {}, variant, ...props }) {
 	lismClass.c = 'c--banner';
 	if (variant) lismClass.c += ` c--banner--${variant}`;
 
-	const theProps = { lismClass, ...attrs };
-
-	let Contents = (
-		<>
-			{getMediaLayer(media, -1)}
-			{filter && <FilterLayer z={-1} {...filter} />}
-			{children}
-		</>
-	);
-
 	// hrefあり
-	if (attrs.href) {
-		return (
-			<LinkBox tag='a' as={Frame} {...theProps}>
-				{Contents}
-			</LinkBox>
-		);
+	if (props.href) {
+		return <Link as={Frame} lismClass={lismClass} {...props} />;
 	}
 
 	// ratio指定なし、href指定なし
-	return <Frame {...theProps}>{Contents}</Frame>;
+	return <Frame lismClass={lismClass} {...props} />;
 }
-
-// export function BannerContent({ lismClass = {}, ...props }) {
-// 	lismClass.c = 'c--banner__content';
-// 	return <Layer lismClass={lismClass} p='box' {...props} inset='0' z='1' />;
-// }

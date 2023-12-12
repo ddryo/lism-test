@@ -120,7 +120,7 @@ bright?
 
 ## オブジェクト形式でより柔軟にhover時の挙動を指定できます
 
-`c`,`bgc`,`bdc`,`shadow` を受け取れます。
+`c`,`bgc`,`bdc`,`shadow`, `filter` を受け取れます。
 
 <Demo>
 	<Demo.Title>`bgc`を`"main"`, `c`を`"white"`に変化させる</Demo.Title>
@@ -154,7 +154,7 @@ bright?
 			href="#link"
 			p="box"
 			bd={{ c:"base" }}
-			hover={{ bgc:"b100", bdc:"b700"}}
+			hover={{ bgc:"b100", bdc:"b700", filter: "blur(2px)" }}
 		>
 			<Text>LinkBox.</Text>
 			<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
@@ -246,7 +246,7 @@ bright?
 			hover={["mediaZoom", "mediaBlur"]}
 		>
 			<MediaLayer>
-				<Media as={Image} isTransitionMedia src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				<Media as={Image} isHovTarget src="/img/demo-img.jpeg" alt="" width={960} height={640} />
 			</MediaLayer>
 			<FilterLayer bgc="rgba(0, 0, 0, 0.4)" />
 			<Layer inset="0" c="white" p="box:l">
@@ -262,7 +262,7 @@ bright?
 		hover={["mediaZoom", "mediaBlur"]}
 	>
 		<MediaLayer>
-			<Media as={Image} isTransitionMedia src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+			<Media as={Image} isHovTarget src="/img/demo-img.jpeg" alt="" width={960} height={640} />
 		</MediaLayer>
 		<FilterLayer bgc="rgba(0, 0, 0, 0.4)" />
 		<Layer inset="0" c="white" p="box:l">

@@ -8,7 +8,6 @@
 		"type": "separator",
 		"title": "Layout Module"
 	},
-	"Box": "",
 	"--- flex": {
 		"type": "separator",
 		"title": ""
@@ -26,25 +25,20 @@
 	"RatioGrid": "RatioGrid",
 	"TileGrid": "TileGrid",
 	"SwapGrid": "SwapGrid",
-
+	"---after-grid": {
+		"title": "",
+		"type": "separator"
+	},
 	"Center": "",
 	"Columns": "",
 	"Reel": "",
 	"Layer": "",
 	"FilterLayer": "",
 	"MediaLayer": "",
-	"Spacer": "",
 	"---after-layout": {
 		"title": "",
 		"type": "separator"
 	},
-	"---States": {
-		"type": "separator",
-		"title": "State Module"
-	},
-	"Flow": "",
-	"Frame": "",
-	"Container": "",
 	"--- other-layout": {
 		"type": "separator",
 		"title": ""
@@ -56,20 +50,25 @@
 	"Avatar": "",
 	"Icon": "",
 	"Delimiter": "",
+	"StretchedLink": "StretchedLink",
 	"---after-atom": {
 		"title": "",
 		"type": "separator"
 	},
-	"Button": "",
-	"Badge": "",
+	"Box": "",
+	"Container": "",
 	"Divider": "",
-	"LinkBox": "",
+	"Frame": "",
+	"LinkBox": "LinkBox",
+	"Spacer": "",
 	"---after-block": {
 		"title": "",
 		"type": "separator"
 	},
 	"Accordion": "",
 	"Alert": "",
+	"Button": "",
+	"Badge": "",
 	"Note": "",
 	"Banner": "",
 	"Card": "",
@@ -78,7 +77,6 @@
 	"TermList": "",
 	"NavMenu": "",
 	"Hero": "",
-
 	"---after-component": {
 		"title": "",
 		"type": "separator"

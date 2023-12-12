@@ -1,5 +1,6 @@
 ---
 import Core from '../Core.astro';
+import { Flex } from '../Flex';
 import { uuidv4 } from '../../helper/index.js';
 import { LismProps } from '../types';
 import transformTabitems from './transformTabitems.js';
@@ -13,7 +14,15 @@ interface Props extends LismProps {
 	defaultIndex?: string | number;
 }
 // propsの取得
-const { lismClass = {}, lismStyle = {}, defaultIndex = 0, uuid, ...props } = Astro.props || {};
+const {
+	lismClass = {},
+	lismStyle = {},
+	defaultIndex = 0,
+	uuid,
+	tabListProps = {},
+	tabPanelsProps = {},
+	...props
+} = Astro.props || {};
 
 // 生成したhtmlを格納する配列
 const tabID = uuid ? uuid : uuidv4();
@@ -22,12 +31,22 @@ const tabID = uuid ? uuid : uuidv4();
 // 厳密に処理するなら、rehype などでHTMLをパースして処理を行う。
 
 // const tabContentHTML = await Astro.slots.render('default');
-const tabContentHTML = transformTabitems(await Astro.slots.render('default'), tabID, defaultIndex);
-console.log('Astro.slots', Astro.slots);
+const { items, panels } = transformTabitems(
+	await Astro.slots.render('default'),
+	tabID,
+	defaultIndex
+);
+
+lismClass.c = 'c--tabs';
 ---
 
-<Core class='c--tabs' {...props}>
-	<Fragment set:html={tabContentHTML} />
+<Core lismClass={lismClass} {...props}>
+	<Flex lismClass={{ c: 'c--tab__list' }} jc='s' {...tabListProps} role='tablist'>
+		<Fragment set:html={items} />
+	</Flex>
+	<Core lismClass={{ c: 'c--tab__panels' }} {...tabPanelsProps}>
+		<Fragment set:html={panels} />
+	</Core>
 </Core>
 
 <script>

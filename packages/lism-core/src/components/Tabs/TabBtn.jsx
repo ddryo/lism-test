@@ -1,31 +1,21 @@
-import React from 'react';
+// import React from 'react';
 import { Core } from '../Core';
-// import { TabContext } from './context';
 
-// Tabs, TabList, TabBtn, TabPanel, TabPanels
-//
-export default function Tabs({
-	lismClass = {},
-	children,
-	// customTabId,
-	// defaultIndex,
-	// keepHeight,
-	isActive,
-	index, //controlId,
-	...props
-}) {
-	lismClass.c = 'c--tab';
+export default function TabBtn({ lismClass = {}, isActive, controlId, ...props }) {
+	lismClass.c = 'c--tab__button';
 
 	return (
-		<button
+		<Core
+			tag='button'
 			role='tab'
-			className='c--tab__button'
-			aria-selected={isActive ? 'true' : 'false'}
-			aria-controls={index}
-			{...props}
+			lismClass={lismClass}
+			className='btn--reset'
 			// onClick={() => setActiveIndex(index)}
-		>
-			{children}
-		</button>
+			aria-selected={isActive ? 'true' : 'false'}
+			aria-controls={controlId}
+			fz='s'
+			lh='xs'
+			{...props}
+		/>
 	);
 }

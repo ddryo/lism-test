@@ -59,6 +59,7 @@ export default {
 		'b900',
 		// 'b950',
 	],
+	filter: ['blur', 'blur:s', 'blur:l', 'darken', 'lighten'],
 };
 
 // ユーティリティ化しないけど、変数を用意しておくもの

@@ -5,3 +5,11 @@
 @forward './table';
 @forward './list';
 @forward './others';
+
+// field--rest ?
+.btn--reset {
+	color: inherit;
+	background: none;
+	border: none;
+	font: inherit;
+}

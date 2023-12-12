@@ -62,7 +62,7 @@ export default {
 
 	ga: {
 		side: 'side',
-		fix: 'fix',
+		// fix: 'fix',
 		// nofix: 'nf',
 		start: 's',
 		center: 'c',
@@ -143,4 +143,5 @@ export default {
 	// whs: { nowrap: 'nw' },
 	// ovw: { anywhere: 'any' },
 	// lis: { none: 'n' },
+	objectFit: { cover: 'cv', contain: 'cn' },
 };

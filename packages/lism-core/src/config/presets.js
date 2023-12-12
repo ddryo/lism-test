@@ -44,11 +44,11 @@ export default {
 
 	bg: ['glass', 'stripe', 'grid'],
 	z: ['-1', '0', '1'],
-	aspect: ['16/9', '4/3', '3/2', '2/1', '1/1', 'golden', 'silver', 'bronze', 'ogp'],
+	aspect: ['16/9', '4/3', '3/2', '1/1', 'golden', 'silver', 'bronze', 'ogp', 'cinema'], //'2/1',
 
 	// fx: ['1'],
 	// gd: ['fix:l', 'fix:r', 'fix:t', 'fix:b'],
-	gt: ['fix:l', 'fix:r', 'fix:t', 'fix:b'],
+	gt: ['side:l', 'side:r', 'side:s', 'side:e', '3row', '3col'],
 	gta: ['3col', '3row', '3col:ltr'],
 	gc: ['s2'],
 	gcs: ['1', '2', '3'],

@@ -1,4 +1,5 @@
-import { Container, Badge, Cluster, Icon, Center, FluidFix } from '@loos/lism-core';
+import {  Badge, Cluster, Icon, Center } from '@loos/lism-core';
+import prestIcons from '@loos/lism-core/components/Icon/presets/data';
 import {
 	Smiley,
 	Horse,
@@ -7,53 +8,42 @@ import {
 	WarningCircle,
 } from "@phosphor-icons/react";
 
-
+export const PrestIcons = () => {
+	return <table>
+		<thead>
+			<tr>
+				<th>name</th><th>Icon</th>
+			</tr>
+		</thead>
+		<tbody>
+			{Object.keys(prestIcons).map((iconName) => {
+				return (
+					<tr>
+						<td><code>"{iconName}"</code></td>
+						<td><Icon name={iconName} size="1.25em" /></td>
+					</tr>
+				);
+			})}
+		</tbody>
+	</table>;
+}
 
 # Icon
 
 アイコン要素を出力するためのコンポーネント。
-{/* 
-- `<Icon>`
-	- Lismクラス: `.e--icon`
-- `<Icon isInline>`: テキストの中にアイコンをインライン要素として挿入するためのコンポーネント。
-	- Lismクラス: `.e--Icon isInline` */}
-
-<Demo>
-	<Demo.Title>対応するHTML構造</Demo.Title>
-	<Demo.Code>
-	```jsx
-	<svg class="e--icon">...</svg>
-	<svg class="e--icon e--icon--inline">...</svg>
-
-	or
-
-	<span class="e--icon"><svg>...</svg></span>
-	<span class="e--icon e--icon--inline"><svg>...</svg></span>
-	```
-	</Demo.Code>
-</Demo>
-
 
 ## Props
 
-- `icon`: 出力したいアイコンの種類を指定できます。**Reactコンポーネントの関数名を渡す**か、**文字列**を指定できます。
-- `size`: アイコンのサイズを指定できます。初期値は`1em`になっています。
-- `label`: `aria-label`として出力したい文字列を指定できます。
-- `isInline`: 指定すると、`.e--icon--inline`クラスも出力されます。（`.e--icon`の Modifierクラス ）
-- `scale` アイコンの scaleを指定できます。
 
-### 補足説明
-
-- `icon`に文字列を渡した場合、以下の2パターンの挙動に分かれます。
-	1. プリセット定義済みの文字列 → 準備済みのアイコンの呼び出しを行います。（数は少ないですが、追加のパッケージをインストールせずにアイコンを呼び出せます。）
-		- ※ プリセットアイコンには[Phosphor Icons](https://phosphoricons.com/)を使用しています。
-	2. その他の文字列 → `data-icon`にその文字列が出力され、CSSと併用してアイコンの表示を行うことができます。  
-		- デフォルトでは、`"triangle"`のみサポートされています。
-- `icon`にコンポーネントの指定があれば、`size`に指定した値が`width`, `height`として渡されます。それ以外の場合は`--size`として出力されます。
-- `label`の指定がある場合、`role="img"`が出力され、ない場合は`aria-hidden="true"`が出力されます。
-
-{/* ## 補足事項
-- fillがcurrentColorになっているアイコンのみ、色を変えられる。 */}
+| プロパティ | 説明 |
+|---|---|
+| `as` | 使用したい外部のアイコンコンポーネントを指定できます。 |
+| `name`| プリセットアイコン名と一致した時はそのアイコンを呼び出し、一致しない場合は`data-icon`属性に指定されたアイコン名を出力します。 |
+| `isInline` | 指定すると、`.e--icon--inline`クラスも同時に出力されます。 |
+| `size` | プリセットアイコンを呼び出す場合、`width`, `height`として出力されます。 `as`でコンポーネントを指定している場合Lism Props ではなくコンポーネントに渡されます。それ以外は、Lism Propsとして処理され、css変数で出力されます。|
+| `scale` <PropBadge type="cssvar">--scale</PropBadge>| アイコンの scale を指定できます。css変数で出力されます。 |
+| `label` <PropBadge type="attr">aria-label</PropBadge>| `aria-label`として出力します。指定があれば`role="img"`が同時に出力され、指定がない場合は`aria-hidden="true"`が出力されます。 |
+| `iconProps`| `as`で指定したコンポーネントに直接データを渡すことができます。`size`以外prop名がLism Propsと被ってしまっている場合に活用してください。 |
 
 
 ## Import
@@ -65,157 +55,161 @@ import { Icon } from '@loos/lism-core';
 
 ## DEMO
 
-### アイコン用のコンポーネントを利用する方法
+### コンポーネント化されたsvgアイコンを利用する方法
 
-有名なアイコン用のパッケージを利用する場合など。
+`@phosphor-icons/react`などのパッケージを利用する方法を見ていきます。
 
-<Demo>
-	<Demo.Title>外部パッケージのコンポーネントを`icon`に指定する</Demo.Title>
-	<Demo.Preview resize p={20}>
-		<Icon icon={Smiley} weight="thin" size="3em" lismClass={{b:'aaa'}}/>
-	</Demo.Preview>
-	<Demo.Code>
+ここでは、以下のように`Smiley`というアイコンコンポーネントをすでにインポートしているとします。
+
 ```jsx
 import { Smiley } from "@phosphor-icons/react";
-
-<Icon icon={Smiley} weight="thin" size="3em" />
 ```
+
+<Demo>
+	<Demo.Title>コンポーネントを`as`に指定する</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Icon as={Smiley} weight="thin" size="3em" />
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Icon as={Smiley} weight="thin" size="3em" />
+		```
 	</Demo.Code>
 </Demo>
 
-※ `weight="thin"`は、`@phosphor-icons`側で利用できるプロパティです。
+`iconProps`を利用することで、確実に`as`に渡したコンポーネントにデータを渡すことができます。
 
+<Demo>
+	<Demo.Title>コンポーネントを`as`に指定する</Demo.Title>
+	<Demo.Preview resize p={20}>
+		<Icon as={Smiley} iconProps={{ weight:"thin", size:"3em" }} c="blue" />
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		<Icon as={Smiley} iconProps={{ weight:"thin", size:"3em" }} c="blue" />
+		```
+	</Demo.Code>
+</Demo>
+
+{/* ※ `weight="thin"`は、`@phosphor-icons`側で利用できるプロパティです。 */}
 
 <Demo>
 	<Demo.Title>アイコンを`children`に渡す</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Icon size="3em">
-			<Smiley weight="thin" />
+		<Icon c="blue">
+			<Smiley weight="thin" size="3em" />
 		</Icon>
 	</Demo.Preview>
 	<Demo.Code>
-```jsx
-import { Smiley } from "@phosphor-icons/react";
-
-<Icon>
-	<Smiley weight="thin" size="3em" />
-</Icon>
-```
+		```jsx
+		<Icon c="blue">
+			<Smiley weight="thin" size="3em" />
+		</Icon>
+		```
 	</Demo.Code>
 </Demo>
 
 
-### svgタグをそのまま利用する
+### svgタグをそのまま利用する方法
 
 <Demo>
-	<Demo.Title>`svg`を子要素へ</Demo.Title>
+	<Demo.Title>`svg`を`children`に渡す</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Icon>
-			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="3em" height="3em">
-				<polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " />
+		<Icon label="Phosphor Icons のロゴ">
+			<svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" fill="currentColor" viewBox="0 0 256 256">
+				<path d="M144,24H64a8,8,0,0,0-8,8V160a80.09,80.09,0,0,0,80,80,8,8,0,0,0,8-8V168a72,72,0,0,0,0-144ZM72,62.54,122.32,152H72Zm56,66.92L77.68,40H128ZM72.51,168H128v55.5A64.14,64.14,0,0,1,72.51,168ZM144,152V40a56,56,0,0,1,0,112Z">
+				</path>
 			</svg>
 		</Icon>
 	</Demo.Preview>
 	<Demo.Code>
-```jsx
-<Icon>
-	<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="3em" height="3em">
-		<polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " />
-	</svg>
-</Icon>
-```
+		```jsx
+		<Icon label="Phosphor Icons のロゴ">
+			<svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" fill="currentColor" viewBox="0 0 256 256">
+				<path d="M144,24H64a8,8,0,0,0-8,8V160a80.09,80.09,0,0,0,80,80,8,8,0,0,0,8-8V168a72,72,0,0,0,0-144ZM72,62.54,122.32,152H72Zm56,66.92L77.68,40H128ZM72.51,168H128v55.5A64.14,64.14,0,0,1,72.51,168ZM144,152V40a56,56,0,0,1,0,112Z">
+				</path>
+			</svg>
+		</Icon>
+		```
 	</Demo.Code>
 </Demo>
 
-svgをそのまま利用するなら、普通にsvgにクラスを指定してもらうのもいいと思います。
 
 <Demo>
-	<Demo.Title>`svg`にクラス指定</Demo.Title>
+	<Demo.Title>`svg`に直接`e--icon`クラスを指定</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<svg className="e--icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="3em" height="3em">
-			<polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " />
+		<svg className="e--icon" xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" fill="currentColor" viewBox="0 0 256 256">
+			<path d="M144,24H64a8,8,0,0,0-8,8V160a80.09,80.09,0,0,0,80,80,8,8,0,0,0,8-8V168a72,72,0,0,0,0-144ZM72,62.54,122.32,152H72Zm56,66.92L77.68,40H128ZM72.51,168H128v55.5A64.14,64.14,0,0,1,72.51,168ZM144,152V40a56,56,0,0,1,0,112Z"></path>
 		</svg>
 	</Demo.Preview>
 	<Demo.Code>
-	```jsx {2}
-	<svg
-		className="e--icon"
-		xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="3em" height="3em"
-	>
-		<polygon points="13.6,4.2 8,9.8 2.4,4.2 1.4,5.2 7,10.8 8,11.8 9,10.8 14.6,5.2 " />
-	</svg>
-	```
+		```jsx
+		<svg className="e--icon" role="img" aria-label="Phosphor Icons のロゴ" xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" fill="currentColor" viewBox="0 0 256 256">
+			<path d="M144,24H64a8,8,0,0,0-8,8V160a80.09,80.09,0,0,0,80,80,8,8,0,0,0,8-8V168a72,72,0,0,0,0-144ZM72,62.54,122.32,152H72Zm56,66.92L77.68,40H128ZM72.51,168H128v55.5A64.14,64.14,0,0,1,72.51,168ZM144,152V40a56,56,0,0,1,0,112Z"></path>
+		</svg>
+		```
 	</Demo.Code>
 </Demo>
 
-### `icon`に文字列を指定する
 
-#### プリセット値の場合
+### プリセットアイコンを呼び出す
 
-事前`@loos/lism-core`に組み込み済みのアイコンを呼び出します。
+`@loos/lism-core`に内包しているアイコンがいくつかあり、それらのアイコン名を`name`に指定すると呼び出すことができます。（[Phosphor Icons](https://phosphoricons.com/) を使っています。）
 
-- `"alert"`: <Icon d="inline" size="1.25em" icon="alert" />
-- `"warning"`: <Icon d="inline" size="1.25em" icon="warning" />
-- `"info"`: <Icon d="inline" size="1.25em" icon="info" />
-- `"help"`: <Icon d="inline" size="1.25em" icon="help" />
-- `"check"`: <Icon d="inline" size="1.25em" icon="check" />
-- `"lightbulb"`: <Icon d="inline" size="1.25em" icon="lightbulb" />
-- `"note"`: <Icon d="inline" size="1.25em" icon="note" />
-- `"good"`: <Icon d="inline" size="1.25em" icon="good" />
-- `"bad"`: <Icon d="inline" size="1.25em" icon="bad" />
+`name`とアイコンの対応表は次の通りです。
+
+<PrestIcons/>
 
 <Demo>
 	<Demo.Title>プリセット指定例</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<Cluster gap={20}>
-			<Icon icon="alert" size="1.25em" />
-			<Icon icon="warning" size="1.25em" />
-			<Icon icon="help" size="1.25em" />
-			<Icon icon="check" size="1.25em" />
-			<Icon icon="lightbulb" size="1.25em" />
+			<Icon name="lightbulb" size="1.25em" />
+			<Icon name="warning" size="1.25em" />
+			<Icon name="help" size="1.25em" />
 		</Cluster>
 	</Demo.Preview>
 	<Demo.Code>
-```jsx
-<Cluster gap={20}>
-	<Icon icon="alert" size="1.25em" />
-	<Icon icon="warning" size="1.25em" />
-	<Icon icon="help" size="1.25em" />
-	<Icon icon="check" size="1.25em" />
-	<Icon icon="lightbulb" size="1.25em" />
-</Cluster>
-```
+		```jsx
+		<Cluster gap={20}>
+			<Icon name="lightbulb" size="1.25em" />
+			<Icon name="warning" size="1.25em" />
+			<Icon name="help" size="1.25em" />
+		</Cluster>
+		```
 	</Demo.Code>
 </Demo>
 
 
-#### その他の文字列の場合
+### data-name属性にアイコン名を出力する
 
+`name` にプリセットアイコン以外を指定すると、`data-name`属性に指定した文字列が出力されます。  
+たとえば、`name="foo"`を指定すると `data-icon="foo"`が出力されるので、`.e--icon[data-icon="foo"]`に対してCSSで調整してください。
 
-`icon="foo"`を指定すると `data-icon="foo"`が出力されるので、CSSで調整してください。
+CSSでアイコンを描画したい場合に便利で、`mask-`で始まる場合は `--mask-image` にsvgを渡せるようにもなっています。
 
-Lismコアでは`"accordion-toggle"`のみ用意しています。
+Lismコアには、アコーディオン用に`"mask-accordion-toggle"`のみ用意しています。
+
+{/* svg:caret-down, data:svg-caret-down */}
 
 <Demo>
-	<Demo.Title>`icon="accordion-toggle"`</Demo.Title>
+	<Demo.Title>`"mask-accordion-toggle"`</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Icon icon="accordion-toggle" size="2em" />
+		<Icon name="mask-accordion-toggle" size="2em" />
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Icon icon="accordion-toggle" size="2em" />
+<Icon name="mask-accordion-toggle" size="2em" />
 ```
 	</Demo.Code>
 </Demo>
 
-<Alert preset="info">
-	プリセットアイコンには[Phosphor Icons](https://phosphoricons.com/)を使用しています。
-</Alert>
 
 
 ### 絵文字
 
-`.e--icon` には、emoji用のフォントファミリーを指定しています。
+`.e--icon` には、emoji用のフォントファミリーを指定しているので、絵文字をアイコンとして使用する場合にも活用できます。
+
 <Demo>
 	<Demo.Title>絵文字を使う</Demo.Title>
 	<Demo.Preview resize p={20}>
@@ -224,16 +218,24 @@ Lismコアでは`"accordion-toggle"`のみ用意しています。
 			<Icon size="2rem">💡</Icon>
 		</Flex>
 	</Demo.Preview>
-	<Demo.Code>
-```jsx
-<Icon size="2rem">✍️</Icon>
-<Icon size="2rem">💡</Icon>
-```
-	</Demo.Code>
+		<Demo.Codes>
+			<Demo.Code label="React">
+				```jsx
+				<Icon size="2rem">✍️</Icon>
+				<Icon size="2rem">💡</Icon>
+				```
+			</Demo.Code>
+			<Demo.Code label="HTML">
+				```html
+				<span aria-hidden="true" class="e--icon" style="--size: 2rem;">✍️</span>
+				<span aria-hidden="true" class="e--icon" style="--size: 2rem;">💡</span>
+				```
+			</Demo.Code>
+		</Demo.Codes>
 </Demo>
 
 
-## isInline
+## インラインアイコンとしての活用
 
 `isInline`: 指定すると、`.e--icon--inline`クラスも出力されます。
 
@@ -260,15 +262,15 @@ Lismコアでは`"accordion-toggle"`のみ用意しています。
 <Demo>
 	<Demo.Title>`isInline` の使用</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<p>Lorem ipsum dolor sit amet.<Icon isInline icon={Smiley} /></p>
-		<p>Horse <Icon isInline icon={Horse} />, and Cat <Icon isInline icon={Cat}/>.</p>
-		<p><Icon isInline icon={WarningCircle} scale="1.5" c="red" weight="fill" /> Lorem ipsum dolor sit amet.</p>
+		<p>Lorem ipsum dolor sit amet.<Icon isInline as={Smiley} /></p>
+		<p>Horse <Icon isInline as={Horse} />, and Cat <Icon isInline as={Cat}/>.</p>
+		<p><Icon isInline as={WarningCircle} scale="1.5" c="red" weight="fill" /> Lorem ipsum dolor sit amet.</p>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
-		<p>Lorem ipsum dolor sit amet.<Icon isInline icon={Smiley} /></p>
-		<p>Horse <Icon isInline icon={Horse} />, and Cat <Icon isInline icon={Cat}/>.</p>
-		<p><Icon isInline icon={WarningCircle} scale="1.5" c="red" weight="fill" /> Lorem ipsum dolor sit amet.</p>
+		<p>Lorem ipsum dolor sit amet.<Icon isInline as={Smiley} /></p>
+		<p>Horse <Icon isInline as={Horse} />, and Cat <Icon isInline as={Cat}/>.</p>
+		<p><Icon isInline as={WarningCircle} scale="1.5" c="red" weight="fill" /> Lorem ipsum dolor sit amet.</p>
 		```
 	</Demo.Code>
 </Demo>
@@ -277,44 +279,44 @@ Lismコアでは`"accordion-toggle"`のみ用意しています。
 
 ## その他活用例
 
-<Demo>
+{/* <Demo>
 	<Demo.Title>アイコンにボーダーや余白をつける時の挙動の差</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<p>↓ Iconにつける</p>
 		<Center>
-			<Icon icon={Horse} weight="fill" size="3rem" c="red" p="1rem" bd="solid 1px" bdc="red" radius="99" />
+			<Icon as={Horse} weight="fill" size="3rem" c="red" p="1rem" bd="solid 1px" bdc="red" radius="99" />
 		</Center>
 
 		<p>↓ 親のCenterなどにつける</p>
 		<Center size="content" c="red" bd="solid 1px" bdc="red" radius="99" p="1rem"> 
-			<Icon icon={Horse} weight="fill" size="3rem"/>
+			<Icon as={Horse} weight="fill" size="3rem"/>
 		</Center>
 	</Demo.Preview>
 	<Demo.Code>
 		```jsx
 		<Center>
-			<Icon icon={Horse} weight="fill" size="3rem" c="red" p="1rem" bd="solid 1px" bdc="red" radius="99" />
+			<Icon as={Horse} weight="fill" size="3rem" c="red" p="1rem" bd="solid 1px" bdc="red" radius="99" />
 		</Center>
 		<Center size="content" c="red" bd="solid 1px" bdc="red" radius="99" p="1rem"> 
-			<Icon icon={Horse} weight="fill" size="3rem"/>
+			<Icon as={Horse} weight="fill" size="3rem"/>
 		</Center>
 		```
 	</Demo.Code>
-</Demo>
+</Demo> */}
 
 
 <Demo>
 	<Demo.Title>例</Demo.Title>
 	<Demo.Preview resize p={20}>
-		<Flex ai="center" gap={20} bd={{ c:"red" }} p='box:s' radius="4">
-			<Icon icon={WarningCircle} size="10%" c="red" flexItem={{ shrink:'0' }} />
+		<Flex ai="center" gap='em7' bd={{ c:"red" }} p='box:s' radius="3">
+			<Icon as={WarningCircle} weight="fill" size="1.5rem" c="red" flexItem={{ shrink:'0' }} />
 			<DammyText length="m" />
 		</Flex>
 	</Demo.Preview>
 	<Demo.Code>
 ```jsx
-<Flex ai="center" gap={20} bd={{ c:"red" }} p='box:s' radius="4">
-	<Icon icon={WarningCircle} size="10%" c="red" flexItem={{ shrink:'0' }} />
+<Flex ai="center" gap='em7' bd={{ c:"red" }} p='box:s' radius="3">
+	<Icon as={WarningCircle} weight="fill" size="1.5rem" c="red" flexItem={{ shrink:'0' }} />
 	<p>...text...</p>
 </Flex>
 ```
@@ -325,7 +327,7 @@ Lismコアでは`"accordion-toggle"`のみ用意しています。
 	<Demo.Title>例</Demo.Title>
 	<Demo.Preview resize p={20}>
 		<Stack ai="center" gap={10} p={10} bgc="main" shadow="1" radius="3">
-			<Icon icon={ChatCenteredDots} size="2em" c="white" weight="fill" />
+			<Icon as={ChatCenteredDots} size="2em" c="white" weight="fill" />
 			<Box bgc="white" p='box:s' radius="2" lh='s'>
 				<DammyText length="l" />
 			</Box>
@@ -334,7 +336,7 @@ Lismコアでは`"accordion-toggle"`のみ用意しています。
 	<Demo.Code>
 ```jsx
 <Stack ai="center" gap={10} p={10} bgc="main" shadow="1" radius="3">
-	<Icon icon={ChatCenteredDots} size="2em" c="white" weight="fill" />
+	<Icon as={ChatCenteredDots} size="2em" c="white" weight="fill" />
 	<Box bgc="white" p='box:s' radius="2" lh='s'>
 		<DammyText length="l" />
 	</Box>

@@ -1,0 +1,99 @@
+---
+title: 'Overview'
+---
+import { ThumbsUp, SmileyXEyes } from "@phosphor-icons/react";
+
+
+# Overview
+
+"**Lism UI**" は、WEBサイト制作を効率化するためのフレームワークプロジェクトです。  
+独自の**CSS設計理論**（Lism CSS）と、それを元にした**コンポーネント集ライブラリ**（Lism Components）を提供しています。
+
+WEBサイトで一般的によく使われるレイアウト・デザイン要素を細分化し、汎用的に使い回せるようになっています。
+
+
+<Box p="box" className="has--mixcolor" keycolor="blue" bd={{c: 'blue', w: '2px'}} radius="2">
+	WEBサイト制作の完成度8割までを爆速化できる軽量なフレームワーク
+</Box>
+
+を目標にしています。
+
+サイトの骨組みは Lism UI ですぐに完成します。  
+あとは、そのサイトに合わせた最後の磨き上げの部分にだけ集中できます。
+
+車輪の再発明にかかる時間をなくし、**クライアントの声に耳を傾け、要望を実現するために時間を使って下さい**。
+
+## Lism CSS
+
+Lism CSS では、CSSを以下の概念に分類して設計しています。
+
+<Box p="box" bgc="pale">
+	- Design Tokens
+	- State Utilities
+	- Layout Modules
+	- Object Modules
+	- Prop Utilities
+</Box>
+
+これらを活用することで、**少量のCSSで柔軟なデザインを組める**ようになっています。
+
+CSS設計に関しては、[Every Layout](https://every-layout.dev/) + [Bootstrap](https://getbootstrap.com/) を 混ぜ合わせたようなイメージです。
+
+
+## Lism Components
+
+そのLism CSSを簡単に扱えるようにした専用のコンポーネント集がLism Componentsです。
+
+[Chakra UI](https://chakra-ui.com/) や [MUI](https://mui.com/) のような使い心地で各モジュールを扱えるようになります。
+
+
+<Demo>
+	<Demo.Title>専用のコンポーネントはこんな感じで使います</Demo.Title>
+	<Demo.Code>
+```jsx
+<Layouter isConstrained hasGutter py={40} bgc='pale'>
+	<Center size="cover" gap={40} >
+		<Text tag='h1' fz='4xl'>Lism</Text>
+		<Flex mbs={40} gap={20}>
+			<Button href='###'>Docs</Button>
+			<Button href='###' variant='outline'>Github</Button>
+		</Flex>
+		<Text c='pale' fw='700'>description text...</Text>
+	</Center>
+	<Columns cols={[2, 2, 3]} gap={30}>
+		{POINTS.map((point, i) => {
+			return (
+				<Stack key={i} gap={20} p='box' bd bdc='base' radius='2' shadow='1'>
+					<Text tag='h3' fz='l' lh='s'>
+						{point.title}
+					</Text>
+					<p>{point.desc}</p>
+				</Stack>
+			);
+		})}
+	</Columns>
+</Layouter>
+...
+```
+	</Demo.Code>
+</Demo>
+
+
+{/* ## 車輪の再発明からの解放
+
+似たようなCSS、似たようなHTML、似たようなコンポーネント、を何度も1から書いていくのはもうおしまいにしましょう。
+
+柔軟性があり、軽量で、どんなプロジェクトにも導入できるフレームワークがここにあります。 */}
+
+
+
+## Inspirations
+
+- [Every Layout](https://every-layout.dev/) : "**レイアウトプリミティブ**"という考え方をLismでもベースに取り入れています。
+- [daisyUI](https://daisyui.com/) : カラートークンの設計やコンポーネントの豊富さが非常に参考になりました。
+- [SmartHR Design System](https://smarthr.design/products/design-tokens/) : デザイントークン設計が非常に参考になりました。
+- [Chakra UI](https://chakra-ui.com/),  [MUI](https://mui.com/) : コンポーネントの使用感が非常に参考になりました。
+- [Open Props](https://open-props.style/#shadows) : シンプルで潔いCSS変数の命名規則が非常に参考になりました。
+- [Tailwind CSS](https://tailwindcss.com/) : CSSをクラス化するという考え方が非常に参考になりました。
+
+{/* Chakra, Tailwind, Bootstrap, などのフレームワークも参考にしています。 */}

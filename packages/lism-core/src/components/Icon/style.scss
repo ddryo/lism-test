@@ -2,10 +2,12 @@
 	--size: 1em;
 	--scale: 1;
 	display: inline-flex;
-	transform: scale(var(--scale));
+	place-content: center;
+	place-items: center;
+	// align-items: center;
+	// justify-content: center;
+	scale: var(--scale);
 	line-height: 1;
-	align-items: center;
-	justify-content: center;
 	vertical-align: middle; //下にスペースができるのを防ぐ
 	font-size: var(--size);
 	font-family: var(--ff--emoji);
@@ -32,6 +34,11 @@
 	// font-size: var(--size);
 	width: 1em;
 	height: 1em;
+
+	// mask-repeat: no-repeat;
+	// mask-position: center center;
+	// mask-size: contain;
+	// mask-image: var(--mask-image);
 }
 
 // .e--icon[data-icon='accordion-toggle'] {
@@ -39,12 +46,21 @@
 // 	clip-path: polygon(50% 76%, 10% 25%, 90% 25%);
 // }
 
-:where(.e--icon).-mask\: {
+// :where(.e--icon).-mask\: {
+// 	background-color: currentColor;
+// }
+
+:where(.e--icon)[data-icon^='mask-'] {
 	background-color: currentColor;
+	mask: var(--mask-image) no-repeat 50% 50% / contain;
 }
-[data-icon='caret-down'] {
+
+[data-icon='mask-accordion-toggle'] {
 	--mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M20.1,7.6L12,15.7L3.9,7.6c-0.2-0.2-0.5-0.2-0.7,0L2.4,8.4c-0.2,0.2-0.2,0.5,0,0.7l8.1,8.1l1.5,1.5l1.5-1.5l8.1-8.1 c0.2-0.2,0.2-0.5,0-0.7l-0.8-0.8C20.6,7.4,20.3,7.4,20.1,7.6z"/></svg>');
+
+	// fillタイプ
+	// --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M12.6,18.3L21,8.2C21.4,7.7,21,7,20.4,7H3.6C3,7,2.6,7.7,3,8.2l8.4,10.1C11.7,18.7,12.3,18.7,12.6,18.3z"/></svg>');
 }
-[data-icon='caret-down-fill'] {
-	--mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M12.6,18.3L21,8.2C21.4,7.7,21,7,20.4,7H3.6C3,7,2.6,7.7,3,8.2l8.4,10.1C11.7,18.7,12.3,18.7,12.6,18.3z"/></svg>');
-}
+// [data-icon='mask-caret-down-fill'] {
+// 	--mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M12.6,18.3L21,8.2C21.4,7.7,21,7,20.4,7H3.6C3,7,2.6,7.7,3,8.2l8.4,10.1C11.7,18.7,12.3,18.7,12.6,18.3z"/></svg>');
+// }

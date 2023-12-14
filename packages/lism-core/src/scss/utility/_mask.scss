@@ -1,9 +1,10 @@
 /* stylelint-disable */
 
 // .has--mask ?
-[class*='-mask:'] {
-	mask-repeat: no-repeat;
-	mask-position: center center;
-	mask-size: contain;
-	mask-image: var(--mask-image);
-}
+// [class*='-mask:']
+// .-mask\: {
+// 	mask-repeat: no-repeat;
+// 	mask-position: center center;
+// 	mask-size: contain;
+// 	mask-image: var(--mask-image);
+// }

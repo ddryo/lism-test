@@ -1,53 +1,51 @@
-import * as phicons from '../lib/icons/phosphoricons';
-
 export const defaultProps = {
-	Alert: {
-		// lh: 's',
-		radius: '2',
-	},
+	// Alert: {
+	// 	// lh: 's',
+	// 	radius: '2',
+	// },
 	Note: {
 		radius: '1',
 		headProps: {
 			fw: '700',
 		},
 	},
-	Button: {
-		radius: '1',
-	},
+	// Button: {
+	// 	radius: '1',
+	// },
 	Card: {
 		shadow: '2',
 		radius: '2',
 	},
 };
 
-export const IconPresets = {
-	note: phicons.NotePencil,
-	alert: phicons.WarningCircle,
-	ban: phicons.Prohibit,
-	warning: phicons.Warning,
-	check: phicons.Check,
-	help: phicons.Question,
-	lightbulb: phicons.Lightbulb,
-	info: phicons.Info,
-	good: phicons.ThumbsUp,
-	bad: phicons.ThumbsDown,
-	star: phicons.Star,
-	'star-half': phicons.StarHalf,
-	'star-fill': phicons.StarFill,
-	bookmark: phicons.BookBookmark,
-	'book-open': phicons.BookOpenText,
-	'caret-down': phicons.CaretDown,
-	// omg,
-	// smile,
+// export const IconPresets = {
+// 	note: phicons.NotePencil,
+// 	alert: phicons.WarningCircle,
+// 	ban: phicons.Prohibit,
+// 	warning: phicons.Warning,
+// 	check: phicons.Check,
+// 	help: phicons.Question,
+// 	lightbulb: phicons.Lightbulb,
+// 	info: phicons.Info,
+// 	good: phicons.ThumbsUp,
+// 	bad: phicons.ThumbsDown,
+// 	star: phicons.Star,
+// 	'star-half': phicons.StarHalf,
+// 	'star-fill': phicons.StarFill,
+// 	bookmark: phicons.BookBookmark,
+// 	'book-open': phicons.BookOpenText,
+// 	'caret-down': phicons.CaretDown,
+// 	// omg,
+// 	// smile,
 
-	// note: 'U+2712',
-	// danger: 'U+1F6AB',
-	// warning: 'U+26A0',
-	// success: 'U+2705',
-	// help: 'U+2754',
-	// point: 'U+1F4A1',
-	// info: 'U+2139',
-};
+// 	// note: 'U+2712',
+// 	// danger: 'U+1F6AB',
+// 	// warning: 'U+26A0',
+// 	// success: 'U+2705',
+// 	// help: 'U+2754',
+// 	// point: 'U+1F4A1',
+// 	// info: 'U+2139',
+// };
 
 export const AlertPresets = {
 	note: {

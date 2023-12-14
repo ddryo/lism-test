@@ -3,23 +3,22 @@ import { Layouter } from '../Layouter';
 import { Icon } from '../Icon';
 import { SideFlex } from '../Flex';
 import { Center } from '../Center';
-import { defaultProps, AlertPresets } from '../../config/components';
+import { AlertPresets } from '../../config/components';
+// const _default = defaultProps?.Alert || {};
 
-const _default = defaultProps?.Alert || {};
-
-export default function Alert({ lismClass = {}, lismStyle = {}, isFlow, ...props }) {
-	props = Object.assign({}, _default, props);
-	let {
-		variant,
-		icon,
-		keycolor,
-		preset = 'alert',
-		iconSize,
-		iconLabel,
-		children,
-		...attrs
-	} = props;
-
+export default function Alert({
+	lismClass = {},
+	lismStyle = {},
+	isFlow,
+	variant,
+	icon,
+	keycolor,
+	preset = 'alert',
+	iconSize,
+	iconLabel,
+	children,
+	...props
+}) {
 	lismClass.c = 'c--alert';
 	if (variant) lismClass.c += ` c--alert--${variant}`;
 
@@ -32,9 +31,6 @@ export default function Alert({ lismClass = {}, lismStyle = {}, isFlow, ...props
 		}
 	}
 
-	if (keycolor) {
-		attrs.keycolor = keycolor;
-	}
 	if (iconSize) {
 		lismStyle['--icon--size'] = iconSize;
 	}
@@ -46,7 +42,9 @@ export default function Alert({ lismClass = {}, lismStyle = {}, isFlow, ...props
 			lismState={['has--mixcolor']}
 			lismClass={lismClass}
 			lismStyle={lismStyle}
-			{...attrs}
+			keycolor={keycolor}
+			radius='2'
+			{...props}
 		>
 			{icon && (
 				<Center className='c--alert__icon is--side'>

@@ -7,10 +7,10 @@
 // export * from '@loos/lism-core/components/index.js';
 export * from '@loos/lism-core';
 
-export { default as Core } from './Core.astro';
-export { default as Layouter } from './Layouter.astro';
+export * from './Core';
 export * from './Flex';
 
+export * from './Alert';
 // export { default as Columns } from './Columns';
 export { Tabs, TabItem } from './Tab';
 export { Banner } from './Banner';

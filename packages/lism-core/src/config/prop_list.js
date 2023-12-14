@@ -321,11 +321,11 @@ export const CONTEXT_PROPS = {
 
 	// rad?
 	bdrs: {
-		shorthand: { name: 'bdrs', presets: 'radius', converter: 'radius' },
-		tl: { style: 'borderTopLeftRadius', utilKey: 'bdtlrs', ...bdrsSidesProps },
-		tr: { style: 'borderTopRightRadius', utilKey: 'bdtrrs', ...bdrsSidesProps },
-		bl: { style: 'borderBottomLeftRadius', utilKey: 'bdblrs', ...bdrsSidesProps },
-		br: { style: 'borderBottomRightRadius', utilKey: 'bdbrrs', ...bdrsSidesProps },
+		all: { presets: 'radius', converter: 'radius' },
+		tl: { style: 'borderTopLeftRadius', utilKey: 'bdtlrs', converter: 'radius' },
+		tr: { style: 'borderTopRightRadius', utilKey: 'bdtrrs', converter: 'radius' },
+		bl: { style: 'borderBottomLeftRadius', utilKey: 'bdblrs', converter: 'radius' },
+		br: { style: 'borderBottomRightRadius', utilKey: 'bdbrrs', converter: 'radius' },
 		ss: { style: 'borderStartStartRadius', utilKey: 'bdssrs', ...bdrsSidesProps },
 		se: { style: 'borderStartEndRadius', utilKey: 'bdsers', ...bdrsSidesProps },
 		es: { style: 'borderEndStartRadius', utilKey: 'bdesrs', ...bdrsSidesProps },

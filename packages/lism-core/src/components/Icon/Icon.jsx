@@ -1,57 +1,71 @@
-import { isValidElement } from 'react';
-import { Core } from '../Core';
-import { IconPresets } from '../../config/components';
+// import { isValidElement } from 'react';
+// import { Core } from '../Core';
+import presetData from './presets/data';
+import PresetIcon from './presets/SVG';
+import { getLismProps } from '../../lib';
 
 export default function Icon({
 	lismClass = {},
 	lismStyle = {},
-	icon,
+	// variant,
+	// as,
+	size,
+	name, //
+	// preset,
 	isInline,
 	label,
-	size = '1em',
 	scale,
-	children,
+	iconProps = {}, // lismProps として処理しないデータ
+
+	// children,
 	...props
 }) {
 	lismClass.e = 'e--icon';
 	if (isInline) lismClass.e += ' e--icon--inline';
-
-	// label の有無でaria属性を変える
-	const iconProps = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true };
-
-	// iconに ReactElement が渡されてきた場合、childrenとして扱う
-	if (isValidElement(icon)) {
-		children = icon;
-	} else if (typeof icon === 'string' && IconPresets[icon]) {
-		// presetsの取得
-		icon = IconPresets[icon];
-	}
+	// if (variant) lismClass.e += ` e--icon--${variant}`;
 
 	if (scale) lismStyle['--scale'] = scale;
 
-	if (children) {
-		// childrenある場合
-		iconProps.tag = 'span';
-		if ('1em' !== size) lismStyle['--size'] = size;
-	} else if (typeof icon === 'string') {
-		// cssでアイコンを描画する場合
-
-		// svg-で始まる場合は mask で CSSからsvgを描画する
-		if (icon.startsWith('svg-')) props.mask = '-';
-
-		iconProps.tag = 'span';
-		iconProps['data-icon'] = icon.replace('svg-', '');
-		if ('1em' !== size) lismStyle['--size'] = size;
-	} else if (typeof icon === 'function' || typeof icon === 'object') {
-		// component関数が渡されてきた場合は、それを使う
-		iconProps.as = icon;
-		iconProps.width = size;
-		iconProps.height = size;
+	// label の有無でaria属性を変える
+	if (label) {
+		iconProps['aria-label'] = label;
+		iconProps['role'] = 'img';
+	} else {
+		iconProps['aria-hidden'] = 'true';
 	}
 
-	return (
-		<Core tag='span' lismClass={lismClass} lismStyle={lismStyle} {...iconProps} {...props}>
-			{children}
-		</Core>
-	);
+	let Icon = 'span';
+
+	// iconに ReactElement が渡されてきた場合、childrenとして扱う
+	// if (isValidElement(icon)) {
+	// 	children = icon;
+	// }
+
+	// プリセットアイコンが取得できる場合
+	if (!props.as && presetData[name]) {
+		props.as = PresetIcon;
+		props.name = name;
+	}
+
+	// 別コンポーネントを呼び出すか、spanで描画するか
+	if (props.as) {
+		Icon = props.as;
+		if (size) iconProps.size = size; // attr にセットして コンポーネント側に渡す
+	} else {
+		if (size) props.size = size; // props にセットして lismProps として処理
+		if (name) iconProps['data-icon'] = name;
+	}
+
+	const lismProps = getLismProps({ lismClass, lismStyle, ...props });
+	return <Icon {...iconProps} {...lismProps} />;
+	// return <Core tag='span' {...attrs} {...props} />;
 }
+
+// Staet系を getLismProps で処理すると全てに動作して過剰すぎるので、<Layouter> で処理する.
+// getLismProps だけ処理したい場合は <Core /> を使う。
+// export default function Layouter({ children, as, tag, ...props }) {
+// 	const lismProps = getLismProps(getAllLayoutStateData(props));
+
+// 	const JSX = as || tag || 'div';
+// 	return <JSX {...lismProps}>{children}</JSX>;
+// }

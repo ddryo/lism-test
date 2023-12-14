@@ -9,6 +9,7 @@ export default function Accordion({
 	lismStyle = {},
 	children,
 	duration,
+	// hasDivider,
 	...props
 }) {
 	const ref = React.useRef(null);
@@ -23,7 +24,14 @@ export default function Accordion({
 	if (duration) {
 		lismStyle['--duration'] = duration; //`${duration}s`;
 	}
-	const lismProps = getLismProps(props, { lismClass, lismStyle });
+
+	let lismState = [];
+	if (props.hasDivider === true) {
+		// props.hasDivider = 'B';
+		lismState = ['has--divider:B'];
+	}
+
+	const lismProps = getLismProps(props, { lismClass, lismStyle, lismState });
 
 	// const deliverState = {
 	// 	trigger,

@@ -1,10 +1,10 @@
 export default [
 	{
-		label: 'Example',
+		label: 'Consepts',
 		link: '/concepts/',
-		badge: '新規',
+		// badge: '新規',
 		translations: {
-			ja: 'ここからはじめる',
+			ja: 'コンセプト',
 		},
 	},
 	{

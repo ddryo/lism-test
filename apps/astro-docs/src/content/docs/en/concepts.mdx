@@ -2,10 +2,9 @@
 title: 'Concept'
 ---
 
-import { Icon, Alert, Text } from "@loos/lism-astro";
-import { ThumbsUp, SmileyXEyes } from "@phosphor-icons/react";
+import { Alert, Text } from "@loos/lism-astro";
+import SmileyXEyes from "~/components/icons/SmileyXEyes.astro";
 
-{/* <Icon icon="alert" size="1.25em" /> */}
 
 # コンセプト
 
@@ -57,7 +56,7 @@ Lismは、あくまでも**HTMLとCSSが主体**になっています。
 
 そこで、Lismでは**CSS変数とユーティリティクラスの組み合わせ方式**を考えました。
 
-<Alert keycolor="green" icon={ThumbsUp}>
+<Alert keycolor="green" icon='good'>
 CSSの容量を抑えつつ、**重要なCSSプロパティに関して簡単にブレイクポイントごとの切り替えができる**ようになっています。
 </Alert>
 
@@ -74,7 +73,7 @@ Lism CSSの方法論としてのコア部分は、**Tokens**と**Utilities**、*
 アコーディオンやタブなど、どう実装するのが正解か非常に悩ましい要素についても、個人的なベストプラクティスを長期間悩んだ上で実装済みです。(新たなベストプラクティスが出てきた場合は、随時更新していきます。)
 
 
-<Alert keycolor="green" icon={ThumbsUp}>
+<Alert keycolor="green" icon='good'>
 似たようなCSS、似たようなHTML、似たようなコンポーネントを何度も書くのはもうおしまいにしましょう。
 多くの頻出するデザイン要素に関して、毎回同じコードを書き直す必要はもうありません。
 </Alert>

@@ -10,6 +10,8 @@ export * from '@loos/lism-core';
 export * from './Core';
 export * from './Flex';
 
+export * from './Icon';
+
 export * from './Alert';
 // export { default as Columns } from './Columns';
 export { Tabs, TabItem } from './Tab';

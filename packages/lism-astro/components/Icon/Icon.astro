@@ -1,0 +1,39 @@
+---
+import { LismProps } from '../types';
+import { getLismProps } from '@loos/lism-core/lib';
+import { getIconProps } from '@loos/lism-core/src/components/Icon/helper';
+import SVG from './SVG.astro';
+
+// Propsの定義
+interface Props extends LismProps {
+	icon?: any;
+	name?: string;
+	preset?: string;
+	emoji?: string;
+	size?: string | number;
+	scale?: string | number;
+	viewBox?: string;
+	label?: string;
+	isInline?: boolean;
+}
+
+let { lismClass = {}, style = {}, scale, isInline, emoji, ...props } = Astro.props || {};
+
+lismClass.e = 'e--icon';
+if (isInline) lismClass.e += ' e--icon--inline';
+// if (variant) lismClass.e += ` e--icon--${variant}`;
+
+if (scale) style['--scale'] = scale;
+
+const hasChildren = Astro.slots.has('default');
+
+let { Icon, asProps, props: otherProps } = getIconProps(props, hasChildren);
+if ('_SVG_' === Icon) Icon = SVG;
+
+const lismProps = getLismProps({ lismClass, style, ...otherProps });
+---
+
+<Icon {...asProps} {...lismProps}>
+	{hasChildren && <slot />}
+	{emoji}
+</Icon>

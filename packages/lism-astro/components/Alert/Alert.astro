@@ -1,11 +1,9 @@
 ---
 import { LismProps } from './types';
-import { getLismProps } from '@loos/lism-core/lib';
-// import { Layouter } from '../Core';
-// import { Icon } from '../Icon';
-// import { SideFlex } from '../Flex';
-// import { Center } from '../Center';
-// import { defaultProps, AlertPresets } from '../../config/components';
+import { Layouter } from '../Core';
+import { Icon } from '../Icon';
+import { SideFlex } from '../Flex';
+import AlertPresets from '@loos/lism-core/src/components/Alert/presets';
 
 // const _default = defaultProps?.Alert || {};
 
@@ -15,18 +13,41 @@ interface Props extends LismProps {
 	tag?: string;
 }
 
-const { as, tag, ...otherProps } = Astro.props || {};
-const lismProps = getLismProps(otherProps);
+let {
+	lismClass = {},
+	// lismStyle = {},
+	isFlow,
+	variant,
+	icon,
+	keycolor,
+	preset = 'alert',
+	iconProps = {},
+	children,
+	...props
+} = Astro.props || {};
 
-// tagは文字列のみ。（asはコンポーネ"ントも指定できる。）
-if (tag && typeof tag !== 'string') {
-	console.error('@Lism : "tag" prop should be a string.');
+lismClass.c = 'c--alert';
+if (variant) lismClass.c += ` c--alert--${variant}`;
+
+const presetData = preset ? AlertPresets[preset] : null;
+
+if (presetData) {
+	keycolor = keycolor || presetData.color || null;
+	icon = icon || presetData.icon || null;
+	iconProps.label = iconProps.label || presetData.label || null;
 }
-
-const JSX = as || tag || 'div';
 ---
 
-<!-- Astro コンポーネントのテンプレート部分 -->
-<JSX {...lismProps}>
-	<slot />
-</JSX>
+<SideFlex
+	fix='first'
+	lismState={['has--mixcolor']}
+	lismClass={lismClass}
+	keycolor={keycolor}
+	radius='2'
+	{...props}
+>
+	<Icon lismClass={{ c: 'c--alert__icon is--side' }} icon={icon} {...iconProps} />
+	<Layouter className='c--alert__body' isFlow={isFlow}>
+		<slot />
+	</Layouter>
+</SideFlex>

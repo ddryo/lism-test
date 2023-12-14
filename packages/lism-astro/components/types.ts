@@ -8,9 +8,18 @@ export interface LismStyle {
 	[key: string]: number | string; // 任意のプロパティを受け取る
 }
 
+export interface AsProps {
+	[key: string]: any;
+}
+
 export interface LismProps {
 	lismClass?: LismClass;
 	lismStyle?: LismStyle;
+	as?: any;
+	tag?: string;
+	// lismState?: ;
+	// style
+	asProps?: AsProps;
 	variant?: string;
 	[key: string]: any;
 }

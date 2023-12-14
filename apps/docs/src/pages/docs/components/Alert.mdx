@@ -38,17 +38,12 @@ import {
 - `keycolor`: 表示カラーを指定します。アイコンは指定した色で表示され、背景やボーダーが指定したカラーをもとにした薄い色で表示されます。
 	- (`color-mix`で薄い色の生成をしているため、未対応ブラウザでは表示が変わります。)
 - `icon`: アイコン表示用のコンポーネントを指定できます。
-- `iconSize`: アイコンのサイズを指定できます。
-- `iconLabel`: アイコンの`aria-label`を指定できます。
-- `preset`: `keycolor`と`icon`, `iconLabel`の組み合わせのプリセット値を、いくつか用意しています。
+{/* - `iconSize`: アイコンのサイズを指定できます。 */}
+- `iconProps`: アイコン（`<Icon>`）に渡すpropsを指定できます。
+- `preset`: `keycolor`と`icon`の組み合わせのプリセット値を指定できます。
 - `isFlow`: `__body`に渡されます
 {/* - `variant`: `"fill"` | `"outline"` ? */}
 
-preset → type ...?
-
-<Alert preset="info">
-Astroでアイコンの受け渡しどうする...。（jsxコンポーネントであれば問題なし。）
-</Alert>
 
 
 ## Import

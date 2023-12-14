@@ -2,38 +2,22 @@
 
 import { Avatar } from '../Avatar';
 
-export default function ChatIcon({
-	lismClass = {},
-	context, // 親から渡される
-	src = '',
-	children,
-	imgProps = {},
-	...props
-}) {
+export default function ChatIcon({ lismClass = {}, ...props }) {
 	lismClass.c = 'c--chat__icon';
 
-	// loading? decode?
-	const img = children || (
-		<img
-			src={src}
-			alt=''
-			width={60}
-			height={60}
-			loading='lazy'
-			//decoding='async'
-			{...imgProps}
-		/>
-	);
+	// 親から渡されるが、使わない
+	delete props.context;
+
 	return (
 		<Avatar
 			lismClass={lismClass}
 			bgc='base'
 			radius='99'
 			aria-hidden='true'
-			// bd='-'
+			alt=''
+			width={60}
+			height={60}
 			{...props}
-		>
-			{img}
-		</Avatar>
+		/>
 	);
 }

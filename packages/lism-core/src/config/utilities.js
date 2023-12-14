@@ -28,7 +28,7 @@ export default {
 	td: { underline: 'u', none: 'n' },
 
 	// Note: 数値指定でユーティリティ化したい時、文字列で渡す。 700 → '700'
-	fw: { thin: '100', light: '300', normal: '400', medium: '500', bold: '700' },
+	// fw: { thin: '100', light: '300', normal: '400', medium: '500', bold: '700' },
 	fs: { italic: 'i', normal: 'n' },
 	font: { inherit: 'i' },
 	// lh: {},

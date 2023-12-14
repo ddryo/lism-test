@@ -1,54 +1,44 @@
-import { Core } from '../Core';
+// import { Core } from '../Core';
 import { Layouter } from '../Layouter';
-// import { Flex } from '../Flex';
+import { Flex } from '../Flex';
 import { Icon } from '../Icon';
-import { defaultProps, NotePresets } from '../../config/components';
 
-const _default = defaultProps?.Note || {};
+import NotePresets from './presets';
 
 export default function Note({
 	lismClass = {},
 	// lismStyle = {},
+	variant,
+	preset,
 	isFlow,
+	icon,
+	iconProps = {},
+	// iconSize = '1.4em',
+	heading,
+	keycolor,
+	headProps = {},
+	bodyProps = {},
 	...props
 }) {
-	props = Object.assign({}, _default, props);
-
-	let {
-		icon,
-		iconSize = '1.4em',
-		heading,
-		variant,
-		preset,
-		keycolor,
-		children,
-		headProps = {},
-		bodyProps = {},
-		...attrs
-	} = props;
-
 	lismClass.c = 'c--note';
 	if (variant) lismClass.c += ` c--note--${variant}`;
 
-	if (preset) {
-		const presetData = NotePresets[preset];
-		if (presetData) {
-			keycolor = keycolor || presetData.color || null;
-			icon = icon || presetData.icon || null;
-			// iconLabel = iconLabel || presetData.label || null;
-		}
+	const presetData = preset ? NotePresets[preset] : null;
+	if (presetData) {
+		keycolor = keycolor || presetData.color || null;
+		icon = icon || presetData.icon || null;
 	}
 
-	if (keycolor) attrs.keycolor = keycolor;
+	if (keycolor) props.keycolor = keycolor;
 
 	if (icon) {
-		headProps.d = 'flex';
-		headProps.flex = { ai: 'center' };
+		headProps.ai = 'center';
 	}
 
 	// const bodyProps = {};
 
-	// if ('bump' === variant) {
+	// lifted or bump?
+	// if ('lifted' === variant) {
 	// 	// borderの上に重ねる
 	// 	Object.assign(headProps, {
 	// 		pos: 'absolute',
@@ -60,19 +50,15 @@ export default function Note({
 	// }
 
 	return (
-		<Layouter lismClass={lismClass} lismState={['has--mixcolor']} {...attrs}>
+		<Layouter lismClass={lismClass} lismState={['has--mixcolor']} radius='1' {...props}>
 			{heading && (
-				<Core lismClass={{ c: 'c--note__head' }} {...headProps}>
-					{icon && (
-						<Icon lismClass={{ c: 'c--note__icon' }} icon={icon} size={iconSize} />
-					)}
+				<Flex lismClass={{ c: 'c--note__head' }} fw='bold' {...headProps}>
+					{icon && <Icon lismClass={{ c: 'c--note__icon' }} icon={icon} {...iconProps} />}
 					<span className='c--note__heading'>{heading}</span>
-				</Core>
+				</Flex>
 			)}
 
-			<Layouter lismClass={{ c: 'c--note__body' }} isFlow={isFlow} {...bodyProps}>
-				{children}
-			</Layouter>
+			<Layouter lismClass={{ c: 'c--note__body' }} isFlow={isFlow} {...bodyProps} />
 		</Layouter>
 	);
 }

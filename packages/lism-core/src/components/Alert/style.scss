@@ -2,7 +2,7 @@
 .c--alert {
 	--keycolor: var(--gray);
 	--fluid--minW: 16rem; // .l--fluidFix より優先度高くなるように注意
-	--icon--size: 1.4em; //var(--fz--xl); //1.375em;
+	// --icon--size: 1.4em; //var(--fz--xl); //1.375em;
 	// --bdc: var(--keycolor);
 	padding: var(--em--7);
 	gap: var(--em--7);
@@ -13,6 +13,5 @@
 
 .c--alert__icon {
 	color: var(--keycolor, currentColor);
-	font-size: var(--icon--size);
-	// flex-shrink: 0;
+	font-size: var(--fz--xl); //1.4rem;
 }

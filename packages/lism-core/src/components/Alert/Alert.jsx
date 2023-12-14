@@ -2,38 +2,36 @@
 import { Layouter } from '../Layouter';
 import { Icon } from '../Icon';
 import { SideFlex } from '../Flex';
-import { Center } from '../Center';
-import { AlertPresets } from '../../config/components';
+// import { Center } from '../Center';
+import AlertPresets from './presets';
 // const _default = defaultProps?.Alert || {};
 
 export default function Alert({
 	lismClass = {},
-	lismStyle = {},
+	// lismStyle = {},
 	isFlow,
 	variant,
 	icon,
 	keycolor,
 	preset = 'alert',
-	iconSize,
-	iconLabel,
+	iconProps = {},
 	children,
 	...props
 }) {
 	lismClass.c = 'c--alert';
 	if (variant) lismClass.c += ` c--alert--${variant}`;
 
-	if (preset) {
-		const presetData = AlertPresets[preset];
-		if (presetData) {
-			keycolor = keycolor || presetData.color || null;
-			icon = icon || presetData.icon || null;
-			iconLabel = iconLabel || presetData.label || null;
-		}
+	const presetData = preset ? AlertPresets[preset] : null;
+
+	if (presetData) {
+		keycolor = keycolor || presetData.color || null;
+		icon = icon || presetData.icon || null;
+		iconProps.label = iconProps.label || presetData.label || null;
 	}
 
-	if (iconSize) {
-		lismStyle['--icon--size'] = iconSize;
-	}
+	// if (iconSize) {
+	// 	lismStyle['--icon--size'] = iconSize;
+	// }
 
 	// Center: 縦並び時にセンター寄せしたい
 	return (
@@ -41,15 +39,14 @@ export default function Alert({
 			fix='first'
 			lismState={['has--mixcolor']}
 			lismClass={lismClass}
-			lismStyle={lismStyle}
 			keycolor={keycolor}
 			radius='2'
 			{...props}
 		>
 			{icon && (
-				<Center className='c--alert__icon is--side'>
-					<Icon icon={icon} label={iconLabel} size='1em' />
-				</Center>
+				// <div className='c--alert__icon l--center is--side'>
+				<Icon lismClass={{ c: 'c--alert__icon is--side' }} icon={icon} {...iconProps} />
+				// </div>
 			)}
 			<Layouter className='c--alert__body' isFlow={isFlow}>
 				{children}

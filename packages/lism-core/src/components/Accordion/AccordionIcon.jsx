@@ -26,10 +26,8 @@ export default function AccordionIcon({
 	let content = null;
 	if (children) {
 		content = children;
-	} else if (typeof icon === 'string') {
-		content = <Icon name={icon} size={size} {...iconProps} />;
-	} else if (icon && typeof icon !== 'string') {
-		content = <Icon as={icon} size={size} {...iconProps} />;
+	} else if (icon) {
+		content = <Icon icon={icon} size={size} {...iconProps} />;
 	}
 
 	return (

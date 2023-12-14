@@ -11,7 +11,7 @@ export default {
 	lh: ['1', ...TOKENS.lh], // 検討
 	lts: TOKENS.lts,
 	ff: TOKENS.ff,
-
+	fw: TOKENS.fw,
 	c: ['main', 'accent', 'base', 'pale', 'opposite'],
 	bgc: ['main', 'accent', 'base', 'pale', 'strong', 'opposite'],
 	bdc: ['main', 'accent', 'base', 'strong'],

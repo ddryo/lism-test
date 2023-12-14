@@ -5,7 +5,7 @@
 	h4,
 	h5,
 	h6 {
-		font-weight: 700;
+		font-weight: var(--fw--bold);
 		font-size: var(--fz);
 		line-height: var(--lh);
 		font-family: var(--ff--heading);

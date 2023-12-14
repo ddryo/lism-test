@@ -110,7 +110,7 @@ export default {
 	// Typography
 	fz: { presets: 1, converter: 'fz' },
 	lh: { presets: 1, style: 'lineHeight' },
-	fw: { style: 'fontWeight', utils: 1 },
+	fw: { style: 'fontWeight', presets: 1 },
 	ff: { style: 'fontFamiry', presets: 1 },
 	fs: { style: 'fontStyle', utils: 1 },
 	font: { style: 1, utils: 1 },

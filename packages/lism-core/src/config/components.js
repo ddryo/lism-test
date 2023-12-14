@@ -3,12 +3,12 @@ export const defaultProps = {
 	// 	// lh: 's',
 	// 	radius: '2',
 	// },
-	Note: {
-		radius: '1',
-		headProps: {
-			fw: '700',
-		},
-	},
+	// Note: {
+	// 	radius: '1',
+	// 	headProps: {
+	// 		fw: '700',
+	// 	},
+	// },
 	// Button: {
 	// 	radius: '1',
 	// },

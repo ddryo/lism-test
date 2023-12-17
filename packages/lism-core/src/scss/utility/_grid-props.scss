@@ -27,12 +27,12 @@ item側: row/column だけ BP対応。（areaは親側でエリアを組み替�
 // --------------------
 // grid-template-areas
 // --------------------
-// .-gta\: { --gta: var(--gta); }
-[class*="-gta:"]{ grid-template-areas: var(--gta); }
+.-gta\: { grid-template-areas: var(--gta); }
+// [class*="-gta:"]{ grid-template-areas: var(--gta); }
 
 // grid--ltr で ga:s, ga:e を 反転させてもいいかも
-.-gta\:3col, .-gta\:3col\:ltr {--gta: 'start center end';}
-.-gta\:3row {--gta: 'start' 'center' 'end';}
+.-gta\:3col, .-gta\:3col\:ltr {grid-template-areas: 'start center end';}
+.-gta\:3row {grid-template-areas: 'start' 'center' 'end';}
 
 // .-gtc\: { grid-template-columns: var(--gtc); }
 // .-gtr\: { grid-template-rows: var(--gtr); }
@@ -119,29 +119,29 @@ item側: row/column だけ BP対応。（areaは親側でエリアを組み替�
 
 
 // gt@sm すると　全部上書きしてしまう.--gtc, --gt をわけて使うならgtは使わないようにする必要がある。
-// gtc 変える なら gtr も変えることがほとんどだろうから、gt でやってもらう。
+// gtc 変える なら gtr も変えることがほとんどだろうから、gt でやってもらう? → RatioGridはgtcのみでコントロールしているので必要。
 // ただし、gta は独立して管理できるようにする。
 @include query.cq('sm') {
-	.-gt\@sm { --gt: var(--gt--sm) }
-	.-gta\@sm { --gta: var(--gta--sm) }
-	// .-gtc\@sm { --gtc: var(--gtc--sm) }
-	// .-gtr\@sm { --gtr: var(--gtr--sm) }
+	// .-gt\@sm { --gt: var(--gt--sm) }
+	.-gta\@sm { grid-template-areas: var(--gta--sm) }
+	.-gtc\@sm { grid-template-columns: var(--gtc--sm) }
+	.-gtr\@sm { grid-template-rows: var(--gtr--sm) }
 	.-gc\@sm { grid-column: var(--gc--sm) }
 	.-gr\@sm { grid-row: var(--gr--sm) }
 }
 @include query.cq('md') {
-	.-gt\@md { --gt: var(--gt--md) }
-	.-gta\@md { --gta: var(--gta--md) }
-	// .-gtc\@md { --gtc: var(--gtc--md) }
-	// .-gtr\@md { --gtr: var(--gtr--md) }
+	// .-gt\@md { --gt: var(--gt--md) }
+	.-gta\@md { grid-template-areas: var(--gta--md) }
+	.-gtc\@md { grid-template-columns: var(--gtc--md) }
+	.-gtr\@md { grid-template-rows: var(--gtr--md) }
 	.-gc\@md { grid-column: var(--gc--md) }
 	.-gr\@md { grid-row: var(--gr--md) }
 }
 @include query.cq('lg') {
-	.-gt\@lg { --gt: var(--gt--lg) }
-	.-gta\@lg { --gta: var(--gta--lg) }
-	// .-gtc\@lg { --gtc: var(--gtc--lg) }
-	// .-gtr\@lg { --gtr: var(--gtr--lg) }
+	// .-gt\@lg { --gt: var(--gt--lg) }
+	.-gta\@lg { grid-template-areas: var(--gta--lg) }
+	.-gtc\@lg { grid-template-columns: var(--gtc--lg) }
+	.-gtr\@lg { grid-template-rows: var(--gtr--lg) }
 	.-gc\@lg { grid-column: var(--gc--lg) }
 	.-gr\@lg { grid-row: var(--gr--lg) }
 }

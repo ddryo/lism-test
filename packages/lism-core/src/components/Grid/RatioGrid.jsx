@@ -28,7 +28,7 @@ export default function RatioGrid({ ratio, lismStyle = {}, ...props }) {
 	}
 
 	if (!isEmptyObj(bpValues)) {
-		gridProps.columns = bpValues;
+		gridProps.gtc = bpValues;
 	}
 
 	return <Grid {...gridProps} lismStyle={lismStyle} {...props} />;

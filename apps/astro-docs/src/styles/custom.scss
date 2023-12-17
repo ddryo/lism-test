@@ -1,0 +1,58 @@
+/* https://github.com/withastro/starlight/tree/main/packages/starlight/style */
+@import './demo';
+@import './preview';
+@import './hero';
+
+// 以下ではデフォルトのカラム幅を広げ、ページタイトルのテキストサイズを大きくしています。
+:root {
+	--sl-content-width: 50rem;
+	// --sl-text-5xl: 3.5rem;
+
+	--codeblock--radius: 0 0 var(--radius--3) var(--radius--3);
+	--codeblock--bgc: #f7f7f7;
+	--sl-sidebar-width:15rem;
+	
+}
+
+#starlight__sidebar{
+	--sl-color-bg-sidebar: transparent;
+}
+
+// リストスタイルの除去
+.sidebar-content, .right-sidebar{
+	--list--pis: 0;
+	--list-style: none;
+}
+
+// コードブロック
+.expressive-code{
+	--ec-frm-frameBoxShdCssVal: var(--shadow--3);
+	/* --ec-codeBg: #fff;
+	--code-background: #fff; */
+}
+
+// セル内のコードで、かつそれが唯一な要素であればは折り返さない
+td > code:only-child {
+	white-space: nowrap;
+}
+
+/* memo: 狭いブラウザ幅での目次、文字検索した時に展開してきて邪魔になってしまうので、最大高さを低くした方がいいかも */
+
+
+.right-sidebar-container {
+	position: sticky;
+	z-index: var(--sl-z-index-toc);
+	top: var(--sl-nav-height);
+}
+.right-sidebar{
+	
+
+	
+	nav{
+		position: relative;
+		inset: 0;
+		border: none;;
+		// z-index: var(--sl-z-index-toc);
+		// top: calc(var(--sl-nav-height) - 1px);
+	}
+}

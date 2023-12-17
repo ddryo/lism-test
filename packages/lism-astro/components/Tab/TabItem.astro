@@ -1,6 +1,7 @@
 ---
+import { LismProps } from '../types';
 import { Layouter } from '../Core';
-export interface Props {
+export interface Props extends LismProps {
 	label: string | number;
 }
 const { label = '', ...props } = Astro.props;
@@ -11,7 +12,7 @@ const { label = '', ...props } = Astro.props;
 		{Astro.slots.has('label') && <slot name='label' />}
 		{!Astro.slots.has('label') && label}
 	</lism-placeholder-tablabel>
-	<Layouter tag='lism-placeholder-tabpanel' lismClass={{ c: 'c--tab__panel' }} {...props}>
+	<lism-placeholder-tabpanel>
 		<slot />
-	</Layouter>
+	</lism-placeholder-tabpanel>
 </lism-placeholder-tabitem>

@@ -31,6 +31,8 @@ export default function getMaybeCssVar(value, converter, propName = '') {
 
 // console.log('Number10%', Number('10%'));
 export function getMaybeSpaceVar(value, propName) {
+	if (0 === value || '0' === value) return '0';
+
 	// spaceが 整数 or 整数を示す文字列 の場合
 	if (typeof value === 'number' || isNumStr(value)) {
 		return `var(--s--${value})`;

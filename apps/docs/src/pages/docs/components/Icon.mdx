@@ -18,7 +18,7 @@ export const PrestIcons = () => {
 		<tbody>
 			{Object.keys(presetIcons).map((iconName) => {
 				return (
-					<tr>
+					<tr key={iconName}>
 						<td><code>"{iconName}"</code></td>
 						<td><Icon preset={iconName} fz="xl" /></td>
 					</tr>

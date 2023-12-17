@@ -1,0 +1,527 @@
+---
+title: 'Lism State'
+description: ...
+---
+
+
+import { Alert, Box, Note, Text, Layouter, Frame, Button, Center } from '@loos/lism-core';
+import { Desktop } from "@phosphor-icons/react";
+
+import { Demo, PreviewTitle, MemoBadge } from "~/components";
+
+# Layout State
+
+Lismには、レイアウトモジュール要素とは別に、コンテンツサイズを制御したりコンテンツ間隔を調整するためのクラスを用意しており、これらを Layout State と呼んでいます。
+
+{/* - `is--container` : コンテナ要素で、かつ**自身の横幅**を制御できるクラス
+- `is--constrained` : コンテナ要素で、かつ**子要素の横幅**を制御するためのクラス
+- `is--flow` : コンテンツ間隔の余白量を制御するためのクラス
+- `has--gutter` : サイトを通してコンテンツの左右に統一された余白をつけるためのクラス
+- etc... */}
+
+
+## クラス一覧
+
+
+### is--flow
+Lismでは、**コンテンツ間の余白を管理するためのクラス**として、`.is--flow` を用意しています。
+
+
+| クラス名 | 変数 | 初期値 |
+|:--|:--|:--|
+| `is--flow:s` | `--flowGap--s` | `--s--20` |
+| `is--flow` | `--flowGap--m` | `--s--40` |
+| `is--flow:l` | `--flowGap--l` | `--s--50` |
+
+<Alert preset='point'>
+`.is--flow`系の直下では、コンテンツの間隔が `margin-block-start` で管理されます。
+</Alert>
+
+<Demo>
+	<Demo.Title>.is--flow</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<div class="is--flow">
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+		</div>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<div class="is--flow">
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+### コンテンツサイズの制御クラス
+
+| クラス名 | 変数 | デフォルト値 | 説明 |
+|:--|:--|:--|:--|
+| `is--container`, <br />`is--container:{s\|l}` | `--containerSize` | `--size--m`,  <br />`--size--{s\|l}` | コンテナ要素で、かつ**自身の横幅**を制御するクラス |
+| `is--constrained`, <br />`is--constrained:{s\|l}` | `--contentSize` | `--size--m`,  <br />`--size--{s\|l}` | コンテナ要素で、かつ**子要素の横幅**を制御するクラス |
+| `is--wide` | `--size--wide` | `--size--l` | `is--constrained`直下では、そのコンテンツ幅よりも1段階広めのサイズになります.  |
+| `is--fullwide` | `--size--full` | `100%` | 親コンテナのサイズにコンテンツを広げるためのクラスです。 |
+| `has--gutter` | `--gutter` | `--s--40` | コンテンツの左右に余白をつけることができるクラスです。 |
+
+
+- `.is--container`直下の`.is--fullwide`は、現在の親コンテナ幅を飛び越えてさらに親のコンテナ幅まで広がります。（`@property` 有効な環境のみ）
+- `.has--gutter` 直下の`.is--fullwide`は、gutterサイズ分ネガティブマージンで左右に広がります。
+
+
+{/* ### has--gutter
+
+コンテンツの左右に余白をつけることができるクラスです。
+サイト全体で統一した余白量を左右に確保するためのものとして、padding系のユーティリティとは別のクラスとして用意しています。
+
+| クラス名 | 変数 | 初期値 |
+|:--|:--|:--|
+| `has--gutter` | `--gutter` | `--s--40` | */}
+
+
+{/* ```html
+<article class="is--constrained has--gutter">
+	...コンテンツ...
+</article>
+``` */}
+{/* 
+<Demo>
+	<Demo.Title>
+		`.is--constrained&.has--gutter` の挙動
+	</Demo.Title>
+	<Demo.Preview resize>
+		Alert, Box, Note, <Layouter
+			isConstrained
+			hasGutter
+			bd='guide'
+			style={{ "--contentSize": "30rem", "--ls--contentSize--wide": "34rem" }}
+		>
+			<Box bd="guide">コンテンツ</Box>
+		<Alert, Box, Note, /Layouter>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		Alert, Box, Note, <Layouter isConstrained hasGutter>
+			<Box bd="guide">コンテンツ</Box>
+		<Alert, Box, Note, /Layouter>
+		```
+	</Demo.Code>
+</Demo> */}
+
+
+
+#### DEMO
+
+<Alert icon={Desktop} keycolor='purple'>
+このDEMOは広い画面サイズでの閲覧を推奨しています。
+</Alert>
+
+<Frame aspect='4/3' className='scalePreview' shadow='4' radius='3' bd bdw='3px'>
+	<Frame tag='iframe' src='/demo/container' aspect='4/3' width='1600' height='900' />
+</Frame>
+
+<Center>
+<Button href='/demo/container' target="_blank" rel='noopener noreferrer'>大きい画面で見る</Button>
+</Center>
+{/* [大きい画面で見る](/demo/container) */}
+
+
+
+### その他
+
+| クラス名 | 説明 |
+|:--|:--|
+|`.has--divider:B` | Block方向の流れに対して仕切り線を表示します|
+|`.has--divider:I` | Inline方向の流れに対して仕切り線を表示します|
+|`.is--linkbox` | ボックス全体をリンク化する時用のクラス |
+
+<Demo>
+	<Demo.Title>`has--divider:B`</Demo.Title>
+	<Demo.Preview resize p={5}>
+		<div className="l--stack has--divider:B">
+			<div className="-p:20">Content</div>
+			<div className="-p:20">Content</div>
+			<div className="-p:20">Content</div>
+		</div>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<div class="l--stack has--divider:B">
+		<div class="-p:20">Content</div>
+		<div class="-p:20">Content</div>
+		<div class="-p:20">Content</div>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+<Demo>
+	<Demo.Title>`has--divider:I`</Demo.Title>
+	<Demo.Preview resize p={5}>
+		<div className="l--cluster has--divider:I">
+			<div className="-px:em10">Content</div>
+			<div className="-px:em10">Content</div>
+			<div className="-px:em10">Content</div>
+		</div>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<div class="l--cluster has--divider:I">
+		<div class="-px:em10">Content</div>
+		<div class="-px:em10">Content</div>
+		<div class="-px:em10">Content</div>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+## 補足
+
+
+### `.is--flow`に カスタム値をセットする方法
+s, m, l 以外の値をセットしたい場合は、`is--flow:`クラスと`--flowGap`変数を組み合わせます。
+
+<Demo>
+	<Demo.Title>任意の値をflowGapにセットする</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<div className="is--flow:" style={{"--flowGap": "1em"}}>
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+		</div>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<div class="is--flow:" style="--flowGap:1em">
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+{/* ### `.is--flow`直下要素の個別調整
+
+`.is--flow`直下での個別の要素間の余白調整には`mbs`ユーティリティクラスが便利です。
+
+<Demo className="has--box-guide">
+	<Demo.Title>`mbs`での個別調整</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<div class="is--flow">
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className="-bd:guide -mbs:10">mbs:10</p>
+		</div>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<div class="is--flow">
+		<p>...</p>
+		<p>...</p>
+		<p class="-mbs:10">mbs:10</p>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+ */}
+
+{/* <Alert preset="info">
+	↑ `mbs={10}`によって、`.-mbs:10`クラスが出力されます。
+</Alert> */}
+
+
+### `.is--container` に カスタム値をセットする方法
+
+s, m, l 以外の値をセットしたい場合は、`is--container:`クラスと`--containerSize`変数を組み合わせます。
+
+<Demo>
+	<Demo.Title>is--container に任意の値をセットする</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box className="is--container:" style={{"--containerSize": "10em"}} bd='guide' p="1px">
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<div class="is--container:" style="--containerSize:10em">
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+### `.is--constrained` に カスタム値をセットする方法
+<Demo>
+	<Demo.Title>is--constrained に任意の値をセットする</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box className="is--constrained:" style={{"--contentSize": "10em"}} bd='guide' p="1px">
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+			<Text bd='guide'>コンテンツ</Text>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx
+	<div class="is--constrained:" style="--contentSize:10em">
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+	</div>
+	```
+	</Demo.Code>
+</Demo>
+
+
+
+### `.is--container` と `.is--constrained` について
+
+ページのコンテンツエリアが次のような構造をしているとします。
+
+```html {3}
+<main>
+	<article>
+		...コンテンツ...
+	</article>
+</main>
+```
+
+このとき、例えば`article`内のコンテンツ幅を`800px`にしたい時、次の①か②の選択肢があると思います。
+
+```css
+/* ① コンテナ自身(コンテンツの親要素)の幅を制御する */
+article{
+	max-width: 800px;
+}
+
+/* ② 各コンテンツ（コンテナの直下要素）の幅を制御する */
+article > * {
+	max-width: 800px;
+	margin-inline: auto;
+}
+```
+
+Lismでは、
+
+- ①に対応するのが `.is--container`
+- ②に対応するのが `.is--constrained`
+
+となっており、どちらのアプローチでも実装可能になっています。
+
+<Alert preset="point">
+しかし、Lismで推奨しているのは`.is--constrained`です。
+</Alert>
+
+Lism設計では基本的に ② の `.is--constrained` 使用することを前提として全体を設計しています。
+
+これは、汎用的なフレームワークの設計において①には次のような問題点があるためです。
+
+<Note heading='①の問題点' preset='note' isFlow='s'>
+
+**コンテナを飛び越えてその親の全幅サイズで表示したいコンテンツ**を作る場合の処理が複雑になってしまう。
+
+例えば次のようなCSSを書いた経験はないでしょうか。
+
+```css
+.full{
+	width: 100vw;
+	max-width: 100vw;
+	left: calc(50% - 50vw);
+}
+```
+
+別に複雑ではないように見えますが、`vw`では**スクロールバーの幅が考慮されない**という問題点があり、その対応策も考えないといけません。  
+さらに、ワンカラムレイアウトのサイトであれば上記のCSSだけで問題ないかもしれませんが、2カラムエリアでの処理をどうするか？という問題も考え出すとCSSがどんどん複雑化していきます。
+
+</Note>
+
+
+#### じゃあなぜ2種類のクラスを用意しているのか？
+
+<Alert preset='check'>
+`@property`が使えるモダンブラウザでは、①が抱える問題をシンプルに回避できるようになっているためです。
+</Alert>
+
+なので、将来的には好みでどちらでも採用できるように、Lismでは①に対しては`@property`を使った方法を採用しつつ、2パターン用意しています。
+
+また、`@property`が使えない環境でも、「コンテナの中では全幅要素を使用しない」という運用をすれば①を採用しても特に問題はありません。
+
+
+## 注意点
+
+
+### `.is--constrained` 直下でのコンテナクエリについて
+
+コンテナクエリは直前のコンテナ要素（`.is--constrained`の子要素から見ると `.is--constrained`要素） のサイズを基準にします。
+
+なので、子要素の幅がコンテナクエリの判定基準にならないことには注意してください。
+
+```html
+<body>
+	<div class="is--constrained">
+		<div class="child">...</div>
+	</div>
+</body>
+```
+
+のようになっている場合、`.child`の最大幅は `.is--constrained` によって（デフォルトで）`1120px` に制限されています。
+
+そして次のように、`1200px`を起点にして色が青から赤に変わるようなコンテナクエリを書いているとします。
+
+```css
+.child{
+	color: blue;
+}
+@container (min-width: 1200px){
+	.child{
+		color: red;
+	}
+}
+```
+
+1600pxの画面サイズで見た場合、どっちの色になるでしょうか？
+
+`.child`の幅は`1120px`なので、`blue`が適用されるように思ってしまうかもしれません。  
+が、ここで `@container`が判断するのはコンテナサイズなので、実際は`.is--constrained`のサイズ（`1600px`）で判断され、`red`が適用されます。
+
+なので、`.child`の幅をコンテナクエリの判定基準にしたい場合は、`.child`をさらに`.is--container`でラップします。
+
+```html
+<body>
+	<div class="is--constrained">
+		<div class="is--container">
+			<div class="child">...</div>
+		</div>
+	</div>
+</body>
+```
+
+
+もしくは、内部にalignfullな要素を使わないのであれば`is--container`を使ってもいいでしょう。
+
+```html
+<body>
+	<div class="is--container">
+		<div class="child">...</div>
+	</div>
+</body>
+```
+
+{/* ### has--gutter 直下の alignfull について
+
+コンテンツのラッパーに`.has--gutter`をつけてpaddingをつけるので、その内部の`.alignfull`を単純に`width:100%`にするだけではpaddingの内側までしか広がりません。
+
+そこで、`.has--gutter > .alignfull` に関してのみ別途追加の調整を加え、**gutterサイズ分だけネガティブマージンで左右に広がる**ような実装になっています。
+
+<Demo>
+	<Demo.Title>
+		`.is--constrained > .alignfull`の挙動
+	</Demo.Title>
+	<Demo.Preview resize>
+		Alert, Box, Note, <Layouter
+			isFlow
+			isConstrained
+			hasGutter
+			bd='guide'
+			style={{ "--size--m": "30rem" }}
+		>
+			<Text bd='guide'>通常幅のコンテンツ</Text>
+			<Box bd='guide' alignfull>ここは全幅 alignfull です</Box>
+			<Text bd='guide'>通常幅のコンテンツ</Text>
+		</Layouter>
+	</Demo.Preview>
+	<Demo.Code>
+		```jsx
+		...
+		```
+	</Demo.Code>
+</Demo> */}
+
+
+
+### is--flow をネストする時の注意点
+
+`is--flow:`の直下でさらに`is--flow:`を配置すると、子要素側が自身の `--flowGap` に干渉してしまいます。
+
+<Alert preset='check'>
+	`.is--flow`, `is--flow:s`, `is--flow:l` をネストするのは問題ありません.
+</Alert>
+
+
+<Demo>
+	<Demo.Title>NG例</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow="2em" bd bdc='green:50%' bdw='2px'>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Box isFlow=".5em" bd bdc='green:50%' bdw='2px' bds='dashed'>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1,4}
+	<Box isFlow="2em">
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<Box isFlow=".5em">
+			<p>ネストされたコンテンツ</p>
+			<p>ネストされたコンテンツ</p>
+		</Box>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+	</Box>
+	```
+	</Demo.Code>
+</Demo>
+
+
+{/* <Demo>
+	<Demo.Title>OK例: .is--flow の直下に別のFlow要素</Demo.Title>
+	<Demo.Preview resize p={30}>
+		<Box isFlow>
+			<p className='-bd:guide'>コンテンツ</p>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Box isFlow={10} bgc="pale">
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+			<p className='-bd:guide'>コンテンツ</p>
+			<Box isFlow='s' bgc="pale">
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+				<p className='-bd:guide'>ネストされたコンテンツ</p>
+			</Box>
+			<p className='-bd:guide'>コンテンツ</p>
+		</Box>
+	</Demo.Preview>
+	<Demo.Code>
+	```jsx {1,4,9}
+	<Box isFlow>
+		<p>コンテンツ</p>
+		<p>コンテンツ</p>
+		<Box isFlow={10} bgc="pale">
+			<p>ネストされたコンテンツ</p>
+			<p>ネストされたコンテンツ</p>
+		</Box>
+		<p>コンテンツ</p>
+		<Box isFlow='s' bgc="pale">
+			<p>ネストされたコンテンツ</p>
+			<p>ネストされたコンテンツ</p>
+		</Box>
+		<p>コンテンツ</p>
+	</Box>
+	```
+	</Demo.Code>
+</Demo> */}

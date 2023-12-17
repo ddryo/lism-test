@@ -1,10 +1,76 @@
-@forward './reset';
-
 @forward './body';
 @forward './heading';
 @forward './table';
 @forward './list';
-@forward './others';
+@forward './code';
+
+:root {
+	--list--pis: 1.5em;
+	--cell--p: var(--p--box--s);
+}
+
+html {
+	font-size: var(--fz--root);
+}
+
+body {
+	// WPでは、カラー・タイポグラフィなどについては theme.json 設定によって出力される
+	background-color: var(--bgc--base);
+	color: var(--c--base);
+	font-family: var(--ff--base);
+	font-size: 1rem;
+	line-height: var(--lh--base);
+	// font: 1rem / var(--lh--base) var(--ff--base);
+	letter-spacing: var(--lts--base);
+	overflow-x: clip;
+	// 子孫要素の position:fixed の挙動が変わってしまうので body には使わない
+	// container-type: inline-size;
+}
+
+// .is--linkbox を考慮して、リンクの pointer-events: auto;は 明示的に指定しておく。
+a {
+	pointer-events: auto;
+	color: var(--link--c); // --c--link?
+	// text-decoration: underline;
+	text-underline-offset: var(--link--underlineOffset);
+}
+
+// @layer lism-init {
+// フォーカス要素
+:where(:focus-visible) {
+	outline-color: var(--focus--color, revert);
+	outline-offset: var(--focus--outlineOffset, revert);
+}
+
+/* hrのスタイリング. currentColor */
+hr {
+	// --hr--color: currentColor;
+	border: none;
+	border-block-start: 1px solid var(--hr--color);
+	color: inherit;
+	block-size: 0;
+	// overflow: visible; ?
+}
+
+//mark
+
+blockquote {
+	// background: whitesmoke;
+	border-left: solid 2px currentColor;
+	padding: 1em; // space--40?
+}
+
+figcaption {
+	font-size: var(--fz--s); //smaller;
+
+	// &:last-child {
+	// 	margin-block-start: 0.5em;
+	// }
+}
+
+small {
+	font-size: var(--fz--xs);
+}
 
 // field--rest ?
 .btn--reset {

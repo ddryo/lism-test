@@ -13,7 +13,7 @@
 	padding-inline-start: 0; // 自身のpadding
 
 	// 子リストのpadding
-	--list--padding: 1em; //var(--s--30);
+	--list--pis: 1em; //var(--s--30);
 }
 
 // <li>
@@ -33,7 +33,7 @@
 
 // 横並び
 .c--navMenu:where(.l--flex) {
-	--list--padding: 0;
+	--list--pis: 0;
 
 	// 直接指定すればいいか
 	// --subMenu--maxW: 10em;

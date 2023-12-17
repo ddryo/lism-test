@@ -19,7 +19,7 @@ export default {
 	bdc: { none: 't', transparent: 't' },
 	bg: { none: 'n' },
 	bgcp: { text: 'tx' },
-	margin: { auto: 'a' },
+	margin: { auto: 'a', '0px': '0' },
 	place: places,
 	placeItems: { ...places, ...flexPlaces, stretch: 'str' },
 	placeContent: { ...places, ...flexPlaces, 'space-between': 'sb' },

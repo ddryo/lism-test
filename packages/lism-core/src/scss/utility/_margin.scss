@@ -10,11 +10,14 @@
 
 // all
 .-m\: { margin: var(--m) !important }
+.-m\:0{ margin: 0 !important }
 .-m\:a{ margin: auto !important }
 
 // x, y
 .-mx\: { margin-inline: var(--mx) !important }
 .-my\: { margin-block: var(--my) !important }
+.-mx\:0{margin-inline: 0 !important}
+.-my\:0{margin-block: 0 !important} 
 .-mx\:a{margin-inline: auto !important}
 .-my\:a{margin-block: auto !important}
 
@@ -32,9 +35,15 @@
 .-mb\:a{margin-bottom: auto !important}
 .-ml\:a{margin-left: auto !important}
 .-mr\:a{margin-right: auto !important}
-
 .-mis\:a{--mis: auto;}
 .-mbs\:a{--mbs: auto;}
+.-mt\:0{margin-top: 0 !important}
+.-mb\:0{margin-bottom: 0 !important}
+.-ml\:0{margin-left: 0 !important}
+.-mr\:0{margin-right: 0 !important}
+.-mis\:0{--mis: 0;}
+.-mbs\:0{--mbs: 0;}
+
 
 @each $s in setting.$util_spaces {
 	// .-m\:#{$s} {--m: var(--s--#{$s});}

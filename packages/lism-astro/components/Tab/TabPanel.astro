@@ -1,0 +1,21 @@
+---
+import { LismProps } from '../types';
+import { GridItem } from '../Grid';
+import { Layouter } from '../Core';
+
+export interface Props extends LismProps {
+	isActive?: boolean;
+}
+const { lismClass = {}, isActive, ...props } = Astro.props;
+lismClass.c = 'c--tab__panel';
+---
+
+<GridItem
+	as={Layouter}
+	lismClass={lismClass}
+	role='tabpanel'
+	aria-hidden={isActive ? 'false' : 'true'}
+	{...props}
+>
+	<slot />
+</GridItem>

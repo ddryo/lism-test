@@ -5,7 +5,7 @@ const emPresets = ['em1', 'em2', 'em3', 'em5', 'em7', 'em10', 'em15', 'em20', 'e
 
 // ユーティリティクラス化するキーワード
 export default {
-	radius: TOKENS.radius,
+	radius: ['0', ...TOKENS.radius],
 	shadow: TOKENS.shadow,
 	fz: TOKENS.fz,
 	lh: ['1', ...TOKENS.lh], // 検討

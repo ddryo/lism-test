@@ -3,6 +3,7 @@
 */
 @use './generic/layer';
 @use './generic/tokens';
+@use './generic/reset';
 
 // base
 @forward './base/index';

@@ -1,11 +1,11 @@
 /* stylelint-disable */
 
 
-// bdrsは変数管理した方が便利
+// bdrs は変数管理した方が便利
 [class*="-bdrs:"]{
 	border-radius: var(--bdrs);
 }
-.-bdrs\:0{--bdrs: 0px;}
+.-bdrs\:0{--bdrs: 0;}
 .-bdrs\:1{--bdrs: var(--radius--1);}
 .-bdrs\:2{--bdrs: var(--radius--2);}
 .-bdrs\:3{--bdrs: var(--radius--3);}

@@ -1,0 +1,84 @@
+---
+title: 'Break Points'
+description: ...
+---
+
+import { Alert } from "@loos/lism-astro";
+import { PreviewTitle, MemoBadge } from "~/components";
+
+
+前提: Lismはコンテナクエリを採用しており、メディアクエリは基本的に使わない。
+
+ブレイクポイントはモバイルファーストで定義しています。
+
+## サイズ表記と設定値
+
+480~1200pxまで240px刻みで定義しています。
+
+- `_`: クエリなし。
+- `sm`: width >= 480
+- `md`: width >= 720
+- `lg`: width >= 960
+- `xl`: width >= 1200
+
+<Alert preset="info">
+(xlサイズのサポートは、別途SCSSのインポートが必要)
+</Alert>
+
+
+
+
+## プロパティの値をブレイクポイントで切り替える方法
+
+Lismでは、ブレイクポイントでの切り替えに対応しているCSSプロパティがいくつかあります。  
+(padding, margin, gap, width, height, font-size, ...など。)
+
+それらのPropsは、次のような形式でブレイクポイントごとの値を指定できます。
+
+```html
+<div class="-{prop}@{bp}:" style="--{prop}--{bp}:{value}">...</div>
+```
+
+
+<PreviewTitle>例</PreviewTitle>
+
+```html
+<div
+	class="-p:10 -p@sm -p@md"
+	style="--p--sm:var(--s--20);--p--md:var(--s--30)"
+>...</div>
+
+<div
+	class="-w: -w@md"
+	style="--w:100%;--w--md:50%"
+>...</div>
+```
+
+
+Lismコンポーネントはよりシンプルな記述でブレイクポイントを利用できます。詳しくは下記のページを御覧ください。  
+→ [Responsive Props](/docs/props/responsive-props)
+
+
+## How to use BreakPoints in SCSS
+
+SCSSファイル内でLismが提供するブレイクポイントを利用するには、次のようにしてインポートして使います。
+
+```scss
+@use ../.../node_modules/@loos/lism-core/scss/query as query;
+
+@include query.cq('sm') {
+	.foo{
+		color:red;
+	}
+}
+```
+
+{/* ## memo
+
+- 設定で、値の変更やカスタム値を定義可能にしたい
+
+### ブロック化した時
+
+- 実際にUI上で設定項目を用意するのは、_, sm, md, lg のみ?
+- ブロック化・テーマ化する際は、一応メディアクエリ版の選択肢も用意する? */}
+

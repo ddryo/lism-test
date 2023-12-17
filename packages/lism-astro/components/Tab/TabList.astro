@@ -1,0 +1,19 @@
+---
+import { LismProps } from '../types';
+import { Layouter } from '../Core';
+import { Flex } from '../Flex';
+
+export interface Props extends LismProps {}
+const { as, lismClass = {}, variant, ...props } = Astro.props;
+
+const TabList = as || Flex;
+
+lismClass.c = 'c--tabList';
+if (variant) {
+	lismClass.c += ` c--tabList--${variant}`;
+}
+---
+
+<TabList lismClass={lismClass} jc='s' role='tablist' {...props}>
+	<slot />
+</TabList>

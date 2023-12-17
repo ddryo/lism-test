@@ -1,0 +1,25 @@
+---
+import { LismProps } from './types';
+import { Layouter } from '../Core';
+import { getGridProps, getPlaceProps } from '@loos/lism-core/lib';
+
+// Propsの定義
+interface Props extends LismProps {
+	_gridName?: string;
+}
+
+let { _gridName = 'grid', variant, lismClass = {}, ...props } = Astro.props;
+
+lismClass.l = `l--${_gridName}`;
+if (variant) {
+	lismClass.l += ` l--${_gridName}--` + variant;
+}
+
+// grid 系の props をまとめる
+props = getGridProps(props);
+props = getPlaceProps(props);
+---
+
+<Layouter lismClass={lismClass} {...props}>
+	<slot />
+</Layouter>

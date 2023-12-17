@@ -41,7 +41,7 @@ export const FzTexts = () => (
 
 <Demo>
 	<Demo.Title>Demo</Demo.Title>
-	<Demo.Preview p={20} flowGap='20'>
+	<Demo.Preview p={20} isFlow='s'>
 		<FzTexts />
 	</Demo.Preview>
 </Demo>
@@ -74,7 +74,7 @@ export const FzTexts = () => (
 	<TabItem label='分子7'>
 	<Frame aspect="16/9">
 		<Demo>
-			<Demo.Preview flowGap='20' className='fzDemo typo-7'>
+			<Demo.Preview isFlow='s' className='fzDemo typo-7'>
 				<FzTexts />
 			</Demo.Preview>
 		</Demo>
@@ -83,7 +83,7 @@ export const FzTexts = () => (
 	<TabItem label='分子8'>
 		<Frame aspect="16/9">
 		<Demo>
-			<Demo.Preview flowGap='20' className='fzDemo typo-8'>
+			<Demo.Preview isFlow='s' className='fzDemo typo-8'>
 				<FzTexts />
 			</Demo.Preview>
 		</Demo>
@@ -92,7 +92,7 @@ export const FzTexts = () => (
 	<TabItem label='分子9'>
 		<Frame aspect="16/9">
 		<Demo>
-			<Demo.Preview flowGap='20' className='fzDemo typo-9'>
+			<Demo.Preview isFlow='s' className='fzDemo typo-9'>
 				<FzTexts />
 			</Demo.Preview>
 		</Demo>
@@ -138,7 +138,7 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 	<TabItem label='日本語'>
 	<Demo>
 		<Demo.Title>Demo</Demo.Title>
-		<Demo.Preview p={20} flowGap='40'>
+		<Demo.Preview p={20} isFlow='s'>
 			<DammyText lang='ja' length='m' lh='1'/>
 			<DammyText lang='ja' length='m' lh='1.125'/>
 			<DammyText lang='ja' length='m' lh='1.25'/>
@@ -154,7 +154,7 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 	<TabItem label='English'>
 	<Demo>
 	<Demo.Title>Demo</Demo.Title>
-	<Demo.Preview p={20} flowGap='40'>
+	<Demo.Preview p={20} isFlow='s'>
 		<DammyText length='m' lh='1'/>
 		<DammyText length='m' lh='1.125'/>
 		<DammyText length='m' lh='1.25'/>
@@ -178,7 +178,7 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 	<TabItem label='自動計算'>
 		<Demo>
 			<Demo.Title>Headings</Demo.Title>
-			<Demo.Preview p={20} flowGap='20'>
+			<Demo.Preview p={20} isFlow='s'>
 				<h1>Heading 1: <DammyText tag='span' lang='ja' /></h1>
 				<h2>Heading 2: <DammyText tag='span' lang='ja' /></h2>
 				<h3>Heading 3: <DammyText tag='span' lang='ja' /></h3>
@@ -195,7 +195,7 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 	<TabItem label='手動セット'>
 		<Demo>
 			<Demo.Title>Headings</Demo.Title>
-			<Demo.Preview p={20} flowGap='20'>
+			<Demo.Preview p={20} isFlow='s'>
 				<h1 className="-lh:xs">Heading 1: <DammyText tag='span' lang='ja' /></h1>
 				<h2 className="-lh:xs">Heading 2: <DammyText tag='span' lang='ja' /></h2>
 				<h3 className="-lh:s">Heading 3: <DammyText tag='span' lang='ja' /></h3>
@@ -212,7 +212,7 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 
 <Demo>
 	<Demo.Title>Headings</Demo.Title>
-	<Demo.Preview p={20} flowGap='20'>
+	<Demo.Preview p={20} isFlow='s'>
 		<h1>Heading 1: <DammyText tag='span' /></h1>
 		<h2>Heading 2: <DammyText tag='span' /></h2>
 		<h3>Heading 3: <DammyText tag='span' /></h3>
@@ -247,7 +247,7 @@ letter spacing...考え中
 
 <Demo>
 	<Demo.Title>Demo</Demo.Title>
-	<Demo.Preview p={20} flowGap='20'>
+	<Demo.Preview p={20} isFlow='s'>
 		<p><Text tag="code" w="2em">-2</Text> : <Text tag="span" lts="-2">Lorem 0123 ロレム文字</Text></p>
 		<p><Text tag="code" w="2em">-1</Text> : <Text tag="span" lts="-1">Lorem 0123 ロレム文字</Text></p>
 		<p><Text tag="code" w="2em">0</Text> : <Text tag="span" lts="0">Lorem 0123 ロレム文字</Text></p>
@@ -275,7 +275,7 @@ letter spacing...考え中
 
 <Demo>
 	<Demo.Title>Demo</Demo.Title>
-	<Demo.Preview p={20} flowGap='20'>
+	<Demo.Preview p={20} isFlow='s'>
 		<DammyText ff='sans' />
 		<DammyText ff='serif' />
 		<DammyText ff='mono' />

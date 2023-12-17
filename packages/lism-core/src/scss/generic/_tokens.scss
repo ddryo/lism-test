@@ -82,16 +82,20 @@
 	// letter-spacing
 	// ------------------------------
 	// --lts--base: normal; // 0, 0.025
+	--lts--s: -0.05em;
+	--lts--base: normal;
+	--lts--l: 0.05em;
+	--lts--xl: 0.25em;
 
-	--lts--N2: -0.05em;
-	--lts--N1: -0.025em;
-	--lts--0: 0em;
-	--lts--1: 0.025em;
-	--lts--2: 0.05em;
-	--lts--3: 0.075em;
-	--lts--4: 0.1em;
-	--lts--5: 0.25em;
-	--lts--6: 0.5em;
+	// --lts---2: -0.05em;
+	// --lts---1: -0.025em;
+	// --lts--0: 0em;
+	// --lts--1: 0.025em;
+	// --lts--2: 0.05em;
+	// --lts--3: 0.075em;
+	// --lts--4: 0.1em;
+	// --lts--5: 0.25em;
+	// --lts--6: 0.5em;
 
 	// --lts--6: 0.5em;
 
@@ -155,7 +159,7 @@
 	--lh--xs: calc(var(--lh--base) - 0.25);
 	--lh--s: calc(var(--lh--base) - 0.125);
 	--lh--l: calc(var(--lh--base) + 0.125);
-	// --lh--xl: calc(var(--lh--base) + 0.25);
+	--lh--xl: calc(var(--lh--base) + 0.25);
 
 	// tight snug - relaxed loose
 	// shorter short - tall taller
@@ -327,9 +331,9 @@
 
 	// --p--box--s: 0.75em 0.875em;
 	// --p:box:{padding: var(--p--box) calc(--p--box + 0.125em);}
-	--p--box--s: 0.75em 0.875em;
-	--p--box: 1em 1.125em;
-	--p--box--l: 1.5em 1.625em;
+	--p--box--s: 0.625em 0.75em;
+	--p--box: 0.875em 1em;
+	--p--box--l: 1.325em 1.5em;
 
 	// .is--flow の blockGap 管理用変数
 	--flowGap--s: var(--s--20); // --mbs--s?

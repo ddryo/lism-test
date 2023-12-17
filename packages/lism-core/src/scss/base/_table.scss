@@ -2,62 +2,61 @@
 // Why? 特定のセルだけボーダーカスタマイズもしやすい.
 // ただし、スクロール時にsticky要素の border が表示されない問題があることに注意。
 // 　　　→ ベースは上下ボーダーのみにしてその問題に対処しやすくする。
-@layer lism-init {
-	:root {
-		--cell--padding: var(--p--box--s);
-	}
-	table {
-		width: 100%;
-		// max-width: 100%;
-		font-size: 0.9rem;
-		line-height: var(--lh--s);
+// @layer lism-init {
 
-		border: none;
-		border-collapse: collapse; // memo: oveflow の指定によっては separate にしないとborderが表示されない場合があるので横スクロール時には注意。
-		border-spacing: 0;
-		--bdc: var(--bdc--base, #dcdcdc);
-		--bds: solid;
-		--bdwX: 0px;
-		--bdwY: 1px;
-	}
+table {
+	// width: 100%;
+	// max-width: 100%;
+	max-inline-size: 100%;
+	font-size: var(--fz--s);
+	line-height: var(--lh--s);
 
-	td,
-	th {
-		padding: var(--cell--padding);
-		border-inline: var(--bds) var(--bdwX) var(--bdc);
-		border-block: var(--bds) var(--bdwY) var(--bdc);
-	}
-
-	th {
-		color: var(--th--c, inherit);
-		background-color: var(--th--bgc, transparent);
-	}
-
-	td {
-		color: var(--td--c, inherit);
-		background-color: var(--td--bgc, transparent);
-	}
-
-	thead {
-		// --th--bgc: #f8f9fa;
-		border-block-end: var(--thead--border);
-	}
-
-	// tbody {
-	// 	// --th--bgc: #f8f9fa;
-	// 	// text-align: left; // tbody 内の th が中央寄せになるのを防ぐ？
-	// }
-
-	tfoot {
-		border-block-start: var(--tfoot--border);
-	}
-
-	:where(table) caption {
-		margin-bottom: 0.25em;
-		font-size: 0.9em;
-		opacity: 0.8;
-	}
+	border: none;
+	border-collapse: collapse; // memo: oveflow の指定によっては separate にしないとborderが表示されない場合があるので横スクロール時には注意。
+	border-spacing: 0;
+	--bdc: var(--bdc--base, #dcdcdc);
+	--bds: solid;
+	--bdwX: 0px;
+	--bdwY: 1px;
 }
+
+td,
+th {
+	padding: var(--cell--p);
+	border-inline: var(--bds) var(--bdwX) var(--bdc);
+	border-block: var(--bds) var(--bdwY) var(--bdc);
+}
+
+th {
+	color: var(--th--c, inherit);
+	background-color: var(--th--bgc, transparent);
+}
+
+td {
+	color: var(--td--c, inherit);
+	background-color: var(--td--bgc, transparent);
+}
+
+thead {
+	// --th--bgc: #f8f9fa;
+	border-block-end: var(--thead--border);
+}
+
+// tbody {
+// 	// --th--bgc: #f8f9fa;
+// 	// text-align: left; // tbody 内の th が中央寄せになるのを防ぐ？
+// }
+
+tfoot {
+	border-block-start: var(--tfoot--border);
+}
+
+:where(table) > caption {
+	margin-bottom: 0.25em;
+	font-size: 0.9em;
+	opacity: 0.8;
+}
+// }
 
 /*
   ----------------------
@@ -66,7 +65,7 @@
 */
 
 .table--relaxed {
-	--cell--padding: var(--p--box);
+	--cell--p: var(--p--box);
 }
 
 // borderで囲む

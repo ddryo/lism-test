@@ -1,0 +1,26 @@
+---
+import { LismProps } from './types';
+import { Core } from '../Core';
+import { getGridItemProps, getItemProps } from '@loos/lism-core/lib';
+
+// Propsの定義
+interface Props extends LismProps {
+	isSide?: boolean;
+}
+
+let { as, lismState = [], isSide, ...props } = Astro.props;
+
+const GridItem = as || Core;
+
+// grid 系の props をまとめる
+props = getGridItemProps(props);
+props = getItemProps(props);
+
+if (isSide) {
+	lismState.push('is--side');
+}
+---
+
+<GridItem lismState={lismState} {...props}>
+	<slot />
+</GridItem>

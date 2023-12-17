@@ -1,6 +1,6 @@
 import { Box, Text, RatioGrid, Flex, Stack, Spacer } from '@loos/lism-core';
 
-export const LismColorDemos = ({ colors = [] }) => {
+export const ColorDemos = ({ colors = [] }) => {
 	return (
 		<>
 			{colors.map((name) => {
@@ -36,7 +36,7 @@ export const LismColorDemos = ({ colors = [] }) => {
 <Demo>
 	<Demo.Title>Point colors</Demo.Title>
 	<Demo.Preview isShadow resize p={20} flowGap="30">
-		<LismColorDemos colors={[ 'main', 'accent' ]}/>
+		<ColorDemos colors={[ 'main', 'accent' ]}/>
 	</Demo.Preview>
 </Demo>
 
@@ -44,7 +44,7 @@ export const LismColorDemos = ({ colors = [] }) => {
 <Demo>
 	<Demo.Title>Basic カラー</Demo.Title>
 	<Demo.Preview isShadow resize p={20} flowGap="30">
-		<LismColorDemos colors={[ 'b50', 'b100', 'b200', 'b300', 'b400', 'b500', 'b600', 'b700', 'b800', 'b900' ]}/>
+		<ColorDemos colors={[ 'b50', 'b100', 'b200', 'b300', 'b400', 'b500', 'b600', 'b700', 'b800', 'b900' ]}/>
 	</Demo.Preview>
 </Demo>
 
@@ -56,7 +56,7 @@ Basic系カラーはデフォルトで 背景色・文字色・ボーダー色�
 <Demo>
 	<Demo.Title>パレットカラー</Demo.Title>
 	<Demo.Preview isShadow resize p={20} flowGap="30">
-		<LismColorDemos colors={[ 'black', 'white', "red", "orange", "yellow", "green", "blue", "purple", "pink" ]}/>
+		<ColorDemos colors={[ 'black', 'white', "red", "orange", "yellow", "green", "blue", "purple", "pink" ]}/>
 	</Demo.Preview>
 </Demo>
 

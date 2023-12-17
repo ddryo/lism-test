@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-// import react from '@astrojs/react';
+import react from '@astrojs/react';
 // import mdx from '@astrojs/mdx';
 // import markdoc from '@astrojs/markdoc';
 import sidebar from './astro-configs/sidebar';
@@ -13,18 +13,18 @@ export default defineConfig({
 	// 	gfm: true,
 	// },
 	integrations: [
-		// react(),
+		react(),
 		// mdx(), // 基本はmarkdownを継承する
 		starlight({
 			title: 'Lism UI',
 			// このサイトのデフォルト言語として英語を設定します。
-			defaultLocale: 'en', // root
+			defaultLocale: 'ja', // root
 			locales,
 			customCss: [
 				// '@loos/lism-core/css/all.css',
 				'@loos/lism-core/scss/all.scss',
 				// カスタムCSSファイルへの相対パス
-				'./src/styles/custom.css',
+				'./src/styles/custom.scss',
 			],
 			sidebar,
 			social: {
@@ -42,6 +42,8 @@ export default defineConfig({
 				// デフォルトの`SocialIcons`コンポーネントをオーバーライドします。
 				// SocialIcons: './src/components/EmailLink.astro',
 				MarkdownContent: './src/components/starlight/MarkdownContent.astro',
+				PageFrame: './src/components/starlight/PageFrame.astro',
+				TwoColumnContent: './src/components/starlight/TwoColumnContent.astro',
 				PageTitle: './src/components/starlight/PageTitle.astro',
 				ThemeProvider: './src/components/starlight/ThemeProvider.astro',
 			},

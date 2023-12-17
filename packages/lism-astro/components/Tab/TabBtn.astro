@@ -1,0 +1,25 @@
+---
+import { LismProps } from '../types';
+import { Core } from '../Core';
+
+export interface Props extends LismProps {
+	controlId: string;
+	isActive?: boolean;
+}
+const { lismClass = {}, isActive, controlId, ...props } = Astro.props;
+lismClass.c = 'c--tab__button';
+---
+
+<Core
+	className='btn--reset'
+	lismClass={lismClass}
+	tag='button'
+	role='tab'
+	aria-selected={isActive ? 'true' : 'false'}
+	aria-controls={controlId}
+	fz='s'
+	lh='xs'
+	{...props}
+>
+	<slot />
+</Core>

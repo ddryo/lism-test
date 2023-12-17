@@ -36,7 +36,7 @@ export default function Columns({ cols = [1, 2], lismStyle = {}, ...props }) {
 		Object.keys(bpValues).forEach((bp) => {
 			lismStyle[`--cols--${bp}`] = bpValues[bp];
 		});
-		// gridProps.columns = bpValues;
+		// gridProps.gtc = bpValues;
 	}
 
 	return <Grid lismStyle={lismStyle} {...gridProps} {...props} />;

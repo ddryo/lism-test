@@ -47,7 +47,7 @@
 // 検討: 一括指定の fx, fxf だけ用意しておけばとりあえず全部対応できるのでは？（不要な上書きが発生しまうデメリットあり）
 @include query.cq('sm') {
 	// .-fxf\@sm { flex-flow: var(--fxf--sm); }
-	.-fxw\@sm { --fxw: var(--fxw--sm); }
+	.-fxw\@sm { flex-wrap: var(--fxw--sm); }
 	// .-fxd\@sm { flex-direction: var(--fxd--sm); }
 	
 	// .-fx\@sm{ flex: var(--fx--sm)}
@@ -57,10 +57,10 @@
 	
 }
 @include query.cq('md') {
-	.-fxw\@md { --fxw: var(--fxw--md); }
+	.-fxw\@md { flex-wrap: var(--fxw--md); }
 	.-fxb\@md { flex-basis: var(--fxb--md); }
 }
 @include query.cq('lg') {
-	.-fxw\@lg { --fxw: var(--fxw--lg); }
+	.-fxw\@lg { flex-wrap: var(--fxw--lg); }
 	.-fxb\@lg { flex-basis: var(--fxb--lg); }
 }

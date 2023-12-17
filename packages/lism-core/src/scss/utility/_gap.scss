@@ -1,60 +1,36 @@
 @use '../query' as query;
 @use '../setting' as setting;
 
-[class*='-gap:'] {
-	gap: var(--gap);
-}
-[class*='-clmg:'] {
-	column-gap: var(--clmg);
-}
-[class*='-rowg:'] {
-	row-gap: var(--rowg);
-}
+/* stylelint-disable */
+
+[class*='-gap:'] {gap: var(--gap);}
+.-clmg\: {column-gap: var(--clmg);}
+.-rowg\: {row-gap: var(--rowg);}
+
+.-gap\:0 {--gap: 0;}
 
 @each $s in setting.$util_spaces {
-	.-gap\:#{$s} {
-		--gap: var(--s--#{$s});
-	}
+	.-gap\:#{$s} {--gap: var(--s--#{$s});}
 	// .-clmg\:#{$s} {--clmg: var(--s--#{$s})}
 	// .-rowg\:#{$s} {--rowg: var(--s--#{$s})}
 }
 
 @each $em in setting.$util_em_tokens {
-	.-gap\:em#{$em} {
-		--gap: var(--em--#{$em});
-	}
+	.-gap\:em#{$em} {--gap: var(--em--#{$em});}
 }
 
 @include query.cq('sm') {
-	.-gap\@sm {
-		gap: var(--gap--sm);
-	}
-	.-clmg\@sm {
-		column-gap: var(--clmg--sm);
-	}
-	.-rowg\@sm {
-		row-gap: var(--rowg--sm);
-	}
+	.-gap\@sm {gap: var(--gap--sm);}
+	.-clmg\@sm {column-gap: var(--clmg--sm);}
+	.-rowg\@sm {row-gap: var(--rowg--sm);}
 }
 @include query.cq('md') {
-	.-gap\@md {
-		gap: var(--gap--md);
-	}
-	.-clmg\@md {
-		column-gap: var(--clmg--md);
-	}
-	.-rowg\@md {
-		row-gap: var(--rowg--md);
-	}
+	.-gap\@md {gap: var(--gap--md);}
+	.-clmg\@md {column-gap: var(--clmg--md);}
+	.-rowg\@md {row-gap: var(--rowg--md);}
 }
 @include query.cq('lg') {
-	.-gap\@lg {
-		gap: var(--gap--lg);
-	}
-	.-clmg\@lg {
-		column-gap: var(--clmg--lg);
-	}
-	.-rowg\@lg {
-		row-gap: var(--rowg--lg);
-	}
+	.-gap\@lg {gap: var(--gap--lg);}
+	.-clmg\@lg {column-gap: var(--clmg--lg);}
+	.-rowg\@lg {row-gap: var(--rowg--lg);}
 }

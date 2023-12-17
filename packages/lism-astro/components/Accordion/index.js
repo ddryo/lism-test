@@ -1,6 +1,6 @@
-export { default as Accordion } from './Accordion';
-export { default as AccordionBody } from './AccordionBody';
-export { default as AccordionHeader } from './AccordionHeader';
-export { default as AccordionLabel } from './AccordionLabel';
-export { default as AccordionIcon } from './AccordionIcon';
-export { default as AccordionGroup } from './AccordionGroup';
+export { default as Accordion } from './Accordion.astro';
+export { default as AccordionBody } from './AccordionBody.astro';
+export { default as AccordionHeader } from './AccordionHeader.astro';
+export { default as AccordionLabel } from './AccordionLabel.astro';
+export { default as AccordionIcon } from './AccordionIcon.astro';
+// export { default as AccordionGroup } from './AccordionGroup';

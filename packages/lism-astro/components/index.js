@@ -1,37 +1,20 @@
 /**
- * "use client" の記述を加えて返す。
+ * .astro でLismコンポーネントを配布
  */
 
-// そのままでいいもの
-// export { Box, ... } from "../dist";
-// export * from '@loos/lism-core/components/index.js';
-export * from '@loos/lism-core';
+// Memo: 取り急ぎ、コアのものを全部 export しつつ、.astro で用意できたものから上書きしていく。
+export * from '@loos/lism-core'; // core はReact であることに注意。
 
 export * from './Core';
 export * from './Flex';
-
+export * from './Grid';
 export * from './Icon';
-
 export * from './Alert';
 // export { default as Columns } from './Columns';
-export { Tabs, TabItem } from './Tab';
-export { Banner } from './Banner';
-export { MediaLayer } from './MediaLayer';
-
-// export { Accordion } from './Accordion';
-// components/index.tsx"
-// export * as Accordion from './Accordion';
-
-// console.log('next!');
-
-export { default as Accordion } from './Accordion/Accordion.astro';
-export { default as AccordionHeader } from './Accordion/AccordionHeader.astro';
-export { default as AccordionBody } from './Accordion/AccordionBody.astro';
-export { default as AccordionIcon } from './Accordion/AccordionIcon.astro';
-export { default as AccordionLabel } from './Accordion/AccordionLabel.astro';
-
-// export { default as AccordionHeader } from './AccordionHeader';
-// export { default as AccordionBody } from './AccordionBody';
+export * from './Tab';
+// export * from './Banner';
+// export * from './Layer';
+export * from './Accordion';
 
 // 呼び出し元が .js か .astro かで自動で分けれる...？
 // https://docs.astro.build/ja/reference/publish-to-npm/#exports

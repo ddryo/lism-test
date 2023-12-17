@@ -67,18 +67,10 @@
 	font-family
 ------------------------------------------------------------ */
 
-.-ff\:sans {
-	font-family: var(--ff--sans);
-}
-.-ff\:serif {
-	font-family: var(--ff--serif);
-}
-.-ff\:mono {
-	font-family: var(--ff--mono);
-}
-.-ff\:emoji {
-	font-family: var(--ff--emoji);
-}
+.-ff\:sans {font-family: var(--ff--sans)}
+.-ff\:serif {font-family: var(--ff--serif)}
+.-ff\:mono {font-family: var(--ff--mono)}
+.-ff\:emoji {font-family: var(--ff--emoji)}
 
 /* ------------------------------------------------------------
 	letter-spacing
@@ -86,33 +78,20 @@
 // [class*='-lts:'] {
 // 	letter-spacing: var(--lts);
 // }
-.-lts\:-2 {
-	letter-spacing: var(--lts--N2);
-}
-.-lts\:-1 {
-	letter-spacing: var(--lts--N1);
-}
-.-lts\:0 {
-	letter-spacing: var(--lts--0);
-}
-.-lts\:1 {
-	letter-spacing: var(--lts--1);
-}
-.-lts\:2 {
-	letter-spacing: var(--lts--2);
-}
-.-lts\:3 {
-	letter-spacing: var(--lts--3);
-}
-.-lts\:4 {
-	letter-spacing: var(--lts--4);
-}
-.-lts\:5 {
-	letter-spacing: var(--lts--5);
-}
-.-lts\:6 {
-	letter-spacing: var(--lts--6);
-}
+.-lts\:base {letter-spacing: var(--lts--base)}
+.-lts\:s {letter-spacing: var(--lts--s)}
+.-lts\:l {letter-spacing: var(--lts--l)}
+.-lts\:xl {letter-spacing: var(--lts--xl)}
+
+// .-lts\:-2 {letter-spacing: var(--lts---2);}
+// .-lts\:-1 {letter-spacing: var(--lts---1);}
+// .-lts\:0 {letter-spacing: 0;}
+// .-lts\:1 {letter-spacing: var(--lts--1);}
+// .-lts\:2 {letter-spacing: var(--lts--2);}
+// .-lts\:3 {letter-spacing: var(--lts--3);}
+// .-lts\:4 {letter-spacing: var(--lts--4);}
+// .-lts\:5 {letter-spacing: var(--lts--5);}
+// .-lts\:6 {letter-spacing: var(--lts--6);}
 
 
 // text-align

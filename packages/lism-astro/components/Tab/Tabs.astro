@@ -1,9 +1,13 @@
 ---
-import { Core } from '../Core';
-import { Flex } from '../Flex';
-import { uuidv4 } from '../../helper/index.js';
 import { LismProps } from '../types';
+// import { Core } from '../Core';
+import { Grid } from '../Grid';
+import TabList from './TabList.astro';
+import TabBtn from './TabBtn.astro';
+import TabPanel from './TabPanel.astro';
+import { uuidv4 } from '../../helper/index.js';
 import transformTabitems from './transformTabitems.js';
+import getTabProps from '@loos/lism-core/src/components/Tabs/getProps';
 
 // import TheTab from './TheTab.astro';}
 // slotsについて: https://docs.astro.build/ja/reference/api-reference/#astroslots
@@ -17,37 +21,58 @@ interface Props extends LismProps {
 const {
 	lismClass = {},
 	lismStyle = {},
+	variant,
+	type = 'border',
 	defaultIndex = 0,
 	uuid,
-	tabListProps = {},
-	tabPanelsProps = {},
+	// listProps = {},
+	// panelProps = {},
 	...props
 } = Astro.props || {};
 
 // 生成したhtmlを格納する配列
 const tabID = uuid ? uuid : uuidv4();
 
-// 子要素の方から順番に処理されていくので、置換処理で大丈夫そう。
-// 厳密に処理するなら、rehype などでHTMLをパースして処理を行う。
-
-// const tabContentHTML = await Astro.slots.render('default');
-const { items, panels } = transformTabitems(
+// 子要素の方から順番に処理されていくので、文字列処理でデータを抽出する。(より厳密に処理するなら、rehype などでHTMLをパースして処理を行った方がいいかも)
+const { btns, panels } = transformTabitems(
 	await Astro.slots.render('default'),
 	tabID,
 	defaultIndex
 );
 
 lismClass.c = 'c--tabs';
+if (variant) {
+	lismClass.c += ` c--tabs--${variant}`;
+}
+
+const { tabProps, listProps, panelProps } = getTabProps(props);
+if ('Stack' === listProps.as) {
+	listProps.as = Stack;
+}
 ---
 
-<Core lismClass={lismClass} {...props}>
-	<Flex lismClass={{ c: 'c--tab__list' }} jc='s' {...tabListProps} role='tablist'>
-		<Fragment set:html={items} />
-	</Flex>
-	<Core lismClass={{ c: 'c--tab__panels' }} {...tabPanelsProps}>
-		<Fragment set:html={panels} />
-	</Core>
-</Core>
+<Grid lismClass={lismClass} {...tabProps}>
+	<TabList variant={type} {...listProps}>
+		{
+			btns.map((btn, index) => {
+				return (
+					<TabBtn controlId={btn.id} isActive={btn.isActive}>
+						<Fragment set:html={btn.content} />
+					</TabBtn>
+				);
+			})
+		}
+	</TabList>
+	{
+		panels.map((panel, index) => {
+			return (
+				<TabPanel id={panel.id} isActive={panel.isActive} {...panelProps}>
+					<Fragment set:html={panel.content} />
+				</TabPanel>
+			);
+		})
+	}
+</Grid>
 
 <script>
 	// import setEvent from './setEvent';

@@ -12,7 +12,7 @@ export default function ContainerTest() {
 			<p>test...</p>
 
 			<p>Tabs → TabItem</p>
-			<Tabs type='border'>
+			<Tabs variant='line'>
 				<TabItem label='title1'>
 					<p>index:0</p>
 					<DammyText />
@@ -22,7 +22,7 @@ export default function ContainerTest() {
 					<DammyText length='l' />
 				</TabItem>
 			</Tabs>
-			<Tabs type='border' isVertical>
+			<Tabs variant='line' isVertical>
 				<TabItem label='title1'>
 					<p>index:0</p>
 					<DammyText />
@@ -34,7 +34,7 @@ export default function ContainerTest() {
 			</Tabs>
 			<Spacer h={40} bg='stripe' />
 			<Tabs
-				type='border'
+				variant='line'
 				ji='center'
 				// jc='center'
 				// listProps={{ w: '100', jc: 'center' }}
@@ -50,7 +50,7 @@ export default function ContainerTest() {
 			</Tabs>
 
 			<Spacer h={40} bg='stripe' />
-			<Tabs type='lifted' keepHeight defaultIndex={1}>
+			<Tabs variant='lifted' keepHeight defaultIndex={1}>
 				<TabItem label='title1' isFlow='s'>
 					<p>index:0</p>
 					<DammyText />
@@ -62,7 +62,7 @@ export default function ContainerTest() {
 				</TabItem>
 			</Tabs>
 			<Spacer h={40} bg='stripe' />
-			<Tabs type='box' keepHeight defaultIndex={1} ji='c'>
+			<Tabs variant='box' keepHeight defaultIndex={1} ji='c'>
 				<TabItem label='title1' isFlow='s'>
 					<p>index:0</p>
 					<DammyText />
@@ -75,7 +75,7 @@ export default function ContainerTest() {
 			</Tabs>
 			<Spacer h={40} bg='stripe' />
 
-			<Tabs type='box' isVertical keepHeight defaultIndex={1}>
+			<Tabs variant='box' isVertical keepHeight defaultIndex={1}>
 				<TabItem label='title1' isFlow='s'>
 					<p>index:0</p>
 					<DammyText />
@@ -87,7 +87,7 @@ export default function ContainerTest() {
 				</TabItem>
 			</Tabs>
 
-			<Tabs type='box' isVertical defaultIndex={1} ai='s'>
+			<Tabs variant='box' isVertical defaultIndex={1} ai='s'>
 				<TabItem label='title1' isFlow='s'>
 					<p>index:0</p>
 					<DammyText />
@@ -101,7 +101,7 @@ export default function ContainerTest() {
 
 			<p>TabList, TabBtn, TabPanel を手動配置</p>
 			{/* <Tabs>
-				<TabList variant='border'>
+				<TabList variant='line'>
 					<TabBtn isActive>a</TabBtn>
 					<TabBtn>a</TabBtn>
 				</TabList>

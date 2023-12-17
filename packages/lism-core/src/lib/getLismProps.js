@@ -84,7 +84,7 @@ class LismPropsData {
 				//'d',
 				'c',
 				'b',
-				'a',
+				// 'a',
 				'e',
 				'l',
 				// '_',
@@ -93,6 +93,7 @@ class LismPropsData {
 				lismClassNames.push(lismClass[prefix]);
 			});
 		}
+		// objectClass, layoutClass
 
 		// use=['layout', 'color', 'bd' ...]とかで使うprop指定?
 		this.className = joinAtts(

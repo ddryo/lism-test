@@ -8,10 +8,8 @@ const { as, lismClass = {}, variant, ...props } = Astro.props;
 
 const TabList = as || Flex;
 
-lismClass.c = 'c--tabList';
-if (variant) {
-	lismClass.c += ` c--tabList--${variant}`;
-}
+lismClass.c = 'c--tabs_list';
+if (variant) lismClass.c += ` c--tabs_list--${variant}`;
 ---
 
 <TabList lismClass={lismClass} jc='s' role='tablist' {...props}>

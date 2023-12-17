@@ -3,13 +3,13 @@ title: 'HTML base styles'
 description: ...
 ---
 
-import { Demo, PreviewTitle, MemoBadge } from "~/components";
+import { MemoBadge } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 
 
-
-<Demo>
-{/* <Demo.Title>gray, nuetral系</Demo.Title> */}
-<Demo.Preview p={20}>
+<Preview>
+{/* <PreviewTitle>gray, nuetral系</PreviewTitle> */}
+<PreviewArea p={20}>
 
 <h2 id='text'>Text</h2>
 <p>
@@ -212,5 +212,5 @@ Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehi
 		</tr>
 	</tfoot>
 </table>
-</Demo.Preview>
-</Demo>
+</PreviewArea>
+</Preview>

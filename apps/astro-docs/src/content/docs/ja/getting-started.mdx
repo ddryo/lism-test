@@ -3,10 +3,10 @@ title: 'Getting Started'
 description: '...'
 ---
 
-import { Badge, Tabs, TabItem } from '@loos/lism-core';
+import { Badge, Alert, Tabs, TabItem } from '@loos/lism-astro';
 import { SmileyXEyes } from "@phosphor-icons/react";
-
-# Getting Started
+import { MemoBadge } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 
 
 ## Installation
@@ -45,20 +45,19 @@ import { SmileyXEyes } from "@phosphor-icons/react";
 
 Reset CSSも含めたCSSファイルを用意していますので、基本的にはそれを読み込んでご利用ください。
 
-<Tabs>
+<Tabs panelProps={{isFlow:'s'}}>
 	<TabItem label='import' p='box'>
-	例えば、Next.jsであれば、`_app.js`や`layout.js`でglobalスタイルとして読み込んでください。
+	例えば、Next.jsであれば、`_app.js`や`layout.js`でglobalスタイルとして読み込んでください。例えば、Next.jsであれば、`_app.js`や`layout.js`でglobalスタイルとして読み込んでください。例えば、Next.jsであれば、`_app.js`や`layout.js`でglobalスタイルとして読み込んでください。
 
 	```js
 	import '@loos/lism-core/css/all.css';
 	```
-
-	</TabItem>
+	</TabItem> 
 
 	<TabItem label='CDN' p='box'>
 		HTMLサイトなどでは、CDN経由での読み込みも可能です。
 
-		```html
+		```
 		<link href="https://cdn.jsdelivr.net/npm/@loos/lism-core/dist/css/all.css" rel="stylesheet" />
 		```
 	</TabItem>
@@ -74,7 +73,7 @@ Reset CSSも含めたCSSファイルを用意していますので、基本的�
 ## Using Components
 
 ```jsx
-import { Box, Text, ... } from '@loos/lism-core';
+import { Box, Text, Box, Text, Box, Text, Box, Text, Box, Text, Box, Text, Box, Text, ... } from '@loos/lism-core';
 
 // ...
 <Box p={20} bgc="pale">

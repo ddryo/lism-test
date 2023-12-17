@@ -7,7 +7,8 @@ description: ...
 import { Alert, Box, Note, Text, Layouter, Frame, Button, Center } from '@loos/lism-core';
 import { Desktop } from "@phosphor-icons/react";
 
-import { Demo, PreviewTitle, MemoBadge } from "~/components";
+import { MemoBadge } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 
 # Layout State
 
@@ -37,16 +38,16 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 `.is--flow`系の直下では、コンテンツの間隔が `margin-block-start` で管理されます。
 </Alert>
 
-<Demo>
-	<Demo.Title>.is--flow</Demo.Title>
-	<Demo.Preview resize p={30}>
+<Preview>
+	<PreviewTitle>.is--flow</PreviewTitle>
+	<PreviewArea resize p={30}>
 		<div class="is--flow">
 			<Text bd='guide'>コンテンツ</Text>
 			<Text bd='guide'>コンテンツ</Text>
 			<Text bd='guide'>コンテンツ</Text>
 		</div>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 	```jsx
 	<div class="is--flow">
 		<p>コンテンツ</p>
@@ -54,8 +55,8 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 		<p>コンテンツ</p>
 	</div>
 	```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
 
 ### コンテンツサイズの制御クラス
@@ -89,11 +90,11 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 </article>
 ``` */}
 {/* 
-<Demo>
-	<Demo.Title>
+<Preview>
+	<PreviewTitle>
 		`.is--constrained&.has--gutter` の挙動
-	</Demo.Title>
-	<Demo.Preview resize>
+	</PreviewTitle>
+	<PreviewArea resize>
 		Alert, Box, Note, <Layouter
 			isConstrained
 			hasGutter
@@ -102,15 +103,15 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 		>
 			<Box bd="guide">コンテンツ</Box>
 		<Alert, Box, Note, /Layouter>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 		```jsx
 		Alert, Box, Note, <Layouter isConstrained hasGutter>
 			<Box bd="guide">コンテンツ</Box>
 		<Alert, Box, Note, /Layouter>
 		```
-	</Demo.Code>
-</Demo> */}
+	</PreviewCode>
+</Preview> */}
 
 
 
@@ -139,16 +140,16 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 |`.has--divider:I` | Inline方向の流れに対して仕切り線を表示します|
 |`.is--linkbox` | ボックス全体をリンク化する時用のクラス |
 
-<Demo>
-	<Demo.Title>`has--divider:B`</Demo.Title>
-	<Demo.Preview resize p={5}>
+<Preview>
+	<PreviewTitle>`has--divider:B`</PreviewTitle>
+	<PreviewArea resize p={5}>
 		<div className="l--stack has--divider:B">
 			<div className="-p:20">Content</div>
 			<div className="-p:20">Content</div>
 			<div className="-p:20">Content</div>
 		</div>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 	```jsx
 	<div class="l--stack has--divider:B">
 		<div class="-p:20">Content</div>
@@ -156,19 +157,19 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 		<div class="-p:20">Content</div>
 	</div>
 	```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
-<Demo>
-	<Demo.Title>`has--divider:I`</Demo.Title>
-	<Demo.Preview resize p={5}>
+<Preview>
+	<PreviewTitle>`has--divider:I`</PreviewTitle>
+	<PreviewArea resize p={5}>
 		<div className="l--cluster has--divider:I">
 			<div className="-px:em10">Content</div>
 			<div className="-px:em10">Content</div>
 			<div className="-px:em10">Content</div>
 		</div>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 	```jsx
 	<div class="l--cluster has--divider:I">
 		<div class="-px:em10">Content</div>
@@ -176,8 +177,8 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 		<div class="-px:em10">Content</div>
 	</div>
 	```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
 ## 補足
 
@@ -185,16 +186,16 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 ### `.is--flow`に カスタム値をセットする方法
 s, m, l 以外の値をセットしたい場合は、`is--flow:`クラスと`--flowGap`変数を組み合わせます。
 
-<Demo>
-	<Demo.Title>任意の値をflowGapにセットする</Demo.Title>
-	<Demo.Preview resize p={30}>
+<Preview>
+	<PreviewTitle>任意の値をflowGapにセットする</PreviewTitle>
+	<PreviewArea resize p={30}>
 		<div className="is--flow:" style={{"--flowGap": "1em"}}>
 			<Text bd='guide'>コンテンツ</Text>
 			<Text bd='guide'>コンテンツ</Text>
 			<Text bd='guide'>コンテンツ</Text>
 		</div>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 	```jsx
 	<div class="is--flow:" style="--flowGap:1em">
 		<p>コンテンツ</p>
@@ -202,23 +203,23 @@ s, m, l 以外の値をセットしたい場合は、`is--flow:`クラスと`--f
 		<p>コンテンツ</p>
 	</div>
 	```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
 {/* ### `.is--flow`直下要素の個別調整
 
 `.is--flow`直下での個別の要素間の余白調整には`mbs`ユーティリティクラスが便利です。
 
-<Demo className="has--box-guide">
-	<Demo.Title>`mbs`での個別調整</Demo.Title>
-	<Demo.Preview resize p={30}>
+<Preview className="has--box-guide">
+	<PreviewTitle>`mbs`での個別調整</PreviewTitle>
+	<PreviewArea resize p={30}>
 		<div class="is--flow">
 			<p className='-bd:guide'>コンテンツ</p>
 			<p className='-bd:guide'>コンテンツ</p>
 			<p className="-bd:guide -mbs:10">mbs:10</p>
 		</div>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 	```jsx
 	<div class="is--flow">
 		<p>...</p>
@@ -226,8 +227,8 @@ s, m, l 以外の値をセットしたい場合は、`is--flow:`クラスと`--f
 		<p class="-mbs:10">mbs:10</p>
 	</div>
 	```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
  */}
 
 {/* <Alert preset="info">
@@ -239,16 +240,16 @@ s, m, l 以外の値をセットしたい場合は、`is--flow:`クラスと`--f
 
 s, m, l 以外の値をセットしたい場合は、`is--container:`クラスと`--containerSize`変数を組み合わせます。
 
-<Demo>
-	<Demo.Title>is--container に任意の値をセットする</Demo.Title>
-	<Demo.Preview resize p={30}>
+<Preview>
+	<PreviewTitle>is--container に任意の値をセットする</PreviewTitle>
+	<PreviewArea resize p={30}>
 		<Box className="is--container:" style={{"--containerSize": "10em"}} bd='guide' p="1px">
 			<Text bd='guide'>コンテンツ</Text>
 			<Text bd='guide'>コンテンツ</Text>
 			<Text bd='guide'>コンテンツ</Text>
 		</Box>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 	```jsx
 	<div class="is--container:" style="--containerSize:10em">
 		<p>コンテンツ</p>
@@ -256,21 +257,21 @@ s, m, l 以外の値をセットしたい場合は、`is--container:`クラス�
 		<p>コンテンツ</p>
 	</div>
 	```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
 
 ### `.is--constrained` に カスタム値をセットする方法
-<Demo>
-	<Demo.Title>is--constrained に任意の値をセットする</Demo.Title>
-	<Demo.Preview resize p={30}>
+<Preview>
+	<PreviewTitle>is--constrained に任意の値をセットする</PreviewTitle>
+	<PreviewArea resize p={30}>
 		<Box className="is--constrained:" style={{"--contentSize": "10em"}} bd='guide' p="1px">
 			<Text bd='guide'>コンテンツ</Text>
 			<Text bd='guide'>コンテンツ</Text>
 			<Text bd='guide'>コンテンツ</Text>
 		</Box>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 	```jsx
 	<div class="is--constrained:" style="--contentSize:10em">
 		<p>コンテンツ</p>
@@ -278,8 +279,8 @@ s, m, l 以外の値をセットしたい場合は、`is--container:`クラス�
 		<p>コンテンツ</p>
 	</div>
 	```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
 
 
@@ -422,11 +423,11 @@ Lism設計では基本的に ② の `.is--constrained` 使用することを前
 
 そこで、`.has--gutter > .alignfull` に関してのみ別途追加の調整を加え、**gutterサイズ分だけネガティブマージンで左右に広がる**ような実装になっています。
 
-<Demo>
-	<Demo.Title>
+<Preview>
+	<PreviewTitle>
 		`.is--constrained > .alignfull`の挙動
-	</Demo.Title>
-	<Demo.Preview resize>
+	</PreviewTitle>
+	<PreviewArea resize>
 		Alert, Box, Note, <Layouter
 			isFlow
 			isConstrained
@@ -438,13 +439,13 @@ Lism設計では基本的に ② の `.is--constrained` 使用することを前
 			<Box bd='guide' alignfull>ここは全幅 alignfull です</Box>
 			<Text bd='guide'>通常幅のコンテンツ</Text>
 		</Layouter>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 		```jsx
 		...
 		```
-	</Demo.Code>
-</Demo> */}
+	</PreviewCode>
+</Preview> */}
 
 
 
@@ -457,9 +458,9 @@ Lism設計では基本的に ② の `.is--constrained` 使用することを前
 </Alert>
 
 
-<Demo>
-	<Demo.Title>NG例</Demo.Title>
-	<Demo.Preview resize p={30}>
+<Preview>
+	<PreviewTitle>NG例</PreviewTitle>
+	<PreviewArea resize p={30}>
 		<Box isFlow="2em" bd bdc='green:50%' bdw='2px'>
 			<p className='-bd:guide'>コンテンツ</p>
 			<p className='-bd:guide'>コンテンツ</p>
@@ -470,8 +471,8 @@ Lism設計では基本的に ② の `.is--constrained` 使用することを前
 			<p className='-bd:guide'>コンテンツ</p>
 			<p className='-bd:guide'>コンテンツ</p>
 		</Box>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 	```jsx {1,4}
 	<Box isFlow="2em">
 		<p>コンテンツ</p>
@@ -484,13 +485,13 @@ Lism設計では基本的に ② の `.is--constrained` 使用することを前
 		<p>コンテンツ</p>
 	</Box>
 	```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
 
-{/* <Demo>
-	<Demo.Title>OK例: .is--flow の直下に別のFlow要素</Demo.Title>
-	<Demo.Preview resize p={30}>
+{/* <Preview>
+	<PreviewTitle>OK例: .is--flow の直下に別のFlow要素</PreviewTitle>
+	<PreviewArea resize p={30}>
 		<Box isFlow>
 			<p className='-bd:guide'>コンテンツ</p>
 			<p className='-bd:guide'>コンテンツ</p>
@@ -505,8 +506,8 @@ Lism設計では基本的に ② の `.is--constrained` 使用することを前
 			</Box>
 			<p className='-bd:guide'>コンテンツ</p>
 		</Box>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 	```jsx {1,4,9}
 	<Box isFlow>
 		<p>コンテンツ</p>
@@ -523,5 +524,5 @@ Lism設計では基本的に ② の `.is--constrained` 使用することを前
 		<p>コンテンツ</p>
 	</Box>
 	```
-	</Demo.Code>
-</Demo> */}
+	</PreviewCode>
+</Preview> */}

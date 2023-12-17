@@ -3,131 +3,114 @@ title: 'Tokens & Utilities'
 description: ...
 ---
 
-import { Demo, PreviewTitle, MemoBadge, DammyText, Reference } from "~/components";
+import { MemoBadge, DammyText, Reference } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 import { ColorDemos, FzDemos, LhDemos, LtsDemos, SpacingDemos, ShadowDemos, RadiusDemos } from "~/demos/tokens.jsx";
-import { Box, Text, Stack, Flex, Columns, Frame, Alert, Tabs, TabItem, Spacer } from '@loos/lism-astro';
+import { Core, Box, Text, Stack, Flex, Columns, Frame, Alert, Tabs, TabItem, Spacer } from '@loos/lism-astro';
 
+
+export const ColorBadge = ({color, label}) => {
+	return <span className='-d:f -ai:c -gap:em3'>
+			<Core tag='span' className='has--size -d:ib' size='1.5em' bgc={color} bdc="base" radius='2' shadow='1' />
+			<code>{label}</code>
+		</span>;
+}
 
 ## COLOR トークン
 
+### パレットトークン
+
 {/* main→brand? */}
-<Demo>
-	<Demo.Title>Point colors</Demo.Title>
-	<Demo.Preview isShadow resize p={20} isFlow="s">
+<Preview>
+	<PreviewTitle>Point colors</PreviewTitle>
+	<PreviewArea isShadow resize p={20} isFlow="s">
 		<ColorDemos colors={[ 'main', 'accent' ]}/>
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 
-<Demo>
-	<Demo.Title>Basic カラー</Demo.Title>
-	<Demo.Preview isShadow resize p={20} isFlow="s">
+<Preview>
+	<PreviewTitle>Basic カラー</PreviewTitle>
+	<PreviewArea isShadow resize p={20} isFlow="s">
 		<ColorDemos colors={[ 'b50', 'b100', 'b200', 'b300', 'b400', 'b500', 'b600', 'b700', 'b800', 'b900' ]}/>
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 <Alert preset="info">
 Basic系カラーはデフォルトで 背景色・文字色・ボーダー色などに使われています。(50:背景色 ←→ 950:文字色)  
 `--hs--basic`で色味を一括調整可能。
 </Alert>
 
-<Demo>
-	<Demo.Title>パレットカラー</Demo.Title>
-	<Demo.Preview isShadow resize p={20} isFlow="s">
+<Preview>
+	<PreviewTitle>パレットカラー</PreviewTitle>
+	<PreviewArea isShadow resize p={20} isFlow="s">
 		<ColorDemos colors={[ 'black', 'white', "red", "orange", "yellow", "green", "blue", "purple", "pink" ]}/>
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 
 ### セマンティックトークン
 
-### 文字色(`color`)用 
+パレットトークンの他、用途に合わせたセマンティックトークンを定義しています。
+
+実際に取り扱うのはこちらの方が多いと思います。
+
+
+#### 文字色(`color`)用トークン
+
+|トークン|変数|クラス|初期値|
+|---|---|---|---|
+|<ColorBadge color='b900' label='base' />|`--c--base`|`.-c:base`|`--b900`|
+|<ColorBadge color='b700' label='pale' />|`--c--pale`|`.-c:pale`|`--b700`|
+|<ColorBadge color='b50' label='opposite' />|`--c--opposite`|`.-c:opposite`|`--b50`|
+
+{/* weak - srtong?
+pale - deep? */}
+
+<Preview>
+	<PreviewTitle>テキストカラー</PreviewTitle>
+	<PreviewArea p={20}>
+		<div>`base` : <DammyText tag="span" c="base" /></div>
+		<div>`pale` : <DammyText tag="span" c="pale" /></div>
+		<div>`opposite` : <DammyText tag="span" c="opposite" /></div>
+	</PreviewArea>
+</Preview>
+
+
+#### 背景色(`background-color`)用トークン
 |トークン|変数|初期値|
 |---|---|---|
-|`base`|`--c--base`|`--b900`|
-|`pale`|`--c--pale`|`--b700`|
-|`opposite`|`--c--opposite`|`--b50`|
+|<ColorBadge color='b50' label='base' />|`--bgc--base`|`--b50`|
+|<ColorBadge color='b100' label='pale' />|`--bgc--pale`|`--b100`|
+|<ColorBadge color='b900' label='opposite' />|`--bgc--opposite`|`--b900`|
 
-weak - srtong?
-pale - deep?
+<Preview>
+	<PreviewTitle>背景色</PreviewTitle>
+	<PreviewArea p={20}>
+		<Box bgc="base" p='box' shadow='1'><div>`base`</div></Box>
+		<Box bgc="pale" p='box' shadow='1'><div>`pale`</div></Box>
+		<Box bgc="opposite" p='box' shadow='1'><div>`opposite`</div></Box>
+	</PreviewArea>
+</Preview>
 
-### 背景色(`background-color`)用 
+#### ボーダー色(`border-color`)用トークン
+
 |トークン|変数|初期値|
 |---|---|---|
-|`base`|`--bgc--base`|`--b50`|
-|`pale`|`--bgc--pale`|`--b100`|
-|`opposite`|`--bgc--opposite`|`--b900`|
+|<ColorBadge color='b300' label='base' />|`--bdc--base`|`--b300`|
+|<ColorBadge color='b800' label='strong' />|`--bdc--strong`|`--b800`|
 
-### ボーダー色(`border-color`)用 
-|トークン|変数|初期値|
-|---|---|---|
-|`base`|`--bdc--base`|`--b300`|
-{/* |`strong`?|`--bdc--strong?`|`--b800`| */}
-
-
-<Demo>
-	<Demo.Title>テキストカラー</Demo.Title>
-	<Demo.Preview isShadow resize p={20}>
-		`c="base"` :  
-		<DammyText tag="span" c="base" />
-
-		`c="pale"` :  
-		<DammyText tag="span" c="pale" />
-		
-		`c="opposite"` :  
-		<DammyText tag="span" c="opposite" />
-	</Demo.Preview>
-</Demo>
-
-<Demo>
-	<Demo.Title>背景色</Demo.Title>
-	<Demo.Preview isShadow resize p={20} isFlow='s'>
-		`bgc="base"`
-		<Box bgc="base" p='box'>
-			<DammyText tag="span"/>
-		</Box>
-		<Spacer height={20} />
-		`bgc="pale"`
-		<Box bgc="pale" p='box'>
-			<DammyText tag="span"/>
-		</Box>
-		<Spacer height={20} />
-		`bgc="b200"`
-		<Box bgc="b200" p='box'>
-			<DammyText tag="span"/>
-		</Box>
-		<Spacer height={20} />
-		`bgc="opposite"`
-		<Box bgc="opposite" p='box'>
-			<DammyText tag="span"/>
-		</Box>
-		{/* <Spacer height={20} /> */}
-		{/* `bgc="pale"`,  `bdc="base"`
-		<Box bgc="pale" bd bdc="base" p='box'>
-			<DammyText tag="span"/>
-		</Box> */}
-	</Demo.Preview>
-</Demo>
-
-<Demo>
-	<Demo.Title>ボーダーカラー</Demo.Title>
-	<Demo.Preview isShadow resize p={20} isFlow='s' nogrid>
-		`c="base"`
-		<Box p='box' bd bdc="base">
-			<DammyText tag="span"/>
-		</Box>
-		<Spacer height={20} />
-		`c="pale"`
-		<Box p='box' bd bdc="b200">
-			<DammyText tag="span"/>
-		</Box>
-	</Demo.Preview>
-</Demo>
+<Preview>
+	<PreviewTitle>ボーダー色</PreviewTitle>
+	<PreviewArea p={20}>
+		<Box bd bdc="base" p='box'><div>`base`</div></Box>
+		<Box bd bdc="strong" p='box'><div>`strong`</div></Box>
+	</PreviewArea>
+</Preview>
 
 
 
 ## Typography
-
 
 ### FONT.SIZE
 
@@ -152,14 +135,14 @@ pale - deep?
 
 
 
-<Demo>
-	<Demo.Title>Demo</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+<Preview>
+	<PreviewTitle>Demo</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<Box ovx="auto">
 			<FzDemos />
 		</Box>
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 
 
@@ -199,29 +182,29 @@ Lism では、フォントサイズのスケーリングには数学的に美し
 <Tabs>
 	<TabItem label='分子7'>
 		<Frame aspect="16/9">
-			<Demo>
-				<Demo.Preview isFlow='s' className='fzDemo typo-7'>
+			<Preview>
+				<PreviewArea isFlow='s' className='fzDemo typo-7'>
 					<FzDemos />
-				</Demo.Preview>
-			</Demo>
+				</PreviewArea>
+			</Preview>
 		</Frame>
 	</TabItem>
 	<TabItem label='分子8'>
 		<Frame aspect="16/9">
-		<Demo>
-			<Demo.Preview isFlow='s' className='fzDemo typo-8'>
+		<Preview>
+			<PreviewArea isFlow='s' className='fzDemo typo-8'>
 				<FzDemos />
-			</Demo.Preview>
-		</Demo>
+			</PreviewArea>
+		</Preview>
 		</Frame>
 	</TabItem>
 	<TabItem label='分子9'>
 		<Frame aspect="16/9">
-		<Demo>
-			<Demo.Preview isFlow='s' className='fzDemo typo-9'>
+		<Preview>
+			<PreviewArea isFlow='s' className='fzDemo typo-9'>
 				<FzDemos />
-			</Demo.Preview>
-		</Demo>
+			</PreviewArea>
+		</Preview>
 		</Frame>
 	</TabItem>
 </Tabs>
@@ -247,9 +230,9 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 
 <Tabs>
 	<TabItem label='日本語'>
-	<Demo>
-		<Demo.Title>Demo</Demo.Title>
-		<Demo.Preview p={20} isFlow='s'>
+	<Preview>
+		<PreviewTitle>Demo</PreviewTitle>
+		<PreviewArea p={20} isFlow='s'>
 			<LhDemos lang='ja' />
 			{/* <DammyText lang='ja' length='m' lh='1'/>
 			<DammyText lang='ja' length='m' lh='1.125'/>
@@ -260,25 +243,25 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 			<DammyText lang='ja' length='m' lh='1.75'/>
 			<DammyText lang='ja' length='m' lh='1.875'/>
 			<DammyText lang='ja' length='m' lh='2'/> */}
-		</Demo.Preview>
-	</Demo>
+		</PreviewArea>
+	</Preview>
 	</TabItem>
 	<TabItem label='English'>
-	<Demo>
-	<Demo.Title>Demo</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+	<Preview>
+	<PreviewTitle>Demo</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<LhDemos lang='en' />
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 	</TabItem>
 </Tabs>
 
 
 
 {/* ### Headings の font-size, line-height について
-<Demo>
-	<Demo.Title>Headings</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+<Preview>
+	<PreviewTitle>Headings</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<div class="l--stack -gap:30">
 			<h1>Heading 1: <DammyText tag='span' lang='ja' /></h1>
 			<h2>Heading 2: <DammyText tag='span' lang='ja' /></h2>
@@ -289,8 +272,8 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 			<hr />
 			<p>Paragraph: <DammyText tag='span' lang='ja' /></p>
 		</div>
-	</Demo.Preview>
-</Demo> */}
+	</PreviewArea>
+</Preview> */}
 
 
 ### FONT.LTS (letter spacing)
@@ -309,9 +292,9 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 |`5`|`--lts--5`|`-lts:`|`0.25em`|
 |`6`|`--lts--6`|`-lts:`|`0.5em`| */}
 
-{/* <Demo>
-	<Demo.Title>Demo</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+{/* <Preview>
+	<PreviewTitle>Demo</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<p><Text tag="code" w="2em">-2</Text> : <Text tag="span" lts="-2">Lorem Ipsum, 12345, ダミーの文字列</Text></p>
 		<p><Text tag="code" w="2em">-1</Text> : <Text tag="span" lts="-1">Lorem Ipsum, 12345, ダミーの文字列</Text></p>
 		<p><Text tag="code" w="2em">0</Text> : <Text tag="span" lts="0">Lorem Ipsum, 12345, ダミーの文字列</Text></p>
@@ -321,8 +304,8 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 		<p><Text tag="code" w="2em">4</Text> : <Text tag="span" lts="4">Lorem Ipsum, 12345, ダミーの文字列</Text></p>
 		<p><Text tag="code" w="2em">5</Text> : <Text tag="span" lts="5">Lorem Ipsum, 12345, ダミーの文字列</Text></p>
 		<p><Text tag="code" w="2em">6</Text> : <Text tag="span" lts="6">Lorem Ipsum, 12345, ダミーの文字列</Text></p>
-	</Demo.Preview>
-</Demo> */}
+	</PreviewArea>
+</Preview> */}
 
 |トークン|変数|クラス|初期値
 |---|---|---|---|
@@ -331,12 +314,12 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 |`l`|`--lts--1`|`-lts:l`|`0.025em`|
 |`xl`|`--lts--2`|`-lts:xl`|`0.05em`|
 
-<Demo>
-	<Demo.Title>Demo</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+<Preview>
+	<PreviewTitle>Demo</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<LtsDemos />
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 
 
@@ -352,23 +335,23 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 {/* |base|--ff--base|--ff--sans|
 |heading|--ff--heading|--ff--sans| */}
 
-<Demo>
-	<Demo.Title>Demo</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+<Preview>
+	<PreviewTitle>Demo</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<DammyText ff='sans' />
 		<DammyText ff='serif' />
 		<DammyText ff='mono' />
 		<Text ff='emoji'>💡 ✔️ ✅ 👍 ✍️ ⚡ 🚫</Text>
-	</Demo.Preview>
-	<Demo.Code>
+	</PreviewArea>
+	<PreviewCode>
 	```jsx
 	<Text ff='sans'>...</Text>
 	<Text ff='serif'>...</Text>
 	<Text ff='mono'>...</Text>
 	<Text ff='emoji'>💡 ✔️ ✅ 👍 ✍️ ⚡ 🚫</Text>
 	```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
 
 
@@ -415,14 +398,14 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 |`80`|`--s--80`|`11.125rem`|
 |`90`|`--s--90`|`18rem`|
 
-<Demo>
-	<Demo.Title>DEMO</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+<Preview>
+	<PreviewTitle>DEMO</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<SpacingDemos spaces={[
 			5, 10, 20, 30, 40, 50, 60, 70, 80, 90
 		]} isValueLabel />
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 
 フィボナッチ数列 ((0, 1,) 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...) に基づいたスケーリングを採用しています。  
@@ -462,12 +445,12 @@ paddingやmarginの全方向・全トークンに対してクラスを用意す�
 |`25`|`--em--25`|`2.5em`|
 |`30`|`--em--30`|`3em`|
 
-<Demo>
-	<Demo.Title>DEMO</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+<Preview>
+	<PreviewTitle>DEMO</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<SpacingDemos spaces={['em1','em2','em3','em5','em7','em10','em15','em20','em25','em30']} isValueLabel />
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 #### 対応するUtilityクラス
 
@@ -502,12 +485,12 @@ paddingやmarginの全方向・全トークンに対してクラスを用意す�
 
 #### フィボナッチ数に基づいた計算例
 
-<Demo>
-	<Demo.Title>`1=0.25`で計算</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+<Preview>
+	<PreviewTitle>`1=0.25`で計算</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<FiboCalcDemos unit={0.25}/>
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 
 #### 等比数列に基づいた計算例
@@ -516,26 +499,26 @@ paddingやmarginの全方向・全トークンに対してクラスを用意す�
 
 以下、`s50`=`2rem` を基準にして計算します。
 
-<Demo>
-	<Demo.Title>比率 `1.62` (≒ 黄金比率) の例</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+<Preview>
+	<PreviewTitle>比率 `1.62` (≒ 黄金比率) の例</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<RatioCalcDemos ratio={1.62} />
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
-<Demo>
-	<Demo.Title>比率 `1.5` (完全五度) の例</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+<Preview>
+	<PreviewTitle>比率 `1.5` (完全五度) の例</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<RatioCalcDemos ratio={1.5} />
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 
 #### ハイブリッド型
 
-<Demo>
-	<Demo.Title>前半をフィボナッチ数列、後半を完全5度(`1.5`)の等比数列</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+<Preview>
+	<PreviewTitle>前半をフィボナッチ数列、後半を完全5度(`1.5`)の等比数列</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<SpacingDemos spaces={[
 			'0rem',
 			'0.25rem',
@@ -549,12 +532,12 @@ paddingやmarginの全方向・全トークンに対してクラスを用意す�
 			'10.125rem',
 			'15.2rem', // 15.188
 		]} />
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
-<Demo>
-	<Demo.Title>前半50までをフィボナッチ数列 `.125`、後半を完全5度(`1.5`)の等比数列</Demo.Title>
-	<Demo.Preview p={20} isFlow='s'>
+<Preview>
+	<PreviewTitle>前半50までをフィボナッチ数列 `.125`、後半を完全5度(`1.5`)の等比数列</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
 		<SpacingDemos spaces={[
 			'0rem',
 			'0.25rem',
@@ -568,8 +551,8 @@ paddingやmarginの全方向・全トークンに対してクラスを用意す�
 			'9.5rem',
 			'14.325rem',
 		]} />
-	</Demo.Preview>
-</Demo> */}
+	</PreviewArea>
+</Preview> */}
 
 
 ## `SHADOW` トークン
@@ -588,24 +571,24 @@ paddingやmarginの全方向・全トークンに対してクラスを用意す�
 
 
 
-<Demo>
-	<Demo.Title>shadows</Demo.Title>
-	<Demo.Preview p={40}>
+<Preview>
+	<PreviewTitle>shadows</PreviewTitle>
+	<PreviewArea p={40}>
 		<Columns cols={[2, 4, 4]} gap={40}>
 			<ShadowDemos shadows={[ 1, 2, 3, 4 ]}/>
 		</Columns>
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 
-<Demo>
-	<Demo.Title>inset shadows</Demo.Title>
-	<Demo.Preview p={40}>
+<Preview>
+	<PreviewTitle>inset shadows</PreviewTitle>
+	<PreviewArea p={40}>
 		<Columns cols={[2, 4, 4]} gap={40}>
 			<ShadowDemos shadows={[ -1, -2, -3, -4 ]}/>
 		</Columns>
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 
 ### 構成変数
@@ -625,33 +608,33 @@ paddingやmarginの全方向・全トークンに対してクラスを用意す�
 
 ### How to use
 
-<Demo>
-	<Demo.Title>Component</Demo.Title>
-	<Demo.Code>
+<Preview>
+	<PreviewTitle>Component</PreviewTitle>
+	<PreviewCode>
 	```jsx
 	<Box shadow="2">...</Box>
 	```
-	</Demo.Code>
-</Demo>
-<Demo>
-	<Demo.Title>HTML</Demo.Title>
-	<Demo.Code>
+	</PreviewCode>
+</Preview>
+<Preview>
+	<PreviewTitle>HTML</PreviewTitle>
+	<PreviewCode>
 	```html
 	<div class="-bxsh:2">...</div>
 	```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
-<Demo>
-	<Demo.Title>CSS</Demo.Title>
-	<Demo.Code>
+<Preview>
+	<PreviewTitle>CSS</PreviewTitle>
+	<PreviewCode>
 ```css
 .foo{
 	box-shadow: var(--shadow--2);
 }
 ```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
 
 {/* `shadowHsl`も指定したい */}
@@ -672,44 +655,44 @@ paddingやmarginの全方向・全トークンに対してクラスを用意す�
 
 
 
-<Demo>
-	<Demo.Title>radius: `1` ~ `5`, `99`</Demo.Title>
-	<Demo.Preview p={30}>
+<Preview>
+	<PreviewTitle>radius: `1` ~ `5`, `99`</PreviewTitle>
+	<PreviewArea p={30}>
 		<Columns cols={[3, 6]} gap={40}>
 			<RadiusDemos />
 		</Columns>
-	</Demo.Preview>
-</Demo>
+	</PreviewArea>
+</Preview>
 
 ### How to use
 
-<Demo>
-	<Demo.Title>Component</Demo.Title>
-	<Demo.Code>
+<Preview>
+	<PreviewTitle>Component</PreviewTitle>
+	<PreviewCode>
 	```jsx
 	<Box radius="2">...</Box>
 	```
-	</Demo.Code>
-</Demo>
-<Demo>
-	<Demo.Title>HTML</Demo.Title>
-	<Demo.Code>
+	</PreviewCode>
+</Preview>
+<Preview>
+	<PreviewTitle>HTML</PreviewTitle>
+	<PreviewCode>
 	```html
 	<div class="-bdrs:2">...</div>
 	```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
-<Demo>
-	<Demo.Title>CSS</Demo.Title>
-	<Demo.Code>
+<Preview>
+	<PreviewTitle>CSS</PreviewTitle>
+	<PreviewCode>
 ```css
 .foo{
 	border-radius: var(--radius--2);
 }
 ```
-	</Demo.Code>
-</Demo>
+	</PreviewCode>
+</Preview>
 
 {/* `shadowHsl`も指定したい */}
 

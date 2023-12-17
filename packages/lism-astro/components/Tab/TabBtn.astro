@@ -7,12 +7,12 @@ export interface Props extends LismProps {
 	isActive?: boolean;
 }
 const { lismClass = {}, isActive, controlId, ...props } = Astro.props;
-lismClass.c = 'c--tab__button';
+lismClass.c = 'c--tabs_tab';
 ---
 
 <Core
-	className='btn--reset'
 	lismClass={lismClass}
+	lismState={['is--resetField']}
 	tag='button'
 	role='tab'
 	aria-selected={isActive ? 'true' : 'false'}

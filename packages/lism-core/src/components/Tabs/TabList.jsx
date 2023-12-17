@@ -1,12 +1,11 @@
-// import React from 'react';
 import { Flex } from '../Flex';
 
 export default function TabList({ as, lismClass = {}, variant, ...props }) {
 	const TabList = as || Flex;
 
-	lismClass.c = 'c--tabList';
+	lismClass.c = 'c--tabs_list';
 	if (variant) {
-		lismClass.c += ` c--tabList--${variant}`;
+		lismClass.c += ` c--tabs_list--${variant}`;
 	}
 
 	return <TabList lismClass={lismClass} jc='s' role='tablist' {...props} />;

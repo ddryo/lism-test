@@ -1,8 +1,6 @@
 import React from 'react';
 import { Grid } from '../Grid';
 import { Stack } from '../Flex';
-// import TabBtn from './TabBtn';
-// import TabList from './TabList';
 import TabChildren from './TabChildren';
 import getTabProps from './getProps';
 
@@ -12,8 +10,8 @@ import getTabProps from './getProps';
 //
 export default function Tabs({
 	lismClass = {},
-	variant,
-	type = 'border',
+	variant = 'line',
+	// type = 'line',
 	// isVertical,
 	// keepHeight,
 	uuid,
@@ -22,21 +20,19 @@ export default function Tabs({
 	...props
 }) {
 	lismClass.c = 'c--tabs';
-	if (variant) {
-		lismClass.c += ` c--tabs--${variant}`;
-	}
+	variant && (lismClass.c += ` c--tabs--${variant}`);
+	// isVertical && (lismClass.c += ' c--tabs--vertical');
 
 	const tabId = uuid || React.useId();
 
-	const { tabProps, listProps, panelProps } = getTabProps(props);
+	const { tabProps, listProps, panelProps } = getTabProps(props, variant);
 	if ('Stack' === listProps.as) {
 		listProps.as = Stack;
 	}
 
 	return (
-		<Grid lismClass={lismClass} {...tabProps}>
+		<Grid lismClass={lismClass} gap='em10' {...tabProps}>
 			<TabChildren
-				type={type}
 				tabId={tabId}
 				defaultIndex={defaultIndex}
 				listProps={listProps}

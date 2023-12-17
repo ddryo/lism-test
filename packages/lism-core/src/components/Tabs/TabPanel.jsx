@@ -3,7 +3,7 @@ import { Layouter } from '../Layouter';
 import { GridItem } from '../Grid';
 
 export default function TabPanel({ lismClass = {}, isActive, ...props }) {
-	lismClass.c = 'c--tab__panel';
+	lismClass.c = 'c--tabs_panel';
 
 	return (
 		<GridItem

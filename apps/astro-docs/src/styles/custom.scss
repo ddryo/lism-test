@@ -3,15 +3,27 @@
 @import './preview';
 @import './hero';
 
+// .c--tabs pre {box-shadow: 0 0 8px 0 red !important;}
+
 // 以下ではデフォルトのカラム幅を広げ、ページタイトルのテキストサイズを大きくしています。
 :root {
 	--sl-content-width: 50rem;
-	// --sl-text-5xl: 3.5rem;
-
 	--codeblock--radius: 0 0 var(--radius--3) var(--radius--3);
-	--codeblock--bgc: #f7f7f7;
 	--sl-sidebar-width:15rem;
-	
+	--ec-frm-edBg: red; 
+}
+
+:root[data-theme='light'] {
+	--codeBlock--bgc:hsl(200, 16%, 96%);
+	--prev--resize-bdc: hsl(200, 16%, 60%);
+
+	.expressive-code.expressive-code {
+		--ec-frm-edBg: var(--codeBlock--bgc);
+	}
+}
+
+.expressive-code .frame{
+	--ec-frm-frameBoxShdCssVal: none;
 }
 
 #starlight__sidebar{

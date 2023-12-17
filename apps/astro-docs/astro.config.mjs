@@ -35,7 +35,8 @@ export default defineConfig({
 				styleOverrides: {
 					borderRadius: '0.25rem',
 				},
-				themes: ['starlight-dark', 'starlight-dark'],
+				themes: ['starlight-dark', 'starlight-light'],
+				useStarlightDarkModeSwitch: true,
 			},
 
 			components: {

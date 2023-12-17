@@ -1,31 +1,44 @@
-export default function getTabProps({
-	isVertical,
-	keepHeight,
-	listProps = {},
-	panelProps = {},
-	...props
-}) {
-	let tabData = [];
+export default function getTabProps(
+	{ isVertical, keepHeight, listProps = {}, panelProps = {}, ...props },
+	variant
+) {
+	let dataTabs = [];
+	let _listProps = {};
+	let _panelProps = {};
 
 	if (isVertical) {
-		props.gt = 'side:s';
-		panelProps = Object.assign({}, panelProps, { gcs: 2, grs: 1, ai: 's' });
-		listProps = Object.assign({}, listProps, { as: 'Stack' });
-		tabData.push('vertical');
+		// props.gt = 'side:s';
+		_listProps.as = 'Stack';
+		_panelProps.ai = 's';
+		// _panelProps.gcs = 2;
+		// _panelProps.grs = 1;
+
+		dataTabs.push('vertical');
 	} else {
-		panelProps = Object.assign({}, panelProps, { gcs: 1, grs: 2 });
+		// panelProps = Object.assign({}, panelProps, { gcs: 1, grs: 2 });
+	}
+
+	if (variant === 'box') {
+		_listProps.bgc = 'b200';
+		_listProps.p = 'em1';
+		_listProps.gap = 'em5';
+		_listProps.radius = '2';
 	}
 
 	if (keepHeight) {
-		tabData.push('keep-height');
+		dataTabs.push('keep-height');
 	}
-	if (tabData.length) {
-		props['data-tab'] = tabData.join(' ');
-	}
-
-	if (tabData.length) {
-		props['data-tab'] = tabData.join(' ');
+	if (dataTabs.length) {
+		props['data-tabs'] = dataTabs.join(' ');
 	}
 
-	return { tabProps: props, listProps, panelProps };
+	if (dataTabs.length) {
+		props['data-tabs'] = dataTabs.join(' ');
+	}
+
+	return {
+		tabProps: props,
+		listProps: Object.assign(_listProps, listProps),
+		panelProps: Object.assign(_panelProps, panelProps),
+	};
 }

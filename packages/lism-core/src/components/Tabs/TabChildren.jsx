@@ -1,11 +1,10 @@
 import React from 'react';
-import TabBtn from './TabBtn';
+import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
 
 export default function TabChildren({
 	children,
-	type,
 	tabId,
 	defaultIndex,
 	listProps = {},
@@ -26,14 +25,14 @@ export default function TabChildren({
 		if (!label) return;
 
 		items.push(
-			<TabBtn
+			<Tab
 				key={controlId}
 				isActive={isActive}
 				onClick={() => setActiveIndex(index)}
 				controlId={controlId}
 			>
 				{label}
-			</TabBtn>
+			</Tab>
 		);
 		panels.push(
 			<TabPanel
@@ -52,9 +51,7 @@ export default function TabChildren({
 	}
 	return (
 		<>
-			<TabList variant={type} {...listProps}>
-				{items}
-			</TabList>
+			<TabList {...listProps}>{items}</TabList>
 			{panels}
 		</>
 	);

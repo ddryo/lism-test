@@ -7,7 +7,7 @@ export interface Props extends LismProps {
 	isActive?: boolean;
 }
 const { lismClass = {}, isActive, ...props } = Astro.props;
-lismClass.c = 'c--tab__panel';
+lismClass.c = 'c--tabs_panel';
 ---
 
 <GridItem

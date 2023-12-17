@@ -21,8 +21,7 @@ interface Props extends LismProps {
 const {
 	lismClass = {},
 	lismStyle = {},
-	variant,
-	type = 'border',
+	variant = 'line',
 	defaultIndex = 0,
 	uuid,
 	// listProps = {},
@@ -41,18 +40,16 @@ const { btns, panels } = transformTabitems(
 );
 
 lismClass.c = 'c--tabs';
-if (variant) {
-	lismClass.c += ` c--tabs--${variant}`;
-}
+if (variant) lismClass.c += ` c--tabs--${variant}`;
 
-const { tabProps, listProps, panelProps } = getTabProps(props);
+const { tabProps, listProps, panelProps } = getTabProps(props, variant);
 if ('Stack' === listProps.as) {
 	listProps.as = Stack;
 }
 ---
 
-<Grid lismClass={lismClass} {...tabProps}>
-	<TabList variant={type} {...listProps}>
+<Grid lismClass={lismClass} gap='em10' {...tabProps}>
+	<TabList {...listProps}>
 		{
 			btns.map((btn, index) => {
 				return (

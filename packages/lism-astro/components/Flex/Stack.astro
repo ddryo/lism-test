@@ -1,0 +1,15 @@
+---
+import Flex from './Flex.astro';
+
+// import { LismProps } from '../types';
+// interface Props extends LismProps {
+// 	sideW?: string | number;
+// 	mainMinW?: string | number;
+// }
+
+// let { ...props } = Astro.props || {};
+---
+
+<Flex _flexName='stack' {...Astro.props}>
+	<slot />
+</Flex>

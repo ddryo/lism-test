@@ -45,7 +45,7 @@
 
 // fxw, fxb は調整したいことも多いのでデフォルトでBP対応。
 // 検討: 一括指定の fx, fxf だけ用意しておけばとりあえず全部対応できるのでは？（不要な上書きが発生しまうデメリットあり）
-@include query.cq('sm') {
+@include query.bp-up('sm') {
 	// .-fxf\@sm { flex-flow: var(--fxf--sm); }
 	.-fxw\@sm { flex-wrap: var(--fxw--sm); }
 	// .-fxd\@sm { flex-direction: var(--fxd--sm); }
@@ -56,11 +56,11 @@
 	// .-fxsh\@sm { flex-shrink: var(--fxsh--sm); }
 	
 }
-@include query.cq('md') {
+@include query.bp-up('md') {
 	.-fxw\@md { flex-wrap: var(--fxw--md); }
 	.-fxb\@md { flex-basis: var(--fxb--md); }
 }
-@include query.cq('lg') {
+@include query.bp-up('lg') {
 	.-fxw\@lg { flex-wrap: var(--fxw--lg); }
 	.-fxb\@lg { flex-basis: var(--fxb--lg); }
 }

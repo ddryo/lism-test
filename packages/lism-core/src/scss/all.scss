@@ -1,21 +1,17 @@
 /*
   resetした上で、 各要素の標準スタイルを定義する
 */
-@use './generic/layer';
-@use './generic/tokens';
-@use './generic/reset';
-
 // base
-@forward './base/index';
+@use './base/index' as base;
 
 // layout
-@forward './layout/index';
+@use './layout/index' as layout;
 
 // objects
-@forward './objects/index';
+@use './objects/index' as objects;
 
 // utility
-@use './utility/index';
+@use './utility/index' as utility;
 
 // あとで切り分ける
 @use './rtl.scss';

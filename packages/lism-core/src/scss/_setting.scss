@@ -1,5 +1,148 @@
-// @use 'sass:map';
+@use 'sass:map';
 
 // ユーティリティクラス化するスペースの値
 $util_spaces: 5, 10, 15, 20, 30, 40, 50 !default;
 $util_em_tokens: 1, 2, 3, 5, 7, 10, 15, 20, 25, 30 !default;
+
+$utilities: () !default;
+
+/*
+base_type:
+	0 →　なし（ユーティリティクラス以外はインラインスタイルのみ）
+	1 →　.-d\:{display: var(--d)}
+	2 → [class*='-aspect\:'] aspect-ratio: var(--aspect);}
+*/
+$utilities: map.deep-merge(
+	(
+		'w': (
+			prop: 'width',
+			important: 1,
+			base_type: 1,
+			utilities: (
+				'fit': 'fit-content',
+				'100': '100%',
+				// '75': '75%',
+			),
+		),
+		'h': (
+			prop: 'height',
+			base_type: 1,
+			utilities: (
+				'fit': 'fit-content',
+				'100': '100%',
+			),
+			special_utilities: (
+				'screen': 'height: 100vh; height: 100dvh;',
+			),
+		),
+		'aspect': (
+			prop: 'aspect-ratio',
+			base_type: 2,
+			utilities: (
+				'16\\/9': '16/9',
+				'4\\/3': '4/3',
+				'3\\/2': '3/2',
+				'1\\/1': '1/1',
+			),
+		),
+	),
+	$utilities
+);
+$utility_break_points: () !default;
+$utility_break_points: map.merge(
+	(
+		'sm': 1,
+		'md': 0,
+		'lg': 0,
+	),
+	$utility_break_points
+);
+
+$bp_props: () !default;
+$bp_props: map.deep-merge(
+	(
+		'w': (
+			prop: 'width',
+			// important: 1,
+		),
+		'h': (
+			prop: 'height',
+			// important: 1,
+			// lg: 0,
+		),
+		'd': (
+			prop: 'display',
+			important: 1,
+		),
+		'fz': (
+			prop: 'font-size',
+		),
+		'gap': (
+			prop: 'gap',
+		),
+		'clmg': (
+			prop: 'column-gap',
+		),
+		'rowg': (
+			prop: 'row-gap',
+		),
+		'm': (
+			prop: 'margin',
+		),
+		'mx': (
+			prop: 'margin-inline',
+		),
+		'my': (
+			prop: 'margin-block',
+		),
+		'mt': (
+			prop: 'margin-top',
+		),
+		'mr': (
+			prop: 'margin-right',
+		),
+		'mb': (
+			prop: 'margin-bottom',
+		),
+		'ml': (
+			prop: 'margin-left',
+		),
+		'mis': (
+			prop: 'margin-inline-start',
+		),
+		'mbs': (
+			prop: 'margin-block-start',
+		),
+		'p': (
+			prop: 'padding',
+		),
+		'px': (
+			prop: 'padding-inline',
+		),
+		'py': (
+			prop: 'padding-block',
+		),
+		'pt': (
+			prop: 'padding-top',
+		),
+		'pr': (
+			prop: 'padding-right',
+		),
+		'pb': (
+			prop: 'padding-bottom',
+		),
+		'pl': (
+			prop: 'padding-left',
+		),
+		'pis': (
+			prop: 'padding-inline-start',
+		),
+		'pbs': (
+			prop: 'padding-block-start',
+		),
+		'aspect': (
+			prop: 'aspect-ratio',
+		),
+	),
+	$bp_props
+);

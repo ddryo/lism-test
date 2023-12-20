@@ -4,6 +4,8 @@ description: A guide in my new Starlight docs site.
 ---
 
 import { Box, Text, Stack, Flex, Columns, Frame, Alert, Tabs, TabItem } from '@loos/lism-astro';
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
 
 <Tabs>
 	<TabItem label='分子7'>
@@ -14,3 +16,20 @@ import { Box, Text, Stack, Flex, Columns, Frame, Alert, Tabs, TabItem } from '@l
 		iii
 	</TabItem>
 </Tabs>
+
+
+
+<Preview>
+	<PreviewTitle>実際の活用例は次の通りです。</PreviewTitle>
+	<PreviewCode label="teeest" slot="tab">
+	```html
+	<!-- ↓ プリセット値の活用 -->
+	<div class="-p:20">...</div>
+
+	<!-- ↓ レスポンシブ対応 -->
+	<div class="-p:20 -p@sm -p@md" style="--p--sm:var(--s--30);--p--md:var(--s--40);">
+		...
+	</div>
+	```
+	</PreviewCode>
+</Preview>

@@ -43,14 +43,14 @@
 }
 
 // unreel → tileグリッドに切り替え. 別レイアウトが必要であればgtcで。
-@include query.cq('sm') {
+@include query.bp-up('sm') {
 	.l--reel[data-unreel='sm'] {
 		display: grid;
 		grid: none / var(--gtc);
 		overflow-x: revert;
 	}
 }
-@include query.cq('md') {
+@include query.bp-up('md') {
 	.l--reel[data-unreel='md'] {
 		display: grid;
 		grid: none / var(--gtc);

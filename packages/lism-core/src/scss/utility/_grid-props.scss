@@ -121,7 +121,7 @@ item側: row/column だけ BP対応。（areaは親側でエリアを組み替�
 // gt@sm すると　全部上書きしてしまう.--gtc, --gt をわけて使うならgtは使わないようにする必要がある。
 // gtc 変える なら gtr も変えることがほとんどだろうから、gt でやってもらう? → RatioGridはgtcのみでコントロールしているので必要。
 // ただし、gta は独立して管理できるようにする。
-@include query.cq('sm') {
+@include query.bp-up('sm') {
 	// .-gt\@sm { --gt: var(--gt--sm) }
 	.-gta\@sm { grid-template-areas: var(--gta--sm) }
 	.-gtc\@sm { grid-template-columns: var(--gtc--sm) }
@@ -129,7 +129,7 @@ item側: row/column だけ BP対応。（areaは親側でエリアを組み替�
 	.-gc\@sm { grid-column: var(--gc--sm) }
 	.-gr\@sm { grid-row: var(--gr--sm) }
 }
-@include query.cq('md') {
+@include query.bp-up('md') {
 	// .-gt\@md { --gt: var(--gt--md) }
 	.-gta\@md { grid-template-areas: var(--gta--md) }
 	.-gtc\@md { grid-template-columns: var(--gtc--md) }
@@ -137,7 +137,7 @@ item側: row/column だけ BP対応。（areaは親側でエリアを組み替�
 	.-gc\@md { grid-column: var(--gc--md) }
 	.-gr\@md { grid-row: var(--gr--md) }
 }
-@include query.cq('lg') {
+@include query.bp-up('lg') {
 	// .-gt\@lg { --gt: var(--gt--lg) }
 	.-gta\@lg { grid-template-areas: var(--gta--lg) }
 	.-gtc\@lg { grid-template-columns: var(--gtc--lg) }

@@ -1,8 +1,12 @@
-@forward './body';
-@forward './heading';
-@forward './table';
-@forward './list';
-@forward './code';
+@forward './layer';
+@forward './tokens';
+@forward './reset';
+
+@forward './html/body';
+@forward './html/heading';
+@forward './html/table';
+@forward './html/list';
+@forward './html/code';
 
 :root {
 	--list--pis: 1.5em;

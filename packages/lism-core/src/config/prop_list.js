@@ -232,9 +232,9 @@ export const CONTEXT_PROPS = {
 	},
 	item: {
 		order: { style: 1, utilKey: 'ord', presets: ['0', '-1', '1'] },
-		as: { style: 1, utilKey: 'as', utils: 'selfPlace' },
-		js: { style: 1, utilKey: 'js', utils: 'selfPlace' },
-		ps: { style: 'placeSelf' },
+		aslf: { style: 1, utilKey: 'as', utils: 'selfPlace' },
+		jslf: { style: 1, utilKey: 'js', utils: 'selfPlace' },
+		pslf: { style: 'placeSelf' },
 	},
 	// inset={t:'0'},
 	inset: {

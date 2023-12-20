@@ -53,6 +53,81 @@ export default [
 		// ],
 	},
 	{
+		label: 'Lism UI',
+		// autogenerate: {
+		// 	directory: 'reference',
+		// },
+		items: [
+			// Each item here is one entry in the navigation menu.
+			{
+				label: 'Utility Props',
+				link: '/components/props/',
+			},
+			{
+				label: 'Core',
+				link: '/components/core',
+			},
+			{
+				label: 'Layouter',
+				link: '/components/core',
+			},
+		],
+	},
+	{
+		label: 'Layout Modules',
+		items: [
+			{
+				label: 'Flex',
+				link: '/layout/props/',
+			},
+			{
+				label: 'Cluster',
+				link: '/layout/core',
+			},
+			{
+				label: 'Stack',
+				link: '/layout/core',
+			},
+
+			{
+				label: 'Grid',
+				link: '/layout/core',
+			},
+		],
+	},
+	{
+		label: 'Element Modules',
+		items: [
+			{
+				label: 'Avatar',
+				link: '/layout/props/',
+			},
+			{
+				label: 'Icon',
+				link: '/layout/core',
+			},
+		],
+	},
+	{
+		label: 'Component Modules',
+
+		items: [
+			{
+				label: 'Alert',
+				link: '/layout/core',
+			},
+			{
+				label: 'Accordion',
+				link: '/layout/core',
+			},
+			{
+				label: 'Button',
+				link: '/layout/props/',
+			},
+		],
+	},
+
+	{
 		label: 'Reference',
 		autogenerate: {
 			directory: 'reference',

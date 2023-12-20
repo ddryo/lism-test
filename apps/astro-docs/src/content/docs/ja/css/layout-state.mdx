@@ -1,5 +1,5 @@
 ---
-title: 'Lism State'
+title: 'Layout State'
 description: ...
 ---
 
@@ -10,9 +10,7 @@ import { Desktop } from "@phosphor-icons/react";
 import { MemoBadge } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 
-# Layout State
-
-Lismには、レイアウトモジュール要素とは別に、コンテンツサイズを制御したりコンテンツ間隔を調整するためのクラスを用意しており、これらを Layout State と呼んでいます。
+Lismでは、レイアウト・デザインを組む上で特定の役割を持ち、かつ複数のモジュールに対してつけ外しできるような汎用性の高いセレクタを Layout State（仮名） として分類しています。
 
 {/* - `is--container` : コンテナ要素で、かつ**自身の横幅**を制御できるクラス
 - `is--constrained` : コンテナ要素で、かつ**子要素の横幅**を制御するためのクラス

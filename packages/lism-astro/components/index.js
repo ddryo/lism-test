@@ -6,6 +6,7 @@
 export * from '@loos/lism-core'; // core はReact であることに注意。
 
 export * from './Core';
+// export { default as Layouter } from './Core/Layouter.astro';
 export * from './Flex';
 export * from './Grid';
 export * from './Icon';

@@ -1,5 +1,3 @@
-@use '../query' as query;
-
 [class*='-aspect\:'] {
 	aspect-ratio: var(--aspect);
 }
@@ -34,21 +32,4 @@
 }
 .-aspect\:cinema {
 	--aspect: 2.35/1;
-}
-
-@include query.cq('sm') {
-	.-aspect\@sm {
-		aspect-ratio: var(--aspect--sm);
-	}
-}
-
-@include query.cq('md') {
-	.-aspect\@md {
-		aspect-ratio: var(--aspect--md);
-	}
-}
-@include query.cq('lg') {
-	.-aspect\@lg {
-		aspect-ratio: var(--aspect--lg);
-	}
 }

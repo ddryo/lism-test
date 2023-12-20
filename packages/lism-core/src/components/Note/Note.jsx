@@ -18,6 +18,7 @@ export default function Note({
 	keycolor,
 	headProps = {},
 	bodyProps = {},
+	children,
 	...props
 }) {
 	lismClass.c = 'c--note';
@@ -57,8 +58,9 @@ export default function Note({
 					<span className='c--note__heading'>{heading}</span>
 				</Flex>
 			)}
-
-			<Layouter lismClass={{ c: 'c--note__body' }} isFlow={isFlow} {...bodyProps} />
+			<Layouter lismClass={{ c: 'c--note__body' }} isFlow={isFlow} {...bodyProps}>
+				{children}
+			</Layouter>
 		</Layouter>
 	);
 }

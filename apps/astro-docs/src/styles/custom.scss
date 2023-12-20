@@ -9,12 +9,11 @@
 :root {
 	--sl-content-width: 50rem;
 	--codeblock--radius: 0 0 var(--radius--3) var(--radius--3);
-	--sl-sidebar-width:15rem;
-	--ec-frm-edBg: red; 
+	--sl-sidebar-width: 15rem;
 }
 
 :root[data-theme='light'] {
-	--codeBlock--bgc:hsl(200, 16%, 96%);
+	--codeBlock--bgc: hsl(200, 16%, 96%);
 	--prev--resize-bdc: hsl(200, 16%, 60%);
 
 	.expressive-code.expressive-code {
@@ -22,22 +21,23 @@
 	}
 }
 
-.expressive-code .frame{
+.expressive-code .frame {
 	--ec-frm-frameBoxShdCssVal: none;
 }
 
-#starlight__sidebar{
+#starlight__sidebar {
 	--sl-color-bg-sidebar: transparent;
 }
 
 // リストスタイルの除去
-.sidebar-content, .right-sidebar{
+.sidebar-content,
+.right-sidebar {
 	--list--pis: 0;
 	--list-style: none;
 }
 
 // コードブロック
-.expressive-code{
+.expressive-code {
 	--ec-frm-frameBoxShdCssVal: var(--shadow--3);
 	/* --ec-codeBg: #fff;
 	--code-background: #fff; */
@@ -50,20 +50,16 @@ td > code:only-child {
 
 /* memo: 狭いブラウザ幅での目次、文字検索した時に展開してきて邪魔になってしまうので、最大高さを低くした方がいいかも */
 
-
 .right-sidebar-container {
 	position: sticky;
 	z-index: var(--sl-z-index-toc);
 	top: var(--sl-nav-height);
 }
-.right-sidebar{
-	
-
-	
-	nav{
+.right-sidebar {
+	nav {
 		position: relative;
 		inset: 0;
-		border: none;;
+		border: none;
 		// z-index: var(--sl-z-index-toc);
 		// top: calc(var(--sl-nav-height) - 1px);
 	}

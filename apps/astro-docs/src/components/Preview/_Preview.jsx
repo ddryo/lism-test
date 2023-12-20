@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layouter, Layer, Icon, Tabs, TabItem } from '@loos/lism-core';
+import { Layouter, Layer, Icon, Tabs, TabItem } from '@loos/lism-astro';
 // import ResizeIcon from './icons/ResizeIcon.astro';
 import { ArrowDownRight } from '@phosphor-icons/react';
 

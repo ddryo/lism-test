@@ -1,3 +1,7 @@
+@use 'sass:map';
+@use '../query' as query;
+@use '../setting' as setting;
+
 @use './aspect';
 @use './border';
 @use './color';
@@ -28,3 +32,61 @@
 // .-container\:i {
 // 	container-type: inline-size;
 // }
+
+// [class*='-aspect\:'] aspect-ratio: var(--aspect);}
+// .-d\:{display: var(--d) !important;}
+
+@each $key, $data in setting.$utilities {
+	$prop: map.get($data, prop);
+	$base_type: map.get($data, base_type);
+
+	$important: '';
+	@if map.get($data, important) {
+		$important: ' !important';
+	}
+
+	@if $base_type == 1 {
+		.-#{$key}\: {
+			#{$prop}: var(--#{$key}) #{$important};
+		}
+	} @else if $base_type == 2 {
+		[class*='-#{$key}:'] {
+			#{$prop}: var(--#{$key}) #{$important};
+		}
+	}
+
+	// utilities
+	$utilities: map.get($data, utilities);
+	@each $u, $value in $utilities {
+		.-#{$key}\:#{$u} {
+			#{$prop}: #{$value} #{$important};
+		}
+	}
+}
+
+/* stylelint-disable */
+@each $bp in map.keys(query.$break-points) {
+	@include query.bp-up($bp) {
+		@each $key, $data in setting.$bp_props {
+			$prop: map.get($data, prop);
+
+			// デフォルトで現在のブレイクポイント ($bp) 用のクラスを出力するかどうか
+			$default_support_now_bp: map.get(setting.$utility_break_points, #{$bp});
+
+			// Propごとの設定で、現在のブレイクポイント ($bp) 用のクラス出力をサポートするかどうか
+			$prop_support_now_bp: map.get($data, #{$bp});
+
+			@if $prop_support_now_bp == 1 or ($default_support_now_bp == 1 and $prop_support_now_bp != 0) {
+				@if map.get($data, important) {
+					.-#{$key}\@#{$bp} {
+						#{$prop}: var(--#{$key}--#{$bp}) !important;
+					}
+				} @else {
+					.-#{$key}\@#{$bp} {
+						#{$prop}: var(--#{$key}--#{$bp});
+					}
+				}
+			}
+		}
+	}
+}

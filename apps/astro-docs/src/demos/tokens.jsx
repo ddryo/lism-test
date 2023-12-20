@@ -1,5 +1,5 @@
 import { Box, Text, Stack, Frame, RatioGrid } from '@loos/lism-core';
-import DammyText from './DammyText.jsx';
+import { DammyText } from '~/components';
 
 export const ColorDemos = ({ colors = [] }) => {
 	return (

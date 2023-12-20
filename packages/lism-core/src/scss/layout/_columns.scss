@@ -17,16 +17,16 @@
 	// --cols--xl: var(--cols--lg);
 
 	--cols--val: var(--cols);
-	@include query.cq('sm') {
+	@include query.bp-up('sm') {
 		--cols--val: var(--cols--sm);
 	}
-	@include query.cq('md') {
+	@include query.bp-up('md') {
 		--cols--val: var(--cols--md);
 	}
-	@include query.cq('lg') {
+	@include query.bp-up('lg') {
 		--cols--val: var(--cols--lg);
 	}
-	// @include query.cq('xl') {
+	// @include query.bp-up('xl') {
 	// 	--cols--val: var(--cols--xl);
 	// }
 }

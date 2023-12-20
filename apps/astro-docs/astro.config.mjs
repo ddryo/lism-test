@@ -22,8 +22,9 @@ export default defineConfig({
 			locales,
 			customCss: [
 				// '@loos/lism-core/css/all.css',
-				'@loos/lism-core/scss/all.scss',
+				// '@loos/lism-core/scss/all.scss',
 				// カスタムCSSファイルへの相対パス
+				'./src/styles/lism-custom.scss',
 				'./src/styles/custom.scss',
 			],
 			sidebar,
@@ -35,7 +36,8 @@ export default defineConfig({
 				styleOverrides: {
 					borderRadius: '0.25rem',
 				},
-				themes: ['starlight-dark', 'starlight-light'],
+				// themes: ['starlight-dark', 'starlight-light'],
+				themes: ['github-dark', 'github-light'],
 				useStarlightDarkModeSwitch: true,
 			},
 

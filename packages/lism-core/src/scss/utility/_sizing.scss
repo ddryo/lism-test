@@ -1,4 +1,4 @@
-@use '../query' as query;
+// @use '../query' as query;
 /* stylelint-disable */
 
 // [class*="-xxx:"] を使うと ユーティリティに important 不要になる
@@ -10,7 +10,6 @@
 // .-w\:75 { width: 75% }
 // .-w\:50 { width: 50% }
 // .-w\:25 { width: 25% }
-// .-w\:un { width: unset}
 
 // .-h\:,
 .-h\: { height: var(--h) }
@@ -20,19 +19,6 @@
 .-h\:screen {  height: 100vh; height: 100dvh; }
 // .-h\:screen { height: calc(100vw - var(--sbar)) }
 
-@include query.cq('sm') {
-	.-w\@sm { width: var(--w--sm) !important }
-	.-h\@sm { height: var(--h--sm) !important }
-}
-
-@include query.cq('md') {
-	.-w\@md { width: var(--w--md) !important }
-	.-h\@md { height: var(--h--md) !important }
-}
-@include query.cq('lg') {
-	.-w\@lg { width: var(--w--lg) !important }
-	.-h\@lg { height: var(--h--lg) !important }
-}
 
 // max-is, max-w, max-h ?
 .-maxW\: { max-width: var(--maxW) }

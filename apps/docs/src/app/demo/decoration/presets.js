@@ -1,6 +1,8 @@
 import {
 	Grid,
 	GridItem,
+	Flex,
+	FlexItem,
 	// DecoBox,
 } from '@loos/lism-core';
 
@@ -14,12 +16,17 @@ export default {
 	sticky: {
 		boxProps: {
 			as: Grid,
-			gt: 'side:s',
+			gt: '"side ." / auto 1fr',
+			// gt: '"side"',
+			// gtr: '10rem',
+			// gt: 'side:s',
+			// _context: 'aa',
 		},
 		bodyProps: {
 			as: GridItem,
 			// gcs: '1',
-			ga: 'side',
+			// gr: '1',
+			// ga: 'side',
 			pos: 'relative',
 			c: 'base',
 			bgc: 'pale',
@@ -29,20 +36,18 @@ export default {
 			// bdc: 'inherit',
 			bdw: '.5em',
 		},
-
 		decoratorCount: 1,
 		decoratorProps: {
 			as: GridItem,
-			// gcs: '1',
+			// gc: '1',
+			// gr: '1',
 			ga: 'side',
 			w: '50%',
 			h: '50%',
 			ml: 'auto',
 			mt: 'auto',
 			z: '-1',
-			rotate: '4deg',
-			transformOrigin: 'left bottom',
-			translate: '-4px -4px',
+			css: { rotate: '4deg', transformOrigin: 'left bottom', translate: '-4px -4px' },
 			// filter: blur(4px),
 		},
 	},

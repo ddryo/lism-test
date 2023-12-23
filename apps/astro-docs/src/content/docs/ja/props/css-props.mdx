@@ -1,0 +1,545 @@
+---
+title: 'CSS Props'
+description: ...
+sidebar:
+  order: 3
+---
+import { Box, Flex, Alert, Note } from "@loos/lism-astro";
+import { DammyText, Reference, MemoBadge, HelpText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+
+[Prop Utility](/ja/css/prop-utility/) に対応するLism Propsを紹介します。
+
+<Preview>
+	<PreviewTitle>CSS Propsを指定する例</PreviewTitle>
+	<PreviewCode>
+	```jsx
+	<Box c="black" bgc="white" p={20} fz="xl">...</Box>
+	```
+	</PreviewCode>
+</Preview>
+
+{/* <Note heading="Lism Propsの重要なポイント" preset="point">
+- プロパティと値の組み合わせによってはユーティリティクラス化されて出力される。
+- ユーティリティクラス化されない時の挙動が数パターンある。
+- ブレイクポイントで値を切り替えることができるものがある。
+</Note> */}
+
+{/* また、Lismコンポーネント以外では使用できませんので注意してください。 */}
+
+## CSS Props
+
+### Colors
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|`c`|`color`|`COLOR.PALETTE`, `COLOR.TXT`|`COLOR.TXT`|-|
+|`bgc`|`background-color`|`COLOR.PALETTE`, `COLOR.BG`|`COLOR.BG`|-|
+|`bdc`|`border-color`|`COLOR.PALETTE`, `COLOR.BD`|`COLOR.BD`|-|
+|`keycolor`|`--keycolor`|`COLOR.PALETTE`|`COLOR.PALETTE`|-|
+
+
+{/* ※ `bdc`は[`bd`との併用が必要](/docs/proips/border)です。 */}
+
+<Reference>
+[COLOR Tokens](/docs/tokens/color)
+</Reference>
+
+
+### Typography
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|f|font|-|`inherit`(`i`)|-|
+|fz|font-size|`FONT.FZ`|`FONT.FZ`|○|
+|lh|line-height|`FONT.LH`|`FONT.LH`|-|
+|ff|font-family|`FONT.FF`|`FONT.FF`|-|
+|lts|letter-spacing|`FONT.LTS`|`FONT.LTS`|-|
+|ta|text-align|-|`center`(`c`),<br/>`left`(`l`),<br/>`right`(`r`)|-|
+|td|text-decoration|-|`underline`(`u`),<br/>`none`(`n`)|-|
+|whs|white-space|-|`nowrap`(`nw`)|-|
+|ovw|overflowWrap|-|`anywhere`(`any`)|-|
+
+{/* |font?|font|inherit?|-|-|
+|td?|text-decoration|-|-|-| */}
+
+
+
+### Width & Height
+
+|Prop|CSS Property|Token|To Class|BP|
+|---|---|---|---|---|
+|w|width|`SIZE`|`100%`(`100`),<br/>`fit-content`(`fit`)|○|
+|h|height|`SIZE`|`100%`(`100`),<br/>`fit-content`(`fit`),<br/>`screen`|○|
+|maxW|max-width|`SIZE`|`100%`(`100`)|-|
+|maxH|max-height|`SIZE`|`100%`(`100`)|-|
+|minW|min-width|`SIZE`|`100%`(`100`)|-|
+|minH|min-height|`SIZE`|`100%`(`100`)|-|
+
+{/* max-widthは: s,m,l も? */}
+
+
+
+### Margin and padding
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|p|padding|`SPACE`|`SPACE`, `SPACE`, `PADDING`, `0`|○|
+|px|padding-inline|`SPACE`|`SPACE`, `0`|○|
+|py|padding-block|`SPACE`|`SPACE`, `0`|○|
+|pis|padding-inline-start|`SPACE`|`0`|○|
+|pbs|padding-block-start|`SPACE`|`0`|○|
+|pl|padding-left|`SPACE`|`0`|○|
+|pr|padding-right|`SPACE`|`0`|○|
+|pt|padding-top|`SPACE`|`0`|○|
+|pb|padding-bottom|`SPACE`|`0`|○|
+|m|margin|`SPACE`|`auto`, `0`|○|
+|mx|margin-inline|`SPACE`|`auto`, `0`|○|
+|my|margin-block|`SPACE`|`auto`, `0`|○|
+|mis|margin-inline-start|`SPACE`|`auto`, `0`|○|
+|mbs|margin-block-start|`SPACE`|`SPACE.S`, `auto`, `0`|○|
+|ml|margin-left|`SPACE`|`auto`, `0`|○|
+|mr|margin-right|`SPACE`|`auto`, `0`|○|
+|mt|margin-top|`SPACE`|`auto`, `0`|○|
+|mb|margin-bottom|`SPACE`|`auto`, `0`|○|
+
+
+<Reference>
+[SPACE Tokens](/docs/tokens/spacing)
+</Reference>
+
+{/* Utility Class: 
+- paddings
+	- `-[p|px|py]:[0|5|10|15|20|30|40|50]`
+	- `-p:box`, `-p:box:[s|l]`
+- margins
+	- `-[mis|mbs]:[0|5|10|15|20|30|40|50]`
+	- `-[m|ml|mr|mt|mb|my|mx|mis|mbs]:auto` */}
+
+
+{/* <Note>
+論理プロパティは start方向 (pis, pbs, mis, mbs) だけでいいかどうかは要検討.<br/>
+end方向はX,Yとstartの併用で擬似的に指定できるので、現状はstart方向のみ用意。
+</Note> */}
+
+
+<Preview>
+	<PreviewTitle>Examples</PreviewTitle>
+	<PreviewCode>
+	```jsx
+	<Box m={40}>...</Box>
+	<Box pbs='20px'>...</Box>
+	<Box mx='auto'>...</Box>
+	<Box p='box' py={[null, 50]}>...</Box>
+	<Text px={[20, 30]}>...</Text>
+	```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>各方向の値をp,mに対してオブジェクトで指定することも可能</PreviewTitle>
+	<PreviewCode>
+	```jsx
+	<Box m={{l:20, b: 30}}>...</Box>
+	<Box p={{x:30, y: 40}}>...</Box>
+	```
+	</PreviewCode>
+</Preview>
+
+
+### Positions
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|pos|position|-|`r`, `a`|-|
+|top|top|-|`0`,`100`|-|
+|left|left|-|`0`,`100`|-|
+|right|right|-|`0`,`100`|-|
+|bottom|bottom|-|`0`,`100`|-|
+|inset|inset|-|`0`|-|
+|z|z-index|-|`-1`, `0`, `1`|-|
+
+
+
+### Displays
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|d|display|-|`n`,`b`,`f`,`g`,`i`,`ib`,`if`,`ig`|○|
+|v|visibility|-|`hidden`(`h`), `visible`(`v`)||
+|op|opacity|`OPACITY`|`OPACITY`||
+|`bxsh`,shadow|box-shadow|`SHADOW`|`SHADOW`||
+|`bdrs`,radius|border-radius|`RADIUS`|`RADIUS`||
+|ov|overflow|-|`hidden`(`h`),`auto`(`a`),`clip`(`c`)|
+|ovx|overflow-x|-|`hidden`(`h`),`auto`(`a`),`clip`(`c`)|
+|ovy|overflow-y|-|`hidden`(`h`),`auto`(`a`),`clip`(`c`)|
+
+
+{/* `none`,`"block"`,`"flex"`,`"grid"`,`"inline"`,`"inline-block"`,`"inline-flex"`,`"inline-grid"` */}
+
+
+
+
+## Grid & Flex
+
+grid形、flex形のプロパティはそれぞれ `grid`, `flex` オブジェクト、もしくは専用のコンポーネントのみで指定できるようになっています。
+
+
+
+### gap
+
+`grid`, `flex` 内で指定することができます。
+
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|`[grid\|flex].gap`|gap|SPACE|SPACE|○|
+|`[grid\|flex].rowg`|row-gap|SPACE|-|○|
+|`[grid\|flex].colg`|column-gap|SPACE|-|○|
+
+
+{/* <Preview>
+	<PreviewTitle>Examples</PreviewTitle>
+	<PreviewCode>
+	```jsx
+	<Flex gap={40}>...</Flex>
+	<Grid gap="1rem">...</Grid>
+	<Columns rowg={[15, 20]} colg={[20, 30]}>...</Columns>
+	```
+	</PreviewCode>
+</Preview> */}
+
+{/* <Preview>
+	<PreviewTitle>各方向の値をgapに対してオブジェクトで指定することも可能？</PreviewTitle>
+	<PreviewCode>
+	```jsx
+	<Columns gap={{row:20, column:30}}>...</Columns>
+	```
+	</PreviewCode>
+</Preview> */}
+
+### places
+
+以下のものは`grid`, `flex` 内で指定することができます。
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|`[grid\|flex].ai`|`align-items`||`c`, `s`, `e`, `fs`, `fe`, `str`|-|
+|`[grid\|flex].ac`|`align-content`||`c`, `s`, `e`, `fs`, `fe`, `sb`|-|
+|`[grid\|flex].ji`|`justify-items`||`c`, `s`, `e`, `fs`, `fe`, `str`|-|
+|`[grid\|flex].jc`|`justify-content`||`c`, `s`, `e`, `fs`, `fe`, `sb`|-|
+|`[grid\|flex].pi`|`place-items`||-|-|
+|`[grid\|flex].pc`|`place-content`||-|-|
+
+`gridItem`, `flexItem` 内で指定することができます。
+
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|`[grid\|flex]Item.aslf`|align-self||`c`, `s`, `e`, `fs`, `fe`|-|
+|`[grid\|flex]Item.jslf`|justify-self||`c`, `s`, `e`, `fs`, `fe`|-|
+|`[grid\|flex]Item.pslf`|place-self||-|-|
+|`[grid\|flex]Item.order`|order||`-1`, `0`, `1`|-|
+
+
+
+### grid
+
+{/* `grid`内で指定することができます。 */}
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|`grid.gd`|grid|||-|
+|`grid.gt`|grid-template|||-|
+|`grid.gta`|grid-template-areas|||○|
+|`grid.gtc`|grid-template-columns|||○|
+|`grid.gtr`|grid-template-rows|||○|
+|`grid.gaf`|grid-auto-flow||||
+|`grid.gar`|grid-auto-rows||||
+|`grid.gac`|grid-auto-columns||||
+
+{/* autoFlow, autoRows, autoCols */}
+{/* area → fix: 'fix', left: 'l', right: 'r', center: 'c', top: 't', bottom: 'b' */}
+
+- `-gt:side:l`, `-gt:side:r`, `-gta:3col:ltr`クラスは、（追加CSSファイルを読み込むと）`[dir='rtl']`時に方向が反転するようになっており、ltr言語でもrtl言語でも方向が一致するようになっています。
+
+
+<PreviewTitle>gridプロパティの使用例</PreviewTitle>
+```jsx
+// gridオブジェクトで各プロパティを指定します。
+<Box d='grid' grid={{gta:'3col', gap:40, jc:'center'}}>...</Box>
+
+// Grid系のコンポーネントを使う場合は、gridオブジェクトは不要です。
+<Grid gta='3col' gap={40} jc='center'>...</Box>
+```
+
+
+### gridItem
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|`gridItem.ga`|grid-area||`side`,`start`,`end`,`center`|-|
+|`gridItem.gc`|grid-column||`1`,`2`,`3`, `span2`|○|
+|`gridItem.gr`|grid-row||`1`,`2`,`3`, `span2`|○|
+|`gridItem.gcs`|grid-column-start|||-|
+|`gridItem.grs`|grid-row-start|||-|
+|`gridItem.gce`|grid-column-end||`-1`|-|
+|`gridItem.gre`|grid-row-end||`-1`|-|
+
+
+{/* - `sp2` = `span 2 / span 2` */}
+
+
+
+<PreviewTitle>使用例</PreviewTitle>
+```jsx
+// gridItemオブジェクトで各プロパティを指定します。
+<Box gridItem={{gc:'2', aslf:'end'}}>...</Box>
+
+// GridItemのコンポーネントを使う場合は、gridItemオブジェクトは不要です。
+<GridItem gc='2' aslf='end'>...</GridItem>
+```
+
+
+### flex
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|`flex.fxw`|flex-wrap||`w`, `nw`|○|
+|`flex.fxd`|flex-direction||`c`, `cr`, `r`, `rr`|-|
+### flexItem
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|`flexItem.fxsh`|flex-shrink||`0`, `1`|-|
+|`flexItem.fxg`|flex-grow||`0`, `1`|-|
+|`flexItem.fxb`|flex-basis|||○|
+
+
+
+
+{/* - c: center
+- s: start
+- e: end
+- fs: flex-start
+- fe: flex-end
+- str: stretch
+- sb: space-between
+ */}
+
+## Bg
+
+|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|
+|bg, bg.bg|||`"grid"`, `"stripe"`, `"glass"`|-|
+|bg.color||||-|
+|bg.image||||-|
+|bg.size||||-|
+|bg.position||||-|
+|gradient||||-|
+
+bg一括指定 と bg.positionを指定したい場合
+
+→ `bg={{bg:'', position:''}}` 
+
+## inset
+
+{/* is: {
+	style: 'insetInlineStart',
+	utilKey: 'iis',
+	utils: { '100%': '100', '0%': '0' },
+	converter: 'space',
+},
+ie: {
+	style: 'insetInlineEnd',
+	utilKey: 'iie',
+	utils: { '100%': '100', '0%': '0' },
+	converter: 'space',
+},
+bs: { style: 'insetBlockStart', converter: 'space' },
+be: { style: 'insetBlockEnd', converter: 'space' }, */}
+
+## bdrs
+{/* bdrs: { presets: 'radius', converter: 'radius' },
+tl: { style: 'borderTopLeftRadius', utilKey: 'bdtlrs', converter: 'radius' },
+tr: { style: 'borderTopRightRadius', utilKey: 'bdtrrs', converter: 'radius' },
+bl: { style: 'borderBottomLeftRadius', utilKey: 'bdblrs', converter: 'radius' },
+br: { style: 'borderBottomRightRadius', utilKey: 'bdbrrs', converter: 'radius' },
+ss: { style: 'borderStartStartRadius', utilKey: 'bdssrs', ...bdrsSidesProps },
+se: { style: 'borderStartEndRadius', utilKey: 'bdsers', ...bdrsSidesProps },
+es: { style: 'borderEndStartRadius', utilKey: 'bdesrs', ...bdrsSidesProps },
+ee: { style: 'borderEndEndRadius', utilKey: 'bdeers', ...bdrsSidesProps }, */}
+
+{/* css. */}
+
+
+
+## Others
+
+その他のCSSプロパティは `css` というプロパティにオブジェクトとして指定することで出力できます。
+
+Note: 以下に挙げているもの以外は、そのまま `style`に渡されます。
+
+|Context|Prop|CSS|Token|To Class|BP|
+|---|---|---|---|---|---|
+|css.lis|listStyle||`none`||
+|css.transform|transform||`flipX`,`flipY`,`flipXY`||
+|css.transformOrigin|transformOrigin||`lt`,`lb`,`rt`,`rb`||
+|css.translate|translate||`-50`,`-50X`,`-50Y`,`-100X`,`-100Y`||
+|css.rotate|rotate||`45`,`-45`,`90`,`-90`,`180`||
+|css.scale|scale||||
+|css.clipPath|scale||||
+|css.filter|filter|`FILTER.BLUR`|||
+|css.backdropFilter|backdropFilter|`FILTER.BLUR`|||
+
+{/* transform: { map: 1, style: 1, utils: 1, utilKey: 'trf' },
+transformOrigin: { style: 1, utilKey: 'trfo', utils: 'origin' },
+translate: { style: 1, utils: 1, utilKey: 'trnslt' },
+rotate: { style: 1, utils: 1 },
+scale: { style: 1 },
+clipPath: { style: 1 }, // cpp ?
+// animation: { map:1, style: 1, presets: 1 },
+filter: { style: 1, converter: 'filter' },
+backdropFilter: { style: 1, utilKey: 'bdFilter', presets: ['blur'], converter: 'filter' }, */}
+
+## 対応トークンとユーティリティクラスでの出力について
+
+各プロパティごとに、指定した値によってはユーティリティクラスとして出力される場合があります。
+
+<Preview>
+	<PreviewCode>
+	```jsx
+	<Box p={20} shadow="2" ta="center" fz="xl">...</Box>
+	```
+	</PreviewCode>
+</Preview>
+出力結果は次のようになります。
+
+```jsx
+<div class="l--box -p:20 -bxsh:2 -ta:l">...</div>
+```
+
+具体的にどの値をユーティリティ化するかどうかの詳細は`/src/config/presets`,`/src/config/utilities`で定義しています。
+
+utilities側で定義しているものは、キーと省略形のどちらを指定してもユーティリティクラスとして出力されます。
+
+たとえば、`text-align:center`用の `-ta:c` クラスは、以下のどちらの書き方でも出力されます。
+```jsx
+<Box ta="center">...</Box>
+<Box ta="c">...</Box>
+```
+
+
+### ユーティリティクラス化されない時の出力パターンについて
+
+ユーティリティクラスとして出力されない時、3パターンの出力方式に分かれます。
+
+{/* - memo...
+- 1のメリット
+    - 何かしらそのpropを持つかどうかがクラスで判定できる。
+	- 子要素に変数の受け渡しをすることで、親では何も適用せずにinheritさせるみたいなことができる。
+    - 優先度的な問題を緩和できる。
+		- インラインセットは優先度が強いが、プロパティのセットはCSSファイル側で 0-1-0　の優先度で行われる。
+		- 一括指定プロパティとサイドプロパティの優先度の関係をコントロールできる
+    - →HTML側の文字数が少なくなる(ほんの少し)
+- 1,2の判断基準どうする？
+	- utility以外を使うことが珍しいか（自由な数値で値をとれるか）どうか?
+	- ブレイクポイントで切り替えるかどうかで判断すればいいのでは？ */}
+
+#### 1. `-prop:`クラスと`--prop`変数の組み合わせで出力される
+
+
+<Preview>
+	<PreviewCode label="例" slot="tab">
+	```jsx
+	<Box mb={40} fz='2em'>...</Box>
+	```
+	</PreviewCode>
+	<PreviewCode label="出力" slot="tab">
+	```jsx
+	<div class="l--box -mb: -fz:" style="--mb:var(--s--40);--fz:2em">...</div>
+	```
+	</PreviewCode>
+</Preview>
+
+
+- ブレイクポイント対応のプロパティ（ベース値を上書きする必要があるため、インラインで直接プロパティを出力せずクラスと変数で優先度の問題をなくす）
+- ユーティリティクラスが多く`[class*='-prop:']`にすると文字数の省略になりそうなもの
+- `-{prop}:`クラスによって何か値を指定していることが分かったほうが便利なケースがありそうなプロパティ
+
+#### `-prop:`クラスだけを出力する方法
+
+このパターン1での出力がされるLism Propsに対して `"-"` または `true` を指定することで、`.-{prop}:` クラスだけの出力が可能です。
+
+CSSファイル側で具体的な値を指定したい場合などに活用できたり、一部、`-{prop}:`クラスがスタイルを持っている特殊なケースもあります。
+
+<Preview>
+	<PreviewCode label="例" slot="tab">
+	```jsx
+	<Box bd w="-" p={['-', '-']}>...</Box>
+	```
+	</PreviewCode>
+	<PreviewCode label="出力" slot="tab">
+	```jsx
+	<div class="l--box -bd: -w: -p: -p@sm">...</div>
+	```
+	</PreviewCode>
+</Preview>
+
+
+
+このように、`-{prop}:`クラスだけ出力されてCSS変数は何も出力されません。（パターン2で出力される`opacity`に関しては、`-opacity:`クラスが出力されていないことにも注目してください。）
+
+
+#### 2. 単純にstyleとして出力されるもの
+
+
+<Preview>
+	<PreviewCode label="例" slot="tab">
+	```jsx
+	<Box z="10" opacity="0.5">...</Box>
+	```
+	</PreviewCode>
+	<PreviewCode label="出力" slot="tab">
+	```jsx
+	<div class="l--box" style="z-index:10;opacity:0.5">...</div>
+	```
+	</PreviewCode>
+</Preview>
+
+
+#### 3. `--prop`だけ出力されるもの
+
+このケースが一番稀です。
+
+<Preview>
+	<PreviewCode label="例" slot="tab">
+	```jsx
+	<Box bd bdc="#000" bdw="2px">...</Box>
+	```
+	</PreviewCode>
+	<PreviewCode label="出力" slot="tab">
+	```jsx
+	<div class="l--box bd:" style="--bdc:#000;--bdw:2px">...</div>
+	```
+	</PreviewCode>
+</Preview>
+
+
+- `--bdc`,`--bdw`,`--bds` のborder系
+- `--keycolor` など、利用する場面が限定されているもの。
+
+
+## ユーティリティクラスとして強制的に出力する方法
+
+`u:`からはじめると、その後ろの文字列がユーティリティクラス名として出力されます。
+
+```jsx
+<Box p='u:hoge'>...</Box>
+
+↓
+
+<div class="l--box -p:hoge">...</div>
+```
+

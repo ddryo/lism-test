@@ -1,0 +1,64 @@
+---
+title: 'Container'
+description: ...
+---
+import { Core, Layouter, Box, Alert,Flex } from "@loos/lism-astro";
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+[State Props](/docs/props/state-props) のうち、以下のPropsだけを限定して受け取れるようになっている特殊なコンポーネントです。  
+
+- `isFlow`
+- `isConstrained`
+- `isContainer`
+- `hasGutter`
+- `isFullWide`
+- `isWide`
+
+さらに、isConstrained が指定されていない場合は自動で isContainer が指定されるようにもなっています。
+
+コンテナ要素としての役割を明示的にしたい場合や、処理するPropsを限定させているので少しでも処理を軽くしたい場合に使用してください。
+
+( [CSS Props](/docs/props/css-props) と as,tagなどは使用できます。 )
+
+
+{/* <Preview>
+	<PreviewTitle>対応するHTML構造</PreviewTitle>
+	<PreviewCode>
+		```jsx
+		<div>...</div>
+		```
+	</PreviewCode>
+</Preview>
+
+## Props
+- `as`: 展開コンポーネント
+- `tag`: HTMLタグ */}
+
+## Import
+
+```js
+import { Layouter } from '@loos/lism-core';
+```
+
+## Usage
+
+<Preview>
+	<PreviewTitle>Layouterの例</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Layouter isFlow p={30} bgc='pale'>
+			<p>Content</p>
+			<p>Content</p>
+			<p>Content</p>
+		</Layouter>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Layouter isFlow p={30} bgc='pale'>
+			<p>Content</p>
+			<p>Content</p>
+			<p>Content</p>
+		</Layouter>
+		```
+	</PreviewCode>
+</Preview>

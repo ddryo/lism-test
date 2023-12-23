@@ -3,14 +3,14 @@
 /* stylelint-disable */
 
 [class*='-gap:'] {gap: var(--gap);}
-.-clmg\: {column-gap: var(--clmg);}
+.-colg\: {column-gap: var(--colg);}
 .-rowg\: {row-gap: var(--rowg);}
 
 .-gap\:0 {--gap: 0;}
 
 @each $s in setting.$util_spaces {
 	.-gap\:#{$s} {--gap: var(--s--#{$s});}
-	// .-clmg\:#{$s} {--clmg: var(--s--#{$s})}
+	// .-colg\:#{$s} {--colg: var(--s--#{$s})}
 	// .-rowg\:#{$s} {--rowg: var(--s--#{$s})}
 }
 

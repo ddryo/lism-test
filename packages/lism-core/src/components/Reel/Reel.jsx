@@ -22,5 +22,5 @@ export default function Reel({ lismStyle = {}, unreel, itemBasis, snap, ...props
 	// 	props['data-show-scrollbar'] = showScrollbar;
 	// }
 
-	return <Flex _flexName='reel' lismStyle={lismStyle} {...props} tabIndex='0' />;
+	return <Flex _flex='reel' lismStyle={lismStyle} {...props} tabIndex='0' />;
 }

@@ -1,0 +1,269 @@
+---
+title: 'DecoBox'
+description: ...
+---
+
+import Image from 'next/image'
+import { DecoBox } from '@loos/lism-core';
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+コンテンツを装飾するためのボックスモジュール。
+
+対応クラスは`.c--decoBox--{variant}`。  
+(基本的にどういう装飾を行うかの指定が必須で`.c--decoBox`に何かスタイルがあるわけではないので、modifier付きクラス単体で使う）
+
+
+## Props
+
+- variant
+- subvariant
+- data
+	- decoratorCount
+	- boxProps
+	- bodyProps
+	- decoratorProps
+- isFlow は body側に渡されます.
+
+
+variant, subvariant に対しての 各Props をプリセット登録できるようにする予定。プリセット登録せずに装飾内容を指定する場合は `data` に直接指定する。
+
+## Import
+
+```js
+import { DecoBox } from '@loos/lism-core';
+```
+
+## Usage
+
+
+### call
+<Preview>
+	<PreviewTitle>Call</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<DecoBox variant='call' subvariant='left'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='call' subvariant='right'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='call' subvariant='top'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='call' subvariant='bottom'>
+			<DammyText />
+		</DecoBox>
+	
+	</PreviewArea>
+	<PreviewCode>
+	```jsx
+	...
+	```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>bdc, bgc は `<DecoBox>`に直接指定したら内部で引き継がれるようにしている。</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<DecoBox
+			variant='call'
+			subvariant='left'
+			bdc="red"
+		>
+			<DammyText />
+		</DecoBox>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<DecoBox
+			variant='call'
+			subvariant='right'
+			data={{ decoratorProps: { bdc: 'red' } }}
+		>
+			<DammyText />
+		</DecoBox>
+		```
+	</PreviewCode>
+</Preview>
+
+{/* long text
+<DecoBox variant='call' subvariant='left'>
+	<DammyText length="l" />
+</DecoBox>
+<DecoBox variant='call' subvariant='top'>
+	<DammyText length="l" />
+</DecoBox> */}
+
+
+
+### balloon
+
+<Preview>
+	<PreviewTitle>balloon</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<DecoBox variant='balloon' subvariant='left'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='balloon' subvariant='right'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='balloon' subvariant='top'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='balloon' subvariant='bottom'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='balloon' subvariant='top-start'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='balloon' subvariant='bottom-start'>
+			<DammyText />
+		</DecoBox>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		...
+		```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>bdc, bgc は `<DecoBox>`に直接指定したら内部で引き継がれるようにしている。</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<DecoBox variant='balloon' subvariant='left' bgc='pale'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox
+			variant='balloon'
+			subvariant='right'
+			bdc='blue:40%'
+			bgc='hsl(215deg 98% 96%)'
+		>
+			<DammyText />
+		</DecoBox>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<DecoBox variant='balloon' subvariant='left' bgc='pale'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox
+			variant='balloon'
+			subvariant='right'
+			bdc='blue:40%'
+			bgc='hsl(215deg 98% 96%)'
+		>
+			<DammyText />
+		</DecoBox>
+		```
+	</PreviewCode>
+</Preview>
+
+
+### pipipi
+<Preview>
+	<PreviewTitle>pipipi</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<DecoBox variant='pipipi' subvariant='left'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='pipipi' subvariant='right' bdc='blue'>
+			<DammyText />
+		</DecoBox>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<DecoBox variant='pipipi' subvariant='left'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='pipipi' subvariant='right' bdc='blue'>
+			<DammyText />
+		</DecoBox>
+		```
+	</PreviewCode>
+</Preview>
+
+
+### sticky
+
+<Preview>
+	<PreviewTitle>sticky</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<DecoBox variant='sticky'>
+			<DammyText />
+		</DecoBox>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<DecoBox variant='sticky'>
+			<DammyText />
+		</DecoBox>
+		```
+	</PreviewCode>
+</Preview>
+
+カラー指定は bodyProps で
+
+<Preview>
+	<PreviewTitle>sticky</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<DecoBox
+			variant='sticky'
+			data={{ bodyProps: { bdc: 'blue:70%', bgc: 'hsl(200 90% 95%)' } }}
+		>
+			<DammyText />
+		</DecoBox>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<DecoBox
+			variant='sticky'
+			data={{ bodyProps: { bdc: 'blue:70%', bgc: 'hsl(200 90% 95%)' } }}
+		>
+			<DammyText />
+		</DecoBox>
+		```
+	</PreviewCode>
+</Preview>
+
+
+### kakko
+
+<Preview>
+	<PreviewTitle>kakko</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<DecoBox variant='kakko' subvariant='lr'>
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='kakko' subvariant='tb'>
+			<DammyText />
+		</DecoBox>
+		
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		...
+		```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>big-kakko</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<DecoBox variant='big-kakko' subvariant='lr' isFlow>
+			<DammyText />
+			<DammyText />
+		</DecoBox>
+		<DecoBox variant='big-kakko' subvariant='tb' isFlow>
+			<DammyText />
+			<DammyText />
+		</DecoBox>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		...
+		```
+	</PreviewCode>
+</Preview>

@@ -7,7 +7,7 @@ export const MemoBadge = ({ children, ...props }) => {
 		</Badge>
 	);
 };
-export const PropBadge = ({ type = 'attr', ...props }) => {
+export const PropBadge = ({ type = '', ...props }) => {
 	let keycolor = 'blue';
 	if (type === 'attr') {
 		keycolor = 'green';
@@ -17,10 +17,11 @@ export const PropBadge = ({ type = 'attr', ...props }) => {
 	return (
 		<Badge
 			fz='xs'
+			ff='mono'
 			lh='1'
 			p='em2'
 			m='em2'
-			d='ib'
+			// d='if'
 			variant='subtle'
 			keycolor={keycolor}
 			{...props}

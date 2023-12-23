@@ -1,0 +1,176 @@
+---
+title: 'TermList'
+description: ...
+---
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+import { TermList, TermListRow } from '@loos/lism-core';
+
+
+説明リスト。
+
+<Preview>
+	<PreviewTitle>概要</PreviewTitle>
+	<PreviewCode>
+	```jsx
+	<TermList>
+		<TermListRow term="The Term Name">
+			...description content...
+		</TermListRow>
+		...
+	```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>対応するHTML構造</PreviewTitle>
+	<PreviewCode>
+	```jsx
+	<dl class="c--termList l--stack -gap:30">
+		<div class="c--termList__row l--[stack|fluidFix] -gap:10">
+			<dt class="c--termList__dt">The Term Name</dt>
+			<dd class="c--termList__dd -ms:30">
+				...description content...
+			</dd>
+		</div>
+		...
+	```
+	</PreviewCode>
+</Preview>
+
+
+## Props
+- TermList
+	- mode : 'stack'(default) || 'fluid',
+	- fixW : 'fluid'モード時の、dtの固定幅
+	- fluidMinW : 'fluid'モード時の、ddの最小幅
+
+- TermListRow
+	- ( mode )
+		- ( fixW )
+		- ( fluidMinW )
+	- term : ターム名。(dt要素の内容)
+	- dtProps : dtに渡したいProps
+	- ddProps : ddに渡したいProps
+	-  ifFlow, flowGap : dd 側に渡るようになっています。
+
+
+## Import
+
+```js
+import { TermList, TermListRow } from '@loos/lism-core';
+```
+
+## Usage
+
+<Preview>
+	<PreviewTitle>TermListの例 1</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<TermList>
+			<TermListRow term="The term A">
+				<DammyText />
+			</TermListRow>
+			<TermListRow term="The term B">
+				<DammyText length="l" />
+			</TermListRow>
+			<TermListRow term="The term C" isFlow='s'>
+				<DammyText />
+				<DammyText length="m" />
+			</TermListRow>
+		</TermList>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<TermList>
+			<TermListRow term="The term A">
+				<DammyText />
+			</TermListRow>
+			<TermListRow term="The term B">
+				<DammyText length="l" />
+			</TermListRow>
+			<TermListRow term="The term C" isFlow='s'>
+				<DammyText />
+				<DammyText length="m" />
+			</TermListRow>
+		</TermList>
+		```
+	</PreviewCode>
+</Preview>
+
+
+### `mode="fluid"`時の挙動
+
+`mode="fluid"`を指定すると、`<TermListRow>`が`<FluidFix>`で構成されるようになります。
+`<FluidFix>`用の`fixW`, `fluidMinW` は、親である`<TermList>`に指定すれば子に引き継がれるようになっています。
+
+デフォルト値はそれぞれ次の通りです。
+
+- `fixW`: `10rem`
+- `fluidMinW`: `15rem`
+
+<Preview>
+	<PreviewTitle>TermListの例 1</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<TermList mode="fluid" fixW='12rem'>
+			<TermListRow term="The term A">
+				<DammyText />
+			</TermListRow>
+			<TermListRow term="The term B LongName Version test.">
+				<DammyText length="m" />
+			</TermListRow>
+			<TermListRow term="ロレム・イプサムの座り雨、トマ好き学習エリット">
+				<DammyText length="l" />
+			</TermListRow>
+		</TermList>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx {1}
+		<TermList mode="fluid" fixW='12rem'>
+			<TermListRow term="The term A">
+				<DammyText />
+			</TermListRow>
+			<TermListRow term="The term B LongName Version test.">
+				<DammyText length="m" />
+			</TermListRow>
+			<TermListRow term="ロレム・イプサムの座り雨、トマ好き学習エリット">
+				<DammyText length="l" />
+			</TermListRow>
+		</TermList>
+		```
+	</PreviewCode>
+</Preview>
+
+<Alert>
+`mode="fluid"`を親である`<TermList>`に指定できるのはReactベースのフレームワークのみ。`React.Children.map`を使って`<TermListRow>`に渡しているので、Astroではエラーになるはず...。（要検証）
+</Alert>
+
+↓ Astro等では次のように各`<TermListRow>`に`mode`を指定し、`<TermList>`に`fixW`,`fluidMinW`の明示的な指定が必要です。
+
+<Preview>
+	<PreviewTitle>TermListの例 1</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<TermList fixW='10rem' fluidMinW='10rem'>
+			<TermListRow term="The term A" mode="fluid">
+				<DammyText />
+				<DammyText length="m" />
+			</TermListRow>
+			<TermListRow term="The term B LongName Version test." mode="fluid">
+				<DammyText length="l" />
+			</TermListRow>
+		</TermList>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<TermList fixW='10rem' fluidMinW='10rem'>
+			<TermListRow term="The term A" mode="fluid">
+				<DammyText />
+				<DammyText length="m" />
+			</TermListRow>
+			<TermListRow term="The term B LongName Version test." mode="fluid">
+				<DammyText length="l" />
+			</TermListRow>
+		</TermList>
+		```
+	</PreviewCode>
+</Preview>

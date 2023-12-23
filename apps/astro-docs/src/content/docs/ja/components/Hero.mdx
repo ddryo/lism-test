@@ -1,0 +1,341 @@
+---
+title: 'Hero'
+description: ...
+---
+
+import { Layouter,  MediaLayer, FilterLayer, Divider, Hero, HeroContent, Center, Frame, Button } from '@loos/lism-core';
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+サイズの広いコンテンツエリアを作成するためのモジュールです。
+
+{/* <p>親ブロックからbodyブロックを上・中央・下寄せをコントロールできるように。(marginを変える)</p>
+<p>初期展開ブロックを選べるようにする。内部gridパターンも。</p> */}
+
+## Props
+
+- `<Hero>`
+- `<HeroContent>`
+	- `type`
+
+## Import
+
+```js
+import { Hero, HeroContent } from '@loos/lism-core';
+```
+
+## Usage
+
+<Preview>
+	<PreviewTitle>Hero自体は、ただのisFullwideなStackです。</PreviewTitle>
+	<PreviewArea resize alignfull>
+		<Hero bd>
+			<Text fw='bold' fz='xl'>DEMO 01</Text>
+			<DammyText length='l' />
+		</Hero>
+	</PreviewArea>
+	<PreviewCode alignfull>
+		```jsx
+		<Hero bd>
+			<Text fw='bold' fz='xl'>DEMO 01</Text>
+			<DammyText lang="ja" length="l" />
+		</Hero>
+		```
+	</PreviewCode>
+</Preview>
+
+### HeroContentの活用
+
+HeroContent には`type`を指定でき、`top`、`center`、`bottom`のいずれかを指定することができます。  
+それぞれのキーワードに合わせてpropsの初期値が変わります。
+
+たとえば、`type='center'`の場合は、`py`, `my`, `hasGutter`, `isConstrained`が初期値に設定されます。
+
+<Preview>
+	<PreviewTitle>HeroContentの活用例 1</PreviewTitle>
+	<PreviewArea resize alignfull>
+		<Hero bd>
+			<HeroContent type='center'>
+				<Text fw='bold' fz='xl'>DEMO 02</Text>
+				<DammyText length='l' />
+			</HeroContent>
+		</Hero>
+	</PreviewArea>
+	<PreviewCode alignfull>
+		```jsx
+		<Hero bd>
+			<HeroContent type='center'>
+				<Text fw='bold' fz='xl'>DEMO 02</Text>
+				<DammyText length='l' />
+			</HeroContent>
+		</Hero>
+		```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>HeroContentの活用例 2</PreviewTitle>
+	<PreviewArea resize alignfull>
+		<Hero bd minH='50vh'>
+			<HeroContent type='top'>
+				<p>type:top</p>
+			</HeroContent>
+			<HeroContent type='center'>
+				<Text fw='bold' fz='xl'>DEMO 03</Text>
+				<DammyText length='l' />
+			</HeroContent>
+			<HeroContent type='bottom'>
+				<p>type:bottom</p>
+			</HeroContent>
+		</Hero>
+	</PreviewArea>
+	<PreviewCode alignfull>
+		```jsx
+		<Hero bd minH='50vh'>
+			<HeroContent type='top'>
+				<p>type:top</p>
+			</HeroContent>
+			<HeroContent type='center'>
+				<Text fw='bold' fz='xl'>DEMO 03</Text>
+				<DammyText length='l' />
+			</HeroContent>
+			<HeroContent type='bottom'>
+				<p>type:bottom</p>
+			</HeroContent>
+		</Hero>
+		```
+	</PreviewCode>
+</Preview>
+
+これらは、以下のコードと同じです。
+
+<Preview>
+	<PreviewTitle>Hero, HeroContentを使わずに書いた場合</PreviewTitle>
+	{/* <PreviewArea resize alignfull>
+	</PreviewArea> */}
+	<PreviewCode alignfull>
+		```jsx
+		<Stack bd minH='50vh' bgc="pale" alignfull>
+			<Layouter mb="auto">
+				<p>type:top</p>
+			</Layouter>
+			<Layouter my="auto" isConstrained hasGutter py={60}>
+				<Text fw='bold' fz='xl'>DEMO 03</Text>
+				<DammyText length='l' />
+			</Layouter>
+			<Layouter mt="auto">
+				<p>type:bottom</p>
+			</Layouter>
+		</Stack>
+		```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>HeroContentの活用例3</PreviewTitle>
+	<PreviewArea resize alignfull>
+		<Hero bd minH='50vh'>
+			<HeroContent type='top'>
+				<Text fw='bold' fz='xl'>DEMO 04</Text>
+				<DammyText length='l' />
+			</HeroContent>
+			<HeroContent type='bottom' alignSelf="flex-end">
+				<p>type:bottom</p>
+			</HeroContent>
+		</Hero>
+	</PreviewArea>
+	<PreviewCode alignfull>
+		```jsx
+		<Hero bd minH='50vh'>
+			<HeroContent type='top'>
+				<Text fw='bold' fz='xl'>DEMO 03</Text>
+				<DammyText length='l' />
+			</HeroContent>
+			<HeroContent type='bottom' alignSelf="flex-end">
+				<p>type:bottom</p>
+			</HeroContent>
+		</Hero>
+		```
+	</PreviewCode>
+</Preview>
+
+
+### DividerやMediaLayerとの組み合わせ
+
+<Preview>
+	<PreviewTitle>DEMO 05</PreviewTitle>
+	<PreviewArea resize alignfull>
+		<Hero bd c='white' minH='50vh'>
+			<MediaLayer>
+				<img src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			</MediaLayer>
+			<FilterLayer blur='4px' bgc='black:.4' />
+			<Divider shape='wave3' c='#fff' isFlip />
+			<HeroContent type='center' isConstrained='s' bd='guide'>
+				<Text fw='bold' fz='xl'>DEMO 05</Text>
+				<DammyText length='l' />
+			</HeroContent>
+			<Divider shape='wave3' c='#fff' />
+		</Hero>
+	</PreviewArea>
+	<PreviewCode alignfull>
+		```jsx
+		<Hero bd minH='50vh'>
+			<HeroContent type='top'>
+				<p>type:top</p>
+			</HeroContent>
+			<HeroContent type='center'>
+				<Text fw='bold' fz='xl'>DEMO 05</Text>
+				<DammyText length='l' />
+			</HeroContent>
+			<HeroContent type='bottom'>
+				<p>type:bottom</p>
+			</HeroContent>
+		</Hero>
+		```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>DEMO 06</PreviewTitle>
+	<PreviewArea resize alignfull>
+		<Hero bd c='white' minH='50vh' gap={30}>
+			<MediaLayer>
+				<img src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			</MediaLayer>
+			<FilterLayer blur='4px' bgc='black:.4' />
+			<Divider shape='line2' c='#fff' isFlip />
+			<HeroContent type='top' p='em5' bd='guide'>
+				<p>type:top</p>
+			</HeroContent>
+			<HeroContent type='center' isConstrained='s' bd='guide'>
+				<Text fw='bold' fz='xl'>DEMO 06</Text>
+				<DammyText length='l' />
+			</HeroContent>
+			<HeroContent type='bottom' p='em5' bd='guide'>
+				<p>type:bottom</p>
+			</HeroContent>
+			<Divider shape='line2' c='#fff' />
+		</Hero>
+	</PreviewArea>
+	<PreviewCode alignfull>
+		```jsx
+		<Hero bd c='white' minH='50vh' gap={30}>
+			<MediaLayer>
+				<img src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			</MediaLayer>
+			<FilterLayer blur='4px' bgc='black:.4' />
+			<Divider shape='line2' c='#fff' isFlip />
+			<HeroContent type='top' p='em5' bd='guide'>
+				<p>type:top</p>
+			</HeroContent>
+			<HeroContent type='center' isConstrained='s' bd='guide'>
+				<Text fw='bold' fz='xl'>DEMO 06</Text>
+				<DammyText length='l' />
+			</HeroContent>
+			<HeroContent type='bottom' p='em5' bd='guide'>
+				<p>type:bottom</p>
+			</HeroContent>
+			<Divider shape='line2' c='#fff' />
+		</Hero>
+		```
+	</PreviewCode>
+</Preview>
+
+### Hero に高さをセットしたときに、HeroContent も高さを合わせる方法
+
+`Hero` は `Stack` で構成されているので、`HeroContent`の`flex-grow`を`1`にすると、`Hero`の高さいっぱいまで伸びてくれます。
+
+<Preview>
+	<PreviewTitle>HeroContenの高さが広がる</PreviewTitle>
+	<PreviewArea resize alignfull>
+		<Hero minH='70vh' bd='guide' p="5" gap="5">
+			<HeroContent type='top' p='em5' bd='guide'>
+				<p>top</p>
+			</HeroContent>
+			<HeroContent grow='1' bd='guide'>
+				<Text fw='bold' fz='xl'>DEMO 7</Text>
+				<DammyText length='l' />
+			</HeroContent>
+			<HeroContent type='bottom' p='em5' bd='guide'>
+				<p>bottom</p>
+			</HeroContent>
+		</Hero>
+	</PreviewArea>
+	<PreviewCode alignfull>
+		```jsx
+		<Hero minH='70vh' bd='guide' p="5" gap="5">
+			<HeroContent type='top' p='em5' bd='guide'>
+				<p>top</p>
+			</HeroContent>
+			<HeroContent grow='1' bd='guide'>
+				<Text fw='bold' fz='xl'>DEMO 7</Text>
+				<DammyText length='l' />
+			</HeroContent>
+			<HeroContent type='bottom' p='em5' bd='guide'>
+				<p>bottom</p>
+			</HeroContent>
+		</Hero>
+		```
+	</PreviewCode>
+</Preview>
+
+
+
+
+ただし、これだけでは`HeroContent`直下の要素では `height` に`%`を使っても動作しません。
+
+`HeroContent`直下の要素でもさらに`%`を使いたい場合は、次のような工夫が必要になります。
+
+- `HeroContent`を`Grid`にして、`align-content:stretch`にする
+- `HeroContent`内に`Layer`等を使ってコンテンツをabsolute配置する
+
+前者の手法が簡単に扱えるように、`type="strech"`を指定すると`as={Grid} ac='stretch' grow='1'`をセットできるようにしています。
+
+
+<Preview>
+	<PreviewTitle>HeroContenをgrid化して、子要素でも`%`使えるようにする例</PreviewTitle>
+	<PreviewArea resize alignfull>
+		<Hero bd='guide' minH='70vh'>
+			<MediaLayer>
+				<img src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			</MediaLayer>
+			<FilterLayer bgc='black:0.2' />
+			<HeroContent type='strech' hasGutter ai='center' bd='guide'>
+				<Center minH='50%' isContainer='s' bg="glass" p="box" c="white" radius="2" gap={20}>
+					<Text fw='bold' fz='xl'>DEMO 8</Text>
+					<DammyText length='l' />
+				</Center>
+			</HeroContent>
+		</Hero>
+	</PreviewArea>
+	<PreviewCode alignfull>
+		```jsx
+		<Hero bd='guide' minH='70vh'>
+			<MediaLayer>
+				<img src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			</MediaLayer>
+			<FilterLayer bgc='black:0.2' />
+			<HeroContent type='strech' hasGutter ai='center' bd='guide'>
+				<Center minH='50%' isContainer='s' bg="glass" p="box" c="white" radius="2" gap={20}>
+					<Text fw='bold' fz='xl'>DEMO 8</Text>
+					<DammyText length='l' />
+				</Center>
+			</HeroContent>
+		</Hero>
+		```
+	</PreviewCode>
+</Preview>
+
+
+## 別ページで確認する
+
+<Frame aspect='4/3' className='scalePreview' shadow='4' radius='3' bd bdw='3px'>
+	<Frame tag='iframe' src='/demo/hero' aspect='4/3' width='1600' height='900' />
+</Frame>
+
+<Center>
+<Button href='/demo/hero' target="_blank" rel='noopener noreferrer'>大きい画面で見る</Button>
+</Center>
+

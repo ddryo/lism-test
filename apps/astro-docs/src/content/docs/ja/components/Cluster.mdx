@@ -1,0 +1,139 @@
+---
+title: 'Cluster'
+description: ...
+---
+
+import { Box, Cluster, Badge, Delimiter } from '@loos/lism-astro';
+import { Reference, MemoBadge, PropBadge, HelpText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+
+複数の細かい要素をFlexレイアウトで**横並び**に配置します。
+
+`flex-wrap:wrap`がデフォルトで適用されている[`Flex`(`.l--flex`)](/ja/components/flex) の派生のコンポーネントです。
+
+## Import
+<Preview>
+	<PreviewCode slot='tab' label='React'>
+```jsx
+import { Cluster } from '@loos/lism-core';
+```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='Astro'>
+```jsx
+import { Cluster } from '@loos/lism-astro';
+```
+	</PreviewCode>
+</Preview>
+
+
+## Props
+
+
+| プロパティ | 説明 | デフォルト値 |
+|---|---|---|
+| `itemMinW` <PropBadge type="cssvar">`--item--minW`</PropBadge> | 子要素が最低限維持する幅 | `auto` |
+{/* | `delimiterColor` <PropBadge type="cssvar">`--delimiter--c`</PropBadge> | 子要素の`e--delimiter`のカラー | - | */}
+
+
+さらに、[`<Flex>`で使えるProps](/ja/components/flex#props)が使えます。
+
+
+
+## Usage
+
+<Preview>
+	<PreviewTitle>シンプルな`<Cluster>`の例</PreviewTitle>
+	<PreviewArea resize p='box:l'>
+		<Cluster gap={20}>
+			<Badge fz='s'>Lorem ipsum</Badge>
+			<Badge fz='s'>Dolor</Badge>
+			<Badge fz='s'>Sit amet</Badge>
+			<Badge fz='s'>Consectetur</Badge>
+			<Badge fz='s'>Adipisicing</Badge>
+			<Badge fz='s'>Elit</Badge>
+		</Cluster>
+	</PreviewArea>
+	<PreviewCode slot="tab" label="React, Astro">
+	```jsx
+	<Cluster gap={20}>
+		<Badge fz='s'>Lorem ipsum</Badge>
+		<Badge fz='s'>Dolor</Badge>
+		<Badge fz='s'>Sit amet</Badge>
+		<Badge fz='s'>Consectetur</Badge>
+		<Badge fz='s'>Adipisicing</Badge>
+		<Badge fz='s'>Elit</Badge>
+	</Cluster>
+	```
+	</PreviewCode>
+	<PreviewCode slot="tab" label="HTML">
+	```jsx
+	<div class="l--cluster -gap:20">
+		<span class="c--badge -bdrs:1 -fz:s">Lorem ipsum</span>
+		<span class="c--badge -bdrs:1 -fz:s">Dolor</span>
+		<span class="c--badge -bdrs:1 -fz:s">Sit amet</span>
+		<span class="c--badge -bdrs:1 -fz:s">Consectetur</span>
+		<span class="c--badge -bdrs:1 -fz:s">Adipisicing</span>
+		<span class="c--badge -bdrs:1 -fz:s">Elit</span>
+	</div>
+	```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>`itemMinW`を指定</PreviewTitle>
+	<PreviewArea resize p='box:l'>
+		<Cluster gap={20} itemMinW="20%" ta="center">
+			<Box bd>A</Box>
+			<Box bd>B</Box>
+			<Box bd>C</Box>
+		</Cluster>
+	</PreviewArea>
+	<PreviewCode slot="tab" label="React, Astro">
+	```jsx
+	<Cluster gap={20} itemMinW="20%" ta="center">
+		<Box bd>A</Box>
+		<Box bd>B</Box>
+		<Box bd>C</Box>
+	</Cluster>
+	```
+	</PreviewCode>
+	<PreviewCode slot="tab" label="HTML">
+	```jsx
+	<div class="l--cluster -ta:c -gap:20" style="--item--minW:20%">
+		<div class="l--box -bd:">A</div>
+		<div class="l--box -bd:">B</div>
+		<div class="l--box -bd:">C</div>
+	</div>
+	```
+	</PreviewCode>
+</Preview>
+
+
+
+<Preview>
+	<PreviewTitle>他のpropsの活用例</PreviewTitle>
+	<PreviewArea resize p='box:l'>
+		<Cluster itemMinW="5em" hasDivider="I" jc="center" ta="center" provide={{p: '0 20'}}>
+			<Box consume='p'>Lorem ipsum</Box>
+			<Box consume='p'>Dolor</Box>
+			<Box consume='p'>Sit amet</Box>
+			<Box consume='p'>Consectetur</Box>
+			<Box consume='p'>Adipisicing</Box>
+			<Box consume='p'>Elit</Box>
+		</Cluster>
+	</PreviewArea>
+	<PreviewCode>
+```jsx
+<Cluster itemMinW="5em" hasDivider="I" jc="center" ta="center" provide={{p: '0 20'}}>
+	<Box consume='p'>Lorem ipsum</Box>
+	<Box consume='p'>Dolor</Box>
+	<Box consume='p'>Sit amet</Box>
+	<Box consume='p'>Consectetur</Box>
+	<Box consume='p'>Adipisicing</Box>
+	<Box consume='p'>Elit</Box>
+</Cluster>
+```
+	</PreviewCode>
+</Preview>

@@ -14,20 +14,3 @@
 .has--divider\:I > :not(:last-child) {
 	border-inline-end: var(--bdw) var(--bds) var(--bdc);
 }
-
-// .has--delimiter {
-// 	--delimiter: '/';
-// 	--delimiter--c: currentColor; // var(--bdc--base);
-
-// 	> * {
-// 		display: flex;
-// 		gap: inherit;
-// 		align-items: inherit;
-// 	}
-// 	> * + *::before {
-// 		// font-family: Arial, sans-serif;
-// 		font-family: var(--ff--mono);
-// 		color: var(--delimiter--c);
-// 		content: var(--delimiter);
-// 	}
-// }

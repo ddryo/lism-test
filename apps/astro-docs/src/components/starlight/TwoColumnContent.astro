@@ -3,42 +3,50 @@ import type { Props } from '@astrojs/starlight/props';
 // import { SwapGrid } from "@loos/lism-astro";
 ---
 
-<div class="two-colomn-frame">
+<div class='two-colomn-frame'>
 	{
 		Astro.props.toc && (
-			<aside class="right-sidebar-container">
-				<div class="right-sidebar">
-					<slot name="right-sidebar" />
+			<aside class='right-sidebar-container'>
+				<div class='right-sidebar'>
+					<slot name='right-sidebar' />
 				</div>
 			</aside>
 		)
 	}
-	<div class="main-pane"><slot /></div>
+	<div class='main-pane'><slot /></div>
 </div>
 
 <style>
-	.two-colomn-frame{
-			display: grid;
-			grid: 'toc'' main';
-			/* max-width: calc(((100vw - var(--sl-sidebar-width) - 2 * var(--sl-content-pad-x) - 2 * var(--sl-sidebar-pad-x)) * .25)); */
-		}
+	.two-colomn-frame {
+		max-width: 100%;
+		width: 100%;
+		/* display: grid;
+		grid: 'toc' var(--sl-mobile-toc-height) 'main' 1fr / 100%; */
+	}
 
 	.main-pane {
 		isolation: isolate;
-		grid-area: main;
+		max-width: 100%;
+		width: 100%;
 	}
 
 	@media (min-width: 72rem) {
-		.two-colomn-frame{
+		.two-colomn-frame {
+			--toc-width: 15rem;
 			display: grid;
-			grid: 'main toc'/ 1fr 15rem;
+			grid: 'main toc' / 1fr var(--toc-width);
 
 			/* max-width: calc(((100vw - var(--sl-sidebar-width) - 2 * var(--sl-content-pad-x) - 2 * var(--sl-sidebar-pad-x)) * .25)); */
 		}
+		.main-pane {
+			width: 100%;
+			grid-area: main;
+		}
 		.right-sidebar-container {
 			grid-area: toc;
-			/* order: 2; */
 			position: relative;
+			/* order: 2; */
+			/* max-width: 15rem; */
 			/* width: calc(
 				var(--sl-sidebar-width) + (100% - var(--sl-content-width) - var(--sl-sidebar-width)) / 2
 			); */
@@ -46,17 +54,14 @@ import type { Props } from '@astrojs/starlight/props';
 
 		.right-sidebar {
 			position: fixed;
-			/* top: 0; */
-			/* padding-top: var(--sl-nav-height); */
+			top: 0;
+			padding-top: var(--sl-nav-height);
 			border-inline-start: 1px solid var(--sl-color-gray-6);
-			width: 100%;
+			width: var(--toc-width);
 			height: 100vh;
+			/* height: calc(100vh - var(--sl-nav-height) - var(--sl-mobile-toc-height)); */
 			overflow-y: auto;
 			scrollbar-width: none;
-		}
-
-		.main-pane {
-			width: 100%;
 		}
 
 		:global([data-has-sidebar][data-has-toc]) .main-pane {

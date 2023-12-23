@@ -46,7 +46,6 @@ export function getAllLayoutStateData({
 	isFullWide,
 	isWide,
 	isFlow,
-	flowGap,
 	isContainer,
 	isConstrained,
 	hasGutter,
@@ -70,8 +69,7 @@ export function getAllLayoutStateData({
 	}
 
 	if (isFlow) {
-		// flowGap: 書き換え終わるまでのフォールバック
-		const { className, style } = getTheStateData('is--flow', flowGap || isFlow);
+		const { className, style } = getTheStateData('is--flow', isFlow);
 		lismState.push(className);
 		Object.assign(lismStyle, style);
 	}

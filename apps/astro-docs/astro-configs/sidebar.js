@@ -53,79 +53,220 @@ export default [
 		// ],
 	},
 	{
-		label: 'Lism UI',
-		// autogenerate: {
-		// 	directory: 'reference',
-		// },
+		label: 'Utility Props',
+		autogenerate: {
+			directory: 'props',
+		},
+		// items: [
+		// 	// Each item here is one entry in the navigation menu.
+		// 	{
+		// 		label: 'Utility Props',
+		// 		link: '/utilities/props/',
+		// 	},
+		// 	{
+		// 		label: 'Core',
+		// 		link: '/components/core/',
+		// 	},
+		// 	{
+		// 		label: 'Core',
+		// 		link: '/components/core/',
+		// 	},
+		// 	{
+		// 		label: 'Layouter',
+		// 		link: '/components/core/',
+		// 	},
+		// ],
+	},
+	{
+		label: 'Components',
 		items: [
-			// Each item here is one entry in the navigation menu.
 			{
-				label: 'Utility Props',
-				link: '/components/props/',
-			},
-			{
-				label: 'Core',
-				link: '/components/core',
+				label: 'Element',
+				link: '/components/element/',
 			},
 			{
 				label: 'Layouter',
-				link: '/components/core',
+				link: '/components/layouter/',
 			},
-		],
-	},
-	{
-		label: 'Layout Modules',
-		items: [
+			{
+				label: 'Text',
+				link: '/components/text/',
+			},
+			{
+				label: 'Media',
+				link: '/components/media/',
+			},
+			{
+				label: 'Container',
+				link: '/components/container/',
+			},
+			{
+				label: 'Layout',
+				link: '###',
+			},
+			// {
+			// 	label: 'Layout',
+			// 	autogenerate: {
+			// 		directory: 'components/layout',
+			// 	},
+			// },
 			{
 				label: 'Flex',
-				link: '/layout/props/',
+				link: '/components/flex/',
 			},
 			{
 				label: 'Cluster',
-				link: '/layout/core',
+				link: '/components/cluster/',
 			},
 			{
 				label: 'Stack',
-				link: '/layout/core',
+				link: '/components/stack/',
 			},
-
+			{
+				label: 'SideFlex',
+				link: '/components/sideflex/',
+			},
+			{
+				label: '---',
+				link: '###',
+			},
 			{
 				label: 'Grid',
-				link: '/layout/core',
+				link: '/components/grid/',
 			},
-		],
-	},
-	{
-		label: 'Element Modules',
-		items: [
+			{
+				label: 'GridItem',
+				link: '/components/griditem/',
+			},
+			{
+				label: 'SwapGrid',
+				link: '/components/swapgrid/',
+			},
+			{
+				label: '---',
+				link: '###',
+			},
+			{
+				label: 'Box',
+				link: '/components/box/',
+			},
+			// {
+			// 	label: '---',
+			// 	link: '###',
+			// },
+			{
+				label: 'Columns',
+				link: '/components/columns/',
+			},
+			{
+				label: 'Center',
+				link: '/components/center/',
+			},
+			{
+				label: 'Reel',
+				link: '/components/reel/',
+			},
+			{
+				label: 'Layer',
+				link: '/components/layer/',
+			},
+			{
+				label: 'Frame',
+				link: '/components/frame/',
+			},
+			{
+				label: 'Spacer',
+				link: '/components/spacer/',
+			},
+			{
+				label: 'Divider',
+				link: '/components/divider/',
+			},
+			{
+				label: 'Element',
+				link: '###',
+			},
 			{
 				label: 'Avatar',
-				link: '/layout/props/',
+				link: '/components/props/',
 			},
 			{
 				label: 'Icon',
-				link: '/layout/core',
+				link: '/components/core/',
 			},
-		],
-	},
-	{
-		label: 'Component Modules',
-
-		items: [
+			{
+				label: 'Delimiter',
+				link: '/components/delimiter/',
+			},
+			{
+				label: 'StretchedLink',
+				link: '/components/stretched-link/',
+			},
+			{
+				label: 'Component',
+				link: '###',
+			},
 			{
 				label: 'Alert',
-				link: '/layout/core',
+				link: '/components/alert/',
 			},
 			{
 				label: 'Accordion',
-				link: '/layout/core',
+				link: '/components/accordion/',
 			},
 			{
 				label: 'Button',
-				link: '/layout/props/',
+				link: '/components/button/',
+			},
+			{
+				label: 'Badge',
+				link: '/components/badge/',
+			},
+			{
+				label: 'Banner',
+				link: '/components/banner/',
+			},
+			{
+				label: 'Card',
+				link: '/components/card/',
+			},
+			{
+				label: 'LinkBox',
+				link: '/components/link-box/',
 			},
 		],
 	},
+	// {
+	// 	label: 'Element Modules',
+	// 	items: [
+	// 		{
+	// 			label: 'Avatar',
+	// 			link: '/components/props/',
+	// 		},
+	// 		{
+	// 			label: 'Icon',
+	// 			link: '/components/core/',
+	// 		},
+	// 	],
+	// },
+	// {
+	// 	label: 'Component Modules',
+
+	// 	items: [
+	// 		{
+	// 			label: 'Alert',
+	// 			link: '/components/core/',
+	// 		},
+	// 		{
+	// 			label: 'Accordion',
+	// 			link: '/components/core/',
+	// 		},
+	// 		{
+	// 			label: 'Button',
+	// 			link: '/components/props/',
+	// 		},
+	// 	],
+	// },
 
 	{
 		label: 'Reference',

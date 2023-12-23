@@ -1,0 +1,250 @@
+---
+title: 'Banner'
+description: ...
+---
+
+import { Banner, Flow, Center, Layer, FilterLayer, Media, MediaLayer, Button } from '@loos/lism-core';
+import {
+	Book,
+	Cat,
+	Baseball,
+} from "@phosphor-icons/react";
+import Image from 'next/image'
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+
+バナーリンク型コンテンツを作成できるコンポーネントです。
+
+<Preview>
+	<PreviewTitle>対応するHTML構造</PreviewTitle>
+	<PreviewCode>
+		```jsx
+		<a class="c--banner l--frame is--linkbox" href="###">
+			<div class="l--layer l--layer--media -z:-1">
+				<img src="..." />
+			</div>
+			[<div class="l--layer l--layer--filter -z:-1">]
+			...Content...
+		</a>
+		```
+	</PreviewCode>
+</Preview>
+
+指定されたプロパティに合わせて、BoxやFrame、LinkBox を組み合わせます。
+
+- Blockクラス: `.c--banner`
+
+
+## Props
+
+- `aspect`: バナーを表示する縦横比率を指定できます。
+	- この指定がある場合、 `<Banner>` は `<Frame>` を使用したコンポーネントになります。指定がなければ `<Box>`ベースのコンポーネントです
+- `href`: バナーのリンク先を指定できます。
+	- この指定がある場合、Banner は `<LinkBox>` を使用します。
+- `media`: バナーの背景に表示するメディアを指定できます。
+	- この指定がある時、`<MediaLayer>`が使われます。
+- `filter`: バナーの背景にフィルターをかけることができます。(`backdrop-filter`と、背景色の指定が可能。+ 何種類かのテクスチャ？)
+	- この指定がある時、`<FilterLayer>`が使われます。
+
+
+## Import
+
+```js
+import { Banner } from '@loos/lism-core';
+```
+
+
+## Usage
+
+
+<Preview>
+	<PreviewTitle>16:9のバナーリンク</PreviewTitle>
+	<PreviewArea p={20}>
+		<Banner href="#banner-link" aspect="16/9" maxW="s">
+			<img src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+		</Banner>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Banner href="#banner-link" aspect="16/9">
+			<img src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+		</Banner>
+		```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>`Layer`で画像に被せてコンテンツを表示</PreviewTitle>
+	<PreviewArea p={20}>
+		<Banner href="#banner-link" aspect="16/9"  radius="4">
+			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<FilterLayer bgc="black:40%" blur="2px" />
+			<Layer inset='0' isFlow='s' p='box' c="white">
+				<Text fz="2xl" fw="bold">Banner</Text>
+				<DammyText />
+			</Layer>
+		</Banner>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Banner href="#banner-link" aspect="16/9"  radius="4">
+			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<FilterLayer bgc="black:40%" blur="2px" />
+			<Layer inset='0' isFlow='s' p='box' c="white">
+				<Text fz="2xl" fw="bold">Banner</Text>
+				<DammyText />
+			</Layer>
+		</Banner>
+		```
+	</PreviewCode>
+</Preview>
+
+
+
+<Preview>
+	<PreviewTitle>`hover=get:zoom` を使う時は、`MediaLayer`を使ってください。（そうしないとスクロールが発生してしまいます）</PreviewTitle>
+	<PreviewArea p={20}>
+		<Banner href="#banner-link" aspect="16/9" hover="pass" radius="4">
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" hover="get:zoom"/>
+			<FilterLayer bgc="black:20%" blur="4px" hover="get:show"/>
+			<Layer position="center" bgc="black:50%" radius="4" hover="get:show">
+				<Text length="xs" p="box" c="white" className="is--hovTarget">View More</Text>
+			</Layer>
+		</Banner>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Banner href="#banner-link" aspect="16/9" hover="pass" radius="4">
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" hover="get:zoom"/>
+			<FilterLayer bgc="black:20%" blur="4px" hover="get:show"/>
+			<Layer position="center" bgc="black:50%" radius="4" hover="get:show">
+				<Text length="xs" p="box" c="white" className="is--hovTarget">View More</Text>
+			</Layer>
+		</Banner>
+		```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>aspect指定せず、画像比率そのままで</PreviewTitle>
+	<PreviewArea p={20}>
+		<Banner href="#banner-link" hover={["up", "shadow", "pass"]} radius="4">
+			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<FilterLayer bgc="black:10%" blur="2px" hover="get:hide" />
+			{/* <FilterLayer bgc="black:40%" blur="2px" hover="get:show"/> */}
+			<Layer position="center" bgc="black:50%" radius="4" hover="get:hide">
+				<Text length="xs" p="box" c="white" className="is--hovTarget">View More</Text>
+			</Layer>
+		</Banner>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Banner href="#banner-link" hover={["target:dark", "target:zoom"]} radius="4">
+			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<FilterLayer bgc="black:40%" blur="2px" />
+			<Layer inset='0' isFlow='s' p='box' c="white">
+				<Text fz="2xl" fw="bold">Banner</Text>
+				<DammyText />
+			</Layer>
+		</Banner>
+		```
+	</PreviewCode>
+</Preview>
+
+
+### aspect指定なし
+
+<Preview>
+	<PreviewTitle>画像ファイルそのままの比率で</PreviewTitle>
+	<PreviewArea p={20}>
+		<Banner href="#banner-link" hover={["target:zoom", "target:blur"]}>
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<Layer position="center" bgc="rgba(0,0,0,0.5)" radius="4">
+				<DammyText length="xs" p="box" c="white" />
+			</Layer>
+		</Banner>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Banner href="#banner-link" hover={["target:zoom", "target:blur"]}>
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<Layer position="center" bgc="rgba(0,0,0,0.5)" radius="4">
+				<DammyText length="xs" p="box" c="white" />
+			</Layer>
+		</Banner>
+		```
+	</PreviewCode>
+</Preview>
+
+
+{/* ### `MediaLayer`, `FilterLayer` の活用
+
+<Preview>
+	<PreviewTitle>`media`, `filter` の活用</PreviewTitle>
+	<PreviewArea p={20}>
+		<Banner
+			href="#banner-link"
+			aspect="16/9"
+			hover={["target:bright", "target:zoom"]}
+		>
+			<MediaLayer z={-1} src="/img/demo-img.jpeg" alt="" width="960" height="640"  />
+			<FilterLayer z={-1} bgc="black:40%" blur="2px" />
+			<Center size="cover" c="white" p='box'>
+				<Text fz="2xl" fw="bold">16/9</Text>
+				<DammyText />
+			</Center>
+		</Banner>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Banner
+			href="#banner-link"
+			aspect="16/9"
+			filter={{ bgc: "black:40%" }}
+		>
+			<MediaLayer src="/img/demo-img.jpeg" alt="" width="960" height="640"  />
+			<Center size="cover" c="white" p='box'>
+				...
+			</Center>
+		</Banner>
+		```
+	</PreviewCode>
+</Preview> */}
+
+
+{/* <Preview>
+	<PreviewTitle>LongText スクロールチェック</PreviewTitle>
+	<PreviewArea p={20}>
+		<Banner
+			href="#banner-link"
+			aspect="16/9"
+			media={{ tag: Image, src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
+			filter={{ bgc: "black:40%" }}
+		>
+			<Center size="cover" p={30} c="white">
+				<Text fz="2xl" fw="bold">16/9</Text>
+				<DammyText length="l" />
+				<DammyText length="l" />
+				<DammyText length="l" />
+			</Center>
+		</Banner>
+	</PreviewArea>
+</Preview>
+
+<Preview>
+	<PreviewTitle>test...</PreviewTitle>
+	<PreviewArea p={20}>
+		<Banner href="#banner-link" aspect="16/9">
+			<img src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+			<Layer inset='0' isFlow='s' p='box' c="white" bgc="black:40%">
+			<DammyText length="l" />
+			<DammyText length="l" />
+			<DammyText length="l" />
+			</Layer>
+		</Banner>
+	</PreviewArea>
+</Preview> */}
+

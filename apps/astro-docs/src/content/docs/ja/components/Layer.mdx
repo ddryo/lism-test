@@ -1,0 +1,279 @@
+---
+title: 'Layer'
+description: ...
+---
+
+
+import { Text, Box, Layer, Columns, Center, Frame } from '@loos/lism-core';
+import Image from "next/image";
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+`position:absolute`で要素を配置するためのモジュールです。
+
+
+<Preview>
+	<PreviewTitle>対応するHTML構造</PreviewTitle>
+	<PreviewCode>
+	```jsx
+	<div class="l--layer">...</div>
+	```
+	</PreviewCode>
+</Preview>
+
+
+## 主なProps
+- `position`: Layerの配置位置を指定します。
+	- `"cover"` or `"{X} {Y}"`形式を利用できます。
+	- X,Yには `"left"` | `"right"` | `"top"` | `"bottom"` | `"center"` | `"cover"` キーワードが利用できます。
+- `size`: `<Layer>`のサイズに関する調整を行うための`data-size`属性を出力します。
+	- `"cover"` または `"contain"`が有効です。
+- `z`: `z-index`を指定します。
+
+共通Lism Propsの`inset`, `top`, `right`, `bottom`, `left` を使って細かい配置を指定することも可能です。（`position`の指定は内部でこれらのprops指定に変換されます）
+
+
+### 注意点
+
+<Alert preset="warning">
+Layerの親要素を `position:relative` にしておく必要があることに注意してください。
+</Alert>
+
+`pos="relative"` を指定するか、`hasLayer`を親コンポーネントに指定すると(`.has--layer`クラスを付与します）、`position:relative`になります。
+
+---
+
+<Note preset="note" heading="ブロック化した時のmemo...">
+- Layer配置時に自動で親ブロックに `.has--layer` or `.-pos:r` を追加するようにしたい。(Layerブロックから親要素へアクセスしてsetAtttibutes）
+- ~~できれば、削除されたときに親ブロックからそのクラスは削除したい。~~  
+	→ 「まだ必要なのに消えてしまう」ケースも起こりうるので、削除はなし。
+- エディター側では 常に親要素・兄弟要素に被っていると編集ができないので、「relative モード」的なものを用意して `absolute` を一時的に解除して他のブロックの編集ができるようにしたい。
+- 子ブロックとしてしか使えないようにしたい。
+</Note>
+
+---
+
+## Import
+
+```js
+import { Layer } from '@loos/lism-core';
+```
+
+## Usage
+
+### positionの指定による挙動の違い
+
+export const LayerPositionsDemo = () => {
+	return (
+		<Columns cols={[1, 3]}>
+			{[
+				"left top",
+				"center top",
+				"right top",
+				"left center",
+				"center",
+				"right center",
+				"left bottom",
+				"center bottom",
+				"right bottom",
+			].map((position) => (
+				<Box key={position} hasLayer py={40} bgc="pale">
+					<Text fz="4xl" fw="bold" ta="c" opacity=".1">BG</Text>
+					<Layer position={position} bgc="hsl(268 50% 80% / 0.2)" bd="guide">
+						<Text fz="s" p={10} lh="1.5">"{position}"</Text>
+					</Layer>
+				</Box>
+			))}
+		</Columns>
+	);
+}
+
+<Preview>
+	<PreviewTitle>
+		`position`の指定
+	</PreviewTitle>
+	<PreviewArea p={10}>
+		<LayerPositionsDemo />
+	</PreviewArea>
+	<PreviewCode>
+		```jsx {4}
+		<Box hasLayer py={40} bgc="pale">
+			<Text fz="xl" fw="bold" ta="c" opacity=".1">BG</Text>
+			<Layer
+				position={position}
+				bgc="hsl(268 50% 80% / 0.2)"
+				bd="guide"
+			>
+				<Text fz="xs" p={10} lh="1.5">...</Text>
+			</Layer>
+		</Box>
+		```
+	</PreviewCode>
+</Preview>
+
+
+
+### positionを指定せずに使う場合
+
+`inset`,`t`,`l`,... などで直接位置を指定できます。
+
+<Preview>
+	<PreviewTitle>
+		`t`, `l` に SPACE.20 を指定
+	</PreviewTitle>
+	<PreviewArea resize p={10}>
+		<Box hasLayer py={40} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer t={20} l={20}>
+				<p>Layer Contents</p>
+			</Layer>
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Layer t={20} l={20}>
+			<p>Layer Contents</p>
+		</Layer>
+		```
+	</PreviewCode>
+</Preview>
+
+
+{/* `position="top left"` は `top="0" left="0"`, `size="cover"` は `inset="0"`と同じです。 */}
+
+
+### overflow:auto がデフォルトの挙動です。
+
+`<Layer>`(`.l--layer`)は `overflow:auto` が適用されており、親要素よりコンテンツの高さが高くなる場合は縦方向にスクロール可能になります。
+
+<Preview>
+	<PreviewTitle>
+		コンテンツが長い場合
+	</PreviewTitle>
+	<PreviewArea resize p={10}>
+		<Box hasLayer py={60} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer size="cover" isFlow p='box'>
+				<DammyText />
+				<DammyText length='l' />
+				<DammyText length='xl' />
+			</Layer>
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Layer size="cover" isFlow p='box'>
+			...
+		</Layer>
+		```
+	</PreviewCode>
+</Preview>
+
+
+
+### `size`の指定
+
+#### `size="cover"`の時の挙動について
+
+`inset:0` になり、`<Layer>` が親要素全体に覆い被さります。
+
+<Preview>
+	<PreviewTitle>
+		`size="cover"`
+	</PreviewTitle>
+	<PreviewArea p={20}>
+		<Box hasLayer py={40} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c">BG</Text>
+			<Layer size="cover">
+				<DammyText length='xs' />
+			</Layer>
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx {3}
+		<Box hasLayer py={40}>
+			...
+			<Layer size="cover">
+				<p>...</p>
+			</Layer>
+		</Box>
+		```
+	</PreviewCode>
+</Preview>
+
+[`<Center>`](/docs/components/Center)と組み合わせることで、コンテンツを中央に配置できます。
+
+<Preview>
+	<PreviewTitle>
+		`size="cover"`の中に`<Center>`
+	</PreviewTitle>
+	<PreviewArea resize p={10}>
+		<Box hasLayer py={40} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer size="cover">
+				<Center size="cover">
+					<DammyText length='xs' />
+				</Center>
+			</Layer>
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx {3,4}
+		<Box hasLayer py={40}>
+			...
+			<Layer size="cover">
+				<Center size="cover">
+					<p>...</p>
+				</Center>
+			</Layer>
+		</Box>
+		```
+	</PreviewCode>
+</Preview>
+
+
+#### `size=contain` の挙動について
+
+`size=contain`を指定すると、親のサイズを超えないようになります。（maxW, maxH に 100% 指定が入る）
+
+<Preview>
+	<PreviewTitle>
+		`size="contain"`の指定なしの場合.
+	</PreviewTitle>
+	<PreviewArea resize p={{x:30, y:60}} maxW="40rem">
+		<Box hasLayer py={50} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer position="center" w="75%" p='box'>
+				<DammyText length="l" />
+			</Layer>
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Layer position="center" w="75%" p='box'>
+			...
+		</Layer>
+		```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>
+		`size="contain"`の指定ありの場合
+	</PreviewTitle>
+	<PreviewArea resize p={{x:30, y:30}} maxW="40rem">
+		<Box hasLayer py={50} className="has:layerGuide">
+			<Text fz="4xl" fw="bold" ta="c" lts="4px">BG</Text>
+			<Layer size="contain" position="center" w="75%" p={20}>
+				<DammyText length="l" />
+			</Layer>
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Layer size="contain" position="center" w="75%" p={20}>
+			...
+		</Layer>
+		```
+	</PreviewCode>
+</Preview>

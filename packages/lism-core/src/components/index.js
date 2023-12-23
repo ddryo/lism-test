@@ -6,6 +6,7 @@
 // import React from 'react';
 
 export { Core } from './Core';
+export { Element } from './Element';
 export { Layouter } from './Layouter';
 export { Lism } from './Lism'; // あとで消す
 export { Text } from './Text';

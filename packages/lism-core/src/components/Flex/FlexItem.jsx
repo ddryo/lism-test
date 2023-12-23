@@ -1,13 +1,13 @@
 // import React from 'react';
 import { Core } from '../Core';
-import { getFlexItemProps, getItemProps } from '../../lib';
+import { getFlexItemProps } from '../../lib';
 
 export default function FlexItem({ children, as, isSide, ...props }) {
 	const FlexItem = as || Core;
 
 	// grid 系の props をまとめる
 	props = getFlexItemProps(props);
-	props = getItemProps(props);
+	// props = getItemProps(props);
 
 	const lismState = [];
 	if (isSide) {

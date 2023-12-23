@@ -5,5 +5,7 @@ import { Core } from '../Core';
 export default function Delimiter({ lismClass = {}, variant, ...props }) {
 	lismClass.e = 'e--delimiter';
 	if (variant) lismClass.e += ` e--delimiter--${variant}`;
-	return <Core tag='span' lismClass={lismClass} aria-hidden='true' {...props} />;
+
+	// aria-hidden='true'、デフォルトでつける？
+	return <Core tag='span' lismClass={lismClass} {...props} />;
 }

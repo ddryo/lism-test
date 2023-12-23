@@ -1,16 +1,9 @@
 // import React from 'react';
 import Flex from './Flex';
-import { getMaybeCssVar } from '../../lib';
+import { getClusterProps } from './getProps';
 
-export default function Cluster({ lismStyle = {}, delimiterColor, itemMinW, ...props }) {
-	if (delimiterColor) {
-		lismStyle['--delimiter--c'] = getMaybeCssVar(delimiterColor, 'color');
-	}
-
-	if (itemMinW) {
-		lismStyle['--item--minW'] = itemMinW;
-	}
-	return <Flex variant='cluster' lismStyle={lismStyle} {...props} />;
+export default function Cluster(props) {
+	return <Flex _flex='cluster' {...getClusterProps(props)} />;
 }
 
 // セパレーターを項目間に追加する

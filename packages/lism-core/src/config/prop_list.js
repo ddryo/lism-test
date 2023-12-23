@@ -73,6 +73,7 @@ const bdrsSidesProps = { presets: ['0'], converter: 'radius' };
 const insetsProps = { utils: 'insets', converter: 'space' };
 
 export default {
+	aspect: { presets: 1 },
 	d: { utils: 1 },
 	w: { utils: 'size', converter: 'size' },
 	h: { utils: 'size', converter: 'size' },
@@ -108,31 +109,33 @@ export default {
 	// borderWidth: { style: 1 },
 
 	// Typography
+	f: { style: 1, utils: 1 },
 	fz: { presets: 1, converter: 'fz' },
 	lh: { presets: 1, style: 'lineHeight' },
 	fw: { style: 'fontWeight', presets: 1 },
 	ff: { style: 'fontFamiry', presets: 1 },
 	fs: { style: 'fontStyle', utils: 1 },
-	font: { style: 1, utils: 1 },
 	lts: { style: 'letterSpacing', presets: 1 }, // utilityあってもいい
 	ta: { style: 'textAlign', utils: 1 },
 	td: { style: 'textDecoration', utils: 1 },
 	whs: { style: 'whiteSpace', utils: { nowrap: 'nw' } },
+	ovw: { style: 'overflowWrap', utils: { anywhere: 'any' } },
 
 	// others
-	radius: { name: 'bdrs', presets: 'radius', converter: 'radius' },
-	shadow: { name: 'bxsh', presets: 'shadow', converter: 'shadow' },
 	bdrs: { map: 1, presets: 'radius', converter: 'radius' },
+	radius: { name: 'bdrs', presets: 'radius', converter: 'radius' },
 
 	bxsh: { presets: 'shadow', converter: 'shadow' },
-	aspect: { presets: 1 },
+	shadow: { name: 'bxsh', presets: 'shadow', converter: 'shadow' },
+	// shadowColor
+
 	opacity: { style: 1 },
-	lis: { style: 'listStyle', utils: { none: 'n' } },
+	visibility: { style: 1, utilKey: 'v', utils: 1 },
+
 	ov: { style: 'overflow', utils: 1 },
 	ovx: { style: 'overflowX', utils: 'ov' },
 	ovy: { style: 'overflowY', utils: 'ov' },
-	ovw: { style: 'overflowWrap', utils: { anywhere: 'any' } },
-	visibility: { style: 1, utilKey: 'v', utils: 1 },
+
 	z: { style: 'zIndex', presets: 1 },
 	pos: { style: 'position', utils: 1, presets: ['static', 'sticky'] },
 	inset: { map: 1, style: 1, utils: 1, converter: 'space' },
@@ -140,20 +143,8 @@ export default {
 	l: { ...insetsProps, style: 'left' },
 	r: { ...insetsProps, style: 'right' },
 	b: { ...insetsProps, style: 'bottom' },
-	clipPath: { style: 1 }, // cpp ?
-	// appearance: { style: 1, utils: { none: 'n' } },
 
-	transform: { map: 1, style: 1, utils: 1, utilKey: 'trf' },
-	// "trfs": "transform-style
-	transformOrigin: { style: 1, utilKey: 'trfo', utils: 'origin' },
-	translate: { style: 1, utils: 1, utilKey: 'trnslt' },
-	rotate: { style: 1, utils: 1 },
-	scale: { style: 1 },
-	animation: { style: 1, presets: 1 },
 	// flip: {},
-
-	objectFit: { style: 1 },
-	objectPosition: { style: 1 },
 
 	// Spacing
 	p: {
@@ -196,14 +187,17 @@ export default {
 	// flowGap: { presets: 1, converter: 'space' },
 
 	// gap: { map: 1 },
-	place: { map: 1 },
+	// place: { map: 1 },
+	// item: { map: 1 },
 	flex: { map: 1 },
 	grid: { map: 1 },
 	flexItem: { map: 1 },
 	gridItem: { map: 1 },
-	item: { map: 1 },
 
 	css: { map: 1 },
+
+	// filter,
+	// backdropFilter,
 };
 
 export const GAP_PROPS = {
@@ -214,30 +208,90 @@ export const GAP_PROPS = {
 		objProcessor: (d) => `${d}g`,
 	},
 	rowg: { converter: 'space' },
-	clmg: { converter: 'space' },
+	colg: { converter: 'space' },
 };
 
 // pi,pc
-
+const placeProps = {
+	pi: { style: 'placeItems' },
+	pc: { style: 'placeContent' },
+	ai: { style: 'alignItems', utils: 'placeItems' },
+	ac: { style: 'alignContent', utils: 'placeContent' },
+	ji: { style: 'justifyItems', utils: 'placeItems' },
+	jc: { style: 'justifyContent', utils: 'placeContent' },
+};
+const itemProps = {
+	order: { style: 1, utilKey: 'ord', presets: ['0', '-1', '1'] },
+	aslf: { style: 1, utilKey: 'aslf', utils: 'selfPlace' },
+	jslf: { style: 1, utilKey: 'jslf', utils: 'selfPlace' },
+	pslf: { style: 'placeSelf' },
+};
 export const CONTEXT_PROPS = {
-	place: {
-		pi: { style: 'placeItems' },
-		pc: { style: 'placeContent' },
-		ai: { style: 'alignItems', utils: 'placeItems' },
-		ac: { style: 'alignContent', utils: 'placeContent' },
-		ji: { style: 'justifyItems', utils: 'placeItems' },
-		jc: { style: 'justifyContent', utils: 'placeContent' },
-		// alignSelf: { style: 1, utilKey: 'as', utils: 'selfPlace' },
-		// justifySelf: { style: 1, utilKey: 'js', utils: 'selfPlace' },
+	grid: {
+		gd: { style: 'grid' },
+		gt: { onlyVar: 'grid', presets: 1 },
+		gtc: { onlyVar: 'grid' },
+		gtr: { onlyVar: 'grid' },
+		gta: { presets: 1 },
+		gaf: { style: 'gridAutoFlow' },
+		gar: { style: 'gridAutoRows' },
+		gac: { style: 'gridAutoColumns' },
+
+		// autoFlow, autoRows, autoCols
+		...GAP_PROPS,
+		...placeProps,
 	},
-	item: {
-		order: { style: 1, utilKey: 'ord', presets: ['0', '-1', '1'] },
-		aslf: { style: 1, utilKey: 'as', utils: 'selfPlace' },
-		jslf: { style: 1, utilKey: 'js', utils: 'selfPlace' },
-		pslf: { style: 'placeSelf' },
+	gridItem: {
+		// item
+		ga: { utils: 1 }, // grid-area
+		gc: { presets: 1 }, // grid-column
+		gcs: { presets: 1, style: 'gridColumnStart' },
+		gce: { presets: 1, style: 'gridColumnEnd' },
+		gr: { presets: 1 }, // grid-row
+		grs: { presets: 1, style: 'gridRowStart' },
+		gre: { presets: 1, style: 'gridRowEnd' },
+		...itemProps,
 	},
-	// inset={t:'0'},
+
+	flex: {
+		fxf: { style: 'flex-flow' },
+		fxw: { utils: 1 },
+		fxd: { utils: 1 },
+		...GAP_PROPS,
+		...placeProps,
+	},
+
+	flexItem: {
+		fx: { style: 'flex', utils: 1 },
+		fxg: { name: 'fxg', presets: ['0', '1'] },
+		fxsh: { name: 'fxsh', presets: ['0', '1'] },
+		fxb: { name: 'fxb' },
+		...itemProps,
+	},
+
+	// transform: {
+	// 	// transform
+	// 	transformOrigin: { style: 1, utilKey: 'trfo', utils: 'origin' },
+	// 	translate: { style: 1, utils: 1, utilKey: 'trnslt' },
+	// 	rotate: { style: 1, utils: 1 },
+	// 	scale: { style: 1 },
+	// },
+
+	// radii: { },
+	bdrs: {
+		bdrs: { presets: 'radius', converter: 'radius' },
+		tl: { style: 'borderTopLeftRadius', utilKey: 'bdtlrs', converter: 'radius' },
+		tr: { style: 'borderTopRightRadius', utilKey: 'bdtrrs', converter: 'radius' },
+		bl: { style: 'borderBottomLeftRadius', utilKey: 'bdblrs', converter: 'radius' },
+		br: { style: 'borderBottomRightRadius', utilKey: 'bdbrrs', converter: 'radius' },
+		ss: { style: 'borderStartStartRadius', utilKey: 'bdssrs', ...bdrsSidesProps },
+		se: { style: 'borderStartEndRadius', utilKey: 'bdsers', ...bdrsSidesProps },
+		es: { style: 'borderEndStartRadius', utilKey: 'bdesrs', ...bdrsSidesProps },
+		ee: { style: 'borderEndEndRadius', utilKey: 'bdeers', ...bdrsSidesProps },
+	},
+
 	inset: {
+		inset: { style: 1, utils: 1, converter: 'space' },
 		is: {
 			style: 'insetInlineStart',
 			utilKey: 'iis',
@@ -254,55 +308,8 @@ export const CONTEXT_PROPS = {
 		be: { style: 'insetBlockEnd', converter: 'space' },
 	},
 
-	grid: {
-		gd: { style: 'grid' },
-		gt: { style: '--gt', presets: 1 },
-		gta: { style: '--gta', presets: 1 },
-		gtc: { style: '--gtc' },
-		gtr: { style: '--gtr' },
-		gaf: {},
-		gar: { style: 'gridAutoRows' },
-		gac: { style: 'gridAutoColumns' },
-
-		// autoFlow, autoRows, autoCols
-		...GAP_PROPS,
-	},
-	gridItem: {
-		// item
-		ga: { utils: 1 }, // grid-area
-		gc: { presets: 1 }, // grid-column
-		gcs: { presets: 1, style: 'gridColumnStart' },
-		gce: { presets: 1, style: 'gridColumnEnd' },
-		gr: { presets: 1 }, // grid-row
-		grs: { presets: 1, style: 'gridRowStart' },
-		gre: { presets: 1, style: 'gridRowEnd' },
-	},
-
-	flex: {
-		fxf: { style: 'flex-flow' },
-		fxw: { utils: 1 },
-		fxd: { utils: 1 },
-		...GAP_PROPS,
-	},
-
-	// item?
-	flexItem: {
-		fx: { style: 'flex', utils: 1 },
-		fxg: { name: 'fxg', presets: ['0', '1'] },
-		fxsh: { name: 'fxsh', presets: ['0', '1'] },
-		fxb: { name: 'fxb' },
-	},
-
-	// transform: {
-	// 	// transform
-	// 	transformOrigin: { style: 1, utilKey: 'trfo', utils: 'origin' },
-	// 	translate: { style: 1, utils: 1, utilKey: 'trnslt' },
-	// 	rotate: { style: 1, utils: 1 },
-	// 	scale: { style: 1 },
-	// },
-
 	bg: {
-		// bg
+		// bg: { style: 'background' },
 		color: { name: 'bgc', presets: 1, utils: 1, converter: 'color' },
 		attachment: { style: 'backgroundAttachment' },
 		blendMode: { style: 'backgroundBlendMode' },
@@ -315,27 +322,27 @@ export const CONTEXT_PROPS = {
 		repeat: { style: 'backgroundRepeat' },
 		size: { style: 'backgroundSize' },
 	},
+
 	mask: {},
-
-	// bxsh
-
-	// rad?
-	bdrs: {
-		all: { presets: 'radius', converter: 'radius' },
-		tl: { style: 'borderTopLeftRadius', utilKey: 'bdtlrs', converter: 'radius' },
-		tr: { style: 'borderTopRightRadius', utilKey: 'bdtrrs', converter: 'radius' },
-		bl: { style: 'borderBottomLeftRadius', utilKey: 'bdblrs', converter: 'radius' },
-		br: { style: 'borderBottomRightRadius', utilKey: 'bdbrrs', converter: 'radius' },
-		ss: { style: 'borderStartStartRadius', utilKey: 'bdssrs', ...bdrsSidesProps },
-		se: { style: 'borderStartEndRadius', utilKey: 'bdsers', ...bdrsSidesProps },
-		es: { style: 'borderEndStartRadius', utilKey: 'bdesrs', ...bdrsSidesProps },
-		ee: { style: 'borderEndEndRadius', utilKey: 'bdeers', ...bdrsSidesProps },
-	},
+	// animation: {},
 
 	css: {
+		lis: { style: 'listStyle', utils: { none: 'n' } },
+		// appearance: { style: 1, utils: { none: 'n' } },
 		objectFit: { style: 1, utilKey: 'obf', utils: 1 },
 		objectPosition: { style: 1, converter: 'filter' },
+
+		// effect?
+		transform: { map: 1, style: 1, utils: 1, utilKey: 'trf' },
+		transformOrigin: { style: 1, utilKey: 'trfo', utils: 'origin' },
+		translate: { style: 1, utils: 1, utilKey: 'trnslt' },
+		rotate: { style: 1, utils: 1 }, // rot?
+		scale: { style: 1 }, //
+		clipPath: { style: 1 }, // cpp ?
+		// animation: { map:1, style: 1, presets: 1 },
 		filter: { style: 1, converter: 'filter' },
+		// bdfltr
 		backdropFilter: { style: 1, utilKey: 'bdFilter', presets: ['blur'], converter: 'filter' },
+		// mixBlendMode
 	},
 };

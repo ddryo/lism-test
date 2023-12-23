@@ -31,6 +31,18 @@
 	position: relative;
 	z-index: 1;
 }
+.has--stretchedLink {
+	position: relative;
+	color: inherit;
+	text-decoration: none;
+	pointer-events: auto;
+	cursor: pointer;
+	> * {
+		pointer-events: none;
+		position: relative;
+		z-index: 1;
+	}
+}
 
 // リンクは基本クリックできるように、明示的に指定しておく。
 // .b--linkbox a でより確実にクリッカブルにできるが、先祖セレクタになってしまうのでresetに任せる。

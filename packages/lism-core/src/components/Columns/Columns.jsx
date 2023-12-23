@@ -21,7 +21,9 @@ import { getBpData } from '../../lib';
 // }
 
 // PRESET '1-2-3' 1-2, 1-2-4 ?
-export default function Columns({ cols = [1, 2], lismStyle = {}, ...props }) {
+// clms, cols, repeat
+export default function Columns({ columns, cols, lismStyle = {}, ...props }) {
+	cols = columns || cols || [1, 2];
 	const gridProps = {
 		_gridName: 'columns',
 		gap: 20, // 初期値
@@ -29,7 +31,7 @@ export default function Columns({ cols = [1, 2], lismStyle = {}, ...props }) {
 	const { _: baseValue, ...bpValues } = getBpData(cols);
 
 	if (null != baseValue) {
-		lismStyle['--cols'] = baseValue;
+		lismStyle['--clms'] = baseValue;
 	}
 
 	if (!isEmptyObj(bpValues)) {

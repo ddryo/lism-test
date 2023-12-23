@@ -50,18 +50,18 @@
 
 
 // self系
-.-as\:c{align-self: center;}
-.-as\:s{align-self: start;}
-.-as\:e{align-self: end;}
-.-as\:fs{align-self: flex-start;}
-.-as\:fe{align-self: flex-end;}
+.-aslf\:c{align-self: center;}
+.-aslf\:s{align-self: start;}
+.-aslf\:e{align-self: end;}
+.-aslf\:fs{align-self: flex-start;}
+.-aslf\:fe{align-self: flex-end;}
 // self-start, self-end ?
 
-.-js\:c{justify-self: center;}
-.-js\:s{justify-self: start;}
-.-js\:e{justify-self: end;}
-.-js\:fs{justify-self: flex-start;}
-.-js\:fe{justify-self: flex-end;}
+.-jslf\:c{justify-self: center;}
+.-jslf\:s{justify-self: start;}
+.-jslf\:e{justify-self: end;}
+.-jslf\:fs{justify-self: flex-start;}
+.-jslf\:fe{justify-self: flex-end;}
 
 // rtl言語でも左右を反転させない時に使える
 // .-ji\:l{justify-items: left;}

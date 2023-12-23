@@ -6,7 +6,7 @@ import {
 	Frame,
 	Layouter,
 	Text,
-	Badge,
+	GridItem,
 	Note,
 	Stack,
 	Flow,
@@ -40,32 +40,59 @@ const FolderIcon = (props) => (
 	</svg>
 );
 
+function TimelineItem({ heading, icon, children, ...props }) {
+	return (
+		<Grid className='c--timeline__item'>
+			<Decorator className='c--timeline__line' />
+			<Decorator className='c--timeline__line' />
+			<Decorator
+				className='c--timeline__shape -empasis l--center'
+				aspect='1/1'
+				radius='99'
+				c='opposite'
+				bgc='opposite'
+			>
+				{icon && <Icon icon={icon} />}
+			</Decorator>
+			<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
+				<span className='c--timeline__label'>{heading}</span>
+			</Core>
+			<Core className='c--timeline__body'>{children}</Core>
+		</Grid>
+	);
+}
+
 export default function ContainerTest() {
 	return (
 		<Layouter isFlow hasGutter py={50} isConstrained='s' alignfull id='demo-wrapper'>
 			<p>test...</p>
+			<h2>grid</h2>
+			<Grid gtc='1fr 1fr 1fr'>
+				<GridItem bd gc='1 / -1' gr='1'>
+					1
+				</GridItem>
+				<GridItem bd gc='auto'>
+					2
+				</GridItem>
+				<GridItem bd gc='auto'>
+					3
+				</GridItem>
+			</Grid>
 			<h2>Timeline</h2>
 			<Stack className='c--timeline'>
-				<Grid className='c--timeline__item'>
-					<Decorator className='c--timeline__line' />
-					<Decorator className='c--timeline__line' />
-					<Decorator
-						className='c--timeline__shape -empasis'
-						aspect='1/1'
-						radius='99'
-						c='opposite'
-						bgc='opposite'
-					></Decorator>
-					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
-						<span className='c--timeline__label'>2022年5月24日</span>
-					</Core>
-					<Core className='c--timeline__body ark-keep-mt--s'>
-						<Text>WordPress 6.0 がリリース</Text>
-						<p>
-							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
-						</p>
-					</Core>
-				</Grid>
+				<TimelineItem heading='2022年5月xx日'>
+					<Text>WordPress 6.0 がリリース</Text>
+					<p>
+						ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
+					</p>
+				</TimelineItem>
+				<TimelineItem heading='2022年5月xx日'></TimelineItem>
+				<TimelineItem heading='2022年6月xx日' icon={FolderIcon}>
+					<Text>WordPress 6.0 がリリース</Text>
+					<p>
+						ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
+					</p>
+				</TimelineItem>
 				<Grid className='c--timeline__item'>
 					<Decorator className='c--timeline__line' />
 					<Decorator className='c--timeline__line' />
@@ -75,7 +102,7 @@ export default function ContainerTest() {
 					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
 						<span className='c--timeline__label'>2022年5月24日</span>
 					</Core>
-					<Core className='c--timeline__body ark-keep-mt--s'>
+					<Core className='c--timeline__body'>
 						<Text>WordPress 6.0 がリリース</Text>
 						<p>
 							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
@@ -91,7 +118,7 @@ export default function ContainerTest() {
 					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
 						<span className='c--timeline__label'>2022年5月24日</span>
 					</Core>
-					<Core className='c--timeline__body ark-keep-mt--s'>
+					<Core className='c--timeline__body'>
 						<Text>WordPress 6.0 がリリース</Text>
 						<p>
 							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
@@ -115,7 +142,7 @@ export default function ContainerTest() {
 					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
 						<span className='c--timeline__label'>2022年5月24日</span>
 					</Core>
-					<Core className='c--timeline__body ark-keep-mt--s'>
+					<Core className='c--timeline__body'>
 						<Text>WordPress 6.0 がリリース</Text>
 						<p>
 							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
@@ -131,7 +158,7 @@ export default function ContainerTest() {
 					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
 						<span className='c--timeline__label'>2022年5月24日</span>
 					</Core>
-					<Core className='c--timeline__body ark-keep-mt--s'>
+					<Core className='c--timeline__body'>
 						<Text>WordPress 6.0 がリリース</Text>
 						<p>
 							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
@@ -151,7 +178,7 @@ export default function ContainerTest() {
 					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
 						<span className='c--timeline__label'>2022年5月24日</span>
 					</Core>
-					<Core className='c--timeline__body ark-keep-mt--s'>
+					<Core className='c--timeline__body'>
 						<Text>WordPress 6.0 がリリース</Text>
 						<p>
 							ロレム・イプサムの座り雨、トマ好き学習エリット、しかし時と活力、そのような躍動と楽しみ、ブラインド行うにはいくつかの重要な事柄に座ります。
@@ -175,7 +202,7 @@ export default function ContainerTest() {
 					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
 						<span className='c--timeline__label'>2022年5月24日</span>
 					</Core>
-					<Core className='c--timeline__body ark-keep-mt--s'>
+					<Core className='c--timeline__body'>
 						<Text>WordPress 6.0 がリリースした日。</Text>
 					</Core>
 				</Grid>
@@ -188,7 +215,7 @@ export default function ContainerTest() {
 					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
 						<span className='c--timeline__label'>2022年5月24日</span>
 					</Core>
-					<Core className='c--timeline__body ark-keep-mt--s'>
+					<Core className='c--timeline__body'>
 						<Text>WordPress 6.0 がリリースした日。</Text>
 					</Core>
 				</Grid>
@@ -201,7 +228,7 @@ export default function ContainerTest() {
 					<Core className='c--timeline__head' my='5' fz='s' lh='xs'>
 						<span className='c--timeline__label'>2022年5月24日</span>
 					</Core>
-					<Core className='c--timeline__body ark-keep-mt--s'>
+					<Core className='c--timeline__body'>
 						<Text>WordPress 6.0 がリリースした日。</Text>
 					</Core>
 				</Grid>
@@ -218,7 +245,7 @@ export default function ContainerTest() {
 						c='opposite'
 						bgc='opposite'
 					></Decorator>
-					<Core className='c--step__body ark-keep-mt--s'>
+					<Core className='c--step__body'>
 						<Text>WordPress 6.0 がリリースした日。</Text>
 					</Core>
 					<Decorator className='c--step__line' />
@@ -228,7 +255,7 @@ export default function ContainerTest() {
 					<Center className='c--step__ct' aspect='1/1' radius='99' c='opposite' bgc='opposite'>
 						<Icon icon={FolderIcon}></Icon>
 					</Center>
-					<Core className='c--step__body ark-keep-mt--s'>
+					<Core className='c--step__body'>
 						<Text>WordPress 6.0 がリリースした日。</Text>
 					</Core>
 					<Decorator className='c--step__line' />
@@ -238,7 +265,7 @@ export default function ContainerTest() {
 					<Center className='c--step__ct' aspect='1/1' radius='99' c='opposite' bgc='opposite'>
 						{/* <Icon icon={FolderIcon}></Icon> */}
 					</Center>
-					<Core className='c--step__body ark-keep-mt--s'>
+					<Core className='c--step__body'>
 						<Text>WordPress 6.0 がリリースした日。</Text>
 					</Core>
 					<Decorator className='c--step__line' />

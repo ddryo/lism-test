@@ -30,7 +30,7 @@ export default {
 	// Note: 数値指定でユーティリティ化したい時、文字列で渡す。 700 → '700'
 	// fw: { thin: '100', light: '300', normal: '400', medium: '500', bold: '700' },
 	fs: { italic: 'i', normal: 'n' },
-	font: { inherit: 'i' },
+	f: { inherit: 'i' },
 	// lh: {},
 	// lts:{},
 
@@ -58,19 +58,6 @@ export default {
 	minSize: {
 		//unset: 'un',
 		'100%': '100',
-	},
-
-	ga: {
-		side: 'side',
-		// fix: 'fix',
-		// nofix: 'nf',
-		start: 's',
-		center: 'c',
-		end: 'e',
-		// left: 'l',
-		// right: 'r',
-		// top: 't',
-		// bottom: 'b',
 	},
 	bd: {
 		// current: 'cc',

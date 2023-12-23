@@ -1,25 +1,26 @@
 ---
 import { LismProps } from '../types';
 import { Layouter } from '../Core';
-import { getFlexProps, getPlaceProps } from '@loos/lism-core/lib';
+import { getFlexProps } from '@loos/lism-core/lib';
 
 // Propsの定義
 interface Props extends LismProps {
-	_flexName?: string;
+	_flex?: string;
 }
 
-let { _flexName = 'flex', lismClass = {}, variant, ...props } = Astro.props || {};
+let { _flex = 'flex', lismClass = {}, variant, ...props } = Astro.props || {};
 
-if (_flexName) lismClass.l = `l--${_flexName}`;
-if (variant) lismClass.l += ` l--${_flexName}--${variant}`;
+if (_flex) lismClass.l = `l--${_flex}`;
+if (variant) lismClass.l += ` l--${_flex}--${variant}`;
 
 // flex 系の props をまとめる
 props = getFlexProps(props);
-props = getPlaceProps(props);
 
 // stack方向 は divider が B になる
-if (props.hasDivider === true && _flexName === 'stack') {
+if (props.hasDivider === true && _flex === 'stack') {
 	props.hasDivider = 'B';
+} else if (props.hasDivider === true) {
+	props.hasDivider = 'I';
 }
 ---
 

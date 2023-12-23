@@ -12,64 +12,46 @@ const { hasSidebar, labels } = Astro.props;
 //  main-frame
 //    right-sidebar-container
 //    main-pane
-
 ---
 
-<div class="page">
-	<header class="header"><slot name="header" /></header>
-	{
-		hasSidebar && (
-			<nav class="sidebar" aria-label={labels['sidebarNav.accessibleLabel']}>
-				<MobileMenuToggle {...Astro.props} />
-				<div id="starlight__sidebar" class="sidebar-pane">
-					<div class="sidebar-content l-stack -gap:20">
-						<slot name="sidebar" />
+<div class='page'>
+	<header class='header'><slot name='header' /></header>
+	<div class='page__inner'>
+		{
+			hasSidebar && (
+				<nav class='sidebar' aria-label={labels['sidebarNav.accessibleLabel']}>
+					<MobileMenuToggle {...Astro.props} />
+					<div id='starlight__sidebar' class='sidebar-pane'>
+						<div class='sidebar-content l-stack -gap:20'>
+							<slot name='sidebar' />
+						</div>
 					</div>
-				</div>
-			</nav>
-		)
-	}
-	<div class="main-frame"><slot /></div>
+				</nav>
+			)
+		}
+		<div class='main-frame'><slot /></div>
+	</div>
 </div>
 
 <style>
+	/* body {
+		width: 50%;
+		max-width: 50%;
+	} */
 	.page {
-		/* flex-direction: column; */
+		width: 50%;
+		max-width: 50%;
 		min-height: 100vh;
-		/* display: grid; */
-		/* grid:
-		'sidebar main' 1fr
-		'sidebar footer' auto
-		 / auto 1fr auto; */
 	}
-	.footer{
-		grid-area: footer;
-	}
-	.sidebar{
-		grid-area: sidebar;
-		/* position: sticky;
-		top: calc(var(--sl-nav-height) - var(--sl-mobile-toc-height)); */
-	}
-	.main-frame {
-		grid-area: main;
-		/* padding-top: calc(var(--sl-nav-height) + var(--sl-mobile-toc-height)); */
-		/* padding-inline-start: var(--sl-content-inline-start); */
-	}
-
-
-	@media (min-width: 50rem) {
-		.page {
-			display: grid;
-			grid:
-			'header header' auto
-			'sidebar main' 1fr
-			'sidebar footer' auto
-			/ var(--sl-sidebar-width) 1fr;
-		}
+	.page__inner {
+		width: 100%;
+		max-width: 100%;
+		height: 100%;
+		/* overflow-x: hidden; */
 	}
 
 	.header {
-		grid-area: header;
+		/* grid-area: header; */
 		z-index: var(--sl-z-index-navbar);
 		position: sticky;
 		top: 0;
@@ -84,7 +66,9 @@ const { hasSidebar, labels } = Astro.props;
 	}
 
 	:global([data-has-sidebar]) .header {
-		padding-inline-end: calc(var(--sl-nav-gap) + var(--sl-nav-pad-x) + var(--sl-menu-button-size));
+		padding-inline-end: calc(
+			var(--sl-nav-gap) + var(--sl-nav-pad-x) + var(--sl-menu-button-size)
+		);
 	}
 
 	.sidebar-pane {
@@ -113,8 +97,34 @@ const { hasSidebar, labels } = Astro.props;
 		/* gap: 1rem; */
 	}
 
-
 	@media (min-width: 50rem) {
+		.page__inner {
+			/* max-width: 1%; */
+			display: grid;
+			grid:
+				'sidebar main' 1fr
+				'sidebar footer' auto;
+			grid-template-columns: auto 1fr;
+			justify-content: start;
+		}
+		.footer {
+			grid-area: footer;
+		}
+		.sidebar {
+			grid-area: sidebar;
+			width: var(--sl-sidebar-width);
+		}
+		.main-frame {
+			grid-area: main;
+			max-width: 100%;
+			width: 100%;
+
+			/* box-sizing: border-box; */
+			/* max-width: calc(100% - var(--sl-sidebar-width)); */
+			/* padding-top: calc(var(--sl-nav-height) + var(--sl-mobile-toc-height)); */
+			/* padding-inline-start: var(--sl-content-inline-start); */
+		}
+
 		:global([data-has-sidebar]) .header {
 			padding-inline-end: var(--sl-nav-pad-x);
 		}

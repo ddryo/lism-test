@@ -81,9 +81,9 @@ export const ShadowDemos = ({ shadows = [] }) => {
 						<Text bd='left' bdw='2px' lh='1' pl='20' fz='xs'>
 							<code>{name}</code>
 						</Text>
-						<Box aspect='1/1' bgc='base' shadow={name} radius='2'>
+						<Frame aspect='1/1' bgc='base' shadow={name} radius='2'>
 							&emsp;
-						</Box>
+						</Frame>
 					</Stack>
 				);
 			})}

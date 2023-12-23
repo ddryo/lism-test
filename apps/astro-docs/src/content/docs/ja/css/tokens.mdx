@@ -24,6 +24,7 @@ export const ColorBadge = ({color, label}) => {
 |カラー|`--{colorToken}`|`--red`, `--blue`|
 |トークン|`--{tokenKey}--{value}`|`--fz--s`,<br />`--shadow--1`,<br />`--bgc--base`|
 
+
 ## COLOR トークン
 
 ### パレットトークン
@@ -388,7 +389,7 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 |`SPACE.EM`|`--em--VAL`|ボックス内の余白や文字とアイコン要素の間隔など、その要素自体のテキストサイズに合わせて微調整したい時に使用するトークン。`em`単位。|
 
 
-{/* paddingやmargin, gap等で利用できます。(p,py,px,pl,pr,pt,pb,m,my,mx,ml,mr,mt,mb,gap,clmg,rowg,top,left,bottom,right,inset) */}
+{/* paddingやmargin, gap等で利用できます。(p,py,px,pl,pr,pt,pb,m,my,mx,ml,mr,mt,mb,gap,colg,rowg,top,left,bottom,right,inset) */}
 
 
 ### `SPACE.S` トークン
@@ -561,6 +562,17 @@ paddingやmarginの全方向・全トークンに対してクラスを用意す�
 		]} />
 	</PreviewArea>
 </Preview> */}
+
+## `SIZE` トークン
+
+コンテンツサイズ用のトークンです。
+
+|トークン値|変数|クラス|
+|---|---|---|
+|`s`|`--size--s`|`.is--constrained:s`|
+|`m`|`--size--m`|`.is--constrained`|
+|`l`|`--size--l`|`.is--constrained:l`|
+
 
 
 ## `SHADOW` トークン

@@ -1,0 +1,62 @@
+---
+title: 'Box'
+description: ...
+---
+
+import { Box } from '@loos/lism-core';
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+コンテンツをラップしてグループ化するためのシンプルなコンポーネントです。
+
+<Preview>
+	<PreviewTitle>対応するHTML構造</PreviewTitle>
+	<PreviewCode>
+	```jsx
+	<div class="l--box">...</div>
+	```
+	</PreviewCode>
+</Preview>
+
+## Import
+
+```js
+import { Box } from '@loos/lism-core';
+```
+
+## Usage
+
+<Preview>
+	<PreviewTitle>Boxの例 1</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Box p='box' bgc='white' shadow='2' radius='3'>
+			<p>Box</p>
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Box p='box' bgc='white' shadow='2' radius='3'>
+			<p>Box</p>
+		</Box>
+		```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>Boxの例 2</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Box isFlow tag='section' p="box:l" bgc='pale'>
+			<h3>Heading</h3>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugit, numquamdicta repellat ipsa autem eos iure ducimus consequatur vel.</p>
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Box isFlow tag='section' p="box:l" bgc='pale'>
+			<h3>Heading</h3>
+			<p>...</p>
+		</Box>
+		```
+	</PreviewCode>
+</Preview>
+

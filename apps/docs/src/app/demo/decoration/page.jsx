@@ -130,53 +130,55 @@ export default function ContainerTest() {
 			<Component
 				name='balloon'
 				variant='left'
-				as={Grid}
-				gt='side:l'
+				// as={Grid}
+				// gt='side:l'
+				as={Flex}
+				passVariant='ltr'
 				ai='center'
 				// c='base'
 				provide={{ bdc: 'currentColor', bgc: 'base' }}
 			>
-				<GridItem p='box' radius={4} w='fit-content' bd consume='bdc bgc'>
+				<FlexItem p='box' radius={4} w='fit-content' bd consume='bdc bgc'>
 					<DammyText />
-				</GridItem>
+				</FlexItem>
 				<Decorator
-					as={GridItem}
+					order={-1}
+					as={FlexItem}
+					l='1px'
+					// b='1px'
 					hasSize
 					size='0.875em'
 					bd
 					consume='bdc bgc'
-					ga='side'
-					rotate='45deg'
-					translate='50%'
-					l='1px'
-					clipPath='polygon(0% 0%, 0% 100%, 100% 100%)'
+					// ga='side'
+					css={{ rotate: '45deg', translate: '50%', clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%)' }}
 				/>
 			</Component>
 
 			<Component
 				name='balloon'
 				variant='right'
-				as={Grid}
-				gt='side:r'
+				as={Flex}
+				passVariant='ltr'
+				// as={Grid}
+				// gt='side:r'
 				ai='center' // start, end
 				// c='base'
 				provide={{ bdc: 'currentColor', bgc: 'pale' }}
 			>
-				<GridItem p='box' radius={4} w='fit-content' bd consume='bdc bgc' ml='auto'>
+				<FlexItem p='box' radius={4} w='fit-content' bd consume='bdc bgc' ml='auto'>
 					<DammyText length='l' />
-				</GridItem>
+				</FlexItem>
 				<Decorator
-					as={GridItem}
+					as={FlexItem}
 					hasSize
 					size='0.875em'
 					bd
 					consume='bdc bgc'
-					ga='side'
-					rotate='-45deg'
-					translate='-50%'
+					// ga='side'
 					r='1px'
 					my='1.5em'
-					clipPath='polygon(0% 100%, 100% 0%, 100% 100%)'
+					css={{ rotate: '-45deg', translate: '-50%', clipPath: 'polygon(0% 100%, 100% 0%, 100% 100%)' }}
 				/>
 			</Component>
 
@@ -199,11 +201,9 @@ export default function ContainerTest() {
 					bd
 					consume='bdc bgc bdw'
 					grs='1'
-					rotate='45deg'
-					translate='0 50%'
 					t='var(--bdw)'
 					mx='1.5em'
-					clipPath='polygon(0% 0%, 0% 100%, 100% 0%)'
+					css={{ rotate: '45deg', translate: '0 50%', clipPath: 'polygon(0% 0%, 0% 100%, 100% 0%)' }}
 				/>
 			</Component>
 
@@ -226,11 +226,9 @@ export default function ContainerTest() {
 					bd
 					consume='bdc bgc bdw'
 					grs='2'
-					rotate='45deg'
-					translate='0 -50%'
 					b='var(--bdw)'
 					mx='1.5em'
-					clipPath='polygon(100% 0%, 0% 100%, 100% 100%)'
+					css={{ rotate: '45deg', translate: '0 -50%', clipPath: 'polygon(100% 0%, 0% 100%, 100% 100%)' }}
 				/>
 			</Component>
 			<Spacer h={40} />

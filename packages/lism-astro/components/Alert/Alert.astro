@@ -39,14 +39,14 @@ if (presetData) {
 ---
 
 <SideFlex
-	fix='first'
+	side='first'
 	lismState={['has--mixcolor']}
 	lismClass={lismClass}
 	keycolor={keycolor}
 	radius='2'
 	{...props}
 >
-	<Icon lismClass={{ c: 'c--alert__icon is--side' }} icon={icon} {...iconProps} />
+	<Icon lismClass={{ c: 'c--alert__icon' }} icon={icon} {...iconProps} />
 	<Layouter className='c--alert__body' isFlow={isFlow}>
 		<slot />
 	</Layouter>

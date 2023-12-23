@@ -1,9 +1,11 @@
+// l--grid--gt
 .c--tabs {
 	// position: relative;
 	--active--c: var(--c--base);
 	--active--bgc: transparent;
 	--gt: 'list' 'panel' / 100%;
 	--tab--r: 0;
+	// grid-template: var(--gt);
 	// max-width: 100% !important;
 	// width: 100% !important;
 	// gap: var(--em--10);
@@ -40,24 +42,23 @@
 }
 
 // ovx='auto' の時にmarginネガティブだとアウトなので、borderではなくbox-shadowで表現する。
-.c--tabs--line {
+:where(.c--tabs--line) {
 	> .c--tabs_list {
-		--_sh-color: transparent;
-		--_sh-ofset: 0 2px;
-		box-shadow: var(--_sh-ofset) 0 0 var(--bdc--base);
+		--shadowColor: transparent;
+		box-shadow: inset 0 -1px 0 0 var(--bdc--base);
 	}
 	// タブはそんな頻出するものではないので、文字数削減を優先して子孫セレクタ使う。
 	.c--tabs_tab {
-		box-shadow: var(--_sh-ofset) 0 0 var(--_sh-color);
+		box-shadow: inset 0 -2px 0 0 var(--shadowColor);
 	}
 
 	[aria-selected='true'] {
-		--_sh-color: currentColor;
+		--shadowColor: currentColor;
 	}
 
 	// memo: rtl対応必要
 	> .l--stack {
-		--_sh-ofset: 2px 0;
+		--_shdw-ofset: 2px 0;
 	}
 }
 

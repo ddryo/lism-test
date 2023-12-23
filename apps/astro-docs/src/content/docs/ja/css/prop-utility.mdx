@@ -1,5 +1,5 @@
 ---
-title: 'Prop Utilities'
+title: 'Prop Utility'
 description: ...
 ---
 import { Box, Flex, Alert, Note } from "@loos/lism-astro";
@@ -10,7 +10,7 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 
 ### Colors
 
-CSS Property|Utility|
+CSS Property|To Class|
 |---|---|
 color|`-c:base`,`-c:pale`, `-c:opposite`|
 background-color|`-bgc:base`, `-bgc:pale`, `-bgc:opposite`|
@@ -26,13 +26,13 @@ border-color|COLOR,<br/> `"base"`|
 
 ### Typography
 
-|Prop|CSS Property|Token|Utility|BP|
+|Prop|CSS Property|Token|To Class|BP|
 |---|---|---|---|---|
 |fz|font-size|FONT_SIZE|○|○|
 |lh|line-height|LINE_HEIGHT|○|-|
 |ff|font-family|`"base"`,`"mono"`,`"emoji"`|○|-|
 |lts|letter-spacing|LETTER_SPACING|○|-|
-|ta|text-align|-|`"c"`,`"l"`,`"r"`|-|
+|ta|text-align|-|`"center"`,`"l"`,`"r"`|-|
 |whs|white-space|-|`"nw"`|-|
 
 {/* |font?|font|inherit?|-|-|
@@ -42,21 +42,21 @@ border-color|COLOR,<br/> `"base"`|
 
 ### Width & Height
 
-|Prop|CSS Property|Token|Utility|BP|
+|Prop|CSS Property|Token|To Class|BP|
 |---|---|---|---|---|
-|w|width|SIZE|25,50,75,100,fit|○|
-|h|height|SIZE|25,50,75,100,fit|○|
-|maxW|max-width|SIZE|100|-|
-|maxH|max-height|SIZE|100|-|
-|minW|min-width|||-|
-|minH|min-height|||-|
+|w|width|`SIZE`|`100`,`fit`|○|
+|h|height|`SIZE`|`100`,`fit`,`screen`|○|
+|maxW|max-width|`SIZE`|100|-|
+|maxH|max-height|`SIZE`|100|-|
+|minW|min-width|`SIZE`||-|
+|minH|min-height|`SIZE`||-|
 
 SIZE:contentsize= s,m,l?
 
 
 ### Bg
 
-|Prop|CSS Property|Token|Utility|BP|
+|Prop|CSS Property|Token|To Class|BP|
 |---|---|---|---|---|
 |bg|||`"grid"`, `"stripe"`, `"glass"`|-|
 |bg.image||||-|
@@ -68,7 +68,7 @@ SIZE:contentsize= s,m,l?
 
 ### Margin and padding
 
-|Prop|CSS Property|Token|Utility|BP|
+|Prop|CSS Property|Token|To Class|BP|
 |---|---|---|---|---|
 |p|padding|SPACE|○, `"box"`, `"box:s"`, `"box:l"`|○|
 |pl|padding-left|SPACE|-|○|
@@ -144,7 +144,7 @@ Utility Class:
 
 ### grid
 
-|Prop|CSS Property|Token|Utility|BP|
+|Prop|CSS Property|Token|To Class|BP|
 |---|---|---|---|---|
 |grid.template|grid-template|||○|
 |grid.areas|grid-template-areas|||○|
@@ -161,7 +161,7 @@ Utility Class:
 
 ### flex
 
-|Prop|CSS Property|Token|Utility|BP|
+|Prop|CSS Property|Token|To Class|BP|
 |---|---|---|---|---|
 |flex.wrap|flex-wrap||`"w"`, `"nw"`|○|
 |flex.direction|flex-direction||`"c"`, `"cr"`, `"r"`, `"rr"`|○|
@@ -174,11 +174,11 @@ Utility Class:
 
 ### gap
 
-|Prop|CSS Property|Token|Utility|BP|
+|Prop|CSS Property|Token|To Class|BP|
 |---|---|---|---|---|
 |[flex\|grid].gap|gap|SPACE|○|○|
 |[flex\|grid]rowg|row-gap|SPACE|---|○|
-|[flex\|grid]clmg|column-gap|SPACE|---|○|
+|[flex\|grid]colg|column-gap|SPACE|---|○|
 
 {/* <Alert>Flex, Grid で指定できます。</Alert> */}
 
@@ -196,7 +196,7 @@ Utility Class:
 	```jsx
 	<Flex gap={40}>...</Flex>
 	<Grid gap="1rem">...</Grid>
-	<Columns rowg={[15, 20]} clmg={[20, 30]}>...</Columns>
+	<Columns rowg={[15, 20]} colg={[20, 30]}>...</Columns>
 	```
 	</PreviewCode>
 </Preview>
@@ -213,7 +213,7 @@ Utility Class:
 
 ### places
 
-|Prop|CSS Property|Token|Utility|BP|
+|Prop|CSS Property|Token|To Class|BP|
 |---|---|---|---|---|
 |[flex\|grid].ai|align-items||`"c"`, `"s"`, `"e"`, `"str"`|-|
 |[flex\|grid].ac|align-content||`"c"`, `"s"`, `"e"`, `"str"`|-|
@@ -234,7 +234,7 @@ Utility Class:
 
 ## Others
 
-|Prop|CSS Property|Token,Utility|
+|Prop|CSS Property|Token,To Class|
 |---|---|---|
 |d|display|`"none"`,`"block"`,`"flex"`,`"grid"`,`"inline"`,`"inline-block"`,`"inline-flex"`,`"inline-grid"`|
 |bxsh, shadow|box-shadow|SHADOW|

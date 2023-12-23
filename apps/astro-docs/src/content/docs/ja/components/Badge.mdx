@@ -1,0 +1,165 @@
+---
+title: 'Badge'
+description: ...
+---
+
+import { Badge, Cluster, Icon, InlineIcon } from '@loos/lism-core';
+import {
+	Book,
+	Cat,
+	Baseball,
+} from "@phosphor-icons/react";
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+バッジを表示するコンポーネントです。
+
+<Preview>
+	<PreviewTitle>対応するHTML構造</PreviewTitle>
+	<PreviewCode>
+		```jsx
+		<span class="c--badge">Badge</span>
+		```
+	</PreviewCode>
+</Preview>
+
+
+## 主なprops
+- `keycolor`: バッジのキーカラー。デフォルトは`main`カラーです。
+	- パレットカラーを指定できます。(`"red"`, `"blue"`, `"green"`, `"yellow"`, `"purple"`, `"orange"`, `"pink"`, `"gray"`
+- `variant`: ボタンの表示スタイル。`outline`、`subtle`の2種類を標準で用意しています。
+	- `c--badge--{variant}`がクラスとして出力されます。
+
+## Import
+
+```js
+import { Badge } from '@loos/lism-core';
+```
+
+## Usage
+
+export const ColorDemos = ({colors, variant}) => {
+	return (
+		<Cluster gap={20} itemMinW='5em'>
+			{colors.map((ckey) => {
+				return (
+					<Badge keycolor={ckey} key={ckey} variant={variant || ''}>{ckey}</Badge>
+				);
+			})}
+
+		</Cluster>
+	);
+}
+
+<Preview>
+	<PreviewTitle>`<Badge>`の使用例</PreviewTitle>
+	<PreviewArea p={20} isShadow={0}>
+		<Cluster gap={20}>
+			<Badge>Badge</Badge>
+			<Badge variant="fill">Badge</Badge>
+			<Badge variant="outline">Badge</Badge>
+		</Cluster>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Badge>Badge</Badge>
+		<Badge variant="fill">Badge</Badge>
+		<Badge variant="outline">Badge</Badge>
+		```
+	</PreviewCode>
+</Preview>
+
+
+### カラー
+
+[カラートークン](/docs/tokens/color)の他、任意のカラーコードを指定できます。
+
+<Preview>
+	<PreviewTitle>`variant="fill"`でのカラーバリエーション</PreviewTitle>
+	<PreviewArea p={20} isShadow={0}>
+		<ColorDemos variant="fill" colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} />
+	</PreviewArea>
+<PreviewCode>
+```jsx
+<Badge keycolor="red">Badge</Badge>
+<Badge keycolor="orange">Badge</Badge>
+...
+```
+</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>`variant="outline"`でのカラーバリエーション</PreviewTitle>
+	<PreviewArea p={20} isShadow={0}>
+		<ColorDemos colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} variant="outline" />
+	</PreviewArea>
+</Preview>
+
+<Preview>
+	<PreviewTitle>`variant="subtle"`(is--cboxが出力されます) でのカラーバリエーション</PreviewTitle>
+	<PreviewArea p={20} isShadow={0}>
+		<ColorDemos variant="subtle" colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]}  />
+	</PreviewArea>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>カラーコード指定</PreviewTitle>
+	<PreviewArea p={20} isShadow={0}>
+		<Cluster gap={20}>
+			<Badge bgc="blue:20%" c="base">Badge</Badge>
+			<Badge variant="fill" keycolor="#ac2c23">Badge</Badge>
+			<Badge variant="subtle" keycolor="hsl(260deg 75% 40%)">Badge</Badge>
+		</Cluster>
+	</PreviewArea>
+<PreviewCode>
+```jsx
+<Cluster gap={20}>
+	<Badge bgc="blue:20%" c="base">Badge</Badge>
+	<Badge variant="fill" keycolor="#ac2c23">Badge</Badge>
+	<Badge variant="subtle" keycolor="hsl(260deg 75% 40%)">Badge</Badge>
+</Cluster>
+```
+</PreviewCode>
+</Preview>
+
+### アイコンを併用する例
+
+{/* `display:inline-flex`, `align-item:center` を `.c--badge` に対して指定していますので、内部にアイコンを配置してもきれいに表示されます。 */}
+	{/* // iconあるとき用
+	display: inline-flex;
+	align-items: center;
+	gap: 0.2em; */}
+
+<Preview>
+	<PreviewTitle>`<InlineIcon>`の使用例</PreviewTitle>
+	<PreviewArea p={20}>
+		<Cluster gap={20}>
+			<Badge variant='fill' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Book} size="1.25em"/> Badge</Badge>
+			<Badge variant='outline' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Cat} size="1.25em"/> Badge</Badge>
+		</Cluster>
+	</PreviewArea>
+<PreviewCode>
+```jsx
+<Cluster gap={20}>
+	<Badge variant='fill' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}>
+		<Icon icon={Book} size="1.25em"/>Badge
+	</Badge>
+	<Badge variant='outline' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}>
+		<Icon icon={Cat} size="1.25em"/>Badge
+	</Badge>
+</Cluster>
+```
+</PreviewCode>
+</Preview>
+
+{/* <Cluster gap={20}>
+	<Badge><Icon isInline icon={Book} /> Badge</Badge>
+	<Badge variant="outline"><Icon isInline icon={Cat} /> Badge</Badge>
+</Cluster> */}
+
+{/* <Cluster gap={20}>
+	<Badge hasIcon p={10} fz="l" variant="fill"><Icon icon={Book} /></Badge>
+	<Badge hasIcon p={10} fz="l" variant="outline"><Icon icon={Cat} /></Badge>
+	<Badge hasIcon p={10} fz="l" ><Icon icon={Baseball} /></Badge>
+</Cluster> */}

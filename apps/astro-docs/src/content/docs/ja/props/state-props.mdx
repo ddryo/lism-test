@@ -1,0 +1,192 @@
+---
+title: 'State Props'
+description: ...
+sidebar:
+  order: 2
+---
+import { Layouter, Box, Stack, Flex, Alert, Note } from "@loos/lism-astro";
+import { DammyText, Reference, MemoBadge, HelpText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+
+
+[Design State](/ja/css/design-state) クラスに対応するLism Propsを紹介します。
+
+
+<Alert preset='alert'>
+ここで紹介するPropは、`<Layouter>`系コンポーネントでのみ有効です。(`<Core>`ではサポートされていません)
+</Alert>
+
+
+## isFlow
+
+`.is--flow`に対応するPropです。
+( <MemoBadge> 参考ページ </MemoBadge> : [.is--flow について](/docs/layout-state/is--flow) )
+
+
+| Prop | Output |
+|:--|:--|
+| `isFlow` | `.is--flow` |
+| `isFlow='s'` | `.is--flow:s` |
+| `isFlow='l'` | `.is--flow:l` |
+| `isFlow={value}` | `.is--flow:` & `--flowGap:{value}` |
+
+
+<Preview>
+	<PreviewCode slot='tab' label='コンポーネント'>
+	```jsx
+	<Layouter isFlow>...</Layouter>
+	<Layouter isFlow="s">...</Layouter>
+	<Layouter isFlow="20px">...</Layouter>
+	```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='出力'>
+	```html
+	<div class="is--flow">...</div>
+	<div class="is--flow:s">...</div>
+	<div class="is--flow:" style="--flowGap:20px">
+	```
+	</PreviewCode>
+</Preview>
+
+## isConstrained
+
+`.is--constrained`に対応するPropです。
+( <MemoBadge> 参考ページ </MemoBadge> : [.is--constrained について](/docs/layout-state/content-size) )
+
+
+| Prop | Output |
+|:--|:--|
+| `isConstrained` | `.is--constrained` |
+| `isConstrained='s'` | `.is--constrained:s` |
+| `isConstrained='l'` | `.is--constrained:l` |
+| `isConstrained={value}` | `.is--constrained:` & `--contentSize:{value}` |
+
+
+<Preview>
+	<PreviewCode slot='tab' label='コンポーネント'>
+	```jsx
+	<Layouter isConstrained>...</Layouter>
+	<Layouter isConstrained="s">...</Layouter>
+	<Layouter isConstrained="600px">...</Layouter>
+	```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='出力'>
+	```html
+	<div class="is--constrained">...</div>
+	<div class="is--constrained:s">...</div>
+	<div class="is--constrained:" style="--contentSize:600px">
+	```
+	</PreviewCode>
+</Preview>
+
+
+## isContainer
+
+`.is--container`に対応するPropです。
+( <MemoBadge> 参考ページ </MemoBadge> : [.is--container について](/docs/layout-state/content-size) )
+
+
+| Prop | Output |
+|:--|:--|
+| `isContainer` | `.is--container` |
+
+
+<Preview>
+	<PreviewCode slot='tab' label='コンポーネント'>
+	```jsx
+	<Layouter isContainer>...</Layouter>
+	```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='出力'>
+	```html
+	<div class="is--container">...</div>
+	```
+	</PreviewCode>
+</Preview>
+
+## hasGutter
+
+`.has--gutter`に対応するPropです。
+( <MemoBadge> 参考ページ </MemoBadge> : [.has--gutter について](/docs/layout-state/has--gutter) )
+
+
+| Prop | Output |
+|:--|:--|
+| `hasGutter` | `.has--gutter` |
+
+
+<Preview>
+	<PreviewCode slot='tab' label='コンポーネント'>
+	```jsx
+	<Layouter hasGutter>...</Layouter>
+	```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='出力'>
+	```html
+	<div class="has--gutter">...</div>
+	```
+	</PreviewCode>
+</Preview>
+
+
+
+## hasDivider
+
+`.has--divider`に対応するPropです。
+{/* ( <MemoBadge> 参考ページ </MemoBadge> : [.has--gutter について](/docs/layout-state/has--divider) ) */}
+
+
+| Prop | Output |
+|:--|:--|
+| `hasDivider` | `.has--divider:[B\|I]` (自動判定) |
+| `hasDivider='B'` | `.has--divider:B` |
+| `hasDivider='I'` | `.has--divider:I` |
+
+
+<Preview>
+	<PreviewCode slot='tab' label='コンポーネント'>
+	```jsx
+	<Layouter hasDivider="B">...</Layouter>
+	```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='出力'>
+	```html
+	<div class="has--divider:B">...</div>
+	```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>`hasDivider`自動判定</PreviewTitle>
+	<PreviewArea resize p={5}>
+		<Stack hasDivider>
+			<Box p={20}>Stack</Box>
+			<Box p={20}>Stack</Box>
+			<Box p={20}>Stack</Box>
+		</Stack>
+		<hr />
+		<Flex hasDivider>
+			<Box px={20}>Flex</Box>
+			<Box px={20}>Flex</Box>
+			<Box px={20}>Flex</Box>
+		</Flex>
+	</PreviewArea>
+	<PreviewCode>
+	```jsx
+	<Stack hasDivider>
+		<Box p={20}>Stack</Box>
+		<Box p={20}>Stack</Box>
+		<Box p={20}>Stack</Box>
+	</Stack>
+	<hr />
+	<Flex hasDivider>
+		<Box px={20}>Flex</Box>
+		<Box px={20}>Flex</Box>
+		<Box px={20}>Flex</Box>
+	</Flex>
+	```
+	</PreviewCode>
+</Preview>
+
+

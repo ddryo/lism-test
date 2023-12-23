@@ -3,7 +3,6 @@
 @forward './gutter';
 @forward './container'; // Note: flow より後ろで読み込む
 @forward './divider';
-@forward './consume';
 
 // 切り分ける？
 //is--mediaFrame > :where(img, video),

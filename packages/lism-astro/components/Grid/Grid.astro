@@ -1,7 +1,7 @@
 ---
 import { LismProps } from '../types';
 import { Layouter } from '../Core';
-import { getGridProps, getPlaceProps } from '@loos/lism-core/lib';
+import { getGridProps } from '@loos/lism-core/lib';
 
 // Propsの定義
 interface Props extends LismProps {
@@ -17,7 +17,6 @@ if (variant) {
 
 // grid 系の props をまとめる
 props = getGridProps(props);
-props = getPlaceProps(props);
 ---
 
 <Layouter lismClass={lismClass} {...props}>

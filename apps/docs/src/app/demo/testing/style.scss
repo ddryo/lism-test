@@ -38,7 +38,7 @@
 .c--timeline__line:last-child {
 	grid-row: 3 / span 2;
 	// grid-area: lineEnd;
-	grid-row-end: span 2;
+	// grid-row-end: span 2;
 }
 :not(.l--reel) > .c--timeline__item > .c--timeline__line {
 	grid-row-end: span 2;

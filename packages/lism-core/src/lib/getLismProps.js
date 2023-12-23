@@ -46,10 +46,12 @@ class LismPropsData {
 		this.className = '';
 		this.utilityClasses = []; // props解析処理で追加される
 		this.attrs = {};
+		this.context = null;
 
 		// 受け取るpropsとそうでないpropsを分ける
 		const {
 			forwardedRef,
+			_context = null,
 			className,
 			style = {},
 			blockClass,
@@ -62,13 +64,15 @@ class LismPropsData {
 			// isItem,
 			// hasLayer,
 			// hasDivider,
-			isObjectFit,
+			// isObjectFit,
 			lismVar,
 			provide,
 			consume,
 
 			...others
 		} = props;
+
+		this.context = _context;
 
 		// const { class: _lismClass = null, style: _lismStyle = {} } = _lism;
 
@@ -378,7 +382,12 @@ class LismPropsData {
 		}
 
 		// 以下、ユーティリティクラス化できない場合の処理
-		let { style, converter } = options;
+		let { style, converter, onlyVar } = options;
+
+		// コンテキストによって --prop だけ出力する特殊なもの
+		if (onlyVar && this.context === 'grid') {
+			style = '--' + name;
+		}
 
 		// .-prop: だけ出力するケース
 		if ((!style && true === val) || '-' === val) {
@@ -436,7 +445,7 @@ class LismPropsData {
 	setHoverProps(hoverData) {
 		if (!hoverData) return;
 
-		console.log('hoverData', hoverData);
+		// console.log('hoverData', hoverData);
 
 		// 配列のときは中身を再帰処理
 		if (Array.isArray(hoverData)) {

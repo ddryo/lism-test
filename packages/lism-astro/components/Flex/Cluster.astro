@@ -1,0 +1,16 @@
+---
+import Flex from './Flex.astro';
+import { getClusterProps } from '@loos/lism-core/src/components/Flex/getProps';
+
+// import { LismProps } from '../types';
+// interface Props extends LismProps {
+// 	delimiterColor?: string;
+// 	itemMinW?: string;
+// }
+
+const props = Astro.props || {};
+---
+
+<Flex _flex='cluster' {...getClusterProps(props)}>
+	<slot />
+</Flex>

@@ -1,11 +1,11 @@
-.c--preview{
-	&:not(:first-child) {
-		margin-top: var(--s--40);
-	}
-	&:not(:last-child) {
-		margin-bottom: var(--s--40);
-	}
-}
+// .c--preview {
+// 	&:not(:first-child) {
+// 		margin-top: var(--s--40);
+// 	}
+// 	&:not(:last-child) {
+// 		margin-bottom: var(--s--40);
+// 	}
+// }
 
 .c--preview_title {
 	display: flex;
@@ -17,14 +17,13 @@
 		margin-top: var(--s--10) !important;
 	}
 
-	> .__decorator{
+	> .__decorator {
 		background-color: var(--b200);
 		height: 1.5em;
 		width: 1.5em;
 		border-radius: 2px;
 	}
 }
-
 
 .c--preview_area {
 	transition: none !important;
@@ -45,12 +44,14 @@
 }
 
 .c--preview_inner {
-	// position: relative;
+	position: relative;
 	container-type: inline-size;
 	border-radius: 2px;
 	// border: solid 4px var(--codeblock--bgc);
+	// box-shadow: inset 0 0 8px -4px var(--prev--resize-bdc);
+	box-shadow: var(--shadow--i1);
 
-	&.-bg\:grid{
+	&.-bg\:grid {
 		--grid-color: rgba(185, 185, 185, 0.08); //hsl(var(--hs--bc) 50% / 12%);
 	}
 
@@ -60,19 +61,30 @@
 		overflow-y: auto;
 		resize: horizontal;
 		margin: 0 auto;
-		box-shadow: inset 0 0 0 1px var(--prev--resize-bdc);
-	}
-	
-}
+		// box-shadow: inset 0 0 8px -2px var(--prev--resize-bdc);
 
+		&:after {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			width: 14px;
+			height: 14px;
+			display: block;
+			border-inline-start: 1px dotted var(--prev--resize-bdc);
+			border-top: 1px dotted var(--prev--resize-bdc);
+			border-start-start-radius: 12px;
+			content: '';
+		}
+	}
+}
 
 .c--preview_help {
 	// transform: translateY(calc(4px + 100%));
 	z-index: 1;
-	margin: .875em;
-	font-size: 12px;
+	margin: 0.875em;
+	font-size: 11px;
 	backdrop-filter: blur(2px);
-	// background-color: rgba(80, 200, 235, 0.1);
+	background-color: rgba(250, 250, 255, 0.5);
 	border: 1px solid var(--prev--resize-bdc);
 
 	// .b--demoBox:has(.b--demoBox__code) & {
@@ -80,14 +92,17 @@
 	// }
 }
 
-
 .c--preview_area + .c--preview_code {
 	margin-block-start: -4px;
 	background-color: var(--codeBlock--bgc);
 	overflow: hidden;
 	border-radius: 0 0 var(--radius--3) var(--radius--3);
 
-	pre{
+	&.c--tabs .expressive-code {
+		translate: 0 -0.5em;
+	}
+
+	pre {
 		border-radius: 0;
 		// border-start-start-radius: 0;
 		// border-start-end-radius: 0;

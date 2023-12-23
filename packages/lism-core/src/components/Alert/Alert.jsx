@@ -36,7 +36,7 @@ export default function Alert({
 	// Center: 縦並び時にセンター寄せしたい
 	return (
 		<SideFlex
-			fix='first'
+			side='first'
 			lismState={['has--mixcolor']}
 			lismClass={lismClass}
 			keycolor={keycolor}
@@ -45,7 +45,7 @@ export default function Alert({
 		>
 			{icon && (
 				// <div className='c--alert__icon l--center is--side'>
-				<Icon lismClass={{ c: 'c--alert__icon is--side' }} icon={icon} {...iconProps} />
+				<Icon lismClass={{ c: 'c--alert__icon' }} icon={icon} {...iconProps} />
 				// </div>
 			)}
 			<Layouter className='c--alert__body' isFlow={isFlow}>

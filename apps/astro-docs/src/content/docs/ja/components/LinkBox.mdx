@@ -1,0 +1,150 @@
+---
+title: 'LinkBox'
+description: ...
+---
+import { Stack, LinkBox, Frame, Columns, Center, Layer } from '@loos/lism-core';
+import Link from "next/link";
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+ボックス全体をリンクにできるモジュール。
+
+<Preview>
+	<PreviewTitle>対応するHTML構造</PreviewTitle>
+	<PreviewCode>
+	```jsx
+	<a href="###" class="is--linkbox">...</a>
+
+	or
+	<div class="is--linkbox">
+		<a href="###" data-hidden-link></a>
+		...
+	</div>
+	```
+	</PreviewCode>
+</Preview>
+
+Memo: `[data-hidden-link]` → `.is--linkbox__hidden` とかに変える ?
+
+
+## Props
+
+- `href`: リンク先を指定できます。
+- `as`: 指定したLismコンポーネントでLinkBox全体を展開できます。
+- `tag`: リンクボックスを`<a>`ではなく`<div>`などの別タグにすることができます。
+- `target`: target属性を指定できます。
+- `rel`: rel属性を指定できます
+- `ariaLabel`: aria-label属性を指定できます。
+- `hover`: hoverエフェクトの指定ができます。（lism prop）
+- `openNewTab`: trueにすると、target="_blank"とrel="noopener noreferrer"が自動で付与されます。?
+
+
+## Import
+
+```js
+import { LinkBox } from '@loos/lism-core';
+```
+
+## Usage
+
+<Preview>
+	<PreviewTitle>
+		`<LinkBox>`
+	</PreviewTitle>
+	<PreviewArea resize p={10}>
+		<LinkBox href="#boxlink01" isFlow='s' p='box' bgc="pale">
+			<Text fz="l">このBox全体がリンクです。</Text>
+			<DammyText length="l" />
+			<Text fz='s' ta="right" mbs={10}>More→</Text>
+		</LinkBox>
+	</PreviewArea>
+	<PreviewCode p={30}>
+		```jsx
+		<LinkBox href="#boxlink01" isFlow='s' p='box' bgc="pale">
+			<Text fz="l">このBox全体がリンクです。</Text>
+			<p>...</p>
+			<Text fz='s' ta="right" mbs={10}>More→</Text>
+		</LinkBox>
+		```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>
+		`tag='div'` で `<div>`のままリンク化することも可能。
+	</PreviewTitle>
+	<PreviewArea resize p={10}>
+		<LinkBox tag='div' href="#boxlink02" isFlow='s' p='box' bgc="pale">
+			<Text fz="l">このBox全体がリンクです。</Text>
+			<DammyText length="l" />
+			<p><Link href="#inner-link">linkBox内にさらにリンク</Link>を配置できる。</p>
+			<Text fz='s' ta="right" mbs={10}>More→</Text>
+		</LinkBox>
+	</PreviewArea>
+	<PreviewCode p={20}>
+		```jsx
+		<LinkBox tag='div' href="#boxlink02" isFlow='s' p='box' bgc="pale">
+			<Text fz="l">このBox全体がリンクです。</Text>
+			<p>...</p>
+			<p><Link href="#inner-link">linkBox内にさらにリンク</Link>を配置できる。</p>
+			<Text fz='s' ta="right" mbs={10}>More→</Text>
+		</LinkBox>
+		```
+	</PreviewCode>
+</Preview>
+
+
+### `as`で指定したコンポーネントとして展開可能
+
+<Preview>
+	<PreviewTitle>
+		Center にして中央揃えに
+	</PreviewTitle>
+	<PreviewArea resize p={10}>
+		<LinkBox as={Center} href="#boxlink03" gap={20} p="box:l" bgc="pale">
+			<Text fz="l">LinkBox as Center</Text>
+			<DammyText length="m" />
+			<Text>→ More</Text>
+		</LinkBox>
+	</PreviewArea>
+	<PreviewCode p={20}>
+		```jsx
+		<LinkBox as={Center} href="#boxlink03" gap={20} p="box:l" bgc="pale">
+			<Text fz="l">LinkBox as Center</Text>
+			<p>...</p>
+			<Text>→ More</Text>
+		</LinkBox>
+		```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>
+		Frameとして展開
+	</PreviewTitle>
+	<PreviewArea resize p={10}>
+		<LinkBox as={Frame} href="#boxlink04" aspect="16/9" bgc="pale" p={20}>
+			<Center size="cover" gap={20}>
+				<Text fz="l">LinkBox as Frame</Text>
+				<DammyText />
+			</Center>
+			<Layer position="right bottom" fz="s" p={20}>More →</Layer>
+		</LinkBox>
+	</PreviewArea>
+	<PreviewCode p={20}>
+		```jsx
+		<LinkBox as={Frame} href="#boxlink04" aspect="16/9" bgc="pale" p={20}>
+			<Center size="cover" gap={20}>
+				<Text fz="l">LinkBox as Frame</Text>
+				<p>...</p>
+			</Center>
+			<Layer position="right bottom" fz="s" p={20}>More →</Layer>
+		</LinkBox>
+		```
+	</PreviewCode>
+</Preview>
+
+
+## openNewTab
+...

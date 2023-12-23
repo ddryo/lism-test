@@ -1,23 +1,18 @@
 ---
 import { LismProps } from '../types';
 import Flex from './Flex.astro';
-import { getFlexProps, getPlaceProps } from '@loos/lism-core/lib';
+import { getSideFlexProps } from '@loos/lism-core/src/components/Flex/getProps';
 
 // Propsの定義
 interface Props extends LismProps {
+	side?: 'first' | 'last';
 	sideW?: string | number;
 	mainMinW?: string | number;
 }
 
-let { lismStyle = {}, sideW, mainMinW, ...props } = Astro.props || {};
-if (null != mainMinW) {
-	lismStyle['--main--minW'] = mainMinW;
-}
-if (null != sideW) {
-	lismStyle['--side--w'] = sideW;
-}
+let { side = 'last', ...props } = Astro.props || {};
 ---
 
-<Flex variant='side' lismStyle={lismStyle} {...props}>
+<Flex _flex='sideFlex' data-side={side} {...getSideFlexProps(props)}>
 	<slot />
 </Flex>

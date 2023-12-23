@@ -1,0 +1,79 @@
+---
+title: 'getLismProps'
+description: ...
+sidebar:
+  order: 10
+---
+
+import { Box, Flex, Alert, Note } from "@loos/lism-astro";
+import { DammyText, Reference, MemoBadge, HelpText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+`getLismProps()`を使用すると、Lism Component を使わなくても、任意のコンポーネントやHTML要素に対して Lism Props を使用することができます。
+
+
+
+## 引数と返り値
+
+引数には、オブジェクトで CSS Props, className, style を渡せます。
+
+確実に返ってくるのは次の2つです。
+
+- `className`
+- `style`
+
+その他、Lismで処理できないその他のPropsがあった場合はそのままそれらも返ってきます。
+
+<PreviewTitle>例</PreviewTitle>
+```jsx
+import { getLismProps } from '@loos/lism-core/lib';
+
+const returnData = getLismProps({ className: 'foo', p: 20, fz: '20px', 'data-bar': '1' })}; 
+```
+
+<PreviewTitle>返り値</PreviewTitle>
+```js
+{
+	className: 'foo -p:20 -fz:',
+	style: { '--fz': '20px' },
+	'data-bar': '1'
+}
+```
+
+## 使用例
+
+<Preview>
+	<PreviewTitle>例1: 普通のdivにLism Propsを渡す</PreviewTitle>
+<PreviewCode slot='tab' label='コード'>
+```jsx
+import { getLismProps } from '@loos/lism-core/lib';
+
+<div {...getLismProps({ className: 'is--flow', p: 20, fz: 'l' })}>...</div>
+```
+</PreviewCode>
+<PreviewCode slot='tab' label='出力'>
+```jsx
+<div class='is--flow -p:20 -fz:l'>...</div>
+```
+</PreviewCode>
+</Preview>
+
+
+
+<Preview>
+	<PreviewTitle>例2: Astro の `<Image>` に対してLism Propsを使用する</PreviewTitle>
+<PreviewCode>
+```astro
+---
+import Image from 'next/image';
+import { getLismProps } from '@loos/lism-core/lib';
+---
+<Image src="/img/demo-img.jpeg" alt="" width={960} height={640} {...getLismProps({ p: 20, bd: true })} />
+```
+</PreviewCode>
+</Preview>
+
+{/* 
+<Alert>
+Astro の `<Image>` を、`as`で渡すと、Astro(TypeScript?)のチェックにどうしても引っかかり、「Image missing required "alt" property.」エラーが出てしまうので、クラスとスタイルを直接書くか、`getLismProps()`を使う必要があります。
+</Alert> */}

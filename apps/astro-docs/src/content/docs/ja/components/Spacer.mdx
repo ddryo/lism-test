@@ -1,0 +1,126 @@
+---
+title: 'Spacer'
+description: ...
+---
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+import { Spacer } from '@loos/lism-core';
+
+
+スペースを確保するためのモジュールです。
+
+<Preview>
+	<PreviewTitle>対応するHTML構造</PreviewTitle>
+	<PreviewCode>
+	```jsx
+	<div class="e--spacer">...</div>
+	```
+	</PreviewCode>
+</Preview>
+
+
+## Props
+- `w`: `width`の値を指定できます。
+- `h`: `height`の値を指定できます。
+
+<Alert preset="info">
+`<Space>`では、`w`と`h`に対してSPACEトークンの値が使えます。
+</Alert>
+
+
+## Import
+
+```js
+import { Spacer } from '@loos/lism-core';
+```
+
+## Usage
+
+<Preview>
+	<PreviewTitle>`<Spacer>`の使用例</PreviewTitle>
+	<PreviewArea resize p={20} isFlow={false}>
+		<Box bgc="pale">Box</Box>
+		<Spacer h="100px" />
+		<Box bgc="pale">Box</Box>
+		<Spacer h={["50px", "100px"]} />
+		<Box bgc="pale">Box</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx {2}
+		<Box bgc="pale">Box</Box>
+		<Spacer h="100px" />
+		<Box bgc="pale">Box</Box>
+		<Spacer h={["50px", "100px"]} />
+		<Box bgc="pale">Box</Box>
+		```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>`h`にSPACEトークンを使う例</PreviewTitle>
+	<PreviewArea resize p={20} isFlow={false}>
+		<Box bgc="pale">Box</Box>
+		<Spacer h={50} />
+		<Box bgc="pale">Box</Box>
+		<Spacer h={[30, 50]} />
+		<Box bgc="pale">Box</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Box bgc="pale">Box</Box>
+		<Spacer h={50} />
+		<Box bgc="pale">Box</Box>
+		<Spacer h={[30, 50]} />
+		<Box bgc="pale">Box</Box>
+		```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>`<Spacer>`の使用例</PreviewTitle>
+	<PreviewArea resize p={20} isFlow={false}>
+		<Flex>
+			<Box bgc="pale">Box</Box>
+			<Spacer w="40px" />
+			<Box bgc="pale">Box</Box>
+			<Spacer w={["40px", "60px"]} />
+			<Box bgc="pale">Box</Box>
+		</Flex>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Flex>
+			<Box bgc="pale">Box</Box>
+			<Spacer w="40px" />
+			<Box bgc="pale">Box</Box>
+			<Spacer w={["40px", "60px"]} />
+			<Box bgc="pale">Box</Box>
+		</Flex>
+		```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>`w`にSPACEトークンを使う例</PreviewTitle>
+	<PreviewArea resize p={20} isFlow={false}>
+		<Flex>
+			<Box bgc="pale">Box</Box>
+			<Spacer w={50} />
+			<Box bgc="pale">Box</Box>
+			<Spacer w={[30, 50]} />
+			<Box bgc="pale">Box</Box>
+		</Flex>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Flex>
+			<Box bgc="pale">Box</Box>
+			<Spacer w={50} />
+			<Box bgc="pale">Box</Box>
+			<Spacer w={[30, 50]} />
+			<Box bgc="pale">Box</Box>
+		</Flex>
+		```
+	</PreviewCode>
+</Preview>

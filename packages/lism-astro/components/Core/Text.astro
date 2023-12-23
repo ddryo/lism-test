@@ -1,24 +1,10 @@
 ---
 import { LismProps } from '../types';
-import { getLismProps } from '@loos/lism-core/lib';
+import Element from './Element.astro';
 
-// Propsの定義
-interface Props extends LismProps {
-	as?: any;
-	tag?: string;
-}
-
-const { as, tag, ...otherProps } = Astro.props || {};
-const lismProps = getLismProps(otherProps);
-
-// tagは文字列のみ。（asはコンポーネ"ントも指定できる。）
-if (tag && typeof tag !== 'string') {
-	console.error('@Lism : "tag" prop should be a string.');
-}
-
-const JSX = as || tag || 'div';
+interface Props extends LismProps {}
 ---
 
-<JSX {...lismProps}>
+<Element tag='p' {...Astro.props || {}}>
 	<slot />
-</JSX>
+</Element>

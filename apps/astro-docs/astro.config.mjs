@@ -45,9 +45,10 @@ export default defineConfig({
 				// デフォルトの`SocialIcons`コンポーネントをオーバーライドします。
 				// SocialIcons: './src/components/EmailLink.astro',
 				MarkdownContent: './src/components/starlight/MarkdownContent.astro',
-				PageFrame: './src/components/starlight/PageFrame.astro',
+				// PageFrame: './src/components/starlight/PageFrame.astro',
 				TwoColumnContent: './src/components/starlight/TwoColumnContent.astro',
 				PageTitle: './src/components/starlight/PageTitle.astro',
+				Sidebar: './src/components/starlight/Sidebar.astro',
 				ThemeProvider: './src/components/starlight/ThemeProvider.astro',
 			},
 		}),

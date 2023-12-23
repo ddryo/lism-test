@@ -9,7 +9,7 @@ export default function AccordionLabel({ lismClass = {}, tag, children, ...props
 	// span以外になっても見た目は変わらないように
 	if ('span' !== labelTag) {
 		// hタグになっても文字サイズなどは変わらないように.
-		props = Object.assign({ font: 'inherit' }, props);
+		props = Object.assign({ f: 'inherit' }, props);
 	}
 
 	return (

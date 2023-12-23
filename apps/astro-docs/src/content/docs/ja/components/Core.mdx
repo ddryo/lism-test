@@ -1,0 +1,59 @@
+---
+title: 'Core'
+description: ...
+---
+
+
+import { Core, Box } from '@loos/lism-core';
+import Image from 'next/image';
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+
+Lism Props( [CSS Props](/docs/props/css-props) ) を受け取るための特殊なコンポーネントです。  
+他のライブラリで作成されたコンポーネントに対して Lism の CSS Props を使用したい場合などに利用できます。
+
+[State Props](/docs/props/state-props) を受け取ることはできません。State Props を使いたい場合は、`<Layouter>`を使用してください。
+
+
+何も指定がなければ、ただの`<div>`タグを返します。
+
+<Preview>
+	<PreviewTitle>対応するHTML構造</PreviewTitle>
+	<PreviewCode>
+		```jsx
+		<div>...</div>
+		```
+	</PreviewCode>
+</Preview>
+
+## Props
+
+- `as`: 展開コンポーネント
+- `tag`: HTMLタグ
+
+## Import
+
+```js
+import { Core } from '@loos/lism-core';
+```
+
+## Usage
+
+<Preview>
+	<PreviewTitle>Coreの例 1</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Core p={30} bd shadow='2'>
+			<p>Core</p>
+		</Core>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Core p={30} bd shadow='2'>
+			<p>Box</p>
+		</Core>
+		```
+	</PreviewCode>
+</Preview>
+
+

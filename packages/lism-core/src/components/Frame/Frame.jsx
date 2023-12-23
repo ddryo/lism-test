@@ -2,7 +2,10 @@ import { Layouter } from '../Layouter';
 
 export default function Frame({ lismClass = {}, ...props }) {
 	lismClass.b = 'b--frame';
-	return <Layouter lismClass={lismClass} isObjectFit {...props} />;
+	// if (aspect) {
+	// 	props.css = Object.assign({}, props.css, { aspect });
+	// }
+	return <Layouter lismClass={lismClass} {...props} />;
 }
 
 // export default function Frame({ ...props }) {

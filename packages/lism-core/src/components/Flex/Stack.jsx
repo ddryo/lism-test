@@ -2,5 +2,5 @@
 import Flex from './Flex';
 
 export default function Stack(props) {
-	return <Flex _flexName='stack' {...props} />;
+	return <Flex _flex='stack' {...props} />;
 }

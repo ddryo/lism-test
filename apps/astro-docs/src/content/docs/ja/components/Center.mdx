@@ -262,7 +262,7 @@ Centerに**高さがある時**、垂直方向に対しても中央揃えにな�
 
 という場合もあると思いますが、この時は少し注意が必要です。
 
-<Alert>
+<Alert preset='alert'>
 `grid`や`flex`に`align-items:center`を適用させて上下中央揃えを実装する方法では、スクロール時に上端が見えなくなるという問題があります。
 </Alert>
 
@@ -294,7 +294,7 @@ Lismの`<Center>` も `grid` を使ってるので、同じ問題が発生しま
 
 これを回避するには、親要素側に具体的な**高さ**と`overflow-y:auto`を指定し、`<Center>`は`min-height:100%`を指定する、というアプローチが必要です。
 
-<Alert>
+<Alert preset='alert'>
 `height:100%` だとうまくいかないので注意
 </Alert>
 

@@ -3,7 +3,7 @@ title: 'Accordion'
 description: ...
 ---
 
-import { Stack, Text, Center, Flex, Icon, AccordionGroup, Accordion, AccordionHeader, AccordionBody, AccordionLabel, AccordionIcon } from '@loos/lism-core';
+import { Stack, Alert, Note, Text, Center, Flex, Icon, AccordionGroup, Accordion, AccordionHeader, AccordionBody, AccordionLabel, AccordionIcon } from '@loos/lism-core';
 import { CaretDown, Minus, Plus, X, Question, Selection, SealQuestion } from "@phosphor-icons/react";
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
@@ -53,12 +53,8 @@ export const AccDemoContent = () => {
 	);
 };
 
-<Alert>
-アコーディオンが動作しない場合はリロードしてください。
-</Alert>
 
 {/* <Script src='/js/acc.js' type="module"/> */}
-
 
 <Preview>
 	<PreviewTitle>Accordionの例</PreviewTitle>
@@ -89,7 +85,7 @@ export const AccDemoContent = () => {
 </Preview>
 
 
-`<AccordionHeader>`については、`label`, `icon` を 指定してもうシンプルに書くこともできます。
+`<AccordionHeader>`については、`label`, `icon` を 指定してシンプルに書くこともできます。
 
 <Preview>
 	<PreviewTitle>シンプルな記述例</PreviewTitle>
@@ -110,41 +106,6 @@ export const AccDemoContent = () => {
 			</AccordionBody>
 		</Accordion>
 		```
-	</PreviewCode>
-</Preview>
-
-
-<Preview>
-	<PreviewTitle>アイコンを変えてみる `caret-down-fill`</PreviewTitle>
-	<PreviewArea resize p={20}>
-		<Accordion>
-			<AccordionHeader label="Accordionヘッダー" icon='caret-down-fill' />
-			<AccordionBody>
-				<DammyText length="l" />
-			</AccordionBody>
-		</Accordion>
-	</PreviewArea>
-	<PreviewCode>
-```jsx
-<Accordion>
-	<AccordionHeader>
-		<AccordionLabel>Accordionヘッダー</AccordionLabel>
-		<AccordionIcon icon='caret-down-fill'/>
-	</AccordionHeader>
-	<AccordionBody>
-		...
-	</AccordionBody>
-</Accordion>
-
-or
-
-<Accordion>
-	<AccordionHeader label="Accordionヘッダー" icon='caret-down-fill' />
-	<AccordionBody>
-		...
-	</AccordionBody>
-</Accordion>
-```
 	</PreviewCode>
 </Preview>
 
@@ -402,7 +363,30 @@ AccordionGroupの内部は`Stack`なので、`hasDivider`を指定できます�
 `<AccordionHeader>` または `<AccordionIcon>` の`icon`と`iconProps`にアイコン用のコンポーネントとpropsを指定できます。
 
 <Preview>
-	<PreviewTitle>アイコンを変えてみる</PreviewTitle>
+	<PreviewTitle>アイコンプリセットの `caret-down-fill` を指定する</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Accordion>
+			<AccordionHeader label="Accordionヘッダー" icon='caret-down-fill' />
+			<AccordionBody>
+				<DammyText length="l" />
+			</AccordionBody>
+		</Accordion>
+	</PreviewArea>
+	<PreviewCode>
+```jsx
+<Accordion>
+	<AccordionHeader label="Accordionヘッダー" icon='caret-down-fill' />
+	<AccordionBody>
+		...
+	</AccordionBody>
+</Accordion>
+```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>外部コンポーネントを指定する</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Accordion>
 			<AccordionHeader label='アコーディオン' icon={CaretDown} iconProps={{weight:'fill'}} />
@@ -557,7 +541,7 @@ import { CaretDown, Minus, Plus, X } from "@phosphor-icons/react";
 		</Accordion>
 	</PreviewArea>
 	<PreviewCode>
-```jsx
+```jsx {3}
 <Accordion>
 	<AccordionHeader>
 		<Icon as={SealQuestion} size="2em" />
@@ -587,7 +571,7 @@ import { CaretDown, Minus, Plus, X } from "@phosphor-icons/react";
 	<PreviewArea resize p={20}>
 		<Accordion>
 			<AccordionHeader>
-				<AccordionLabel><a href="#acc">アコーディオンのタイトル</a></AccordionLabel>
+				<AccordionLabel>ヘッダーテキスト（<a href="#acc">ヘルプリンク</a>）</AccordionLabel>
 				<AccordionIcon isTrigger/>
 			</AccordionHeader>
 			<AccordionBody>
@@ -599,7 +583,7 @@ import { CaretDown, Minus, Plus, X } from "@phosphor-icons/react";
 ```jsx {4}
 <Accordion>
 	<AccordionHeader>
-		<AccordionLabel><a href="#acc">アコーディオンのタイトル</a></AccordionLabel>
+		<AccordionLabel>ヘッダーテキスト（<a href="#acc">ヘルプリンク</a>）</AccordionLabel>
 		<AccordionIcon isTrigger/>
 	</AccordionHeader>
 	<AccordionBody>...</AccordionBody>
@@ -610,7 +594,7 @@ import { CaretDown, Minus, Plus, X } from "@phosphor-icons/react";
 
 
 
-<Note heading='Note:' preset='note'>
+<Note heading='Note:' preset='note' isFlow='s'>
 `<summary>`自体が`toggle`イベントを持つため、`<AccordionHeader>`内のリンク以外のエリアをクリックしてもアコーディオンは開閉します。  
 これを防いでアイコンのみだけをクリッカブルにしたい場合は、以下のようにCSSを追加してください。
 

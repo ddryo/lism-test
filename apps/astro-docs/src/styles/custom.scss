@@ -56,6 +56,10 @@
 		// font-size: 0.875rem;
 		line-height: 1.625;
 	}
+
+	.c--note & .frame {
+		box-shadow: var(--shadow--1);
+	}
 	.ec-line.ec-line mark {
 		--tmInlineBgCol: rgba(138, 145, 150, 0.1);
 		// --tmInlineBrdCol: #4d70bcd0;

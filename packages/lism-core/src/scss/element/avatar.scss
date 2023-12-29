@@ -1,9 +1,11 @@
 .e--avatar {
 	--size: auto;
-	width: var(--size);
-	height: var(--size);
-	overflow: hidden;
+	inline-size: var(--size);
+	// width: var(--size);
+	// height: var(--size);
+	// overflow: hidden;
 	display: inline-flex;
+	aspect-ratio: 1/1;
 
 	// > img {
 	// 	width: 100%;

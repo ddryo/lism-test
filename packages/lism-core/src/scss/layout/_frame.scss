@@ -1,9 +1,9 @@
-.b--frame {
+.l--frame {
 	display: block;
 	position: relative;
 	overflow-y: auto;
-	width: 100%;
-	height: auto;
+	// width: 100%;
+	// height: auto; // strechされないように
 	// object-fit: cover;
 
 	// &[data-direction="portrait"]{

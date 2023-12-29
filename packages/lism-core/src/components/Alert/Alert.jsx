@@ -13,7 +13,7 @@ export default function Alert({
 	variant,
 	icon,
 	keycolor,
-	preset = 'alert',
+	preset,
 	iconProps = {},
 	children,
 	...props

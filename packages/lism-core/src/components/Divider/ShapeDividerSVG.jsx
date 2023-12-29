@@ -16,5 +16,13 @@ export default function ShapeDividerSVG({ className, shape, level }) {
 	if (!SVG) return null;
 
 	// ちらつきを抑えるためにclampでの最小値を設定
-	return <SVG {...svgResetProps} className={className} width='100%' height={`${level * 6}px`} />;
+	return (
+		<SVG
+			{...svgResetProps}
+			className={className}
+			width='100%'
+			height='100%'
+			//height={`${level * 6}px`}
+		/>
+	);
 }

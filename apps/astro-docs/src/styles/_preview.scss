@@ -1,17 +1,17 @@
-// .c--preview {
-// 	&:not(:first-child) {
-// 		margin-top: var(--s--40);
-// 	}
-// 	&:not(:last-child) {
-// 		margin-bottom: var(--s--40);
-// 	}
-// }
+.c--preview {
+	&:not(:first-child) {
+		margin-top: var(--s--50);
+	}
+	&:not(:last-child) {
+		margin-bottom: var(--s--50);
+	}
+}
 
 .c--preview_title {
 	display: flex;
 	align-items: center;
 	gap: var(--em--5);
-	margin-block-start: var(--s--50);
+	// margin-block-start: var(--s--50);
 
 	+ * {
 		margin-top: var(--s--10) !important;

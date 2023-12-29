@@ -3,6 +3,7 @@ import Layer from './Layer';
 import { Media } from '../Media';
 import { separateMediaAttrs } from '../../lib';
 
+// memo: picture対応
 export default function MediaLayer({
 	children,
 	media = 'img',

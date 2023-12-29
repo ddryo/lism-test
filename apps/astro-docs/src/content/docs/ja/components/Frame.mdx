@@ -2,21 +2,16 @@
 title: 'Frame'
 description: ...
 ---
-import { MediaLayer, FilterLayer, Frame, Center, Columns, Layer } from '@loos/lism-core';
+import { Alert, Flex, Media, Text, MediaLayer, FilterLayer, Frame, Center, Columns, Layer } from '@loos/lism-core';
 
-import Image from "next/image";
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+// import Image from "next/image";
 
 
 # Frame
 
 横縦比率(`aspect-ratio`)や高さを指定し、内部のコンテンツをそのサイズからはみ出さないように表示できるモジュールです。
-
-
-<Alert preset="info">
-	中身としては、`is--frame` がデフォルト付与されている`<Layouter>`です。
-</Alert>
 
 
 {/* また、直下のimg,video には `object-fit:cover` が適用されるようになっています。 */}
@@ -25,11 +20,29 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 - `aspect` : (共通Prop) アスペクト比率を指定する。ブレイクポイント指定可能です。
 	- 例: `aspect="16/9"`, `aspect={["4/3", "16/9"]}` */}
 
+## Props
+
+| プロパティ | 説明 |
+|---|---|
+| `aspect`| フレームの比率を指定できます。|
+
+<HelpText mbs="em10">(aspect自体はどのコンポーネントにも指定できる CSS Props です。)</HelpText>
+
+
 ## Import
 
-```js
+<Preview>
+	<PreviewCode slot='tab' label='React'>
+```jsx
 import { Frame } from '@loos/lism-core';
 ```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='Astro'>
+```jsx
+import { Frame } from '@loos/lism-astro';
+```
+	</PreviewCode>
+</Preview>
 
 ## Usage
 
@@ -38,15 +51,16 @@ import { Frame } from '@loos/lism-core';
 		`aspect='16/9'`を指定
 	</PreviewTitle>
 	<PreviewArea resize>
-		<Frame aspect='16/9'>
-			<Text fw="bold">16/9</Text>
-		</Frame>
+		<Frame aspect='16/9'></Frame>
 	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Frame aspect='16/9'>
-			<Text fw="bold">16/9</Text>
-		</Frame>
+		<Frame aspect='16/9'></Frame>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx
+		<div class="l--frame -aspect:16/9"></div>
 		```
 	</PreviewCode>
 </Preview>
@@ -56,20 +70,33 @@ import { Frame } from '@loos/lism-core';
 	<PreviewTitle>
 		コンテンツが長い場合
 	</PreviewTitle>
-	<PreviewArea resize>
-		<Frame aspect='2/1' isFlow p='box'>
-			<Text fw="bold">コンテンツ量が多い場合はスクロールできます。</Text>
+	<PreviewArea resize p={20}>
+		<Frame isFlow aspect='2/1' p='box:l' bd>
+			<Text fw="bold">内部がスクロール可能になっています。</Text>
 			<DammyText />
 			<DammyText length="m" />
 			<DammyText length="l" />
 			<DammyText length="xl" />
 		</Frame>
 	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Frame aspect='2/1' isFlow p='box'>
-			...
+		<Frame isFlow aspect='2/1' p='box:l' bd>
+			<p>...</p>
+			<p>...</p>
+			<p>...</p>
+			<p>...</p>
 		</Frame>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx
+		<div class="l--frame is--flow -aspect: -p:box:l -bd:" style="--aspect:2/1">
+			<p>...</p>
+			<p>...</p>
+			<p>...</p>
+			<p>...</p>
+		</div>
 		```
 	</PreviewCode>
 </Preview>
@@ -77,29 +104,83 @@ import { Frame } from '@loos/lism-core';
 
 <Preview>
 	<PreviewTitle>
-		コンテンツに`<Center>`を使用, 比率をブレイクポイントで変える
+		コンテンツに`<Center>`を使用し、比率をブレイクポイントで変更する例
 	</PreviewTitle>
 	<PreviewArea resize>
-		<Frame aspect={["10/10", "4/3", "16/9"]} p="box">
-			<Center size="cover" gap={20}>
-				<Text fw="bold">1/1 → 4/3 → 16/9</Text>
-				<DammyText />
+		<Frame aspect={['1/1', '4/3', '16/9']} p='box' bd>
+			<Center minH='100'>
+				<Text fw='bold'>
+					{`比率:`}
+					<Text tag="span" d={['inline', 'none']}>1/1</Text>
+					<Text tag="span" d={['none', 'inline', 'none']}>4/3</Text>
+					<Text tag="span" d={['none', null, 'inline']}>16/9</Text>
+				</Text>
 			</Center>
 		</Frame>
 	</PreviewArea>
-
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Frame aspect={["1/1", "4/3", "16/9"]} p="box">
-			<Center size="cover" gap={20}>
-				<Text fw="bold">1/1 → 4/3 → 16/9</Text>
+		<Frame aspect={['1/1', '4/3', '16/9']} p='box' bd>
+			<Center minH='100'>
 				<p>...</p>
 			</Center>
 		</Frame>
 		```
 	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx
+		<div class="l--frame -aspect:1/1 -aspect@sm -aspect@md -p:box -bd:" style="--aspect--sm:4/3;--aspect--md:16/9">
+			<div class="l--center -minW:100 -minH:100">
+				<p>...</p>
+			</div>
+		</div>
+		```
+	</PreviewCode>
 </Preview>
 
+
+
+### 直下に画像を配置するケース
+
+`<Frame>`直下の `img`, `video` は、`<Frame>`のサイズで表示され、`object-fit:cover` が適用されるようになっています。
+
+<Preview>
+	<PreviewTitle>
+		`<img>`を使用
+	</PreviewTitle>
+	<PreviewArea maxW='25rem'>
+		<Frame aspect='16/9'>
+			<img src='/img/img-1.jpg' alt='' width={960} height={640}/>
+		</Frame>
+	</PreviewArea>
+
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx
+		<Frame aspect='16/9'>
+			<img src='/img/img-1.jpg' alt='' width={960} height={640}/>
+		</Frame>
+		```
+	</PreviewCode>
+</Preview>
+
+{/* <Preview>
+	<PreviewTitle>
+		nextの`<Image>`を使用
+	</PreviewTitle>
+	<PreviewArea maxW="25rem">
+		<Frame aspect="16/9">
+			<Image src="/img/img-1.jpg" alt="" width={960} height={640}/>
+		</Frame>
+	</PreviewArea>
+
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx
+		<Frame aspect="16/9">
+			<Image src="/img/img-1.jpg" alt="" width={960} height={640}/>
+		</Frame>
+		```
+	</PreviewCode>
+</Preview> */}
 
 ### 数値以外での比率指定
 
@@ -107,15 +188,16 @@ import { Frame } from '@loos/lism-core';
 - `silver`: 白銀比
 - `bronze`: 青銅比
 - `ogp`: OG Imageの比率
+- `cinema`: シネマ比率
 
 export const FrameRatios = () => {
 	return (
-		<Columns cols={[1, 2, 4]} gap={20} >
-			{["golden", "silver", "bronze", "ogp"].map((ratio) => {
+		<Columns cols={[1, 2]} gap={20} >
+			{['golden', 'silver', 'bronze', 'ogp'].map((ratio) => {
 				return (
-					<Frame key={ratio} aspect={ratio} bgc="whitesmoke">
-						<Layer position="center" c="gray" fz="s">
-							<code>aspect="{ratio}"</code>
+					<Frame key={ratio} aspect={ratio} bgc='pale'>
+						<Layer position='center' fz='s'>
+							<code>{ratio}</code>
 						</Layer>
 					</Frame>
 				);
@@ -126,68 +208,26 @@ export const FrameRatios = () => {
 
 <Preview>
 	<PreviewTitle>
-		`ratio`にそれぞれ指定
+		`aspect`にそれぞれ指定
 	</PreviewTitle>
 	<PreviewArea p={20}>
 		<FrameRatios />
 	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Frame aspect="ogp">...</Frame>
-		<Frame aspect="golden">...</Frame>
-		<Frame aspect="silver">...</Frame>
-		<Frame aspect="bronze">...</Frame>
+		<Frame aspect='ogp'>...</Frame>
+		<Frame aspect='golden'>...</Frame>
+		<Frame aspect='silver'>...</Frame>
+		<Frame aspect='bronze'>...</Frame>
 		```
 	</PreviewCode>
 </Preview>
 
 
-### 直下に画像を配置するケース
 
-`<Frame>`直下の `img`, `video` は、Frameのサイズいっぱいに表示され、`object-fit:cover` が適用されます。
+### `aspect`の指定は必須ではありません
 
-<Preview>
-	<PreviewTitle>
-		`<img>`を使用
-	</PreviewTitle>
-	<PreviewArea maxW="25rem">
-		<Frame aspect="16/9">
-			<img src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
-		</Frame>
-	</PreviewArea>
-
-	<PreviewCode>
-		```jsx
-		<Frame aspect="16/9">
-			<img src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
-		</Frame>
-		```
-	</PreviewCode>
-</Preview>
-
-<Preview>
-	<PreviewTitle>
-		nextの`<Image>`を使用
-	</PreviewTitle>
-	<PreviewArea maxW="25rem">
-		<Frame aspect="16/9">
-			<Image src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
-		</Frame>
-	</PreviewArea>
-
-	<PreviewCode>
-		```jsx
-		<Frame aspect="16/9">
-			<Image src="/img/demo-img.jpeg" alt="" width={960} height={640}/>
-		</Frame>
-		```
-	</PreviewCode>
-</Preview>
-
-
-### `aspect`は必須ではありません
-
-`aspect`を使わず、`h`を指定して必要な高さを固定させることも可能です。
+`aspect`を使わず、`h`を指定して単純に高さを固定させる場合にも有用です。
 
 <Preview>
 	<PreviewTitle>
@@ -195,12 +235,13 @@ export const FrameRatios = () => {
 	</PreviewTitle>
 	<PreviewArea resize>
 		<Frame h='12rem' isFlow p='box'>
-			<DammyText length="m" />
-			<DammyText length="l" />
-			<DammyText length="xl" />
+			<DammyText />
+			<DammyText length='m' />
+			<DammyText length='l' />
+			<DammyText length='xl' />
 		</Frame>
 	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
 		<Frame h='12rem' isFlow p='box'>
 			...
@@ -217,26 +258,26 @@ export const FrameRatios = () => {
 		MediaLayer & FilterLayer を使用.
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<Frame aspect="2/1" c="white">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-			<FilterLayer blur="8px" bgc="rgba(0,0,0,0.25)" />
-			<Layer inset="0" p="box">
-				<Center data-size="cover" gap={20}>
-					<Text fz="2xl" fw="bold">2:1</Text>
-					<DammyText length="m" />
+		<Frame aspect='16/9' c='white'>
+			<MediaLayer src='/img/img-1.jpg' alt='' width='960' height='640' />
+			<FilterLayer blur='4px' bgc='black:20%' />
+			<Layer inset='0' p='box:l' data-size='contain'>
+				<Center minH='100' gap={10}>
+					<Text fz='2xl' lh='xs' fw='bold'>Heading</Text>
+					<DammyText length='m' />
 				</Center>
 			</Layer>
 		</Frame>
 	</PreviewArea>
 
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Frame aspect="2/1" c="white">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
-			<FilterLayer blur="8px" bgc="rgba(0,0,0,0.25)" />
-			<Layer inset="0" p="box">
-				<Center data-size="cover" gap={20}>
-					<Text fz="4xl" fw="bold">2:1</Text>
+		<Frame aspect='16/9' c='white'>
+			<MediaLayer src='/img/img-1.jpg' alt='' width='960' height='640' />
+			<FilterLayer blur='4px' bgc='black:20%' />
+			<Layer inset='0' p='box:l' data-size='contain'>
+				<Center minH='100' gap={10}>
+					<Text fz='2xl' lh='xs' fw='bold'>Heading</Text>
 					<p>...</p>
 				</Center>
 			</Layer>
@@ -245,4 +286,34 @@ export const FrameRatios = () => {
 	</PreviewCode>
 </Preview>
 
+
+### Flexの子要素として使用する場合の注意点
+
+<Preview>
+	<PreviewTitle>
+		Flexの子要素で使用する場合、 `align-items:stretch;`の影響を受けてしまう(他の要素の方が高さがある場合、そっちと同じ高さになってしまう)ので、`align-items`を調整するか、FrameをBoxなどで囲んでください。注意。
+	</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Flex ai='s' gap={20}>
+			<Frame aspect='16/9' c='white'>
+				<Media src='/img/img-1.jpg' alt='' width='960' height='640' />
+			</Frame>
+			<Frame aspect='4/3' c='white'>
+				<Media src='/img/img-2.jpg' alt='' width='960' height='640' />
+			</Frame>
+		</Flex>
+	</PreviewArea>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "ai='s'"
+		<Flex ai='s' gap={20}>
+			<Frame aspect='16/9' c='white'>
+				<Media src='/img/img-1.jpg' alt='' width='960' height='640' />
+			</Frame>
+			<Frame aspect='4/3' c='white'>
+				<Media src='/img/img-2.jpg' alt='' width='960' height='640' />
+			</Frame>
+		</Flex>
+		```
+	</PreviewCode>
+</Preview>
 

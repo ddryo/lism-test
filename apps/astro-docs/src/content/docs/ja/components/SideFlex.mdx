@@ -15,6 +15,20 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 つまり、メディアクエリやコンテナクエリに依存せずに横並びと縦並びの切り替えを行うことができます。
 </Alert>
 
+
+## Props
+
+| プロパティ | 説明 | デフォルト値 |
+|---|---|---|
+| `side` <PropBadge type="attr">`data-side`</PropBadge> | 最初の要素と最後の要素のどちらをサイド要素として扱うか.<br/>`last` or `first` | `last` |
+| `sideW` <PropBadge type="cssvar">`--side--w`</PropBadge> | Side要素の横幅 | `auto` |
+| `fluidMinW` <PropBadge type="cssvar">`--fluid--minW`</PropBadge>| もう一方の流動する要素が維持する最小幅 |`50%`|
+
+{/* --theOther--minW, --content--minW, --fluid--minW */}
+
+その他、[`<Flex>`で使えるProps](/ja/components/flex#props)が使えます。
+
+
 ## Import
 
 <Preview>
@@ -29,19 +43,6 @@ import { SideFlex } from '@loos/lism-astro';
 ```
 	</PreviewCode>
 </Preview>
-
-
-## Props
-
-| プロパティ | 説明 | デフォルト値 |
-|---|---|---|
-| `side` <PropBadge type="attr">`data-side`</PropBadge> | 最初の要素と最後の要素のどちらをサイド要素として扱うか.<br/>`last` or `first` | `last` |
-| `sideW` <PropBadge type="cssvar">`--side--w`</PropBadge> | Side要素の横幅 | `auto` |
-| `fluidMinW` <PropBadge type="cssvar">`--fluid--minW`</PropBadge>| もう一方の流動する要素が維持する最小幅 |`50%`|
-
-{/* --theOther--minW, --content--minW, --fluid--minW */}
-
-その他、[`<Flex>`で使えるProps](/ja/components/flex#props)が使えます。
 
 
 ## Usage

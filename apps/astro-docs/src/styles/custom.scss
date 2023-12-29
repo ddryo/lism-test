@@ -163,3 +163,17 @@ td:first-child > code:only-child {
 // .content-panel {
 // 	border: solid 4px red;
 // }
+:where(.has--layerGuide) {
+	&.has--layer {
+		background: rgba(220, 220, 220, 0.25);
+	}
+	&.has--layer > p {
+		color: rgba(120, 120, 120, 0.2);
+	}
+	.l--layer {
+		// bgc="hsl(268 50% 80% / 0.2)" bd="guide"
+		background: hsl(268 50% 80% / 0.2);
+		border: dashed 1px hsla(268, 10%, 70%, 0.25);
+		padding: 2px 4px;
+	}
+}

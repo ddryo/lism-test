@@ -1,11 +1,11 @@
 // import React from 'react';
 import Grid from './Grid';
 
-export default function SwapGrid({
+export default function SideSwap({
 	lismStyle = {},
 	lismState = [],
 	sideW,
-	side = 'right bottom', // "left top"|"left bottom"|"right top"|"right bottom"
+	side = 'end bottom', // "start top"|"start bottom"|"end top"|"end bottom"
 	bp = 'sm',
 	// customBreakPoint,
 	...props

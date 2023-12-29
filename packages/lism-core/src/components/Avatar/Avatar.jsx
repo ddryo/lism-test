@@ -1,15 +1,16 @@
-import { Core } from '../Core';
+import { Frame } from '../Frame';
 import { Media } from '../Media';
 
 import { separateMediaAttrs } from '../../lib';
 
 // srcがあれば自身をmediaにする？この時、objectFit適用する
+// c--avatar?
 export default function Avatar({
 	lismClass = {},
 	variant,
 	children,
-	size,
 	name,
+	src,
 	mediaProps = {},
 	...props
 }) {
@@ -18,24 +19,25 @@ export default function Avatar({
 
 	if (children) {
 		return (
-			<Core lismClass={lismClass} size={size} radius='99' {...props}>
+			<Frame lismClass={lismClass} radius='99' {...props}>
 				{children}
-			</Core>
+			</Frame>
 		);
 	}
 
 	const { mediaAttrs, otherProps } = separateMediaAttrs(props);
 	return (
-		<Core lismClass={lismClass} size={size} radius='99' {...otherProps}>
+		<Frame lismClass={lismClass} radius='99' {...otherProps}>
 			<Media
+				src={src}
 				alt={name}
-				width={size}
-				height={size}
+				width='100%'
+				height='100%'
 				decoding='async'
-				objectFit='cover'
+				// objectFit='cover'
 				{...mediaProps}
 				{...mediaAttrs}
 			/>
-		</Core>
+		</Frame>
 	);
 }

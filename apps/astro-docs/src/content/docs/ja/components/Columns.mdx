@@ -2,31 +2,33 @@
 title: 'Columns'
 description: ...
 ---
-import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
-import { Columns } from '@loos/lism-core';
+import { Box, Columns } from '@loos/lism-core';
+// import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 
 指定した列数でカラムレイアウトを作成します。
 
-<Preview>
-	<PreviewTitle>対応するHTML構造</PreviewTitle>
-	<PreviewCode>
-	```jsx
-	<div class="l--columns" style="--gtc:{cols}">...</div>
-	```
-	</PreviewCode>
-</Preview>
-
 
 ## Props
-- `cols`: 列数を指定します。ブレイクポイント指定可能です。
-- その他、[`<Grid>`で使えるprops](/docs/components/Grid#props)が使えます。
+- `cols`: 列数を指定します。ブレイクポイント指定も可能です。
+- その他、[`<Grid>`で使えるprops](/ja/components/grid#props)が使えます。
+
 
 ## Import
 
-```js
+<Preview>
+	<PreviewCode slot='tab' label='React'>
+```jsx
 import { Columns } from '@loos/lism-core';
 ```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='Astro'>
+```jsx
+import { Columns } from '@loos/lism-astro';
+```
+	</PreviewCode>
+</Preview>
+
 
 ## Usage
 
@@ -34,22 +36,73 @@ import { Columns } from '@loos/lism-core';
 	<PreviewTitle>
 		2列の`<Columns>`
 	</PreviewTitle>
-	<PreviewArea resize p={10}>
-		<Columns cols={2} gap={20} lismState={["has--itemGuide"]}>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-		</Columns>
-	</PreviewArea>
-	<PreviewCode>
-		```jsx
+	<PreviewArea resize p='20'>
 		<Columns cols={2} gap={20}>
 			<Box bgc="pale" p="box">Box</Box>
 			<Box bgc="pale" p="box">Box</Box>
 			<Box bgc="pale" p="box">Box</Box>
 			<Box bgc="pale" p="box">Box</Box>
 		</Columns>
+	</PreviewArea>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "cols={2}"
+		<Columns cols={2} gap={20}>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+		</Columns>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx "--cols:2"
+		<div class="l--columns -gap:20" style="--cols:2">
+			<div class="l--box -bgc:pale -p:box">Box</div>
+			<div class="l--box -bgc:pale -p:box">Box</div>
+			<div class="l--box -bgc:pale -p:box">Box</div>
+			<div class="l--box -bgc:pale -p:box">Box</div>
+		</div>
+		```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>
+		1列 → sm:2列 → md:3列
+	</PreviewTitle>
+	<PreviewArea resize p='20'>
+		<Columns cols={[1, 2, 3]} gap={20}>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+		</Columns>
+	</PreviewArea>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "cols={[1, 2, 3]}"
+		<Columns cols={[1, 2, 3]} gap={20}>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+			<Box bgc="pale" p="box">Box</Box>
+		</Columns>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx "--cols:1;--cols--sm:2;--cols--md:3"
+		<div class="l--columns -gap:20" style="--cols:1;--cols--sm:2;--cols--md:3">
+			<div class="l--box -bgc:pale -p:box">Box</div>
+			<div class="l--box -bgc:pale -p:box">Box</div>
+			<div class="l--box -bgc:pale -p:box">Box</div>
+			<div class="l--box -bgc:pale -p:box">Box</div>
+			<div class="l--box -bgc:pale -p:box">Box</div>
+			<div class="l--box -bgc:pale -p:box">Box</div>
+		</div>
 		```
 	</PreviewCode>
 </Preview>
@@ -59,65 +112,28 @@ import { Columns } from '@loos/lism-core';
 	<PreviewTitle>
 		2列 → `@md`:4列
 	</PreviewTitle>
-	<PreviewArea resize p={10}>
-		<Columns cols={[2, null, 4]} gap={20} lismState={["has--itemGuide"]}>
+	<PreviewArea resize p='20'>
+		<Columns cols={[2, null, 4]} gap={20}>
 			<Box bgc="pale" p="box">Box</Box>
 			<Box bgc="pale" p="box">Box</Box>
 			<Box bgc="pale" p="box">Box</Box>
 			<Box bgc="pale" p="box">Box</Box>
 		</Columns>
 	</PreviewArea>
-	<PreviewCode>
-		```jsx
+
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "cols={[2, null, 4]}"
 		<Columns cols={[2, null, 4]} gap={20}>
 			...
 		</Columns>
 		```
 	</PreviewCode>
-</Preview>
-
-<Preview>
-	<PreviewTitle>
-		1列 → sm:2列 → md:3列
-	</PreviewTitle>
-	<PreviewArea resize p={10}>
-		<Columns cols={[1, 2, 3]} gap={20} lismState={["has--itemGuide"]}>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-		</Columns>
-	</PreviewArea>
-	<PreviewCode>
-		```jsx
-		<Columns cols={[1, 2, 3]} gap={20}>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx "--cols:2;--cols--md:4"
+		<div class="l--columns -gap:20" style="--cols:2;--cols--md:4">
 			...
-		</Columns>
+		</div>
 		```
 	</PreviewCode>
 </Preview>
 
-<Preview>
-	<PreviewTitle>
-		2列 → 3列 → 4列 → 6列
-	</PreviewTitle>
-	<PreviewArea resize p={10}>
-		<Columns cols={[2, 3, 4, 6]} gap={20} lismState={["has--itemGuide"]}>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-			<Box bgc="pale" p="box">Box</Box>
-		</Columns>
-	</PreviewArea>
-	<PreviewCode>
-		```jsx
-		<Columns cols={[2, 3, 4, 6]} gap={20}>
-			...
-		</Columns>
-		```
-	</PreviewCode>
-</Preview>

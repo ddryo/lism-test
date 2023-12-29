@@ -87,7 +87,7 @@ class LismPropsData {
 			[
 				//'d',
 				'c',
-				'b',
+				// 'b',
 				// 'a',
 				'e',
 				'l',

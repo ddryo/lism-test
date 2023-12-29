@@ -4,24 +4,16 @@ description: ...
 ---
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
-import { Spacer } from '@loos/lism-core';
+import { Spacer, Alert, Box, Flex } from '@loos/lism-core';
 
 
 スペースを確保するためのモジュールです。
 
-<Preview>
-	<PreviewTitle>対応するHTML構造</PreviewTitle>
-	<PreviewCode>
-	```jsx
-	<div class="e--spacer">...</div>
-	```
-	</PreviewCode>
-</Preview>
-
 
 ## Props
-- `w`: `width`の値を指定できます。
-- `h`: `height`の値を指定できます。
+
+{/* - `w`: `width`の値を指定できます。
+- `h`: `height`の値を指定できます。 */}
 
 <Alert preset="info">
 `<Space>`では、`w`と`h`に対してSPACEトークンの値が使えます。
@@ -30,96 +22,87 @@ import { Spacer } from '@loos/lism-core';
 
 ## Import
 
-```js
+<Preview>
+	<PreviewCode slot='tab' label='React'>
+```jsx
 import { Spacer } from '@loos/lism-core';
 ```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='Astro'>
+```jsx
+import { Spacer } from '@loos/lism-astro';
+```
+	</PreviewCode>
+</Preview>
+
+
 
 ## Usage
 
 <Preview>
 	<PreviewTitle>`<Spacer>`の使用例</PreviewTitle>
 	<PreviewArea resize p={20} isFlow={false}>
-		<Box bgc="pale">Box</Box>
+		<p>Content...</p>
 		<Spacer h="100px" />
-		<Box bgc="pale">Box</Box>
-		<Spacer h={["50px", "100px"]} />
-		<Box bgc="pale">Box</Box>
+		<p>Content...</p>
 	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx {2}
-		<Box bgc="pale">Box</Box>
+		<p>Content...</p>
 		<Spacer h="100px" />
-		<Box bgc="pale">Box</Box>
-		<Spacer h={["50px", "100px"]} />
-		<Box bgc="pale">Box</Box>
+		<p>Content...</p>
 		```
 	</PreviewCode>
-</Preview>
-
-<Preview>
-	<PreviewTitle>`h`にSPACEトークンを使う例</PreviewTitle>
-	<PreviewArea resize p={20} isFlow={false}>
-		<Box bgc="pale">Box</Box>
-		<Spacer h={50} />
-		<Box bgc="pale">Box</Box>
-		<Spacer h={[30, 50]} />
-		<Box bgc="pale">Box</Box>
-	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
 		```jsx
-		<Box bgc="pale">Box</Box>
-		<Spacer h={50} />
-		<Box bgc="pale">Box</Box>
-		<Spacer h={[30, 50]} />
-		<Box bgc="pale">Box</Box>
+		<p>Content...</p>
+		<div class="l--spacer -h:" style="--h:100px" aria-hidden="true"></div>
+		<p>Content...</p>
 		```
 	</PreviewCode>
 </Preview>
 
-
 <Preview>
-	<PreviewTitle>`<Spacer>`の使用例</PreviewTitle>
+	<PreviewTitle>`SPACE`トークンを使う例</PreviewTitle>
 	<PreviewArea resize p={20} isFlow={false}>
-		<Flex>
-			<Box bgc="pale">Box</Box>
-			<Spacer w="40px" />
-			<Box bgc="pale">Box</Box>
-			<Spacer w={["40px", "60px"]} />
-			<Box bgc="pale">Box</Box>
-		</Flex>
+		<p>Box</p>
+		<Spacer h={60} />
+		<p>Box</p>
 	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx {2}
+		<p>Box</p>
+		<Spacer h={60} />
+		<p>Box</p>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
 		```jsx
-		<Flex>
-			<Box bgc="pale">Box</Box>
-			<Spacer w="40px" />
-			<Box bgc="pale">Box</Box>
-			<Spacer w={["40px", "60px"]} />
-			<Box bgc="pale">Box</Box>
-		</Flex>
+		<p>Content...</p>
+		<div class="l--spacer -h:" style="--h:var(--s--60)" aria-hidden="true"></div>
+		<p>Content...</p>
 		```
 	</PreviewCode>
 </Preview>
 
+
 <Preview>
-	<PreviewTitle>`w`にSPACEトークンを使う例</PreviewTitle>
+	<PreviewTitle>横方向のスペーサーの例</PreviewTitle>
 	<PreviewArea resize p={20} isFlow={false}>
-		<Flex>
-			<Box bgc="pale">Box</Box>
+		<Flex gap={10}>
+			<Box p='box' bgc='b200'>Box</Box>
 			<Spacer w={50} />
-			<Box bgc="pale">Box</Box>
-			<Spacer w={[30, 50]} />
-			<Box bgc="pale">Box</Box>
+			<Box p='box' bgc='b200'>Box</Box>
+			<Box p='box' bgc='b200'>Box</Box>
 		</Flex>
 	</PreviewArea>
 	<PreviewCode>
-		```jsx
-		<Flex>
-			<Box bgc="pale">Box</Box>
+		```jsx "w="
+		<Flex gap={10}>
+			<Box p='box' bgc='b200'>Box</Box>
 			<Spacer w={50} />
-			<Box bgc="pale">Box</Box>
-			<Spacer w={[30, 50]} />
-			<Box bgc="pale">Box</Box>
+			<Box p='box' bgc='b200'>Box</Box>
+			<Box p='box' bgc='b200'>Box</Box>
 		</Flex>
 		```
 	</PreviewCode>

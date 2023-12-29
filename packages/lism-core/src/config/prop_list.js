@@ -73,8 +73,7 @@ const bdrsSidesProps = { presets: ['0'], converter: 'radius' };
 const insetsProps = { utils: 'insets', converter: 'space' };
 
 export default {
-	aspect: { presets: 1 },
-	d: { utils: 1 },
+	// size
 	w: { utils: 'size', converter: 'size' },
 	h: { utils: 'size', converter: 'size' },
 	maxW: { utils: 'maxSize', converter: 'size' },
@@ -82,6 +81,7 @@ export default {
 	minW: { utils: 'minSize', converter: 'size' },
 	minH: { utils: 'minSize', converter: 'size' },
 	size: { style: '--size', converter: 'size' },
+
 	// is: inline-size, bs: block-size, maxI, maxB, minIs, minBs
 	c: { presets: 1, converter: 'color' },
 	bg: { style: 'background', presets: 1, utils: 1, map: 1 },
@@ -129,20 +129,20 @@ export default {
 	shadow: { name: 'bxsh', presets: 'shadow', converter: 'shadow' },
 	// shadowColor
 
-	opacity: { style: 1 },
-	visibility: { style: 1, utilKey: 'v', utils: 1 },
-
+	//display
+	d: { utils: 1 },
+	opacity: { style: 1 }, // op
+	v: { style: 'visibility', utils: 'visibility' },
 	ov: { style: 'overflow', utils: 1 },
 	ovx: { style: 'overflowX', utils: 'ov' },
 	ovy: { style: 'overflowY', utils: 'ov' },
+	aspect: { presets: 1 },
 
 	z: { style: 'zIndex', presets: 1 },
 	pos: { style: 'position', utils: 1, presets: ['static', 'sticky'] },
 	inset: { map: 1, style: 1, utils: 1, converter: 'space' },
-	t: { ...insetsProps, style: 'top' },
-	l: { ...insetsProps, style: 'left' },
-	r: { ...insetsProps, style: 'right' },
-	b: { ...insetsProps, style: 'bottom' },
+
+	// isolation
 
 	// flip: {},
 
@@ -243,7 +243,7 @@ export const CONTEXT_PROPS = {
 	},
 	gridItem: {
 		// item
-		ga: { utils: 1 }, // grid-area
+		ga: { presets: 1 }, // grid-area
 		gc: { presets: 1 }, // grid-column
 		gcs: { presets: 1, style: 'gridColumnStart' },
 		gce: { presets: 1, style: 'gridColumnEnd' },
@@ -292,6 +292,10 @@ export const CONTEXT_PROPS = {
 
 	inset: {
 		inset: { style: 1, utils: 1, converter: 'space' },
+		t: { ...insetsProps, style: 'top' },
+		l: { ...insetsProps, style: 'left' },
+		r: { ...insetsProps, style: 'right' },
+		b: { ...insetsProps, style: 'bottom' },
 		is: {
 			style: 'insetInlineStart',
 			utilKey: 'iis',
@@ -327,18 +331,18 @@ export const CONTEXT_PROPS = {
 	// animation: {},
 
 	css: {
-		lis: { style: 'listStyle', utils: { none: 'n' } },
-		// appearance: { style: 1, utils: { none: 'n' } },
-		objectFit: { style: 1, utilKey: 'obf', utils: 1 },
-		objectPosition: { style: 1, converter: 'filter' },
-
-		// effect?
 		transform: { map: 1, style: 1, utils: 1, utilKey: 'trf' },
 		transformOrigin: { style: 1, utilKey: 'trfo', utils: 'origin' },
 		translate: { style: 1, utils: 1, utilKey: 'trnslt' },
 		rotate: { style: 1, utils: 1 }, // rot?
 		scale: { style: 1 }, //
 		clipPath: { style: 1 }, // cpp ?
+
+		lis: { style: 'listStyle', utils: { none: 'n' } },
+		// appearance: { style: 1, utils: { none: 'n' } },
+		objectFit: { style: 1, utilKey: 'obf', utils: 1 },
+		objectPosition: { style: 1, converter: 'filter' },
+
 		// animation: { map:1, style: 1, presets: 1 },
 		filter: { style: 1, converter: 'filter' },
 		// bdfltr

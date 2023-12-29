@@ -30,10 +30,10 @@ export { Item } from './Item';
 export { Reel } from './Reel';
 export { Frame } from './Frame';
 export * from './Layer';
-export { Divider } from './Divider';
+export * from './Divider';
 export { Spacer } from './Spacer';
 
-export { LinkBox } from './LinkBox';
+export * from './LinkBox';
 
 // Elements
 export { Avatar } from './Avatar';

@@ -10,6 +10,7 @@
 .l--cluster {
 	--item--minW: auto;
 	--fxw: wrap;
+	align-items: baseline;
 
 	// item--itemMinW ? -children:minW: ?
 	> * {

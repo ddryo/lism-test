@@ -10,16 +10,16 @@ export function getGridContext(gridProps = {}) {
 	return 'grid';
 }
 export default function Grid({
-	_gridName = 'grid',
+	_grid = 'grid',
 	variant,
 	itemMinW,
 	lismClass = {},
 	lismStyle = {},
 	...props
 }) {
-	lismClass.l = `l--${_gridName}`;
+	lismClass.l = `l--${_grid}`;
 	if (variant) {
-		lismClass.l += ` l--${_gridName}--` + variant;
+		lismClass.l += ` l--${_grid}--` + variant;
 	}
 
 	if (itemMinW) {

@@ -1,6 +1,5 @@
 ---
 import type { Props } from '@astrojs/starlight/props';
-// import { SwapGrid } from "@loos/lism-astro";
 ---
 
 <div class='two-colomn-frame'>
@@ -34,7 +33,8 @@ import type { Props } from '@astrojs/starlight/props';
 		.two-colomn-frame {
 			--toc-width: 15rem;
 			display: grid;
-			grid: 'main toc' / 1fr var(--toc-width);
+			/* main側の幅を数値で指定しないとコードが飛び出る */
+			grid: 'main toc' / calc(100% - var(--toc-width)) 1fr;
 
 			/* max-width: calc(((100vw - var(--sl-sidebar-width) - 2 * var(--sl-content-pad-x) - 2 * var(--sl-sidebar-pad-x)) * .25)); */
 		}

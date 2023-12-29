@@ -14,11 +14,12 @@
 	// 	inset: 0;
 	// }
 
-	// // 親要素のサイズを超えないようにする設定
-	// &[data-size='contain'] {
-	// 	max-width: 100%;
-	// 	max-height: 100%;
-	// }
+	// 要素のサイズを超えないようにする設定
+	&[data-size='contain'] {
+		max-width: 100%;
+		max-height: 100%;
+		// overflow: auto;
+	}
 }
 
 // .l--layer--content {

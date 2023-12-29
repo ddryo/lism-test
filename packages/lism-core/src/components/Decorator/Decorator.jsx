@@ -9,3 +9,5 @@ export default function Decorator({ lismClass = {}, hasSize, variant, index, ...
 	if (hasSize) props.lismState = ['has--size'];
 	return <Core lismClass={lismClass} data-index={index} aria-hidden='true' {...props} />;
 }
+
+// aspect

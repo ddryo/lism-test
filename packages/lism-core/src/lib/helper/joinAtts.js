@@ -27,5 +27,5 @@ export default function joinAtts(...args) {
 	// 最後に重複削除
 	// Array.from(new Set(classes))
 	// [...new Set(classes)];
-	return classes.join(' ');
+	return classes.join(' ').trim();
 }

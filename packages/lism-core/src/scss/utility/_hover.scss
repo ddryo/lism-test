@@ -15,9 +15,9 @@
 }
 
 [class*='-hov:'] {
-	// transition: filter, opacity, box-shadow, translate, scale, border-color, color, background-color;
-	// transition-duration: var(--hov--duration);
-	transition: all var(--hov--duration);
+	transition: filter, opacity, box-shadow, translate, scale, border, color, background-color;
+	transition-duration: var(--hov--duration);
+	// transition: all var(--hov--duration);
 }
 // ------------------------------------------------------------
 // 値指定

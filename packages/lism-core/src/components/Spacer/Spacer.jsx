@@ -3,7 +3,7 @@ import { Core } from '../Core';
 import { getBpData, getMaybeCssVar } from '../../lib';
 
 // 縦書きの時どうする？
-export default function Spacer({ lismClass = {}, w, h, ...props }) {
+export default function Spacer({ lismClass = {}, variant, w, h, ...props }) {
 	if (undefined !== h) {
 		let hObj = getBpData(h);
 
@@ -28,5 +28,6 @@ export default function Spacer({ lismClass = {}, w, h, ...props }) {
 	}
 
 	lismClass.l = 'l--spacer';
-	return <Core lismClass={lismClass} {...props} />;
+	if (variant) lismClass.l += ` l--spacer--${variant}`;
+	return <Core lismClass={lismClass} {...props} aria-hidden='true' />;
 }

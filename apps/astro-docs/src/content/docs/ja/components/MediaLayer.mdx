@@ -5,12 +5,12 @@ description: ...
 
 import { Layer, MediaLayer, FilterLayer, Frame, Media, Center } from '@loos/lism-core';
 // import './css/layer.css'
-import Image from "next/image";
+// import Image from "next/image";
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 
 
-**メディア（画像・動画）を親要素サイズに合わせて配置する**ための、[`<Layer>`](/docs/components/Layer)の拡張モジュール。
+**メディア（画像・動画）を親要素サイズに合わせて配置する**ための、[`<Layer>`](/docs/components/Layer)の拡張コンポーネントです。
 
 <Preview>
 	<PreviewTitle>対応するHTML構造</PreviewTitle>
@@ -106,7 +106,7 @@ import { MediaLayer } from '@loos/lism-core';
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Frame aspect="cinema">
-			<MediaLayer media={Image} src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			{/* <MediaLayer media={Image} src="/img/demo-img.jpeg" alt="" width='960' height='640' /> */}
 		</Frame>
 	</PreviewArea>
 	<PreviewCode>

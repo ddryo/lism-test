@@ -139,8 +139,12 @@ export default [
 				link: '/components/griditem/',
 			},
 			{
-				label: 'SwapGrid',
-				link: '/components/swapgrid/',
+				label: 'SideSwap',
+				link: '/components/sideswap/',
+			},
+			{
+				label: 'Columns',
+				link: '/components/columns/',
 			},
 			{
 				label: '---',
@@ -155,53 +159,43 @@ export default [
 			// 	link: '###',
 			// },
 			{
-				label: 'Columns',
-				link: '/components/columns/',
-			},
-			{
 				label: 'Center',
 				link: '/components/center/',
-			},
-			{
-				label: 'Reel',
-				link: '/components/reel/',
-			},
-			{
-				label: 'Layer',
-				link: '/components/layer/',
 			},
 			{
 				label: 'Frame',
 				link: '/components/frame/',
 			},
 			{
+				label: 'Layer',
+				link: '/components/layer/',
+			},
+			{
+				label: 'Reel',
+				link: '/components/reel/',
+			},
+			{
 				label: 'Spacer',
 				link: '/components/spacer/',
 			},
-			{
-				label: 'Divider',
-				link: '/components/divider/',
-			},
+
 			{
 				label: 'Element',
 				link: '###',
 			},
 			{
 				label: 'Avatar',
-				link: '/components/props/',
+				link: '/components/avatar/',
 			},
 			{
 				label: 'Icon',
-				link: '/components/core/',
+				link: '/components/icon/',
 			},
 			{
 				label: 'Delimiter',
 				link: '/components/delimiter/',
 			},
-			{
-				label: 'StretchedLink',
-				link: '/components/stretched-link/',
-			},
+
 			{
 				label: 'Component',
 				link: '###',
@@ -231,8 +225,16 @@ export default [
 				link: '/components/card/',
 			},
 			{
+				label: 'Divider',
+				link: '/components/divider/',
+			},
+			{
+				label: 'ShapeDivider',
+				link: '/components/shapedivider/',
+			},
+			{
 				label: 'LinkBox',
-				link: '/components/link-box/',
+				link: '/components/linkbox/',
 			},
 		],
 	},

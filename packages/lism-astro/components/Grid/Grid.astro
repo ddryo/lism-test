@@ -5,14 +5,14 @@ import { getGridProps } from '@loos/lism-core/lib';
 
 // Propsの定義
 interface Props extends LismProps {
-	_gridName?: string;
+	_grid?: string;
 }
 
-let { _gridName = 'grid', variant, lismClass = {}, ...props } = Astro.props;
+let { _grid = 'grid', variant, lismClass = {}, ...props } = Astro.props;
 
-lismClass.l = `l--${_gridName}`;
+lismClass.l = `l--${_grid}`;
 if (variant) {
-	lismClass.l += ` l--${_gridName}--` + variant;
+	lismClass.l += ` l--${_grid}--` + variant;
 }
 
 // grid 系の props をまとめる

@@ -3,60 +3,52 @@ title: 'Box'
 description: ...
 ---
 
-import { Box } from '@loos/lism-core';
-import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Box } from '@loos/lism-astro';
+// import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 
 コンテンツをラップしてグループ化するためのシンプルなコンポーネントです。
 
+## Import
+
 <Preview>
-	<PreviewTitle>対応するHTML構造</PreviewTitle>
-	<PreviewCode>
-	```jsx
-	<div class="l--box">...</div>
-	```
+	<PreviewCode slot='tab' label='React'>
+```jsx
+import { Box } from '@loos/lism-core';
+```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='Astro'>
+```jsx
+import { Box } from '@loos/lism-astro';
+```
 	</PreviewCode>
 </Preview>
 
-## Import
-
-```js
-import { Box } from '@loos/lism-core';
-```
 
 ## Usage
 
 <Preview>
-	<PreviewTitle>Boxの例 1</PreviewTitle>
-	<PreviewArea resize p={20}>
-		<Box p='box' bgc='white' shadow='2' radius='3'>
-			<p>Box</p>
+	<PreviewTitle>Boxの例</PreviewTitle>
+	<PreviewArea p={30}>
+		<Box isFlow='s' p='box' bgc='pale' shadow='1' radius='2'>
+			<h3>Heading</h3>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugit, numquamdicta repellat ipsa autem eos iure ducimus.</p>
 		</Box>
 	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Box p='box' bgc='white' shadow='2' radius='3'>
-			<p>Box</p>
+		<Box isFlow='s' p='box' bgc='pale' shadow='1' radius='2'>
+			<h3>Heading</h3>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugit, numquamdicta repellat ipsa autem eos iure ducimus.</p>
 		</Box>
 		```
 	</PreviewCode>
-</Preview>
-
-<Preview>
-	<PreviewTitle>Boxの例 2</PreviewTitle>
-	<PreviewArea resize p={20}>
-		<Box isFlow tag='section' p="box:l" bgc='pale'>
-			<h3>Heading</h3>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugit, numquamdicta repellat ipsa autem eos iure ducimus consequatur vel.</p>
-		</Box>
-	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
 		```jsx
-		<Box isFlow tag='section' p="box:l" bgc='pale'>
+		<div class="l--box is--flow:s -p:box -bgc:pale -bxsh:1 -bdrs:2">
 			<h3>Heading</h3>
-			<p>...</p>
-		</Box>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit fugit, numquamdicta repellat ipsa autem eos iure ducimus.</p>
+		</div>
 		```
 	</PreviewCode>
 </Preview>
-

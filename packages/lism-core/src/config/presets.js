@@ -56,7 +56,10 @@ export default {
 	// grs: ['1', '2', '3'],
 	gce: ['-1'],
 	gre: ['-1'],
-	ga: ['side', 'start', 'center', 'end'],
+	ga: [
+		'side',
+		//'start', 'center', 'end'
+	],
 	gradient: ['sunset', 'black-to-bottom'],
 	// transform: ['flip:x', 'flip:y', 'flip:xy'],
 	animation: [],

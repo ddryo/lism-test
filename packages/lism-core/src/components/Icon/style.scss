@@ -1,22 +1,17 @@
 // font-sizeで大きさをコントロールする。
 .e--icon {
 	--scale: 1;
-	display: inline-flex;
-	place-content: center; // justify-content: center;
-	place-items: center; // align-items: center;
 	scale: var(--scale);
-	// line-height: 1;
+	display: inline-flex;
+	// place-content: center; // justify-content: center;
+	// place-items: center; // align-items: center;
+	// line-height: 1; // emoji考慮
+	// font-family: var(--ff--emoji);
 	vertical-align: middle; //下にスペースができるのを防ぐ
-	font-family: var(--ff--emoji);
 	flex-shrink: 0; // Alertなど、アイコンはflex直下の子要素にしたい場合が多いので、指定しておく
 	// width: 1em;
 	// height: 1em;
 }
-
-// .e--icon > svg {
-// 	width: 1em;
-// 	height: 1em;
-// }
 
 .e--icon--inline {
 	--scale: 1.125; // inlineアイコンはデフォルト状態で少し拡大表示
@@ -25,11 +20,12 @@
 	// line-height: inherit;
 }
 
-// → has--sizeで。
-// :where(.e--icon)[data-icon] {
-// 	width: 1em;
-// 	height: 1em;
-// }
+// → has--size 　で?
+.e--icon:where([data-icon]) {
+	--size: 1em;
+	width: var(--size);
+	height: var(--size);
+}
 
 // .e--icon[data-icon='accordion-toggle'] {
 // 	background-color: currentColor;
@@ -40,6 +36,7 @@
 // 	background-color: currentColor;
 // }
 
+// → utility クラス化 ?
 :where(.e--icon)[data-icon^='mask-'] {
 	background-color: currentColor;
 	mask: var(--mask-image) no-repeat 50% 50% / contain;

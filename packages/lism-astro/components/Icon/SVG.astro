@@ -4,7 +4,6 @@ interface Props {
 	size?: string | number;
 	fill?: string;
 	viewBox?: string;
-	label?: string;
 	path?: string;
 	[key: string]: any;
 }
@@ -28,5 +27,5 @@ let {
 	{...props}
 >
 	{path && <path d={path} />}
-	{children}
+	<slot />
 </svg>

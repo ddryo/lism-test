@@ -21,6 +21,7 @@ export const PropBadge = ({ type = '', ...props }) => {
 			lh='1'
 			p='em2'
 			m='em2'
+			whs='nw'
 			// d='if'
 			variant='subtle'
 			keycolor={keycolor}

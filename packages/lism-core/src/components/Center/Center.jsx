@@ -3,7 +3,7 @@ import { Grid } from '../Grid';
 
 export default function Center({ size, ...props }) {
 	// lismClass.l = `l--center`;
-	props['_gridName'] = 'center';
+	props['_grid'] = 'center';
 
 	if (size === 'cover') {
 		props = Object.assign(

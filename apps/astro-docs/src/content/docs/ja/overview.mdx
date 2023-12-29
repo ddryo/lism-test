@@ -3,7 +3,7 @@ title: 'Overview'
 description: ...
 ---
 
-import { Box, Text } from "@loos/lism-astro";
+import { Box, Text, Center, Button,Flex, Frame, Layouter } from "@loos/lism-astro";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 
 
@@ -51,35 +51,36 @@ CSS設計に関しては、[Every Layout](https://every-layout.dev/) + [Bootstra
 [Chakra UI](https://chakra-ui.com/) や [MUI](https://mui.com/) のような使い心地で各モジュールを扱えるようになります。
 
 
-<PreviewTitle>専用のコンポーネントはこんな感じで使います</PreviewTitle>
+<Preview>
+	<PreviewTitle>専用のコンポーネントはこんな感じで使います</PreviewTitle>
+	<PreviewArea p={10}>
+		<Frame aspect='16/9' isConstrained hasGutter py={50} bgc='pale'>
+			<Center minH='100'>
+				<Text tag='h1' fz='3xl' ff='serif' lts='l' lh='xs'>Lism UI</Text>
+				<Text c='pale' fz='s'>...description text...</Text>
+				<Flex gap={20} mbs={40}>
+					<Button href='###' radius='3'>Docs</Button>
+					<Button href='###' variant='outline' radius='3'>Github</Button>
+				</Flex>
+			</Center>
+		</Frame>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Frame aspect='16/9' isConstrained hasGutter py={50} bgc='pale'>
+			<Center minH='100'>
+				<Text tag='h1' fz='3xl' ff='serif' lts='l' lh='xs'>Lism UI</Text>
+				<Text c='pale' fz='s'>...description text...</Text>
+				<Flex gap={20} mbs={40}>
+					<Button href='###' radius='3'>Docs</Button>
+					<Button href='###' variant='outline' radius='3'>Github</Button>
+				</Flex>
+			</Center>
+		</Frame>
+		```
+	</PreviewCode>
+</Preview>
 
-```jsx
-<Layouter isConstrained hasGutter py={40} bgc='pale'>
-	<Center size="cover" gap={40} >
-		<Text tag='h1' fz='4xl'>Lism</Text>
-		<Flex mbs={40} gap={20}>
-			<Button href='###'>Docs</Button>
-			<Button href='###' variant='outline'>Github</Button>
-		</Flex>
-		<Text c='pale' fw='700'>description text...</Text>
-	</Center>
-	<Columns cols={[2, 2, 3]} gap={30}>
-		{POINTS.map((point, i) => {
-			return (
-				<Stack key={i} gap={20} p='box' bd bdc='base' radius='2' shadow='1'>
-					<Text tag='h3' fz='l' lh='s'>
-						{point.title}
-					</Text>
-					<p>{point.desc}</p>
-				</Stack>
-			);
-		})}
-	</Columns>
-</Layouter>
-...
-```
-	{/* </PreviewCode>
-</Preview> */}
 
 
 {/* ## 車輪の再発明からの解放

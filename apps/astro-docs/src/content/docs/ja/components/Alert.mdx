@@ -3,83 +3,61 @@ title: 'Alert'
 description: ...
 ---
 import { Box, Alert, Center, Frame, Section, SectionBody, MediaLayer, FilterLayer } from '@loos/lism-core';
-import {
-	Smiley,
-	Horse,
-	Book,
-	Cat,
-	Baseball,
-	CheckFat,
-} from "@phosphor-icons/react";
-import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
-import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
-
-短い文言を目立たせて表示したい時に使えるコンポーネントです。
+import { Book } from '@phosphor-icons/react';
+import { Reference, MemoBadge, HelpText, DammyText } from '~/components';
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from '~/components/Preview';
 
 
-<Preview>
-	<PreviewTitle>対応するHTML構造</PreviewTitle>
-	<PreviewCode>
-		```jsx
-		<div class="c--alert l--fluidFix" data-fix="first">
-			<div class="c--alert__icon l--center">
-				<svg>...</svg>
-			</div>
-			<div class="c--alert__body">
-				<p>...content...</p>
-			</div>
-		</div>
-		```
-	</PreviewCode>
-</Preview>
+短い文言を目立たせて強調表示したい時に使えるコンポーネントです。
 
-内部で`<FluidFix>`を使用し、コンテンツ側が`16rem`を下回るとアイコンとコンテンツが縦並びになります。
+
+内部で`<SideFlex>`を使用しており、コンテンツ側が`16rem`を下回るとアイコンとコンテンツが縦並びになります。  
+また、`.has--mixcolor`との併用によって、keycolorから背景色やボーダー色を自動生成します。
 
 
 ## Props
 
-- `keycolor`: 表示カラーを指定します。アイコンは指定した色で表示され、背景やボーダーが指定したカラーをもとにした薄い色で表示されます。
-	- (`color-mix`で薄い色の生成をしているため、未対応ブラウザでは表示が変わります。)
-- `icon`: アイコン表示用のコンポーネントを指定できます。
-{/* - `iconSize`: アイコンのサイズを指定できます。 */}
-- `iconProps`: アイコン（`<Icon>`）に渡すpropsを指定できます。
-- `preset`: `keycolor`と`icon`の組み合わせのプリセット値を指定できます。
-- `isFlow`: `__body`に渡されます
-{/* - `variant`: `"fill"` | `"outline"` ? */}
+| プロパティ | 説明 |
+|---|---|
+|`keycolor`| 表示カラーを指定します。アイコンは指定した色で表示され、背景やボーダーは少し薄い色で表示されます。(`color-mix`で色の生成をしているため、未対応ブラウザでは表示が変わります。)|
+|`icon`| アイコンを指定できます。|
+| `iconProps` | アイコン（`<Icon>`）に渡すpropsを指定できます。|
+|`preset`|`keycolor`と`icon`の組み合わせのプリセット値を指定できます。|
+|`isFlow`|`__body`に渡されます|
+{/* - `variant`: `'fill'` | `'outline'` ? */}
 
 
 
 ## Import
 
-```js
+<Preview>
+	<PreviewCode slot='tab' label='React'>
+```jsx
 import { Alert } from '@loos/lism-core';
 ```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='Astro'>
+```jsx
+import { Alert } from '@loos/lism-astro';
+```
+	</PreviewCode>
+</Preview>
+
 
 ## Usage
 
-export const DemoText = ({lang}) => {
-	if(lang === 'ja') {
-		return (
-			<p>
-			ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし<a href="###">リンク文字列</a>と活力はそのような木々と楽しみ。ブラインド行うにはいくつかの重要な事柄が流れます。長年にわたり、私は学区と長寿であれば、そのような <code>Liberroy, Foo</code> の取り組みの利点を提案したのなら。
-			</p>
-		);
-	}
-	return (
-		<p>
-			Lorem ipsum dolor sit amet consectetur <a href="###">linked text</a> adipisicing elit. Illo sunt deserunt
-			consectetur consequatur, tenetur perferendis totam magnam laborum <code>code text</code> repellendus
-			voluptatum tempora quidem praesentium sapiente harum quas maiores magni.
-		</p>
-	);
-};
-export const AlertDemos = ({ children,variant }) => {
-	const PRESETS = ["alert", "danger", "point", "warning", "check", "good", "info", "bad", "help", "reference", "note" ];
+export const AlertDemos = ({ variant = '', children, ...props }) => {
+	const PRESETS = ['alert', 'danger', 'point', 'warning', 'check', 'good', 'info', 'bad', 'help', 'reference', 'note'];
 	return (
 		<> 
 			{PRESETS.map((preset) => {
 				return (
-					<Alert key={preset} variant={variant} preset={preset}><PreviewText lang="ja" /></Alert>
+					<div className='l--stack -gap:10'>
+						<div><code>preset='{preset}'</code></div>
+						<Alert key={preset} variant={variant} preset={preset} {...props}>
+							{children}
+						</Alert>
+					</div>
 				);
 			})}
 		</>
@@ -88,98 +66,128 @@ export const AlertDemos = ({ children,variant }) => {
 
 <Preview>
 	<PreviewTitle>
-		デフォルト (`preset="alert"`が初期セットされています)
+		デフォルト
 	</PreviewTitle>
 	<PreviewArea p={20}>
-		<Alert preset="info"><PreviewText lang="ja" /></Alert>
+		<Alert>
+			<DammyText lang='ja' />
+		</Alert>
 	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Alert preset="info">...text...</Alert>
+		<Alert>ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし時と活力はそのような木々と楽しみ。</Alert>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx
+		<div class="c--alert l--sideFlex has--mixcolor -bdrs:2" data-side="first">
+			<div class="c--alert__body">
+				<p>ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし時と活力はそのような木々と楽しみ。</p>
+			</div>
+		</div>
 		```
 	</PreviewCode>
 </Preview>
 
 
+
+## カラーとアイコンの指定
+
 <Preview>
 	<PreviewTitle>
-		icon, color を指定
+		keycolorのみ指定
 	</PreviewTitle>
 	<PreviewArea p={20}>
-		<Alert icon={Book} keycolor="purple">
+		<Alert keycolor='blue'>
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt deserunt
 		</Alert>
-		<Alert icon="star" keycolor="pink" >
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt deserunt
-		</Alert>
-		{/* <Alert icon={CheckFat} keycolor="green">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt deserunt
-		</Alert> */}
 	</PreviewArea>
-<PreviewCode>
-```jsx
-import { Book } from "@phosphor-icons/react";
-
-<Alert icon={Book} color="accent">...text...</Alert>
-
-<Alert icon="star" keycolor="pink" >...text...</Alert>
-```
-</PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "keycolor="
+		<Alert keycolor='blue'>
+			ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし時と活力はそのような木々と楽しみ。
+		</Alert>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx "has--mixcolor" "-keycolor:"
+		<div class="c--alert l--sideFlex has--mixcolor -keycolor:blue -bdrs:2" data-side="first">
+			<div class="c--alert__body">
+				<p>ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし時と活力はそのような木々と楽しみ。</p>
+			</div>
+		</div>
+		```
+	</PreviewCode>
 </Preview>
 
 <Preview>
 	<PreviewTitle>
-		isFlowの指定
+		iconも指定
 	</PreviewTitle>
 	<PreviewArea p={20}>
-		<Alert isFlow='s'>
-			<DammyText lang='ja' />
-			<DammyText lang='ja' length='m' />
+		<Alert icon='star' keycolor='pink' >
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt deserunt
+		</Alert>
+		<Alert icon={Book} keycolor='blue'>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt deserunt
 		</Alert>
 	</PreviewArea>
-<PreviewCode>
-```jsx
-<Alert isFlow='s'>
-	<p>...</p>
-	<p>...</p>
+<PreviewCode slot='tab' label='React, Astro'>
+```jsx "icon=" "keycolor="
+import { Book } from '@phosphor-icons/react';
+
+<Alert icon='star' keycolor='pink' >
+	Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt deserunt
+</Alert>
+<Alert icon={Book} keycolor='blue'>
+	Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt deserunt
 </Alert>
 ```
 </PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx {2-4,11-13} "has--mixcolor" "-keycolor:" "c--alert__icon e--icon"
+		<div class="c--alert l--sideFlex has--mixcolor -keycolor:pink -bdrs:2" data-side="first">
+			<svg class="c--alert__icon e--icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="1em" height="1em" fill="currentColor" focusable="false" aria-hidden="true">
+				<path d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81h0a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Zm-15.22,5-45.1,39.36a16,16,0,0,0-5.08,15.71L187.35,216v0l-51.07-31a15.9,15.9,0,0,0-16.54,0l-51,31h0L82.2,157.4a16,16,0,0,0-5.08-15.71L32,102.35a.37.37,0,0,1,0-.09l59.44-5.14a16,16,0,0,0,13.35-9.75L128,32.08l23.2,55.29a16,16,0,0,0,13.35,9.75L224,102.26S224,102.32,224,102.33Z"></path>
+			</svg>
+			<div class="c--alert__body">
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt deserunt</p>
+			</div>
+		</div>
+
+		<div class="c--alert l--sideFlex has--mixcolor -keycolor:blue -bdrs:2" data-side="first">
+			<svg class="c--alert__icon e--icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+				<path d="M208,24H72A32,32,0,0,0,40,56V224a8,8,0,0,0,8,8H192a8,8,0,0,0,0-16H56a16,16,0,0,1,16-16H208a8,8,0,0,0,8-8V32A8,8,0,0,0,208,24Zm-8,160H72a31.82,31.82,0,0,0-16,4.29V56A16,16,0,0,1,72,40H200Z"></path>
+			</svg>
+			<div class="c--alert__body">
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo sunt deserunt</p>
+			</div>
+		</div>
+		```
+	</PreviewCode>
 </Preview>
 
 
+### プリセット一覧
 
-
-### プリセット
-
-- `"note"`
-- `"alert"`
-- `"danger"`
-- `"warning"`
-- `"check"` ( ≒ `"success"`)
-- `"help"`
-- `"point"`
-- `"info"`,
-- `"good"`
-- `"bad"`
-- `"reference"`
+{/* 'alert', 'danger', 'point', 'warning', 'check', 'good', 'info', 'bad', 'help', 'reference', 'note' */}
 
 <Preview>
 	<PreviewTitle>
 		`presets`
 	</PreviewTitle>
 	<PreviewArea p={20} resize>
-		<AlertDemos />
+		<AlertDemos><DammyText lang='ja' length='codes' /></AlertDemos>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Alert preset="alert">
+		<Alert preset='alert'>
 			...text...
 		</Alert>
-		<Alert preset="point">
+		<Alert preset='point'>
 			...text...
 		</Alert>
-		<Alert preset="warning">
+		<Alert preset='warning'>
 			...text...
 		</Alert>
 		...
@@ -192,9 +200,9 @@ import { Book } from "@phosphor-icons/react";
 	<PreviewTitle>背景に画像がある時の様子</PreviewTitle>
 	<PreviewArea alignfull p={20}>
 		<Box>
-			<MediaLayer src="/img/demo-img.jpeg" z='-1'/>
-			<FilterLayer blur="8px" bgc="rgba(0,0,0,0.6)" z='-1'/>
-			<Box c="white" p={20} isFlow='s'>
+			<MediaLayer src='/img/demo-img.jpeg' z='-1'/>
+			<FilterLayer blur='8px' bgc='rgba(0,0,0,0.6)' z='-1'/>
+			<Box c='white' p={20} isFlow='s'>
 				<DammyText />
 				<AlertDemos />
 			</Box>
@@ -203,10 +211,10 @@ import { Book } from "@phosphor-icons/react";
 	<PreviewCode>
 		```jsx
 		<Section
-			c="white"
+			c='white'
 			py={40}
-			media={{ src: "/img/demo-img.jpeg", alt: "", width: 960, height: 640 }}
-			filter={{ blur: "8px", bgc: "rgba(0,0,0,0.6)" }}
+			media={{ src: '/img/demo-img.jpeg', alt: '', width: 960, height: 640 }}
+			filter={{ blur: '8px', bgc: 'rgba(0,0,0,0.6)' }}
 		>
 			<SectionBody>
 				...
@@ -215,3 +223,40 @@ import { Book } from "@phosphor-icons/react";
 		```
 	</PreviewCode>
 </Preview> */}
+
+
+
+
+### isFlow
+
+<Preview>
+	<PreviewTitle>
+		isFlowの指定
+	</PreviewTitle>
+	<PreviewArea p={20}>
+		<Alert preset='info' isFlow='s'>
+			<DammyText lang='ja' length='xs'/>
+			<DammyText lang='ja' />
+		</Alert>
+	</PreviewArea>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "isFlow='s'"
+		<Alert preset='info' isFlow='s'>
+			<p>...</p>
+			<p>...</p>
+		</Alert>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx "is--flow:s"
+		<div class="c--alert l--sideFlex has--mixcolor -keycolor:blue -bdrs:2" data-side="first">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="1em" height="1em" fill="currentColor" focusable="false" class="c--alert__icon e--icon" aria-label="Info:" role="img"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"></path></svg>
+			<div class="c--alert__body is--flow:s">
+				<p>ロレムイプサムの座り雨。</p>
+				<p>ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし時と活力はそのような木々と楽しみ。</p>
+			</div>
+		</div>
+		```
+	</PreviewCode>
+</Preview>
+

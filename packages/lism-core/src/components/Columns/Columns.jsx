@@ -25,13 +25,13 @@ import { getBpData } from '../../lib';
 export default function Columns({ columns, cols, lismStyle = {}, ...props }) {
 	cols = columns || cols || [1, 2];
 	const gridProps = {
-		_gridName: 'columns',
+		_grid: 'columns',
 		gap: 20, // 初期値
 	};
 	const { _: baseValue, ...bpValues } = getBpData(cols);
 
 	if (null != baseValue) {
-		lismStyle['--clms'] = baseValue;
+		lismStyle['--cols'] = baseValue;
 	}
 
 	if (!isEmptyObj(bpValues)) {
@@ -41,5 +41,5 @@ export default function Columns({ columns, cols, lismStyle = {}, ...props }) {
 		// gridProps.gtc = bpValues;
 	}
 
-	return <Grid lismStyle={lismStyle} {...gridProps} {...props} />;
+	return <Grid _grid='columns' lismStyle={lismStyle} {...gridProps} {...props} />;
 }

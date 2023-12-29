@@ -1,0 +1,9 @@
+---
+import { Layouter } from '../Core';
+
+const { lismClass = {}, variant, ...props } = Astro.props || {};
+lismClass.l = 'l--box';
+if (variant) lismClass.l += ` l--box--${variant}`;
+---
+
+<Layouter lismClass={lismClass} {...props}><slot /></Layouter>

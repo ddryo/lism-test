@@ -2,9 +2,9 @@
 import { Flex } from '../Flex';
 
 // snap-type, snap-stopも指定できるようにする？
-export default function Reel({ lismStyle = {}, unreel, itemBasis, snap, ...props }) {
-	if (undefined !== itemBasis) {
-		lismStyle['--item--basis'] = itemBasis;
+export default function Reel({ lismStyle = {}, unreel, itemW, snap, ...props }) {
+	if (undefined !== itemW) {
+		lismStyle['--item--w'] = itemW;
 	}
 
 	if (unreel) {

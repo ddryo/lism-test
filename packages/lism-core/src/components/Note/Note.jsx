@@ -1,62 +1,27 @@
-// import { Core } from '../Core';
+import { Core } from '../Core';
 import { Layouter } from '../Layouter';
 import { Flex } from '../Flex';
 import { Icon } from '../Icon';
 
-import NotePresets from './presets';
+import getProps from './getProps';
+// import NotePresets from './presets';
 
-export default function Note({
-	lismClass = {},
-	// lismStyle = {},
-	variant,
-	preset,
-	isFlow,
-	icon,
-	iconProps = {},
-	// iconSize = '1.4em',
-	heading,
-	keycolor,
-	headProps = {},
-	bodyProps = {},
-	children,
-	...props
-}) {
-	lismClass.c = 'c--note';
-	if (variant) lismClass.c += ` c--note--${variant}`;
+export default function Note({ isFlow, heading, children, ...props }) {
+	props = getProps(props);
 
-	const presetData = preset ? NotePresets[preset] : null;
-	if (presetData) {
-		keycolor = keycolor || presetData.color || null;
-		icon = icon || presetData.icon || null;
+	const { icon, iconProps = {}, headProps = {}, bodyProps = {}, ...attrs } = props;
+
+	if ('Flex' === headProps.as) {
+		headProps.as = Flex;
 	}
-
-	if (keycolor) props.keycolor = keycolor;
-
-	if (icon) {
-		headProps.ai = 'center';
-	}
-
-	// const bodyProps = {};
-
-	// lifted or bump?
-	// if ('lifted' === variant) {
-	// 	// borderの上に重ねる
-	// 	Object.assign(headProps, {
-	// 		pos: 'absolute',
-	// 		top: 0,
-	// 		left: 0,
-	// 		translate: '0 -50%',
-	// 	});
-	// 	bodyProps.mbs = '10';
-	// }
 
 	return (
-		<Layouter lismClass={lismClass} lismState={['has--mixcolor']} radius='1' {...props}>
+		<Layouter lismState={['has--mixcolor']} radius='1' {...attrs}>
 			{heading && (
-				<Flex lismClass={{ c: 'c--note__head' }} fw='bold' {...headProps}>
+				<Core lismClass={{ c: 'c--note__head' }} fw='bold' {...headProps}>
 					{icon && <Icon lismClass={{ c: 'c--note__icon' }} icon={icon} {...iconProps} />}
 					<span className='c--note__heading'>{heading}</span>
-				</Flex>
+				</Core>
 			)}
 			<Layouter lismClass={{ c: 'c--note__body' }} isFlow={isFlow} {...bodyProps}>
 				{children}

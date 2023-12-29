@@ -1,4 +1,4 @@
-import { Box, Text, Stack, Frame, RatioGrid } from '@loos/lism-core';
+import { Box, Text, Stack, Frame, Grid } from '@loos/lism-core';
 import { DammyText } from '~/components';
 
 export const ColorDemos = ({ colors = [] }) => {
@@ -10,14 +10,14 @@ export const ColorDemos = ({ colors = [] }) => {
 						<Text bd='left' bdw='2px' lh='1.25' pl='20' fz='xs'>
 							<code>--{name}</code>
 						</Text>
-						<RatioGrid ratio={['1', '1:2']} fz='s'>
+						<Grid ratio={['1', '1:2']} fz='s'>
 							<Box bgc={`var(--${name})`} p='10'>
 								&emsp;
 							</Box>
 							<Box bd='' c={`var(--${name})`} p='10'>
 								Lorem ipsum text...
 							</Box>
-						</RatioGrid>
+						</Grid>
 					</Stack>
 				);
 			})}

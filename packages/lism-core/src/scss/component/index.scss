@@ -1,13 +1,7 @@
-@forward './atoms/avatar';
-
-// blocks
-@forward './blocks/divider';
-@forward './blocks/frame';
-@forward './blocks/linkbox';
-
-// components
-@forward './components/accordion';
-@forward './components/tabs';
+@forward './divider';
+@forward './accordion';
+@forward './tabs';
+@forward './linkbox';
 
 // @use './layout-modules.scss';
 @forward '../../components/Decorator/style.scss';

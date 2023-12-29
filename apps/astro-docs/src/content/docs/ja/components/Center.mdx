@@ -3,7 +3,7 @@ title: 'Center'
 description: ...
 ---
 
-import { Center, Frame, Columns } from '@loos/lism-core';
+import { Center, Frame, Alert, Box, Text } from '@loos/lism-core';
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 
@@ -11,150 +11,203 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 **要素**を上下左右中央揃えで配置するためのモジュールです。
 
 
-<Preview>
-	<PreviewTitle>対応するHTML構造</PreviewTitle>
-	<PreviewCode>
-	```jsx
-	<div class="l--center">...</div>
-	```
-	</PreviewCode>
-</Preview>
-
-
 ## 主なProps
-- `size` : 指定した値が`data-size`に出力されます。
-	- （有効な値は`"cover"` or `"content"`の2つ）
-- その他、[`<Grid>`で使えるprops](/docs/components/Grid#props)が使えます。
+
+{/* | プロパティ | 説明 | 有効な値 |
+|---|---|---|
+| `size`| 指定した値によって自動でpropが適用されます。 |`cover` or `content`| */}
+
+[`<Grid>`で使えるprops](/ja/components/grid#props)が使えます。
+
+{/* - `gap` : 子要素間の余白を指定します。 */}
 
 
 ## Import
 
-```js
+<Preview>
+	<PreviewCode slot='tab' label='React'>
+```jsx
 import { Center } from '@loos/lism-core';
 ```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='Astro'>
+```jsx
+import { Center } from '@loos/lism-astro';
+```
+	</PreviewCode>
+</Preview>
+
 
 ## Usage
 
 Centerが**高さを持たない**場合は、コンテンツを水平方向に中央揃えで配置するだけとなります。
-Centerに**高さがある時**、垂直方向に対しても中央揃えになります。
+{/* <Alert preset="info">
+水平方向の中央揃えだけでいい場合は、`<Stack ai="center">`でも可能です。
+</Alert> */}
 
 {/* 水平方向に関しては、いわゆる『内在的な』中央揃え（テキスト幅が小さければ左右中央揃え、長ければ普通に左寄せ状態と同じ状態）になります。 */}
-
 
 <Preview>
 	<PreviewTitle>
 		高さの設定が特にない時
 	</PreviewTitle>
-	<PreviewArea resize>
-		<Center p={30} gap={30}>
-			<Text fz="l">TEXT</Text>
-			<DammyText length="xs" />
-			<DammyText length="m" />
+	<PreviewArea resize p={10}>
+		<Center p='box'>
+			<Text fz='l'>TEXT</Text>
 		</Center>
 	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Center p={30} gap={30}>
-			<Text fz="l">TEXT</Text>
+		<Center p='box'>
+			<Text fz='l'>TEXT</Text>
+		</Center>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx
+		<div class="l--center -p:box">
+			<p class="-fz:l">TEXT</p>
+		</div>
+		```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>
+		長いテキストの改行は左寄せになるので、テキストの読みやすさを損ないません。
+	</PreviewTitle>
+	<PreviewArea resize p={10}>
+		<Center p='box' gap={20}>
+			<Text fz='l'>TEXT</Text>
+			<DammyText length='xs' lang='ja'/>
+			<DammyText length='m' lang='ja'/>
+		</Center>
+	</PreviewArea>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx
+		<Center p='box' gap={20}>
+			<Text fz='l'>TEXT</Text>
 			<p>...</p>
 			<p>...</p>
 		</Center>
 		```
 	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx
+		<div class="l--center -p:box -gap:20">
+			<p class="-fz:l">TEXT</p>
+			<p>...</p>
+			<p>...</p>
+		</div>
+		```
+	</PreviewCode>
 </Preview>
 
-<Alert preset="info">
-水平方向の中央揃えだけでいい場合は、`<Stack ai="center">`でも可能です。
-</Alert>
 
 
-{/* ### 活用例2: コンテンツを水平・垂直方向の中央に配置する */}
+### コンテンツを水平・垂直方向の中央に配置する
 
+Centerに**高さがある時**、垂直方向に対しても中央揃えになります。
 
 <Preview>
 	<PreviewTitle>
 		高さを設定した時
 	</PreviewTitle>
-	<PreviewArea resize>
-		<Center p={30} gap={30} h="50vh">
-			<Text fz="l" fw="700">TEXT</Text>
-			<DammyText length="xs" />
-			<DammyText length="m" />
+	<PreviewArea resize p={10}>
+		<Center p={30} gap={20} h='50vh'>
+			<Text fz='l'>TEXT</Text>
+			<DammyText length='xs' lang='ja'/>
+			<DammyText length='m' lang='ja'/>
 		</Center>
 	</PreviewArea>
-	<PreviewCode>
-		```jsx {2}
-		<Center
-			h="50vh"
-			p={30}
-			gap={30}
-		>
-			<Text fz="l" fw="700">TEXT</Text>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "h='50vh'"
+		<Center h='50vh' p={30} gap={20}>
+			<Text fz='l'>TEXT</Text>
 			<p>...</p>
 			<p>...</p>
 		</Center>
 		```
 	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx
+		<div class="l--center -p:30 -h: -gap:20" style="--h:50vh">
+			<p class=" -fz:l">TEXT</p>
+			<p>ロレムイプサムの座り雨。</p>
+			<p>ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし時と活力はそのような木々と楽しみ。ブラインド行うにはいくつかの重要な事柄が流れます。長年にわたり、私は学区と長寿であれば。</p>
+		</div>
+		```
+	</PreviewCode>
 </Preview>
 
-水平方向の中央揃えを解除して、垂直方向のみ中央揃えにしたい場合は、`<Center>`の親要素に対して`justify-items:start`を指定してください。
+水平方向の中央揃えを解除して、垂直方向のみ中央揃えにしたい場合は、`<Center>`に対して`justify-items:start`を指定してください。
 
 <Preview>
 	<PreviewTitle>
 		垂直方向のみ中央揃えに
 	</PreviewTitle>
-	<PreviewArea resize>
-		<Center p={30} gap={30} h="50vh" ji="start">
-			<Text fz="l" fw="700">TEXT</Text>
-			<DammyText length="xs" />
-			<DammyText length="m" />
+	<PreviewArea resize p={10}>
+		<Center p={30} gap={20} h='50vh' ji='start'>
+			<Text fz='l' fw='700'>TEXT</Text>
+			<DammyText length='xs' lang='ja'/>
+			<DammyText length='m' lang='ja'/>
 		</Center>
 	</PreviewArea>
-	<PreviewCode>
-		```jsx {2,3}
-		<Center
-			ji="start"
-			h="50vh"
-			p={30}
-			gap={30}
-		>
-			<Text fz="l" fw="700">TEXT</Text>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "ji='start'" "h='50vh'"
+		<Center ji='start' h='50vh' p={30} gap={20}>
+			<Text fz='l' fw='700'>TEXT</Text>
 			<p>...</p>
 			<p>...</p>
 		</Center>
 		```
 	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx "-ji:s"
+		<div class="l--center -p:30 -h: -gap:20 -ji:s" style="--h:50vh">
+			<p class=" -fz:l">TEXT</p>
+			<p>ロレムイプサムの座り雨。</p>
+			<p>ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし時と活力はそのような木々と楽しみ。ブラインド行うにはいくつかの重要な事柄が流れます。長年にわたり、私は学区と長寿であれば。</p>
+		</div>
+		```
+	</PreviewCode>
 </Preview>
 
 
-## `size` の 指定について
+{/* ## `size='cover'`
 
-### size="cover"
-
-`<Cover size="cover">`は`<Center minW="100%" minH="100%">`のエイリアスです。
+`<Center size='cover'>`は`<Center minW='100%' minH='100%'>`のエイリアスです。
 
 `<Center>`が親要素のサイズに合わせて広がるようになります。
 
 <Preview>
 	<PreviewTitle>
-		`size="cover"`
+		`size='cover'`
 	</PreviewTitle>
-	<PreviewArea resize>
-		<Frame aspect="4/3" bgc="pale">
-			<Center size="cover" gap={30} p="box" bd>
-				<Text fz="l" fw="700">size="cover"</Text>
-				<DammyText/>
+	<PreviewArea resize p={10}>
+		<Frame aspect='16/9'>
+			<Center size='cover' bgc='pale'>
+				<Text fz='l' fw='700'>`size='cover'`</Text>
+				<Text fz='xs'>= `.-minW100`,`.-minH:100`</Text>
 			</Center>
 		</Frame>
 	</PreviewArea>
-	<PreviewCode>
-		```jsx {2}
-		<Frame aspect="4/3" bgc="pale">
-			<Center size="cover" gap={30} p="box" bd>
-				<Text fz="l" fw="700">size="cover"</Text>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "size='cover'"
+		<Frame aspect='16/9'>
+			<Center size='cover' bgc='pale'>
 				<p>...</p>
 			</Center>
 		</Frame>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx "-minW:100 -minH:100"
+		<div class="l--frame -aspect:16/9">
+			<div class="l--center -minW:100 -minH:100 -bgc:pale">
+				<p>...</p>
+			</div>
+		</div>
 		```
 	</PreviewCode>
 </Preview>
@@ -166,68 +219,41 @@ Centerに**高さがある時**、垂直方向に対しても中央揃えにな�
 
 
 
-### size="content"
+### size='content'
 
 
-`<Cover size="content">`は`<Center w="fit-content" h="fit-content" mx="auto">`のエイリアスです。
+`<Center size='content'>`は`<Center w='fit-content' h='fit-content' mx='auto'>`のエイリアスです。
 
 `<Center>`のサイズは内部コンテンツに依存するようになり、`<Center>`自身が親要素に対して水平方向(inline方向)に中央揃えで配置されるようになります。
 
 
 <Preview>
 	<PreviewTitle>
-		`size="content"`
+		`size='content'`
 	</PreviewTitle>
-	<PreviewArea resize>
-		<Box bd isFlow>
-			<DammyText />
-			<Center size="content" p={20} bgc="blue:40%">
-				<Text ff="emoji">💡</Text>
-				<Text fw="700">Center</Text>
-			</Center>
-			<DammyText length="l"/>
-		</Box>
+	<PreviewArea resize p={10}>
+		<Center size='content' p='box' bgc='pale' shadow='1'>
+			<Text ff='emoji'>💡</Text>
+			<Text fw='bold'>`size='content'`</Text>
+		</Center>
 	</PreviewArea>
-	<PreviewCode>
-		```jsx
-		<Box bd isFlow>
-			<DammyText />
-			<Center size="content" p={20} bgc="blue:40%">
-				<Text ff="emoji">💡</Text>
-				<Text fw="700">Center</Text>
-			</Center>
-			<DammyText length="l"/>
-		</Box>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "size='content'"
+		<Center size='content' p='box' bgc='pale' shadow='1'>
+			<Text ff='emoji'>💡</Text>
+			<p>...</p>
+		</Center>
 		```
 	</PreviewCode>
-</Preview>
-{/* 
-<Preview>
-	<PreviewTitle>
-		`size="content"`
-	</PreviewTitle>
-	<PreviewArea resize>
-		<Frame aspect="2/1" bd>
-			<Center size="content" p={20} bgc="blue:40%" h="100%">
-				<Text ff="emoji">💡</Text>
-				<Text fw="700">Center</Text>
-			</Center>
-		</Frame>
-	</PreviewArea>
-	<PreviewCode>
-		```jsx
-		<Frame aspect="2/1" bd>
-			<Center size="content" p={20} bgc="blue:40%" h="100%">
-				<Text ff="emoji">💡</Text>
-				<Text fw="700">Center</Text>
-			</Center>
-		</Frame>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx "-w:fit -h:fit -mx:a"
+		<div class="l--center -w:fit -h:fit -mx:a -p:box -bgc:pale -bxsh:1">
+			<p class="-ff:emoji">💡</p>
+			<p>...</p>
+		</div>
 		```
 	</PreviewCode>
 </Preview> */}
-
-
-
 
 
 ## 内部を スクロール可 にしたい時の注意点
@@ -246,18 +272,18 @@ Lismの`<Center>` も `grid` を使ってるので、同じ問題が発生しま
 
 <Preview>
 	<PreviewTitle>
-		...
+		スクロール時にコンテンツが全て見えない 😱
 	</PreviewTitle>
-	<PreviewArea resize>
-		<Center px={30} py={50} gap={30} h='45vh' ovy='auto' bd>
+	<PreviewArea resize p={10}>
+		<Center px={30} py={50} gap={20} h='45vh' ovy='auto' bd>
 			<Text fz='l' fw='700'>DEMO</Text>
 			<DammyText length='l' />
 			<DammyText length='xl' />
 		</Center>
 	</PreviewArea>
-	<PreviewCode>
-		```jsx
-		<Center px={30} py={50} gap={30} h='45vh' ovy='auto' bd>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "\<Center" "h='45vh' ovy='auto'"
+		<Center px={30} py={50} gap={20} h='45vh' ovy='auto' bd>
 			<Text fz='l' fw='700'>DEMO</Text>
 			<DammyText length='l' />
 			<DammyText length='xl' />
@@ -268,26 +294,27 @@ Lismの`<Center>` も `grid` を使ってるので、同じ問題が発生しま
 
 これを回避するには、親要素側に具体的な**高さ**と`overflow-y:auto`を指定し、`<Center>`は`min-height:100%`を指定する、というアプローチが必要です。
 
-(`height:100%`だとこれまたうまくいかないので注意)
-
+<Alert>
+`height:100%` だとうまくいかないので注意
+</Alert>
 
 <Preview>
 	<PreviewTitle>
-		...
+		スクロール時、正常にコンテンツが見える 😄
 	</PreviewTitle>
-	<PreviewArea resize>
+	<PreviewArea resize p={10}>
 		<Box px={30} py={50} h='45vh' ovy='auto' bd>
-			<Center gap={30} minH='100%'>
+			<Center gap={20} minH='100%'>
 				<Text fz='l' fw='700'>DEMO</Text>
 				<DammyText length='l' />
 				<DammyText length='xl' />
 			</Center>
 		</Box>
 	</PreviewArea>
-	<PreviewCode>
-		```jsx
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "\<Center" "h='45vh' ovy='auto'" "minH='100%'"
 		<Box px={30} py={50} h='45vh' ovy='auto' bd>
-			<Center gap={30} minH='100%'>
+			<Center gap={20} minH='100%'>
 				<Text fz='l' fw='700'>DEMO</Text>
 				<DammyText length='l' />
 				<DammyText length='xl' />
@@ -324,23 +351,23 @@ Lismの`<Center>` も `grid` を使ってるので、同じ問題が発生しま
 	<PreviewTitle>
 		垂直中央揃えの実装方法の比較
 	</PreviewTitle>
-	<PreviewArea resize>
+	<PreviewArea resize p={10}>
 		<Columns cols="2" fz="s" lh="s">
 			<Frame aspect="4/3" bgc="pale">
 				<Center h="100%" p='box'>
 					<Text fw="700">margin</Text>
-					<DammyText length="l" mbs={20}/>
+					<DammyText length='l' mbs={20}/>
 				</Center>
 			</Frame>
 			<Frame aspect="4/3" bgc="pale">
 				<Stack ai="center" jc="center" h="100%" p='box'>
 					<Text fw="700">justify-content</Text>
-					<DammyText length="l" mbs={20}/>
+					<DammyText length='l' mbs={20}/>
 				</Stack>
 			</Frame>
 		</Columns>
 	</PreviewArea>
-		<PreviewCode>
+		<PreviewCode slot='tab' label='React, Astro'>
 		```jsx {3, 9}
 		<Columns cols="2" fz="s" lh="s">
 			<Frame aspect="4/3" bgc="pale">
@@ -376,34 +403,34 @@ Lismの`<Center>` も `grid` を使ってるので、同じ問題が発生しま
 	<PreviewTitle>
 		`overflow-y:auto`の有無の差
 	</PreviewTitle>
-	<PreviewArea resize>
+	<PreviewArea resize p={10}>
 		<Columns cols="2" fz="s" lh="s">
 			<Frame aspect="4/3" bgc="pale">
 				<Center h="100%" px={30} py={40} ovy="auto">
-					<Text fz="l" fw="700">ovy "auto"</Text>
-					<DammyText length="l" mbs={20} />
+					<Text fz='l' fw="700">ovy "auto"</Text>
+					<DammyText length='l' mbs={20} />
 				</Center>
 			</Frame>
 			<Frame aspect="4/3" bgc="pale">
 				<Center h="100%" px={30} py={40}>
-					<Text fz="l" fw="700">ovy なし</Text>
-					<DammyText length="l" mbs={20} />
+					<Text fz='l' fw="700">ovy なし</Text>
+					<DammyText length='l' mbs={20} />
 				</Center>
 			</Frame>
 		</Columns>
 	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx {3,9}
 		<Columns cols="2" fz="s" lh="s">
 			<Frame aspect="4/3" bgc="pale">
 				<Center h="100%" px={30} py={40} ovy="auto">
-					<Text fz="l" fw="700">ovy "auto"</Text>
+					<Text fz='l' fw="700">ovy "auto"</Text>
 					...
 				</Center>
 			</Frame>
 			<Frame aspect="4/3" bgc="pale">
 				<Center h="100%" px={30} py={40}>
-					<Text fz="l" fw="700">ovy なし</Text>
+					<Text fz='l' fw="700">ovy なし</Text>
 					...
 				</Center>
 			</Frame>

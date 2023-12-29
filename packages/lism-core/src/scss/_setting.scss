@@ -52,7 +52,7 @@ $utility_break_points: () !default;
 $utility_break_points: map.merge(
 	(
 		'sm': 1,
-		'md': 0,
+		'md': 1,
 		'lg': 0,
 	),
 	$utility_break_points
@@ -80,15 +80,16 @@ $bp_props: map.deep-merge(
 		'gap': (
 			prop: 'gap',
 		),
-		'colg': (
-			prop: 'column-gap',
-		),
-		'rowg': (
-			prop: 'row-gap',
-		),
-		'm': (
-			prop: 'margin',
-		),
+		// 'colg': (
+		// 	prop: 'column-gap',
+		// ),
+		// 'rowg': (
+		// 	prop: 'row-gap',
+		// ),
+		'm':
+			(
+				prop: 'margin',
+			),
 		'mx': (
 			prop: 'margin-inline',
 		),

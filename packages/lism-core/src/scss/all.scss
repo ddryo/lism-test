@@ -7,8 +7,11 @@
 // layout
 @use './layout/index' as layout;
 
+// element
+@use './element/index' as element;
+
 // objects
-@use './objects/index' as objects;
+@use './component/index' as component;
 
 // utility
 @use './utility/index' as utility;

@@ -1,33 +1,32 @@
 // import { isValidElement } from 'react';
 // import { Core } from '../Core';
-import { getIconProps } from './helper';
+import getProps from './getProps';
 import { getLismProps } from '../../lib';
 import SVG from './SVG';
 
 export default function Icon({
 	lismClass = {},
-	style = {},
-	scale,
+	asProps = {},
+	variant,
 	isInline,
-	emoji,
+
+	// emoji,
 	children,
 	...props
 }) {
 	lismClass.e = 'e--icon';
 	if (isInline) lismClass.e += ' e--icon--inline';
-	// if (variant) lismClass.e += ` e--icon--${variant}`;
-
-	if (scale) style['--scale'] = scale;
+	if (variant) lismClass.e += ` e--icon--${variant}`;
 
 	const hasChildren = !!children;
 
-	let { Icon, asProps, props: otherProps } = getIconProps(props, hasChildren);
-	if ('_SVG_' === Icon) Icon = SVG;
+	let { as, iconProps, props: otherProps } = getProps(props, hasChildren);
+	const IconComp = '_SVG_' === as ? SVG : as;
 
-	const lismProps = getLismProps({ lismClass, style, ...otherProps });
+	const lismProps = getLismProps({ lismClass, ...otherProps });
 	return (
-		<Icon {...asProps} {...lismProps}>
-			{children || emoji}
-		</Icon>
+		<IconComp {...lismProps} {...asProps} {...iconProps}>
+			{children}
+		</IconComp>
 	);
 }

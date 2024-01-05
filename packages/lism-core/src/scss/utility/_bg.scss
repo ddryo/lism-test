@@ -27,7 +27,7 @@
 	}
 
 	// --grid-color: color-mix(in srgb, currentColor, transparent 92%);
-	background-image: linear-gradient(
+	background: linear-gradient(
 			transparent calc(100% - 1px),
 			var(--grid-color) 50%,
 			var(--grid-color)
@@ -38,7 +38,7 @@
 			var(--grid-color) 50%,
 			var(--grid-color)
 		);
-	background-repeat: repeat;
+	// background-repeat: repeat;
 	background-size: var(--grid-size) var(--grid-size);
 	background-position: calc(var(--grid-size) / 2);
 }
@@ -50,7 +50,7 @@
 		--stripe-deg: -30deg;
 		--stripe-interval: 6px;
 	}
-	background-image: repeating-linear-gradient(
+	background: repeating-linear-gradient(
 		var(--stripe-deg),
 		var(--stripe-color),
 		var(--stripe-color) 1px,
@@ -91,14 +91,14 @@
 // グラデーション
 // ------------------------------
 :root {
-	// --gradient-color-- はグラデーションの色部分だけを指定するための変数
-	--gradient-color--to-black: transparent, rgb(0 0 0) 100%;
+	// --gradColor-- はグラデーションの色部分だけを指定するための変数
+	--gradColor--toBlack: transparent, rgb(0 0 0) 100%;
 }
 
 // .-gradient\: {
 // 	background-image: var(--gradient);
 // }
-.-gradient\:black-to-bottom {
+.-gradient\:blackToBottom {
 	background-image: linear-gradient(to bottom, transparent 50%, rgb(0 0 0 / 25%) 100%),
 		linear-gradient(to bottom, transparent, rgb(0 0 0 / 75%) 100%);
 	// background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent 50%),

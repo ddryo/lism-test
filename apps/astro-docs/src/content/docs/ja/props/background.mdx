@@ -1,0 +1,179 @@
+---
+title: 'Background'
+description: ...
+sidebar:
+  order: 15
+---
+
+import { Box, Frame, Layer, Media, Center } from '@loos/lism-core';
+import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+
+`bg`には、文字列またはオブジェクトを指定できます。
+
+- 文字列指定の場合
+	- ユーティリティクラス化できる文字列の場合は、`.-bg:{utility}`が出力されます。  
+	(`stripe`, `grid`,`glass`)
+	- それ以外の場合、`background`にそのまま出力されます。
+- オブジェクト指定のときは、それぞれ対応するbackgroundプロパティとして出力されます。
+	- bg: background
+	- image → background-image
+	- size → background-size,
+	- repeat
+	- position
+	- color
+	- attachment
+	- blendMode
+	- clip
+	- origin
+
+<Preview>
+	<PreviewTitle>`bg`に文字列で一括指定</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Frame aspect='16/9' bg="url(/img/demo-img.jpeg) center / 50%">
+			<Layer bgc="white:50%" position="center" size="contain" w="40rem" p="box">
+				<DammyText />
+			</Layer>
+		</Frame>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx {1, 6}
+		<Frame aspect='16/9' bg="url(/img/demo-img.jpeg) center / 50%">
+			<Layer bgc="white:50%" position="center" size="contain" w="40rem" p="box">
+				<DammyText />
+			</Layer>
+		</Frame>
+		```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>`bg`にオブジェクトで成分指定</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Frame aspect='16/9' bg={{image: 'url(/img/demo-img.jpeg)', position: 'center', size: '50%'}}>
+			<Layer bgc="white:50%" position="center" size="contain" w="40rem" p="box">
+				<DammyText />
+			</Layer>
+		</Frame>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx {1, 6}
+		<Frame aspect='16/9' bg={{image: 'url(/img/demo-img.jpeg)', position: 'center', size: '50%'}}>
+			<Layer bgc="white:50%" position="center" size="contain" w="40rem" p="box">
+				<DammyText />
+			</Layer>
+		</Frame>
+		```
+	</PreviewCode>
+</Preview>
+
+
+### ユーティリティクラス
+
+{/* （css多いから拡張パックで？） */}
+
+<Preview>
+	<PreviewTitle>grid, stripe</PreviewTitle>
+	<PreviewArea resize nogrid p={20}>
+		<Box bg='grid' p='box:l'>
+			<DammyText />
+		</Box>
+		<Box bg='stripe' p='box:l'>
+			<DammyText />
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Box bg='grid' p='box:l'>
+			<DammyText />
+		</Box>
+		<Box bg='stripe' p='box:l'>
+			<DammyText />
+		</Box>
+		```
+	</PreviewCode>
+</Preview>
+
+
+
+<Preview>
+	<PreviewTitle>grid, stripeとの組み合わせ</PreviewTitle>
+	<PreviewArea resize nogrid p={20}>
+		<Box bg='grid' p='box:l' bgc='black:10%'>
+			<DammyText />
+		</Box>
+		<Box bg='stripe' p='box:l' bgc='blue:10%'>
+			<DammyText />
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Box bg='grid' p='box:l' bgc='black:10%'>
+			<DammyText />
+		</Box>
+		<Box bg='stripe' p='box:l' bgc='blue:10%'>
+			<DammyText />
+		</Box>
+		```
+	</PreviewCode>
+</Preview>
+
+
+
+#### Glass
+
+<Preview>
+	<PreviewTitle>glass</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Frame aspect='16/9'>
+			<Media
+				src='https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80'
+				alt='' width='960' height='640'
+			/>
+			<Layer p={20} inset={0}>
+				<Center p='box' size='cover' bg='glass' c='white' radius={2} shadow={2}>
+					<DammyText />
+				</Center>
+			</Layer>
+		</Frame>
+		<Frame aspect='16/9'>
+			<Media
+				src='https://images.unsplash.com/photo-1501949997128-2fdb9f6428f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80'
+				alt='' width='960' height='640'
+			/>
+			<Layer p={20} inset={0}>
+				<Center p='box' size='cover' bg='glass' c='black' radius={5} shadow={4}>
+					<DammyText />
+				</Center>
+			</Layer>
+		</Frame>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Frame aspect='16/9'>
+			<Media
+				src='https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80'
+				alt='' width='960' height='640'
+			/>
+			<Layer p={20} bg='glass' inset={0}>
+				<Center p='box' size='cover' bg='glass' c='white' radius={2} shadow={2}>
+					<DammyText />
+				</Center>
+			</Layer>
+		</Frame>
+		<Frame aspect='16/9'>
+			<Media
+				src='https://images.unsplash.com/photo-1501949997128-2fdb9f6428f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80'
+				alt='' width='960' height='640'
+			/>
+			<Layer p={20} inset={0}>
+				<Center p='box' size='cover' bg='glass' c='black' radius={5} shadow={4}>
+					<DammyText />
+				</Center>
+			</Layer>
+		</Frame>
+		```
+	</PreviewCode>
+</Preview>

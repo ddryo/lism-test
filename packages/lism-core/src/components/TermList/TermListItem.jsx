@@ -6,7 +6,7 @@ import { Stack, SideFlex } from '../Flex';
 // isFlow は ddに渡す
 export default function TermListRow({
 	lismClass = {},
-	mode = 'stack',
+	isFlex,
 	term,
 	isFlow,
 	dtProps = {},
@@ -16,25 +16,23 @@ export default function TermListRow({
 }) {
 	lismClass.c = 'c--termList__row';
 
+	let Component = null;
 	let defaultProps = {};
-	let Component = Core;
-	let dtClass = 'c--termList__dt';
-	if (mode === 'stack') {
-		Component = Stack;
-		defaultProps = { gap: 10 };
-		ddProps = Object.assign({ mis: 30 }, ddProps);
-	} else if (mode === 'fluid') {
+
+	if (isFlex) {
 		Component = SideFlex;
-		defaultProps = { ap: 10 };
-		dtClass += ' is--side';
-		ddProps = Object.assign({ mis: 30 }, ddProps);
+		defaultProps = { side: 'first', sideW: '10rem', fluidMinW: '15rem' };
+	} else {
+		Component = Stack;
+		defaultProps = {};
 	}
+
 	return (
 		<Component lismClass={lismClass} {...defaultProps} {...props}>
-			<Core tag='dt' fw='bold' className={dtClass} {...dtProps}>
+			<Core tag='dt' fw='bold' lismClass={{ c: 'c--termList__dt' }} {...dtProps}>
 				{term}
 			</Core>
-			<Layouter tag='dd' className='c--termList__dd' isFlow={isFlow} {...ddProps}>
+			<Layouter tag='dd' lismClass={{ c: 'c--termList__dd' }} isFlow={isFlow} {...ddProps}>
 				{children}
 			</Layouter>
 		</Component>

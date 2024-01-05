@@ -60,7 +60,7 @@ export default {
 		'side',
 		//'start', 'center', 'end'
 	],
-	gradient: ['sunset', 'black-to-bottom'],
+	gradient: ['sunset', 'blackToBottom'],
 	// transform: ['flip:x', 'flip:y', 'flip:xy'],
 	animation: [],
 

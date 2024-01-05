@@ -236,6 +236,14 @@ export default [
 				label: 'LinkBox',
 				link: '/components/linkbox/',
 			},
+			{
+				label: 'Tabs',
+				link: '/components/tabs/',
+			},
+			{
+				label: 'TermList',
+				link: '/components/termlist/',
+			},
 		],
 	},
 	// {

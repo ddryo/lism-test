@@ -181,3 +181,28 @@ td:first-child > code:only-child {
 		padding: 2px 4px;
 	}
 }
+
+.-gradient\:sunset {
+	// background-image: linear-gradient(
+	// 	to bottom,
+	// 	#416dc7 10%,
+	// 	#5383e5 40%,
+	// 	#f18271 75%,
+	// 	#f7d978 100%
+	// );
+	background: linear-gradient(
+		to top,
+		#a24525 0%,
+		#dd723c 15%,
+		#d7b97b 40%,
+		#a2b2b9 55%,
+		#5a718c 80%,
+		#36557e 100%
+	);
+}
+
+:root {
+	/* // グラデーション用のカラープリセット */
+	--gradColor--lime: #abecd6 0%, #fbed96 100%;
+	--gradColor--denseWater: #3ab5b0 0%, #3d99be 31%, #56317a 100%;
+}

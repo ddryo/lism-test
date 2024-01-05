@@ -1,5 +1,4 @@
 // .c--termList{}
-.c--termList__row.l--fluidFix {
-	--fluid--minW: inherit;
-	--fixW: inherit;
+.c--termList__row {
+	gap: var(--s--5) var(--s--20);
 }

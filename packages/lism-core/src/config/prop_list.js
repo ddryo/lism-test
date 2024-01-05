@@ -93,13 +93,17 @@ export default {
 		// map: 1,
 		presets: 1,
 		utils: 1,
-		objProcessor: (d) => `bd${d[0]}`,
+		objProcessor: (d) => `bd${d}`, // いるか...?
 	},
 	//
 	bdl: { style: 'borderLeft', utils: { none: 'n' } },
 	bdr: { style: 'borderRight', utils: { none: 'n' } },
 	bdt: { style: 'borderTop', utils: { none: 'n' } },
 	bdb: { style: 'borderBottom', utils: { none: 'n' } },
+	bdis: { style: 'borderInlineStart', utils: { none: 'n' } },
+	bdbs: { style: 'borderBlockStart', utils: { none: 'n' } },
+	bdie: { style: 'borderInlineEnd' },
+	bdbe: { style: 'borderBlockEnd' },
 
 	// bd="l,r,is"
 	bdw: { style: '--bdw' }, // --bdw のみ
@@ -336,6 +340,7 @@ export const CONTEXT_PROPS = {
 		translate: { style: 1, utils: 1, utilKey: 'trnslt' },
 		rotate: { style: 1, utils: 1 }, // rot?
 		scale: { style: 1 }, //
+		// flip: { style: 1 },
 		clipPath: { style: 1 }, // cpp ?
 
 		lis: { style: 'listStyle', utils: { none: 'n' } },

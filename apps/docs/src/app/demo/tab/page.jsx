@@ -1,5 +1,5 @@
 'use client';
-import { Layouter, Text, Box, Tabs, TabItem, TabList, TabBtn, TabPanel, Spacer } from '@loos/lism-core';
+import { Layouter, Text, Box, Tabs, TabItem, TabList, Tab, TabPanel, Spacer } from '@loos/lism-core';
 import DammyText from '@/components/DammyText';
 // import { FolderSimple } from '@phosphor-icons/react';
 // import { ThumbsUp, SmileyXEyes } from '@phosphor-icons/react';
@@ -39,9 +39,10 @@ export default function ContainerTest() {
 				// jc='center'
 				// listProps={{ w: '100', jc: 'center' }}
 			>
-				<TabItem label='title1'>
+				<TabItem label='title1' isFlow p='50' bd>
 					<p>index:0</p>
-					{/* <DammyText /> */}
+					<DammyText />
+					<DammyText />
 				</TabItem>
 				<TabItem label='title2'>
 					<p>index:1</p>
@@ -99,19 +100,19 @@ export default function ContainerTest() {
 				</TabItem>
 			</Tabs>
 
-			<p>TabList, TabBtn, TabPanel を手動配置</p>
-			{/* <Tabs>
-				<TabList variant='line'>
-					<TabBtn isActive>a</TabBtn>
-					<TabBtn>a</TabBtn>
+			<p>TabList, Tab, TabPanel を手動配置</p>
+			<Tabs defaultIndex={0}>
+				<TabList>
+					<Tab index={0}>tab1</Tab>
+					<Tab index={1}>tab2</Tab>
 				</TabList>
-				<TabPanel isActive>
+				<TabPanel index={0}>
 					<DammyText />
 				</TabPanel>
-				<TabPanel>
-					<DammyText />
+				<TabPanel index={1}>
+					<DammyText length='l' />
 				</TabPanel>
-			</Tabs> */}
+			</Tabs>
 		</Layouter>
 	);
 }

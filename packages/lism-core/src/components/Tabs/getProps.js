@@ -8,10 +8,10 @@ export default function getTabProps(
 
 	if (isVertical) {
 		// props.gt = 'side:s';
-		_listProps.as = 'Stack';
-		_panelProps.ai = 's';
 		// _panelProps.gcs = 2;
 		// _panelProps.grs = 1;
+		// _listProps.as = 'Stack';
+		// _panelProps.ai = 's';
 
 		dataTabs.push('vertical');
 	} else {

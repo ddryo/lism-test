@@ -67,15 +67,10 @@ export default {
 		right: 'r',
 		top: 't',
 		bottom: 'b',
-		start: 's',
-		'inline-start': 's',
+		inline: 'x',
+		block: 'y',
+		'inline-start': 'is',
 		'block-start': 'bs',
-		block: 'B',
-		inline: 'I',
-		// inline: 'inline',
-		// block: 'block',
-		// 'inline-end': 'in-e',
-		// 'block-end': 'bl-e',
 	},
 
 	pos: {

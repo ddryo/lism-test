@@ -209,16 +209,21 @@ class LismPropsData {
 		const attrKeys = Object.keys(attrs);
 
 		attrKeys.forEach((propName) => {
-			// propListに入ってない特殊系
+			// 特殊系
 			if (propName === 'hover') {
 				const propVal = this.extractProp(propName);
 				this.setHoverProps(propVal);
 				return;
 			}
-
 			if (propName === 'gradient') {
 				const propVal = this.extractProp(propName);
 				this.setGradientProps(propVal);
+				return;
+			}
+
+			if (propName === 'bd') {
+				const propVal = this.extractProp(propName);
+				this.setBdProps(propVal);
 				return;
 			}
 
@@ -243,7 +248,7 @@ class LismPropsData {
 		propData = propData || PROPS[propName] || null;
 		if (null === propData) return; // 一応 nullチェックここでも
 
-		const { name, BP, objProcessor, map, ...options } = propData;
+		const { name, objProcessor, map, ...options } = propData;
 
 		// ブレイクポイント指定用のオブジェクト{xs,sm,md,lg,xl}かどうかをチェック
 		const { _: baseValue, ...bpValues } = getBpData(propVal);
@@ -267,9 +272,6 @@ class LismPropsData {
 				return;
 			}
 
-			// bd のみ特殊処理
-			if (propName === 'bd') this.addUtil('-bd:');
-
 			// 各成分の解析
 			if (objProcessor) {
 				// this.analyzeSideObj(propVal, objProcessor);
@@ -281,6 +283,16 @@ class LismPropsData {
 				});
 			}
 		} else {
+			// , 区切りでユーティリティ複数指定できるもの
+			if (propName === 'bd' && typeof propVal === 'string' && propVal.includes(',')) {
+				propVal.split(',').forEach((_val) => {
+					const utilVal = getMaybeUtilValue('bd', _val);
+					if (utilVal) this.addUtil(`-bd:${utilVal}`);
+				});
+				return;
+			}
+
+			// オブジェクト以外の普通の処理
 			this.setAttrs(name || propName, propVal, options);
 		}
 
@@ -445,8 +457,6 @@ class LismPropsData {
 	setHoverProps(hoverData) {
 		if (!hoverData) return;
 
-		// console.log('hoverData', hoverData);
-
 		// 配列のときは中身を再帰処理
 		if (Array.isArray(hoverData)) {
 			hoverData.forEach((_hov) => {
@@ -458,8 +468,14 @@ class LismPropsData {
 		if (hoverData === '-' || hoverData === true) {
 			this.addUtil(`-hov:`);
 		} else if (typeof hoverData === 'string') {
-			// this.setHoverClass(hover);
-			this.addUtil(`-hov:${hoverData}`);
+			// , 区切りでユーティリティを複数指定できる
+			if (hoverData.includes(',')) {
+				hoverData.split(',').forEach((_val) => {
+					this.addUtil(`-hov:${_val}`);
+				});
+			} else {
+				this.addUtil(`-hov:${hoverData}`);
+			}
 		} else if (typeof hoverData === 'object') {
 			Object.keys(hoverData).forEach((propName) => {
 				let value = hoverData[propName];
@@ -469,16 +485,41 @@ class LismPropsData {
 				if (converterName) {
 					value = getMaybeCssVar(value, converterName, propName);
 				}
-				this.addUtil(`-hov:${propName}:`);
+				this.addUtil(`-hov:${propName}`);
 				this.addStyle(`--hov--${propName}`, value);
 			});
 		}
+	}
+
+	setBdProps(value) {
+		if (!value) return;
+
+		if (typeof value === 'string') {
+			// , 区切りでユーティリティを複数指定できる（var() や rgba() などがないかチェック）
+			if (value.includes(',') && !value.includes('(')) {
+				value.split(',').forEach((_val) => {
+					const utilVal = getMaybeUtilValue('bd', _val);
+					if (utilVal) this.addUtil(`-bd:${utilVal}`);
+				});
+				return;
+			}
+		}
+
+		// BP指定用のオブジェクトかどうかは考慮していないことに注意。
+		if (null != value && typeof value === 'object') {
+			this.addUtil('-bd:');
+		}
+
+		this.analyzeProp('bd', value);
 	}
 
 	setGradientProps(gradVal) {
 		if (typeof gradVal === 'string') {
 			if (isPresetValue('gradient', gradVal)) {
 				this.addUtil('-gradient:' + gradVal);
+			} else if (gradVal.startsWith('u:')) {
+				// "u:"ではじまっている場合、それに続く文字列を取得してユーティリティ化
+				this.addUtil(`-gradient:${gradVal.replace('u:', '')}`);
 			} else {
 				this.addStyle('backgroundImage', gradVal);
 			}
@@ -503,7 +544,7 @@ class LismPropsData {
 			if (colors.includes(',')) {
 				gradient += colors;
 			} else {
-				gradient += `var(--gradient-color--${colors})`;
+				gradient += `var(--gradColor--${colors})`;
 			}
 			this.addStyle('backgroundImage', `${type}-gradient(${gradient})`);
 		}

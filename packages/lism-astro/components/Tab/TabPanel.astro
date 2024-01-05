@@ -5,12 +5,16 @@ import { Layouter } from '../Core';
 
 export interface Props extends LismProps {
 	isActive?: boolean;
+	tabID?: string | number;
+	index?: number;
 }
-const { lismClass = {}, isActive, ...props } = Astro.props;
+const { lismClass = {}, tabID = '', index = 0, isActive, ...props } = Astro.props;
 lismClass.c = 'c--tabs_panel';
+const controlId = `${tabID}-${index}`;
 ---
 
 <GridItem
+	id={controlId}
 	as={Layouter}
 	lismClass={lismClass}
 	role='tabpanel'

@@ -5,10 +5,9 @@ description: ...
 
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
-import { Button, Cluster, MediaLayer, FilterLayer } from '@loos/lism-core';
+import { Alert, Box, Button, Cluster, MediaLayer, FilterLayer } from '@loos/lism-core';
 import {
 	ArrowFatDown,
-	ArrowDown,
 	ArrowRight,
 	ShoppingCartSimple,
 	ArrowCircleRight,
@@ -16,17 +15,6 @@ import {
 
 
 ボタンを表示するコンポーネントです。
-
-<Preview>
-	<PreviewTitle>対応するHTML構造</PreviewTitle>
-	<PreviewCode>
-		```jsx
-		<a class="c--button" href="###">
-			<span class="c--button__text">Button</span>
-		</a>
-		```
-	</PreviewCode>
-</Preview>
 
 
 ## 主なprops
@@ -163,17 +151,17 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 
 ボタンに幅を指定した時に、`isGrid`を併用することでアイコンを端に寄せることもできます。  
 (`[data-icon-position="edge"]`とかdata属性にすべきか...？prop名は要検討)
- 
+
 
 <Preview>
 	<PreviewTitle>`isGrid`</PreviewTitle>
 	<PreviewArea resize p={20} isFlow={20}>
-			<Button href="#button" leftIcon={<ShoppingCartSimple />} w="100%" maxW="20em" isGrid>Button</Button>
-			<Button href="#button" rightIcon={<ArrowRight />} w="100%" maxW="20em" isGrid>Button</Button>
+			<Button href="#button" leftIcon={ShoppingCartSimple} w="100%" maxW="20em" isGrid>Button</Button>
+			<Button href="#button" rightIcon={ArrowRight} w="100%" maxW="20em" isGrid>Button</Button>
 			<Button
 				href="#button"
-				leftIcon={<ShoppingCartSimple />}
-				rightIcon={<ArrowRight />}
+				leftIcon={ShoppingCartSimple}
+				rightIcon={ArrowRight}
 				w="100%"
 				maxW="20em"
 				isGrid
@@ -196,13 +184,13 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 <Preview>
 	<PreviewTitle>`iconOffset`の比較</PreviewTitle>
 	<PreviewArea resize p={20} isFlow='s'>
-		<Button href="#button" iconOffset="0%" rightIcon={<ArrowRight />}>Button</Button>
-		<Button href="#button" iconOffset="10%" rightIcon={<ArrowRight />}>Button</Button>
+		<Button href="#button" iconOffset="0%" rightIcon={ArrowRight}>Button</Button>
+		<Button href="#button" iconOffset="10%" rightIcon={ArrowRight}>Button</Button>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Button href="#button" iconOffset="0%" rightIcon={<ArrowRight />}>Button</Button>
-		<Button href="#button" iconOffset="10%" rightIcon={<ArrowRight />}>Button</Button>
+		<Button href="#button" iconOffset="0%" rightIcon={ArrowRight}>Button</Button>
+		<Button href="#button" iconOffset="10%" rightIcon={ArrowRight}>Button</Button>
 		```
 	</PreviewCode>
 </Preview>
@@ -212,7 +200,7 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 	<PreviewArea resize p={20} isFlow='s'>
 		<Button
 			href="#button"
-			rightIcon={<ArrowRight />}
+			rightIcon={ArrowRight}
 			w="100%"
 			maxW="20em"
 			isGrid
@@ -220,7 +208,7 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 		<Button
 			iconOffset="25%"
 			href="#button"
-			rightIcon={<ArrowRight />}
+			rightIcon={ArrowRight}
 			w="100%"
 			maxW="20em"
 			isGrid
@@ -228,7 +216,7 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 		<Button
 			iconOffset="50%"
 			href="#button"
-			rightIcon={<ArrowRight />}
+			rightIcon={ArrowRight}
 			w="100%"
 			maxW="20em"
 			isGrid
@@ -352,7 +340,7 @@ Button用の`hover`ユーティリティ。
 	<PreviewTitle>沈むボタン</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Cluster gap={20}>
-			<Button href="#button" variant="outline" shadow="4" hover={{ shadow: "1" }} leftIcon={<ArrowRight />}>shadow 4 → 1</Button>
+			<Button href="#button" variant="outline" shadow="4" hover={{ shadow: "1" }} leftIcon={ArrowRight}>shadow 4 → 1</Button>
 		</Cluster>
 	</PreviewArea>
 	<PreviewCode>

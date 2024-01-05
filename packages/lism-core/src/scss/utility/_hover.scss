@@ -19,24 +19,25 @@
 	transition-duration: var(--hov--duration);
 	// transition: all var(--hov--duration);
 }
+
 // ------------------------------------------------------------
 // 値指定
 // ------------------------------------------------------------
 // .-hov\:duration\:{}
-.-hov\:c\::hover {
+.-hov\:c:hover {
 	color: var(--hov--c) !important;
 }
-
-.-hov\:bgc\::hover {
+.-hov\:bgc:hover {
 	background-color: var(--hov--bgc) !important;
 }
-.-hov\:bdc\::hover {
+.-hov\:bdc:hover {
 	border-color: var(--hov--bdc) !important;
 }
-.-hov\:shadow\::hover {
+.-hov\:shadow:hover {
+	// shadowユーティリティに負けないように important
 	box-shadow: var(--hov--shadow) !important;
 }
-.-hov\:filter\::hover {
+.-hov\:filter:hover {
 	filter: var(--hov--filter) !important;
 }
 
@@ -55,10 +56,6 @@
 .-hov\:fade:hover {
 	opacity: 0.75;
 }
-.-hov\:shadow:hover {
-	// shadowユーティリティに負けないように important
-	box-shadow: var(--hov--shadow) !important;
-}
 .-hov\:up:hover {
 	translate: 0 -3px;
 }
@@ -67,6 +64,8 @@
 	background-color: var(--rev--bgc) !important;
 	color: var(--rev--c) !important;
 }
+
+// ↓ 追加パックにいれる？
 // .-hov\:dark:hover {
 // 	filter: brightness(0.8) contrast(1.2); //grayscale(5%);
 // }

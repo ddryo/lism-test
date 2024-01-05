@@ -4,7 +4,7 @@ import { LismProps } from '../types';
 import { Stack } from '../Flex';
 import { Grid } from '../Grid';
 import TabList from './TabList.astro';
-import TabBtn from './TabBtn.astro';
+import Tab from './Tab.astro';
 import TabPanel from './TabPanel.astro';
 import { uuidv4 } from '../../helper/index.js';
 import transformTabitems from './transformTabitems.js';
@@ -47,28 +47,39 @@ const { tabProps, listProps, panelProps } = getTabProps(props, variant);
 if ('Stack' === listProps.as) {
 	listProps.as = Stack;
 }
+
+const hasItems = btns.length > 0;
 ---
 
 <Grid lismClass={lismClass} gap='em10' {...tabProps}>
-	<TabList {...listProps}>
-		{
-			btns.map((btn, index) => {
-				return (
-					<TabBtn controlId={btn.id} isActive={btn.isActive}>
-						<Fragment set:html={btn.content} />
-					</TabBtn>
-				);
-			})
-		}
-	</TabList>
 	{
-		panels.map((panel, index) => {
-			return (
-				<TabPanel id={panel.id} isActive={panel.isActive} {...panelProps}>
-					<Fragment set:html={panel.content} />
-				</TabPanel>
-			);
-		})
+		hasItems ? (
+			<>
+				<TabList {...listProps}>
+					{btns.map((btn, index) => {
+						return (
+							<Tab tabID={tabID} index={index} isActive={btn.isActive}>
+								<Fragment set:html={btn.content} />
+							</Tab>
+						);
+					})}
+				</TabList>
+				{panels.map((panel, index) => {
+					return (
+						<TabPanel
+							tabID={tabID}
+							index={index}
+							isActive={panel.isActive}
+							{...panelProps}
+						>
+							<Fragment set:html={panel.content} />
+						</TabPanel>
+					);
+				})}
+			</>
+		) : (
+			<slot />
+		)
 	}
 </Grid>
 

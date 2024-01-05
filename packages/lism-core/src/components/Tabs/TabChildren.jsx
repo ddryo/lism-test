@@ -5,40 +5,42 @@ import TabPanel from './TabPanel';
 
 export default function TabChildren({
 	children,
-	tabId,
-	defaultIndex,
+	// tabId,
+	// defaultIndex,
 	listProps = {},
 	panelProps = {},
 	// ...props
 }) {
-	const [activeIndex, setActiveIndex] = React.useState(defaultIndex || 0);
+	// const [activeIndex, setActiveIndex] = React.useState(defaultIndex || 0);
 	const items = [];
 	const panels = [];
 	React.Children.forEach(children, (child, index) => {
 		const childProps = child.props || {};
 		const { label, ..._panelProps } = childProps;
 
-		const isActive = activeIndex === index;
-		const controlId = `${tabId}-${index}`;
+		// const isActive = activeIndex === index;
+		// const controlId = `${tabId}-${index}`;
 
 		// label を持っていれば、btn, panelを作成
 		if (!label) return;
 
 		items.push(
 			<Tab
-				key={controlId}
-				isActive={isActive}
-				onClick={() => setActiveIndex(index)}
-				controlId={controlId}
+				key={index}
+				index={index}
+				// isActive={isActive}
+				// onClick={() => setActiveIndex(index)}
+				// controlId={controlId}
 			>
 				{label}
 			</Tab>
 		);
 		panels.push(
 			<TabPanel
-				key={controlId}
-				id={controlId}
-				isActive={isActive}
+				key={index}
+				index={index}
+				// id={controlId}
+				// isActive={isActive}
 				{..._panelProps}
 				{...panelProps}
 			/>

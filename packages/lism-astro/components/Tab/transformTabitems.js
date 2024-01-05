@@ -11,7 +11,7 @@ export default function transformHTML(htmlString, tabID, defaultIndex) {
 	matches.forEach((match) => {
 		const tabItemAttrs = match[1];
 		const tabContent = match[2];
-		const TABID = `${tabID}-${index}`;
+		// const TABID = `${tabID}-${index}`;
 		const isActive = index === defaultIndex;
 		index++;
 
@@ -36,7 +36,7 @@ export default function transformHTML(htmlString, tabID, defaultIndex) {
 		// btns += `<button role="tab" class="c--tab__button" aria-selected="${ariaSelected}" aria-controls="${TABID}">${labelContent}</button>`;
 		btns.push({
 			// panelAttrs,
-			id: TABID,
+			// id: TABID,
 			isActive,
 			content: labelContent,
 		});
@@ -44,7 +44,7 @@ export default function transformHTML(htmlString, tabID, defaultIndex) {
 		// panels += `<div role="tabpanel" id="${TABID}" aria-hidden="${ariaHidden}">${panelContent}</div>`;
 		panels.push({
 			// panelAttrs,
-			id: TABID,
+			// id: TABID,
 			isActive,
 			content: panelContent,
 		});

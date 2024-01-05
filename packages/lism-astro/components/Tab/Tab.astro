@@ -3,11 +3,14 @@ import { LismProps } from '../types';
 import { Core } from '../Core';
 
 export interface Props extends LismProps {
-	controlId: string;
+	// controlId: string;
 	isActive?: boolean;
+	tabID?: string | number;
+	index?: number;
 }
-const { lismClass = {}, isActive, controlId, ...props } = Astro.props;
+const { lismClass = {}, tabID = '', index = 0, isActive, ...props } = Astro.props;
 lismClass.c = 'c--tabs_tab';
+const controlId = `${tabID}-${index}`;
 ---
 
 <Core

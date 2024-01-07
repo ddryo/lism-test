@@ -225,6 +225,10 @@ export default [
 				link: '/components/card/',
 			},
 			{
+				label: 'Chat',
+				link: '/components/chat/',
+			},
+			{
 				label: 'Divider',
 				link: '/components/divider/',
 			},

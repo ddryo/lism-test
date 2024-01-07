@@ -1,0 +1,166 @@
+---
+import DemoPageLayout from '~/layouts/DemoPageLayout.astro';
+import {
+	Box,
+	Container,
+	Layer,
+	Frame,
+	Layouter,
+	Chat,
+	ChatIcon,
+	ChatName,
+	ChatContent,
+	ChatFooter,
+	Spacer,
+	Alert,
+	Note,
+	DecoBox,
+} from '@loos/lism-astro';
+import { DammyText } from '~/components';
+
+// import './style.scss';
+---
+
+<DemoPageLayout>
+	<Layouter isFlow hasGutter py={50} isConstrained='s' alignfull id='demo-wrapper' _dir='rtl'>
+		<p>test...</p>
+
+		<Box className='is--colorbox' bd keycolor='blue' p='box'>
+			<DammyText length='codes' />
+		</Box>
+		<Box className='-c:mix -bdc:mix' bd keycolor='blue' p='box'>
+			<DammyText length='codes' />
+		</Box>
+		<Box className='-bgc:mix' keycolor='black' p='box' style={{ '--mixper-bgc': '25%' }}>
+			<DammyText length='codes' />
+		</Box>
+		<Box
+			className='-c:mix -bgc:mix -bdc:mix'
+			keycolor='blue'
+			bd
+			p='box'
+			style={{ '--mixper-bgc': '8%', '--mixper-bdc': '16%', '--mixcolor-bgc': 'var(--pink)' }}
+		>
+			<DammyText length='codes' />
+		</Box>
+		<Alert>
+			<DammyText length='codes' />
+		</Alert>
+		<Note heading='Heading text...' isFlow='s'>
+			<DammyText length='codes' />
+		</Note>
+		<Note heading='Heading text...' isFlow='s' preset='alert'>
+			<DammyText length='codes' />
+		</Note>
+		<Chat>
+			<ChatIcon src='/img/avatar01.jpg' />
+			<ChatName>ルフィ</ChatName>
+			<ChatContent>
+				<DammyText length='codes' />
+			</ChatContent>
+			<ChatFooter>Footer text</ChatFooter>
+		</Chat>
+		<Chat keycolor='gray'>
+			<ChatIcon src='/img/avatar01.jpg' />
+			<ChatName>ルフィ</ChatName>
+			<ChatContent>
+				<DammyText length='codes' />
+			</ChatContent>
+			<ChatFooter>color: gray</ChatFooter>
+		</Chat>
+		<Chat keycolor='green'>
+			<ChatIcon src='/img/avatar01.jpg' />
+			<ChatName>ルフィ</ChatName>
+			<ChatContent>
+				<DammyText length='codes' />
+			</ChatContent>
+			<ChatFooter>color: green</ChatFooter>
+		</Chat>
+		<Chat keycolor='blue' variant='think' direction='end'>
+			<ChatIcon src='/img/avatar01.jpg' />
+			{/* <ChatName>ルフィ</ChatName> */}
+			<ChatContent>
+				<p>
+					ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし<a href='###'
+						>リンク文字列</a
+					>
+					 と活力はそのような木々と楽しみ。そのような <code>Liberroy, Foo</code>{' '}
+					 の取り組みの利点を提案したのなら。
+				</p>
+			</ChatContent>
+		</Chat>
+		<Chat keycolor='red'>
+			<ChatIcon src='/img/avatar01.jpg' />
+			{/* <ChatName>ルフィ</ChatName> */}
+			<ChatContent>
+				<DammyText length='xs' lang='ja' />
+			</ChatContent>
+		</Chat>
+		<hr />
+		<h2>Chat</h2>
+		<Chat>
+			<ChatIcon src='/img/avatar01.jpg' />
+			<ChatName>ルフィ</ChatName>
+			<ChatContent>
+				<DammyText length='xs' lang='ja' />
+			</ChatContent>
+		</Chat>
+		<Chat direction='end'>
+			<ChatIcon src='/img/avatar01.jpg' />
+			<ChatName>ルフィ</ChatName>
+			<ChatContent>
+				<DammyText length='m' lang='ja' />
+			</ChatContent>
+		</Chat>
+		<Chat variant='think'>
+			<ChatIcon src='/img/avatar02.jpg' />
+			<ChatName>ルフィ</ChatName>
+			<ChatContent>
+				<DammyText length='m' lang='ja' />
+			</ChatContent>
+		</Chat>
+		<Chat direction='end' variant='think'>
+			<ChatIcon src='/img/avatar04.jpg' />
+			<ChatName>チョッパー</ChatName>
+			<ChatContent>
+				<DammyText length='m' lang='ja' />
+			</ChatContent>
+		</Chat>
+		<hr />
+		<h2>Customize例</h2>
+		<hr />
+		<Chat provide={{ bgc: 'black', c: 'white' }}>
+			<ChatIcon src='/img/onepiece01_luffy.png' />
+			<ChatName>ルフィ</ChatName>
+			<ChatContent radius={5}>
+				<DammyText length='xs' lang='ja' />
+			</ChatContent>
+		</Chat>
+		{
+			/* <Chat direction='end' variant='think' provide={{ bgc: '#eff9ef', bdc: '#bccfbd' }}>
+			<ChatIcon src='/img/onepiece06_chopper.png' />
+			<ChatName>チョッパー</ChatName>
+			<ChatContent wrapperProps={{ style: { filter: 'drop-shadow(2px 2px 0px #888)' } }}>
+				<DammyText lang='ja' />
+			</ChatContent>
+		</Chat> */
+		}
+		<hr />
+		<h2>Customize例</h2>
+		<hr />
+		<Chat variant='box'>
+			<ChatIcon src='/img/onepiece01_luffy.png' />
+			<ChatName>ルフィ</ChatName>
+			<ChatContent type='box'>
+				<DammyText length='m' lang='ja' />
+			</ChatContent>
+		</Chat>
+		<Chat variant='box' direction='end'>
+			<ChatIcon src='/img/onepiece06_chopper.png' />
+			<ChatName>チョッパー</ChatName>
+			<ChatContent type='box' direction='end' radius='3'>
+				<DammyText length='m' lang='ja' />
+			</ChatContent>
+		</Chat>
+	</Layouter>
+</DemoPageLayout>

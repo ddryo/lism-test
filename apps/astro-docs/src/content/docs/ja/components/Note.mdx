@@ -3,10 +3,9 @@ title: 'Note'
 description: ...
 ---
 
-import {  Alert, Note, Tabs, TabItem, Spacer } from '@loos/lism-core';
+import {  Alert, Note, Tabs, TabItem, Spacer } from '@loos/lism-astro';
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
-import Image from "next/image";
 import {
 	Smiley,
 	Horse,
@@ -15,22 +14,6 @@ import {
 	Baseball,
 } from "@phosphor-icons/react";
 
-export const DemoText = ({lang}) => {
-	if(lang === 'ja') {
-		return (
-			<p>
-			ロレムイプサムの座り雨、トマ好き学習だったエリット、しかし<a href="###">リンク文字列</a>と活力はそのような木々と楽しみ。ブラインド行うにはいくつかの重要な事柄が流れます。長年にわたり、私は学区と長寿であれば、そのような <code>Liberroy, Foo</code> の取り組みの利点を提案したのなら。
-			</p>
-		);
-	}
-	return (
-		<p>
-			Lorem ipsum dolor sit amet consectetur <a href="###">linked text</a> adipisicing elit. Illo sunt deserunt
-			consectetur consequatur, tenetur perferendis totam magnam laborum <code>code text</code> repellendus
-			voluptatum tempora quidem praesentium sapiente harum quas maiores magni.
-		</p>
-	);
-};
 
 export const NoteDemos = ({ children, variant }) => {
 	const PRESETS = ["alert", "point", "warning", "check", "info", "help", "note"];
@@ -39,7 +22,7 @@ export const NoteDemos = ({ children, variant }) => {
 			{PRESETS.map((preset) => {
 				return (
 					<Note heading="Note default" variant={variant} preset={`${preset}`} key={preset}>
-						<PreviewText lang="ja"/>
+						<DammyText length='codes' lang="ja"/>
 					</Note>
 				);
 			})}
@@ -90,7 +73,7 @@ import { Note } from '@loos/lism-core';
 	</PreviewTitle>
 	<PreviewArea p={20}>
 		<Note>
-			<PreviewText lang="ja"/>
+			<DammyText length='codes' lang="ja"/>
 		</Note>
 	</PreviewArea>
 	<PreviewCode>
@@ -109,7 +92,7 @@ import { Note } from '@loos/lism-core';
 	</PreviewTitle>
 	<PreviewArea p={20}>
 		<Note heading="Heading text...">
-			<PreviewText lang="ja"/>
+			<DammyText length='codes' lang="ja"/>
 		</Note>
 	</PreviewArea>
 	<PreviewCode>
@@ -147,7 +130,7 @@ import { Note } from '@loos/lism-core';
 	</PreviewTitle>
 	<PreviewArea p={20}>
 		<Note heading="Heading text..." icon="note">
-			<PreviewText lang="ja"/>
+			<DammyText length='codes' lang="ja"/>
 		</Note>
 	</PreviewArea>
 	<PreviewCode>
@@ -166,7 +149,7 @@ import { Note } from '@loos/lism-core';
 	</PreviewTitle>
 	<PreviewArea p={20}>
 		<Note heading="Heading text..." icon="note" keycolor="blue">
-			<PreviewText lang="ja"/>
+			<DammyText length='codes' lang="ja"/>
 		</Note>
 	</PreviewArea>
 	<PreviewCode>

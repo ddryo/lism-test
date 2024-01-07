@@ -3,14 +3,12 @@ import { LismProps } from '../types';
 import { getLismProps, getAllLayoutStateData } from '@loos/lism-core/lib';
 
 // Propsの定義
-interface Props extends LismProps {
-	as?: any;
-	tag?: string;
-}
-const { as, tag, ...otherProps } = Astro.props || {};
+interface Props extends LismProps {}
+
+const { as, tag, ...props } = Astro.props || {};
 
 // LismPropsから各attrsを生成
-const lismProps = getLismProps(getAllLayoutStateData(otherProps));
+const lismProps = getLismProps(getAllLayoutStateData(props));
 
 const JSX = as || tag || 'div';
 ---

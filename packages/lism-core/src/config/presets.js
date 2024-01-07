@@ -12,8 +12,8 @@ export default {
 	lts: TOKENS.lts,
 	ff: TOKENS.ff,
 	fw: TOKENS.fw,
-	c: ['main', 'accent', 'base', 'pale', 'opposite'],
-	bgc: ['main', 'accent', 'base', 'pale', 'strong', 'opposite'],
+	c: ['main', 'accent', 'base', 'pale', 'opposite', 'mix'],
+	bgc: ['main', 'accent', 'base', 'pale', 'strong', 'opposite', 'mix'],
 	bdc: ['main', 'accent', 'base', 'strong'],
 	keycolor: [
 		'main',

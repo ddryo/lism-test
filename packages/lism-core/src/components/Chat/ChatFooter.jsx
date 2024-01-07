@@ -9,7 +9,7 @@ import { Core } from '../Core';
 
 export default function ChatFoot({
 	lismClass = {},
-	context, // 親から渡される
+	// context={}, // 親から渡される
 	children,
 	...props
 }) {
@@ -22,6 +22,9 @@ export default function ChatFoot({
 		py: 'em1',
 		c: 'pale',
 	};
+
+	// 親から渡されるが、使わない
+	delete props.context;
 
 	// {/* aria-label : "name の発言" ? */}
 	return (

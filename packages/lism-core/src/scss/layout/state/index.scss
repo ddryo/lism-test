@@ -3,6 +3,7 @@
 @forward './gutter';
 @forward './container'; // Note: flow より後ろで読み込む
 @forward './divider';
+@forward './mixcolor';
 
 // 切り分ける？
 //is--mediaFrame > :where(img, video),
@@ -27,68 +28,4 @@
 	--size: 1em;
 	width: var(--size);
 	height: var(--size);
-}
-
-// @supports (color: color-mix(in srgb, #000, #fff)) {
-:root {
-	--mixper--base-10: 96%;
-	--mixper--base-20: 90%;
-	--mixper--base-30: 84%;
-	--mixper--text-10: 24%;
-	// --mixper--text-20: 32%;
-}
-
-// has--mixedcolor ?
-.has--mixcolor {
-	// Note: --keycolor を併用する必要あり. 親から引き継ぎたいこともあるので、ここでは初期セットしない。
-	--mixcolor: var(--keycolor, var(--gray));
-	--mixcolor--base: var(--bgc--base); // transparent;
-	--mixcolor--text: var(--c--base);
-	// 親でカラー指定があればそれを引き継げるように?
-	// --mixcolor--text: var(--c, var(--c--base));
-
-	--bdc: var(--mixcolor);
-	--mixed--base-10: var(--mixcolor--base);
-	--mixed--base-20: var(--mixcolor--base);
-	--mixed--text-10: var(--mixcolor--text);
-	// --mixed--text-20: var(--mixcolor--text);
-}
-// }
-@supports (color: color-mix(in srgb, #000, #fff)) {
-	.has--mixcolor {
-		--mixed--base-10: color-mix(
-			in srgb,
-			var(--mixcolor),
-			var(--mixcolor--base) var(--mixper--base-10)
-		);
-		--mixed--base-20: color-mix(
-			in srgb,
-			var(--mixcolor),
-			var(--mixcolor--base) var(--mixper--base-20)
-		);
-		--mixed--base-30: color-mix(
-			in srgb,
-			var(--mixcolor),
-			var(--mixcolor--base) var(--mixper--base-30)
-		);
-		--mixed--text-10: color-mix(
-			in srgb,
-			var(--mixcolor),
-			var(--mixcolor--text) var(--mixper--text-10)
-		);
-		// --mixed--text-20: color-mix(
-		// 	in srgb,
-		// 	var(--mixcolor),
-		// 	var(--mixcolor--text) var(--mixper--text-20)
-		// );
-
-		// 親でカラー指定があればそれを引き継げるように?
-		--bdc: var(--mixed--base-30);
-		--bgc: var(--mixed--base-10);
-		--link--c: var(--mixed--text-10);
-		--code--c: var(--mixed--text-10);
-		--code--bgc: var(--mixed--base-20);
-		// border: solid 1px var(--bdc);
-		// background-color: var(--bgc);
-	}
 }

@@ -13,16 +13,6 @@
 	}
 }
 
-// デフォルトスタイル
-:where(.c--note:not([class*='c--note--'])) {
-	// color-mixのサポートチェック
-	@supports (color: color-mix(in srgb, #000, #fff)) {
-		--head--c: color-mix(in srgb, var(--keycolor), var(--c--base) var(--cMixPer--text));
-		--link--c: var(--head--c);
-		background-color: color-mix(in srgb, var(--keycolor), transparent var(--cMixPer--bg));
-	}
-}
-
 .c--note__icon {
 	margin-left: -0.125em;
 }

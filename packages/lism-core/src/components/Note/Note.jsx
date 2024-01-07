@@ -16,7 +16,7 @@ export default function Note({ isFlow, heading, children, ...props }) {
 	}
 
 	return (
-		<Layouter lismState={['has--mixcolor']} radius='1' {...attrs}>
+		<Layouter lismState={['is--colorbox']} radius='1' {...attrs}>
 			{heading && (
 				<Core lismClass={{ c: 'c--note__head' }} fw='bold' {...headProps}>
 					{icon && <Icon lismClass={{ c: 'c--note__icon' }} icon={icon} {...iconProps} />}

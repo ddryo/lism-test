@@ -37,7 +37,7 @@ export default function Alert({
 	return (
 		<SideFlex
 			side='first'
-			lismState={['has--mixcolor']}
+			lismState={['is--colorbox']}
 			lismClass={lismClass}
 			keycolor={keycolor}
 			radius='2'

@@ -1,21 +1,16 @@
+/* stylelint-disable */
+
 //カラー系
-[class*='-c:'] {
-	color: var(--c) !important;
-}
-.-c\:main {
-	--c: var(--main);
-}
-.-c\:accent {
-	--c: var(--accent);
-}
-.-c\:base {
-	--c: var(--c--base);
-}
-.-c\:pale {
-	--c: var(--c--pale);
-}
-.-c\:opposite {
+[class*='-c:'] { color: var(--c) !important }
+.-c\:main { --c: var(--main) }
+.-c\:accent { --c: var(--accent) }
+.-c\:base { --c: var(--c--base) }
+.-c\:pale { --c: var(--c--pale) }
+.-c\:opposite { 
 	--c: var(--c--opposite);
+	// > * {
+	// 	--c--opposite: var(--c--base);
+	// }
 }
 
 // .-c\:white {
@@ -65,23 +60,7 @@
 .-bgc\:t {
 	--bgc: transparent;
 }
-.-bgc\:black {
-	--bgc: hsl(var(--black-hsl), var(--bgc--alpha));
-}
-@supports (color: color-mix(in srgb, #000, #fff)) {
-	.-bgc\:opacity {
-		background-color: color-mix(
-			in srgb,
-			var(--bgc),
-			transparent calc(100% - 100% * var(--bgc-opacity))
-		) !important;
-	}
-}
 
-// --keycolor : 1つのカラーをもとにスタイリングしたいときに活用する。 cbox,outline,fillなどで使っている
-// [class*='-keycolor:'][data-variant='fill'] {
-// 	--c: var(--keycolor--c, var(--c--opposite));
-// }
 
 .-keycolor\:main {
 	--keycolor: var(--main);
@@ -123,11 +102,26 @@
 	--keycolor: var(--pink);
 	// --keycolor--c: var(--pink--c);
 }
-.-keycolor\:custom {
-	// --keycolor: var(--pink);
-	// --keycolor--c: var(--pink--c);
+
+// プロパティごとのミックス
+// @supports (color: color-mix(in srgb, #000, #fff)) {
+.-c\:mix {
+	--mixcolor-c: var(--keycolor);
+	--mixper-c: var(--mixper-content-2);
+	--c: color-mix(in srgb, var(--mixbase-content), var(--mixcolor-c) var(--mixper-c));
 }
-// .-keycolor\:basic {
-// 	--keycolor: var(--b900);
-// 	--keycolor--c: var(--b50);
+.-bgc\:mix {
+	--mixcolor-bgc: var(--keycolor);
+	--mixper-bgc: var(--mixper-base);
+	--bgc: color-mix(in srgb, var(--mixbase), var(--mixcolor-bgc) var(--mixper-bgc));
+}
+
+.-bdc\:mix {
+	--mixcolor-bdc: var(--keycolor);
+	--mixper-bdc: var(--mixper-base-2);
+	--bdc: color-mix(in srgb, var(--mixbase), var(--mixcolor-bdc) var(--mixper-bdc));
+}
+
+// .-c\:mix\:2 {
+// 	--mixper-c: var(--mixper-content-2);
 // }

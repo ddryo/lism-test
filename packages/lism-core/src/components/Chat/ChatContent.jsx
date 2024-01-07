@@ -22,19 +22,19 @@ const DECORATOR_PROPS = {
 export default function ChatContent({
 	lismClass = {},
 	wrapperProps = {},
-	context, // 親から渡される
+	context = {}, // 親から渡される
 	children,
 	...props
 }) {
 	lismClass.c = `c--chat__body`;
 
-	const { direction, variant } = context;
+	const { direction = 'start', variant = 'speak' } = context;
 
 	let decorator = null;
 
 	let defaultContentProps = {
 		isFlow: 's',
-		consume: 'c bgc', //'p bgc bdc bdw',
+		// consume: 'c bgc', //'p bgc bdc bdw',
 		// radius: '2',
 	};
 
@@ -43,6 +43,7 @@ export default function ChatContent({
 			<Decorator
 				variant={`chat-${variant}`}
 				mask='-'
+				className='-bgc:mix'
 				pos='absolute'
 				top='0'
 				{...DECORATOR_PROPS[direction]}
@@ -65,7 +66,7 @@ export default function ChatContent({
 		>
 			{decorator}
 			<Layouter
-				className='c--chat__content'
+				className='c--chat__content is--colorbox'
 				pos='relative'
 				maxW='s'
 				{...defaultContentProps}

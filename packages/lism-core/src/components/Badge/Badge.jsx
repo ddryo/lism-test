@@ -16,7 +16,9 @@ export default function Badge({
 	}
 
 	if ('subtle' === variant) {
-		lismState.push('has--mixcolor');
+		lismState.push('is--colorbox');
+	} else if ('outline' === variant) {
+		lismState.push('-c:mix:2');
 	}
 	return (
 		<Core tag='span' lismClass={lismClass} lismState={lismState} {...defaultProps} {...props} />

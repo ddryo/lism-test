@@ -9,7 +9,7 @@ import { Core } from '../Core';
 
 export default function ChatName({
 	lismClass = {},
-	context, // 親から渡される
+	context = {}, // 親から渡される
 	children,
 	...props
 }) {

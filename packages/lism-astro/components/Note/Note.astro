@@ -18,7 +18,7 @@ console.log('heading', heading);
 const hasHeading = heading || Astro.slots.has('heading');
 ---
 
-<Layouter lismState={['has--mixcolor']} radius='1' {...attrs}>
+<Layouter lismState={['is--colorbox']} radius='1' {...attrs}>
 	{
 		hasHeading && (
 			<Core lismClass={{ c: 'c--note__head' }} fw='bold' {...headProps}>

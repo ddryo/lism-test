@@ -1,42 +1,20 @@
-// Note は は .has--mixcolor とセットで使う
+// Note は は .is--colorbox とセットで使う
 .c--note {
 	--keycolor: var(--gray);
-	--bdc: var(--keycolor); // .has--mixcolor を上書き
+	--bdc: var(--keycolor); // .is--colorbox を上書き
 	padding: var(--p--box);
 	border-inline-start: solid 4px var(--bdc);
-	background-color: var(--bgc);
+	// background-color: var(--bgc);
 }
-// @supports (color: color-mix(in srgb, #000, #fff)) {
-// 	.c--alert.has--mixcolor {
-// 		border-inline-start: solid 4px var(--mixed--base-30);
-// 	}
-// }
 
 .c--note__icon {
 	margin-left: -0.125em;
 	font-size: var(--fz--xl); //1.4rem;
-	color: var(--keycolor, currentColor);
+	// color: var(--keycolor, currentColor);
 }
 
 .c--note__head {
-	// color: var(--head--c);
-	// align-items: center;
-	// font-weight: 700;
+	color: var(--mixed-content-2, currentColor);
 	gap: var(--em--5);
 	margin-block-end: var(--s--20);
 }
-
-// bump
-
-// .c--note--bump {
-// 	:where(&) {
-// 		border: solid 1px var(--bdc);
-// 		background-color: transparent;
-// 	}
-// 	:where(& > .c--note__head) {
-// 		background-color: var(--bgc--base);
-// 		margin-inline: var(--s--30);
-// 		padding-inline: 0.5em;
-// 		// border-radius: 4px;
-// 	}
-// }

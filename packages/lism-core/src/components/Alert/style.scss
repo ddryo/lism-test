@@ -1,14 +1,18 @@
-// Alert は .has--mixcolor とセットで使う
-.c--alert {
+// Alert は .is--colorbox とセットで使う
+// mixcolor を上書きしないように初期値セット
+:where(.c--alert) {
 	--keycolor: var(--gray);
+}
+.c--alert {
+	// --keycolor: var(--gray);
 	--fluid--minW: 16rem; // .l--fluidFix より優先度高くなるように注意
 	// --icon--size: 1.4em; //var(--fz--xl); //1.375em;
 	// --bdc: var(--keycolor);
 	padding: var(--em--7);
 	gap: var(--em--7);
 	align-items: center;
-	border: solid 1px var(--bdc, var(--keycolor)); // .has--mixcolor 側で定義している --bdc そのまま使う
-	background-color: var(--bgc);
+	border: solid 1px var(--bdc); // .is--colorbox 側で定義している --bdc そのまま使う
+	// background-color: var(--bgc);
 }
 
 .c--alert__icon {

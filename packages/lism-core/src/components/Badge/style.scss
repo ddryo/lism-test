@@ -1,32 +1,29 @@
-// has--mixcolor を上書きしないように初期値セット
+// mixcolor を上書きしないように初期値セット
 :where(.c--badge) {
+	--keycolor: var(--b900);
 	--c: var(--keycolor);
 	--bdc: transparent;
-	--bgc: var(--bgc--pale);
-}
-.c--badge {
-	--keycolor: var(--b900);
-
+	--bgc: transparent;
 	color: var(--c);
 	background-color: var(--bgc);
-	border: solid 1px var(--bdc); // サイズ揃えるため, 常にborderを指定
+}
+.c--badge {
+	border: solid 1px var(--bdc); // サイズ揃えるために常にborderを指定
 	padding-block: var(--em--1);
 	padding-inline: var(--em--5);
-}
-
-// subtle
-.c--badge--subtle:where(.has--mixcolor) {
-	--c: var(--mixed--text-10);
 }
 
 .c--badge--fill {
 	--c: var(--c--opposite);
 	--bgc: var(--keycolor);
-	--bdc: transparent;
 }
 
 .c--badge--outline {
 	--c: var(--keycolor);
 	--bdc: var(--keycolor);
-	--bgc: transparent;
+}
+
+// subtle,outline用
+.c--badge:where(.is--colorbox) {
+	color: var(--mixed-content-2, var(--c--base));
 }

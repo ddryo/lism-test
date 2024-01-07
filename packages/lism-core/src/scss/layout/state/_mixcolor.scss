@@ -1,0 +1,65 @@
+// @supports (color: color-mix(in srgb, #000, #fff)) {
+:root {
+	// --mixper-base-10: 96%;
+	// --mixper-base-20: 90%;
+	// --mixper-base-30: 84%;
+	// --mixper-text-10: 24%;
+
+	// --mix-colorspace: srgb
+	--mixper-content: 25%;
+	--mixper-content-2: 60%;
+	--mixper-base: 4%;
+	--mixper-base-2: 10%;
+	--mixbase: transparent;
+	--mixbase-content: var(--c--base);
+
+	// --mixper-text-20: 32%;
+}
+
+/* stylelint-disable */
+
+.is--colorbox {
+	// c,bdc は 変数セットのみ
+	// --c: var(--mixed-content, var(--c--base));
+	--bdc: var(--mixed-base-2, var(--b200));
+	color: var(--mixed-content, var(--c--base));
+	background-color: var(--mixed-base, var(--bgc--pale));
+}
+@supports (color: color-mix(in srgb, #000, #fff)) {
+	// --keycolor 必須. 親から引き継ぎたいこともあるかもしれないので、初期セットはしない
+	.is--colorbox {
+		// base は transparent でミックスしてもいいが、ふきだしでボーダーを細かく使用したりする場合や drop-shodow をかける場合に半透明だと変になる。
+		--mixed-base: color-mix(in srgb, var(--mixbase), var(--keycolor) var(--mixper-base));
+		--mixed-base-2: color-mix(in srgb, var(--mixbase), var(--keycolor) var(--mixper-base-2));
+		--mixed-content: color-mix( in srgb, var(--mixbase-content), var(--keycolor) var(--mixper-content));
+		--mixed-content-2: color-mix( in srgb, var(--mixbase-content), var(--keycolor) var(--mixper-content-2));
+		// --shadowColor:
+		--link--c: var(--mixed-content-2);
+		--code--c: var(--mixed-content-2);
+		--code--bgc: var(--mixed-base-2);
+	}
+}
+
+// .has--mixcolor {
+// 	--mixcolor: var(--keycolor, var(--gray));
+// 	--mixcolor--base: var(--bgc--base); // transparent;
+// 	--mixcolor--text: var(--c--base);
+// 	--bdc: var(--mixcolor);
+// 	--mixed--base-10: var(--mixcolor--base);
+// 	--mixed--base-20: var(--mixcolor--base);
+// 	--mixed--text-10: var(--mixcolor--text);
+// }
+// @supports (color: color-mix(in srgb, #000, #fff)) {
+// 	.has--mixcolor {
+// 		--mixed--base-10: color-mix(in srgb,var(--mixcolor),var(--mixcolor--base) var(--mixper-base-10));
+// 		--mixed--base-20: color-mix(in srgb,var(--mixcolor),var(--mixcolor--base) var(--mixper-base-20));
+// 		--mixed--base-30: color-mix(in srgb,var(--mixcolor),var(--mixcolor--base) var(--mixper-base-30));
+// 		--mixed--text-10: color-mix(in srgb,var(--mixcolor),var(--mixcolor--text) var(--mixper-text-10));
+
+// 		--bdc: var(--mixed--base-30);
+// 		--bgc: var(--mixed--base-10);
+// 		--link--c: var(--mixed--text-10);
+// 		--code--c: var(--mixed--text-10);
+// 		--code--bgc: var(--mixed--base-20);
+// 	}
+// }

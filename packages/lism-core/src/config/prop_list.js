@@ -86,7 +86,6 @@ export default {
 	c: { presets: 1, converter: 'color' },
 	bg: { style: 'background', presets: 1, utils: 1, map: 1 },
 	bgc: { presets: 1, utils: 1, converter: 'color' },
-	// bgcOpacity: { style: '--bgc-opacity' },
 	keycolor: { style: '--keycolor', presets: 1, converter: 'color' },
 	// mask: { map: 1 },
 	bd: {

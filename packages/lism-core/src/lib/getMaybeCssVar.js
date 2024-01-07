@@ -76,7 +76,7 @@ export function getMaybeColorVar(value, propType) {
 	if (typeof value === 'string' && value.includes(':')) {
 		const [colorName, alpha] = value.split(':');
 
-		// α値の指定が可能なのはカラートークンの値のみ
+		// α値の指定が可能なのはカラートークンの値のみ(black,whiteだけとかにする?)
 		if (isTokenValue('color', colorName)) {
 			return `hsl(var(--hsl--${colorName}) / ${alpha})`;
 		}

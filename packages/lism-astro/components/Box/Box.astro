@@ -1,5 +1,9 @@
 ---
+import { LismProps } from '../types';
 import { Layouter } from '../Core';
+
+// Propsの定義
+interface Props extends LismProps {}
 
 const { lismClass = {}, variant, ...props } = Astro.props || {};
 lismClass.l = 'l--box';

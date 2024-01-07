@@ -1,17 +1,15 @@
 /* ------------------------------------------------------------
-	段階的な値は基本的に
-	　→ 0,10,20,30,...
-	  → why? → 間を増やせるように、1,2,3,... ではなく10単位ベース
+	段階的な値は基本的に 10単位で。
+		→ 0, (5), 10, 20, 30,...
+		→ なぜ 基本単位が 1 ではなく 10 か。 → 間の数値をユーザーがカスタマイズで増やせるように。
 
 	レイヤー的な段階値
-	  → 0, 1,2,3..., -1,-2,...
+		→ ..., -2, -1, 0, 1,2,3...
 
 	カラーの段階値は 100,200,300 ?　→ 10,20,...に揃えてもいいか。
 
 	真ん中のデフォルト値があって、そこから見て小さいか大きいか
-	 →　l, xl. 2xl, ...
-	 → s, xs, 2xs, ...
-	 - ベース = m or r
+	 →　..., 3xs, 2xs, xs, s,  m||root,  l, xl, 2xl, 3xl...
 
  ------------------------------------------------------------ */
 
@@ -171,27 +169,44 @@
 	// --bgc--base: #fdfdfd; // 背景色メイン
 
 	// ベースカラーに合わせたカラーを段階的に用意
-	--hs--bc: 215 8%;
+	--hs--b: 215 8%;
 	// --hsl--bc: 215 8% 60%;
 
 	// bc50? n50?
-	--b50: hsl(var(--hs--bc) 99%);
-	--b100: hsl(var(--hs--bc) 96%);
-	--b200: hsl(var(--hs--bc) 92%);
-	--b300: hsl(var(--hs--bc) 84%);
-	--b400: hsl(var(--hs--bc) 72%);
-	--b500: hsl(var(--hs--bc) 60%);
-	--b600: hsl(var(--hs--bc) 48%);
-	--b700: hsl(var(--hs--bc) 36%);
-	--b800: hsl(var(--hs--bc) 24%); // 淡い文字色 strong背景色
-	--b900: hsl(var(--hs--bc) 8%); // 少しだけ淡い文字色. pre code などで使用
+	--b50: hsl(var(--hs--b) 99%);
+	--b100: hsl(var(--hs--b) 96%);
+	--b200: hsl(var(--hs--b) 92%);
+	--b300: hsl(var(--hs--b) 84%);
+	--b400: hsl(var(--hs--b) 72%);
+	--b500: hsl(var(--hs--b) 60%);
+	--b600: hsl(var(--hs--b) 48%);
+	--b700: hsl(var(--hs--b) 36%);
+	--b800: hsl(var(--hs--b) 24%); // 淡い文字色 strong背景色
+	--b900: hsl(var(--hs--b) 8%); // 少しだけ淡い文字色. pre code などで使用
 	// --b950: hsl(var(--hs--bc) 8%); // 文字色
+
+	// --hs--base: 215 8%;
+	// --hs--content: 215 8%;
+
+	// accent, accent-2, accent-3
+	// base, base-2, base-3 … 基本、濃くなっていく
+	// content, content-2, content-3 …　基本、薄くなっていく
+
+	// bgc='1' == bgc='base'   → -bgc:1{var(--base-1)}
+	// bgc='2' == bgc='base-2' → -bgc:2{var(--base-2)}
+
+	// c='1' == c='content'   → -c:1{var(--content-1)}
+	// c='2' == c='content-2' → -c:1{var(--content-2)}
+	// -bgc:base, -bgc:base-2, -c:content,
+
+	// ボーダーはどちらでも使える感じか。
+	// --bdc-pale,base,strong
 
 	// pale→subtle?
 
 	// --c-: 文字色 に関するセマンティックトークン
-	--c--base: var(--b900); // 基本の文字色
-	--c--pale: var(--b700); // 薄いテキスト色
+	--c--base: var(--b900); // 基本の文字色 --c--1?
+	--c--pale: var(--b700); // 薄いテキスト色 --c--2
 	--c--opposite: var(--b50); // 背景色と反転
 	// --c--filled: #fff; // variant="fill"系の文字色
 
@@ -212,33 +227,18 @@
 	// --bdc--strong: var(--b800);
 
 	// --pallete--?
-	--hsl--black: 0 0% 0%;
-	--hsl--white: 0 0% 100%;
-	--hsl--gray: 210 12% 40%;
+	--black: hsl(0 0% 0%);
+	--white: hsl(0 0% 100%);
+	--gray: hsl(210 12% 40%);
+	--red: hsl(4 72% 48%);
+	--orange: hsl(28 84% 48%);
+	--yellow: hsl(46 96% 45%);
+	--green: hsl(150 88% 40%);
+	--blue: hsl(205 86% 48%);
+	--purple: hsl(256 72% 52%);
+	--pink: hsl(325 72% 48%);
 
-	--hsl--red: 4 72% 48%;
-	--hsl--orange: 28 84% 48%;
-	--hsl--yellow: 46 96% 45%;
-	--hsl--green: 150 88% 40%;
-	--hsl--blue: 205 86% 48%;
-	--hsl--purple: 256 72% 52%;
-	--hsl--pink: 325 72% 48%;
-
-	--black: hsl(var(--hsl--black));
-	--white: hsl(var(--hsl--white));
-	--red: hsl(var(--hsl--red));
-	--orange: hsl(var(--hsl--orange));
-	--yellow: hsl(var(--hsl--yellow));
-	--green: hsl(var(--hsl--green));
-	--blue: hsl(var(--hsl--blue));
-	--purple: hsl(var(--hsl--purple));
-	--pink: hsl(var(--hsl--pink));
-	--gray: hsl(var(--hsl--gray));
 	// ---
-
-	--cMixPer--bg: 96%;
-	--cMixPer--text: 24%;
-	--cMixPer--bd: 80%;
 
 	/* ------------------------------------------------------------
 	    elements

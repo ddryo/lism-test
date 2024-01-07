@@ -30,13 +30,18 @@ body {
 	// 子孫要素の position:fixed の挙動が変わってしまうので body には使わない
 	// container-type: inline-size;
 }
+:where(p, li) {
+	--link--td: underline;
+}
 
-// .is--linkbox を考慮して、リンクの pointer-events: auto;は 明示的に指定しておく。
+:where(a) {
+	text-decoration: var(--link--td, none);
+	// text-underline-offset: var(--link--underlineOffset);
+}
 a {
-	pointer-events: auto;
+	// linkbox を考慮して、リンクの pointer-events: auto;は 明示的に指定しておく?
+	// pointer-events: auto;
 	color: var(--link--c); // --c--link?
-	// text-decoration: underline;
-	text-underline-offset: var(--link--underlineOffset);
 }
 
 // @layer lism-init {

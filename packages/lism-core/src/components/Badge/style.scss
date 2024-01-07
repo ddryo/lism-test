@@ -20,7 +20,7 @@
 }
 
 .c--badge--fill {
-	--c: var(--c--filled);
+	--c: var(--c--opposite);
 	--bgc: var(--keycolor);
 	--bdc: transparent;
 }

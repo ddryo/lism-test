@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Lism } from '../Lism';
+import { Core } from '../Core';
 // import { Text } from '../Text';
 
 // import { Icon } from '../Icon';
@@ -9,8 +9,8 @@ import { Lism } from '../Lism';
 export default function NavMenuItem({ lismClass = {}, children, ...props }) {
 	lismClass.c = 'c--navMenu__item';
 	return (
-		<Lism tag='li' lismClass={lismClass} {...props}>
+		<Core tag='li' lismClass={lismClass} {...props}>
 			{children}
-		</Lism>
+		</Core>
 	);
 }

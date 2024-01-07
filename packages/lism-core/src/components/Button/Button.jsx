@@ -4,14 +4,20 @@ import { Text } from '../Text';
 import { Flex } from '../Flex';
 import { Grid } from '../Grid';
 import { Icon } from '../Icon';
-import { defaultProps } from '../../config/components';
-const _default = defaultProps?.Button || {};
 
 // variant
-export default function Button({ lismClass = {}, lismStyle = {}, ...props }) {
-	props = Object.assign({}, _default, props);
-	let { icon, iconOffset, leftIcon, rightIcon, variant, children, isGrid, ...attrs } = props;
-
+export default function Button({
+	lismClass = {},
+	lismStyle = {},
+	variant = 'fill',
+	icon,
+	iconOffset,
+	leftIcon,
+	rightIcon,
+	isGrid,
+	children,
+	...props
+}) {
 	lismClass.c = 'c--button';
 	if (variant) lismClass.c += ` c--button--${variant}`;
 
@@ -28,8 +34,8 @@ export default function Button({ lismClass = {}, lismStyle = {}, ...props }) {
 		// gap: 'em5',
 		// py: 'em3',
 		// px: 'em10',
-		jc: 'center',
-		ai: 'center',
+		// jc: 'center',
+		// ai: 'center',
 	};
 	const leftIconProps = { 'data-position': 'left' };
 	const rightIconProps = { 'data-position': 'right' };
@@ -37,9 +43,9 @@ export default function Button({ lismClass = {}, lismStyle = {}, ...props }) {
 	const ButtonComponent = isGrid ? Grid : Flex;
 
 	if (isGrid) {
-		leftIconProps.gridItem = { gcs: 1 };
-		rightIconProps.gridItem = { gce: -1 };
-		textProps.gridItem = { gcs: 2 };
+		// leftIconProps.gridItem = { gc: 1 };
+		textProps.gridItem = { gc: 2, jslf: 'c' };
+		// rightIconProps.gridItem = { gce: -1 };
 	}
 
 	// iconボタン
@@ -51,7 +57,7 @@ export default function Button({ lismClass = {}, lismStyle = {}, ...props }) {
 				lismClass={lismClass}
 				lismStyle={lismStyle}
 				{...btnProps}
-				{...attrs}
+				{...props}
 			>
 				<Icon icon={icon} lismClass={{ c: 'c--button__icon' }} />
 			</ButtonComponent>
@@ -68,7 +74,7 @@ export default function Button({ lismClass = {}, lismStyle = {}, ...props }) {
 			lismStyle={lismStyle}
 			lh='xs'
 			{...btnProps}
-			{...attrs}
+			{...props}
 		>
 			{leftIcon && (
 				<Icon lismClass={{ c: 'c--button__icon' }} icon={leftIcon} {...leftIconProps} />

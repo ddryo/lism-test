@@ -1,21 +1,8 @@
 // .-hov\: ユーティリティ
 
-@layer lism-init {
-	:root {
-		--hov--shadow: var(--shadow--4);
-		--hov--bgc: var(--bgc--pale);
-	}
-	// .-hov\:bgc\: {
-	// 	--hov--bgc: var(--bgc--pale);
-	// }
-	.-hov\:reverse {
-		--rev--c: var(--hov--c, var(--bgc)); // .-hov:c: あれば優先
-		--rev--bgc: var(--hov--bgc, var(--c));
-	}
-}
-
 [class*='-hov:'] {
-	transition: filter, opacity, box-shadow, translate, scale, border, color, background-color;
+	transition: filter, opacity, visibility, box-shadow, translate, scale, border, color,
+		background-color;
 	transition-duration: var(--hov--duration);
 	// transition: all var(--hov--duration);
 }
@@ -27,16 +14,25 @@
 .-hov\:c:hover {
 	color: var(--hov--c) !important;
 }
+.-hov\:bdc:hover {
+	border-color: var(--hov--bdc) !important;
+}
+
+:where(.-hov\:bgc) {
+	--hov--bgc: var(--bgc--pale);
+}
 .-hov\:bgc:hover {
 	background-color: var(--hov--bgc) !important;
 }
-.-hov\:bdc:hover {
-	border-color: var(--hov--bdc) !important;
+
+:where(.-hov\:shadow) {
+	--hov--shadow: var(--shadow--4);
 }
 .-hov\:shadow:hover {
 	// shadowユーティリティに負けないように important
 	box-shadow: var(--hov--shadow) !important;
 }
+
 .-hov\:filter:hover {
 	filter: var(--hov--filter) !important;
 }
@@ -60,9 +56,14 @@
 	translate: 0 -3px;
 }
 
+:where(.-hov\:reverse) {
+	--hov--c: var(--bgc);
+	--hov--bgc: var(--c);
+}
+
 .-hov\:reverse:hover {
-	background-color: var(--rev--bgc) !important;
-	color: var(--rev--c) !important;
+	background-color: var(--hov--bgc) !important;
+	color: var(--hov--c) !important;
 }
 
 // ↓ 追加パックにいれる？
@@ -82,9 +83,11 @@
 
 // pass-get/ privide-get/throw-get/parent-child/
 .-hov\:pass {
-	--is-hover: 0;
+	--isHover: 0;
+	// --hide2show: hidden;
+	// --show2hide: visible;
 	&:hover {
-		--is-hover: 1;
+		--isHover: 1;
 	}
 }
 
@@ -99,10 +102,10 @@
 	}
 }
 .-hov\:get\:hide {
-	opacity: calc(1 - 1 * var(--is-hover, 0));
+	opacity: calc(1 - 1 * var(--isHover, 0));
 }
 .-hov\:get\:zoom {
-	scale: calc(1 + 0.1 * var(--is-hover, 0));
+	scale: calc(1 + 0.1 * var(--isHover, 0));
 }
 
 // [class*='-hov:media'] {

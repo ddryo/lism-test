@@ -21,8 +21,8 @@
 
 // <a> or <span>
 .c--navMenu__link {
+	--link--td: none; // text-decoration: none;
 	color: inherit;
-	text-decoration: none;
 	outline-offset: -1px;
 	// padding: var(--item--p);
 }

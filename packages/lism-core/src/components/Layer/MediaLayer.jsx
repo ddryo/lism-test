@@ -27,6 +27,7 @@ export default function MediaLayer({
 		<Layer variant='media' {...otherProps}>
 			<Media
 				as={media}
+				hover={hover}
 				loading='lazy'
 				decoding='async'
 				objectFit='cover'

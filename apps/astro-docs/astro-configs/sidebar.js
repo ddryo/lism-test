@@ -237,6 +237,10 @@ export default [
 				link: '/components/linkbox/',
 			},
 			{
+				label: 'NavMenu',
+				link: '/components/navmenu/',
+			},
+			{
 				label: 'Tabs',
 				link: '/components/tabs/',
 			},

@@ -3,16 +3,17 @@ title: 'NavMenu'
 description: ...
 ---
 
-import { NavMenu, NavMenuItem, NavMenuLink, Badge, Icon, Spacer,
-	Accordion,
+import { NavMenu, NavMenuItem, NavMenuLink, Badge, Icon, Spacer, Box} from '@loos/lism-core';
+import { Accordion,
 	AccordionBody,
 	AccordionHeader,
 	AccordionLabel,
-	AccordionIcon } from '@loos/lism-core';
+	AccordionIcon } from '@loos/lism-astro';
 import { FolderSimple } from "@phosphor-icons/react";
-import Script from 'next/script';
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+
+
 
 ## Props
 
@@ -29,14 +30,23 @@ import { NavMenu } from '@loos/lism-core';
 ## Usage
 
 export const Items = ({ length = 3, ...props }) => {
-	// Array.from({length}).map((i) => {
-	// Array.from(Array(ct))
-	// Array.from(Array(ct))
-	return [...Array(length)].map((_,i) => (
-		<NavMenuItem key={i}>
-			<NavMenuLink href={`#menu${i+1}`} {...props}>Lorem item</NavMenuLink>
-		</NavMenuItem> 
-	));
+	// const array = Array.from({length:3});
+	return (
+		<>
+			{[...Array(length)].map((i) => {
+				return <NavMenuItem key={i}>
+					<NavMenuLink href={`#menu${i+1}`} {...props}>Lorem item</NavMenuLink>
+				</NavMenuItem>;
+			})}
+		</>
+	);
+
+	// return array.map((v,i) => {
+	// 	return <p key={i}>aaa</p>;
+	// 	// <NavMenuItem key={i}>
+	// 	// 	<NavMenuLink href={`#menu${i+1}`} {...props}>Lorem item</NavMenuLink>
+	// 	// </NavMenuItem> 
+	// });
 };
 
 export const DemoBadge = ({ num = "10", ml = "auto" }) => {
@@ -47,20 +57,11 @@ export const DemoBadge = ({ num = "10", ml = "auto" }) => {
 	);
 };
 
-<Script src='/js/acc.js' type="module"/>
 <Preview>
 	<PreviewTitle>NavMenuの例</PreviewTitle>
 	<PreviewArea p={20}>
 		<NavMenu>
-			<NavMenuItem>
-				<NavMenuLink href='#menu1'>Lorem item</NavMenuLink>
-			</NavMenuItem>
-			<NavMenuItem>
-				<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
-			</NavMenuItem>
-			<NavMenuItem>
-				<NavMenuLink href='#menu3'>Lorem item</NavMenuLink>
-			</NavMenuItem>
+			<Items />
 		</NavMenu>
 	</PreviewArea>
 	<PreviewCode>
@@ -72,13 +73,13 @@ export const DemoBadge = ({ num = "10", ml = "auto" }) => {
 			<NavMenuItem>
 				<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 			</NavMenuItem>
-			<NavMenuItem>
-				<NavMenuLink href='#menu3'>Lorem item</NavMenuLink>
-			</NavMenuItem>
+			...
 		</NavMenu>
 		```
 	</PreviewCode>
 </Preview>
+
+
 
 <Preview>
 	<PreviewTitle>`hasDivider`と上下ボーダーを指定</PreviewTitle>
@@ -96,15 +97,13 @@ export const DemoBadge = ({ num = "10", ml = "auto" }) => {
 			<NavMenuItem>
 				<NavMenuLink href='#menu2'>Lorem item</NavMenuLink>
 			</NavMenuItem>
-			<NavMenuItem>
-				<NavMenuLink href='#menu3'>Lorem item</NavMenuLink>
-			</NavMenuItem>
+			...
 		</NavMenu>
 		```
 	</PreviewCode>
 </Preview>
 
-<Preview>
+{/* <Preview>
 	<PreviewTitle>ボックススタイルにしてprovideでpadding指定</PreviewTitle>
 	<PreviewArea p={20}>
 		<NavMenu hasDivider bd provide={{ p: 'em10' }}>
@@ -126,10 +125,10 @@ export const DemoBadge = ({ num = "10", ml = "auto" }) => {
 		</NavMenu>
 		```
 	</PreviewCode>
-</Preview>
+</Preview> */}
 
 
-<Preview>
+{/* <Preview>
 	<PreviewTitle>アイコンやバッジを使った例</PreviewTitle>
 	<PreviewArea p={20}>
 		<NavMenu hasDivider bd>
@@ -258,9 +257,9 @@ export const DemoBadge = ({ num = "10", ml = "auto" }) => {
 		</NavMenu>
 		```
 	</PreviewCode>
-</Preview>
+</Preview> */}
 
-
+{/* 
 ### ネストしたメニューをアコーディオンで展開
 
 <Preview>
@@ -475,4 +474,4 @@ export const DemoBadge = ({ num = "10", ml = "auto" }) => {
 		</NavMenu>
 		```
 	</PreviewCode>
-</Preview>
+</Preview> */}

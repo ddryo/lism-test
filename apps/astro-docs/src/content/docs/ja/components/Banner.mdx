@@ -4,13 +4,8 @@ description: ...
 ---
 
 import { Banner, Text, Center, Layer, FilterLayer, Media, MediaLayer, Button } from '@loos/lism-core';
-import {
-	Book,
-	Cat,
-	Baseball,
-} from "@phosphor-icons/react";
-import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
-import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+import { Reference, MemoBadge, HelpText, DammyText } from '~/components';
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from '~/components/Preview';
 // import Image from 'next/image'
 
 バナーリンク型コンテンツを作成できるコンポーネントです。
@@ -19,11 +14,11 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 	<PreviewTitle>対応するHTML構造</PreviewTitle>
 	<PreviewCode>
 		```jsx
-		<a class="c--banner l--frame is--linkbox" href="###">
-			<div class="l--layer l--layer--media -z:-1">
-				<img src="..." />
+		<a class='c--banner l--frame is--linkbox' href='###'>
+			<div class='l--layer l--layer--media -z:-1'>
+				<img src='...' />
 			</div>
-			[<div class="l--layer l--layer--filter -z:-1">]
+			[<div class='l--layer l--layer--filter -z:-1'>]
 			...Content...
 		</a>
 		```
@@ -60,14 +55,14 @@ import { Banner } from '@loos/lism-core';
 <Preview>
 	<PreviewTitle>16:9のバナーリンク</PreviewTitle>
 	<PreviewArea p={20}>
-		<Banner href="#banner-link" aspect="16/9" maxW="s">
-			<img src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+		<Banner href='#banner-link' aspect='16/9' maxW='s'>
+			<img src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
 		</Banner>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Banner href="#banner-link" aspect="16/9">
-			<img src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
+		<Banner href='#banner-link' aspect='16/9'>
+			<img src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
 		</Banner>
 		```
 	</PreviewCode>
@@ -77,22 +72,22 @@ import { Banner } from '@loos/lism-core';
 <Preview>
 	<PreviewTitle>`Layer`で画像に被せてコンテンツを表示</PreviewTitle>
 	<PreviewArea p={20}>
-		<Banner href="#banner-link" aspect="16/9"  radius="4">
-			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
-			<FilterLayer bgc="black:40%" blur="2px" />
-			<Layer inset='0' isFlow='s' p='box' c="white">
-				<Text fz="2xl" fw="bold">Banner</Text>
+		<Banner href='#banner-link' aspect='16/9'  radius='4'>
+			<Media src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			<FilterLayer bgc='black:40%' blur='2px' />
+			<Layer inset='0' isFlow='s' p='box' c='white'>
+				<Text fz='2xl' fw='bold'>Banner</Text>
 				<DammyText />
 			</Layer>
 		</Banner>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Banner href="#banner-link" aspect="16/9"  radius="4">
-			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
-			<FilterLayer bgc="black:40%" blur="2px" />
-			<Layer inset='0' isFlow='s' p='box' c="white">
-				<Text fz="2xl" fw="bold">Banner</Text>
+		<Banner href='#banner-link' aspect='16/9'  radius='4'>
+			<Media src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			<FilterLayer bgc='black:40%' blur='2px' />
+			<Layer inset='0' isFlow='s' p='box' c='white'>
+				<Text fz='2xl' fw='bold'>Banner</Text>
 				<DammyText />
 			</Layer>
 		</Banner>
@@ -105,21 +100,21 @@ import { Banner } from '@loos/lism-core';
 <Preview>
 	<PreviewTitle>`hover=get:zoom` を使う時は、`MediaLayer`を使ってください。（そうしないとスクロールが発生してしまいます）</PreviewTitle>
 	<PreviewArea p={20}>
-		<Banner href="#banner-link" aspect="16/9" hover="pass" radius="4">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" hover="get:zoom"/>
-			<FilterLayer bgc="black:20%" blur="4px" hover="get:show"/>
-			<Layer position="center" bgc="black:50%" radius="4" hover="get:show">
-				<Text length="xs" p="box" c="white" className="is--hovTarget">View More</Text>
+		<Banner href='#banner-link' aspect='16/9' hover='pass' radius='4'>
+			<MediaLayer src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' hover='get:zoom'/>
+			<FilterLayer bgc='black:20%' blur='4px' hover='get:show'/>
+			<Layer position='center' bgc='black:50%' radius='4' hover='get:show'>
+				<Text p='box' c='white'>View More</Text>
 			</Layer>
 		</Banner>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Banner href="#banner-link" aspect="16/9" hover="pass" radius="4">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" hover="get:zoom"/>
-			<FilterLayer bgc="black:20%" blur="4px" hover="get:show"/>
-			<Layer position="center" bgc="black:50%" radius="4" hover="get:show">
-				<Text length="xs" p="box" c="white" className="is--hovTarget">View More</Text>
+		<Banner href='#banner-link' aspect='16/9' hover='pass' radius='4'>
+			<MediaLayer src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' hover='get:zoom'/>
+			<FilterLayer bgc='black:20%' blur='4px' hover='get:show'/>
+			<Layer position='center' bgc='black:50%' radius='4' hover='get:show'>
+				<Text p='box' c='white'>View More</Text>
 			</Layer>
 		</Banner>
 		```
@@ -130,22 +125,22 @@ import { Banner } from '@loos/lism-core';
 <Preview>
 	<PreviewTitle>aspect指定せず、画像比率そのままで</PreviewTitle>
 	<PreviewArea p={20}>
-		<Banner href="#banner-link" hover={["up", "shadow", "pass"]} radius="4">
-			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
-			<FilterLayer bgc="black:10%" blur="2px" hover="get:hide" />
-			{/* <FilterLayer bgc="black:40%" blur="2px" hover="get:show"/> */}
-			<Layer position="center" bgc="black:50%" radius="4" hover="get:hide">
-				<Text length="xs" p="box" c="white" className="is--hovTarget">View More</Text>
+		<Banner href='#banner-link' hover={['up', 'shadow', 'pass']} radius='4'>
+			<Media src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			<FilterLayer bgc='black:10%' blur='2px' hover='get:hide' />
+			{/* <FilterLayer bgc='black:40%' blur='2px' hover='get:show'/> */}
+			<Layer position='center' bgc='black:50%' radius='4' hover='get:hide'>
+				<Text length='xs' p='box' c='white' className='is--hovTarget'>View More</Text>
 			</Layer>
 		</Banner>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Banner href="#banner-link" hover={["target:dark", "target:zoom"]} radius="4">
-			<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
-			<FilterLayer bgc="black:40%" blur="2px" />
-			<Layer inset='0' isFlow='s' p='box' c="white">
-				<Text fz="2xl" fw="bold">Banner</Text>
+		<Banner href='#banner-link' hover={['target:dark', 'target:zoom']} radius='4'>
+			<Media src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			<FilterLayer bgc='black:40%' blur='2px' />
+			<Layer inset='0' isFlow='s' p='box' c='white'>
+				<Text fz='2xl' fw='bold'>Banner</Text>
 				<DammyText />
 			</Layer>
 		</Banner>
@@ -159,19 +154,19 @@ import { Banner } from '@loos/lism-core';
 <Preview>
 	<PreviewTitle>画像ファイルそのままの比率で</PreviewTitle>
 	<PreviewArea p={20}>
-		<Banner href="#banner-link" hover={["target:zoom", "target:blur"]}>
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
-			<Layer position="center" bgc="rgba(0,0,0,0.5)" radius="4">
-				<DammyText length="xs" p="box" c="white" />
+		<Banner href='#banner-link' hover={['target:zoom', 'target:blur']}>
+			<MediaLayer src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			<Layer position='center' bgc='rgba(0,0,0,0.5)' radius='4'>
+				<DammyText length='xs' p='box' c='white' />
 			</Layer>
 		</Banner>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Banner href="#banner-link" hover={["target:zoom", "target:blur"]}>
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} loading="lazy" />
-			<Layer position="center" bgc="rgba(0,0,0,0.5)" radius="4">
-				<DammyText length="xs" p="box" c="white" />
+		<Banner href='#banner-link' hover={['target:zoom', 'target:blur']}>
+			<MediaLayer src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			<Layer position='center' bgc='rgba(0,0,0,0.5)' radius='4'>
+				<DammyText length='xs' p='box' c='white' />
 			</Layer>
 		</Banner>
 		```

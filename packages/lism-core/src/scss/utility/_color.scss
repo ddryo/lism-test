@@ -80,7 +80,7 @@
 
 // --keycolor : 1つのカラーをもとにスタイリングしたいときに活用する。 cbox,outline,fillなどで使っている
 // [class*='-keycolor:'][data-variant='fill'] {
-// 	--c: var(--keycolor--c, var(--c--filled));
+// 	--c: var(--keycolor--c, var(--c--opposite));
 // }
 
 .-keycolor\:main {

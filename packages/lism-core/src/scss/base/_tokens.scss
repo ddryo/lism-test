@@ -1,15 +1,4 @@
 /* ------------------------------------------------------------
-	グローバルトークン。
-	特定のセレクタに対する変数: --[target--]prop
-	プリセット変数: --{prop}-{variant}
-	
-	ローカルな変数について
-		自身のプロパティ: --{prop}
-		子要素: --{item}--{prop}
-			--rev--c, --icon--offset, --item--minW
- ------------------------------------------------------------ */
-
-/* ------------------------------------------------------------
 	段階的な値は基本的に
 	　→ 0,10,20,30,...
 	  → why? → 間を増やせるように、1,2,3,... ではなく10単位ベース
@@ -204,7 +193,11 @@
 	--c--base: var(--b900); // 基本の文字色
 	--c--pale: var(--b700); // 薄いテキスト色
 	--c--opposite: var(--b50); // 背景色と反転
-	--c--filled: #fff; // variant="fill"系の文字色
+	// --c--filled: #fff; // variant="fill"系の文字色
+
+	--c--10: var(--b900);
+	// --c--20: var(--b800);
+	// --c---10: var(--white); // 反転色?
 
 	// --bgc-: 背景色 に関するセマンティックトークン
 	--bgc--base: var(--b50); // 基本の背景色
@@ -241,15 +234,6 @@
 	--purple: hsl(var(--hsl--purple));
 	--pink: hsl(var(--hsl--pink));
 	--gray: hsl(var(--hsl--gray));
-
-	// --red--c: var(--c--filled);
-	// --orange--c: var(--c--filled);
-	// --yellow--c: #000;
-	// --green--c: #000;
-	// --blue--c: var(--c--filled);
-	// --purple--c: var(--c--filled);
-	// --pink--c: var(--c--filled);
-	// --gray--c: var(--c--filled);
 	// ---
 
 	--cMixPer--bg: 96%;
@@ -269,7 +253,7 @@
 	--hr--color: var(--bdc--base);
 
 	--link--c: #0c61e4;
-	--link--underlineOffset: 0.2ex;
+	// --link--underlineOffset: 0.2ex;
 
 	--focus--color: revert;
 	--focus--outlineOffset: 1px;

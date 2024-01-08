@@ -1,5 +1,5 @@
 :where(.c--button) {
-	--keycolor: var(--b900);
+	--keycolor: var(--content);
 	--icon--scale: 1.25; // offsetとバランス合わせる
 	--icon--offset: 0%; //25%;
 
@@ -14,7 +14,7 @@
 }
 // py は小さめにして、minHで最低限の高さを確保.
 .c--button {
-	--link--td: none; // pタグ内にくるかもしれないので
+	--link-td: none; // pタグ内にくるかもしれないので
 	align-items: center;
 	padding: var(--em--3) var(--em--10); // .375em 1em
 	gap: var(--em--5);
@@ -35,7 +35,7 @@
 // デフォルトスタイル
 // .c--button:not([class*='c--button--'])
 .c--button--fill {
-	--c: var(--c--opposite); // filledColor?
+	--c: var(--base);
 	--bgc: var(--keycolor);
 	--bdc: var(--bgc);
 	// --hov--bgc: transparent;
@@ -46,7 +46,7 @@
 	--c: var(--bdc); // bdc上書きするだけで --c も変わるように
 	// --bgc: transparent;
 	--bdc: var(--keycolor);
-	--hov--c: var(--c--opposite);
+	--hov--c: var(--base);
 	// --rev--bgc: var(--bdc);
 }
 
@@ -55,7 +55,7 @@
 	--c: var(--keycolor);
 	// --bgc: transparent;
 	// --bdc: transparent;
-	--hov--c: var(--c--opposite);
+	--hov--c: var(--base);
 }
 
 // .c--button.l--grid,

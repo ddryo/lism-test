@@ -19,7 +19,7 @@ export default function getTabProps(
 	}
 
 	if (variant === 'box') {
-		_listProps.bgc = 'b200';
+		_listProps.bgc = 'base-3';
 		_listProps.p = 'em1';
 		_listProps.gap = 'em5';
 		_listProps.radius = '2';

@@ -19,29 +19,29 @@ html {
 
 body {
 	// WPでは、カラー・タイポグラフィなどについては theme.json 設定によって出力される
-	background-color: var(--bgc--base);
-	color: var(--c--base);
-	font-family: var(--ff--base);
+	background-color: var(--base);
+	color: var(--content);
+	font-family: var(--ff--root);
 	font-size: 1rem;
-	line-height: var(--lh--base);
-	// font: 1rem / var(--lh--base) var(--ff--base);
-	letter-spacing: var(--lts--base);
+	line-height: var(--lh--root);
+	// font: 1rem / var(--lh--root) var(--ff--root);
+	letter-spacing: var(--lts--root);
 	overflow-x: clip;
 	// 子孫要素の position:fixed の挙動が変わってしまうので body には使わない
 	// container-type: inline-size;
 }
 :where(p, li) {
-	--link--td: underline;
+	--link-td: underline;
 }
 
 :where(a) {
-	text-decoration: var(--link--td, none);
-	// text-underline-offset: var(--link--underlineOffset);
+	text-decoration: var(--link-td, none);
+	// text-underline-offset: var(--link-underlineOffset);
 }
 a {
 	// linkbox を考慮して、リンクの pointer-events: auto;は 明示的に指定しておく?
 	// pointer-events: auto;
-	color: var(--link--c); // --c--link?
+	color: var(--link-c); // --c--link?
 }
 
 // @layer lism-init {
@@ -53,9 +53,8 @@ a {
 
 /* hrのスタイリング. currentColor */
 hr {
-	// --hr--color: currentColor;
 	border: none;
-	border-block-start: 1px solid var(--hr--color);
+	border-block-start: 1px solid var(--hr-bdc);
 	color: inherit;
 	block-size: 0;
 	// overflow: visible; ?

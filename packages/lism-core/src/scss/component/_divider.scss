@@ -3,7 +3,7 @@
 // --------------------
 // :where(.c--divider) {}
 .c--divider {
-	--bdc: var(--bdc--base);
+	--bdc: var(--base-3);
 	--bdw: 1px;
 	place-self: stretch;
 	line-height: 1;
@@ -23,7 +23,7 @@
 
 // heightが.-h:で上書きできるかあとでチェック
 .c--shapeDivider {
-	// --c: var(--bgc--base);
+	// --c: var(--base);
 	--level: 0;
 	--duration: 12s;
 	--offset: 0;
@@ -36,7 +36,7 @@
 
 	position: relative;
 	overflow: hidden;
-	color: var(--bgc--base);
+	color: var(--base);
 
 	// 高さを svg ではなく親でセットしているのは、 <Divider h='hoge'> で簡単に上書きできるようにするため。
 	// 600px時点を最小値, 1200px時点を最大値にして、clampで高さを変動させる

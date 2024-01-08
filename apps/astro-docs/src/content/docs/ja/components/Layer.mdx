@@ -162,7 +162,7 @@ export const LayerPositionsDemo = () => {
 				"center bottom",
 				"right bottom",
 			].map((position) => (
-				<Box key={position} hasLayer py={40} bgc="pale">
+				<Box key={position} hasLayer py={40} bgc='base-2'>
 					<Text fz="4xl" fw="bold" ta="c" opacity=".1">BG</Text>
 					<Layer position={position} bgc="purple:10%" bd="guide">
 						<Text fz="s" p={10} lh="1.5">"{position}"</Text>
@@ -182,7 +182,7 @@ export const LayerPositionsDemo = () => {
 	</PreviewArea>
 	<PreviewCode>
 		```jsx "position=\{position\}"
-		<Box hasLayer py={40} bgc='pale'>
+		<Box hasLayer py={40} bgc='base-2'>
 			<Text fz='xl' fw='bold' ta='c' opacity='.1'>BG</Text>
 			<Layer position={position} bgc='purple:10%' bd='guide'>
 				<Text fz='xs' p={10} lh='1.5'>...</Text>

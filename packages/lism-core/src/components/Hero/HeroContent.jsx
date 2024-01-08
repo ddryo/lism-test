@@ -16,7 +16,7 @@ export default function HeroContent({ type, ...props }) {
 			hasGutter: true,
 		};
 		defProps.my = 'auto';
-	} else if (type === 'strech') {
+	} else if (type === 'stretch') {
 		// defProps.as = Grid;
 		defProps = {
 			as: Grid,

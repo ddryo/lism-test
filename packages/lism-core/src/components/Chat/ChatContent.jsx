@@ -43,7 +43,6 @@ export default function ChatContent({
 			<Decorator
 				variant={`chat-${variant}`}
 				mask='-'
-				className='-bgc:mix'
 				pos='absolute'
 				top='0'
 				{...DECORATOR_PROPS[direction]}
@@ -59,6 +58,7 @@ export default function ChatContent({
 
 	return (
 		<Layouter
+			className='is--colorbox'
 			lismClass={lismClass}
 			{...wrapperProps}
 			//area='nofix'
@@ -66,7 +66,7 @@ export default function ChatContent({
 		>
 			{decorator}
 			<Layouter
-				className='c--chat__content is--colorbox'
+				className='c--chat__content'
 				pos='relative'
 				maxW='s'
 				{...defaultContentProps}

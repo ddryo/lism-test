@@ -11,8 +11,8 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 
 export const PreviewBoxs = ({hover, ...attrs}) => {
 	const DEMO_BOX = [
-		{ ariaLabel: 'グレー系のコンテンツでのテスト', bgc: 'pale', bd: '-' },
-		{ ariaLabel: '黒系のコンテンツでのテスト', bgc: 'opposite', c: 'opposite' },
+		{ ariaLabel: 'グレー系のコンテンツでのテスト', bgc: 'base-2', bd: '-' },
+		{ ariaLabel: '黒系のコンテンツでのテスト', bgc: 'content', c: 'base' },
 	];
 	return (
 		<Columns cols={[2]} gap={20}>
@@ -168,14 +168,14 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 <Preview>
 	<PreviewTitle>`bgc`を`'main'`, `c`を`'white'`に変化させる</PreviewTitle>
 	<PreviewArea p={40}>
-		<LinkBox href='###' bgc='pale' p='box' hover={{ bgc:'main', c:'white'}}>
+		<LinkBox href='###' bgc='base-2' p='box' hover={{ bgc:'main', c:'white'}}>
 			<Text>LinkBox.</Text>
 			<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
 		</LinkBox>
 	</PreviewArea>
 	<PreviewCode slot='tab' label='React, Astro'>
 	```jsx "hover=" "bgc:'main'" "c:'white'"
-		<LinkBox href='###' hover={{ bgc:'main', c:'white'}} bgc='pale' p='box'>
+		<LinkBox href='###' hover={{ bgc:'main', c:'white'}} bgc='base-2' p='box'>
 			...
 		</LinkBox>
 	```
@@ -194,14 +194,14 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 <Preview>
 	<PreviewTitle>Shadowを弱める</PreviewTitle>
 	<PreviewArea p={40}>
-		<LinkBox href='###' hover={{ shadow:'2' }} shadow='4' bgc='pale' p='box' bd>
+		<LinkBox href='###' hover={{ shadow:'2' }} shadow='4' bgc='base-2' p='box' bd>
 			<Text>LinkBox.</Text>
 			<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
 		</LinkBox>
 	</PreviewArea>
 	<PreviewCode>
 	```jsx "hover=" "shadow:'2'" "shadow='4'"
-		<LinkBox href='###' hover={{ shadow:'2' }} shadow='4' bgc='pale' p='box' bd>...</LinkBox>
+		<LinkBox href='###' hover={{ shadow:'2' }} shadow='4' bgc='base-2' p='box' bd>...</LinkBox>
 	```
 	</PreviewCode>
 </Preview>
@@ -243,7 +243,7 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 	```jsx {5}
 		<LinkBox
 			href='###'
-			bgc='pale'
+			bgc='base-2'
 			p='box'
 			hover={{ bgc:'main', c:'white'}}
 		>...</LinkBox>

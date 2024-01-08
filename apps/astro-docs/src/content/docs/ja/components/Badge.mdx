@@ -29,6 +29,7 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 	- パレットカラーを指定できます。(`"red"`, `"blue"`, `"green"`, `"yellow"`, `"purple"`, `"orange"`, `"pink"`, `"gray"`
 - `variant`: ボタンの表示スタイル。`outline`、`subtle`の2種類を標準で用意しています。
 	- `c--badge--{variant}`がクラスとして出力されます。
+	- 初期値: `fill`
 
 ## Import
 
@@ -55,15 +56,14 @@ export const ColorDemos = ({colors, variant}) => {
 	<PreviewTitle>`<Badge>`の使用例</PreviewTitle>
 	<PreviewArea p={20} isShadow={0}>
 		<Cluster gap={20}>
+			{/* <Badge>Badge</Badge> */}
 			<Badge>Badge</Badge>
-			<Badge variant="fill">Badge</Badge>
 			<Badge variant="outline">Badge</Badge>
 		</Cluster>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
 		<Badge>Badge</Badge>
-		<Badge variant="fill">Badge</Badge>
 		<Badge variant="outline">Badge</Badge>
 		```
 	</PreviewCode>
@@ -107,7 +107,7 @@ export const ColorDemos = ({colors, variant}) => {
 	<PreviewTitle>カラーコード指定</PreviewTitle>
 	<PreviewArea p={20} isShadow={0}>
 		<Cluster gap={20}>
-			<Badge bgc="blue:20%" c="base">Badge</Badge>
+			<Badge bgc="blue:20%">Badge</Badge>
 			<Badge variant="fill" keycolor="#ac2c23">Badge</Badge>
 			<Badge variant="subtle" keycolor="hsl(260deg 75% 40%)">Badge</Badge>
 		</Cluster>
@@ -115,7 +115,7 @@ export const ColorDemos = ({colors, variant}) => {
 <PreviewCode>
 ```jsx
 <Cluster gap={20}>
-	<Badge bgc="blue:20%" c="base">Badge</Badge>
+	<Badge bgc="blue:20%">Badge</Badge>
 	<Badge variant="fill" keycolor="#ac2c23">Badge</Badge>
 	<Badge variant="subtle" keycolor="hsl(260deg 75% 40%)">Badge</Badge>
 </Cluster>

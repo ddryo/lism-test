@@ -1,7 +1,7 @@
 // <ul>
 .c--navMenu {
 	--hov--c: currentColor;
-	--hov--bgc: var(--bgc--pale);
+	--hov--bgc: var(--base-2);
 	--list-style: none;
 
 	// provider
@@ -21,7 +21,7 @@
 
 // <a> or <span>
 .c--navMenu__link {
-	--link--td: none; // text-decoration: none;
+	--link-td: none; // text-decoration: none;
 	color: inherit;
 	outline-offset: -1px;
 	// padding: var(--item--p);

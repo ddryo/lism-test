@@ -20,7 +20,7 @@ export default function ChatName({
 		fz: '2xs',
 		px: 'em5',
 		py: 'em1',
-		c: 'pale',
+		c: 'content-2',
 		// translate: '0 -100%',
 	};
 

@@ -2,7 +2,7 @@
 import { Stack } from '../Flex';
 
 // align: full, wide, ''
-export default function Hero({ lismClass = {}, variant, bgc = 'pale', isFullScreen, ...attrs }) {
+export default function Hero({ lismClass = {}, variant, bgc = 'base-2', isFullScreen, ...attrs }) {
 	lismClass.c = 'c--hero';
 	if (variant) {
 		lismClass.c += ` c--hero--${variant}`;

@@ -14,7 +14,7 @@ table {
 	border: none;
 	border-collapse: collapse; // memo: oveflow の指定によっては separate にしないとborderが表示されない場合があるので横スクロール時には注意。
 	border-spacing: 0;
-	--bdc: var(--bdc--base, #dcdcdc);
+	--bdc: var(--table-bdc);
 	--bds: solid;
 	--bdwX: 0px;
 	--bdwY: 1px;
@@ -29,26 +29,26 @@ th {
 
 th {
 	color: var(--th--c, inherit);
-	background-color: var(--th--bgc, transparent);
+	background-color: var(--th-bgc, transparent);
 }
 
 td {
 	color: var(--td--c, inherit);
-	background-color: var(--td--bgc, transparent);
+	background-color: var(--td-bgc, transparent);
 }
 
 thead {
-	// --th--bgc: #f8f9fa;
-	border-block-end: var(--thead--border);
+	// --th-bgc: #f8f9fa;
+	border-block-end: var(--thead-bd);
 }
 
 // tbody {
-// 	// --th--bgc: #f8f9fa;
+// 	// --th-bgc: #f8f9fa;
 // 	// text-align: left; // tbody 内の th が中央寄せになるのを防ぐ？
 // }
 
 tfoot {
-	border-block-start: var(--tfoot--border);
+	border-block-start: var(--tfoot-bd);
 }
 
 :where(table) > caption {
@@ -94,8 +94,8 @@ tfoot {
 
 .table--fix-column1 {
 	// 後ろが透過してると文字がかぶるので、何かしら背景色を初期セットする
-	--td--bgc: var(--bgc--base, white);
-	--th--bgc: var(--bgc--base, white);
+	--td-bgc: var(--base);
+	--th-bgc: var(--base);
 
 	// rowspan 考慮必要 → cell--nofix クラス使ってもらう
 	tr > :first-child:not(.cell--nofix) {
@@ -121,7 +121,7 @@ tfoot {
 
 .table--fix-thead {
 	// 後ろが透過してると文字がかぶるので、何かしら背景色を初期セットする
-	--th--bgc: var(--bgc--base, white);
+	--th-bgc: var(--base, white);
 	overflow-y: auto;
 
 	thead {
@@ -137,7 +137,7 @@ tfoot {
 			z-index: 3;
 			inset: 0;
 			border-block-start: solid var(--bdwY) var(--bdc);
-			border-block-end: var(--thead--border);
+			border-block-end: var(--thead-bd);
 		}
 	}
 }

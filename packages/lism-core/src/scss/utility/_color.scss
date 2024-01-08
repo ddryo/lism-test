@@ -4,55 +4,29 @@
 [class*='-c:'] { color: var(--c) !important }
 .-c\:main { --c: var(--main) }
 .-c\:accent { --c: var(--accent) }
-.-c\:base { --c: var(--c--base) }
-.-c\:pale { --c: var(--c--pale) }
-.-c\:opposite { 
-	--c: var(--c--opposite);
-	// > * {
-	// 	--c--opposite: var(--c--base);
-	// }
-}
+.-c\:pale { --c: green; }
+.-c\:opposite { --c: var(--c--opposite); }
+.-c\:content { --c: var(--content) }
+.-c\:content-2 { --c: var(--content-2) }
+.-c\:content-3 { --c: var(--content-3) }
+.-c\:base { --c: var(--base) }
+// .-c\:base-2 { --c: var(--base-2) }
+// .-c\:base-3 { --c: var(--base-3) }
 
-// .-c\:white {
-// 	--c: var(--white);
-// 	--c--opposite: var(--black);
-// }
-// .-c\:black {
-// 	--c: var(--black);
-// 	--c--opposite: var(--white);
-// }
 
 // .-c\:current{--c: currentColor;}
 
-[class*='-bgc:'] {
-	background-color: var(--bgc) !important;
-}
-.-bgc\:main {
-	--bgc: var(--main);
-}
-.-bgc\:accent {
-	--bgc: var(--accent);
-}
-// .-bgc\:white {
-// 	--bgc: var(--white);
-// }
-// .-bgc\:black {
-// 	--bgc: var(--black);
-// }
-.-bgc\:base {
-	--bgc: var(--bgc--base);
-}
-.-bgc\:pale {
-	--bgc: var(--bgc--pale);
-}
-.-bgc\:strong {
-	--bgc: var(--bgc--strong);
-}
-.-bgc\:opposite {
-	--bgc: var(--bgc--opposite);
-}
-.-bgc\:cc {
-	--bgc: currentColor;
+[class*='-bgc:'] {background-color: var(--bgc) !important}
+.-bgc\:base { --bgc: var(--base) }
+.-bgc\:base-2 { --bgc: var(--base-2) }
+.-bgc\:base-3 { --bgc: var(--base-3) }
+.-bgc\:content { --bgc: var(--content) }
+
+
+.-bgc\:main {--bgc: var(--main);}
+.-bgc\:accent {--bgc: var(--accent);}
+.-bgc\:pale {--bgc: red;}
+.-bgc\:opposite {--bgc: var(--bgc--opposite)
 }
 // .-bgc\:i {
 // 	--bgc: inherit;
@@ -62,66 +36,35 @@
 }
 
 
-.-keycolor\:main {
-	--keycolor: var(--main);
-	// --keycolor--c: var(--main--c);
-}
-.-keycolor\:accent {
-	--keycolor: var(--accent);
-	// --keycolor--c: var(--accent--c);
-}
-.-keycolor\:gray {
-	--keycolor: var(--gray);
-	// --keycolor--c: var(--gray--c);
-}
-.-keycolor\:red {
-	--keycolor: var(--red);
-	// --keycolor--c: var(--red--c);
-}
-.-keycolor\:orange {
-	--keycolor: var(--orange);
-	// --keycolor--c: var(--orange--c);
-}
-.-keycolor\:yellow {
-	--keycolor: var(--yellow);
-	// --keycolor--c: var(--yellow--c);
-}
-.-keycolor\:green {
-	--keycolor: var(--green);
-	// --keycolor--c: var(--green--c);
-}
-.-keycolor\:blue {
-	--keycolor: var(--blue);
-	// --keycolor--c: var(--blue--c);
-}
-.-keycolor\:purple {
-	--keycolor: var(--purple);
-	// --keycolor--c: var(--purple--c);
-}
-.-keycolor\:pink {
-	--keycolor: var(--pink);
-	// --keycolor--c: var(--pink--c);
-}
+.-keycolor\:main { --keycolor: var(--main) }
+.-keycolor\:accent { --keycolor: var(--accent) }
+.-keycolor\:gray { --keycolor: var(--gray) }
+.-keycolor\:red { --keycolor: var(--red) }
+.-keycolor\:orange { --keycolor: var(--orange) }
+.-keycolor\:yellow { --keycolor: var(--yellow) }
+.-keycolor\:green { --keycolor: var(--green) }
+.-keycolor\:blue { --keycolor: var(--blue) }
+.-keycolor\:purple { --keycolor: var(--purple) }
+.-keycolor\:pink { --keycolor: var(--pink) }
 
-// プロパティごとのミックス
+// ミックスkカラーutility
 // @supports (color: color-mix(in srgb, #000, #fff)) {
 .-c\:mix {
-	--mixcolor-c: var(--keycolor);
-	--mixper-c: var(--mixper-content-2);
-	--c: color-mix(in srgb, var(--mixbase-content), var(--mixcolor-c) var(--mixper-c));
+	--c-mixbase: var(--content);
+	--c-mixcolor: var(--keycolor);
+	--c-mixper: var(--cbox-mixper--c);
+	--c: color-mix(in srgb, var(--c-mixbase), var(--c-mixcolor) var(--c-mixper));
 }
 .-bgc\:mix {
-	--mixcolor-bgc: var(--keycolor);
-	--mixper-bgc: var(--mixper-base);
-	--bgc: color-mix(in srgb, var(--mixbase), var(--mixcolor-bgc) var(--mixper-bgc));
+	--bgc-mixbase: transparent;
+	--bgc-mixcolor: var(--keycolor);
+	--bgc-mixper: var(--cbox-mixper);
+	--bgc: color-mix(in srgb, var(--bgc-mixbase), var(--bgc-mixcolor) var(--bgc-mixper));
 }
 
 .-bdc\:mix {
-	--mixcolor-bdc: var(--keycolor);
-	--mixper-bdc: var(--mixper-base-2);
-	--bdc: color-mix(in srgb, var(--mixbase), var(--mixcolor-bdc) var(--mixper-bdc));
+	--bdc-mixbase: transparent;
+	--bdc-mixcolor: var(--keycolor);
+	--bdc-mixper: var(--cbox-mixper--bdc);
+	--bdc: color-mix(in srgb, var(--bdc-mixbase), var(--bdc-mixcolor) var(--bdc-mixper));
 }
-
-// .-c\:mix\:2 {
-// 	--mixper-c: var(--mixper-content-2);
-// }

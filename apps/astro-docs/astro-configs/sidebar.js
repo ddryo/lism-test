@@ -245,12 +245,20 @@ export default [
 				link: '/components/navmenu/',
 			},
 			{
+				label: 'Note',
+				link: '/components/note/',
+			},
+			{
 				label: 'Tabs',
 				link: '/components/tabs/',
 			},
 			{
 				label: 'TermList',
 				link: '/components/termlist/',
+			},
+			{
+				label: 'Hero',
+				link: '/components/hero/',
 			},
 		],
 	},

@@ -1,4 +1,8 @@
-// font-sizeで大きさをコントロールする。
+:where(.e--icon:not([width])) {
+	width: 1em;
+	height: 1em;
+}
+
 .e--icon {
 	--scale: 1;
 	scale: var(--scale);

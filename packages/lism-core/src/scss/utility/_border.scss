@@ -16,7 +16,7 @@
 .has--border {
 	--bds: solid;
 	--bdw: 1px;
-	--bdc: currentColor; //var(--bdc--base);
+	--bdc: currentColor; //var(--base-3);
 	--bd: var(--bdw) var(--bds) var(--bdc);
 }
 
@@ -30,7 +30,7 @@
 :where([class*='-bd:']) {
 	--bds: solid;
 	--bdw: 1px;
-	--bdc: currentColor; //var(--bdc--base);
+	--bdc: currentColor; //var(--base-3);
 	--bd: var(--bdw) var(--bds) var(--bdc);
 }
 
@@ -151,9 +151,6 @@
 .-bdc\:accent {
 	--bdc: var(--accent);
 }
-.-bdc\:base {
-	--bdc: var(--bdc--base);
-}
 
 // 10,20?
 
@@ -165,8 +162,11 @@
 .-bdc\:t {
 	--bdc: var(--bd--transparent);
 }
-.-bdc\:cc {
-	--bdc: currentColor;
+.-bdc\:hr {
+	--bdc: var(--hr-bdc);
+}
+.-bdc\:table {
+	--bdc: var(--table-bdc);
 }
 // .-bdc\:white {
 // 	--bdc: var(--white);

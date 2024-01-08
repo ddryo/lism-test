@@ -1,10 +1,8 @@
 .c--card {
-	--bgc: var(--bgc--base);
 	// --fz: var(--fz-fluid);
-
 	overflow: hidden; // radius考慮
 	position: relative;
-	background-color: var(--bgc);
+	background-color: var(--base);
 	// font-size: var(--fz);
 }
 

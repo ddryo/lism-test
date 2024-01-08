@@ -5,7 +5,7 @@ sidebar:
   order: 15
 ---
 
-import { Box, Frame, Layer, Media, Center } from '@loos/lism-core';
+import { Alert, Box, Frame, Layer, Media, Center } from '@loos/lism-core';
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 
@@ -101,25 +101,33 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 <Preview>
 	<PreviewTitle>grid, stripeとの組み合わせ</PreviewTitle>
 	<PreviewArea resize nogrid p={20}>
-		<Box bg='grid' p='box:l' bgc='black:10%'>
+		<Box bg='grid' p='box:l' bgc='black:20%'>
 			<DammyText />
 		</Box>
-		<Box bg='stripe' p='box:l' bgc='blue:10%'>
+		<Box bg='stripe' p='box:l' bgc='gray:15%'>
+			<DammyText />
+		</Box>
+		<Box bg='grid' p='box:l' bgc='blue:20%'>
+			<DammyText />
+		</Box>
+		<Box bg='stripe' p='box:l' bgc='green:15%'>
+			<DammyText />
+		</Box>
+		<Box className='is--colorbox' bg='stripe' p='box:l' keycolor='green'>
 			<DammyText />
 		</Box>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Box bg='grid' p='box:l' bgc='black:10%'>
+		<Box bg='grid' p='box:l' bgc='black:20%'>
 			<DammyText />
 		</Box>
-		<Box bg='stripe' p='box:l' bgc='blue:10%'>
+		<Box bg='stripe' p='box:l' bgc='gray:15%'>
 			<DammyText />
 		</Box>
 		```
 	</PreviewCode>
 </Preview>
-
 
 
 #### Glass

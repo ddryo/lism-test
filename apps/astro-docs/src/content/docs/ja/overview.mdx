@@ -31,7 +31,7 @@ WEBサイトで一般的によく使われるレイアウト・デザイン要�
 
 Lism CSS では、CSSを以下の概念に分類して設計しています。
 
-<Box p="box" bgc="pale">
+<Box p="box" bgc='base-2'>
 	- Design Tokens
 	- State Utilities
 	- Layout Modules
@@ -54,10 +54,10 @@ CSS設計に関しては、[Every Layout](https://every-layout.dev/) + [Bootstra
 <Preview>
 	<PreviewTitle>専用のコンポーネントはこんな感じで使います</PreviewTitle>
 	<PreviewArea p={10}>
-		<Frame aspect='16/9' isConstrained hasGutter py={50} bgc='pale'>
+		<Frame aspect='16/9' isConstrained hasGutter py={50} bgc='base-2'>
 			<Center minH='100'>
 				<Text tag='h1' fz='3xl' ff='serif' lts='l' lh='xs'>Lism UI</Text>
-				<Text c='pale' fz='s'>...description text...</Text>
+				<Text c='content-2' fz='s'>...description text...</Text>
 				<Flex gap={20} mbs={40}>
 					<Button href='###' radius='3'>Docs</Button>
 					<Button href='###' variant='outline' radius='3'>Github</Button>
@@ -67,10 +67,10 @@ CSS設計に関しては、[Every Layout](https://every-layout.dev/) + [Bootstra
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Frame aspect='16/9' isConstrained hasGutter py={50} bgc='pale'>
+		<Frame aspect='16/9' isConstrained hasGutter py={50} bgc='base-2'>
 			<Center minH='100'>
 				<Text tag='h1' fz='3xl' ff='serif' lts='l' lh='xs'>Lism UI</Text>
-				<Text c='pale' fz='s'>...description text...</Text>
+				<Text c='content-2' fz='s'>...description text...</Text>
 				<Flex gap={20} mbs={40}>
 					<Button href='###' radius='3'>Docs</Button>
 					<Button href='###' variant='outline' radius='3'>Github</Button>

@@ -3,7 +3,7 @@
 // l--grid--gt
 .c--tabs {
 	// position: relative;
-	--active--c: var(--c--base);
+	--active--c: var(--content);
 	--active--bgc: transparent;
 	--gt: 'list' 'panel' / 100%;
 	--tab--r: 0;
@@ -44,7 +44,7 @@
 	> .c--tabs_list {
 		--shadowOfset: 0 2px; // inset 0 -2px
 		--tab--shadowColor: transparent;
-		box-shadow: var(--shadowOfset) 0 0 var(--bdc--base);
+		box-shadow: var(--shadowOfset) 0 0 var(--base-3);
 	}
 	// タブはそんな頻出するものではないので、文字数削減を優先して子孫セレクタ使う。
 	.c--tabs_tab {
@@ -58,7 +58,7 @@
 
 .c--tabs--box {
 	--bdrs: var(--radius--1);
-	--active--bgc: var(--bgc--base);
+	--active--bgc: var(--base);
 
 	> .c--tabs_list {
 		// .c--tabs_list 事態のradiusより少しだけ小さくする
@@ -75,10 +75,10 @@
 // 	// > .c--tabs_tab  {}
 
 // 	> [aria-selected='false'] {
-// 		border-bottom: var(--bdw) solid var(--bdc--base);
+// 		border-bottom: var(--bdw) solid var(--base-3);
 // 	}
 // 	> [aria-selected='true'] {
-// 		border: var(--bdw) solid var(--bdc--base);
+// 		border: var(--bdw) solid var(--base-3);
 // 		border-bottom: none;
 // 	}
 // 	&::after {
@@ -88,7 +88,7 @@
 // 		display: block;
 // 		z-index: -1;
 // 		// flex: 1;
-// 		border-bottom: var(--bdw) solid var(--bdc--base);
+// 		border-bottom: var(--bdw) solid var(--base-3);
 // 	}
 // }
 

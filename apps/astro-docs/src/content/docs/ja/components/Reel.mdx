@@ -93,8 +93,8 @@ export const ReelImages = ({ hasID, isV, ...props }) => {
 	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
 		<Reel>
-			<Box p='box' bgc='pale'>Box</Box>
-			<Box p='box' bgc='pale'>Box</Box>
+			<Box p='box' bgc='base-2'>Box</Box>
+			<Box p='box' bgc='base-2'>Box</Box>
 			...
 		</Reel>
 		```
@@ -184,32 +184,32 @@ reel要素にidを付けてアンカーリンク用意すると、ナビゲー�
 			<ReelImages hasID/>
 		</Reel>
 		<Cluster gap={20} jc='c' lh='1'>
-			<Item tag='a' href='#image-1' c='base' bgc='b200' p='box:s' radius='2' hover={{bgc: 'b300'}} td='none'>1</Item>
-			<Item tag='a' href='#image-2' c='base' bgc='b200' p='box:s' radius='2' hover={{bgc: 'b300'}} td='none'>2</Item>
-			<Item tag='a' href='#image-3' c='base' bgc='b200' p='box:s' radius='2' hover={{bgc: 'b300'}} td='none'>3</Item>
-			<Item tag='a' href='#image-4' c='base' bgc='b200' p='box:s' radius='2' hover={{bgc: 'b300'}} td='none'>4</Item>
-			<Item tag='a' href='#image-5' c='base' bgc='b200' p='box:s' radius='2' hover={{bgc: 'b300'}} td='none'>5</Item>
-			<Item tag='a' href='#image-6' c='base' bgc='b200' p='box:s' radius='2' hover={{bgc: 'b300'}} td='none'>6</Item>
+			<Item tag='a' href='#image-1' c='inherit' bgc='base-3' p='box:s' radius='2' hover='bgc'>1</Item>
+			<Item tag='a' href='#image-2' c='inherit' bgc='base-3' p='box:s' radius='2' hover='bgc'>2</Item>
+			<Item tag='a' href='#image-3' c='inherit' bgc='base-3' p='box:s' radius='2' hover='bgc'>3</Item>
+			<Item tag='a' href='#image-4' c='inherit' bgc='base-3' p='box:s' radius='2' hover='bgc'>4</Item>
+			<Item tag='a' href='#image-5' c='inherit' bgc='base-3' p='box:s' radius='2' hover='bgc'>5</Item>
+			<Item tag='a' href='#image-6' c='inherit' bgc='base-3' p='box:s' radius='2' hover='bgc'>6</Item>
 		</Cluster>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Reel itemW="40%" snap="center" gap={20}>
-			<Frame id="image-1" ascpect="16/9">
-				<img src="..." alt="" loading="lazy" width={960} height={640} />
+		<Reel itemW='40%' snap='center' gap={20}>''
+			<Frame id='image-1' ascpect='16/9'>
+				<img src='...' alt='' loading='lazy' width={960} height={640} />
 			</Frame>
-			<Frame id="image-2" ascpect="16/9">
-				<img src="..." alt="" loading="lazy" width={960} height={640} />
+			<Frame id='image-2' ascpect='16/9'>
+				<img src='...' alt='' loading='lazy' width={960} height={640} />
 			</Frame>
-			<Frame id="image-3" ascpect="16/9">
-				<img src="..." alt="" loading="lazy" width={960} height={640} />
+			<Frame id='image-3' ascpect='16/9'>
+				<img src='...' alt='' loading='lazy' width={960} height={640} />
 			</Frame>
 			...
 		</Reel>
-		<Cluster gap={20} jc="c" lh="1" provide={{c: 'base', bgc:'b200', p:'box:s', radius: '2'}}>
-			<Item tag="a" href="#image-1" c='base' bgc='b200' p='box:s' radius='2' hover={{bgc: "b300"}} td="none">1</Item>
-			<Item tag="a" href="#image-2" c='base' bgc='b200' p='box:s' radius='2' hover={{bgc: "b300"}} td="none">2</Item>
-			<Item tag="a" href="#image-3" c='base' bgc='b200' p='box:s' radius='2' hover={{bgc: "b300"}} td="none">3</Item>
+		<Cluster gap={20} jc='c' lh='1' provide={{c: 'base', bgc:'b200', p:'box:s', radius: '2'}}>
+			<Item tag='a' href='#image-1' c='inherit' bgc='base-3' p='box:s' radius='2' hover='bgc'>1</Item>
+			<Item tag='a' href='#image-2' c='inherit' bgc='base-3' p='box:s' radius='2' hover='bgc'>2</Item>
+			<Item tag='a' href='#image-3' c='inherit' bgc='base-3' p='box:s' radius='2' hover='bgc'>3</Item>
 			...
 		</Cluster>
 		```
@@ -221,7 +221,7 @@ reel要素にidを付けてアンカーリンク用意すると、ナビゲー�
 
 <Preview>
 	<PreviewTitle>
-		`fxd="vertical"`
+		`fxd='vertical'`
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Box maxW='24rem' mx='a'>
@@ -313,14 +313,14 @@ reel要素にidを付けてアンカーリンク用意すると、ナビゲー�
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Reel gap={20} showScrollbar="always">
-			<Box bgc="pale" p="box:s">
+			<Box bgc='base-2' p="box:s">
 				<p>Lorem ipsum, dolor sit amet.</p>
 			</Box>
-			<Box bgc="pale" p="box:s">
+			<Box bgc='base-2' p="box:s">
 				<p>Lorem ipsum, dolor sit amet.</p>
 				<p>consectetur adipisicing elit.</p>
 			</Box>
-			<Box bgc="pale" p="box:s">
+			<Box bgc='base-2' p="box:s">
 				<p>Quisquam, voluptatum.</p>
 			</Box>
 		</Reel>

@@ -14,47 +14,45 @@
 :where(.-bgcp\:tx) {
 	color: transparent;
 }
-
 // bgcp:bb, bgcp:pb, bgcp:cb, bgcp:nc
 
 // 罫線 : Ruled paper, lined paper, rulied lines
-
 // 方眼 : graph paper, grid paper, squared paper
+:root {
+	--bg-bdc: var(--base-2);
+	--bg-bdc: color-mix(
+		in srgb,
+		var(--bgc-mixcolor, var(--keycolor, currentColor)),
+		transparent 94%
+	);
+}
 .-bg\:grid {
-	:where(&) {
-		--grid-color: hsl(var(--hs--bc) 50% / 12%); //var(--b200);
-		--grid-size: 16px;
-	}
+	--grid-bdc: var(--bg-bdc);
+	--grid-size: 16px;
 
-	// --grid-color: color-mix(in srgb, currentColor, transparent 92%);
-	background: linear-gradient(
+	// --grid-bdc: color-mix(in srgb, currentColor, transparent 92%);
+	background-image: linear-gradient(
 			transparent calc(100% - 1px),
-			var(--grid-color) 50%,
-			var(--grid-color)
+			var(--grid-bdc) 50%,
+			var(--grid-bdc)
 		),
-		linear-gradient(
-			90deg,
-			transparent calc(100% - 1px),
-			var(--grid-color) 50%,
-			var(--grid-color)
-		);
+		linear-gradient(90deg, transparent calc(100% - 1px), var(--grid-bdc) 50%, var(--grid-bdc));
 	// background-repeat: repeat;
 	background-size: var(--grid-size) var(--grid-size);
 	background-position: calc(var(--grid-size) / 2);
 }
 
 .-bg\:stripe {
-	:where(&) {
-		--stripe-color: hsl(var(--hs--bc) 50% / 12%);
-		// --stripe-color: var(--b200); //color-mix(in srgb, currentColor, transparent 92%);
-		--stripe-deg: -30deg;
-		--stripe-interval: 6px;
-	}
-	background: repeating-linear-gradient(
+	--stripe-bdc: var(--bg-bdc);
+	--stripe-bdw: 1px;
+	--stripe-deg: -40deg;
+	--stripe-interval: 6px;
+
+	background-image: repeating-linear-gradient(
 		var(--stripe-deg),
-		var(--stripe-color),
-		var(--stripe-color) 1px,
-		transparent 1px,
+		var(--stripe-bdc),
+		var(--stripe-bdc) var(--stripe-bdw),
+		transparent var(--stripe-bdw),
 		transparent var(--stripe-interval)
 	);
 }

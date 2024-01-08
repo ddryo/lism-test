@@ -6,13 +6,13 @@ description: ...
 import { MemoBadge, DammyText, Reference } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 import { ColorDemos, FzDemos, LhDemos, LtsDemos, SpacingDemos, ShadowDemos, RadiusDemos } from "~/demos/tokens.jsx";
-import { Core, Box, Text, Stack, Flex, Columns, Frame, Alert, Tabs, TabItem, Spacer } from '@loos/lism-astro';
+import { Core, Box, Text, Stack, Flex, Columns, Frame, Alert, Note, Tabs, TabItem, Spacer } from '@loos/lism-astro';
 
 
 export const ColorBadge = ({color, label}) => {
 	return <span className='-d:f -ai:c -gap:em3'>
-			<Core tag='span' className='has--size -d:ib' size='1.5em' bgc={color} bdc="base" radius='2' shadow='1' />
-			<code>{label}</code>
+			<Core tag='span' className='has--size -d:ib' size='1.5em' bgc={color} radius='2' shadow='1' />
+			<code>{label || color}</code>
 		</span>;
 }
 
@@ -21,99 +21,96 @@ export const ColorBadge = ({color, label}) => {
 
 |分類|形式|例|
 |---|---|---|
-|カラー|`--{colorToken}`|`--red`, `--blue`|
-|トークン|`--{tokenKey}--{value}`|`--fz--s`,<br />`--shadow--1`,<br />`--bgc--base`|
+|カラー|`--{color}`,<br />`--{colorToken}-{variant}`|`--base`, `--base-2`,<br />`--blue`|
+|トークン|`--{token}--{variant}`|`--fz--s`,<br />`--shadow--1`|
 
 
 ## COLOR トークン
 
+### 基本トークン
+
+|基本トークン|変数|クラス|
+|---|---|---|
+|<ColorBadge color='base' />|`--base`|`.-c:base`,<br/>`.-bgc:base`|
+|<ColorBadge color='base-2' />|`--base-2`|`.-bgc:base-2`|
+|<ColorBadge color='base-3' />|`--base-3`|`.-bgc:base-3`|
+|<ColorBadge color='content' />|`--content`|`.-c:content`,<br/>`.-bgc:content`|
+|<ColorBadge color='content-2' />|`--content-2`|`.-c:content-2`|
+|<ColorBadge color='content-3' />|`--content-3`|`.-c:content-3`|
+|<ColorBadge color='main' />|`--main`|`.-c:main`,<br/>`.-bgc:main`|
+|<ColorBadge color='accent' />|`--accent`|`.-c:accent`,<br/>`.-bgc:accent`|
+|<ColorBadge color='accent-2' />|`--accent-2`|`.-c:accent-2`,<br/>`.-bgc:accent-2`|
+|<ColorBadge color='accent-3' />|`--accent-3`|`.-c:accent-3`,<br/>`.-bgc:accent-3`|
+
+<Preview>
+	<PreviewTitle>contentカラー</PreviewTitle>
+	<PreviewArea p={20} isFlow='s'>
+		<Box><DammyText /></Box>
+		<Box c='content-2'><DammyText /></Box>
+		<Box c='content-3'><DammyText /></Box>
+	</PreviewArea>
+</Preview>
+
+<Preview>
+	<PreviewTitle>baseカラー</PreviewTitle>
+	<PreviewArea p={20} isFlow={false}>
+		<Box bgc='base' p='box'><DammyText /></Box>
+		<Box bgc='base-2' p='box'><DammyText /></Box>
+		<Box bgc='base-3' p='box'><DammyText /></Box>
+	</PreviewArea>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>使用例</PreviewTitle>
+	<PreviewArea p={20}>
+		<Box bgc='base-2' bd bdc='base-3' p='box'><DammyText /></Box>
+		<Box bgc='base-3' c='content-3' p='box'><DammyText /></Box>
+		<Box bgc='content' c='base' p='box'><DammyText /></Box>
+	</PreviewArea>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx
+		<Box bgc='base-2' bd bdc='base-3' p='box'>...</Box>
+		<Box bgc='base-3' c='content-3' p='box'>...</Box>
+		<Box bgc='content' c='base' p='box'>...</Box>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx
+		<div class="l--box -bgc:base-2 -bd: -p:box" style="--bdc:var(--base-3)">...</div>
+		<div class="l--box -bgc:base-3 -c:content-3 -p:box">...</div>
+		<div class="l--box -bgc:content -c:base -p:box">...</div>
+		```
+	</PreviewCode>
+</Preview>
+
+
 ### パレットトークン
 
-{/* main→brand? */}
-<Preview>
-	<PreviewTitle>Point colors</PreviewTitle>
-	<PreviewArea isShadow resize p={20} isFlow="s">
-		<ColorDemos colors={[ 'main', 'accent' ]}/>
-	</PreviewArea>
-</Preview>
-
-
-<Preview>
-	<PreviewTitle>Basic カラー</PreviewTitle>
-	<PreviewArea isShadow resize p={20} isFlow="s">
-		<ColorDemos colors={[ 'b50', 'b100', 'b200', 'b300', 'b400', 'b500', 'b600', 'b700', 'b800', 'b900' ]}/>
-	</PreviewArea>
-</Preview>
-
-<Alert preset="info">
-Basic系カラーはデフォルトで 背景色・文字色・ボーダー色などに使われています。(50:背景色 ←→ 950:文字色)  
-`--hs--basic`で色味を一括調整可能。
-</Alert>
-
-<Preview>
-	<PreviewTitle>パレットカラー</PreviewTitle>
-	<PreviewArea isShadow resize p={20} isFlow="s">
-		<ColorDemos colors={[ 'black', 'white', "red", "orange", "yellow", "green", "blue", "purple", "pink" ]}/>
-	</PreviewArea>
-</Preview>
-
-
-### セマンティックトークン
-
-パレットトークンの他、用途に合わせたセマンティックトークンを定義しています。
-
-実際に取り扱うのはこちらの方が多いと思います。
-
-
-#### 文字色(`color`)用トークン
-
-|トークン|変数|クラス|初期値|
-|---|---|---|---|
-|<ColorBadge color='b900' label='base' />|`--c--base`|`.-c:base`|`--b900`|
-|<ColorBadge color='b700' label='pale' />|`--c--pale`|`.-c:pale`|`--b700`|
-|<ColorBadge color='b50' label='opposite' />|`--c--opposite`|`.-c:opposite`|`--b50`|
-
-{/* weak - srtong?
-pale - deep? */}
-
-<Preview>
-	<PreviewTitle>テキストカラー</PreviewTitle>
-	<PreviewArea p={20}>
-		<div>`base` : <DammyText tag="span" c="base" /></div>
-		<div>`pale` : <DammyText tag="span" c="pale" /></div>
-		<div>`opposite` : <DammyText tag="span" c="opposite" /></div>
-	</PreviewArea>
-</Preview>
-
-
-#### 背景色(`background-color`)用トークン
-|トークン|変数|初期値|
+|パレットトークン|変数|クラス|
 |---|---|---|
-|<ColorBadge color='b50' label='base' />|`--bgc--base`|`--b50`|
-|<ColorBadge color='b100' label='pale' />|`--bgc--pale`|`--b100`|
-|<ColorBadge color='b900' label='opposite' />|`--bgc--opposite`|`--b900`|
+|<ColorBadge color='red' />|`--red`|`.-keycolor:red`|
+|<ColorBadge color='orange' />|`--orange`|`.-keycolor:orange`|
+|<ColorBadge color='yellow' />|`--yellow`|`.-keycolor:yellow`|
+|<ColorBadge color='green' />|`--green`|`.-keycolor:green`|
+|<ColorBadge color='blue' />|`--blue`|`.-keycolor:blue`|
+|<ColorBadge color='purple' />|`--purple`|`.-keycolor:purple`|
+|<ColorBadge color='pink' />|`--pink`|`.-keycolor:pink`|
+|<ColorBadge color='black' />|`--black`|`.-keycolor:black`|
+|<ColorBadge color='white' />|`--white`|`.-keycolor:white`|
+
 
 <Preview>
-	<PreviewTitle>背景色</PreviewTitle>
+	<PreviewTitle>使用例</PreviewTitle>
 	<PreviewArea p={20}>
-		<Box bgc="base" p='box' shadow='1'><div>`base`</div></Box>
-		<Box bgc="pale" p='box' shadow='1'><div>`pale`</div></Box>
-		<Box bgc="opposite" p='box' shadow='1'><div>`opposite`</div></Box>
-	</PreviewArea>
-</Preview>
-
-#### ボーダー色(`border-color`)用トークン
-
-|トークン|変数|初期値|
-|---|---|---|
-|<ColorBadge color='b300' label='base' />|`--bdc--base`|`--b300`|
-|<ColorBadge color='b800' label='strong' />|`--bdc--strong`|`--b800`|
-
-<Preview>
-	<PreviewTitle>ボーダー色</PreviewTitle>
-	<PreviewArea p={20}>
-		<Box bd bdc="base" p='box'><div>`base`</div></Box>
-		<Box bd bdc="strong" p='box'><div>`strong`</div></Box>
+		<Alert preset='alert'><DammyText length='codes' /></Alert>
+		<Note preset='note' heading='Note'><DammyText length='codes' /></Note>
+		<Box className='is--colorbox' keycolor='blue' bd p='box'>
+			<DammyText length='codes' />
+		</Box>
+		<Box bgc='green:15%' c='blue:50%' p='box'>
+			<DammyText />
+		</Box>
 	</PreviewArea>
 </Preview>
 

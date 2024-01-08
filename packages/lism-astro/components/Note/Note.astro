@@ -13,7 +13,6 @@ const { icon, iconProps = {}, headProps = {}, bodyProps = {}, ...attrs } = props
 if ('Flex' === headProps.as) {
 	headProps.as = Flex;
 }
-console.log('heading', heading);
 
 const hasHeading = heading || Astro.slots.has('heading');
 ---

@@ -57,7 +57,7 @@
 	--ff--emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji',
 		'Segoe UI Symbol';
 
-	--ff--base: var(--ff--sans);
+	--ff--root: var(--ff--sans);
 	--ff--heading: var(--ff--sans);
 
 	// ------------------------------
@@ -69,9 +69,8 @@
 	// ------------------------------
 	// letter-spacing
 	// ------------------------------
-	// --lts--base: normal; // 0, 0.025
+	--lts--root: normal;
 	--lts--s: -0.05em;
-	--lts--base: normal;
 	--lts--l: 0.05em;
 	--lts--xl: 0.25em;
 
@@ -84,13 +83,6 @@
 	// --lts--4: 0.1em;
 	// --lts--5: 0.25em;
 	// --lts--6: 0.5em;
-
-	// --lts--6: 0.5em;
-
-	// --root--ff: sans-serif;
-	// --root--fz: clamp(14px, 4vw, 1rem); // 1rem: ブラウザ標準はほぼ16px
-	// --root--fz: clamp(0.875rem, 0.625rem + 1vw, 1rem); // 400 - 600
-	// --root--lh: 1.75;
 
 	// ------------------------------
 	// font-size 変数
@@ -131,102 +123,28 @@
 	// ------------------------------
 	// line-height 変数
 	// ------------------------------
+	// tight snug - relaxed loose or shorter short - tall taller ?
+	--lh--root: 1.75;
+	--lh--xs: calc(var(--lh--root) - 0.25);
+	--lh--s: calc(var(--lh--root) - 0.125);
+	--lh--l: calc(var(--lh--root) + 0.125);
+	--lh--xl: calc(var(--lh--root) + 0.25);
 
-	// 1~9 だと普通の数値指定と区別がつかない.
+	// 1~9 だと普通の数値指定と区別がつかないので単位は10
 	// --lh--10: 1;
 	// --lh--20: 1.125;
 	// --lh--30: 1.25;
 	// --lh--40: 1.375;
 	// --lh--50: 1.5;
-	// --lh--60: 1.625;
-	// --lh--70: 1.75;
-	// --lh--80: 1.875;
-	// --lh--90: 2;
+	// ...
 
-	--lh--base: 1.75;
-	--lh--xs: calc(var(--lh--base) - 0.25);
-	--lh--s: calc(var(--lh--base) - 0.125);
-	--lh--l: calc(var(--lh--base) + 0.125);
-	--lh--xl: calc(var(--lh--base) + 0.25);
+	// ------------------------------------------------------------
+	// カラー
+	// ------------------------------------------------------------
 
-	// tight snug - relaxed loose
-	// shorter short - tall taller
-	// xs s - l xl
-
-	/* ------------------------------------------------------------
-	  カラー: ユーザー側で定義できる仕組みも必要
-	------------------------------------------------------------ */
-
-	// --color--: 文字色・背景色など共通して採用されるカラー
-	--hsl--main: 203 56% 27%;
-	--hsl--accent: 346 57% 47%;
-	--main: hsl(var(--hsl--main));
-	--accent: hsl(var(--hsl--accent));
-
-	// --main--c: #fff; // 背景が main の時の文字色
-	// --accent: hsl(346, 57%, 47%);
-	// --accent--c: #fff; // 背景が accent の時の文字色
-	// --bgc--base: #fdfdfd; // 背景色メイン
-
-	// ベースカラーに合わせたカラーを段階的に用意
-	--hs--b: 215 8%;
-	// --hsl--bc: 215 8% 60%;
-
-	// bc50? n50?
-	--b50: hsl(var(--hs--b) 99%);
-	--b100: hsl(var(--hs--b) 96%);
-	--b200: hsl(var(--hs--b) 92%);
-	--b300: hsl(var(--hs--b) 84%);
-	--b400: hsl(var(--hs--b) 72%);
-	--b500: hsl(var(--hs--b) 60%);
-	--b600: hsl(var(--hs--b) 48%);
-	--b700: hsl(var(--hs--b) 36%);
-	--b800: hsl(var(--hs--b) 24%); // 淡い文字色 strong背景色
-	--b900: hsl(var(--hs--b) 8%); // 少しだけ淡い文字色. pre code などで使用
-	// --b950: hsl(var(--hs--bc) 8%); // 文字色
-
-	// --hs--base: 215 8%;
-	// --hs--content: 215 8%;
-
-	// accent, accent-2, accent-3
-	// base, base-2, base-3 … 基本、濃くなっていく
-	// content, content-2, content-3 …　基本、薄くなっていく
-
-	// bgc='1' == bgc='base'   → -bgc:1{var(--base-1)}
-	// bgc='2' == bgc='base-2' → -bgc:2{var(--base-2)}
-
-	// c='1' == c='content'   → -c:1{var(--content-1)}
-	// c='2' == c='content-2' → -c:1{var(--content-2)}
-	// -bgc:base, -bgc:base-2, -c:content,
-
-	// ボーダーはどちらでも使える感じか。
-	// --bdc-pale,base,strong
-
-	// pale→subtle?
-
-	// --c-: 文字色 に関するセマンティックトークン
-	--c--base: var(--b900); // 基本の文字色 --c--1?
-	--c--pale: var(--b700); // 薄いテキスト色 --c--2
-	--c--opposite: var(--b50); // 背景色と反転
-	// --c--filled: #fff; // variant="fill"系の文字色
-
-	--c--10: var(--b900);
-	// --c--20: var(--b800);
-	// --c---10: var(--white); // 反転色?
-
-	// --bgc-: 背景色 に関するセマンティックトークン
-	--bgc--base: var(--b50); // 基本の背景色
-	--bgc--pale: var(--b100); // 薄い背景色
-	// --bgc--medium: var(--b200); // 少し濃い背景色? & ボーダー基本色もデフォルトはこれ
-	// --bgc--strong: var(--b900); //
-	--bgc--opposite: var(--b900); // テキスト色と反転
-
-	// --bdc-: ボーダー色 に関するセマンティックトークン
-	--bdc--base: var(--b300); // 基本ボーダーカラー
-	// --bdc--pale: var(--b200); // 薄いボーダーカラー
-	// --bdc--strong: var(--b800);
-
-	// --pallete--?
+	// --------------------
+	// パレットカラー
+	// --------------------
 	--black: hsl(0 0% 0%);
 	--white: hsl(0 0% 100%);
 	--gray: hsl(210 12% 40%);
@@ -238,29 +156,88 @@
 	--purple: hsl(256 72% 52%);
 	--pink: hsl(325 72% 48%);
 
-	// ---
+	// --------------------
+	// basic カラー
+	// --------------------
+
+	// ベースカラーに合わせたカラーを段階的に用意
+	// --hs--bc: 215 8%;
+	// --hsl--bc: 215 8% 60%;
+
+	// n50?
+	// --b50: hsl(var(--hs--bc) 99%);
+	// --b100: hsl(var(--hs--bc) 96%);
+	// --b200: hsl(var(--hs--bc) 92%);
+	// --b300: hsl(var(--hs--bc) 84%);
+	// --b400: hsl(var(--hs--bc) 72%);
+	// --b500: hsl(var(--hs--bc) 60%);
+	// --b600: hsl(var(--hs--bc) 48%);
+	// --b700: hsl(var(--hs--bc) 36%);
+	// --b800: hsl(var(--hs--bc) 24%); // 淡い文字色 strong背景色
+	// --b900: hsl(var(--hs--bc) 12%); // ほんの少しだけ淡い文字色.
+	// --b950: hsl(var(--hs--bcc) 8%); // 文字色
+
+	// --------------------
+	// キーワードカラー main(brand?), accent, base, content
+	// --------------------
+
+	// --color--: 文字色・背景色など共通して採用されるカラー
+	--main: #1e4e6b;
+	--accent: #bc3453;
+	--accent-2: #bc3453;
+	--accent-3: #bc3453;
+
+	// base
+	--base-hs: 215 12%;
+	--base: hsl(var(--base-hs) 99%);
+	--base-2: hsl(var(--base-hs) 95%);
+	--base-3: hsl(var(--base-hs) 88%); // border に使う
+
+	// content
+	--content: hsl(215 8% 8%);
+	--content-2: hsl(215 4% 32%);
+	--content-3: hsl(225, 4%, 50%); //hsl(200, 12%, 92%);
+
+	// accent, accent-2, accent-3
+	// base, base-2, base-3 … 基本、濃くなっていく
+	// content, content-2, content-3 …　基本、薄くなっていく
+
+	// ボーダーはどちらでも使える感じか。
+	// --bdc-pale,base,strong
+
+	// pale→subtle?
+
+	// c,bgc,bdc
+	--c--base: rgb(240, 144, 216);
+	--c--oppoite: rgb(214, 240, 144);
+	--bgc--base: rgb(214, 240, 144);
+	--bgc--opposite: rgb(240, 144, 216);
+	--c--pale: green;
+	--bgc--pale: red;
 
 	/* ------------------------------------------------------------
 	    elements
 	------------------------------------------------------------ */
 
 	// --table--bdc:
-	--th--bgc: var(--bgc--pale);
+	--th-bgc: var(--base-2);
 
 	// collape にしているので、tfoot 1pxだと見えないことに注意。
-	--thead--border: solid 2px var(--b900);
-	--tfoot--border: solid 2px var(--b900);
-	--hr--color: var(--bdc--base);
+	--thead-bd: solid 2px var(--content);
+	--tfoot-bd: solid 2px var(--content);
+	--hr-bdc: var(--base-3);
+	--table-bdc: var(--base-3);
 
-	--link--c: #0c61e4;
-	// --link--underlineOffset: 0.2ex;
+	--link-c: #0c61e4;
+	// --link-underlineOffset: 0.2ex;
 
 	--focus--color: revert;
 	--focus--outlineOffset: 1px;
 
-	--code--c: var(--b800);
-	--code--bgc: var(--b100);
-	// --code--bdc: var(--b300);
+	// --code-c: var(--content);
+	// --code-bgc: var(--base-2);
+	--code-c: currentColor;
+	--code-bgc: color-mix(in srgb, transparent, currentColor 4%);
 
 	/* ------------------------------------------------------------
 	  カラー: ユーザー側で定義できる仕組みも必要
@@ -342,21 +319,17 @@
 	/* ------------------------------------------------------------
 	  shadow
 	------------------------------------------------------------ */
-
-	--hsl--shadow: var(--hs--bc) 10%; //0 0% 0%;
+	--shadow-alpha: 0.1;
+	--shadow-hsl: 215 8% 10%;
+	--shadow-color: hsl(var(--shadow-hsl) / var(--shadow-alpha));
 
 	// x:y = 1:2 で統一。 layer的な考え方で、10,20...ではなく 1,2,...?
-	--shadow-length--0: 0.5px 1px 2px 0px;
-	--shadow-length--1: 0.5px 1px 4px 0px;
-	--shadow-length--2: 1px 2px 8px 0px;
-	--shadow-length--3: 2px 4px 16px 0px;
-	--shadow-length--4: 4px 8px 32px 0px;
-	// --shadow-length--5: 8px 16px 56px -1px;
-
-	--shadow-alpha--low: 0.05;
-	--shadow-color--low: hsl(var(--hsl--shadow) / var(--shadow-alpha--low));
-	--shadow-alpha: 0.1;
-	--shadow-color: hsl(var(--hsl--shadow) / var(--shadow-alpha));
+	--shadow-size--0: 0.5px 1px 2px 0px;
+	--shadow-size--1: 0.5px 1px 4px 0px;
+	--shadow-size--2: 1px 2px 8px 0px;
+	--shadow-size--3: 2px 4px 16px 0px;
+	--shadow-size--4: 4px 8px 32px 0px;
+	// --shadow-size--5: 8px 16px 56px -1px;
 
 	// ポイント:
 	//    x:yのオフセット比率は一定に保つ. 1:2
@@ -366,23 +339,23 @@
 
 	// 共通で使う微量のshadow
 	// --bxsh--N?
-	--shadow--0: var(--shadow-length--0) var(--shadow-color--low);
+	--shadow--0: var(--shadow-size--0) var(--shadow-color);
 
-	--shadow--1: var(--shadow--0), var(--shadow-length--1) var(--shadow-color);
-	--shadow--2: var(--shadow-length--1) var(--shadow-color--low),
-		var(--shadow-length--2) var(--shadow-color);
-	--shadow--3: var(--shadow-length--2) var(--shadow-color--low),
-		var(--shadow-length--3) var(--shadow-color);
-	--shadow--4: var(--shadow-length--3) var(--shadow-color--low),
-		var(--shadow-length--4) var(--shadow-color);
+	--shadow--1: var(--shadow--0), var(--shadow-size--1) var(--shadow-color);
+	--shadow--2: var(--shadow-size--1) var(--shadow-color),
+		var(--shadow-size--2) var(--shadow-color);
+	--shadow--3: var(--shadow-size--2) var(--shadow-color),
+		var(--shadow-size--3) var(--shadow-color);
+	--shadow--4: var(--shadow-size--3) var(--shadow-color),
+		var(--shadow-size--4) var(--shadow-color);
 
-	--shadow--i1: inset var(--shadow--0), inset var(--shadow-length--1) var(--shadow-color);
-	--shadow--i2: inset var(--shadow-length--1) var(--shadow-color--low),
-		inset var(--shadow-length--2) var(--shadow-color);
-	--shadow--i3: inset var(--shadow-length--2) var(--shadow-color--low),
-		inset var(--shadow-length--3) var(--shadow-color);
-	--shadow--i4: inset var(--shadow-length--3) var(--shadow-color--low),
-		inset var(--shadow-length--4) var(--shadow-color);
+	--shadow--i1: inset var(--shadow--0), inset var(--shadow-size--1) var(--shadow-color);
+	--shadow--i2: inset var(--shadow-size--1) var(--shadow-color),
+		inset var(--shadow-size--2) var(--shadow-color);
+	--shadow--i3: inset var(--shadow-size--2) var(--shadow-color),
+		inset var(--shadow-size--3) var(--shadow-color);
+	--shadow--i4: inset var(--shadow-size--3) var(--shadow-color),
+		inset var(--shadow-size--4) var(--shadow-color);
 
 	/* ------------------------------------------------------------
 	  filter
@@ -404,12 +377,3 @@
 // 80: 6.875
 // 90: 11.125
 // 100: 18
-
-// 暖色系テーマ
-// --hs--bc: 15 12%;
-// --b50: hsl(var(--hs--bc) 96%);
-// --b100: hsl(var(--hs--bc) 92%);
-// --b200: hsl(var(--hs--bc) 88%);
-// --b800: hsl(var(--hs--bc) 30%);
-// --b900: hsl(var(--hs--bc) 24%);
-// --b950: hsl(var(--hs--bc) 16%);

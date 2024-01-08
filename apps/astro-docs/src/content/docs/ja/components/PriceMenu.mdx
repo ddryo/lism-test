@@ -3,7 +3,7 @@ title: 'PriceMenu'
 description: ...
 ---
 
-import { Grid, Text, Decorator } from '@loos/lism-core';
+import { Stack, Grid, Text, Decorator } from '@loos/lism-core';
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 
@@ -31,12 +31,12 @@ import { PriceMenu } from '@loos/lism-core';
 		<Stack className="b--priceMenu" gap={20} fz={['s','m']} lh="s">
 			<Grid className="b--priceMenu__row" columns="auto 1fr auto" ai="center" gap={20}>
 				<Text className="b--priceMenu__name">とても美味しいトマトソースのスパゲッティ</Text>
-				<Decorator minW="1.5em" bd="block-start" bdc="base" />
+				<Decorator minW="1.5em" bd="block-start" bdc="table" />
 				<Text className="b--priceMenu__price" whs="nowrap">1,000円</Text>
 			</Grid>
 			<Grid columns="auto 1fr auto" ai="center" gap={20}>
 				<Text className="b--priceMenu__name">美味しいドリンク</Text>
-				<Decorator minW="1.5em" bd="block-start" bdc="base" />
+				<Decorator minW="1.5em" bd="block-start" bdc="table" />
 				<Text className="b--priceMenu__price" whs="nowrap">500円</Text>
 			</Grid>
 		</Stack>

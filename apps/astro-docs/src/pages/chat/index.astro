@@ -25,6 +25,12 @@ import { DammyText } from '~/components';
 	<Layouter isFlow hasGutter py={50} isConstrained='s' alignfull id='demo-wrapper' _dir='rtl'>
 		<p>test...</p>
 
+		<Box bgc='blue:40%' c='red:20%' p='box'>
+			bgc='blue:40%';<DammyText length='codes' />
+		</Box>
+		<Box c='green:80%' bd p='box'>
+			c='green:80%'<DammyText length='codes' />
+		</Box>
 		<Box className='is--colorbox' bd keycolor='blue' p='box'>
 			<DammyText length='codes' />
 		</Box>

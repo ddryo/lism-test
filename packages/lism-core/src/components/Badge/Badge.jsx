@@ -7,7 +7,7 @@ export default function Badge({
 	lismClass = {},
 	// lismStyle = {},
 	lismState = [],
-	variant,
+	variant = 'fill',
 	...props
 }) {
 	lismClass.c = 'c--badge';
@@ -17,9 +17,10 @@ export default function Badge({
 
 	if ('subtle' === variant) {
 		lismState.push('is--colorbox');
-	} else if ('outline' === variant) {
-		lismState.push('-c:mix:2');
 	}
+	//  else if ('outline' === variant) {
+	// 	lismState.push('-c:mix');
+	// }
 	return (
 		<Core tag='span' lismClass={lismClass} lismState={lismState} {...defaultProps} {...props} />
 	);

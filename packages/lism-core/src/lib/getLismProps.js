@@ -32,6 +32,26 @@ const HoverProps = {
 // 	margin: 'm',
 // };
 
+// color.N% → c, permix.c に分離
+function getMaybeMixColor(color) {
+	// color が "/数値%" で終わるかどうかチェック
+
+	// const match = color.match(/\/\d+%/);
+	// if (match) {
+	// 	const alpha = match[0].replace('/', '');
+	// 	return `hsl(var(--hsl--${color}) / ${alpha})`;
+	// }
+
+	if (typeof color === 'string' && color.endsWith('%')) {
+		const [colorName, alpha] = color.split('/');
+
+		// α値の指定が可能なのはカラートークンの値のみ(black,whiteだけとかにする?)
+		if (isTokenValue('color', colorName)) {
+			return `hsl(var(--hsl--${colorName}) / ${alpha})`;
+		}
+	}
+}
+
 class LismPropsData {
 	// propList = {};
 	// styles = {};
@@ -407,12 +427,22 @@ class LismPropsData {
 			return;
 		}
 
+		//converter color の時の特殊処理
+		if (converter === 'color' && typeof val === 'string') {
+			// color が ":数値%" で終わるかどうか
+			if (val.endsWith('%')) {
+				const [colorValue, mixper] = val.split(':');
+				this.addUtil(`${utilName}mix`);
+				this.addStyle(`--${name}-mixcolor`, getMaybeCssVar(colorValue, 'color', name));
+				this.addStyle(`--${name}-mixper`, mixper);
+				return;
+			}
+		}
+
 		// converter(getMaybe...)があればそれを通す
 		if (converter) {
 			// memo: nameチェックでの変数化が必要なケースは、この時点でユーティリティクラス化されているのでnameの受け渡しをスキップしてもいいかも
 			val = getMaybeCssVar(val, converter, name);
-			// if (typeof converter === 'string') converter = CONVERTERS[converter];
-			// val = converter(val);
 		}
 
 		// style のみ出力
@@ -441,7 +471,7 @@ class LismPropsData {
 			let value = providerData[propName];
 			if (null === value) return;
 
-			// コンバーター取得
+			// コンバーター通して取得
 			const converterName = ProvidableProps[propName];
 			if (converterName) {
 				value = getMaybeCssVar(value, converterName, propName);

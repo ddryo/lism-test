@@ -20,7 +20,7 @@ export default function ChatFoot({
 		fz: '2xs',
 		px: 'em5',
 		py: 'em1',
-		c: 'pale',
+		c: 'content-2',
 	};
 
 	// 親から渡されるが、使わない

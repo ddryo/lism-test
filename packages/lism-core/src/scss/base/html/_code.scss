@@ -1,7 +1,6 @@
 pre {
 	padding: var(--p--box);
-	color: var(--b800);
-	background-color: var(--b100);
+	background-color: var(--base-2);
 
 	// 横にスクロールできるように
 	/* overflow-inline: auto; ← まだ使えない */
@@ -12,21 +11,21 @@ code,
 kbd {
 	font-size: 0.9em;
 	font-family: var(--ff--mono);
-	color: var(--code--c);
-	background-color: var(--code--bgc);
-	border-radius: 0.25em;
-	padding: 0.25em 0.325em; // 0.125em 0.25em;
+	padding: 0.25em 0.325em;
 }
 
-// インラインコード
-// :where(:not(pre)) > code {
-// 	padding: 0.125em 0.25em;
-// 	border-radius: 2px;
-// }
+code {
+	color: var(--code-c);
+	background-color: var(--code-bgc);
+	border-radius: var(--radius--2);
+}
 
 kbd {
-	border: solid 1px var(--b300);
-	box-shadow: 0 1px 0 var(--b300);
+	border-radius: var(--radius--1);
+	border: solid 1px var(--base-3);
+	box-shadow: 0 1px 0 var(--base-3);
+	color: var(--content);
+	background-color: var(--base);
 	// padding: 0.25em 0.325em;
 }
 :where(a) > :is(code, kbd) {

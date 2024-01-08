@@ -19,7 +19,7 @@
 }
 
 :where(.-hov\:bgc) {
-	--hov--bgc: var(--bgc--pale);
+	--hov--bgc: var(--base-2);
 }
 .-hov\:bgc:hover {
 	background-color: var(--hov--bgc) !important;
@@ -37,15 +37,6 @@
 	filter: var(--hov--filter) !important;
 }
 
-// .-hov\:bgc\:b100 {
-// 	--hov--bgc: var(--b100);
-// }
-// .-hov\:bgc\:b200 {
-// 	--hov--bgc: var(--b200);
-// }
-// .-hov\:bgc\:b900 {
-// 	--hov--bgc: var(--b900);
-// }
 // ------------------------------------------------------------
 // プリセット
 // ------------------------------------------------------------

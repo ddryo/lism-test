@@ -77,7 +77,7 @@
 :where(.c--accordion__icon[data-role='trigger']) {
 	padding: 0.375em;
 	border: solid 1px currentColor;
-	border-radius: var(--radius--1);
+	border-radius: var(--radius--xs);
 }
 
 .c--accordion__header:has([data-role='trigger']) {

@@ -49,7 +49,7 @@
 
 // [class*='-lh:'] { line-height: var(--lh) }
 .-lh\:1 { line-height: 1 }
-.-lh\:base { line-height: var(--lh--base) }
+.-lh\:root { line-height: var(--lh--root) }
 .-lh\:xs { line-height: var(--lh--xs) }
 .-lh\:s { line-height: var(--lh--s) }
 .-lh\:l { line-height: var(--lh--l) }
@@ -71,7 +71,7 @@
 // [class*='-lts:'] {
 // 	letter-spacing: var(--lts);
 // }
-.-lts\:base {letter-spacing: var(--lts--base)}
+.-lts\:root {letter-spacing: var(--lts--root)}
 .-lts\:s {letter-spacing: var(--lts--s)}
 .-lts\:l {letter-spacing: var(--lts--l)}
 .-lts\:xl {letter-spacing: var(--lts--xl)}

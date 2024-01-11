@@ -13,13 +13,7 @@ import {
 	ArrowCircleRight,
 } from "@phosphor-icons/react";
 
-ボタンを表示するコンポーネントです。[test](###)
-
-[test](###)
-
-- [test](###) a
-- [test](###) a
-
+ボタンを表示するコンポーネントです。
 
 ## 主なprops
 - `keycolor`: ボタンのキーカラー。デフォルトは`main`カラーです。
@@ -50,6 +44,13 @@ Common Props の `w`, `h` ではなく、`width`, `height` を使ってくださ
 	- `data-preset="{keyword}"`に対するCSSを設定できるようにする？
 	- primary, secondary... or main, sub, simple ... ?
 
+{/* <Preview>
+	<PreviewTitle>longテキストテスト</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Button href='###' w='10rem'>長いテキストが入ったButtonだよ</Button>
+	</PreviewArea>
+</Preview> */}
+
 
 ## Import
 
@@ -61,21 +62,22 @@ export const cboxKeywords = ["red", "blue", "green", "yellow", "purple", "orange
 
 ## Usage
 
+
 <Preview>
 	<PreviewTitle>各`variant`</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Cluster gap={20}>
-			<Button href="#button">Fill Button</Button>
-			<Button href="#button" variant="outline">Outline Button</Button>
-			<Button href="#button" variant="ghost">Text Button</Button>
+			<Button href='###'>Fill Button</Button>
+			<Button href='###' variant="outline">Outline Button</Button>
+			<Button href='###' variant="ghost">Text Button</Button>
 		</Cluster>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
 		<Cluster gap={20}>
-			<Button href="#button">Fill Button</Button>
-			<Button href="#button" variant="outline">Outline Button</Button>
-			<Button href="#button" variant="ghost">Text Button</Button>
+			<Button href='###'>Fill Button</Button>
+			<Button href='###' variant="outline">Outline Button</Button>
+			<Button href='###' variant="ghost">Text Button</Button>
 		</Cluster>
 		```
 	</PreviewCode>
@@ -86,9 +88,9 @@ export const cboxKeywords = ["red", "blue", "green", "yellow", "purple", "orange
 	<PreviewTitle>左にアイコン</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Cluster gap={20}>
-			<Button href="#button" leftIcon={ShoppingCartSimple}>Button</Button>
-			<Button href="#button" leftIcon={ShoppingCartSimple} variant="outline">Button</Button>
-			<Button href="#button" leftIcon={ShoppingCartSimple} variant="ghost">Button</Button>
+			<Button href='###' leftIcon={ShoppingCartSimple}>Button</Button>
+			<Button href='###' leftIcon={ShoppingCartSimple} variant="outline">Button</Button>
+			<Button href='###' leftIcon={ShoppingCartSimple} variant="ghost">Button</Button>
 		</Cluster>
 </PreviewArea>
 <PreviewCode>
@@ -96,9 +98,9 @@ export const cboxKeywords = ["red", "blue", "green", "yellow", "purple", "orange
 import { ShoppingCartSimple } from "@phosphor-icons/react";
 
 <Cluster gap={20}>
-	<Button href="#button" leftIcon={ShoppingCartSimple}>Button</Button>
-	<Button href="#button" leftIcon={ShoppingCartSimple} variant="outline">Button</Button>
-	<Button href="#button" leftIcon={ShoppingCartSimple} variant="ghost">Button</Button>
+	<Button href='###' leftIcon={ShoppingCartSimple}>Button</Button>
+	<Button href='###' leftIcon={ShoppingCartSimple} variant="outline">Button</Button>
+	<Button href='###' leftIcon={ShoppingCartSimple} variant="ghost">Button</Button>
 </Cluster>
 ```
 </PreviewCode>
@@ -109,9 +111,9 @@ import { ShoppingCartSimple } from "@phosphor-icons/react";
 	<PreviewTitle>アイコンを右に</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Cluster gap={20}>
-			<Button href="#button" rightIcon={ArrowRight}>Button</Button>
-			<Button href="#button" rightIcon={ArrowRight} variant="outline">Button</Button>
-			<Button href="#button" rightIcon={ArrowRight} variant="ghost">Button</Button>
+			<Button href='###' rightIcon={ArrowRight}>Button</Button>
+			<Button href='###' rightIcon={ArrowRight} variant="outline">Button</Button>
+			<Button href='###' rightIcon={ArrowRight} variant="ghost">Button</Button>
 		</Cluster>
 	</PreviewArea>
 <PreviewCode>
@@ -119,9 +121,9 @@ import { ShoppingCartSimple } from "@phosphor-icons/react";
 import { ArrowRight } from "@phosphor-icons/react";
 
 <Cluster gap={20}>
-	<Button href="#button" rightIcon={ArrowRight}>Button</Button>
-	<Button href="#button" rightIcon={ArrowRight} variant="outline">Button</Button>
-	<Button href="#button" rightIcon={ArrowRight} variant="ghost">Button</Button>
+	<Button href='###' rightIcon={ArrowRight}>Button</Button>
+	<Button href='###' rightIcon={ArrowRight} variant="outline">Button</Button>
+	<Button href='###' rightIcon={ArrowRight} variant="ghost">Button</Button>
 </Cluster>
 ```
 </PreviewCode>
@@ -131,9 +133,9 @@ import { ArrowRight } from "@phosphor-icons/react";
 	<PreviewTitle>アイコンのみのボタン。hoverも変えてみる</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Cluster gap={20}>
-			<Button href="#button" icon={ShoppingCartSimple} hover="up" />
-			<Button href="#button" icon={ArrowFatDown} hover="shadow" variant="outline" />
-			<Button href="#button" icon={ArrowRight} hover={{c:'b800', bgc: 'b100'}} variant="ghost" />
+			<Button href='###' icon={ShoppingCartSimple} hover="up" />
+			<Button href='###' icon={ArrowFatDown} hover="shadow" variant="outline" />
+			<Button href='###' icon={ArrowRight} hover={{bgc:'base-3'}} variant="ghost" />
 		</Cluster>
 	</PreviewArea>
 <PreviewCode>
@@ -141,9 +143,9 @@ import { ArrowRight } from "@phosphor-icons/react";
 import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/react";
 
 <Cluster gap={20}>
-	<Button href="#button" icon={ShoppingCartSimple} hover="up" />
-	<Button href="#button" icon={ArrowFatDown} hover="shadow" variant="outline" />
-	<Button href="#button" icon={ArrowRight} hover={{c:'b800', bgc: 'b100'}} variant="ghost" />
+	<Button href='###' icon={ShoppingCartSimple} hover="up" />
+	<Button href='###' icon={ArrowFatDown} hover="shadow" variant="outline" />
+	<Button href='###' icon={ArrowRight} hover={{bgc:'base-3'}} variant="ghost" />
 </Cluster>
 ```
 </PreviewCode>
@@ -160,10 +162,10 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 <Preview>
 	<PreviewTitle>`isGrid`</PreviewTitle>
 	<PreviewArea resize p={20} isFlow={20}>
-			<Button href="#button" leftIcon={ShoppingCartSimple} w="100%" maxW="20em" isGrid>Button</Button>
-			<Button href="#button" rightIcon={ArrowRight} w="100%" maxW="20em" isGrid>Button</Button>
+			<Button href='###' leftIcon={ShoppingCartSimple} w="100%" maxW="20em" isGrid>Button</Button>
+			<Button href='###' rightIcon={ArrowRight} w="100%" maxW="20em" isGrid>Button</Button>
 			<Button
-				href="#button"
+				href='###'
 				leftIcon={ShoppingCartSimple}
 				rightIcon={ArrowRight}
 				w="100%"
@@ -188,13 +190,13 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 <Preview>
 	<PreviewTitle>`iconOffset`の比較</PreviewTitle>
 	<PreviewArea resize p={20} isFlow='s'>
-		<Button href="#button" iconOffset="0%" rightIcon={ArrowRight}>Button</Button>
-		<Button href="#button" iconOffset="10%" rightIcon={ArrowRight}>Button</Button>
+		<Button href='###' iconOffset="0%" rightIcon={ArrowRight}>Button</Button>
+		<Button href='###' iconOffset="10%" rightIcon={ArrowRight}>Button</Button>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Button href="#button" iconOffset="0%" rightIcon={ArrowRight}>Button</Button>
-		<Button href="#button" iconOffset="10%" rightIcon={ArrowRight}>Button</Button>
+		<Button href='###' iconOffset="0%" rightIcon={ArrowRight}>Button</Button>
+		<Button href='###' iconOffset="10%" rightIcon={ArrowRight}>Button</Button>
 		```
 	</PreviewCode>
 </Preview>
@@ -203,7 +205,7 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 	<PreviewTitle>もう少しわかりやすい比較</PreviewTitle>
 	<PreviewArea resize p={20} isFlow='s'>
 		<Button
-			href="#button"
+			href='###'
 			rightIcon={ArrowRight}
 			w="100%"
 			maxW="20em"
@@ -211,7 +213,7 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 		>デフォルト(0%)</Button>
 		<Button
 			iconOffset="25%"
-			href="#button"
+			href='###'
 			rightIcon={ArrowRight}
 			w="100%"
 			maxW="20em"
@@ -219,7 +221,7 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 		>offset:25%</Button>
 		<Button
 			iconOffset="50%"
-			href="#button"
+			href='###'
 			rightIcon={ArrowRight}
 			w="100%"
 			maxW="20em"
@@ -236,23 +238,22 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 
 ### サイズの調整
 
-専用のPropはいまのところなし。p, fz, w などの基本Propで調整できます。
+p, fz, w などの基本Propで調整できます。  
+data-size=s,l, など専用のPropを作るか検討中。
 
 <Preview>
-	<PreviewTitle>小さいサイズのボタンテスト</PreviewTitle>
+	<PreviewTitle>小さいサイズのボタン</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Cluster gap={20}>
-			<Button href="#button" variant="ghost" keycolor="main" fz="xs" p={10} hover={{ bgc: "b100" }}>Button</Button>
-			<Button href="#button" keycolor="purple" fz="xs" p={10} hover="reverse" leftIcon={ArrowRight}>Button</Button>
-			<Button href="#button" fz="xs" p={20} hover="fade" icon={ShoppingCartSimple} />
+			<Button href='###' keycolor='purple' fz='xs' p={10} hover='reverse' leftIcon={ArrowRight}>Button</Button>
+			<Button href='###' fz='xs' p={20} hover='fade' icon={ShoppingCartSimple} />
 		</Cluster>
 	</PreviewArea>
 	<PreviewCode>
-		```jsx
+		```jsx "fz='xs'"
 		<Cluster gap={20}>
-			<Button href="#button" variant="ghost" keycolor="main" fz="xs" p={10} hover={{ bgc: "b100" }}>Button</Button>
-			<Button href="#button" keycolor="purple" fz="xs" p={10} hover="reverse" leftIcon={ArrowRight}>Button</Button>
-			<Button href="#button" fz="xs" p={20} hover="fade" icon={ShoppingCartSimple} />
+			<Button href='###' keycolor='purple' fz='xs' p={10} hover='reverse' leftIcon={ArrowRight}>Button</Button>
+			<Button href='###' fz='xs' p={20} hover='fade' icon={ShoppingCartSimple} />
 		</Cluster>
 		```
 	</PreviewCode>
@@ -261,43 +262,40 @@ import { ShoppingCartSimple, ArrowFatDown, ArrowRight } from "@phosphor-icons/re
 
 ### hover="reverse"
 
-Button用の`hover`ユーティリティ。
+Buttonでは、`-hov:reverse`との相性が良くなるように調整を加えています。
 
-- 基本的には、 cとbgcを入れ替えるようになっている
-- fill(デフォルト) で使うと、文字色とボーダー色がホバー前の背景色になり、背景色が透明に。
-- outline, ghost で使うと、文字色 → `--c--filled`, 背景色 → ホバー前の文字色に。
+`-hov:reverse`は、基本的には、 `--c`と`--bgc`を入れ替えるようになっていますが、Buttonでは、以下のような挙動になります。
 
-テキストカラー反転してるようなエリアでは、ホバー時の文字色を明示的に指定してあげないと、真っ白になったり真っ黒になったりする。
+- `c--button--fill` で使うと、背景色が透明になり、文字色がホバー前の背景色になります。さらにボーダーも出現します。
+- `c--button--outline`, `c--button--ghost` で使うと、文字色 が `var(--base)`へ変化し, 背景色がホバー前の文字色になります。
 
 <Preview>
-	<PreviewTitle>`hover="reverse"`</PreviewTitle>
+	<PreviewTitle>`hover='reverse'`</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Cluster gap={20}>
-			<Button href="#button" hover="reverse">Fill</Button>
-			<Button href="#button" hover="reverse" variant="outline">Outline</Button>
-			<Button href="#button" hover="reverse" variant="ghost">Ghost</Button>
+			<Button href='###' hover='reverse'>Fill</Button>
+			<Button href='###' hover='reverse' variant='outline'>Outline</Button>
+			<Button href='###' hover='reverse' variant='ghost'>Ghost</Button>
 		</Cluster>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
 		<Cluster gap={20}>
-			<Button href="#button" hover="reverse">Fill</Button>
-			<Button href="#button" hover="reverse" variant="outline">Outline</Button>
-			<Button href="#button" hover="reverse" variant="ghost">Ghost</Button>
+			<Button href='###' hover='reverse'>Fill</Button>
+			<Button href='###' hover='reverse' variant='outline'>Outline</Button>
+			<Button href='###' hover='reverse' variant='ghost'>Ghost</Button>
 		</Cluster>
 		```
 	</PreviewCode>
 </Preview>
 
 <Preview>
-	<PreviewTitle>color指定テスト</PreviewTitle>
+	<PreviewTitle>color指定ありでのreverse</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Cluster gap={20}>
-			<Button href="#button" hover="reverse" keycolor="blue">Button</Button>
-			<Button href="#button" hover="reverse" keycolor="blue" c="purple">Button</Button>
-			<Button href="#button" hover="reverse" variant="outline" keycolor="pink">Button</Button>
-			<Button href="#button" hover="reverse" variant="ghost" keycolor="pink">Button</Button>
-			<Button href="#button" hover="reverse" variant="ghost" bgc='base-2'>Button</Button>
+			<Button href='###' hover='reverse' keycolor='blue'>Button</Button>
+			<Button href='###' hover='reverse' variant='outline' keycolor='pink'>Button</Button>
+			<Button href='###' hover='reverse' variant='ghost' bgc='base-2'>Button</Button>
 		</Cluster>
 	</PreviewArea>
 	<PreviewCode>
@@ -307,26 +305,65 @@ Button用の`hover`ユーティリティ。
 	</PreviewCode>
 </Preview>
 
+<Alert preset='warning'>
+テキストカラー反転してるようなエリアでは、真っ白になったり真っ黒になったりすることに注意が必要です。その場合、ホバー時の文字色を明示的に指定してください。
+</Alert>
+
 <Preview>
-	<PreviewTitle>白黒反転エリア</PreviewTitle>
+	<PreviewTitle>真っ白になってしまう</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<Box gap={20} p={20} hasLayer c="white">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width={960} height={640} z='-1'/>
+		<Box p='40' hasLayer c='base'>
+			<MediaLayer src="/img.jpg" alt="" width={960} height={640} z='-1'/>
 			<FilterLayer blur='4px' z='-1'/>
 			<FilterLayer bgc="#000" opacity='0.5' z='-1'/>
 			<DammyText />
 			<Cluster mbs={30} gap={20}>
-				<Button href="#button" hover="reverse" variant="fill">Button</Button>
-				<Button href="#button" hover="reverse" variant="outline">Button</Button>
-				<Button href="#button" hover="reverse" variant="ghost">Button</Button>
+				<Button href='###' keycolor='base' hover="reverse" variant="outline">Button</Button>
+				<Button href='###' c='base' hover="reverse" variant="ghost">Button</Button>
 			</Cluster>
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		...
+		```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>解決策</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Box p='40' hasLayer c='base'>
+			<MediaLayer src='/img.jpg' alt='' width={960} height={640} z='-1'/>
+			<FilterLayer blur='4px' z='-1'/>
+			<FilterLayer bgc='#000' opacity='0.5' z='-1'/>
+			<DammyText />
 			<Cluster mbs={30} gap={20}>
-				<Button href="#button" hover="reverse" keycolor="b100" c="b900">Fill</Button>
-				<Button href="#button" hover="reverse" keycolor="blue">Fill</Button>
-				<Button href="#button" hover="reverse" variant="outline" keycolor="#fff">Outline</Button>
-				<Button href="#button" hover={["reverse", { c:'#000' }]} variant="outline" keycolor="#fff">Outline</Button>
-				<Button href="#button" hover="reverse" variant="ghost" keycolor="#fff">Button</Button>
-				<Button href="#button" hover={["reverse", { c:'#000' }]} variant="ghost" keycolor="#fff">Button</Button>
+				<Button href='###' keycolor='base' hover={['reverse', { c:'content' }]} variant='outline'>Button</Button>
+				<Button href='###' c='base' hover={['reverse', { c:'content' }]} variant='ghost'>Button</Button>
+			</Cluster>
+		</Box>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		...
+		```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>白黒反転エリアでのテスト</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Box p='40' hasLayer c='base'>
+			<MediaLayer src='/img.jpg' alt='' width={960} height={640} z='-1'/>
+			<FilterLayer blur='4px' z='-1'/>
+			<FilterLayer bgc='#000' opacity='0.5' z='-1'/>
+			<DammyText />
+			<Cluster mbs={30} gap={20}>
+				<Button href='###' hover='reverse' variant='fill'>Button</Button>
+				<Button href='###' hover={['reverse', { bgc:'transparent' }]} variant='fill'>Button</Button>
+				<Button href='###' bgc='base' c='content' hover={['reverse', { bgc:'transparent' }]} variant='fill'>Button</Button>
 			</Cluster>
 		</Box>
 	</PreviewArea>

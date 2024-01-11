@@ -325,14 +325,14 @@ lism-core には、アコーディオン用に`"mask-accordion-toggle"`のみ用
 {/* <Preview>
 	<PreviewTitle>例</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<Flex ai="center" gap='em7' bd={{ c:"red" }} p='box:s' radius="3">
+		<Flex ai="center" gap='em7' bd={{ c:"red" }} p='box:s' bdrs='m'>
 			<Icon as={WarningCircle} weight="fill" size="1.5rem" c="red" flexItem={{ shrink:'0' }} />
 			<DammyText length="m" />
 		</Flex>
 	</PreviewArea>
 	<PreviewCode>
 ```jsx
-<Flex ai="center" gap='em7' bd={{ c:"red" }} p='box:s' radius="3">
+<Flex ai="center" gap='em7' bd={{ c:"red" }} p='box:s' bdrs='m'>
 	<Icon as={WarningCircle} weight="fill" size="1.5rem" c="red" flexItem={{ shrink:'0' }} />
 	<p>...text...</p>
 </Flex>
@@ -343,18 +343,18 @@ lism-core には、アコーディオン用に`"mask-accordion-toggle"`のみ用
 <Preview>
 	<PreviewTitle>例</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<Stack ai="center" gap={10} p={10} bgc="main" shadow="1" radius="3">
+		<Stack ai="center" gap={10} p={10} bgc="main" bxsh="1" bdrs='m'>
 			<Icon as={ChatCenteredDots} size="2em" c="white" weight="fill" />
-			<Box bgc="white" p='box:s' radius="2" lh='s'>
+			<Box bgc="white" p='box:s' bdrs='s' lh='s'>
 				<DammyText length="l" />
 			</Box>
 		</Stack>
 	</PreviewArea>
 	<PreviewCode>
 ```jsx
-<Stack ai="center" gap={10} p={10} bgc="main" shadow="1" radius="3">
+<Stack ai="center" gap={10} p={10} bgc="main" bxsh="1" bdrs='m'>
 	<Icon as={ChatCenteredDots} size="2em" c="white" weight="fill" />
-	<Box bgc="white" p='box:s' radius="2" lh='s'>
+	<Box bgc="white" p='box:s' bdrs='s' lh='s'>
 		<DammyText length="l" />
 	</Box>
 </Stack>

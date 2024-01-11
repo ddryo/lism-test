@@ -3,7 +3,11 @@ title: 'Accordion'
 description: ...
 ---
 
-import { Stack, Alert, Note, Text, Center, Flex, Icon, AccordionGroup, Accordion, AccordionHeader, AccordionBody, AccordionLabel, AccordionIcon } from '@loos/lism-core';
+import { Stack, Alert, Note, Text, Center, Flex, Icon,
+// 
+AccordionGroup, Accordion, AccordionHeader, AccordionBody, AccordionLabel, AccordionIcon 
+ } from '@loos/lism-core';
+// import { AccordionGroup, Accordion, AccordionHeader, AccordionBody, AccordionLabel, AccordionIcon } from '@loos/lism-astro';
 import { CaretDown, Minus, Plus, X, Question, Selection, SealQuestion } from "@phosphor-icons/react";
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
@@ -138,48 +142,48 @@ export const AccDemoContent = () => {
 </Preview>
 
 
-<Preview>
+{/* <Preview>
 	<PreviewTitle>単体での装飾例</PreviewTitle>
 	<PreviewArea resize p={30}>
-		<Accordion shadow='2' radius='2'>
-			<AccordionHeader label="Accordionヘッダー1" p='box' bgc="main" c="white" bdrs={{es: '0', ee: '0'}}/>
-			<AccordionBody p='box' bgc="main:20%">
-				<DammyText length="l" />
+		<Accordion bxsh='2' bdrs='xs' bgc='base'>
+			<AccordionHeader label='Accordionヘッダー1' p='box' bgc='main' c='white' bdrs={{es: '0', ee: '0'}}/>
+			<AccordionBody p='box' bgc='main:20%'>
+				<DammyText length='l' />
 			</AccordionBody>
 		</Accordion>
 		<hr />
-		<Accordion bd bdc="b200">
-			<AccordionHeader label="Accordionヘッダー2" p='box' bgc="base" />
-			<AccordionBody p='box' bgc="base" bd="top" bdc="b200">
-				<DammyText length="l" />
+		<Accordion bd  hasDivider>
+			<AccordionHeader label='Accordionヘッダー2' p='box' bgc='base' />
+			<AccordionBody p='box' bgc='base'>
+				<DammyText length='l' />
 			</AccordionBody>
 		</Accordion>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Accordion shadow='2' radius='2'>
-			<AccordionHeader label="Accordionヘッダー1" p='box' bgc="main" c="white" bdrs={{es: '0', ee: '0'}}/>
-			<AccordionBody p='box' bgc="main:20%">
+		<Accordion bxsh='2' bdrs='s'>
+			<AccordionHeader label='Accordionヘッダー1' p='box' bgc='main' c='white' bdrs={{es: '0', ee: '0'}}/>
+			<AccordionBody p='box' bgc='main:20%'>
 				...
 			</AccordionBody>
 		</Accordion>
 		<hr />
-		<Accordion bd bdc="b200">
-			<AccordionHeader label="Accordionヘッダー2" p='box' bgc="base" />
-			<AccordionBody p='box' bgc="base" bd="top" bdc="b200">
-				...
+		<Accordion bd  hasDivider>
+			<AccordionHeader label='Accordionヘッダー2' p='box' bgc='base' />
+			<AccordionBody p='box' bgc='base'>
+				<DammyText length='l' />
 			</AccordionBody>
 		</Accordion>
 		```
 	</PreviewCode>
-</Preview>
+</Preview> */}
 
 
 ### AccordionGroup
 
 アコーディオン専用のラッパーコンポーネントです。
 
-AccordionGroupの内部は`Stack`なので、`hasDivider`を指定できます。
+{/* AccordionGroupの内部は`Stack`なので、`hasDivider`を指定できます。 */}
 
 {/* `hasDivider` を指定すると、アコーディオン間に線が表示されます。 */}
 
@@ -233,7 +237,7 @@ AccordionGroupの内部は`Stack`なので、`hasDivider`を指定できます�
 	</PreviewCode>
 </Preview>
 
-`allowMultiple`を`false`に指定すると、複数のアコーディオンを同時に開くことを禁止します。
+`allowMultiple`に`false`(`[data-multiple="disallow"]`)を指定すると、複数のアコーディオンを同時に開くことを禁止します。
 
 <Preview>
 	<PreviewTitle>AccordionGroup</PreviewTitle>
@@ -260,7 +264,7 @@ AccordionGroupの内部は`Stack`なので、`hasDivider`を指定できます�
 		</AccordionGroup>
 	</PreviewArea>
 	<PreviewCode>
-```jsx
+```jsx "allowMultiple={false}"
 <AccordionGroup hasDivider allowMultiple={false}>
 	...
 </AccordionGroup>
@@ -274,7 +278,7 @@ AccordionGroupの内部は`Stack`なので、`hasDivider`を指定できます�
 <Preview>
 	<PreviewTitle>AccordionGroup</PreviewTitle>
 	<PreviewArea p={30}>
-		<AccordionGroup hasDivider bd radius='3' duration='.5s'>
+		<AccordionGroup hasDivider bd bdrs='m' duration='.5s'>
 			<Accordion>
 				<AccordionHeader label="Accordionヘッダー1" />
 				<AccordionBody>
@@ -297,7 +301,7 @@ AccordionGroupの内部は`Stack`なので、`hasDivider`を指定できます�
 	</PreviewArea>
 	<PreviewCode>
 ```jsx
-<AccordionGroup hasDivider bd radius='3' duration='.5s'>
+<AccordionGroup hasDivider bd bdrs='m' duration='.5s'>
 	...
 </AccordionGroup>
 ```
@@ -310,19 +314,19 @@ AccordionGroupの内部は`Stack`なので、`hasDivider`を指定できます�
 	<PreviewTitle>AccordionGroup</PreviewTitle>
 	<PreviewArea p={30}>
 		<AccordionGroup gap={20}>
-			<Accordion hasDivider bdc='b200' bgc='base-2' shadow='1' radius='3'>
+			<Accordion hasDivider bgc='base-2' bxsh='1' bdrs='m'>
 				<AccordionHeader label="Accordionヘッダー1" p='box'/>
 				<AccordionBody p='box'>
 					<DammyText length="l" />
 				</AccordionBody>
 			</Accordion>
-			<Accordion hasDivider bdc='b200' bgc='base-2' shadow='1' radius='3'>
+			<Accordion hasDivider bgc='base-2' bxsh='1' bdrs='m'>
 				<AccordionHeader label="Accordionヘッダー2" p='box'/>
 				<AccordionBody p='box'>
 					<DammyText length="l" />
 				</AccordionBody>
 			</Accordion>
-			<Accordion hasDivider bdc='b200' bgc='base-2' shadow='1' radius='3'>
+			<Accordion hasDivider bgc='base-2' bxsh='1' bdrs='m'>
 				<AccordionHeader label="Accordionヘッダー3" p='box'/>
 				<AccordionBody  p='box'>
 					<DammyText length="l" />
@@ -333,19 +337,19 @@ AccordionGroupの内部は`Stack`なので、`hasDivider`を指定できます�
 	<PreviewCode>
 ```jsx
 <AccordionGroup gap={20}>
-	<Accordion hasDivider bdc='b200' bgc='base-2' shadow='1' radius='3'>
+	<Accordion hasDivider bgc='base-2' bxsh='1' bdrs='m'>
 		<AccordionHeader label="Accordionヘッダー1" p='box'/>
 		<AccordionBody p='box'>
 			...
 		</AccordionBody>
 	</Accordion>
-	<Accordion hasDivider bdc='b200' bgc='base-2' shadow='1' radius='3'>
+	<Accordion hasDivider bgc='base-2' bxsh='1' bdrs='m'>
 		<AccordionHeader label="Accordionヘッダー2" p='box'/>
 		<AccordionBody p='box'>
 			...
 		</AccordionBody>
 	</Accordion>
-	<Accordion hasDivider bdc='b200' bgc='base-2' shadow='1' radius='3'>
+	<Accordion hasDivider bgc='base-2' bxsh='1' bdrs='m'>
 		<AccordionHeader label="Accordionヘッダー3" p='box'/>
 		<AccordionBody  p='box'>
 			...

@@ -116,7 +116,7 @@ import { Cluster } from '@loos/lism-astro';
 <Preview>
 	<PreviewTitle>他のpropsの活用例</PreviewTitle>
 	<PreviewArea resize p='box:l'>
-		<Cluster itemMinW="5em" hasDivider="I" jc="center" ta="center" provide={{p: '0 20'}}>
+		<Cluster hasDivider jc="center" ta="center" provide={{p: '0 20'}}>
 			<Box consume='p'>Lorem ipsum</Box>
 			<Box consume='p'>Dolor</Box>
 			<Box consume='p'>Sit amet</Box>
@@ -127,7 +127,7 @@ import { Cluster } from '@loos/lism-astro';
 	</PreviewArea>
 	<PreviewCode>
 ```jsx
-<Cluster itemMinW="5em" hasDivider="I" jc="center" ta="center" provide={{p: '0 20'}}>
+<Cluster hasDivider jc="center" ta="center" provide={{p: '0 20'}}>
 	<Box consume='p'>Lorem ipsum</Box>
 	<Box consume='p'>Dolor</Box>
 	<Box consume='p'>Sit amet</Box>

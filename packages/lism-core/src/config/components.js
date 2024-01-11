@@ -1,22 +1,4 @@
-export const defaultProps = {
-	// Alert: {
-	// 	// lh: 's',
-	// 	radius: '2',
-	// },
-	// Note: {
-	// 	radius: '1',
-	// 	headProps: {
-	// 		fw: '700',
-	// 	},
-	// },
-	// Button: {
-	// 	radius: '1',
-	// },
-	Card: {
-		shadow: '2',
-		radius: '2',
-	},
-};
+export const defaultProps = {};
 
 // export const IconPresets = {
 // 	note: phicons.NotePencil,

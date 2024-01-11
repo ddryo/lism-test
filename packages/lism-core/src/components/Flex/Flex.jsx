@@ -16,11 +16,11 @@ export default function Flex({ _flex = 'flex', variant, lismClass = {}, ...props
 	// props = getPlaceProps(props);
 
 	// stack方向 は divider が B, それ以外が I になる
-	if (props.hasDivider === true && _flex === 'stack') {
-		props.hasDivider = 'B';
-	} else if (props.hasDivider === true) {
-		props.hasDivider = 'I';
-	}
+	// if (props.hasDivider === true && _flex === 'stack') {
+	// 	props.hasDivider = 'B';
+	// } else if (props.hasDivider === true) {
+	// 	props.hasDivider = 'I';
+	// }
 
 	// as や state系 を処理できる
 	return <Layouter lismClass={lismClass} {...props} />;

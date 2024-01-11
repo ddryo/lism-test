@@ -3,12 +3,12 @@
 	// --mixcolorspace: srgb
 	--cbox-mixper: 4%;
 	--cbox-mixper--bdc: 15%;
-	--cbox-mixper--c: 25%;
+	--cbox-mixper--c: 20%;
 	--cbox-mixper--link-c: 60%;
-	--cbox-mixbase: transparent;
+	--cbox-mixbase: var(--base); //transparent;
 	--cbox-mixbase--c: var(--content);
 	// --cbox-mixbase--bdc: transparent;
-	// --cbox-mixper--code-bgc: 10%;
+	// --cbox-mixper--code-bg: 10%;
 
 	// --mixper-text-20: 32%;
 }
@@ -28,11 +28,11 @@
 		--cbox-c: color-mix( in srgb, var(--cbox-mixbase--c), var(--keycolor) var(--cbox-mixper--c));
 		--cbox-bgc: color-mix(in srgb, var(--cbox-mixbase), var(--keycolor) var(--cbox-mixper));
 		--cbox-bdc: color-mix(in srgb, var(--cbox-mixbase), var(--keycolor) var(--cbox-mixper--bdc));
-		--cbox-link-c: color-mix( in srgb, var(--cbox-mixbase--c), var(--keycolor) var(--cbox-mixper--link-c));
+		// --cbox-link-c: color-mix( in srgb, var(--cbox-mixbase--c), var(--keycolor) var(--cbox-mixper--link-c));
 		// --cbox-code-bgc: color-mix(in srgb, var(--cbox-mixbase), var(--keycolor) var(--cbox-mixper--code-bgc));
 
 		// --shadowColor:
-		--link-c: var(--cbox-link-c);
+		--link-c: color-mix( in srgb, var(--cbox-mixbase--c), var(--keycolor) var(--cbox-mixper--link-c));
 		// --code-c: var(--link-c);
 		// --code-bgc: color-mix(in srgb, transparent, currentColor 4%);
 	}

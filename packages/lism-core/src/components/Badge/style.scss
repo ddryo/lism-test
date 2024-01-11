@@ -7,10 +7,12 @@
 	--cbox-mixper--c: 50%;
 	color: var(--c);
 	background-color: var(--bgc);
+	font-size: var(--fz--xs);
+	border-radius: var(--radius--xs);
 }
 .c--badge {
 	border: solid 1px var(--bdc); // サイズ揃えるために常にborderを指定
-	padding-block: var(--em--1);
+	// padding-block: var(--em--1);
 	padding-inline: var(--em--5);
 }
 

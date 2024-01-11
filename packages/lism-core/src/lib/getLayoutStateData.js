@@ -1,12 +1,12 @@
 import { isPresetValue, getMaybeCssVar } from './index.js';
 
 const LAYOUT_STATE = {
+	// 'is--container': {
+	// 	varName: '--containerSize',
+	// 	tokenKey: 'contentSize',
+	// 	converter: null,
+	// },
 	'is--container': {
-		varName: '--containerSize',
-		tokenKey: 'contentSize',
-		converter: null,
-	},
-	'is--constrained': {
 		varName: '--contentSize',
 		tokenKey: 'contentSize',
 		converter: 'size',
@@ -43,7 +43,8 @@ export function getAllLayoutStateData({
 	lismStyle = {},
 	alignfull,
 	alignwide,
-	isFullWide,
+	isOverwide,
+	isFullwide,
 	isWide,
 	isFlow,
 	isContainer,
@@ -63,7 +64,8 @@ export function getAllLayoutStateData({
 	}
 
 	if (isConstrained) {
-		const { className, style } = getTheStateData('is--constrained', isConstrained);
+		if (isConstrained === true) isConstrained = 'm';
+		const { className, style } = getTheStateData('is--container', isConstrained);
 		lismState.push(className);
 		Object.assign(lismStyle, style);
 	}
@@ -77,14 +79,16 @@ export function getAllLayoutStateData({
 	// isFrame && lismState.push('is--frame');
 	hasGutter && lismState.push('has--gutter');
 	hasLayer && lismState.push('has--layer');
-	(alignfull || isFullWide) && lismState.push('is--fullwide');
+	isOverwide && lismState.push('is--overwide');
+	(alignfull || isFullwide) && lismState.push('is--fullwide');
 	(alignwide || isWide) && lismState.push('is--wide');
 
-	if (hasDivider === true) {
-		lismState.push('has--divider:B');
-	} else if (typeof hasDivider === 'string') {
-		lismState.push(`has--divider:${hasDivider}`);
+	if (hasDivider) {
+		lismState.push('has--divider');
 	}
+	//  else if (typeof hasDivider === 'string') {
+	// 	lismState.push(`has--divider:${hasDivider}`);
+	// }
 
 	// console.log('lismState', lismState);
 	props.lismState = [...new Set(lismState)]; // strictモードで2重レンダリングされる時の重複を削除;

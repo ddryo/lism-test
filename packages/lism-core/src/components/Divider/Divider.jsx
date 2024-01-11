@@ -24,15 +24,15 @@ export default function Divider({ lismClass = {}, variant, label, ...props }) {
 	if (label) {
 		return (
 			<Flex lismClass={lismClass} fz='s' c='content-3' ai='c' gap='em7' {...props}>
-				<FlexItem as={Decorator} fx='1' radius='1' />
+				<FlexItem as={Decorator} fx='1' />
 				<span>{label}</span>
-				<FlexItem as={Decorator} fx='1' radius='1' />
+				<FlexItem as={Decorator} fx='1' />
 			</Flex>
 		);
 	}
 	return (
 		<Flex lismClass={lismClass} ai='c' {...props}>
-			<FlexItem as={Decorator} fx='1' radius='1' />
+			<FlexItem as={Decorator} fx='1' />
 		</Flex>
 	);
 }

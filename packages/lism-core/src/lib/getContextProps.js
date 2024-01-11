@@ -86,15 +86,6 @@ export function getFlexProps({ fxf, fxd, fxw, gap, rowg, colg, ai, ac, ji, jc, p
 		props.flex = Object.assign({}, props.flex || {}, flexProps);
 	}
 
-	// // stack方向 は divider が B になる
-	// if (hasDivider === true) {
-	// 	if (fxd === 'column') {
-	// 		hasDivider = 'B';
-	// 	} else {
-	// 		hasDivider = 'I';
-	// 	}
-	// }
-
 	return props;
 }
 

@@ -53,9 +53,6 @@ export default function NavMenu({
 			</Flex>
 		);
 	}
-	if (props.hasDivider === true) {
-		props.hasDivider = 'B';
-	}
 
 	return (
 		<Layouter {...navProps} {...props}>

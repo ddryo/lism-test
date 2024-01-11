@@ -6,7 +6,7 @@
 	--body--mt: 1.25rem; //  calc(var(--icon--size) / 2 + 0.5rem);
 	--deco--size: 1rem;
 
-	--cbox-mixbase: var(--base);
+	// --cbox-mixbase: var(--base);
 	--cbox-mixper: 12%;
 	--cbox-mixper--c: 0%;
 	grid: '. name' 'icon body' '. foot' / auto 1fr;
@@ -55,7 +55,7 @@
 	// color: var(--base--c);
 	background: var(--cbox-bgc, var(--gray));
 	padding: var(--em--7) var(--em--10);
-	border-radius: var(--radius--4);
+	border-radius: var(--radius--l);
 }
 
 // decorator

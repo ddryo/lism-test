@@ -15,13 +15,6 @@ if (variant) lismClass.l += ` l--${_flex}--${variant}`;
 
 // flex 系の props をまとめる
 props = getFlexProps(props);
-
-// stack方向 は divider が B になる
-if (props.hasDivider === true && _flex === 'stack') {
-	props.hasDivider = 'B';
-} else if (props.hasDivider === true) {
-	props.hasDivider = 'I';
-}
 ---
 
 <Layouter lismClass={lismClass} {...props}>

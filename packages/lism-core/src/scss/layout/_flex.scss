@@ -1,9 +1,18 @@
 // これらは、fx系プロパティを使うときに、-fxw: 等のクラスは不要
-:is(.l--flex, .l--stack, .l--cluster) {
+.l--flex,
+.l--stack,
+.l--cluster {
 	--fxw: nowrap;
 	--fxd: row;
+	--isRow: 1;
 	flex-flow: var(--fxd) var(--fxw);
-	display: flex !important; // ユーティリティ的な側面もあり、組み合わせ方でレイアウトを変えることもあるので !important 付与
+	display: flex;
+}
+
+// l--flex--stack?
+.l--stack {
+	--isRow: 0;
+	--fxd: column;
 }
 
 // l--flex--cluster
@@ -16,11 +25,6 @@
 	> * {
 		min-width: var(--item--minW);
 	}
-}
-
-// l--flex--stack
-.l--stack {
-	--fxd: column;
 }
 
 // .l--flex--ltr {

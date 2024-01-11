@@ -1,11 +1,11 @@
-.c--preview {
-	&:not(:first-child) {
-		margin-top: var(--s--50);
-	}
-	&:not(:last-child) {
-		margin-bottom: var(--s--50);
-	}
-}
+// .c--preview {
+// 	&:not(:first-child) {
+// 		margin-top: var(--s--50);
+// 	}
+// 	&:not(:last-child) {
+// 		margin-bottom: var(--s--50);
+// 	}
+// }
 
 .c--preview_title {
 	display: flex;
@@ -18,7 +18,7 @@
 	}
 
 	> .__decorator {
-		background-color: var(--b200);
+		background-color: var(--base-3);
 		height: 1.5em;
 		width: 1.5em;
 		border-radius: 2px;
@@ -26,8 +26,10 @@
 }
 
 .c--preview_area {
-	transition: none !important;
+	--bg-bdc: var(--codeBlock--bgc); // gridの線
 	--bdc: var(--codeBlock--bgc);
+	transition: none !important;
+
 	position: relative;
 	container-type: inline-size;
 	border: solid 4px var(--bdc);
@@ -47,9 +49,6 @@
 	position: relative;
 	container-type: inline-size;
 	border-radius: 2px;
-	// border: solid 4px var(--codeblock--bgc);
-	// box-shadow: inset 0 0 8px -4px var(--prev--resize-bdc);
-	box-shadow: var(--shadow--i1);
 
 	&.-bg\:grid {
 		--grid-color: rgba(185, 185, 185, 0.08); //hsl(var(--hs--bc) 50% / 12%);

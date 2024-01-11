@@ -19,7 +19,7 @@ export default function Avatar({
 
 	if (children) {
 		return (
-			<Frame lismClass={lismClass} radius='99' {...props}>
+			<Frame lismClass={lismClass} {...props}>
 				{children}
 			</Frame>
 		);
@@ -27,7 +27,7 @@ export default function Avatar({
 
 	const { mediaAttrs, otherProps } = separateMediaAttrs(props);
 	return (
-		<Frame lismClass={lismClass} radius='99' {...otherProps}>
+		<Frame lismClass={lismClass} {...otherProps}>
 			<Media
 				src={src}
 				alt={name}

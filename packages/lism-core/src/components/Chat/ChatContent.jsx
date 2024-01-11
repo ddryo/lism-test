@@ -35,7 +35,6 @@ export default function ChatContent({
 	let defaultContentProps = {
 		isFlow: 's',
 		// consume: 'c bgc', //'p bgc bdc bdw',
-		// radius: '2',
 	};
 
 	if ('speak' === variant || 'think' === variant) {

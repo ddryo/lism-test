@@ -25,23 +25,25 @@ body {
 		display: block;
 		width: var(--gutter);
 		height: 100%;
-		background-color: hsl(var(--hsl--purple) / 0.2);
+		background-color: var(--purple);
 		grid-area: guide;
+		opacity: 0.5;
 	}
 }
 .alignfull.-bg\:stripe {
-	--stripe-color: hsl(var(--hsl--pink) / 0.1) !important;
+	// --stripe-color: color-mix(in srgb, transparent, var(--pink) 90%);
 }
 .alignwide.-bg\:stripe {
-	--stripe-color: hsl(var(--hsl--yellow) / 0.12) !important;
+	// --stripe-color: hsl(var(--hsl--yellow) / 0.12) !important;
 }
+// hsl(var(--hsl-blue));
 
 [class*='is--container'] {
-	border: 2px solid hsl(var(--hsl--orange) / 0.8) !important;
+	border: 2px solid color-mix(in srgb, transparent, var(--orange) 80%) !important;
 }
 
 [class*='is--constrained'] {
-	border: 2px solid hsl(var(--hsl--blue) / 0.8) !important;
+	border: 2px solid color-mix(in srgb, transparent, var(--blue) 80%) !important;
 }
 
 [class*='is--constrained'] > [class*='is--constrained'] {

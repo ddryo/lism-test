@@ -3,8 +3,6 @@
 @import './preview';
 @import './hero';
 
-// .c--tabs pre {box-shadow: 0 0 8px 0 red !important;}
-
 // 以下ではデフォルトのカラム幅を広げ、ページタイトルのテキストサイズを大きくしています。
 :root {
 	--sl-content-width: 50rem;
@@ -57,8 +55,10 @@
 		line-height: 1.625;
 	}
 
-	.c--note & .frame {
-		box-shadow: var(--shadow--1);
+	.c--note & .frame > pre {
+		box-shadow:
+			inset var(--shSize--0) var(--shColor),
+			inset var(--shSize--1) var(--shColor);
 	}
 	.ec-line.ec-line mark {
 		--tmInlineBgCol: rgba(138, 145, 150, 0.1);
@@ -128,7 +128,7 @@ td:first-child > code:only-child {
 		opacity: 0.8;
 		&:hover {
 			opacity: 1;
-			background-color: var(--b200);
+			background-color: var(--base-3);
 		}
 	}
 	._subtitle {

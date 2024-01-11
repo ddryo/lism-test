@@ -13,12 +13,12 @@
 */
 
 // hasBorder?
-.has--border {
-	--bds: solid;
-	--bdw: 1px;
-	--bdc: currentColor; //var(--base-3);
-	--bd: var(--bdw) var(--bds) var(--bdc);
-}
+// .has--border {
+// 	--bds: solid;
+// 	--bdw: 1px;
+// 	--bdc: currentColor; //var(--base-3);
+// 	--bd: var(--bdw) var(--bds) var(--bdc);
+// }
 
 // hasBorder
 
@@ -162,9 +162,10 @@
 .-bdc\:t {
 	--bdc: var(--bd--transparent);
 }
-.-bdc\:hr {
-	--bdc: var(--hr-bdc);
-}
+// .-bdc\:divider {
+// 	--bdc: var(--bdc--divider);
+// }
+
 .-bdc\:table {
 	--bdc: var(--table-bdc);
 }

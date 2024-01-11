@@ -2,8 +2,8 @@
 import { Layouter } from '../Layouter';
 
 export default function LinkBox({
-	lismClass = {},
-	// lismState = [],
+	// lismClass = {},
+	lismState = [],
 	as,
 	tag,
 	href,
@@ -15,8 +15,8 @@ export default function LinkBox({
 	children,
 	...props
 }) {
-	// lismState.push('is--linkbox');
-	lismClass.c = 'c--linkbox';
+	lismState.push('is--linkbox');
+	// lismClass.c = 'c--linkbox';
 
 	// const ref = useRef(null);
 
@@ -39,7 +39,7 @@ export default function LinkBox({
 	// aタグ以外をリンク化する場合、 hiddenLink でリンクを仕込む
 	if (tag !== 'a' && href) {
 		return (
-			<Component tag={tag} lismClass={lismClass} hover='fade' {...props}>
+			<Component tag={tag} lismState={lismState} hover='fade' {...props}>
 				<a className='e--hiddenLink is--skipFlow' {...linkProps}></a>
 				{children}
 			</Component>
@@ -47,7 +47,7 @@ export default function LinkBox({
 	}
 
 	return (
-		<Component tag={tag} lismClass={lismClass} hover='fade' {...linkProps} {...props}>
+		<Component tag={tag} lismState={lismState} hover='fade' {...linkProps} {...props}>
 			{/* {tag !== 'a' && href && <a className='e--hiddenLink is--skipFlow' {...linkProps} />} */}
 			{children}
 		</Component>

@@ -72,7 +72,6 @@ export default function Button({
 			tag='a'
 			lismClass={lismClass}
 			lismStyle={lismStyle}
-			lh='xs'
 			{...btnProps}
 			{...props}
 		>

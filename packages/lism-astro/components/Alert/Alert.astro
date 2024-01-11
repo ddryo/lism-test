@@ -43,10 +43,9 @@ if (presetData) {
 	lismState={['is--colorbox']}
 	lismClass={lismClass}
 	keycolor={keycolor}
-	radius='2'
 	{...props}
 >
-	<Icon lismClass={{ c: 'c--alert__icon' }} icon={icon} {...iconProps} />
+	{icon && <Icon lismClass={{ c: 'c--alert__icon' }} icon={icon} {...iconProps} />}
 	<Layouter className='c--alert__body' isFlow={isFlow}>
 		<slot />
 	</Layouter>

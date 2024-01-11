@@ -54,15 +54,15 @@ import { Banner } from '@loos/lism-core';
 
 <Preview>
 	<PreviewTitle>16:9のバナーリンク</PreviewTitle>
-	<PreviewArea p={20}>
+	<PreviewArea p={30}>
 		<Banner href='#banner-link' aspect='16/9' maxW='s'>
-			<img src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			<img src='/img.jpg' alt='' width={960} height={640} loading='lazy' />
 		</Banner>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
 		<Banner href='#banner-link' aspect='16/9'>
-			<img src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+			<img src='/img.jpg' alt='' width={960} height={640} loading='lazy' />
 		</Banner>
 		```
 	</PreviewCode>
@@ -71,21 +71,20 @@ import { Banner } from '@loos/lism-core';
 
 <Preview>
 	<PreviewTitle>`Layer`で画像に被せてコンテンツを表示</PreviewTitle>
-	<PreviewArea p={20}>
-		<Banner href='#banner-link' aspect='16/9'  radius='4'>
-			<Media src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+	<PreviewArea p={30}>
+		<Banner href='#banner-link' aspect='16/9' bdrs='l'>
+			<Media src='/img.jpg' alt='' width={960} height={640} loading='lazy' />
 			<FilterLayer bgc='#000:40%' blur='2px' />
 			<Layer inset='0' isFlow='s' p='box' c='white'>
 				<Text fz='2xl' fw='bold'>Banner</Text>
 				<DammyText />
-				Lorem ipsum `--code` aaa
 			</Layer>
 		</Banner>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Banner href='#banner-link' aspect='16/9'  radius='4'>
-			<Media src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
+		<Banner href='#banner-link' aspect='16/9' bdrs='l'>
+			<Media src='/img.jpg' alt='' width={960} height={640} loading='lazy' />
 			<FilterLayer bgc='black:40%' blur='2px' />
 			<Layer inset='0' isFlow='s' p='box' c='white'>
 				<Text fz='2xl' fw='bold'>Banner</Text>
@@ -99,22 +98,22 @@ import { Banner } from '@loos/lism-core';
 
 
 <Preview>
-	<PreviewTitle>`hover=get:zoom` を使う時は、`MediaLayer`を使ってください。（そうしないとスクロールが発生してしまいます）</PreviewTitle>
-	<PreviewArea p={20}>
-		<Banner href='#banner-link' aspect='16/9' hover='pass' radius='4'>
-			<MediaLayer src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' hover='get:zoom'/>
+	{/* <PreviewTitle>`hover=get:zoom` を使う時は、`MediaLayer`を使ってください。（そうしないとスクロールが発生してしまいます）</PreviewTitle> */}
+	<PreviewArea p={30}>
+		<Banner href='#banner-link' aspect='16/9' hover='pass' bdrs='l'>
+			<MediaLayer src='/img.jpg' alt='' width={960} height={640} loading='lazy' hover='get:zoom'/>
 			<FilterLayer bgc='black:20%' blur='4px' hover='get:show'/>
-			<Layer position='center' bgc='black:50%' radius='4' hover='get:show'>
+			<Layer position='center' bgc='black:50%' bdrs='l' hover='get:show'>
 				<Text p='box' c='white'>View More</Text>
 			</Layer>
 		</Banner>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Banner href='#banner-link' aspect='16/9' hover='pass' radius='4'>
-			<MediaLayer src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' hover='get:zoom'/>
+		<Banner href='#banner-link' aspect='16/9' hover='pass' bdrs='l'>
+			<MediaLayer src='/img.jpg' alt='' width={960} height={640} loading='lazy' hover='get:zoom'/>
 			<FilterLayer bgc='black:20%' blur='4px' hover='get:show'/>
-			<Layer position='center' bgc='black:50%' radius='4' hover='get:show'>
+			<Layer position='center' bgc='black:50%' bdrs='l' hover='get:show'>
 				<Text p='box' c='white'>View More</Text>
 			</Layer>
 		</Banner>
@@ -124,53 +123,27 @@ import { Banner } from '@loos/lism-core';
 
 
 <Preview>
-	<PreviewTitle>aspect指定せず、画像比率そのままで</PreviewTitle>
-	<PreviewArea p={20}>
-		<Banner href='#banner-link' hover={['up', 'shadow', 'pass']} radius='4'>
-			<Media src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
-			<FilterLayer bgc='black:10%' blur='2px' hover='get:hide' />
-			{/* <FilterLayer bgc='black:40%' blur='2px' hover='get:show'/> */}
-			<Layer position='center' bgc='black:50%' radius='4' hover='get:hide'>
-				<Text length='xs' p='box' c='white' className='is--hovTarget'>View More</Text>
+	<PreviewTitle>aspect指定せず、画像比率そのままの例</PreviewTitle>
+	<PreviewArea p={30}>
+		<Banner href='#banner-link' hover={['bxsh:3', 'pass']} bdrs='l'>
+			<Media hover='get:zoom' src='/img.jpg' alt='' width={960} height={640} />
+			<FilterLayer hover='get:hide' bgc='black:10%' blur='2px' />
+			<Layer hover='get:hide' position='center' bgc='black:50%' bdrs='l'>
+				<Text length='xs' p='box' c='white'>View More</Text>
 			</Layer>
 		</Banner>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Banner href='#banner-link' hover={['target:dark', 'target:zoom']} radius='4'>
-			<Media src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
-			<FilterLayer bgc='black:40%' blur='2px' />
-			<Layer inset='0' isFlow='s' p='box' c='white'>
-				<Text fz='2xl' fw='bold'>Banner</Text>
-				<DammyText />
+		<Banner href='#banner-link' hover={['bxsh:3', 'pass']} bdrs='l'>
+			<Media hover='get:zoom' src='/img.jpg' alt='' width={960} height={640} />
+			<FilterLayer hover='get:hide' bgc='black:10%' blur='2px' />
+			<Layer hover='get:hide' position='center' bgc='black:50%' bdrs='l'>
+				<Text length='xs' p='box' c='white'>View More</Text>
 			</Layer>
 		</Banner>
 		```
 	</PreviewCode>
 </Preview>
 
-
-### aspect指定なし
-
-<Preview>
-	<PreviewTitle>画像ファイルそのままの比率で</PreviewTitle>
-	<PreviewArea p={20}>
-		<Banner href='#banner-link' hover={['target:zoom', 'target:blur']}>
-			<MediaLayer src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
-			<Layer position='center' bgc='rgba(0,0,0,0.5)' radius='4'>
-				<DammyText length='xs' p='box' c='white' />
-			</Layer>
-		</Banner>
-	</PreviewArea>
-	<PreviewCode>
-		```jsx
-		<Banner href='#banner-link' hover={['target:zoom', 'target:blur']}>
-			<MediaLayer src='/img/demo-img.jpeg' alt='' width={960} height={640} loading='lazy' />
-			<Layer position='center' bgc='rgba(0,0,0,0.5)' radius='4'>
-				<DammyText length='xs' p='box' c='white' />
-			</Layer>
-		</Banner>
-		```
-	</PreviewCode>
-</Preview>
 

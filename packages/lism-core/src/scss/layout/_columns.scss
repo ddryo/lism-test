@@ -11,6 +11,7 @@
 
 	// 各ブレイクポイント用の変数に伝搬していく
 	--cols: 1; // 初期値
+	// --_sm_cols: var(--cols);
 	--cols--sm: var(--cols);
 	--cols--md: var(--cols--sm);
 	--cols--lg: var(--cols--md);

@@ -14,6 +14,38 @@
  ------------------------------------------------------------ */
 
 :root {
+	// コンテンツの左右の余白
+	// --gutter: 2rem;
+	--gutter: var(--s--40);
+
+	// ボーダーカラー
+	// --ls--bdc--table: #dcdcdc;
+
+	// hoverユーティリティ用 → --ls--?
+	--hov--duration: 0.3s;
+
+	// --table--bdc:
+	--th-bgc: var(--base-2);
+
+	// collape にしているので、tfoot 1pxだと見えないことに注意。
+	--thead-bd: solid 2px var(--content);
+	--tfoot-bd: solid 2px var(--content);
+	--table-bdc: var(--base-3);
+
+	--link-c: #0c61e4;
+	// --link-underlineOffset: 0.2ex;
+
+	--focus--color: revert;
+	--focus--outlineOffset: 1px;
+
+	// --code-c: var(--content);
+	// --code-bgc: var(--base-2);
+	--code-c: currentColor;
+	--code-bgc: color-mix(in srgb, transparent, currentColor 4%);
+
+	// flexの方向検知
+	--isRow: 0;
+
 	/* ------------------------------------------------------------
 	  コンテンツサイズ: ユーザー側で定義が必要
 	    コンテンツサイズは960 ~ 1120 くらいがよさそう.
@@ -24,24 +56,11 @@
 	--size--l: 1440px; // = --wp--style--global--wide-size. alignwide で使う.
 	--size--m: 1120px; // = --wp--style--global--content-size.
 	--size--s: 45rem; // slim幅1カラムテンプレートで使う. fz:16px時 = 720px
-	// --size--xs: 30rem;
+	--size--xs: 30rem;
 
 	--size--item: 16em; // タイルグリッドなどのアイテムサイズの標準値
-	// --size--base: var(--size--m); // = --wp--style--global--content-size.
-
-	// --size--s, --size--l
 
 	// --contentSize--full: 特殊
-
-	// コンテンツの左右の余白
-	// --gutter: 2rem;
-	--gutter: var(--s--40);
-
-	// ボーダーカラー
-	// --ls--bdc--table: #dcdcdc;
-
-	// hoverユーティリティ用 → --ls--?
-	--hov--duration: 0.3s;
 
 	/* ------------------------------------------------------------
 	    タイポグラフィ
@@ -198,6 +217,9 @@
 	--content-2: hsl(215 4% 32%);
 	--content-3: hsl(225, 4%, 50%); //hsl(200, 12%, 92%);
 
+	// divider (border-color)
+	// --divider?
+
 	// accent, accent-2, accent-3
 	// base, base-2, base-3 … 基本、濃くなっていく
 	// content, content-2, content-3 …　基本、薄くなっていく
@@ -207,37 +229,13 @@
 
 	// pale→subtle?
 
-	// c,bgc,bdc
+	// c(txc?),bgc,bdc
 	--c--base: rgb(240, 144, 216);
 	--c--oppoite: rgb(214, 240, 144);
 	--bgc--base: rgb(214, 240, 144);
 	--bgc--opposite: rgb(240, 144, 216);
 	--c--pale: green;
 	--bgc--pale: red;
-
-	/* ------------------------------------------------------------
-	    elements
-	------------------------------------------------------------ */
-
-	// --table--bdc:
-	--th-bgc: var(--base-2);
-
-	// collape にしているので、tfoot 1pxだと見えないことに注意。
-	--thead-bd: solid 2px var(--content);
-	--tfoot-bd: solid 2px var(--content);
-	--hr-bdc: var(--base-3);
-	--table-bdc: var(--base-3);
-
-	--link-c: #0c61e4;
-	// --link-underlineOffset: 0.2ex;
-
-	--focus--color: revert;
-	--focus--outlineOffset: 1px;
-
-	// --code-c: var(--content);
-	// --code-bgc: var(--base-2);
-	--code-c: currentColor;
-	--code-bgc: color-mix(in srgb, transparent, currentColor 4%);
 
 	/* ------------------------------------------------------------
 	  カラー: ユーザー側で定義できる仕組みも必要
@@ -248,7 +246,7 @@
 	// 30: 2rem 前後
 
 	// --sUnit: 1rem;
-	--s--0: 0rem;
+	// --s--0: 0rem;
 
 	// 1=0.25での Fibonacci数列, 5は例外的に 0.125 をセット
 	// --s--5: 0.25rem;
@@ -261,7 +259,7 @@
 	// --s--70: 8.5rem;
 
 	// 1=0.125 Fibonacci数列
-	// --s--5: 0.125rem;
+	--s--1: 0.125rem;
 	--s--5: 0.25rem;
 	--s--10: 0.375rem;
 	// --s--15: 0.375rem;
@@ -279,23 +277,38 @@
 	// --s--80: calc(var(--s--70) * 1.5);
 	// --s--90: calc(var(--s--80) * 1.5);
 
-	// --em--1: 0.125em;
-	--em--1: 0.125em;
-	--em--2: 0.25em;
-	--em--3: 0.375em;
-	--em--5: 0.5em;
-	--em--7: 0.75em;
-	--em--10: 1em;
-	--em--15: 1.5em;
-	--em--20: 2em;
-	--em--25: 2.5em;
-	--em--30: 3em;
+	// --g--2,4,6,8,...にしてもいいか。or, --S--, --s-- で分ける...?（gapのg)
+	--em--1: 0.125em; // 2
+	--em--2: 0.25em; // 4
+	--em--3: 0.375em; // 6
+	// --em--4: 0.4;
+	--em--5: 0.5em; // 8
+	--em--6: 0.625em; // 10
+	--em--7: 0.75em; // 12
+	--em--8: 0.875em; // 14
+	// --em--9: .9em;
+	--em--10: 1em; // 16
+	// --em--15: 1.5em;
+	// --em--20: 2em;
+	// --em--25: 2.5em;
+	// --em--30: 3em;
+
+	--s-2: 0.125em; // 2
+	--s-4: 0.25em; // 4
+	--s-6: 0.375em; // 6
+	--s-8: 0.5em; // 8
+	--s-10: 0.625em; // 10
+	--s-12: 0.75em; // 12
+	--s-14: 0.875em; // 14
+	--s-16: 1em; // 16
+	--s-24: 1.5em; // 24
+	--s-32: 2em;
 
 	// --p--box--s: 0.75em 0.875em;
 	// --p:box:{padding: var(--p--box) calc(--p--box + 0.125em);}
 	--p--box--s: 0.625em 0.75em;
 	--p--box: 0.875em 1em;
-	--p--box--l: 1.325em 1.5em;
+	--p--box--l: 1.375em 1.5em;
 
 	// .is--flow の blockGap 管理用変数
 	--flowGap--s: var(--s--20); // --mbs--s?
@@ -307,55 +320,47 @@
 	  radius
 	------------------------------------------------------------ */
 	// 10,20, ... ?
-	// --r--?
-	--radius--1: 0.125rem; // ≒ 2px
-	--radius--2: 0.25rem; // ≒ 4px
-	--radius--3: 0.5rem; // ≒ 8px
-	--radius--4: 0.75rem; // ≒ 12px
-	--radius--5: 1.25rem; // ≒ 20px
-	--radius--6: 1.875rem; // ≒ 30px
-	--radius--99: 999px;
+
+	// rads
+	// 10,20,30,..?
+	--radius--xs: 0.125rem; // ≒ 2px
+	--radius--s: 0.25rem; // ≒ 4px
+	--radius--m: 0.625rem; // ≒ 8px
+	--radius--l: 1rem; // ≒ 12px
+	--radius--xl: 1.75rem; // ≒ 20px
+	// --radius--2xl: 1.875rem; // ≒ 30px
+	--radius--full: 999px;
 
 	/* ------------------------------------------------------------
 	  shadow
 	------------------------------------------------------------ */
-	--shadow-alpha: 0.1;
-	--shadow-hsl: 215 8% 10%;
-	--shadow-color: hsl(var(--shadow-hsl) / var(--shadow-alpha));
+	// --bxsh:'
+	// --shadow--alpha: 8%;
+	// --shadow--hsl: 215 8% 10%;
 
-	// x:y = 1:2 で統一。 layer的な考え方で、10,20...ではなく 1,2,...?
-	--shadow-size--0: 0.5px 1px 2px 0px;
-	--shadow-size--1: 0.5px 1px 4px 0px;
-	--shadow-size--2: 1px 2px 8px 0px;
-	--shadow-size--3: 2px 4px 16px 0px;
-	--shadow-size--4: 4px 8px 32px 0px;
-	// --shadow-size--5: 8px 16px 56px -1px;
+	--shColor: hsl(215 8% 8% / 8%);
 
-	// ポイント:
-	//    x:yのオフセット比率は一定に保つ. 1:2
-	//    [blurサイズ - オフセット] の差は広がっていく
-	//    base(0)のshadowを共通で付ける
-	//    1段階前のshadowを薄めてつける
+	// shadow:
+	//    x:yのオフセット比率は一定に保つ. デフォルトは 1:2 の比率。
+	//    差は倍になっていく
+	--shSize--0: 0.5px 1px 1px 0;
+	--shSize--1: 1px 2px 3px 0;
+	--shSize--2: 2px 4px 7px 0;
+	--shSize--3: 4px 8px 15px 0;
+	--shSize--4: 8px 16px 31px 0;
 
-	// 共通で使う微量のshadow
-	// --bxsh--N?
-	--shadow--0: var(--shadow-size--0) var(--shadow-color);
+	// カラー変数込みで変数をセットしてしまうと、--shColor がこの時点で固定されてしまう。
+	// --shSize-1: 0.5px 1px 1px 0 var(--shColor);
 
-	--shadow--1: var(--shadow--0), var(--shadow-size--1) var(--shadow-color);
-	--shadow--2: var(--shadow-size--1) var(--shadow-color),
-		var(--shadow-size--2) var(--shadow-color);
-	--shadow--3: var(--shadow-size--2) var(--shadow-color),
-		var(--shadow-size--3) var(--shadow-color);
-	--shadow--4: var(--shadow-size--3) var(--shadow-color),
-		var(--shadow-size--4) var(--shadow-color);
+	// --bxsh-1: var(--shSize-0), var(--shSize-1);
+	// --bxsh-2: var(--shSize-1), var(--shSize-2);
+	// --bxsh-3: var(--shSize-2), var(--shSize-3);
+	// --bxsh-4: var(--shSize-3), var(--shSize-4);
 
-	--shadow--i1: inset var(--shadow--0), inset var(--shadow-size--1) var(--shadow-color);
-	--shadow--i2: inset var(--shadow-size--1) var(--shadow-color),
-		inset var(--shadow-size--2) var(--shadow-color);
-	--shadow--i3: inset var(--shadow-size--2) var(--shadow-color),
-		inset var(--shadow-size--3) var(--shadow-color);
-	--shadow--i4: inset var(--shadow-size--3) var(--shadow-color),
-		inset var(--shadow-size--4) var(--shadow-color);
+	// --bxsh--1: inset var(--shSize-0), inset var(--shSize-1);
+	// --bxsh--2: inset var(--shSize-1), inset var(--shSize-2);
+	// --bxsh--3: inset var(--shSize-2), inset var(--shSize-3);
+	// --bxsh--4: inset var(--shSize-3), inset var(--shSize-4);
 
 	/* ------------------------------------------------------------
 	  filter
@@ -364,6 +369,17 @@
 	// --filter--blur--l: blur(8px);
 	--filter--lighten: brightness(1.15);
 	--filter--darken: brightness(0.85);
+}
+
+@supports (content-visibility: auto) or (top: 0lh) {
+	// cqw を算出値で保持するために登録済みカスタムプロパティとして定義
+	// @property --shColor {
+	// 	syntax: '<color>';
+	// 	initial-value: hsl(215 8% 8% / 8%);
+	// 	inherits: false;
+	// }
+
+	// <length> inherit <color>
 }
 
 // ↓ space: これでもわりとしっくりくる...？ 2:.25, 3: 0.375

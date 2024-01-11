@@ -5,13 +5,13 @@ description: ...
 
 import { MemoBadge, DammyText, Reference } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
-import { ColorDemos, FzDemos, LhDemos, LtsDemos, SpacingDemos, ShadowDemos, RadiusDemos } from "~/demos/tokens.jsx";
+import { ColorDemos, FzDemos, LhDemos, LtsDemos, SpacingDemos, ShadowDemos,BoxShadowDemos, RadiusDemos } from "~/demos/tokens.jsx";
 import { Core, Box, Text, Stack, Flex, Columns, Frame, Alert, Note, Tabs, TabItem, Spacer } from '@loos/lism-astro';
 
 
 export const ColorBadge = ({color, label}) => {
 	return <span className='-d:f -ai:c -gap:em3'>
-			<Core tag='span' className='has--size -d:ib' size='1.5em' bgc={color} radius='2' shadow='1' />
+			<Core tag='span' className='has--size -d:ib' size='1.5em' bgc={color} bdrs='s' bxsh='1' />
 			<code>{label || color}</code>
 		</span>;
 }
@@ -223,11 +223,11 @@ base値をセットし、それに対して小さい・大きいで段階的に�
 |トークン|変数|クラス|初期値|
 |---|---|---|---|
 |`1`||`.-lh:1`|`1`|
-|`xs`|`--lh--xs`|`.-lh:xs`|`calc(base - 0.25)`|
-|`s`|`--lh--s`|`.-lh:s`|`calc(base - 0.125)`|
-|`base`|`--lh--base`|`.-lh:base`|`1.75`|
-|`l`|`--lh--l`|`.-lh:l`|`calc(base + 0.125)`|
-|`xl`|`--lh--xl`|`.-lh:xl`|`calc(base + 0.25)`|
+|`root`|`--lh--root`|`.-lh:root`|`1.75`|
+|`xs`|`--lh--xs`|`.-lh:xs`|`calc({root} - 0.25)`|
+|`s`|`--lh--s`|`.-lh:s`|`calc({root} - 0.125)`|
+|`l`|`--lh--l`|`.-lh:l`|`calc({root} + 0.125)`|
+|`xl`|`--lh--xl`|`.-lh:xl`|`calc({root} + 0.25)`|
 
 
 <Alert preset="info">
@@ -315,10 +315,10 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 
 |トークン|変数|クラス|初期値
 |---|---|---|---|
+|`root`|`--lts--root`|`-lts:root`|`normal`|
 |`s`|`--lts--s`|`-lts:s`|`-0.025em`|
-|`base`|`--lts--0`|`-lts:base`|`normal`|
-|`l`|`--lts--1`|`-lts:l`|`0.025em`|
-|`xl`|`--lts--2`|`-lts:xl`|`0.05em`|
+|`l`|`--lts--l`|`-lts:l`|`0.025em`|
+|`xl`|`--lts--xl`|`-lts:xl`|`0.05em`|
 
 <Preview>
 	<PreviewTitle>Demo</PreviewTitle>
@@ -406,9 +406,9 @@ base値は 日本語では `1.625`, `1.75`, `1.875` あたりにするがおす�
 
 <Preview>
 	<PreviewTitle>DEMO</PreviewTitle>
-	<PreviewArea p={20} isFlow='s'>
+	<PreviewArea p={20} isFlow='s' resize>
 		<SpacingDemos spaces={[
-			5, 10, 20, 30, 40, 50, 60, 70, 80, 90
+			1, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90
 		]} isValueLabel />
 	</PreviewArea>
 </Preview>
@@ -570,86 +570,116 @@ paddingやmarginの全方向・全トークンに対してクラスを用意す�
 |`m`|`--size--m`|`.is--constrained`|
 |`l`|`--size--l`|`.is--constrained:l`|
 
+## `RADIUS` トークン
+
+<Preview>
+	<PreviewTitle>radius: `1` ~ `5`, `99`</PreviewTitle>
+	<PreviewArea p={40}>
+		<Columns cols={[3, 6]} gap={40}>
+			<RadiusDemos />
+		</Columns>
+	</PreviewArea>
+</Preview>
 
 
 ## `SHADOW` トークン
 
-|トークン値|変数|クラス|
-|---|---|---|
-|`-4`|`--shadow--i4`|`.-bxsh:-4`|
-|`-3`|`--shadow--i3`|`.-bxsh:-3`|
-|`-2`|`--shadow--i2`|`.-bxsh:-2`|
-|`-1`|`--shadow--i1`|`.-bxsh:-1`|
-|`0`|`--shadow--0`|`.-bxsh:0`|
-|`1`|`--shadow--1`|`.-bxsh:1`|
-|`2`|`--shadow--2`|`.-bxsh:2`|
-|`3`|`--shadow--3`|`.-bxsh:3`|
-|`4`|`--shadow--4`|`.-bxsh:4`|
+
+<Alert preset='warning'>
+box-shadow は少し特殊で、ユーティリティクラス内で複数のshadow用変数が組み合わされています。
+</Alert>
 
 
+|構成変数|初期値|
+|---|---|
+|`--shColor`|`hsl(215 8% 8% / 8%)`|
+|`--shSize-0`|`0.5px 1px 1px 0`|
+|`--shSize-1`|`1px 2px 3px 0`|
+|`--shSize-2`|`2px 4px 7px 0`|
+|`--shSize-3`|`4px 8px 15px 0`|
+|`--shSize-4`|`8px 16px 31px 0`|
 
-<Preview>
+
+{/* <Preview>
 	<PreviewTitle>shadows</PreviewTitle>
-	<PreviewArea p={40}>
-		<Columns cols={[2, 4, 4]} gap={40}>
-			<ShadowDemos shadows={[ 1, 2, 3, 4 ]}/>
+	<PreviewArea p={40} nogrid>
+		<Columns cols={[2, 3, 5]} gap={50}>
+			<ShadowDemos shadows={[ 1, 2, 3, 4, 5 ]}/>
 		</Columns>
 	</PreviewArea>
-</Preview>
+</Preview> */}
 
+
+`bxsh`は、`1` ~ `4`, `-1` ~ `-4` までの値に対してユーティリティクラスを用意していますが、内部では2段階のshadowを組み合わせることでより立体的で美しいシャドウを表現できるようになっています。
 
 <Preview>
-	<PreviewTitle>inset shadows</PreviewTitle>
-	<PreviewArea p={40}>
-		<Columns cols={[2, 4, 4]} gap={40}>
-			<ShadowDemos shadows={[ -1, -2, -3, -4 ]}/>
+	<PreviewTitle>bxshクラス</PreviewTitle>
+	<PreviewArea p={40} nogrid>
+		<Columns cols={[2, 4, 4]} gap={50}>
+			<BoxShadowDemos shadows={[ 1, 2, 3, 4 ]}/>
 		</Columns>
 	</PreviewArea>
-</Preview>
-
-
-### 構成変数
-
-- `--hsl--shadow`: `0 0% 0%`;
-- `--shadow-alpha`: `0.1`
-- `--shadow-alpha--low`: `0.08`
-- `--shadow-color` : `hsl(var(--hsl--shadow) / var(--shadow-alpha))`
-- `--shadow-color--low`: `hsl(var(--hsl--shadow) / var(--shadow-alpha--low))`
-- `--shadow-length--0`: `0.5px 1px 2px 0px`
-- `--shadow-length--1`: `0.5px 1px 4px 0px`
-- `--shadow-length--2`: `1px 2px 8px 0px`
-- `--shadow-length--3`: `2px 4px 16px 0px`
-- `--shadow-length--4`: `4px 8px 32px 0px`
-- `--shadow--0`: `0.5px 1px 2px 0px`
-
-
-### How to use
-
-<Preview>
-	<PreviewTitle>Component</PreviewTitle>
-	<PreviewCode>
-	```jsx
-	<Box shadow="2">...</Box>
-	```
-	</PreviewCode>
-</Preview>
-<Preview>
-	<PreviewTitle>HTML</PreviewTitle>
-	<PreviewCode>
-	```html
-	<div class="-bxsh:2">...</div>
-	```
-	</PreviewCode>
-</Preview>
-
-<Preview>
-	<PreviewTitle>CSS</PreviewTitle>
-	<PreviewCode>
+		<PreviewCode slot='tab' label='CSS'>
 ```css
-.foo{
-	box-shadow: var(--shadow--2);
-}
+/* 内部の構成イメージ */
+.-bxsh\:1 {box-shadow: var(--shSize-0) var(--shColor), var(--shSize-1) var(--shColor)}
+.-bxsh\:2 {box-shadow: var(--shSize-1) var(--shColor), var(--shSize-2) var(--shColor)}
+.-bxsh\:3 {box-shadow: var(--shSize-2) var(--shColor), var(--shSize-3) var(--shColor)}
+.-bxsh\:4 {box-shadow: var(--shSize-3) var(--shColor), var(--shSize-4) var(--shColor)}
 ```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx
+		<div class="-bxsh:1">...</div>
+		<div class="-bxsh:2">...</div>
+		<div class="-bxsh:3">...</div>
+		<div class="-bxsh:4">...</div>
+		```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>bxshクラス(inset)</PreviewTitle>
+	<PreviewArea p={40} nogrid>
+		<Columns cols={[2, 4, 4]} gap={50}>
+			<BoxShadowDemos shadows={[ -1, -2, -3, -4 ]}/>
+		</Columns>
+	</PreviewArea>
+	<PreviewCode slot='tab' label='CSS'>
+```css
+/* 内部の構成イメージ */
+.-bxsh\:-1 {box-shadow: inset var(--shSize-0) var(--shColor), inset var(--shSize-1) var(--shColor)}
+.-bxsh\:-2 {box-shadow: inset var(--shSize-1) var(--shColor), inset var(--shSize-2) var(--shColor)}
+.-bxsh\:-3 {box-shadow: inset var(--shSize-2) var(--shColor), inset var(--shSize-3) var(--shColor)}
+.-bxsh\:-4 {box-shadow: inset var(--shSize-3) var(--shColor), inset var(--shSize-4) var(--shColor)}
+```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx
+		<div class="-bxsh:-1">...</div>
+		<div class="-bxsh:-2">...</div>
+		<div class="-bxsh:-3">...</div>
+		<div class="-bxsh:-4">...</div>
+		```
+	</PreviewCode>
+</Preview>
+
+
+### シャドウカラーの上書き
+
+bxshユーティリティの構成変数である `--shColor` を上書き指定することで、シャドウカラーを変更することができます。
+
+{/* color-mix(in srgb, blue, transparent 80%) */}
+<Preview>
+	<PreviewTitle>`--shColor`の上書き</PreviewTitle>
+	<PreviewArea p={40} nogrid>
+		<Box bxsh='3' shColor='rgb(100 100 200 / 20%)' p='40' >...</Box>
+	</PreviewArea>
+	<PreviewCode slot='tab' label='HTML'>
+		```jsx "--shColor:"
+		<div class="l--box -bxsh:3 -p:40" style="--shColor:rgb(100 100 200 / 20%)"> … </div>
+		```
 	</PreviewCode>
 </Preview>
 
@@ -658,58 +688,6 @@ paddingやmarginの全方向・全トークンに対してクラスを用意す�
 
 
 
-## `RADIUS` トークン
-
-|トークン値|変数|クラス|
-|---|---|---|
-|`1`|`--radius--1`|`.-bdrs:1`|
-|`2`|`--radius--2`|`.-bdrs:2`|
-|`3`|`--radius--3`|`.-bdrs:3`|
-|`4`|`--radius--4`|`.-bdrs:4`|
-|`5`|`--radius--5`|`.-bdrs:5`|
-|`6`|`--radius--6`|`.-bdrs:6`|
-|`99`|`--radius--99`|`.-bdrs:99`|
-
-
-
-<Preview>
-	<PreviewTitle>radius: `1` ~ `5`, `99`</PreviewTitle>
-	<PreviewArea p={30}>
-		<Columns cols={[3, 6]} gap={40}>
-			<RadiusDemos />
-		</Columns>
-	</PreviewArea>
-</Preview>
-
-### How to use
-
-<Preview>
-	<PreviewTitle>Component</PreviewTitle>
-	<PreviewCode>
-	```jsx
-	<Box radius="2">...</Box>
-	```
-	</PreviewCode>
-</Preview>
-<Preview>
-	<PreviewTitle>HTML</PreviewTitle>
-	<PreviewCode>
-	```html
-	<div class="-bdrs:2">...</div>
-	```
-	</PreviewCode>
-</Preview>
-
-<Preview>
-	<PreviewTitle>CSS</PreviewTitle>
-	<PreviewCode>
-```css
-.foo{
-	border-radius: var(--radius--2);
-}
-```
-	</PreviewCode>
-</Preview>
 
 {/* `shadowHsl`も指定したい */}
 

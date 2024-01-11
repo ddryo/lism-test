@@ -17,40 +17,42 @@ const ProvidableProps = {
 	bdc: 'color',
 	p: 'space',
 	gap: 'space',
-	radius: 'radius',
-	shadow: 'shadow',
+	bdrs: 'radius',
+	// shadow: 'shadow',
+	// bxsh: 'shadow',
 };
-const HoverProps = {
-	c: 'color',
-	bgc: 'color',
-	bdc: 'color',
-	shadow: 'shadow',
+const HOV_PROPS = {
+	c: {
+		converter: 'color',
+	},
+	bgc: {
+		converter: 'color',
+	},
+	bdc: {
+		converter: 'color',
+	},
+	bxsh: {
+		converter: 'shadow',
+		presets: 'shadow', //['0', '1', '2', '3', '4'],
+	},
+	// shSize: {
+	// 	utilKey: 'bxsh',
+	// 	converter: 'shadowSize',
+	// },
+	// shSize02: {
+	// 	utilKey: 'bxsh',
+	// 	converter: 'shadowSize',
+	// },
+	shColor: {
+		converter: 'color',
+		// utilKey: 'bxsh',
+	},
 };
 
 // const PROP_FULL_NAMES = {
 // 	padding: 'p',
 // 	margin: 'm',
 // };
-
-// color.N% → c, permix.c に分離
-function getMaybeMixColor(color) {
-	// color が "/数値%" で終わるかどうかチェック
-
-	// const match = color.match(/\/\d+%/);
-	// if (match) {
-	// 	const alpha = match[0].replace('/', '');
-	// 	return `hsl(var(--hsl--${color}) / ${alpha})`;
-	// }
-
-	if (typeof color === 'string' && color.endsWith('%')) {
-		const [colorName, alpha] = color.split('/');
-
-		// α値の指定が可能なのはカラートークンの値のみ(black,whiteだけとかにする?)
-		if (isTokenValue('color', colorName)) {
-			return `hsl(var(--hsl--${colorName}) / ${alpha})`;
-		}
-	}
-}
 
 class LismPropsData {
 	// propList = {};
@@ -83,7 +85,6 @@ class LismPropsData {
 			// isFlow,
 			// isItem,
 			// hasLayer,
-			// hasDivider,
 			// isObjectFit,
 			lismVar,
 			provide,
@@ -481,7 +482,7 @@ class LismPropsData {
 		});
 
 		// 意味はないが一応何をしているかわかるようにdata属性にセット
-		this.attrs['data-lism-provide'] = dataList.join(' ');
+		// this.attrs['data-lism-provide'] = dataList.join(' ');
 	}
 
 	setHoverProps(hoverData) {
@@ -507,15 +508,24 @@ class LismPropsData {
 				this.addUtil(`-hov:${hoverData}`);
 			}
 		} else if (typeof hoverData === 'object') {
+			// bxsh: '2', → shSize'2', shSize:'3'に分割?
+			// if(hoverData.bxsh) {
+			// 	...
+			// }
+
 			Object.keys(hoverData).forEach((propName) => {
 				let value = hoverData[propName];
 
-				// コンバーター取得
-				const converterName = HoverProps[propName];
-				if (converterName) {
-					value = getMaybeCssVar(value, converterName, propName);
+				// データ取得
+				const { presets = [], converter = '', utilKey = '' } = HOV_PROPS[propName] || {};
+				if (isPresetValue(presets, value)) {
+					this.addUtil(`-hov:${utilKey || propName}:${value}`);
+					return;
 				}
-				this.addUtil(`-hov:${propName}`);
+				if (converter) {
+					value = getMaybeCssVar(value, converter, propName);
+				}
+				this.addUtil(`-hov:${utilKey || propName}`);
 				this.addStyle(`--hov--${propName}`, value);
 			});
 		}

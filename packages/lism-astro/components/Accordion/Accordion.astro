@@ -1,7 +1,7 @@
 ---
 import { LismProps } from '../types';
 import { Lism, Frame, LinkBox, FilterLayer } from '@loos/lism-core';
-import { getLismProps } from '@loos/lism-core/lib';
+import { getLismProps, getAllLayoutStateData } from '@loos/lism-core/lib';
 import { MediaLayer } from '../MediaLayer/index.js';
 
 // Propsの定義
@@ -28,7 +28,7 @@ lismClass.c = 'c--accordion';
 // duration: [s]
 if (duration) lismStyle['--duration'] = duration;
 
-const lismProps = getLismProps(props, { lismClass, lismStyle });
+const lismProps = getLismProps(getAllLayoutStateData(props), { lismClass, lismStyle });
 ---
 
 <details {...lismProps}>

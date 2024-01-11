@@ -17,7 +17,7 @@ if ('Flex' === headProps.as) {
 const hasHeading = heading || Astro.slots.has('heading');
 ---
 
-<Layouter lismState={['is--colorbox']} radius='1' {...attrs}>
+<Layouter lismState={['is--colorbox']} {...attrs}>
 	{
 		hasHeading && (
 			<Core lismClass={{ c: 'c--note__head' }} fw='bold' {...headProps}>

@@ -17,6 +17,8 @@ export default function getMaybeCssVar(value, converter, propName = '') {
 			return getMaybeRadiusVar(value);
 		case 'shadow':
 			return getMaybeShadowVar(value);
+		// case 'shadowSize':
+		// 	return getMaybeShadowSizeVar(value);
 		case 'fz':
 			return getMaybeFzVar(value);
 		case 'filter':
@@ -56,7 +58,7 @@ export function getMaybeSpaceVar(value, propName) {
 		const spaceArr = value.split(' ');
 		return spaceArr
 			.map((_s) => {
-				if (isNumStr(_s)) return `var(--s--${_s})`;
+				if (isNumStr(_s) && _s !== '0') return `var(--s--${_s})`;
 				return _s;
 			})
 			.join(' ');
@@ -76,7 +78,7 @@ export function getMaybeColorVar(value, propType) {
 	if (typeof value === 'string' && value.endsWith('%')) {
 		const [colorName, alpha] = value.split(':');
 		const mixColor = getMaybeColorVar(colorName, propType);
-		return `color-mix(in srgb, transpalent, ${mixColor} ${alpha})`;
+		return `color-mix(in srgb, transparent, ${mixColor} ${alpha})`;
 
 		// hslで変数用意しているものは α値の指定ができる
 		// if (isTokenValue('color', colorName)) {return `hsl(var(--hsl--${colorName}) / ${alpha})`;}
@@ -112,12 +114,41 @@ export function getMaybeRadiusVar(radius) {
 }
 
 export function getMaybeShadowVar(value) {
-	if (isTokenValue('shadow', value)) {
-		value = value + ''; // 数値でも渡ってくるので文字列化
-		return 'var(--shadow--' + value.replace('-', 'i') + ')';
+	// if (isTokenValue('shadow', value)) {
+	// 	value = value + ''; // 数値でも渡ってくるので文字列化
+	// 	return 'var(--bxsh-' + value + ')';
+	// }
+
+	// 数値指定の場合
+	if (typeof value === 'number' || isNumStr(value)) {
+		const shdwVal = Number(value);
+		if (shdwVal === 0) {
+			return 'none';
+		} else if (shdwVal > 0) {
+			const sh01 = `var(--shSize--${shdwVal}) var(--shColor)`;
+			const sh02 = `var(--shSize--${shdwVal + 1}) var(--shColor)`;
+			return `${sh01}, ${sh02}`;
+		} else if (shdwVal < 0) {
+			return `inset var(--shSize--${shdwVal * -1}), inset var(--shSize--${shdwVal * -1 + 1})`;
+		}
 	}
 	return value;
 }
+
+// export function getMaybeShadowSizeVar(value) {
+// 	// 数値指定の場合
+// 	if (typeof value === 'number' || isNumStr(value)) {
+// 		const sizeVal = Number(value);
+// 		if (sizeVal === 0) {
+// 			return '0 0 0';
+// 		} else if (sizeVal > 0) {
+// 			return `var(--shSize--${sizeVal})`;
+// 		} else if (sizeVal < 0) {
+// 			return `inset var(--shSize--${sizeVal * -1})`;
+// 		}
+// 	}
+// 	return value;
+// }
 
 export function getMaybeFzVar(value) {
 	if (isTokenValue('fz', value)) {

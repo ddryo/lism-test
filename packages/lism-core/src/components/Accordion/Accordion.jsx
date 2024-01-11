@@ -1,6 +1,6 @@
 import React from 'react';
 import setEvent from './setEvent';
-import { getLismProps } from '../../lib';
+import { getLismProps, getAllLayoutStateData } from '../../lib';
 // import { AccContext } from './context';
 
 // duration: [s]
@@ -9,7 +9,6 @@ export default function Accordion({
 	lismStyle = {},
 	children,
 	duration,
-	// hasDivider,
 	...props
 }) {
 	const ref = React.useRef(null);
@@ -25,13 +24,7 @@ export default function Accordion({
 		lismStyle['--duration'] = duration; //`${duration}s`;
 	}
 
-	let lismState = [];
-	if (props.hasDivider === true) {
-		// props.hasDivider = 'B';
-		lismState = ['has--divider:B'];
-	}
-
-	const lismProps = getLismProps(props, { lismClass, lismStyle, lismState });
+	const lismProps = getLismProps(getAllLayoutStateData(props), { lismClass, lismStyle });
 
 	// const deliverState = {
 	// 	trigger,

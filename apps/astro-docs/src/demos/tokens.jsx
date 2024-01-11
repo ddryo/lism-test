@@ -1,4 +1,4 @@
-import { Box, Text, Stack, Frame, Grid } from '@loos/lism-core';
+import { Box, Text, Stack, Frame, Center, Grid } from '@loos/lism-core';
 import { DammyText } from '~/components';
 
 export const ColorDemos = ({ colors = [] }) => {
@@ -78,11 +78,30 @@ export const ShadowDemos = ({ shadows = [] }) => {
 			{shadows.map((name) => {
 				return (
 					<Stack key={name} gap='20'>
-						<Text bd='left' bdw='2px' lh='1' pl='20' fz='xs'>
+						<Frame aspect='1/1' bgc='base' bxsh={`var(--shdw-${name})`} bdrs='s'>
+							<Center h='100' ff='mono' fz='s' c='content-2'>
+								{name}
+							</Center>
+						</Frame>
+					</Stack>
+				);
+			})}
+		</>
+	);
+};
+export const BoxShadowDemos = ({ shadows = [] }) => {
+	return (
+		<>
+			{shadows.map((name) => {
+				return (
+					<Stack key={name} gap='20'>
+						{/* <Text bd='left' bdw='2px' lh='1' pl='20' fz='xs'>
 							<code>{name}</code>
-						</Text>
-						<Frame aspect='1/1' bgc='base' shadow={name} radius='2'>
-							&emsp;
+						</Text> */}
+						<Frame aspect='1/1' bgc='base' bxsh={name} bdrs='s'>
+							<Center h='100' ff='mono' fz='xs' c='content-2'>
+								{name}
+							</Center>
 						</Frame>
 					</Stack>
 				);
@@ -94,13 +113,17 @@ export const ShadowDemos = ({ shadows = [] }) => {
 export const RadiusDemos = () => {
 	return (
 		<>
-			{['1', '2', '3', '4', '5', '6', '99'].map((r) => {
+			{['xs', 's', 'm', 'l', 'xl', 'full'].map((r) => {
 				return (
 					<Stack key={r} gap='20'>
-						<Text bd='left' bdw='2px' lh='1' pl='20' fz='xs'>
+						{/* <Text bd='left' bdw='2px' lh='1' pl='20' fz='xs'>
 							<code>{r}</code>
-						</Text>
-						<Frame aspect='1/1' radius={r} bd='-' bdc='main'></Frame>
+						</Text> */}
+						<Frame aspect='1/1' radius={r} bd>
+							<Center h='100' ff='mono' fz='xs' c='content-2'>
+								{r}
+							</Center>
+						</Frame>
 					</Stack>
 				);
 			})}
@@ -140,7 +163,7 @@ export const SpacingDemos = ({ spaces, isValueLabel }) => {
 // 				return (
 // 					<Stack key={num} gap='5'>
 // 						<Text bd='left' bdw='2px' lh='1' pl='10' fz='2xs'>{`${space}rem`}</Text>
-// 						<Box pl={`${space}rem`} bgc='b800'>
+// 						<Box pl={`${space}rem`} bgc='content'>
 // 							<Text bgc='base' pl={10} fz='xs'>
 // 								<code>{`${num}`}</code>
 // 							</Text>
@@ -170,7 +193,7 @@ export const SpacingDemos = ({ spaces, isValueLabel }) => {
 // 				return (
 // 					<Stack key={s} gap='5'>
 // 						<Text bd='left' bdw='2px' lh='1' pl='10' fz='2xs'>{`${pl}rem`}</Text>
-// 						<Box pl={`${pl}rem`} bgc='b800'>
+// 						<Box pl={`${pl}rem`} bgc='content'>
 // 							<Text bgc='base' pl={10} fz='xs'>
 // 								_
 // 							</Text>

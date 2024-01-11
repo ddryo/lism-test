@@ -6,7 +6,7 @@ const emPresets = ['em1', 'em2', 'em3', 'em5', 'em7', 'em10', 'em15', 'em20', 'e
 // ユーティリティクラス化するキーワード
 export default {
 	radius: ['0', ...TOKENS.radius],
-	shadow: TOKENS.shadow,
+	shadow: ['0', ...TOKENS.shadow],
 	fz: TOKENS.fz,
 	lh: ['1', ...TOKENS.lh], // 検討
 	lts: TOKENS.lts,
@@ -63,7 +63,7 @@ export default {
 
 	bg: ['glass', 'stripe', 'grid'],
 	z: ['-1', '0', '1'],
-	aspect: ['16/9', '4/3', '3/2', '1/1', 'golden', 'silver', 'bronze', 'ogp', 'cinema'], //'2/1',
+	aspect: ['16/9', '4/3', '3/2', '2/1', '1/1', 'golden', 'silver', 'bronze', 'ogp', 'cinema'], //'2/1',
 
 	// fx: ['1'],
 	// gd: ['fix:l', 'fix:r', 'fix:t', 'fix:b'],
@@ -83,8 +83,8 @@ export default {
 	// transform: ['flip:x', 'flip:y', 'flip:xy'],
 	animation: [],
 
-	contentSize: ['s', 'l'], // container, constrained のユーティリティクラス
-	flow: ['s', 'l'], // flowのユーティリティクラス
+	contentSize: ['xs', 's', 'm', 'l', 'xl', 'full'], // container, constrained のユーティリティクラス
+	flow: ['xs', 's', 'l'], // flowのユーティリティクラス
 	// mbs: ['s', 'm', 'l'], // --mbs--xxx トークン
 };
 

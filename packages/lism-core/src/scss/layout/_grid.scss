@@ -9,7 +9,7 @@
 	--gtr: none;
 	--gt: var(--gtr) / var(--gtc);
 
-	display: grid !important; // ユーティリティ的な側面もあり、組み合わせ方でレイアウトを変えることもあるので !important 付与
+	display: grid;
 	grid-template: var(--gt);
 
 	// gta などは、gd,gtと併記した時に上書きできるようにしたい。

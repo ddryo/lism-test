@@ -4,14 +4,7 @@ import { Media } from '../Media';
 import { separateMediaAttrs } from '../../lib';
 
 // memo: picture対応
-export default function MediaLayer({
-	children,
-	media = 'img',
-	hover,
-	mediaProps = {},
-	// z,
-	...props
-}) {
+export default function MediaLayer({ media = 'img', hover, mediaProps = {}, children, ...props }) {
 	if (children) {
 		return (
 			<Layer variant='media' hover={hover} {...props}>

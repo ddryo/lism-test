@@ -18,16 +18,17 @@
 	}
 }
 
-:where(.c--linkbox) {
-	display: block;
-}
+// :where(.is--linkbox) {
+// 	display: block;
+// }
 
-.c--linkbox {
+.is--linkbox {
+	display: block;
 	position: relative;
 	color: inherit;
-	// text-decoration: none;
 	pointer-events: auto;
 	cursor: pointer;
+	// text-decoration: none;
 
 	// :where(&:not(a)) > * {
 	// 	pointer-events: none;
@@ -51,7 +52,7 @@
 */
 
 // 詳細度 0 で。
-// :where(.c--linkbox:not(a)) > * {
+// :where(.is--linkbox:not(a)) > * {
 // 	pointer-events: none;
 // 	position: relative;
 // 	z-index: 1;
@@ -74,16 +75,16 @@
 // }
 
 // リンクは基本クリックできるように、明示的に指定しておく。
-// .c--linkbox a でより確実にクリッカブルにできるが、先祖セレクタになってしまうのでresetに任せる。
+// .is--linkbox a でより確実にクリッカブルにできるが、先祖セレクタになってしまうのでresetに任せる。
 // a {
 // 	pointer-events: auto;
 // }
 
-// .c--linkbox a {
+// .is--linkbox a {
 // 	pointer-events: auto;
 // }
 
-// .c--linkbox {
+// .is--linkbox {
 // 	color: inherit;
 // 	text-decoration: none;
 // 	position: relative;

@@ -40,7 +40,6 @@ export default function Alert({
 			lismState={['is--colorbox']}
 			lismClass={lismClass}
 			keycolor={keycolor}
-			radius='2'
 			{...props}
 		>
 			{icon && (

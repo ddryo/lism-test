@@ -204,7 +204,7 @@ Centerに**高さがある時**、垂直方向に対しても中央揃えにな�
 	<PreviewCode slot='tab' label='HTML'>
 		```jsx "-minW:100 -minH:100"
 		<div class="l--frame -aspect:16/9">
-			<div class="l--center -minW:100 -minH:100 -bgc:pale">
+			<div class="l--center -minW:100 -minH:100 -bgc:base-2">
 				<p>...</p>
 			</div>
 		</div>
@@ -232,14 +232,14 @@ Centerに**高さがある時**、垂直方向に対しても中央揃えにな�
 		`size='content'`
 	</PreviewTitle>
 	<PreviewArea resize p={10}>
-		<Center size='content' p='box' bgc='base-2' shadow='1'>
+		<Center size='content' p='box' bgc='base-2' bxsh='1'>
 			<Text ff='emoji'>💡</Text>
 			<Text fw='bold'>`size='content'`</Text>
 		</Center>
 	</PreviewArea>
 	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx "size='content'"
-		<Center size='content' p='box' bgc='base-2' shadow='1'>
+		<Center size='content' p='box' bgc='base-2' bxsh='1'>
 			<Text ff='emoji'>💡</Text>
 			<p>...</p>
 		</Center>
@@ -247,7 +247,7 @@ Centerに**高さがある時**、垂直方向に対しても中央揃えにな�
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
 		```jsx "-w:fit -h:fit -mx:a"
-		<div class="l--center -w:fit -h:fit -mx:a -p:box -bgc:pale -bxsh:1">
+		<div class="l--center -w:fit -h:fit -mx:a -p:box -bgc:base-2 -bxsh:1">
 			<p class="-ff:emoji">💡</p>
 			<p>...</p>
 		</div>

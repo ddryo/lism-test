@@ -192,19 +192,19 @@ Grid(`.l--grid`)は、それ自体が`--gt`, `--gtc`, `--gtr`を変数として�
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Grid ratio='1:1:1' gap={10}>
-			<GridItem px={20} bgc='b100'>1</GridItem>
-			<GridItem px={20} bgc='b200' gc='span2'>2</GridItem>
-			<GridItem px={20} bgc='b200' gc='span2'>3</GridItem>
-			<GridItem px={20} bgc='b100'>4</GridItem>
+			<GridItem px={20} bgc='base-2'>1</GridItem>
+			<GridItem px={20} bgc='base-3' gc='span2'>2</GridItem>
+			<GridItem px={20} bgc='base-3' gc='span2'>3</GridItem>
+			<GridItem px={20} bgc='base-2'>4</GridItem>
 		</Grid>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx "ratio='1:1:1'" "gc='span2'"
 		<Grid ratio='1:1:1' gap={10}>
-			<GridItem px={20} bgc='b100'>1</GridItem>
-			<GridItem px={20} bgc='b200' gc='span2'>2</GridItem>
-			<GridItem px={20} bgc='b200' gc='span2'>3</GridItem>
-			<GridItem px={20} bgc='b100'>4</GridItem>
+			<GridItem px={20} bgc='base-2'>1</GridItem>
+			<GridItem px={20} bgc='base-3' gc='span2'>2</GridItem>
+			<GridItem px={20} bgc='base-3' gc='span2'>3</GridItem>
+			<GridItem px={20} bgc='base-2'>4</GridItem>
 		</Grid>
 		```
 	</PreviewCode>
@@ -218,28 +218,28 @@ Grid(`.l--grid`)は、それ自体が`--gt`, `--gtc`, `--gtr`を変数として�
 		1:2 → `@md` で 1:2:1:2 で比率を切り替える
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<Grid ratio={["1:2", null, "1:2:1:2"]} gap={10}>
-			<GridItem bgc="b100">1</GridItem>
-			<GridItem bgc="b200">2</GridItem>
-			<GridItem bgc="b100">3</GridItem>
-			<GridItem bgc="b200">4</GridItem>
-			<GridItem bgc="b100">5</GridItem>
-			<GridItem bgc="b200">6</GridItem>
-			<GridItem bgc="b100">7</GridItem>
-			<GridItem bgc="b200">8</GridItem>
+		<Grid ratio={['1:2', null, '1:2:1:2']} gap={10}>
+			<GridItem bgc='base-2'>1</GridItem>
+			<GridItem bgc='base-3'>2</GridItem>
+			<GridItem bgc='base-2'>3</GridItem>
+			<GridItem bgc='base-3'>4</GridItem>
+			<GridItem bgc='base-2'>5</GridItem>
+			<GridItem bgc='base-3'>6</GridItem>
+			<GridItem bgc='base-2'>7</GridItem>
+			<GridItem bgc='base-3'>8</GridItem>
 		</Grid>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Grid ratio={["1", "1:2", "1:2:1:2"]} gap={10}>
-			<GridItem bgc="b100">1</GridItem>
-			<GridItem bgc="b200">2</GridItem>
-			<GridItem bgc="b100">3</GridItem>
-			<GridItem bgc="b200">4</GridItem>
-			<GridItem bgc="b100">5</GridItem>
-			<GridItem bgc="b200">6</GridItem>
-			<GridItem bgc="b100">7</GridItem>
-			<GridItem bgc="b200">8</GridItem>
+		<Grid ratio={['1', '1:2', '1:2:1:2']} gap={10}>
+			<GridItem bgc='base-2'>1</GridItem>
+			<GridItem bgc='base-3'>2</GridItem>
+			<GridItem bgc='base-2'>3</GridItem>
+			<GridItem bgc='base-3'>4</GridItem>
+			<GridItem bgc='base-2'>5</GridItem>
+			<GridItem bgc='base-3'>6</GridItem>
+			<GridItem bgc='base-2'>7</GridItem>
+			<GridItem bgc='base-3'>8</GridItem>
 		</Grid>
 		```
 	</PreviewCode>
@@ -317,7 +317,7 @@ Grid(`.l--grid`)は、それ自体が`--gt`, `--gtc`, `--gtr`を変数として�
 {/* <div class="is--container"> */}
 <Grid variant="3row" minH='15rem'>
 	<GridItem p='box:s' bgc='base-2'>L</GridItem>
-	<GridItem p='box:s' bgc='b200'>Center</GridItem>
+	<GridItem p='box:s' bgc='base-3'>Center</GridItem>
 	<GridItem p='box:s' bgc='base-2'>R</GridItem>
 </Grid>
 
@@ -329,7 +329,7 @@ Grid(`.l--grid`)は、それ自体が`--gt`, `--gtc`, `--gtr`を変数として�
 {/* <div class="is--container"> */}
 <Grid variant="3row" minH='15rem'>
 	<GridItem p='box:s' bgc='base-2'>L</GridItem>
-	<GridItem p='box:s' bgc='b200'>Center</GridItem>
+	<GridItem p='box:s' bgc='base-3'>Center</GridItem>
 	<GridItem p='box:s' bgc='base-2'>R</GridItem>
 </Grid>
 
@@ -338,7 +338,7 @@ Grid(`.l--grid`)は、それ自体が`--gt`, `--gtc`, `--gtr`を変数として�
 
 <Grid variant="3col">
 	<GridItem p='box:s' bgc='base-2'>L</GridItem>
-	<GridItem p='box:s' bgc='b200'>Center</GridItem>
+	<GridItem p='box:s' bgc='base-3'>Center</GridItem>
 	<GridItem p='box:s' bgc='base-2'>R</GridItem>
 </Grid>
 {/* </div> */}
@@ -360,11 +360,11 @@ Grid(`.l--grid`)は、それ自体が`--gt`, `--gtc`, `--gtr`を変数として�
 			]}
 			gap={20}
 		>
-			<GridItem ga='left' p='box:s' bgc='b200'>Left</GridItem>
+			<GridItem ga='left' p='box:s' bgc='base-3'>Left</GridItem>
 			<GridItem ga='main' p='box:s' bgc='base-2'>
 				<DammyText length='l' />
 			</GridItem>
-			<GridItem ga='right' p='box:s' bgc='b200'>Right</GridItem>
+			<GridItem ga='right' p='box:s' bgc='base-3'>Right</GridItem>
 		</Grid>
 	</PreviewArea>
 	<PreviewCode slot='tab' label='React, Astro'>
@@ -379,9 +379,9 @@ Grid(`.l--grid`)は、それ自体が`--gt`, `--gtc`, `--gtr`を変数として�
 			]}
 			gap={20}
 		>
-			<GridItem ga='left' p='box:s' bgc='b200'>Left</GridItem>
+			<GridItem ga='left' p='box:s' bgc='base-3'>Left</GridItem>
 			<GridItem ga='main' p='box:s' bgc='base-2'><DammyText length='l' /></GridItem>
-			<GridItem ga='right' p='box:s' bgc='b200'>Right</GridItem>
+			<GridItem ga='right' p='box:s' bgc='base-3'>Right</GridItem>
 		</Grid>
 		```
 	</PreviewCode>
@@ -391,11 +391,11 @@ Grid(`.l--grid`)は、それ自体が`--gt`, `--gtc`, `--gtr`を変数として�
 			class="l--grid -gt@md -gap:20"
 			style="--gt:'main main' 'left right' / 1fr 1fr;--gt--md:'left main right' 'left main right' / 8em 1fr 8em"
 		>
-			<div class=" -p:box:s -bgc: -ga:" style="--bgc:var(--b200);--ga:left">Left</div>
-			<div class=" -p:box:s -bgc:pale -ga:" style="--ga:main">
+			<div class="-p:box:s -bgc:base-3 -ga:" style="--ga:left">Left</div>
+			<div class="-p:box:s -bgc:base-2 -ga:" style="--ga:main">
 				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit, sed do eiusmod tempor. Non facere laudantium ex eos doloribus aut dolore nisi provident libero, eum nulla sunt, porro sed dicta. Impedit ullam eveniet obcaecati minima.</p>
 			</div>
-			<div class=" -p:box:s -bgc: -ga:" style="--bgc:var(--b200);--ga:right">Right</div>
+			<div class="-p:box:s -bgc:base-3 -ga:" style="--ga:right">Right</div>
 		</div>
 		```
 	</PreviewCode>
@@ -422,26 +422,26 @@ Grid(`.l--grid`)は、それ自体が`--gt`, `--gtc`, `--gtr`を変数として�
 <Preview>
 	<PreviewTitle>例</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<Grid gtc="1fr auto 1fr">
+		<Grid gtc='1fr auto 1fr'>
 			<GridItem as={Center} p={20} bgc='base-2'>item1</GridItem>
 			<GridItem as={Center} p={20} bgc='base-2'>item2</GridItem>
-			<GridItem as={Center} p={20} bgc='b200'>item3</GridItem>
-			<GridItem as={Center} p={20} bgc='b200'>item4</GridItem>
-			<GridItem as={Center} p={20} bgc='b300'>item5</GridItem>
-			<GridItem as={Center} p={20} bgc='b300'>item6</GridItem>
-			<GridItem as={Center} p={20} bgc='blue' gc="2" gr="1 / span 3">center</GridItem>
+			<GridItem as={Center} p={20} bgc='base-3'>item3</GridItem>
+			<GridItem as={Center} p={20} bgc='base-3'>item4</GridItem>
+			<GridItem as={Center} p={20} bgc='base-2'>item5</GridItem>
+			<GridItem as={Center} p={20} bgc='base-2'>item6</GridItem>
+			<GridItem as={Center} p={20} bgc='blue' gc='2' gr='1 / span 3'>center</GridItem>
 		</Grid>
 	</PreviewArea>
 	<PreviewCode>
 	```jsx
-	<Grid gtc="1fr auto 1fr">
+	<Grid gtc='1fr auto 1fr'>
 		<GridItem as={Center} p={20} bgc='base-2'>item1</GridItem>
 		<GridItem as={Center} p={20} bgc='base-2'>item2</GridItem>
-		<GridItem as={Center} p={20} bgc='b200'>item3</GridItem>
-		<GridItem as={Center} p={20} bgc='b200'>item4</GridItem>
-		<GridItem as={Center} p={20} bgc='b300'>item5</GridItem>
-		<GridItem as={Center} p={20} bgc='b300'>item6</GridItem>
-		<GridItem as={Center} p={20} bgc='blue' gc="2" gr="1 / span 3">center</GridItem>
+		<GridItem as={Center} p={20} bgc='base-3'>item3</GridItem>
+		<GridItem as={Center} p={20} bgc='base-3'>item4</GridItem>
+		<GridItem as={Center} p={20} bgc='base-2'>item5</GridItem>
+		<GridItem as={Center} p={20} bgc='base-2'>item6</GridItem>
+		<GridItem as={Center} p={20} bgc='blue' gc='2' gr='1 / span 3'>center</GridItem>
 	</Grid>
 	```
 	</PreviewCode>

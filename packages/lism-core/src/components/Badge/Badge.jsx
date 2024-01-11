@@ -1,6 +1,5 @@
 // import React from 'react';
 import { Core } from '../Core';
-const defaultProps = { radius: '1', fz: 'xs' };
 
 // variant
 export default function Badge({
@@ -21,7 +20,5 @@ export default function Badge({
 	//  else if ('outline' === variant) {
 	// 	lismState.push('-c:mix');
 	// }
-	return (
-		<Core tag='span' lismClass={lismClass} lismState={lismState} {...defaultProps} {...props} />
-	);
+	return <Core tag='span' lismClass={lismClass} lismState={lismState} {...props} />;
 }

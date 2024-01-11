@@ -19,11 +19,11 @@
 // 罫線 : Ruled paper, lined paper, rulied lines
 // 方眼 : graph paper, grid paper, squared paper
 :root {
-	--bg-bdc: var(--base-2);
+	// --bg-bdc: var(--base-2);
 	--bg-bdc: color-mix(
 		in srgb,
 		var(--bgc-mixcolor, var(--keycolor, currentColor)),
-		transparent 94%
+		transparent 95%
 	);
 }
 .-bg\:grid {

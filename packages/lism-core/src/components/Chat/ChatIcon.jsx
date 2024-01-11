@@ -12,7 +12,7 @@ export default function ChatIcon({ lismClass = {}, ...props }) {
 		<Avatar
 			lismClass={lismClass}
 			bgc='base'
-			radius='99'
+			bdrs='full'
 			aria-hidden='true'
 			alt=''
 			width={60}

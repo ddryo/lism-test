@@ -3,13 +3,15 @@ title: 'Card'
 description: ...
 ---
 
-import { Box, TileGrid, Card, CardMedia, CardBody, Alert, Badge, Grid, Stack, Text, MediaLayer, FilterLayer, Button, Columns } from '@loos/lism-core';
+import { Box, TileGrid, Card, CardMedia, CardBody, Alert, Badge, Grid, Stack, Text, OverlayLink, FilterLayer, Button, Columns, Media } from '@loos/lism-core';
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 // import Image from "next/image";
 
 カード型でコンテンツを表示できるコンポーネントです。 全体をリンク化することも可能です。
 
+{/* ## 構造概要 */}
+{/* 
 ```jsx
 <Card>
 	<CardMedia>
@@ -19,8 +21,8 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 		...Content...
 	</CardBody>
 </Card>
-```
-
+``` */}
+{/* 
 <Preview>
 	<PreviewTitle>対応するHTML構造</PreviewTitle>
 	<PreviewCode>
@@ -46,7 +48,7 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 		</a>
 		```
 	</PreviewCode>
-</Preview>
+</Preview> */}
 
 
 ## Props
@@ -85,44 +87,13 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 
 <Preview>
 	<PreviewTitle>シンプルなカード</PreviewTitle>
-	<PreviewArea p={30} maxW="32em">
-		<Card>
-			<CardMedia aspect="2/1">
-				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+	<PreviewArea p={30}>
+		<Card maxW='xs' mx='a'>
+			<CardMedia aspect='2/1'>
+				<Media src='/img.jpg' alt='' width={960} height={640} />
 			</CardMedia>
 			<CardBody>
-				<h3 className="-fz:l">Card Title</h3>
-				<DammyText lang='ja' length='m' />
-			</CardBody>
-		</Card>
-	</PreviewArea>
-	<PreviewCode>
-		```jsx
-		<Card>
-			<CardMedia aspect="2/1">
-				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
-			</CardMedia>
-			<CardBody>
-				<h3 className="-fz:l">Card Title</h3>
-				<DammyText />
-			</CardBody>
-		</Card>
-		```
-	</PreviewCode>
-</Preview>
-
-
-`<CardMedia>`に `aspect`を指定すると、内部で`<Frame>`が使われます。
-
-<Preview>
-	<PreviewTitle>`aspect`の指定</PreviewTitle>
-	<PreviewArea p={30} maxW="32em">
-		<Card>
-			<CardMedia aspect="2/1">
-				<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
-			</CardMedia>
-			<CardBody>
-				<h3 className="-fz:l">Card Title</h3>
+				<h3 className='-fz:l'>Card Title</h3>
 				<DammyText lang='ja' length='m' />
 			</CardBody>
 		</Card>
@@ -130,11 +101,11 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 	<PreviewCode>
 	```jsx
 	<Card>
-		<CardMedia aspect="2/1">
-			<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+		<CardMedia aspect='2/1'>
+			<Media src='/img.jpg' alt='' width={960} height={640} />
 		</CardMedia>
 		<CardBody>
-			<h3 className="-fz:l">Card Title</h3>
+			<h3 className='-fz:l'>Card Title</h3>
 			<DammyText />
 		</CardBody>
 	</Card>
@@ -145,46 +116,65 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 
 
 <Preview>
-	<PreviewTitle>TileGrid と併用、リンクあり, radius="4"</PreviewTitle>
+	<PreviewTitle>リンクあり</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<TileGrid itemMinW="20rem" gap={20}>
-			<Card href="#card-demo" radius="4">
-				<CardMedia aspect="16/9">
-					<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-				</CardMedia>
-				<CardBody>
-					<h3 className="-fz:l">Card Title A</h3>
-					<DammyText />
-					<Text ta="right" mt="auto" fz="s">Bottom Text</Text>
-				</CardBody>
-			</Card>
-			<Card href="#card-demo" radius="4">
-				<CardMedia aspect="16/9">
-					<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-				</CardMedia>
-				<CardBody>
-					<h3 className="-fz:l">Card Title B</h3>
-					<DammyText length="m" />
-					<Text ta="right" mt="auto" fz="s">Bottom Text</Text>
-				</CardBody>
-			</Card>
-		</TileGrid>
+		<Card href='#card-demo' bdrs='l'>
+			<CardMedia aspect='16/9'>
+				<Media src='/img.jpg' alt='' width={960} height={640} />
+			</CardMedia>
+			<CardBody>
+				<h3 className='-fz:l'>Card Title A</h3>
+				<DammyText />
+				<Text ta='right' mt='auto' fz='s'>Bottom Text</Text>
+			</CardBody>
+		</Card>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<TileGrid itemMinW="20rem" gap={20}>
-			<Card href="#card-demo" radius="4">
-				<CardMedia aspect="16/9">
-					<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-				</CardMedia>
-				<CardBody lh="s">
-					<h3 className="-fz:l">Card Title A</h3>
-					<p>...text...</p>
-					<Text ta="right" mt="auto" fz="s">Bottom Text</Text>
-				</CardBody>
-			</Card>
-			<Card>...</Card>
-		</TileGrid>
+		<Card href='#card-demo' bdrs='l'>
+			<CardMedia aspect='16/9'>
+				<Media src='/img.jpg' alt='' width={960} height={640} />
+			</CardMedia>
+			<CardBody lh='s'>
+				<h3 className='-fz:l'>Card Title A</h3>
+				<p>...text...</p>
+				<Text ta='right' mt='auto' fz='s'>Bottom Text</Text>
+			</CardBody>
+		</Card>
+		```
+	</PreviewCode>
+</Preview>
+
+<Preview>
+	<PreviewTitle>リンクあり、内部にもリンクあり。</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Card href='#card-demo' bdrs='l'>
+			<CardMedia aspect='16/9'>
+				<Media src='/img.jpg' alt='' width={960} height={640} />
+			</CardMedia>
+			<CardBody>
+				<h3 className='-fz:l'>
+					<OverlayLink href='#boxlink02'>Card Heading(Link)</OverlayLink>
+				</h3>
+				<DammyText />
+				<Text ta='right' mt='auto' fz='s'>Bottom Text</Text>
+			</CardBody>
+		</Card>
+	</PreviewArea>
+	<PreviewCode>
+		```jsx
+		<Card href='#card-demo' bdrs='l'>
+			<CardMedia aspect='16/9'>
+				<Media src='/img.jpg' alt='' width={960} height={640} />
+			</CardMedia>
+			<CardBody lh='s'>
+				<h3 className='-fz:l'>
+					<OverlayLink href='#boxlink02'>Card Heading(Link)</OverlayLink>
+				</h3>
+				<p>...text...</p>
+				<Text ta='right' mt='auto' fz='s'>Bottom Text</Text>
+			</CardBody>
+		</Card>
 		```
 	</PreviewCode>
 </Preview>
@@ -194,46 +184,46 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 <Preview>
 	<PreviewTitle>メディア側にBadge追加, hoverを変えてみる</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<TileGrid itemMinW="20rem" gap={20}>
-			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
-				<CardMedia aspect="2/1">
-					<img className="is--transitionMedia" src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-					<Badge keycolor="black" pos="absolute" top="0" right="0">Category</Badge>
+		<TileGrid itemMinW='20rem' gap={20}>
+			<Card href='#card-demo' bdrs='xs' hover={['bxsh:4', 'up', 'mediaBright']}>
+				<CardMedia aspect='2/1'>
+					<Media className='is--transitionMedia' src='/img.jpg' alt='' width={960} height={640} />
+					<Badge keycolor='black' pos='absolute' top='0' right='0'>Category</Badge>
 				</CardMedia>
-				<CardBody lh="s">
-					<h3 className="-fz:l">Card Title A</h3>
+				<CardBody lh='s'>
+					<h3 className='-fz:l'>Card Title A</h3>
 					<DammyText />
-					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+					<Text ta='right' mt='auto' pt='10' fz='s'>Bottom Text</Text>
 				</CardBody>
 			</Card>
-			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
-				<CardMedia aspect="2/1">
-					<img className="is--transitionMedia" src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-					<Badge keycolor="black" pos="absolute" top="0" right="0">Category</Badge>
+			<Card href='#card-demo' bdrs='xs' hover={['bxsh:4', 'up', 'mediaBright']}>
+				<CardMedia aspect='2/1'>
+					<Media className='is--transitionMedia' src='/img.jpg' alt='' width={960} height={640} />
+					<Badge keycolor='black' pos='absolute' top='0' right='0'>Category</Badge>
 				</CardMedia>
-				<CardBody lh="s">
-					<h3 className="-fz:l">Card Title B</h3>
-					<DammyText length="m" />
-					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+				<CardBody lh='s'>
+					<h3 className='-fz:l'>Card Title B</h3>
+					<DammyText length='m' />
+					<Text ta='right' mt='auto' pt='10' fz='s'>Bottom Text</Text>
 				</CardBody>
 			</Card>
 		</TileGrid>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx {2, 4,5}
-		<TileGrid itemMinW="20rem" gap={20}>
-			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
-				<CardMedia aspect="2/1">
-					<img className="is--transitionMedia" src="/img/demo-img.jpeg" alt="" width={960} height={640} />
-					<Badge keycolor="black" pos="absolute" top="0" right="0">Category</Badge>
+		<TileGrid itemMinW='20rem' gap={20}>
+			<Card href='#card-demo' bdrs='xs' hover={['bxsh:4', 'up', 'mediaBright']}>
+				<CardMedia aspect='2/1'>
+					<Media className='is--transitionMedia' src='/img.jpg' alt='' width={960} height={640} />
+					<Badge keycolor='black' pos='absolute' top='0' right='0'>Category</Badge>
 				</CardMedia>
-				<CardBody lh="s">
-					<h3 className="-fz:l">Card Title A</h3>
+				<CardBody lh='s'>
+					<h3 className='-fz:l'>Card Title A</h3>
 					<DammyText />
-					<Text ta="right" mt="auto" pt="10" fz="s">Bottom Text</Text>
+					<Text ta='right' mt='auto' pt='10' fz='s'>Bottom Text</Text>
 				</CardBody>
 			</Card>
-			<Card href="#card-demo" radius="1" hover={["shadow", "up", "mediaBright"]}>
+			<Card href='#card-demo' bdrs='xs' hover={['bxsh:4', 'up', 'mediaBright']}>
 				...
 			</Card>
 			<Card>...</Card>
@@ -253,7 +243,7 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 	<PreviewArea p={20} maxW="40em">
 			<Card isFlex>
 				<CardMedia>
-					<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+					<img src="/img.jpg" alt="" loading="lazy" width={960} height={640} />
 				</CardMedia>
 				<CardBody>
 					<h3 className="-fz:l">Card Title</h3>
@@ -282,7 +272,7 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 	<PreviewArea p={20} maxW="40em">
 			<Card isFlex direction="row-reverse" href="###">
 				<CardMedia>
-					<img src="/img/demo-img.jpeg" alt="" loading="lazy" width={960} height={640} />
+					<img src="/img.jpg" alt="" loading="lazy" width={960} height={640} />
 				</CardMedia>
 				<CardBody>
 					<h3 className="-fz:l">Card Title</h3>
@@ -320,7 +310,7 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 	<PreviewArea p={20} maxW="40em" resize>
 		<Card isFlex>
 			<CardMedia w="32%" aspect="3/4">
-				<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				<img src="/img.jpg" alt="" width={960} height={640} />
 			</CardMedia>
 			<CardBody>
 				<h3 className="-fz:l">Card Title</h3>
@@ -349,7 +339,7 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 		<Columns cols={[1, null, 2]} gap={20}>
 			<Card isFlex>
 				<CardMedia w="40%">
-					<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+					<img src="/img.jpg" alt="" width={960} height={640} />
 				</CardMedia>
 				<CardBody gap={10} lh='s'>
 					<h3 className="-fz:l">Card Title</h3>
@@ -359,7 +349,7 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 			</Card>
 			<Card isFlex>
 				<CardMedia w="40%">
-					<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+					<img src="/img.jpg" alt="" width={960} height={640} />
 				</CardMedia>
 				<CardBody gap={10} lh='s'>
 					<h3 className="-fz:l">Card Title</h3>
@@ -394,7 +384,7 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 	<PreviewArea p={20} maxW="40em">
 		<Card isFlex dir='rtl'>
 			<CardMedia w="40%">
-				<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				<img src="/img.jpg" alt="" width={960} height={640} />
 			</CardMedia>
 			<CardBody>
 				<h3 className="-fz:l">ما هو "لوريم إيبسوم" ؟</h3>
@@ -407,7 +397,7 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 		```jsx
 		<Card isFlex dir='rtl'>
 			<CardMedia w="40%">
-				<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				<img src="/img.jpg" alt="" width={960} height={640} />
 			</CardMedia>
 			<CardBody>
 				<h3 className="-fz:l">ما هو "لوريم إيبسوم" ؟</h3>
@@ -424,10 +414,10 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 
 <Preview>
 	<PreviewTitle>画像の上にコンテンツを</PreviewTitle>
-	<PreviewArea p={30} maxW="32em">
-		<Card shadow="3">
+	<PreviewArea p={30}>
+		<Card bxsh="3">
 			<CardMedia aspect="16/9">
-				<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				<img src="/img.jpg" alt="" width={960} height={640} />
 				<FilterLayer bgc="rgba(255,255,255,0.5)" blur="3px" brightness={1.2}/>
 			</CardMedia>
 			<CardBody isLayer size='cover'>
@@ -447,10 +437,10 @@ import { Card, CardMedia, CardBody } from '@loos/lism-core';
 
 <Preview>
 	<PreviewTitle>画像の上にコンテンツを</PreviewTitle>
-	<PreviewArea p={30} maxW="32em">
-		<Card shadow="3" href="#card-test">
+	<PreviewArea p={30}>
+		<Card bxsh="3" href="#card-test">
 			<CardMedia aspect="4/3">
-				<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+				<img src="/img.jpg" alt="" width={960} height={640} />
 			</CardMedia>
 			<CardBody isLayer position='bottom' w='100%' size="contain" z='0'>
 				<FilterLayer bgc="rgba(255,255,255,0.6)" blur="3px" brightness={1.2} z='-1'/>
@@ -476,9 +466,9 @@ hoverエフェクトを自作する
 	<PreviewTitle>コンテンツをホバーして表示</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<TileGrid itemMinW="20rem" gap={20}>
-			<Card href="#card-demo" radius="1" hover={["contentUp", "mediaZoom"]}>
+			<Card href="#card-demo" bdrs='xs' hover={["contentUp", "mediaZoom"]}>
 				<CardMedia aspect="4/3">
-					<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+					<img src="/img.jpg" alt="" width={960} height={640} />
 				</CardMedia>
 				<CardBody isLayer position='bottom' w='100%' p={0} size="contain">
 					<FilterLayer blur="4px" brightness={1.2}/>
@@ -493,9 +483,9 @@ hoverエフェクトを自作する
 					</Box>
 				</CardBody>
 			</Card>
-			<Card href="#card-demo" radius="1" hover={["contentUp", "mediaZoom"]}>
+			<Card href="#card-demo" bdrs='xs' hover={["contentUp", "mediaZoom"]}>
 				<CardMedia aspect="4/3">
-					<img src="/img/demo-img.jpeg" alt="" width={960} height={640} />
+					<img src="/img.jpg" alt="" width={960} height={640} />
 				</CardMedia>
 				<CardBody isLayer position='bottom' w='100%' p={0} size="contain">
 					<FilterLayer blur="4px" brightness={1.2}/>

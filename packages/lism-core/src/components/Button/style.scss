@@ -16,14 +16,15 @@
 .c--button {
 	--link-td: none; // pタグ内にくるかもしれないので
 	align-items: center;
-	padding: var(--em--3) var(--em--10); // .375em 1em
+	padding: 0.375em 0.875em; // bdrs=full を考慮すると 1em くらいあった方がいいが...
 	gap: var(--em--5);
 	width: fit-content;
 	color: var(--c);
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc); // アウトラインと並べたときにサイズに差がでないように
-	min-block-size: 3em;
-	// min-width: 2em;
+	min-block-size: 2.75em;
+	border-radius: 1px;
+	line-height: var(--lh--xs);
 }
 
 // .c--button:where(.-hov\:reverse):hover {
@@ -43,11 +44,11 @@
 
 // c--button--style
 .c--button--outline {
-	--c: var(--bdc); // bdc上書きするだけで --c も変わるように
+	--c: var(--keycolor);
 	// --bgc: transparent;
 	--bdc: var(--keycolor);
 	--hov--c: var(--base);
-	// --rev--bgc: var(--bdc);
+	// --hov--bdc: var(--keycolor);
 }
 
 // c--button--style

@@ -61,13 +61,13 @@ import { MediaLayer } from '@loos/lism-core';
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Frame h="200px">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			<MediaLayer src="/img.jpg" alt="" width='960' height='640' />
 		</Frame>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
 		<Frame h="200px">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			<MediaLayer src="/img.jpg" alt="" width='960' height='640' />
 		</Frame>
 		```
 	</PreviewCode>
@@ -83,17 +83,17 @@ import { MediaLayer } from '@loos/lism-core';
 		例
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<Frame aspect="cinema" bgc="#fff" shadow='2'>
+		<Frame aspect="cinema" bgc="#fff" bxsh='2'>
 			<MediaLayer p={10}>
-				<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} objectFit="cover" />
+				<Media src="/img.jpg" alt="" width={960} height={640} objectFit="cover" />
 			</MediaLayer>
 		</Frame>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx {3}
-		<Frame aspect="cinema" bgc="#fff" shadow='2'>
+		<Frame aspect="cinema" bgc="#fff" bxsh='2'>
 			<MediaLayer p={10}>
-				<Media src="/img/demo-img.jpeg" alt="" width={960} height={640} objectFit="cover" />
+				<Media src="/img.jpg" alt="" width={960} height={640} objectFit="cover" />
 			</MediaLayer>
 		</Frame>
 		```
@@ -106,13 +106,13 @@ import { MediaLayer } from '@loos/lism-core';
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Frame aspect="cinema">
-			{/* <MediaLayer media={Image} src="/img/demo-img.jpeg" alt="" width='960' height='640' /> */}
+			{/* <MediaLayer media={Image} src="/img.jpg" alt="" width='960' height='640' /> */}
 		</Frame>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx {2}
 		<Frame aspect="cinema">
-			<MediaLayer media={Image} src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			<MediaLayer media={Image} src="/img.jpg" alt="" width='960' height='640' />
 		</Frame>
 		```
 	</PreviewCode>
@@ -127,7 +127,7 @@ import { MediaLayer } from '@loos/lism-core';
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Frame aspect="cinema">
-			<MediaLayer z="-1" src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			<MediaLayer z="-1" src="/img.jpg" alt="" width='960' height='640' />
 			<FilterLayer z="-1" bgc="black:.4" />
 			<Center size="cover" c="white" gap="20" p="box">
 				<DammyText length="xs" />
@@ -137,7 +137,7 @@ import { MediaLayer } from '@loos/lism-core';
 	<PreviewCode>
 ```jsx
 <Frame aspect="cinema">
-	<MediaLayer z="-1" src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+	<MediaLayer z="-1" src="/img.jpg" alt="" width='960' height='640' />
 	<FilterLayer z="-1" bgc="black:.4" />
 	<Center size="cover" c="white" gap="20" p="box">
 		<p>...</p>
@@ -155,7 +155,7 @@ import { MediaLayer } from '@loos/lism-core';
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Frame aspect="cinema">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			<MediaLayer src="/img.jpg" alt="" width='960' height='640' />
 			<FilterLayer bgc="black:.4" />
 			<Layer inset="0">
 				<Center size="cover" c="white" gap="20" p="box">
@@ -167,7 +167,7 @@ import { MediaLayer } from '@loos/lism-core';
 	<PreviewCode>
 		```jsx
 		<Frame aspect="cinema">
-			<MediaLayer src="/img/demo-img.jpeg" alt="" width='960' height='640' />
+			<MediaLayer src="/img.jpg" alt="" width='960' height='640' />
 			<FilterLayer bgc="black:.4" />
 			<Layer inset="0">
 				<Center size="cover" c="white" gap="20" p="box">

@@ -49,38 +49,6 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 	</PreviewCode>
 </Preview>
 
-## isConstrained
-
-`.is--constrained`に対応するPropです。
-( <MemoBadge> 参考ページ </MemoBadge> : [.is--constrained について](/docs/layout-state/content-size) )
-
-
-| Prop | Output |
-|:--|:--|
-| `isConstrained` | `.is--constrained` |
-| `isConstrained='s'` | `.is--constrained:s` |
-| `isConstrained='l'` | `.is--constrained:l` |
-| `isConstrained={value}` | `.is--constrained:` & `--contentSize:{value}` |
-
-
-<Preview>
-	<PreviewCode slot='tab' label='コンポーネント'>
-	```jsx
-	<Layouter isConstrained>...</Layouter>
-	<Layouter isConstrained="s">...</Layouter>
-	<Layouter isConstrained="600px">...</Layouter>
-	```
-	</PreviewCode>
-	<PreviewCode slot='tab' label='出力'>
-	```html
-	<div class="is--constrained">...</div>
-	<div class="is--constrained:s">...</div>
-	<div class="is--constrained:" style="--contentSize:600px">
-	```
-	</PreviewCode>
-</Preview>
-
-
 ## isContainer
 
 `.is--container`に対応するPropです。
@@ -90,20 +58,27 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 | Prop | Output |
 |:--|:--|
 | `isContainer` | `.is--container` |
+| `isContainer='s\|m\|l\|'` | `.is--container:s\|m\|l\|` |
+| `isContainer={value}` | `.is--container:` & `--contentSize:{value}` |
 
 
 <Preview>
 	<PreviewCode slot='tab' label='コンポーネント'>
 	```jsx
 	<Layouter isContainer>...</Layouter>
+	<Layouter isContainer="s">...</Layouter>
+	<Layouter isContainer="600px">...</Layouter>
 	```
 	</PreviewCode>
 	<PreviewCode slot='tab' label='出力'>
 	```html
 	<div class="is--container">...</div>
+	<div class="is--container:s">...</div>
+	<div class="is--container:" style="--contentSize:600px">
 	```
 	</PreviewCode>
 </Preview>
+
 
 ## hasGutter
 
@@ -139,15 +114,13 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 
 | Prop | Output |
 |:--|:--|
-| `hasDivider` | `.has--divider:[B\|I]` (自動判定) |
-| `hasDivider='B'` | `.has--divider:B` |
-| `hasDivider='I'` | `.has--divider:I` |
+| `hasDivider` | `.has--divider` |
 
 
 <Preview>
 	<PreviewCode slot='tab' label='コンポーネント'>
 	```jsx
-	<Layouter hasDivider="B">...</Layouter>
+	<Layouter hasDivider>...</Layouter>
 	```
 	</PreviewCode>
 	<PreviewCode slot='tab' label='出力'>
@@ -158,33 +131,52 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 </Preview>
 
 <Preview>
-	<PreviewTitle>`hasDivider`自動判定</PreviewTitle>
-	<PreviewArea resize p={5}>
+	<PreviewTitle>例</PreviewTitle>
+	<PreviewArea resize p={20}>
 		<Stack hasDivider>
 			<Box p={20}>Stack</Box>
 			<Box p={20}>Stack</Box>
 			<Box p={20}>Stack</Box>
 		</Stack>
-		<hr />
-		<Flex hasDivider>
-			<Box px={20}>Flex</Box>
-			<Box px={20}>Flex</Box>
-			<Box px={20}>Flex</Box>
-		</Flex>
 	</PreviewArea>
-	<PreviewCode>
+	<PreviewCode slot='tab' label='コンポーネント'>
 	```jsx
 	<Stack hasDivider>
 		<Box p={20}>Stack</Box>
 		<Box p={20}>Stack</Box>
 		<Box p={20}>Stack</Box>
 	</Stack>
-	<hr />
+	```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+	```html
+	...
+	```
+	</PreviewCode>
+</Preview>
+<Preview>
+	<PreviewTitle>例</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Flex hasDivider fxw='w'>
+			<Box px={20}>Flex item</Box>
+			<Box px={20}>Flex item</Box>
+			<Box px={20}>Flex item</Box>
+			<Box px={20}>Flex item</Box>
+			<Box px={20}>Flex item</Box>
+			<Box px={20}>Flex item</Box>
+		</Flex>
+	</PreviewArea>
+	<PreviewCode slot='tab' label='コンポーネント'>
+	```jsx
 	<Flex hasDivider>
-		<Box px={20}>Flex</Box>
-		<Box px={20}>Flex</Box>
-		<Box px={20}>Flex</Box>
+		<Box p={20}>Flex Item</Box>
+		<Box p={20}>Flex Item</Box>
+		<Box p={20}>Flex Item</Box>
 	</Flex>
+	```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+	```html
 	```
 	</PreviewCode>
 </Preview>

@@ -9,13 +9,13 @@
 // :root {
 // 	--is--unreel: 0;
 // }
-.l--reel {
+.c--reel {
 	// --is--unreel: 1;
 	--item--w: var(--size--item);
 	--snap: start;
 	--p: 0;
 
-	display: flex;
+	// display: flex;
 	overflow: auto;
 	scroll-snap-type: both mandatory;
 	scroll-behavior: smooth; // idリンクでスクロールされる
@@ -46,14 +46,14 @@
 
 // unreel → tileグリッドに切り替え. 別レイアウトが必要であればgtcで。
 @include query.bp-up('sm') {
-	.l--reel[data-unreel='sm'] {
+	.c--reel[data-unreel='sm'] {
 		display: grid;
 		grid: none / var(--gtc);
 		overflow-x: revert;
 	}
 }
 @include query.bp-up('md') {
-	.l--reel[data-unreel='md'] {
+	.c--reel[data-unreel='md'] {
 		display: grid;
 		grid: none / var(--gtc);
 		overflow-x: revert;
@@ -62,7 +62,7 @@
 
 // スクロールバーのカスタマイズ
 /*
-.l--reel[data-scrollbar='custom'] {
+.c--reel[data-scrollbar='custom'] {
 	--scrollbar--thumb-color: #fff;
 	--scrollbar--track-color: #000;
 	--scrollbar--height: 1rem;

@@ -221,18 +221,18 @@ reel要素にidを付けてアンカーリンク用意すると、ナビゲー�
 
 <Preview>
 	<PreviewTitle>
-		`fxd='vertical'`
+		`isVertical`
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Box maxW='24rem' mx='a'>
-			<Reel fxd='column' itemW='auto' aspect='3/4.5' bdrs='l' bgc='black' p={30} gap={30}>
+			<Reel isVertical itemW='auto' aspect='3/4.5' bdrs='l' bgc='black' p={30} gap={30}>
 				<ReelImages isV bdrs='m' />
 			</Reel> 
 		</Box>
 	</PreviewArea>
 	<PreviewCode>
-		```jsx "fxd='column'"
-		<Reel fxd='column' itemW='auto' aspect='3/4.5' bdrs='l' bgc='black' p={30} gap={30}>
+		```jsx "isVertical"
+		<Reel isVertical itemW='auto' aspect='3/4.5' bdrs='l' bgc='black' p={30} gap={30}>
 			<Frame aspect='3/4' bdrs='m'>
 				<img src='/img.jpg' alt='' loading='lazy' width={960} height={640} />
 			</Frame>

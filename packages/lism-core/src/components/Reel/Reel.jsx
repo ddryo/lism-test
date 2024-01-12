@@ -1,8 +1,21 @@
 // import React from 'react';
-import { Flex } from '../Flex';
+import { Flex, Stack } from '../Flex';
 
 // snap-type, snap-stopも指定できるようにする？
-export default function Reel({ lismStyle = {}, unreel, itemW, snap, ...props }) {
+export default function Reel({
+	lismClass = {},
+	lismStyle = {},
+	variant,
+	unreel,
+	itemW,
+	snap,
+	isVertical,
+	children,
+	...props
+}) {
+	lismClass.c = 'c--reel';
+	if (variant) lismClass.c += ` c--reel--${variant}`;
+
 	if (undefined !== itemW) {
 		lismStyle['--item--w'] = itemW;
 	}
@@ -21,6 +34,10 @@ export default function Reel({ lismStyle = {}, unreel, itemW, snap, ...props }) 
 	// if (showScrollbar) {
 	// 	props['data-show-scrollbar'] = showScrollbar;
 	// }
-
-	return <Flex _flex='reel' lismStyle={lismStyle} {...props} tabIndex='0' />;
+	const Layout = isVertical ? Stack : Flex;
+	return (
+		<Layout lismClass={lismClass} lismStyle={lismStyle} tabIndex='0' {...props}>
+			{children}
+		</Layout>
+	);
 }

@@ -1,1 +1,1 @@
-// export { default as Chat } from './Chat.astro';
+export { default as Chat } from './Chat.astro';

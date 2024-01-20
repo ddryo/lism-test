@@ -1,16 +1,6 @@
 import { Layouter } from '../Layouter';
-
-export default function Frame({ lismStyle = {}, lismState = [], as, objectPosition, ...props }) {
-	lismState.push('is--frame');
+import getProps from './getProps';
+export default function Frame({ as, ...props }) {
 	const Component = as || Layouter;
-
-	if (objectPosition) {
-		lismStyle['--objectPosition'] = objectPosition;
-	}
-
-	return <Component lismState={lismState} lismStyle={lismStyle} {...props} />;
+	return <Component {...getProps(props)} />;
 }
-
-// export default function Frame({ ...props }) {
-// 	return <Layouter isFrame isObjectFit {...props} />;
-// }

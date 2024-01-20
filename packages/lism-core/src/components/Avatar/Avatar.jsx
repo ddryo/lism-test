@@ -1,33 +1,22 @@
 import { Frame } from '../Frame';
 import { Media } from '../Media';
-
-import { separateMediaAttrs } from '../../lib';
+import getProps from './getProps';
 
 // srcがあれば自身をmediaにする？この時、objectFit適用する
 // c--avatar?
-export default function Avatar({
-	_lismClass = [],
-	variant,
-	children,
-	name,
-	src,
-	mediaProps = {},
-	...props
-}) {
-	_lismClass.push('c--avatar');
-	if (variant) _lismClass.push(`c--avatar--${variant}`);
+export default function Avatar({ children, name, src, ...props }) {
+	// _lismClass.push('c--avatar');
+	// if (variant) _lismClass.push(`c--avatar--${variant}`);
 
-	if (children) {
-		return (
-			<Frame _lismClass={_lismClass} aspect='1/1' bdrs='full' {...props}>
-				{children}
-			</Frame>
-		);
+	const hasChildren = !!children;
+	const { avatarProps, mediaProps } = getProps(props);
+
+	if (hasChildren) {
+		return <Frame {...avatarProps}>{children}</Frame>;
 	}
 
-	const { mediaAttrs, otherProps } = separateMediaAttrs(props);
 	return (
-		<Frame _lismClass={_lismClass} aspect='1/1' bdrs='full' {...otherProps}>
+		<Frame {...avatarProps}>
 			<Media
 				src={src}
 				alt={name}
@@ -36,7 +25,6 @@ export default function Avatar({
 				decoding='async'
 				// objectFit='cover'
 				{...mediaProps}
-				{...mediaAttrs}
 			/>
 		</Frame>
 	);

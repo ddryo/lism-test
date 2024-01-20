@@ -15,6 +15,8 @@ export interface AsProps {
 export interface LismProps {
 	lismClass?: LismClass;
 	lismStyle?: LismStyle;
+	_lismClass?: string[];
+	lismState?: string[];
 	as?: any;
 	tag?: string;
 	variant?: string;

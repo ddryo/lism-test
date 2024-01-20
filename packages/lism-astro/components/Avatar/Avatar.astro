@@ -1,0 +1,39 @@
+---
+import { LismProps } from '../types';
+import { Media } from '../Core';
+import { Frame } from '../Frame';
+// import { separateMediaAttrs } from '@loos/lism-core/lib';
+import getProps from '@loos/lism-core/src/components/Avatar/getProps';
+
+// Propsの定義
+interface Props extends LismProps {}
+
+const { name, src, ...props } = Astro.props || {};
+
+const hasSlot = Astro.slots.has('default');
+const { avatarProps, mediaProps } = getProps(props);
+---
+
+{
+	hasSlot && (
+		<Frame {...avatarProps}>
+			<slot />
+		</Frame>
+	)
+}
+{
+	!hasSlot && (
+		<Frame {...avatarProps}>
+			{
+				<Media
+					src={src}
+					alt={name}
+					width='100%'
+					height='100%'
+					decoding='async'
+					{...mediaProps}
+				/>
+			}
+		</Frame>
+	)
+}

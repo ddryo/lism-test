@@ -1,14 +1,16 @@
 import React from 'react';
 // import { Core } from '../Core';
-// import { Layouter } from '../Layouter';
+// import { Avatar } from '../Avatar';
 import { Grid } from '../Grid';
-// import { Decorator } from '../Decorator';
 import ChatName from './ChatName';
 import ChatAvatar from './ChatAvatar';
 import ChatContent from './ChatContent';
 import ChatFooter from './ChatFooter';
 // import { ChatContext } from './context';
-import { getProps } from './getProps';
+import {
+	getProps,
+	// getNameProps, getAvatarProps, getFooterProps
+} from './getProps';
 
 export default function Chat({
 	_lismClass = [],
@@ -19,6 +21,9 @@ export default function Chat({
 	variant = 'speak',
 	direction = 'start',
 	isFlow = 's',
+	// nameProps = {},
+	// avatarProps = {},
+	// footerProps = {},
 	bodyProps = {},
 	contentProps = {},
 	children,

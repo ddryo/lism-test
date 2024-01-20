@@ -1,0 +1,13 @@
+---
+import { LismProps } from '../types';
+import { Layouter } from '../Core';
+import getFrameProps from '@loos/lism-core/src/components/Frame/getProps';
+
+// Propsの定義
+interface Props extends LismProps {}
+
+const { as, ...props } = Astro.props || {};
+const Component = as || Layouter;
+---
+
+<Component {...getFrameProps(props)}><slot /></Component>

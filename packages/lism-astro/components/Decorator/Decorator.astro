@@ -1,0 +1,24 @@
+---
+import { LismProps } from '../types';
+import { Core } from '../Core';
+import { getTransformProps } from '@loos/lism-core/lib';
+
+// Propsの定義
+interface Props extends LismProps {}
+
+const { lismClass = {}, lismState = [], hasSize, variant, index, ...props } = Astro.props || {};
+lismClass.e = 'e--deco';
+if (variant) lismClass.e += ` e--deco--${variant}`;
+
+if (hasSize) lismState.push('has--size');
+---
+
+<Core
+	lismClass={lismClass}
+	lismState={lismState}
+	data-index={index}
+	aria-hidden='true'
+	{...getTransformProps(props)}
+>
+	<slot />
+</Core>

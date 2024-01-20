@@ -25,6 +25,38 @@ export function getProps(direction, variant) {
 		};
 	}
 }
+export function getNameProps(props = {}) {
+	return {
+		fz: '2xs',
+		lh: 'xs',
+		px: 'em5',
+		py: 'em1',
+		c: 'content-2',
+		// translate: '0 -100%',
+		...props,
+	};
+}
+export function getAvatarProps(props = {}) {
+	return {
+		bgc: 'base',
+		bdrs: 'full',
+		alt: '',
+		width: '60',
+		height: '60',
+		'aria-hidden': 'true',
+		...props,
+	};
+}
+export function getFooterProps(props = {}) {
+	return {
+		fz: '2xs',
+		lh: 'xs',
+		px: 'em5',
+		py: 'em1',
+		c: 'content-2',
+		...props,
+	};
+}
 
 export function getContentProps(direction, variant, contentProps) {
 	const returnProps = {

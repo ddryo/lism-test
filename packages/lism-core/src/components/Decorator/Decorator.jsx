@@ -14,16 +14,15 @@ export default function Decorator({
 	lismClass.e = 'e--deco';
 	if (variant) lismClass.e += ` e--deco--${variant}`;
 
-	props = getTransformProps(props);
-
 	if (hasSize) lismState.push('has--size');
+
 	return (
 		<Core
 			lismClass={lismClass}
 			lismState={lismState}
 			data-index={index}
 			aria-hidden='true'
-			{...props}
+			{...getTransformProps(props)}
 		/>
 	);
 }

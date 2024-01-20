@@ -10,6 +10,7 @@ export * from './Core';
 export * from './Flex';
 export * from './Grid';
 export * from './Box';
+export * from './Decorator';
 export * from './Icon';
 export * from './Alert';
 export * from './Note';

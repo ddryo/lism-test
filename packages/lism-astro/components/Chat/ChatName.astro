@@ -1,0 +1,13 @@
+---
+import { LismProps } from '../types';
+import { Core } from '../Core';
+import { getNameProps } from '@loos/lism-core/src/components/Chat/getProps';
+
+interface Props extends LismProps {}
+
+const props = Astro.props || {};
+---
+
+<Core _lismClass={['c--chat__name']} {...getNameProps(props)}>
+	<slot />
+</Core>

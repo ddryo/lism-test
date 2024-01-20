@@ -3,17 +3,19 @@
 	--hov--c: currentColor;
 	--hov--bgc: var(--base-2);
 	--list-style: none;
+	// --list-pis: 0; // padding-inline-start
 
 	// provider
 	--pass--p: var(--em--7); // __text用
+	line-height: var(--lh--xs);
 }
 
 // トップ要素でのみ定義
-:where(.c--navMenu:not([data-nest-level])) {
+.c--navMenu:where(:not([data-nest-level])) {
 	padding-inline-start: 0; // 自身のpadding
 
 	// 子リストのpadding
-	--list--pis: 1em; //var(--s--30);
+	--list-pis: 1em; //var(--s--30);
 }
 
 // <li>
@@ -33,7 +35,7 @@
 
 // 横並び
 .c--navMenu:where(.l--flex) {
-	--list--pis: 0;
+	--list-pis: 0;
 
 	// 直接指定すればいいか
 	// --subMenu--maxW: 10em;

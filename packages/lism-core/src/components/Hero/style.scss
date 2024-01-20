@@ -27,6 +27,17 @@
 		// min-height: 100vh;
 	}
 }
+[data-pos='top'] {
+	// grid-row: 2;
+}
+
+[data-pos='center'] {
+	// コンポーネントの py で指定すると上書きが少々ややこしくなる
+	// padding-block: var(--s--50);
+}
+[data-pos='bottom'] {
+	// grid-row: 4;
+}
 .c--hero__content {
 	position: relative;
 	z-index: 1;

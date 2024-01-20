@@ -19,5 +19,7 @@ export * from './Tab';
 // export * from './Layer';
 export * from './Accordion';
 
+export * from './Chat';
+
 // 呼び出し元が .js か .astro かで自動で分けれる...？
 // https://docs.astro.build/ja/reference/publish-to-npm/#exports

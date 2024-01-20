@@ -2,17 +2,17 @@ import { Badge } from '@loos/lism-core';
 
 export const MemoBadge = ({ children, ...props }) => {
 	return (
-		<Badge fz='11px' lh='1' p='10' variant='subtle' keycolor='orange' {...props}>
+		<Badge fz='11px' lh='1' p='10' variant='subtle' boxcolor='orange' {...props}>
 			{children}
 		</Badge>
 	);
 };
 export const PropBadge = ({ type = '', ...props }) => {
-	let keycolor = 'blue';
+	let boxcolor = 'blue';
 	if (type === 'attr') {
-		keycolor = 'green';
+		boxcolor = 'green';
 	} else if (type === 'cssvar') {
-		keycolor = 'purple';
+		boxcolor = 'purple';
 	}
 	return (
 		<Badge
@@ -24,7 +24,7 @@ export const PropBadge = ({ type = '', ...props }) => {
 			whs='nw'
 			// d='if'
 			variant='subtle'
-			keycolor={keycolor}
+			boxcolor={boxcolor}
 			{...props}
 		/>
 	);

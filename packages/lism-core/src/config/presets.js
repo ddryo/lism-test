@@ -34,9 +34,9 @@ export default {
 		'mix',
 	],
 	bdc: ['main', 'accent', 'mix', 'hr', 'table'],
-	keycolor: [
-		'main',
-		'accent',
+	palette: [
+		// 'main',
+		// 'accent',
 		'red',
 		'blue',
 		'green',
@@ -45,12 +45,14 @@ export default {
 		'orange',
 		'pink',
 		'gray',
+		'black',
+		'white',
 		// 'basic',
 	],
 
 	// ユーティリティ化
 	space: spacingPresets,
-	p: [...spacingPresets, ...emPresets, 'box', 'box:s', 'box:l'],
+	p: [...spacingPresets, ...emPresets, ...TOKENS.p],
 	pxy: [...spacingPresets, ...emPresets],
 	gap: [...spacingPresets, ...emPresets],
 
@@ -63,6 +65,7 @@ export default {
 
 	bg: ['glass', 'stripe', 'grid'],
 	z: ['-1', '0', '1'],
+	inset: ['center', 'centerX', 'centerY'], // inset は 0% だけ
 	aspect: ['16/9', '4/3', '3/2', '2/1', '1/1', 'golden', 'silver', 'bronze', 'ogp', 'cinema'], //'2/1',
 
 	// fx: ['1'],

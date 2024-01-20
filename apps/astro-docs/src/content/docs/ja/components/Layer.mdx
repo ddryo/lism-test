@@ -18,7 +18,8 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 | プロパティ | 説明 | 有効な値|
 |---|---|---|
 | `position`| Layerの配置位置をキーワードで指定します。指定された値に合わせて、top,left などの位置プロパティが適用されます。|`'{X} {Y}'`形式で、それぞれ`left`,`right`,`top`,`bottom`,`center` が使えます。|
-| `data-size` | サイズに関する調整をキーワードで指定できます。| `contain`|
+
+{/* | `data-size` | サイズに関する調整をキーワードで指定できます。| `contain`| */}
 
 
 また、insetオブジェクト内に指定する必要のあるプロパティを直接指定できるようにしています。
@@ -105,7 +106,7 @@ inset系のプロパティで、用意されているユーティリティクラ
 		```
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
-		```jsx "-inset:0"
+		```html "-inset:0"
 		<div class="l--box has--layer -py:40">
 			<p>...BG...</p>
 			<div class="l--layer -inset:0">
@@ -137,7 +138,7 @@ inset系のプロパティで、用意されているユーティリティクラ
 		```
 	</PreviewCode>
 		<PreviewCode slot='tab' label='HTML'>
-		```jsx "-inset:0"
+		```html "-inset:0"
 		<div class="l--layer" style="left:var(--s--20);top:var(--s--20)">
 			<p>Layer Contents</p>
 		</div>
@@ -223,7 +224,7 @@ export const LayerPositionsDemo = () => {
 </Preview>
  */}
 
-
+{/* 
 #### `data-size='contain'` の挙動について
 
 `dat-size='contain'`を指定すると、親のサイズを超えないようになり,内部のコンテンツはスクロール可能になります。
@@ -234,15 +235,15 @@ export const LayerPositionsDemo = () => {
 	</PreviewTitle>
 	<PreviewArea resize px={30} py={60}>
 		<Box hasLayer py={50} className='has--layerGuide'>
-			<Text fz="4xl" fw="bold" ta="c" lts='l'>BG</Text>
-			<Layer position="center" w="75%" p='box'>
-				<DammyText length="l" />
+			<Text fz='4xl' fw='bold' ta='c' lts='l'>BG</Text>
+			<Layer position='center' w='75%' p='box'>
+				<DammyText length='l' />
 			</Layer>
 		</Box>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Layer position="center" w="75%" p='box'>
+		<Layer position='center' w='75%' p='box'>
 			...
 		</Layer>
 		```
@@ -251,13 +252,13 @@ export const LayerPositionsDemo = () => {
 
 <Preview>
 	<PreviewTitle>
-		`data-size="contain"`の指定ありの場合
+		`data-size='contain'`の指定ありの場合
 	</PreviewTitle>
 	<PreviewArea resize px={30} py={60}>
 		<Box hasLayer py={50} className='has--layerGuide'>
-			<Text fz="4xl" fw="bold" ta="c" lts='l'>BG</Text>
-			<Layer position="center" data-size="contain" p='box' w='75%'>
-				<DammyText length="l" />
+			<Text fz='4xl' fw='bold' ta='c' lts='l'>BG</Text>
+			<Layer position='center' data-size='contain' p='box' w='75%'>
+				<DammyText length='l' />
 			</Layer>
 		</Box>
 	</PreviewArea>
@@ -268,7 +269,7 @@ export const LayerPositionsDemo = () => {
 		
 		```
 	</PreviewCode>
-</Preview>
+</Preview> */}
 
 
 ## Variants
@@ -277,24 +278,27 @@ export const LayerPositionsDemo = () => {
 
 **メディア（画像・動画）を親要素サイズに合わせてabsolute配置する**ための`<Layer>`の拡張コンポーネントです。
 
-内部では`<Layer variant='media'>`が指定され`.l--layer--media`クラスが出力されます。
-
-また、`<MediaLayer>`は、Propsの処理が`<Layer>`とは少し異なります。
+内部では`<Layer variant='media' isFrame>`が指定され`.l--layer--media`と`.is--frame`クラスが追加で出力されます。
 
 
 #### Props
+
+また、`<MediaLayer>`は、Propsの処理が`<Layer>`とは少し異なります。
 
 | プロパティ | 説明 |
 |---|---|
 | `src` | `src`が指定されていれば子要素にメディアを表示します。|
 | `media`| `src`が指定されている場合の、そのメディアのHTMLタグ、またはコンポーネントを指定できます。デフォルトは`'img'`です。|
-|`width`, `height`,`alt`, `loading`, `decoding`,`objectFit`,`objectPosition`,`hover` | `src`が指定されている場合、これらのプロパティはメディア側に振り分けられます。|
-|`mediaProps`|上記以外にメディア側に対してプロパティを指定したい場合はこのプロパティにオブジェクト形式で指定できます。|
+| `width`, `height`,`alt`, `loading`, `decoding`,`hover` | `src`が指定されている場合、これらのプロパティはメディア側に振り分けられます。|
+| `mediaProps`|上記以外にメディア側に対してプロパティを指定したい場合はこのプロパティにオブジェクト形式で指定できます。|
 
 
 {/* |`loop`, `muted`, `controls`, `autoplay`, `playsinline`, `poster` | `src`が指定されていて`media`が`'video'`の場合にこれらのプロパティはメディア側に振り分けられます。| */}
 
-ただし、子要素にメディアを配置する場合、これらは全て無視されます。
+<Alert preset='info'>
+ただし、**子要素を配置する場合**、これらは全て無視されます。
+</Alert>
+
 
 #### Usage
 
@@ -308,28 +312,22 @@ export const LayerPositionsDemo = () => {
 		</Frame>
 	</PreviewArea>
 	<PreviewCode slot='tab' label='React, Astro'>
-		```jsx {2} "src" "alt" "width" "height"
+		```jsx {2} "src" "MediaLayer"
 		<Frame aspect='cinema'>
 			<MediaLayer src="/img.jpg" alt="" width='960' height='640' />
 		</Frame>
 		```
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
-		```jsx {2-4} "l--layer--media" "-obf:cv"
-		<div class="l--frame -aspect:cinema">
-			<div class="l--layer l--layer--media">
-				<img class="-obf:cv" loading="lazy" decoding="async" src="/img.jpg" width="960" height="640">
+		```html {2-4} "l--layer--media" "-obf:cv"
+		<div class="is--frame -aspect:cinema">
+			<div class="l--layer l--layer--media is--frame">
+				<img loading="lazy" decoding="async" src="/img.jpg" width="960" height="640">
 			</div>
 		</div>
 		```
 	</PreviewCode>
 </Preview>
-
-<Alert preset='info'>
-`MediaLayer`に直接メディアのデータを渡す場合、自動で`-obf:cv`(`object-fit:cover`)が指定されます。
-</Alert>
-
-子要素にメディアを手動配置するときは、`object-fit`も必要であれば手動で指定する必要があります。
 
 
 {/* #### `children`でメディアを渡す */}
@@ -340,18 +338,27 @@ export const LayerPositionsDemo = () => {
 	<PreviewTitle>`children`でメディアを渡す</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Frame aspect='cinema'>
-			<MediaLayer>
-				<Media src='/img.jpg' alt='' width={960} height={640} objectFit='cover' />
+			<MediaLayer objectPosition='top'>
+				<img src='/img/img-3.jpg' alt='' width='960' height='640' />
 			</MediaLayer>
 		</Frame>
 	</PreviewArea>
-	<PreviewCode>
-		```jsx {3} "objectFit='cover'"
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx {3} "MediaLayer"
 		<Frame aspect='cinema'>
-			<MediaLayer>
-				<Media src='/img.jpg' alt='' width={960} height={640} objectFit='cover' />
+			<MediaLayer objectPosition='top'>
+				<img src='/img/img-3.jpg' alt='' width='960' height='640' />
 			</MediaLayer>
 		</Frame>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```html {2-4} "l--layer--media" "-obf:cv"
+		<div class="is--frame -aspect:cinema">
+			<div class="l--layer l--layer--media is--frame" style="--objectPosition:top">
+				<img loading="lazy" decoding="async" src="/img.jpg" width="960" height="640">
+			</div>
+		</div>
 		```
 	</PreviewCode>
 </Preview>
@@ -374,23 +381,26 @@ export const LayerPositionsDemo = () => {
 	</PreviewCode>
 </Preview> */}
 
-#### `next/image`を使う例
+##### `next/image`を使う例
 
-```jsx "Image"
-<Frame aspect='cinema'>
+```jsx "media={Image}"
+import Image from 'next/image';
+
+<Frame aspect='16/9'>
 	<MediaLayer media={Image} src="/img.jpg" alt="" width='960' height='640' />
 </Frame>
-```
 
-```jsx "Image"
-<Frame aspect='cinema'>
+// or
+
+<Frame aspect='16/9'>
 	<MediaLayer>
-		<Media ad={Image} src='/img.jpg' alt='' width={960} height={640} objectFit='cover' />
+		<Image src='/img.jpg' alt='' width='960' height='640' />
 	</MediaLayer>
 </Frame>
 ```
 
-#### Astroの Image を使う場合
+
+##### Astroの Image を使う場合
 
 `Image`をプロパティから渡すとエラーになってしまうので注意してください。（詳細はこちら）
 
@@ -401,12 +411,11 @@ export const LayerPositionsDemo = () => {
 ```astro "Image"
 ---
 import { Image } from 'astro:assets';
-import { getLismProps } from '@loos/lism-core/lib';
 ---
 
 <Frame aspect='cinema'>
 	<MediaLayer>
-		<Image src='/img.jpg' alt='' width={960} height={640} class='-obf:cv' />
+		<Image src='/img.jpg' alt='' width='960' height='640' />
 	</MediaLayer>
 </Frame>
 ```
@@ -449,7 +458,7 @@ import { getLismProps } from '@loos/lism-core/lib';
 		```
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
-		```jsx {3} "l--layer--media" "-obf:cv"
+		```html {3} "l--layer--media" "-obf:cv"
 		<div class="l--box -pos:r -p:box:l">
 			<p class=" -fz:2xl -fw:bold -ta:c">Background</p>
 			<div class="l--layer l--layer--filter" style="backdrop-filter:blur(3px) brightness(1.1)"></div>
@@ -464,37 +473,37 @@ import { getLismProps } from '@loos/lism-core/lib';
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Frame aspect='cinema'>
-			<Media src='/img.jpg' alt='' width='960' height='640' />
+			<img src='/img.jpg' alt='' width='960' height='640' />
 			<FilterLayer brightness={1.2} contrast={0.8} grayscale={1}/>
 			<Layer position='bottom right' p='box:s' c='white' fz='xs' opacity='0.8'>Photo by xxxxxx.</Layer>
 		</Frame>
 		<Frame aspect='cinema'>
-			<Media src='/img.jpg' alt='' width='960' height='640' />
+			<img src='/img.jpg' alt='' width='960' height='640' />
 			<FilterLayer contrast='1.2' sepia='25%' />
 			<Layer position='bottom right' p='box:s' c='white' fz='xs' opacity='0.8'>Photo by xxxxxx.</Layer>
 		</Frame>
 		<Frame aspect='cinema'>
-			<Media src='/img.jpg' alt='' width='960' height='640' />
+			<img src='/img.jpg' alt='' width='960' height='640' />
 			<FilterLayer ml='auto' invert='1' grayscale='20%' w='50%' />
 			<Layer position='bottom center' p='box:s' c='white' fz='xs' opacity='0.8'>Photo by xxxxxx.</Layer>
 		</Frame>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx {3,8,13}
-		<Frame aspect="cinema">
-			<Media src="/img.jpg" alt="" width='960' height='640' />
+		<Frame aspect='cinema'>
+			<img src='/img.jpg' alt='' width='960' height='640' />
 			<FilterLayer brightness={1.2} contrast={0.8} grayscale={1}/>
-			<Layer position="bottom right" p='box:s' c="white" fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
+			<Layer position='bottom right' p='box:s' c='white' fz='xs' opacity='0.8'>Photo by xxxxxx.</Layer>
 		</Frame>
-		<Frame aspect="cinema">
-			<Media src="/img.jpg" alt="" width="960" height="640" />
-			<FilterLayer contrast="1.2" sepia="25%" />
-			<Layer position="bottom right" p='box:s' c="white" fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
+		<Frame aspect='cinema'>
+			<img src='/img.jpg' alt='' width='960' height='640' />
+			<FilterLayer contrast='1.2' sepia='25%' />
+			<Layer position='bottom right' p='box:s' c='white' fz='xs' opacity='0.8'>Photo by xxxxxx.</Layer>
 		</Frame>
-		<Frame aspect="cinema">
-			<Media src="/img.jpg" alt="" width="960" height="640" />
-			<FilterLayer ml="auto" invert="1" grayscale="20%" w="50%" />
-			<Layer position="bottom center" p='box:s' c="white" fz="xs" opacity="0.8">Photo by xxxxxx.</Layer>
+		<Frame aspect='cinema'>
+			<img src='/img.jpg' alt='' width='960' height='640' />
+			<FilterLayer ml='auto' invert='1' grayscale='20%' w='50%' />
+			<Layer position='bottom center' p='box:s' c='white' fz='xs' opacity='0.8'>Photo by xxxxxx.</Layer>
 		</Frame>
 		```
 	</PreviewCode>
@@ -503,26 +512,26 @@ import { getLismProps } from '@loos/lism-core/lib';
 
 <Preview>
 	<PreviewTitle>
-		filterトークン
+		`FILTER`トークンを使う
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<Frame aspect="cinema">
-			<Media src="/img.jpg" alt="" width="960" height="640" />
+		<Frame aspect='cinema'>
+			<Media src='/img.jpg' alt='' width='960' height='640' />
 			<FilterLayer backdropFilter='blur' />
 		</Frame>
-		<Frame aspect="cinema">
-			<Media src="/img.jpg" alt="" width="960" height="640" />
+		<Frame aspect='cinema'>
+			<Media src='/img.jpg' alt='' width='960' height='640' />
 			<FilterLayer backdropFilter='lighten' />
 		</Frame>
 	</PreviewArea>
 	<PreviewCode>
-		```jsx {3,7}
-		<Frame aspect="cinema">
-			<Media src="/img.jpg" alt="" width="960" height="640" />
+		```jsx {3,7} "'blur'" "'lighten'"
+		<Frame aspect='cinema'>
+			<Media src='/img.jpg' alt='' width='960' height='640' />
 			<FilterLayer backdropFilter='blur' />
 		</Frame>
-		<Frame aspect="cinema">
-			<Media src="/img.jpg" alt="" width="960" height="640" />
+		<Frame aspect='cinema'>
+			<Media src='/img.jpg' alt='' width='960' height='640' />
 			<FilterLayer backdropFilter='lighten' />
 		</Frame>
 		```

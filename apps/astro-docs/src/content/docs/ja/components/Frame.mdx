@@ -2,7 +2,7 @@
 title: 'Frame'
 description: ...
 ---
-import { Alert, Flex, Media, Text, MediaLayer, FilterLayer, Frame, Center, Columns, Layer } from '@loos/lism-core';
+import { Box, Flex, Media, Text, MediaLayer, FilterLayer, Frame, Center, Columns, Layer } from '@loos/lism-core';
 
 import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
@@ -11,23 +11,20 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 
 # Frame
 
-横縦比率(`aspect-ratio`)や高さを指定し、内部のコンテンツをそのサイズからはみ出さないように表示できるモジュールです。
+[`is--frame`](/ja/css/design-state/#is--frame)をデフォルトで出力するモジュールです。
+
+アスペクト比や高さを指定し、直下のメディア要素（img,vieo）を `object-fit:cover` でFrameサイズいっぱいに表示することができます。
 
 
-{/* また、直下のimg,video には `object-fit:cover` が適用されるようになっています。 */}
-
-{/* ## props
-- `aspect` : (共通Prop) アスペクト比率を指定する。ブレイクポイント指定可能です。
-	- 例: `aspect="16/9"`, `aspect={["4/3", "16/9"]}` */}
 
 ## Props
 
 | プロパティ | 説明 |
 |---|---|
 | `aspect`| フレームの比率を指定できます。|
+| `objectPosition`| 直下のメディア要素のobject-positionを指定できます。 |
 
 <HelpText mbs="em10">(aspect自体はどのコンポーネントにも指定できる CSS Props です。)</HelpText>
-
 
 ## Import
 
@@ -48,139 +45,96 @@ import { Frame } from '@loos/lism-astro';
 
 <Preview>
 	<PreviewTitle>
-		`aspect='16/9'`を指定
+		`aspect='2/1'`を指定
 	</PreviewTitle>
 	<PreviewArea resize>
-		<Frame aspect='16/9'></Frame>
+		<Frame aspect='2/1'>
+			<img src='/img/img-1.jpg' alt='' width='960' height='640' />
+		</Frame>
 	</PreviewArea>
 	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Frame aspect='16/9'></Frame>
+		<Frame aspect='2/1'>
+			<img src='/img/img-1.jpg' alt='' width='960' height='640' />
+		</Frame>
 		```
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
-		```jsx
-		<div class="l--frame -aspect:16/9"></div>
+		```html
+		<div class="is--frame -aspect:2/1">
+			<img src='/img/img-1.jpg' alt='' width='960' height='640' />
+		</div>
 		```
 	</PreviewCode>
 </Preview>
 
 
+
 <Preview>
 	<PreviewTitle>
-		コンテンツが長い場合
+		Layer系を活用する
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<Frame isFlow aspect='2/1' p='box:l' bd>
-			<Text fw="bold">内部がスクロール可能になっています。</Text>
-			<DammyText />
-			<DammyText length="m" />
-			<DammyText length="l" />
-			<DammyText length="xl" />
+		<Frame aspect='16/9' c='white'>
+			<img src='/img/img-1.jpg' alt='' width='960' height='640' />
+			<FilterLayer blur='4px' bgc='black:20%' />
+			<Layer inset='0' p='box:l'>
+				<Center minH='100' gap={10}>
+					<Text fz='2xl' lh='xs' fw='bold'>Heading</Text>
+					<DammyText length='m' />
+				</Center>
+			</Layer>
 		</Frame>
 	</PreviewArea>
+
 	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Frame isFlow aspect='2/1' p='box:l' bd>
-			<p>...</p>
-			<p>...</p>
-			<p>...</p>
-			<p>...</p>
+		<Frame aspect='16/9' c='white'>
+			<img src='/img/img-1.jpg' alt='' width='960' height='640' />
+			<FilterLayer blur='4px' bgc='black:20%' />
+			<Layer inset='0' p='box:l'>
+				<Center minH='100' gap={10}>
+					<Text fz='2xl' lh='xs' fw='bold'>Heading</Text>
+					<p>...</p>
+				</Center>
+			</Layer>
 		</Frame>
-		```
-	</PreviewCode>
-	<PreviewCode slot='tab' label='HTML'>
-		```jsx
-		<div class="l--frame is--flow -aspect: -p:box:l -bd:" style="--aspect:2/1">
-			<p>...</p>
-			<p>...</p>
-			<p>...</p>
-			<p>...</p>
-		</div>
 		```
 	</PreviewCode>
 </Preview>
 
-
 <Preview>
 	<PreviewTitle>
-		コンテンツに`<Center>`を使用し、比率をブレイクポイントで変更する例
+		比率をブレイクポイントで変更することも可能です。
 	</PreviewTitle>
 	<PreviewArea resize>
-		<Frame aspect={['1/1', '4/3', '16/9']} p='box' bd>
-			<Center minH='100'>
-				<Text fw='bold'>
-					{`比率:`}
-					<Text tag="span" d={['inline', 'none']}>1/1</Text>
-					<Text tag="span" d={['none', 'inline', 'none']}>4/3</Text>
-					<Text tag="span" d={['none', null, 'inline']}>16/9</Text>
-				</Text>
-			</Center>
+		<Frame aspect={['1/1', '4/3', '16/9']}>
+			<img src='/img/img-1.jpg' alt='' width='960' height='640' />
+			<Layer position='left top' bgc='content' c='base' p='10' lh='xs' fz='s' m='20' bdrs='s'>
+				{`比率:`}
+				<Text tag="span" d={['inline', 'none']}>1/1</Text>
+				<Text tag="span" d={['none', 'inline', 'none']}>4/3</Text>
+				<Text tag="span" d={['none', null, 'inline']}>16/9</Text>
+			</Layer>
 		</Frame>
 	</PreviewArea>
 	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Frame aspect={['1/1', '4/3', '16/9']} p='box' bd>
-			<Center minH='100'>
-				<p>...</p>
-			</Center>
+		<Frame aspect={['1/1', '4/3', '16/9']}>
+			...
 		</Frame>
 		```
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
-		```jsx
-		<div class="l--frame -aspect:1/1 -aspect@sm -aspect@md -p:box -bd:" style="--aspect--sm:4/3;--aspect--md:16/9">
-			<div class="l--center -minW:100 -minH:100">
-				<p>...</p>
-			</div>
-		</div>
+		```html
+		<div
+			class="is--frame -aspect:1/1 -aspect@sm -aspect@md"
+			style="--aspect--sm:4/3;--aspect--md:16/9"
+		>...</div>
 		```
 	</PreviewCode>
 </Preview>
 
-
-
-### 直下に画像を配置するケース
-
-`<Frame>`直下の `img`, `video` は、`<Frame>`のサイズで表示され、`object-fit:cover` が適用されるようになっています。
-
-<Preview>
-	<PreviewTitle>
-		`<img>`を使用
-	</PreviewTitle>
-	<PreviewArea maxW='25rem'>
-		<Frame aspect='16/9'>
-			<img src='/img/img-1.jpg' alt='' width={960} height={640}/>
-		</Frame>
-	</PreviewArea>
-
-	<PreviewCode slot='tab' label='React, Astro'>
-		```jsx
-		<Frame aspect='16/9'>
-			<img src='/img/img-1.jpg' alt='' width={960} height={640}/>
-		</Frame>
-		```
-	</PreviewCode>
-</Preview>
-
-{/* <Preview>
-	<PreviewTitle>
-		nextの`<Image>`を使用
-	</PreviewTitle>
-	<PreviewArea maxW="25rem">
-		<Frame aspect="16/9">
-			<Image src="/img/img-1.jpg" alt="" width={960} height={640}/>
-		</Frame>
-	</PreviewArea>
-
-	<PreviewCode slot='tab' label='React, Astro'>
-		```jsx
-		<Frame aspect="16/9">
-			<Image src="/img/img-1.jpg" alt="" width={960} height={640}/>
-		</Frame>
-		```
-	</PreviewCode>
-</Preview> */}
 
 ### 数値以外での比率指定
 
@@ -213,7 +167,7 @@ export const FrameRatios = () => {
 	<PreviewArea p={20}>
 		<FrameRatios />
 	</PreviewArea>
-	<PreviewCode slot='tab' label='React, Astro'>
+	<PreviewCode>
 		```jsx
 		<Frame aspect='ogp'>...</Frame>
 		<Frame aspect='golden'>...</Frame>
@@ -225,94 +179,130 @@ export const FrameRatios = () => {
 
 
 
-### `aspect`の指定は必須ではありません
+### `objectPosition`
 
-`aspect`を使わず、`h`を指定して単純に高さを固定させる場合にも有用です。
+`<Frame>`に`objectPosition`を指定すると、直下のメディア要素に反映されます。
 
 <Preview>
 	<PreviewTitle>
-		`aspect`を使わず、`h`を指定
+		`objectPosition='bottom'`
 	</PreviewTitle>
-	<PreviewArea resize>
-		<Frame h='12rem' isFlow p='box'>
-			<DammyText />
-			<DammyText length='m' />
-			<DammyText length='l' />
-			<DammyText length='xl' />
+	<PreviewArea p='0' bxsh='0'>
+		<Frame h='30vh' objectPosition='bottom'>
+			<img src='/img/img-3.jpg' alt='' width='960' height='640' />
 		</Frame>
 	</PreviewArea>
 	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx
-		<Frame h='12rem' isFlow p='box'>
-			...
+		<Frame h='30vh' objectPosition='bottom'>
+			<img src='/img/img-3.jpg' alt='' width='960' height='640' />
 		</Frame>
+		```
+	</PreviewCode>
+	<PreviewCode slot='tab' label='HTML'>
+		```html
+		<div class="is--frame -h:" style="--objectPosition:bottom;--h:30vh">
+			<img src="/img/img-3.jpg" alt="" width="960" height="640">
+		</div>
 		```
 	</PreviewCode>
 </Preview>
 
-
-### Layer系を活用する
-
-<Preview>
-	<PreviewTitle>
-		MediaLayer & FilterLayer を使用.
-	</PreviewTitle>
-	<PreviewArea resize p={20}>
-		<Frame aspect='16/9' c='white'>
-			<MediaLayer src='/img/img-1.jpg' alt='' width='960' height='640' />
-			<FilterLayer blur='4px' bgc='black:20%' />
-			<Layer inset='0' p='box:l' data-size='contain'>
-				<Center minH='100' gap={10}>
-					<Text fz='2xl' lh='xs' fw='bold'>Heading</Text>
-					<DammyText length='m' />
-				</Center>
-			</Layer>
-		</Frame>
-	</PreviewArea>
-
-	<PreviewCode slot='tab' label='React, Astro'>
-		```jsx
-		<Frame aspect='16/9' c='white'>
-			<MediaLayer src='/img/img-1.jpg' alt='' width='960' height='640' />
-			<FilterLayer blur='4px' bgc='black:20%' />
-			<Layer inset='0' p='box:l' data-size='contain'>
-				<Center minH='100' gap={10}>
-					<Text fz='2xl' lh='xs' fw='bold'>Heading</Text>
-					<p>...</p>
-				</Center>
-			</Layer>
-		</Frame>
-		```
-	</PreviewCode>
-</Preview>
 
 
 ### Flexの子要素として使用する場合の注意点
 
+Flexの子要素でFrameを使用する場合、 `align-items:stretch;`の影響に注意してください。
+
+
+他の兄弟要素の高さの方が高い場合、そちらと同じ高さになってしまうため、それを回避したい場合は`align-items`を調整するか、Frame要素をBoxで囲むなどの対処が必要です。
+
 <Preview>
 	<PreviewTitle>
-		Flexの子要素で使用する場合、 `align-items:stretch;`の影響を受けてしまう(他の要素の方が高さがある場合、そっちと同じ高さになってしまう)ので、`align-items`を調整するか、FrameをBoxなどで囲んでください。注意。
+		問題となる例 (横並びの時、画像の比率を4/3で表示したいのにコンテンツサイズと揃ってしまっている)
 	</PreviewTitle>
 	<PreviewArea resize p={20}>
-		<Flex ai='s' gap={20}>
-			<Frame aspect='16/9' c='white'>
+		<Flex gap={20} fxw={['wrap', 'nowrap']}>
+			<Frame aspect='4/3'>
 				<Media src='/img/img-1.jpg' alt='' width='960' height='640' />
 			</Frame>
-			<Frame aspect='4/3' c='white'>
-				<Media src='/img/img-2.jpg' alt='' width='960' height='640' />
-			</Frame>
+			<Box bgc='base-2'>
+				<DammyText length='xl' p='box' />
+			</Box>
 		</Flex>
 	</PreviewArea>
 	<PreviewCode slot='tab' label='React, Astro'>
-		```jsx "ai='s'"
-		<Flex ai='s' gap={20}>
-			<Frame aspect='16/9' c='white'>
+		```jsx "4/3" "4/3"
+		<Flex gap={20} fxw={['wrap', 'nowrap']}>
+			<Frame aspect='4/3'>
 				<Media src='/img/img-1.jpg' alt='' width='960' height='640' />
 			</Frame>
-			<Frame aspect='4/3' c='white'>
-				<Media src='/img/img-2.jpg' alt='' width='960' height='640' />
-			</Frame>
+			<Box bgc='base-2'>
+				<DammyText length='xl' p='box' />
+			</Box>
 		</Flex>
+		```
+	</PreviewCode>
+</Preview>
+
+
+<Preview>
+	<PreviewTitle>
+		対処例（親のFlex要素を`align-items:start;`にする）
+	</PreviewTitle>
+	<PreviewArea resize p={20}>
+		<Flex ai='start' gap={20} fxw={['wrap', 'nowrap']}>
+			<Frame aspect='4/3'>
+				<Media src='/img/img-1.jpg' alt='' width='960' height='640' />
+			</Frame>
+			<Box bgc='base-2'>
+				<DammyText length='xl' p='box' />
+			</Box>
+		</Flex>
+	</PreviewArea>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "ai='start'"
+		<Flex ai='start' gap={20} fxw={['wrap', 'nowrap']}>
+			<Frame aspect='4/3'>
+				<Media src='/img/img-1.jpg' alt='' width='960' height='640' />
+			</Frame>
+			<Box bgc='base-2'>
+				<DammyText length='xl' p='box' />
+			</Box>
+		</Flex>
+		```
+	</PreviewCode>
+</Preview>
+
+
+### aspect はどのコンポーネントにも指定できます
+
+`is--frame` は直下のメディア要素に影響を与えてしまうため、特定のアスペクト比率で固定したエリア内にコンテンツを配置したいというケースでは、Frameを使う必要はありません。
+
+`aspect`はBoxなどどのコンポーネントにも指定できるCSS Propsですので、次のような書き方ができます。
+
+
+<Preview>
+	<PreviewTitle>
+		対処例親Flexを`align-items:start;`にする
+	</PreviewTitle>
+	<PreviewArea resize p={0}>
+		<Box aspect='2/1' ovy='auto' isFlow p='box:l' bgc='base' bxsh='-1'>
+			<DammyText />
+			<DammyText length="m" />
+			<DammyText length="l" />
+			<Frame aspect='2/1' maxW='50%'>
+				<Media src='/img/img-1.jpg' alt='' width='960' height='640' />
+			</Frame>
+			<DammyText length="xl" />
+			<DammyText length="m" />
+		</Box>
+	</PreviewArea>
+	<PreviewCode slot='tab' label='React, Astro'>
+		```jsx "Box aspect='2/1'" "ovy='auto'"
+		<Box aspect='2/1' ovy='auto' isFlow p='box:l'>
+			...
+		</Box>
 		```
 	</PreviewCode>
 </Preview>

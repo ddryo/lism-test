@@ -1,20 +1,21 @@
-// Note は は .is--colorbox とセットで使う
-.c--note {
-	--keycolor: var(--gray);
-	--bdc: var(--keycolor); // .is--colorbox を上書き
+// Note は は boxcolor とセットで使う
+:where(.c--note) {
+	--boxcolor: var(--gray);
 	padding: var(--p--box);
-	border-inline-start: solid 4px var(--bdc);
-	// background-color: var(--bgc);
+	border-inline-start: solid 4px var(--boxcolor);
 }
+// .c--note {
+// 	--boxcolor: var(--gray);
+// }
 
 .c--note__icon {
 	margin-left: -0.125em;
 	font-size: var(--fz--xl); //1.4rem;
-	// color: var(--keycolor, currentColor);
+	color: var(--boxcolor, currentColor);
 }
 
 .c--note__head {
-	color: var(--cbox-c-2, currentColor);
+	color: var(--cbox-c--link, currentColor);
 	gap: var(--em--5);
 	margin-block-end: var(--s--20);
 }

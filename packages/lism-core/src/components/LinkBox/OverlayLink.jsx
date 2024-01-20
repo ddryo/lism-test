@@ -13,7 +13,7 @@ export default function LinkBox({
 	children,
 	...props
 }) {
-	// lismState.push('is--linkbox');
+	// lismState.push('is--linkBox');
 	lismClass.e = 'e--overlayLink';
 
 	let linkProps = {

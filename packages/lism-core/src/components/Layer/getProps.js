@@ -52,9 +52,10 @@ export function getEffectProps({
 export function getLayerProps(position, size) {
 	const layerProps = {};
 	if (position === 'center' || position === 'center center') {
-		layerProps.l = '50%';
-		layerProps.t = '50%';
-		layerProps.translate = '-50% -50%';
+		layerProps.inset = 'center';
+		// layerProps.l = '50%';
+		// layerProps.t = '50%';
+		// layerProps.translate = '-50% -50%';
 	} else if (position) {
 		let hasX = false;
 		let hasY = false;
@@ -77,11 +78,13 @@ export function getLayerProps(position, size) {
 
 		if (position.indexOf('center') !== -1) {
 			if (hasY) {
-				layerProps.l = '50%';
-				layerProps.translate = '-50%';
+				layerProps.inset = 'centerX';
+				// layerProps.l = '50%';
+				// layerProps.translate = '-50%';
 			} else if (hasX) {
-				layerProps.t = '50%';
-				layerProps.translate = '0 -50%';
+				layerProps.inset = 'centerY';
+				// layerProps.t = '50%';
+				// layerProps.translate = '0 -50%';
 			}
 		}
 	}

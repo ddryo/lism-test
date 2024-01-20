@@ -8,9 +8,9 @@ import {
 	Book,
 	Cat,
 	Baseball,
-} from "@phosphor-icons/react";
-import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
-import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
+} from '@phosphor-icons/react';
+import { Reference, MemoBadge, HelpText, DammyText } from '~/components';
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from '~/components/Preview';
 
 バッジを表示するコンポーネントです。
 
@@ -18,18 +18,18 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 	<PreviewTitle>対応するHTML構造</PreviewTitle>
 	<PreviewCode>
 		```jsx
-		<span class="c--badge">Badge</span>
+		<span class='c--badge'>Badge</span>
 		```
 	</PreviewCode>
 </Preview>
 
 
 ## 主なprops
-- `keycolor`: バッジのキーカラー。デフォルトは`main`カラーです。
-	- パレットカラーを指定できます。(`"red"`, `"blue"`, `"green"`, `"yellow"`, `"purple"`, `"orange"`, `"pink"`, `"gray"`
-- `variant`: ボタンの表示スタイル。`outline`、`subtle`の2種類を標準で用意しています。
+
+- `boxcolor`: バッジのカラー。
+	- パレットカラーを指定できます。(`'red'`, `'blue'`, `'green'`, `'yellow'`, `'purple'`, `'orange'`, `'pink'`, `'gray'`
+- `variant`: ボタンの表示スタイル。`fill`, `outline` の2種類を標準で用意しています。
 	- `c--badge--{variant}`がクラスとして出力されます。
-	- 初期値: `fill`
 
 ## Import
 
@@ -39,12 +39,12 @@ import { Badge } from '@loos/lism-core';
 
 ## Usage
 
-export const ColorDemos = ({colors, variant}) => {
+export const ColorDemos = ({colors, variant=''}) => {
 	return (
 		<Cluster gap={20} itemMinW='5em'>
-			{colors.map((ckey) => {
+			{colors.map((colorname) => {
 				return (
-					<Badge keycolor={ckey} key={ckey} variant={variant || ''}>{ckey}</Badge>
+					<Badge key={colorname} boxcolor={colorname} variant={variant}>{colorname}</Badge>
 				);
 			})}
 
@@ -52,76 +52,82 @@ export const ColorDemos = ({colors, variant}) => {
 	);
 }
 
+
+`<Badge>`(`.c--badge`)は、`-boxcolor:` の指定が必須です。
+
+追加で、 `variant` を指定することでスタイルを変更できます。
+
 <Preview>
 	<PreviewTitle>`<Badge>`の使用例</PreviewTitle>
 	<PreviewArea p={20} isShadow={0}>
 		<Cluster gap={20}>
-			{/* <Badge>Badge</Badge> */}
-			<Badge>Badge</Badge>
-			<Badge variant="outline">Badge</Badge>
+			<Badge boxcolor='content'>Badge</Badge>
+			<Badge boxcolor='red' variant='fill'>Badge</Badge>
 		</Cluster>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Badge>Badge</Badge>
-		<Badge variant="outline">Badge</Badge>
+		<Badge boxcolor='content'>Badge</Badge>
+		<Badge boxcolor='red' variant='fill'>Badge</Badge>
 		```
 	</PreviewCode>
 </Preview>
 
 
-### カラー
+### カラーとスタイルのバリエーション
 
 [カラートークン](/docs/tokens/color)の他、任意のカラーコードを指定できます。
 
+
 <Preview>
-	<PreviewTitle>`variant="fill"`でのカラーバリエーション</PreviewTitle>
+	<PreviewTitle>`boxcolor`だけを使った場合のカラーバリエーションの例</PreviewTitle>
 	<PreviewArea p={20} isShadow={0}>
-		<ColorDemos variant="fill" colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} />
+		<ColorDemos colors={['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink', 'gray', 'main', 'accent']}  />
+	</PreviewArea>
+</Preview>
+
+<Preview>
+	<PreviewTitle>`variant='fill'`でのカラーバリエーションの例</PreviewTitle>
+	<PreviewArea p={20} isShadow={0}>
+		<ColorDemos variant='fill' colors={['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink', 'gray', 'main', 'accent']} />
 	</PreviewArea>
 <PreviewCode>
 ```jsx
-<Badge keycolor="red">Badge</Badge>
-<Badge keycolor="orange">Badge</Badge>
+<Badge boxcolor='red'>Badge</Badge>
+<Badge boxcolor='orange'>Badge</Badge>
 ...
 ```
 </PreviewCode>
 </Preview>
 
-<Preview>
-	<PreviewTitle>`variant="outline"`でのカラーバリエーション</PreviewTitle>
+<Preview> 
+	<PreviewTitle>`variant='outline'`でのカラーバリエーションの例</PreviewTitle>
 	<PreviewArea p={20} isShadow={0}>
-		<ColorDemos colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]} variant="outline" />
+		<ColorDemos colors={['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink', 'gray', 'main', 'accent']} variant='outline' />
 	</PreviewArea>
 </Preview>
 
-<Preview>
-	<PreviewTitle>`variant="subtle"`(is--cboxが出力されます) でのカラーバリエーション</PreviewTitle>
-	<PreviewArea p={20} isShadow={0}>
-		<ColorDemos variant="subtle" colors={["red", "orange", "yellow", "green", "blue", "purple", "pink", "gray", "main", "accent"]}  />
-	</PreviewArea>
-</Preview>
+
 
 
 <Preview>
 	<PreviewTitle>カラーコード指定</PreviewTitle>
 	<PreviewArea p={20} isShadow={0}>
 		<Cluster gap={20}>
-			<Badge bgc="blue:20%">Badge</Badge>
-			<Badge variant="fill" keycolor="#ac2c23">Badge</Badge>
-			<Badge variant="subtle" keycolor="hsl(260deg 75% 40%)">Badge</Badge>
+			<Badge boxcolor='hsl(260deg 75% 40%)'>Badge</Badge>
+			<Badge variant='fill' boxcolor='#ac2c23'>Badge</Badge>
 		</Cluster>
 	</PreviewArea>
 <PreviewCode>
 ```jsx
 <Cluster gap={20}>
-	<Badge bgc="blue:20%">Badge</Badge>
-	<Badge variant="fill" keycolor="#ac2c23">Badge</Badge>
-	<Badge variant="subtle" keycolor="hsl(260deg 75% 40%)">Badge</Badge>
+	<Badge boxcolor='hsl(260deg 75% 40%)'>Badge</Badge>
+	<Badge variant='fill' boxcolor='#ac2c23'>Badge</Badge>
 </Cluster>
 ```
 </PreviewCode>
 </Preview>
+
 
 ### アイコンを併用する例
 
@@ -135,18 +141,18 @@ export const ColorDemos = ({colors, variant}) => {
 	<PreviewTitle>`<InlineIcon>`の使用例</PreviewTitle>
 	<PreviewArea p={20}>
 		<Cluster gap={20}>
-			<Badge variant='fill' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Book} size="1.25em"/> Badge</Badge>
-			<Badge variant='outline' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Cat} size="1.25em"/> Badge</Badge>
+			<Badge variant='fill' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Book} size='1.25em'/> Badge</Badge>
+			<Badge variant='outline' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}><Icon icon={Cat} size='1.25em'/> Badge</Badge>
 		</Cluster>
 	</PreviewArea>
 <PreviewCode>
 ```jsx
 <Cluster gap={20}>
 	<Badge variant='fill' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}>
-		<Icon icon={Book} size="1.25em"/>Badge
+		<Icon icon={Book} size='1.25em'/>Badge
 	</Badge>
 	<Badge variant='outline' d='inline-flex' flex={{ai: 'center', gap: 'em2'}}>
-		<Icon icon={Cat} size="1.25em"/>Badge
+		<Icon icon={Cat} size='1.25em'/>Badge
 	</Badge>
 </Cluster>
 ```
@@ -155,11 +161,11 @@ export const ColorDemos = ({colors, variant}) => {
 
 {/* <Cluster gap={20}>
 	<Badge><Icon isInline icon={Book} /> Badge</Badge>
-	<Badge variant="outline"><Icon isInline icon={Cat} /> Badge</Badge>
+	<Badge variant='outline'><Icon isInline icon={Cat} /> Badge</Badge>
 </Cluster> */}
 
 {/* <Cluster gap={20}>
-	<Badge hasIcon p={10} fz="l" variant="fill"><Icon icon={Book} /></Badge>
-	<Badge hasIcon p={10} fz="l" variant="outline"><Icon icon={Cat} /></Badge>
-	<Badge hasIcon p={10} fz="l" ><Icon icon={Baseball} /></Badge>
+	<Badge hasIcon p={10} fz='l' variant='fill'><Icon icon={Book} /></Badge>
+	<Badge hasIcon p={10} fz='l' variant='outline'><Icon icon={Cat} /></Badge>
+	<Badge hasIcon p={10} fz='l' ><Icon icon={Baseball} /></Badge>
 </Cluster> */}

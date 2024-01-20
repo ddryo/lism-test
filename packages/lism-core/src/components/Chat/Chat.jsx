@@ -2,51 +2,54 @@ import React from 'react';
 // import { Core } from '../Core';
 // import { Layouter } from '../Layouter';
 import { Grid } from '../Grid';
+// import { Decorator } from '../Decorator';
+import ChatName from './ChatName';
+import ChatAvatar from './ChatAvatar';
+import ChatContent from './ChatContent';
+import ChatFooter from './ChatFooter';
+// import { ChatContext } from './context';
+import { getProps } from './getProps';
 
 export default function Chat({
-	lismClass = {},
+	_lismClass = [],
 	lismState = [],
+	name,
+	avatar,
+	footer,
 	variant = 'speak',
 	direction = 'start',
+	isFlow = 's',
+	bodyProps = {},
+	contentProps = {},
 	children,
 	...props
 }) {
-	lismClass.c = `c--chat c--chat--${direction}`;
-	if (variant) lismClass.c += ` c--chat--${variant}`;
+	_lismClass.push(`c--chat c--chat--${direction}`);
+	if (variant) _lismClass.push(`c--chat--${variant}`);
 
-	let boxProps;
-
-	if (direction === 'start') {
-		boxProps = {
-			// gt: 'fix:l',
-			ji: 'start',
-			ai: 'start',
-		};
-	} else {
-		boxProps = {
-			// gt: 'fix:r',
-			ji: 'end',
-			ai: 'start',
-		};
-	}
-
-	if (props.keycolor) {
-		lismState.push(`has--mixcolor`);
-	}
-
+	// const contextData = { direction, variant };
 	return (
+		// <ChatContext.Provider value={contextData}>
 		<Grid
-			lismClass={lismClass}
+			_lismClass={_lismClass}
 			lismState={lismState}
 			data-dir={direction}
-			{...boxProps}
+			{...getProps(direction, variant)}
 			{...props}
 		>
-			{/* {children} */}
-			{React.Children.map(children, (child) => {
-				// 子コンポーネントにも direction, variant の情報を渡す
-				return React.cloneElement(child, { context: { direction, variant } });
-			})}
+			{name && <ChatName>{name}</ChatName>}
+			{avatar && <ChatAvatar src={avatar} />}
+			<ChatContent
+				isFlow={isFlow}
+				variant={variant}
+				direction={direction}
+				contentProps={contentProps}
+				{...bodyProps}
+			>
+				{children}
+			</ChatContent>
+			{footer && <ChatFooter>{footer}</ChatFooter>}
 		</Grid>
+		// </ChatContext.Provider>
 	);
 }

@@ -19,7 +19,7 @@ Lismでは、レイアウト・デザインを組む上で特定の役割を持�
 - etc... */}
 
 
-## クラス一覧
+## レイアウト管理クラス
 
 
 ### is--flow
@@ -115,7 +115,7 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 
 #### Usage
 
-<Alert icon={Desktop} keycolor='purple'>
+<Alert icon={Desktop} boxcolor='purple'>
 このDEMOは広い画面サイズでの閲覧を推奨しています。
 </Alert>
 
@@ -130,18 +130,34 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 
 
 
-### その他
+## その他
 
-| クラス名 | 説明 |
-|:--|:--|
-|`.has--divider:B` | Block方向の流れに対して仕切り線を表示します|
-|`.has--divider:I` | Inline方向の流れに対して仕切り線を表示します|
-|`.is--linkbox` | ボックス全体をリンク化する時用のクラス |
+
+### `.is--frame`
+
+高さやアスペクトを固定して、内部のコンテンツをはみ出さないようにするためのクラスです。
+直下のメディア要素（img,vieo）を `object-fit:cover` でサイズいっぱいに表示することができます。
+
+活用例は [Frame](/ja/components/frame) を参照してください。
+
+
+### `.is--linkBox`
+
+ボックス全体をリンク化する時用のクラス
+
+活用例は [LinkBox](/ja/components/linkbox) を参照してください。
+
+
+### `has--divider`
+
+子要素の間に仕切り線を表示します。
+
+l--flex, l--cluster では 区切り方向が自動で切り替わります。
 
 <Preview>
-	<PreviewTitle>`has--divider:B`</PreviewTitle>
+	<PreviewTitle>`has--divider`</PreviewTitle>
 	<PreviewArea resize p={5}>
-		<div className="l--stack has--divider:B">
+		<div className="l--stack has--divider">
 			<div className="-p:20">Content</div>
 			<div className="-p:20">Content</div>
 			<div className="-p:20">Content</div>
@@ -149,7 +165,7 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 	</PreviewArea>
 	<PreviewCode>
 	```jsx
-	<div class="l--stack has--divider:B">
+	<div class="l--stack has--divider">
 		<div class="-p:20">Content</div>
 		<div class="-p:20">Content</div>
 		<div class="-p:20">Content</div>
@@ -159,9 +175,9 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 </Preview>
 
 <Preview>
-	<PreviewTitle>`has--divider:I`</PreviewTitle>
+	<PreviewTitle>`l--flex`で使用</PreviewTitle>
 	<PreviewArea resize p={5}>
-		<div className="l--cluster has--divider:I">
+		<div className="l--flex has--divider">
 			<div className="-px:em10">Content</div>
 			<div className="-px:em10">Content</div>
 			<div className="-px:em10">Content</div>
@@ -169,7 +185,7 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 	</PreviewArea>
 	<PreviewCode>
 	```jsx
-	<div class="l--cluster has--divider:I">
+	<div class="l--flex has--divider">
 		<div class="-px:em10">Content</div>
 		<div class="-px:em10">Content</div>
 		<div class="-px:em10">Content</div>
@@ -177,6 +193,8 @@ Lismでは、**コンテンツ間の余白を管理するためのクラス**と
 	```
 	</PreviewCode>
 </Preview>
+
+
 
 ## 補足
 

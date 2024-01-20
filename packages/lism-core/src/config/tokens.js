@@ -2,6 +2,7 @@
 
 // PRESETS
 export default {
+	p: ['box', 'box:s', 'box:l'],
 	fz: [
 		'5xl',
 		'4xl',

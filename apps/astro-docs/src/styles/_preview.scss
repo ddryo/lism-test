@@ -1,11 +1,12 @@
-// .c--preview {
-// 	&:not(:first-child) {
-// 		margin-top: var(--s--50);
-// 	}
-// 	&:not(:last-child) {
-// 		margin-bottom: var(--s--50);
-// 	}
-// }
+.c--preview {
+	&:not(:first-child),
+	+ * {
+		margin-top: var(--s--50);
+	}
+	// &:not(:last-child) {
+	// 	margin-bottom: var(--s--50);
+	// }
+}
 
 .c--preview_title {
 	display: flex;
@@ -26,7 +27,6 @@
 }
 
 .c--preview_area {
-	--bg-bdc: var(--codeBlock--bgc); // gridの線
 	--bdc: var(--codeBlock--bgc);
 	transition: none !important;
 
@@ -46,6 +46,7 @@
 }
 
 .c--preview_inner {
+	--bg-bdc: var(--codeBlock--bgc); // gridの線
 	position: relative;
 	container-type: inline-size;
 	border-radius: 2px;
@@ -209,7 +210,7 @@
 	--fz--2xs: calc(1em * 12 / 16);
 }
 
-// .b--linkBox[href="/"]{
+// .is--linkBox[href="/"]{
 // 	opacity: .4;
 // }
 

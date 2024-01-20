@@ -16,7 +16,7 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Pr
 WEBサイトで一般的によく使われるレイアウト・デザイン要素を細分化し、汎用的に使い回せるようになっています。
 
 
-<Box p='box' className='is--colorbox' keycolor='blue' bd bdrs='s'>
+<Box p='box' boxcolor='blue' bd bdrs='s'>
 	WEBサイトの完成度8割までをサクサク作れる軽量なフレームワーク
 </Box>
 
@@ -54,7 +54,7 @@ CSS設計に関しては、[Every Layout](https://every-layout.dev/) + [Bootstra
 <Preview>
 	<PreviewTitle>専用のコンポーネントはこんな感じで使います</PreviewTitle>
 	<PreviewArea p={10}>
-		<Frame aspect='16/9' isConstrained hasGutter py={50} bgc='base-2'>
+		<Frame aspect='16/9' hasGutter py={50} bgc='base-2'>
 			<Center minH='100'>
 				<Text tag='h1' fz='3xl' ff='serif' lts='l' lh='xs'>Lism UI</Text>
 				<Text c='content-2' fz='s'>...description text...</Text>
@@ -67,7 +67,7 @@ CSS設計に関しては、[Every Layout](https://every-layout.dev/) + [Bootstra
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Frame aspect='16/9' isConstrained hasGutter py={50} bgc='base-2'>
+		<Frame aspect='16/9' hasGutter py={50} bgc='base-2'>
 			<Center minH='100'>
 				<Text tag='h1' fz='3xl' ff='serif' lts='l' lh='xs'>Lism UI</Text>
 				<Text c='content-2' fz='s'>...description text...</Text>

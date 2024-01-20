@@ -1,15 +1,16 @@
 // import React from 'react';
 import Layer from './Layer';
 import { Media } from '../Media';
+import { Frame } from '../Frame';
 import { separateMediaAttrs } from '../../lib';
 
 // memo: picture対応
 export default function MediaLayer({ media = 'img', hover, mediaProps = {}, children, ...props }) {
 	if (children) {
 		return (
-			<Layer variant='media' hover={hover} {...props}>
+			<Frame as={Layer} variant='media' hover={hover} {...props}>
 				{children}
-			</Layer>
+			</Frame>
 		);
 	}
 
@@ -17,16 +18,15 @@ export default function MediaLayer({ media = 'img', hover, mediaProps = {}, chil
 	const { mediaAttrs, otherProps } = separateMediaAttrs(props);
 
 	return (
-		<Layer variant='media' {...otherProps}>
+		<Frame as={Layer} variant='media' {...otherProps}>
 			<Media
 				as={media}
 				hover={hover}
 				loading='lazy'
 				decoding='async'
-				objectFit='cover'
 				{...mediaAttrs}
 				{...mediaProps}
 			/>
-		</Layer>
+		</Frame>
 	);
 }

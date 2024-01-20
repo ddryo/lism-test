@@ -78,6 +78,7 @@ class LismPropsData {
 			style = {},
 			blockClass,
 			lismClass,
+			_lismClass = [],
 			lismState = [],
 			lismStyle = {},
 
@@ -125,6 +126,7 @@ class LismPropsData {
 			className, // ユーザー指定のクラス
 			blockClass, // ブロッククラス
 			lismClassNames, // l--, c--, e-- などのクラス
+			_lismClass,
 			lismState // is, has
 			// lismUtil
 		);

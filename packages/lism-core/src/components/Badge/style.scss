@@ -1,32 +1,31 @@
-// mixcolor を上書きしないように初期値セット
 :where(.c--badge) {
-	--keycolor: var(--content);
-	--c: var(--keycolor);
-	--bdc: transparent;
-	--bgc: transparent;
-	--cbox-mixper--c: 50%;
-	color: var(--c);
-	background-color: var(--bgc);
 	font-size: var(--fz--xs);
 	border-radius: var(--radius--xs);
 }
+
+// -boxcolor とセットで使う
 .c--badge {
+	// --boxcolor: var(--content);
+	// --c: var(--boxcolor);
+	// --bdc: transparent;
+	// --bgc: transparent;
+	--cbox-mixper--txt: 50%;
+	// color: var(--c);
+	// background-color: var(--bgc);
 	border: solid 1px var(--bdc); // サイズ揃えるために常にborderを指定
-	// padding-block: var(--em--1);
 	padding-inline: var(--em--5);
 }
 
 .c--badge--fill {
-	--c: var(--base);
-	--bgc: var(--keycolor);
+	--cbox-c: var(--base);
+	--cbox-bgc: var(--boxcolor);
+	// --c: var(--base);
+	// --bgc: var(--boxcolor);
 }
-
 .c--badge--outline {
-	--c: var(--keycolor);
-	--bdc: var(--keycolor);
+	--cbox-c: var(--boxcolor);
+	--cbox-bdc: var(--boxcolor);
+	--cbox-bgc: transparent;
 }
-
-// subtle,outline用
-// .c--badge:where(.is--colorbox) {
-// 	color: var(--cbox-c-2, var(--content));
+// .c--badge--subtle {
 // }

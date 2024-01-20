@@ -13,8 +13,8 @@ export function separateMediaAttrs({
 	autoplay,
 	playsinline,
 	poster,
-	objectFit,
-	objectPosition,
+	// objectFit,
+	// objectPosition,
 	hover,
 	...props
 }) {
@@ -32,8 +32,8 @@ export function separateMediaAttrs({
 			autoplay,
 			playsinline,
 			poster,
-			objectFit,
-			objectPosition,
+			// objectFit,
+			// objectPosition,
 			hover,
 		}),
 		otherProps: props,

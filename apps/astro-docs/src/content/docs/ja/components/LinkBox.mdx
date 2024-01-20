@@ -65,7 +65,7 @@ LinkBoxは、次の3通りの使い方ができます。
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
 		```jsx
-		<a class="c--linkbox -hov:fade -p:box:l -bgc:base -bd: -bdc:table -bdrs:4" href="#boxlink01">
+		<a class="is--linkBox -hov:fade -p:box:l -bgc:base -bd: -bdc:table -bdrs:l" href="#boxlink01">
 			<p class="-fz:xl -fw:bold">Heading text</p>
 			<p class="-c:content-2 -lh:s -mbs:20">Lorem ipsum dolor sit, amet consectetur adipisicing elit, sed do eiusmod tempor. Non facere laudantium ex eos doloribus aut dolore nisi provident.</p>
 			<p class="-fz:s -c:content-2 -ta:r -lh:1 -mbs:5">MORE →</p>
@@ -78,7 +78,7 @@ LinkBoxは、次の3通りの使い方ができます。
 ### 内部に`e--overlayLink`を配置する
 
 LinkBoxに`href`を指定せずに使うと、`<a>`ではなく`<div>`で出力され、  
-内部のアンカー要素に`.e--overlayLink`を併用することで`.c--linkbox`全体をリンクにすることができます。
+内部のアンカー要素に`.e--overlayLink`を併用することで`.is--linkBox`全体をリンクにすることができます。
 
 <Alert preset='info'>
 この時、LinkBoxの内部に別のリンクを配置できます。
@@ -114,7 +114,7 @@ LinkBoxに`href`を指定せずに使うと、`<a>`ではなく`<div>`で出力�
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
 		```jsx {1,3,9} "e--overlayLink"
-		<div class="c--linkbox -hov:fade -p:box:l -bgc:base -bd: -bdc:table -bdrs:4">
+		<div class="is--linkBox -hov:fade -p:box:l -bgc:base -bd: -bdc:table -bdrs:l">
 			<p class="-fz:xl -fw:bold">
 				<a class="e--overlayLink" href="#boxlink02">Heading Link</a>
 			</p>
@@ -135,7 +135,7 @@ LinkBoxに`href`を指定せずに使うと、`<a>`ではなく`<div>`で出力�
 
 ```css
 @supports selector(:has(*)) {
-	.c--linkbox:has(.e--overlayLink:focus-visible) {
+	.is--linkBox:has(.e--overlayLink:focus-visible) {
 		outline: auto 1px;
 		outline: auto 1px -webkit-focus-ring-color;
 	}
@@ -177,7 +177,7 @@ LinkBoxに`href`を指定せずに使うと、`<a>`ではなく`<div>`で出力�
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
 		```jsx {1,2,8} "e--hiddenLink"
-		<div class="c--linkbox -hov:fade -p:box:l -bgc:base -bd: -bdc:table -bdrs:4">
+		<div class="is--linkBox -hov:fade -p:box:l -bgc:base -bd: -bdc:table -bdrs:l">
 			<a class="e--hiddenLink is--skipFlow" href="#boxlink03"></a>
 			<p class="-fz:xl -fw:bold">Heading Text</p>
 			<p class="-c:content-2 -lh:s -mbs:20">

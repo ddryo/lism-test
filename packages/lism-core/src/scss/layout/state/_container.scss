@@ -34,6 +34,10 @@
 
 // -container:m, -container:s, -container:l
 // [data-content-size='']
+.is--container\:xs {
+	--contentSize: var(--size--xs);
+	--size--wide: var(--size--s);
+}
 .is--container\:s {
 	--contentSize: var(--size--s);
 	--size--wide: var(--size--m);

@@ -183,3 +183,26 @@ export function getMediaProps({ objectFit, objectPosition, ...props }) {
 
 	return props;
 }
+
+export function getTransformProps({
+	transform,
+	transformOrigin,
+	rotate,
+	scale,
+	translate,
+	...props
+}) {
+	const cssProps = filterEmptyObj({
+		transform,
+		transformOrigin,
+		rotate,
+		scale,
+		translate,
+	});
+
+	if (!isEmptyObj(cssProps)) {
+		props.css = Object.assign({}, props.css || {}, cssProps);
+	}
+
+	return props;
+}

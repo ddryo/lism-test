@@ -6,7 +6,7 @@ import {
 	Frame,
 	Layouter,
 	Chat,
-	ChatIcon,
+	ChatAvatar,
 	ChatName,
 	ChatContent,
 	ChatFooter,
@@ -50,7 +50,7 @@ export default function ContainerTest() {
 				</p>
 			</Alert>
 			<Chat>
-				<ChatIcon src='/img/avatar01.jpg' />
+				<ChatAvatar src='/img/avatar01.jpg' />
 				<ChatName>ルフィ</ChatName>
 				<ChatContent>
 					<p>
@@ -62,7 +62,7 @@ export default function ContainerTest() {
 				<ChatFooter>Footer text</ChatFooter>
 			</Chat>
 			<Chat keycolor='gray'>
-				<ChatIcon src='/img/avatar01.jpg' />
+				<ChatAvatar src='/img/avatar01.jpg' />
 				<ChatName>ルフィ</ChatName>
 				<ChatContent>
 					<p>
@@ -74,7 +74,7 @@ export default function ContainerTest() {
 				<ChatFooter>color: gray</ChatFooter>
 			</Chat>
 			<Chat keycolor='green'>
-				<ChatIcon src='/img/avatar01.jpg' />
+				<ChatAvatar src='/img/avatar01.jpg' />
 				<ChatName>ルフィ</ChatName>
 				<ChatContent>
 					<p>
@@ -86,7 +86,7 @@ export default function ContainerTest() {
 				<ChatFooter>color: green</ChatFooter>
 			</Chat>
 			<Chat keycolor='blue' variant='think' direction='end'>
-				<ChatIcon src='/img/avatar01.jpg' />
+				<ChatAvatar src='/img/avatar01.jpg' />
 				{/* <ChatName>ルフィ</ChatName> */}
 				<ChatContent>
 					<p>
@@ -97,7 +97,7 @@ export default function ContainerTest() {
 				</ChatContent>
 			</Chat>
 			<Chat keycolor='red'>
-				<ChatIcon src='/img/avatar01.jpg' />
+				<ChatAvatar src='/img/avatar01.jpg' />
 				{/* <ChatName>ルフィ</ChatName> */}
 				<ChatContent>
 					<DammyText length='xs' lang='ja' />
@@ -106,28 +106,28 @@ export default function ContainerTest() {
 			<hr />
 			<h2>Chat</h2>
 			<Chat>
-				<ChatIcon src='/img/avatar01.jpg' />
+				<ChatAvatar src='/img/avatar01.jpg' />
 				<ChatName>ルフィ</ChatName>
 				<ChatContent>
 					<DammyText length='xs' lang='ja' />
 				</ChatContent>
 			</Chat>
 			<Chat direction='end'>
-				<ChatIcon src='/img/avatar01.jpg' />
+				<ChatAvatar src='/img/avatar01.jpg' />
 				<ChatName>ルフィ</ChatName>
 				<ChatContent>
 					<DammyText length='m' lang='ja' />
 				</ChatContent>
 			</Chat>
 			<Chat variant='think'>
-				<ChatIcon src='/img/avatar02.jpg' />
+				<ChatAvatar src='/img/avatar02.jpg' />
 				<ChatName>ルフィ</ChatName>
 				<ChatContent>
 					<DammyText length='m' lang='ja' />
 				</ChatContent>
 			</Chat>
 			<Chat direction='end' variant='think'>
-				<ChatIcon src='/img/avatar04.jpg' />
+				<ChatAvatar src='/img/avatar04.jpg' />
 				<ChatName>チョッパー</ChatName>
 				<ChatContent>
 					<DammyText length='m' lang='ja' />
@@ -137,14 +137,14 @@ export default function ContainerTest() {
 			<h2>Customize例</h2>
 			<hr />
 			<Chat provide={{ bgc: 'black', c: 'white' }}>
-				<ChatIcon src='/img/onepiece01_luffy.png' />
+				<ChatAvatar src='/img/onepiece01_luffy.png' />
 				<ChatName>ルフィ</ChatName>
 				<ChatContent radius={5}>
 					<DammyText length='xs' lang='ja' />
 				</ChatContent>
 			</Chat>
 			{/* <Chat direction='end' variant='think' provide={{ bgc: '#eff9ef', bdc: '#bccfbd' }}>
-				<ChatIcon src='/img/onepiece06_chopper.png' />
+				<ChatAvatar src='/img/onepiece06_chopper.png' />
 				<ChatName>チョッパー</ChatName>
 				<ChatContent wrapperProps={{ style: { filter: 'drop-shadow(2px 2px 0px #888)' } }}>
 					<DammyText lang='ja' />
@@ -154,19 +154,20 @@ export default function ContainerTest() {
 			<h2>Customize例</h2>
 			<hr />
 			<Chat variant='box'>
-				<ChatIcon src='/img/onepiece01_luffy.png' />
+				<ChatAvatar src='/img/onepiece01_luffy.png' />
 				<ChatName>ルフィ</ChatName>
 				<ChatContent type='box'>
 					<DammyText length='m' lang='ja' />
 				</ChatContent>
 			</Chat>
 			<Chat variant='box' direction='end'>
-				<ChatIcon src='/img/onepiece06_chopper.png' />
+				<ChatAvatar src='/img/onepiece06_chopper.png' />
 				<ChatName>チョッパー</ChatName>
 				<ChatContent type='box' direction='end' radius='3'>
 					<DammyText length='m' lang='ja' />
 				</ChatContent>
 			</Chat>
+
 			<hr />
 			<Spacer bg='stripe' h='60' />
 			<hr />

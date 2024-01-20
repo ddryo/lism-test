@@ -74,7 +74,7 @@ export const ReelImages = ({ hasID, isV, ...props }) => {
 				const isEven = i % 2 === 0;
 				const src = isEven ? imgPath + '1.jpg' : imgPath + '2.jpg';
 				return <Frame id={hasID ? `image-${i}` : ''} ascpect={aspect} key={i} {...props}>
-					<img src={src} alt='' loading='lazy' width={960} height={640} />
+					<img src={src} alt='' loading='lazy' width='960' height='640' />
 				</Frame>
 			})}
 		</>
@@ -196,13 +196,13 @@ reel要素にidを付けてアンカーリンク用意すると、ナビゲー�
 		```jsx
 		<Reel itemW='40%' snap='center' gap={20}>''
 			<Frame id='image-1' ascpect='16/9'>
-				<img src='...' alt='' loading='lazy' width={960} height={640} />
+				<img src='...' alt='' loading='lazy' width='960' height='640' />
 			</Frame>
 			<Frame id='image-2' ascpect='16/9'>
-				<img src='...' alt='' loading='lazy' width={960} height={640} />
+				<img src='...' alt='' loading='lazy' width='960' height='640' />
 			</Frame>
 			<Frame id='image-3' ascpect='16/9'>
-				<img src='...' alt='' loading='lazy' width={960} height={640} />
+				<img src='...' alt='' loading='lazy' width='960' height='640' />
 			</Frame>
 			...
 		</Reel>
@@ -234,10 +234,10 @@ reel要素にidを付けてアンカーリンク用意すると、ナビゲー�
 		```jsx "isVertical"
 		<Reel isVertical itemW='auto' aspect='3/4.5' bdrs='l' bgc='black' p={30} gap={30}>
 			<Frame aspect='3/4' bdrs='m'>
-				<img src='/img.jpg' alt='' loading='lazy' width={960} height={640} />
+				<img src='/img.jpg' alt='' loading='lazy' width='960' height='640' />
 			</Frame>
 			<Frame aspect='3/4' bdrs='m'>
-				<img src='/img.jpg' alt='' loading='lazy' width={960} height={640} />
+				<img src='/img.jpg' alt='' loading='lazy' width='960' height='640' />
 			</Frame>
 			...
 		</Reel>

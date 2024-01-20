@@ -18,11 +18,11 @@
 	}
 }
 
-// :where(.is--linkbox) {
+// :where(.is--linkBox) {
 // 	display: block;
 // }
 
-.is--linkbox {
+.is--linkBox {
 	display: block;
 	position: relative;
 	color: inherit;
@@ -44,7 +44,7 @@
 }
 
 /*
-	linkboxが a 以外の div　などのとき、直下の overlayLink と組み合わせて全体をクリックできるようにしつつ、内部にある他の a はクリックできるようにする
+	linkBoxが a 以外の div　などのとき、直下の overlayLink と組み合わせて全体をクリックできるようにしつつ、内部にある他の a はクリックできるようにする
 	1. overlayLinkは標準で z:0 で配置される。
 	2. その他の兄弟要素を relative にして z関係を有効にし、pointer-events: none でクリックを無効化し、背後のリンクをクリックできるようにする。
 		（この時、兄弟要素を z:1 にすることで、overlayLink が最後に来ても動作するようにしているが、先頭配置のみを考慮するなら z指定は不要。）
@@ -52,7 +52,7 @@
 */
 
 // 詳細度 0 で。
-// :where(.is--linkbox:not(a)) > * {
+// :where(.is--linkBox:not(a)) > * {
 // 	pointer-events: none;
 // 	position: relative;
 // 	z-index: 1;
@@ -75,22 +75,22 @@
 // }
 
 // リンクは基本クリックできるように、明示的に指定しておく。
-// .is--linkbox a でより確実にクリッカブルにできるが、先祖セレクタになってしまうのでresetに任せる。
+// .is--linkBox a でより確実にクリッカブルにできるが、先祖セレクタになってしまうのでresetに任せる。
 // a {
 // 	pointer-events: auto;
 // }
 
-// .is--linkbox a {
+// .is--linkBox a {
 // 	pointer-events: auto;
 // }
 
-// .is--linkbox {
+// .is--linkBox {
 // 	color: inherit;
 // 	text-decoration: none;
 // 	position: relative;
 // 	cursor: pointer;
 // }
-// [data-linkbox='div'] > [data-linkbox='a'] {
+// [data-linkBox='div'] > [data-linkBox='a'] {
 // 	position: absolute;
 // 	z-index: -1;
 // 	visibility: hidden;

@@ -1,6 +1,6 @@
 import { Box, Badge, Text } from '@loos/lism-core';
 
-export function TipCode({ type = '', text, children, color = 'gray', ...props }) {
+export function TipCode({ text, children, color = 'gray', ...props }) {
 	// <TipCode text='is--container' color='orange' />
 
 	// text が "container:" を含むかどうかを判定
@@ -15,7 +15,7 @@ export function TipCode({ type = '', text, children, color = 'gray', ...props })
 	}
 
 	return (
-		<Badge tag='code' fz='s' lh='1' d='ib' m='5' variant='subtle' keycolor={color} {...props}>
+		<Badge tag='code' fz='s' lh='1' d='ib' m='5' variant='subtle' boxcolor={color} {...props}>
 			{text || children}
 		</Badge>
 	);

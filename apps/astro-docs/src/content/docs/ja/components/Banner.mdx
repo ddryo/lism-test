@@ -14,7 +14,7 @@ import { Preview, PreviewArea, PreviewTitle, PreviewCode } from '~/components/Pr
 	<PreviewTitle>対応するHTML構造</PreviewTitle>
 	<PreviewCode>
 		```jsx
-		<a class='c--banner l--frame is--linkbox' href='###'>
+		<a class='c--banner is--frame is--linkBox' href='###'>
 			<div class='l--layer l--layer--media -z:-1'>
 				<img src='...' />
 			</div>
@@ -56,13 +56,13 @@ import { Banner } from '@loos/lism-core';
 	<PreviewTitle>16:9のバナーリンク</PreviewTitle>
 	<PreviewArea p={30}>
 		<Banner href='#banner-link' aspect='16/9' maxW='s'>
-			<img src='/img.jpg' alt='' width={960} height={640} loading='lazy' />
+			<img src='/img.jpg' alt='' width='960' height='640' loading='lazy' />
 		</Banner>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
 		<Banner href='#banner-link' aspect='16/9'>
-			<img src='/img.jpg' alt='' width={960} height={640} loading='lazy' />
+			<img src='/img.jpg' alt='' width='960' height='640' loading='lazy' />
 		</Banner>
 		```
 	</PreviewCode>
@@ -73,7 +73,7 @@ import { Banner } from '@loos/lism-core';
 	<PreviewTitle>`Layer`で画像に被せてコンテンツを表示</PreviewTitle>
 	<PreviewArea p={30}>
 		<Banner href='#banner-link' aspect='16/9' bdrs='l'>
-			<Media src='/img.jpg' alt='' width={960} height={640} loading='lazy' />
+			<Media src='/img.jpg' alt='' width='960' height='640' loading='lazy' />
 			<FilterLayer bgc='#000:40%' blur='2px' />
 			<Layer inset='0' isFlow='s' p='box' c='white'>
 				<Text fz='2xl' fw='bold'>Banner</Text>
@@ -84,7 +84,7 @@ import { Banner } from '@loos/lism-core';
 	<PreviewCode>
 		```jsx
 		<Banner href='#banner-link' aspect='16/9' bdrs='l'>
-			<Media src='/img.jpg' alt='' width={960} height={640} loading='lazy' />
+			<Media src='/img.jpg' alt='' width='960' height='640' loading='lazy' />
 			<FilterLayer bgc='black:40%' blur='2px' />
 			<Layer inset='0' isFlow='s' p='box' c='white'>
 				<Text fz='2xl' fw='bold'>Banner</Text>
@@ -101,7 +101,7 @@ import { Banner } from '@loos/lism-core';
 	{/* <PreviewTitle>`hover=get:zoom` を使う時は、`MediaLayer`を使ってください。（そうしないとスクロールが発生してしまいます）</PreviewTitle> */}
 	<PreviewArea p={30}>
 		<Banner href='#banner-link' aspect='16/9' hover='pass' bdrs='l'>
-			<MediaLayer src='/img.jpg' alt='' width={960} height={640} loading='lazy' hover='get:zoom'/>
+			<MediaLayer src='/img.jpg' alt='' width='960' height='640' loading='lazy' hover='get:zoom'/>
 			<FilterLayer bgc='black:20%' blur='4px' hover='get:show'/>
 			<Layer position='center' bgc='black:50%' bdrs='l' hover='get:show'>
 				<Text p='box' c='white'>View More</Text>
@@ -111,7 +111,7 @@ import { Banner } from '@loos/lism-core';
 	<PreviewCode>
 		```jsx
 		<Banner href='#banner-link' aspect='16/9' hover='pass' bdrs='l'>
-			<MediaLayer src='/img.jpg' alt='' width={960} height={640} loading='lazy' hover='get:zoom'/>
+			<MediaLayer src='/img.jpg' alt='' width='960' height='640' loading='lazy' hover='get:zoom'/>
 			<FilterLayer bgc='black:20%' blur='4px' hover='get:show'/>
 			<Layer position='center' bgc='black:50%' bdrs='l' hover='get:show'>
 				<Text p='box' c='white'>View More</Text>
@@ -126,7 +126,7 @@ import { Banner } from '@loos/lism-core';
 	<PreviewTitle>aspect指定せず、画像比率そのままの例</PreviewTitle>
 	<PreviewArea p={30}>
 		<Banner href='#banner-link' hover={['bxsh:3', 'pass']} bdrs='l'>
-			<Media hover='get:zoom' src='/img.jpg' alt='' width={960} height={640} />
+			<Media hover='get:zoom' src='/img.jpg' alt='' width='960' height='640' />
 			<FilterLayer hover='get:hide' bgc='black:10%' blur='2px' />
 			<Layer hover='get:hide' position='center' bgc='black:50%' bdrs='l'>
 				<Text length='xs' p='box' c='white'>View More</Text>
@@ -136,7 +136,7 @@ import { Banner } from '@loos/lism-core';
 	<PreviewCode>
 		```jsx
 		<Banner href='#banner-link' hover={['bxsh:3', 'pass']} bdrs='l'>
-			<Media hover='get:zoom' src='/img.jpg' alt='' width={960} height={640} />
+			<Media hover='get:zoom' src='/img.jpg' alt='' width='960' height='640' />
 			<FilterLayer hover='get:hide' bgc='black:10%' blur='2px' />
 			<Layer hover='get:hide' position='center' bgc='black:50%' bdrs='l'>
 				<Text length='xs' p='box' c='white'>View More</Text>

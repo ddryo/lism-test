@@ -2,15 +2,10 @@
 
 import { Avatar } from '../Avatar';
 
-export default function ChatIcon({ lismClass = {}, ...props }) {
-	lismClass.c = 'c--chat__icon';
-
-	// 親から渡されるが、使わない
-	delete props.context;
-
+export default function ChatAvatar(props) {
 	return (
 		<Avatar
-			lismClass={lismClass}
+			_lismClass={['c--chat__icon']}
 			bgc='base'
 			bdrs='full'
 			aria-hidden='true'

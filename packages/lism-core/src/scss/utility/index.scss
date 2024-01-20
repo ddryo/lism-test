@@ -3,9 +3,10 @@
 @use '../setting' as setting;
 
 @forward './consume';
+@forward './colorbox'; // Note: colorより前に読み込む必要あり
+@forward './color'; // Note: colorboxより後ろに読み込む必要あり
 @forward './aspect';
 @forward './border';
-@forward './color';
 @forward './display';
 @forward './hover';
 @forward './gap';

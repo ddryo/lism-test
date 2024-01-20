@@ -70,7 +70,7 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
 	```html "-hov:"
-	<a class="c--linkbox -hov:fade -p:box -bgc:base-2 -bd:" href="###">
+	<a class="is--linkBox -hov:fade -p:box -bgc:base-2 -bd:" href="###">
 		...
 	</a>
 	```
@@ -91,7 +91,7 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
 	```html "-hov:"
-	<a class="c--linkbox -hov:bxsh:4 -p:box -bgc:base-2 -bd:" href="###">
+	<a class="is--linkBox -hov:bxsh:4 -p:box -bgc:base-2 -bd:" href="###">
 		...
 	</a>
 	```
@@ -113,7 +113,7 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
 	```html "-hov:"
-	<a class="c--linkbox -hov:up -p:box -bgc:base-2 -bd:" href="###">
+	<a class="is--linkBox -hov:up -p:box -bgc:base-2 -bd:" href="###">
 		...
 	</a>
 	```
@@ -135,7 +135,7 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
 	```html "-hov:"
-	<a class="c--linkbox -hov:up -hov:bxsh:3 -p:box -bgc:base-2 -bd:" href="###">
+	<a class="is--linkBox -hov:up -hov:bxsh:3 -p:box -bgc:base-2 -bd:" href="###">
 		...
 	</a>
 	```
@@ -183,7 +183,7 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 	<PreviewCode slot='tab' label='HTML'>
 	```html "-hov:bgc" "-hov:c" "--hov--bgc" "--hov--c"
 	<a
-		class="c--linkbox -hov:bgc -hov:c -bgc:base-2 -p:box"
+		class="is--linkBox -hov:bgc -hov:c -bgc:base-2 -p:box"
 		style="--hov--bgc:var(--main);--hov--c:var(--white)"
 		href="###"
 	>...</a>
@@ -337,7 +337,7 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 	<PreviewTitle>`get:show` を使う</PreviewTitle>
 	<PreviewArea p={20}>
 		<Banner hover='pass' href='#banner-link' aspect='16/9' bdrs='l'>
-			<MediaLayer src='/img/img-1.jpg' alt='' width={960} height={640} loading='lazy'/>
+			<MediaLayer src='/img/img-1.jpg' alt='' width='960' height='640' loading='lazy'/>
 			<FilterLayer hover='get:show' bgc='black:20%' blur='4px'/>
 			<Layer hover='get:show' position='center' bgc='black:50%' bdrs='l'>
 				<Text p='box' c='white'>View More</Text>
@@ -347,7 +347,7 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx "hover='pass'" "hover='get:show'"
 		<Banner hover='pass' href='#banner-link' aspect='16/9' bdrs='l'>
-			<MediaLayer src='/img/img-1.jpg' alt='' width={960} height={640} loading='lazy'/>
+			<MediaLayer src='/img/img-1.jpg' alt='' width='960' height='640' loading='lazy'/>
 			<FilterLayer hover='get:show' bgc='black:20%' blur='4px'/>
 			<Layer hover='get:show' position='center' bgc='black:50%' bdrs='l'>
 				<Text p='box' c='white'>View More</Text>
@@ -357,12 +357,12 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
 	```html "-hov:pass" "-hov:get:show"
-	<a class="c--banner l--frame -hov:pass -aspect:16/9 -bdrs:4" href="#banner-link">
+	<a class="c--banner is--frame -hov:pass -aspect:16/9 -bdrs:l" href="#banner-link">
 		<div class="l--layer l--layer--media">
 			<img class="-obf:cv" loading="lazy" decoding="async" src="/img/img-1.jpg" width="960" height="640">
 		</div>
 		<div class="l--layer l--layer--filter -hov:get:show -bgc:" style="backdrop-filter:blur(4px);--bgc:hsl(var(--hsl--black) / 20%)"></div>
-		<div class="l--layer -hov:get:show -bgc: -bdrs:4 -trnslt:-50 -l:50 -t:50" style="--bgc:hsl(var(--hsl--black) / 50%)">
+		<div class="l--layer -hov:get:show -bgc: -bdrs:l -trnslt:-50 -l:50 -t:50" style="--bgc:hsl(var(--hsl--black) / 50%)">
 			<p class="-p:box -c:" style="--c:var(--white)">View More</p>
 		</div>
 	</a>
@@ -374,19 +374,19 @@ export const PreviewBoxs = ({hover, ...attrs}) => {
 	<PreviewTitle>`hover=get:zoom` を使う</PreviewTitle>
 	<PreviewArea p={20}>
 		<Banner href='#banner-link' aspect='16/9' hover='pass' bdrs='l'>
-			<MediaLayer hover='get:zoom' src='/img/img-2.jpg' alt='' width={960} height={640} loading='lazy'/>
+			<MediaLayer hover='get:zoom' src='/img/img-2.jpg' alt='' width='960' height='640' loading='lazy'/>
 		</Banner>
 	</PreviewArea>
 	<PreviewCode slot='tab' label='React, Astro'>
 		```jsx "hover='pass'" "hover='get:zoom'"
 		<Banner hover='pass' href='#banner-link' aspect='16/9' bdrs='l'>
-			<MediaLayer hover='get:zoom' src='/img/img-2.jpg' alt='' width={960} height={640} loading='lazy'/>
+			<MediaLayer hover='get:zoom' src='/img/img-2.jpg' alt='' width='960' height='640' loading='lazy'/>
 		</Banner>
 		```
 	</PreviewCode>
 	<PreviewCode slot='tab' label='HTML'>
 	```html "-hov:pass" "-hov:get:zoom"
-	<a class="c--banner l--frame -hov:pass -aspect:16/9 -bdrs:4" href="#banner-link">
+	<a class="c--banner is--frame -hov:pass -aspect:16/9 -bdrs:l" href="#banner-link">
 		<div class="l--layer l--layer--media">
 			<img class="-hov:get:zoom -obf:cv" loading="lazy" decoding="async" src="/img/img-2.jpg" width="960" height="640">
 		</div>

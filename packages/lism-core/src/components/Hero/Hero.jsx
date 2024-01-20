@@ -1,14 +1,22 @@
 // import React from 'react';
 import { Stack } from '../Flex';
+// import { Grid } from '../Grid';
 
 // align: full, wide, ''
-export default function Hero({ lismClass = {}, variant, bgc = 'base-2', isFullScreen, ...attrs }) {
+export default function Hero({
+	lismClass = {},
+	variant,
+	as,
+	bgc = 'base-2',
+	isFullScreen,
+	...attrs
+}) {
 	lismClass.c = 'c--hero';
-	if (variant) {
-		lismClass.c += ` c--hero--${variant}`;
-	}
+	if (variant) lismClass.c += ` c--hero--${variant}`;
 
 	const blockProps = { bgc, 'data-fullscreen': isFullScreen ? '1' : null };
 
-	return <Stack alignfull lismClass={lismClass} {...blockProps} {...attrs} />;
+	const Component = as || Stack;
+
+	return <Component isFullwide lismClass={lismClass} {...blockProps} {...attrs} />;
 }

@@ -4,53 +4,23 @@ description: ...
 ---
 
 import {  Alert, Note, Tabs, TabItem, Spacer } from '@loos/lism-astro';
-import { Reference, MemoBadge, HelpText, DammyText } from "~/components";
-import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
-import {
-	Smiley,
-	Horse,
-	Book,
-	Cat,
-	Baseball,
-} from "@phosphor-icons/react";
+import { Reference, MemoBadge, HelpText, DammyText } from '~/components';
+import { Preview, PreviewArea, PreviewTitle, PreviewCode } from '~/components/Preview';
 
-
-export const NoteDemos = ({ children, variant }) => {
-	const PRESETS = ["alert", "point", "warning", "check", "info", "help", "note"];
+export const NoteDemos = ({ variant }) => {
+	const PRESETS = ['alert', 'point', 'warning', 'check', 'info', 'help', 'note'];
 	return (
 		<>
 			{PRESETS.map((preset) => {
 				return (
-					<Note heading="Note default" variant={variant} preset={`${preset}`} key={preset}>
-						<DammyText length='codes' lang="ja"/>
+					<Note heading='Note default' variant={variant} preset={`${preset}`} key={preset}>
+						<DammyText length='codes' lang='ja'/>
 					</Note>
 				);
 			})}
 		</>
 	);
 };
-
-
-# Note
-
-<Preview>
-	<PreviewTitle>対応するHTML構造</PreviewTitle>
-	<PreviewCode>
-		```jsx
-		<div class="c--note">
-			<div class="c--note__head l--flex">
-				<span class="c--note__heading">Note title</span>
-			</div>
-			<div class="c--note__body">
-				<p>...</p>
-			</div>
-		</div>
-		```
-	</PreviewCode>
-</Preview>
-
-
-- Lismクラス: `.b--Note`
 
 ## 主なprops
 
@@ -73,7 +43,7 @@ import { Note } from '@loos/lism-core';
 	</PreviewTitle>
 	<PreviewArea p={20}>
 		<Note>
-			<DammyText length='codes' lang="ja"/>
+			<DammyText length='codes' lang='ja'/>
 		</Note>
 	</PreviewArea>
 	<PreviewCode>
@@ -91,13 +61,13 @@ import { Note } from '@loos/lism-core';
 		`heading`を指定
 	</PreviewTitle>
 	<PreviewArea p={20}>
-		<Note heading="Heading text...">
-			<DammyText length='codes' lang="ja"/>
+		<Note heading='Heading text...'>
+			<DammyText length='codes' lang='ja'/>
 		</Note>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Note heading="Heading text...">
+		<Note heading='Heading text...'>
 			<p>Lorem ipsum text...</p>
 		</Note>
 		```
@@ -109,14 +79,14 @@ import { Note } from '@loos/lism-core';
 		`isFlow`を指定
 	</PreviewTitle>
 	<PreviewArea p={20}>
-		<Note heading="Heading text..." isFlow='s'>
+		<Note heading='Heading text...' isFlow='s'>
 			<p>Lorem ipsum text...</p>
 			<DammyText />
 		</Note>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Note heading="Heading text..." isFlow='s'>
+		<Note heading='Heading text...' isFlow='s'>
 			<p>Lorem ipsum text...</p>
 			<p>Lorem ipsum text...</p>
 		</Note>
@@ -129,13 +99,13 @@ import { Note } from '@loos/lism-core';
 		`icon`を指定 (iconを使う場合、headingが必須)
 	</PreviewTitle>
 	<PreviewArea p={20}>
-		<Note heading="Heading text..." icon="note">
-			<DammyText length='codes' lang="ja"/>
+		<Note heading='Heading text...' icon='note'>
+			<DammyText length='codes' lang='ja'/>
 		</Note>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Note heading="Heading text..." icon="note">
+		<Note heading='Heading text...' icon='note'>
 			...
 		</Note>
 		```
@@ -145,16 +115,16 @@ import { Note } from '@loos/lism-core';
 
 <Preview>
 	<PreviewTitle>
-		`keycolor`を指定
+		`boxcolor`を指定
 	</PreviewTitle>
 	<PreviewArea p={20}>
-		<Note heading="Heading text..." icon="note" keycolor="blue">
-			<DammyText length='codes' lang="ja"/>
+		<Note heading='Heading text...' icon='note' boxcolor='blue'>
+			<DammyText length='codes' lang='ja'/>
 		</Note>
 	</PreviewArea>
 	<PreviewCode>
 		```jsx
-		<Note heading="Heading text..." icon="note" keycolor="blue">
+		<Note heading='Heading text...' icon='note' boxcolor='blue'>
 			...
 		</Note>
 		```

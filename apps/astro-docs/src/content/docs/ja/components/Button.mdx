@@ -16,7 +16,7 @@ import {
 ボタンを表示するコンポーネントです。
 
 ## 主なprops
-- `keycolor`: ボタンのキーカラー。デフォルトは`main`カラーです。
+- `keycolor`: ボタンのカラー。
 - `variant`: ボタンの表示スタイル。`outline`、`ghost`の2種類を用意しています。
 	- `c--button--{variant}`がクラスとして出力されます。
 - `leftIcon`, `rightIcon`: アイコンを指定できます。テキストの左右にアイコンを出力できます。
@@ -290,7 +290,7 @@ Buttonでは、`-hov:reverse`との相性が良くなるように調整を加え
 </Preview>
 
 <Preview>
-	<PreviewTitle>color指定ありでのreverse</PreviewTitle>
+	<PreviewTitle>keycolor指定ありでのreverse</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Cluster gap={20}>
 			<Button href='###' hover='reverse' keycolor='blue'>Button</Button>
@@ -310,10 +310,10 @@ Buttonでは、`-hov:reverse`との相性が良くなるように調整を加え
 </Alert>
 
 <Preview>
-	<PreviewTitle>真っ白になってしまう</PreviewTitle>
+	<PreviewTitle>NG例: 真っ白になってしまう</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Box p='40' hasLayer c='base'>
-			<MediaLayer src="/img.jpg" alt="" width={960} height={640} z='-1'/>
+			<MediaLayer src="/img.jpg" alt="" width='960' height='640' z='-1'/>
 			<FilterLayer blur='4px' z='-1'/>
 			<FilterLayer bgc="#000" opacity='0.5' z='-1'/>
 			<DammyText />
@@ -334,7 +334,7 @@ Buttonでは、`-hov:reverse`との相性が良くなるように調整を加え
 	<PreviewTitle>解決策</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Box p='40' hasLayer c='base'>
-			<MediaLayer src='/img.jpg' alt='' width={960} height={640} z='-1'/>
+			<MediaLayer src='/img.jpg' alt='' width='960' height='640' z='-1'/>
 			<FilterLayer blur='4px' z='-1'/>
 			<FilterLayer bgc='#000' opacity='0.5' z='-1'/>
 			<DammyText />
@@ -356,7 +356,7 @@ Buttonでは、`-hov:reverse`との相性が良くなるように調整を加え
 	<PreviewTitle>白黒反転エリアでのテスト</PreviewTitle>
 	<PreviewArea resize p={20}>
 		<Box p='40' hasLayer c='base'>
-			<MediaLayer src='/img.jpg' alt='' width={960} height={640} z='-1'/>
+			<MediaLayer src='/img.jpg' alt='' width='960' height='640' z='-1'/>
 			<FilterLayer blur='4px' z='-1'/>
 			<FilterLayer bgc='#000' opacity='0.5' z='-1'/>
 			<DammyText />

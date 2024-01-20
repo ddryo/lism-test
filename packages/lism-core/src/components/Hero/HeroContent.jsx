@@ -1,5 +1,5 @@
 import { Grid } from '../Grid';
-import { Item } from '../Item';
+import { FlexItem } from '../Flex';
 
 export default function HeroContent({ type, ...props }) {
 	let defProps = {};
@@ -10,24 +10,21 @@ export default function HeroContent({ type, ...props }) {
 	} else if (type === 'center') {
 		defProps = {
 			my: 'auto',
-			py: 60,
-			// isFlow: true,
-			isConstrained: true,
+			// py: 50,
+			isContainer: 'm',
 			hasGutter: true,
+			// isFlow: true,
 		};
 		defProps.my = 'auto';
 	} else if (type === 'stretch') {
 		// defProps.as = Grid;
 		defProps = {
 			as: Grid,
-			ac: 'stretch',
 			fxg: '1',
-			// py: 60,
-			// isFlow: true,
-			// isConstrained: true,
-			// hasGutter: true,
+			ai: 'center',
+			// ac: 'stretch',
 		};
 	}
 
-	return <Item className='c--hero__content' {...defProps} {...props} />;
+	return <FlexItem className='c--hero__content' data-pos={type} {...defProps} {...props} />;
 }

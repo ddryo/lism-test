@@ -3,7 +3,7 @@ import { LismProps } from '../types';
 import { Layouter } from '../Core';
 import { Icon } from '../Icon';
 import { SideFlex } from '../Flex';
-import AlertPresets from '@loos/lism-core/src/components/Alert/presets';
+import getProps from '@loos/lism-core/src/components/Alert/getProps';
 
 // const _default = defaultProps?.Alert || {};
 
@@ -18,33 +18,16 @@ let {
 	// lismStyle = {},
 	isFlow,
 	variant,
-	icon,
-	keycolor,
-	preset,
-	iconProps = {},
-	children,
 	...props
 } = Astro.props || {};
 
 lismClass.c = 'c--alert';
 if (variant) lismClass.c += ` c--alert--${variant}`;
 
-const presetData = preset ? AlertPresets[preset] : null;
-
-if (presetData) {
-	keycolor = keycolor || presetData.color || null;
-	icon = icon || presetData.icon || null;
-	iconProps.label = iconProps.label || presetData.label || null;
-}
+const { icon, iconProps, ...alertProps } = getProps(props);
 ---
 
-<SideFlex
-	side='first'
-	lismState={['is--colorbox']}
-	lismClass={lismClass}
-	keycolor={keycolor}
-	{...props}
->
+<SideFlex side='first' lismClass={lismClass} {...alertProps}>
 	{icon && <Icon lismClass={{ c: 'c--alert__icon' }} icon={icon} {...iconProps} />}
 	<Layouter className='c--alert__body' isFlow={isFlow}>
 		<slot />

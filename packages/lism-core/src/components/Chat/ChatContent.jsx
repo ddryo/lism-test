@@ -1,75 +1,33 @@
-// import React from 'react';
-// import ChatText from './ChatText';
-// import ChatTextContent from './ChatTextContent';
-// import { Item } from '../Item';
+import React from 'react';
 import { Layouter } from '../Layouter';
-// import { Grid } from '../Grid';
 import { Decorator } from '../Decorator';
-// import { DecoBox } from '../DecoBox';
-// import { Avatar } from '../Avatar';
-// import { MediaLayer } from '../Layer';
-
-const DECORATOR_PROPS = {
-	start: {
-		inset: { ie: '100%' },
-	},
-	end: {
-		inset: { is: '100%' },
-		transform: 'scaleX(-1)',
-	},
-};
+// import { ChatContext } from './context';
+import { getDecoProps, getContentProps } from './getProps';
 
 export default function ChatContent({
 	lismClass = {},
-	wrapperProps = {},
-	context = {}, // 親から渡される
+	contentProps = {},
+	direction = 'start',
+	variant = 'speak',
+	isFlow,
 	children,
 	...props
 }) {
 	lismClass.c = `c--chat__body`;
-
-	const { direction = 'start', variant = 'speak' } = context;
+	// const { direction = 'start', variant = 'speak' } = React.useContext(ChatContext) || {};
 
 	let decorator = null;
-
-	let defaultContentProps = {
-		isFlow: 's',
-		// consume: 'c bgc', //'p bgc bdc bdw',
-	};
-
 	if ('speak' === variant || 'think' === variant) {
-		decorator = (
-			<Decorator
-				variant={`chat-${variant}`}
-				mask='-'
-				pos='absolute'
-				top='0'
-				{...DECORATOR_PROPS[direction]}
-			/>
-		);
-	}
-
-	if ('speak' === variant && direction === 'start') {
-		defaultContentProps.bdrs = { ss: 0 };
-	} else if ('speak' === variant && direction === 'end') {
-		defaultContentProps.bdrs = { se: 0 };
+		decorator = <Decorator {...getDecoProps(direction, variant)} />;
 	}
 
 	return (
-		<Layouter
-			className='is--colorbox'
-			lismClass={lismClass}
-			{...wrapperProps}
-			//area='nofix'
-			// data-variant={variant}
-		>
+		<Layouter lismClass={lismClass} {...props}>
 			{decorator}
 			<Layouter
 				className='c--chat__content'
-				pos='relative'
-				maxW='s'
-				{...defaultContentProps}
-				{...props}
+				isFlow={isFlow}
+				{...getContentProps(direction, variant, contentProps)}
 			>
 				{children}
 			</Layouter>

@@ -10,5 +10,3 @@ export default function CardMedia({ lismClass = {}, children, ...props }) {
 		</Frame>
 	);
 }
-
-// l--layer l--frame

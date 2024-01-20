@@ -48,10 +48,12 @@ export function getAllLayoutStateData({
 	isWide,
 	isFlow,
 	isContainer,
-	isConstrained,
+	// isConstrained,
+	isFrame,
 	hasGutter,
 	hasLayer,
 	hasDivider,
+	// hasCoverMedia,
 	// isFrame,
 	//isLinkbox,
 	...props
@@ -63,12 +65,12 @@ export function getAllLayoutStateData({
 		Object.assign(lismStyle, style);
 	}
 
-	if (isConstrained) {
-		if (isConstrained === true) isConstrained = 'm';
-		const { className, style } = getTheStateData('is--container', isConstrained);
-		lismState.push(className);
-		Object.assign(lismStyle, style);
-	}
+	// if (isConstrained) {
+	// 	if (isConstrained === true) isConstrained = 'm';
+	// 	const { className, style } = getTheStateData('is--container', isConstrained);
+	// 	lismState.push(className);
+	// 	Object.assign(lismStyle, style);
+	// }
 
 	if (isFlow) {
 		const { className, style } = getTheStateData('is--flow', isFlow);
@@ -76,16 +78,16 @@ export function getAllLayoutStateData({
 		Object.assign(lismStyle, style);
 	}
 
-	// isFrame && lismState.push('is--frame');
+	isFrame && lismState.push('is--frame');
 	hasGutter && lismState.push('has--gutter');
 	hasLayer && lismState.push('has--layer');
 	isOverwide && lismState.push('is--overwide');
 	(alignfull || isFullwide) && lismState.push('is--fullwide');
 	(alignwide || isWide) && lismState.push('is--wide');
 
-	if (hasDivider) {
-		lismState.push('has--divider');
-	}
+	if (hasDivider) lismState.push('has--divider');
+	// if (hasCoverMedia) lismState.push('has--coverMedia');
+
 	//  else if (typeof hasDivider === 'string') {
 	// 	lismState.push(`has--divider:${hasDivider}`);
 	// }

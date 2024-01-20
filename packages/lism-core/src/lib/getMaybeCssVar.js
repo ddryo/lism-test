@@ -40,6 +40,21 @@ export function getMaybeSpaceVar(value, propName) {
 		return `var(--s--${value})`;
 	}
 
+	//
+	// + があれば calcで足す?
+	// ...
+
+	// スペース区切りで一括指定されている場合
+	if (typeof value === 'string' && value.includes(' ')) {
+		// （calc(), var() 等 があれば対象外にしたい）
+		if (!value.includes('calc(') && !value.includes('var(') && !value.includes(',')) {
+			// spaceを' 'で配列化して、数値なら変数化する
+			//     ex) '20 40' → '--s--20 --s--40', '20 10px' → '--s--20 10px'
+			const spaceArr = value.split(' ');
+			return spaceArr.map((_s) => getMaybeSpaceVar(_s)).join(' ');
+		}
+	}
+
 	// emトークン
 	if (value.startsWith('em')) {
 		const emVal = value.replace('em', '');
@@ -48,24 +63,8 @@ export function getMaybeSpaceVar(value, propName) {
 		// }
 	}
 
-	// + があれば calcで足す
-	// ...
-
-	// スペース区切りで一括指定されている場合
-	if (typeof value === 'string' && value.includes(' ')) {
-		// spaceを' 'で配列化して、数値なら変数化する
-		//     ex) '20 40' → '--s--20 --s--40', '20 10px' → '--s--20 10px'
-		const spaceArr = value.split(' ');
-		return spaceArr
-			.map((_s) => {
-				if (isNumStr(_s) && _s !== '0') return `var(--s--${_s})`;
-				return _s;
-			})
-			.join(' ');
-	}
-
 	// box:s → --p--box--s
-	if (propName && isPresetValue(propName, value)) {
+	if (propName && isTokenValue(propName, value)) {
 		return `var(--${propName}--${value.replace(':', '--')})`;
 	}
 

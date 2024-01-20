@@ -8,12 +8,12 @@ listについて
 // where の方がいいか？
 :is(ul, ol) {
 	// 子要素含めてすべて変更したい時 → CSS変数を使う
-	padding-inline-start: var(--list--pis, 0);
+	padding-inline-start: var(--list-pis, 0);
 	list-style: var(--list-style, revert);
 
 	//  flex, grid ではデフォルトで打ち消す？
 	// &:where(.l--flex, .l--grid) {
-	// 	--list--pis: 0;
+	// 	--list-pis: 0;
 	// 	--list-style: none;
 	// }
 }

@@ -4,6 +4,7 @@ export default function getProps({
 	// lismStyle = {},
 	variant,
 	preset,
+	boxcolor,
 	// isFlow,
 	// icon,
 	// iconProps = {},
@@ -20,9 +21,11 @@ export default function getProps({
 
 	const presetData = preset ? NotePresets[preset] : null;
 	if (presetData) {
-		props.keycolor = props.keycolor || presetData.color || null;
+		boxcolor = boxcolor || presetData.color || null;
 		props.icon = props.icon || presetData.icon || null;
 	}
+
+	props.boxcolor = boxcolor || '-';
 
 	// icon あれば flex に。
 	if (null != props.icon) {

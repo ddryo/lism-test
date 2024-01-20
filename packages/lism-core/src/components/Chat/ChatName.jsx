@@ -7,12 +7,7 @@ import { Core } from '../Core';
 // import { Avatar } from '../Avatar';
 // import { MediaLayer } from '../Layer';
 
-export default function ChatName({
-	lismClass = {},
-	context = {}, // 親から渡される
-	children,
-	...props
-}) {
+export default function ChatName({ lismClass = {}, children, ...props }) {
 	lismClass.c = 'c--chat__name';
 	// if (type) lismClass.c += ` c--chat--${type}`;
 

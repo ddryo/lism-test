@@ -1,9 +1,9 @@
 // import React from 'react';
-import { Core } from '../Core';
+import { Layouter } from '../Layouter';
 import { getFlexItemProps } from '../../lib';
 
 export default function FlexItem({ children, as, isSide, ...props }) {
-	const FlexItem = as || Core;
+	const FlexItem = as || Layouter;
 
 	// grid 系の props をまとめる
 	props = getFlexItemProps(props);

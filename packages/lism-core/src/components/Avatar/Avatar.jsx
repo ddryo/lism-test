@@ -6,7 +6,7 @@ import { separateMediaAttrs } from '../../lib';
 // srcがあれば自身をmediaにする？この時、objectFit適用する
 // c--avatar?
 export default function Avatar({
-	lismClass = {},
+	_lismClass = [],
 	variant,
 	children,
 	name,
@@ -14,12 +14,12 @@ export default function Avatar({
 	mediaProps = {},
 	...props
 }) {
-	lismClass.e = 'e--avatar';
-	if (variant) lismClass.e += ` e--avatar--${variant}`;
+	_lismClass.push('c--avatar');
+	if (variant) _lismClass.push(`c--avatar--${variant}`);
 
 	if (children) {
 		return (
-			<Frame lismClass={lismClass} {...props}>
+			<Frame _lismClass={_lismClass} aspect='1/1' bdrs='full' {...props}>
 				{children}
 			</Frame>
 		);
@@ -27,7 +27,7 @@ export default function Avatar({
 
 	const { mediaAttrs, otherProps } = separateMediaAttrs(props);
 	return (
-		<Frame lismClass={lismClass} {...otherProps}>
+		<Frame _lismClass={_lismClass} aspect='1/1' bdrs='full' {...otherProps}>
 			<Media
 				src={src}
 				alt={name}

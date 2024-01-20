@@ -89,25 +89,25 @@ export const ColorBadge = ({color, label}) => {
 
 |パレットトークン|変数|クラス|
 |---|---|---|
-|<ColorBadge color='red' />|`--red`|`.-keycolor:red`|
-|<ColorBadge color='orange' />|`--orange`|`.-keycolor:orange`|
-|<ColorBadge color='yellow' />|`--yellow`|`.-keycolor:yellow`|
-|<ColorBadge color='green' />|`--green`|`.-keycolor:green`|
-|<ColorBadge color='blue' />|`--blue`|`.-keycolor:blue`|
-|<ColorBadge color='purple' />|`--purple`|`.-keycolor:purple`|
-|<ColorBadge color='pink' />|`--pink`|`.-keycolor:pink`|
-|<ColorBadge color='black' />|`--black`|`.-keycolor:black`|
-|<ColorBadge color='white' />|`--white`|`.-keycolor:white`|
+|<ColorBadge color='red' />|`--red`|`.-boxcolor:red`|
+|<ColorBadge color='orange' />|`--orange`|`.-boxcolor:orange`|
+|<ColorBadge color='yellow' />|`--yellow`|`.-boxcolor:yellow`|
+|<ColorBadge color='green' />|`--green`|`.-boxcolor:green`|
+|<ColorBadge color='blue' />|`--blue`|`.-boxcolor:blue`|
+|<ColorBadge color='purple' />|`--purple`|`.-boxcolor:purple`|
+|<ColorBadge color='pink' />|`--pink`|`.-boxcolor:pink`|
+|<ColorBadge color='black' />|`--black`|`.-boxcolor:black`|
+|<ColorBadge color='white' />|`--white`|`.-boxcolor:white`|
 
 
 <Preview>
 	<PreviewTitle>使用例</PreviewTitle>
 	<PreviewArea p={20}>
-		<Alert preset='alert'><DammyText length='codes' /></Alert>
-		<Note preset='note' heading='Note'><DammyText length='codes' /></Note>
-		<Box className='is--colorbox' keycolor='blue' bd p='box'>
+		<Box boxcolor='blue' bd p='box'>
 			<DammyText length='codes' />
 		</Box>
+		<Alert preset='alert'><DammyText length='codes' /></Alert>
+		<Note preset='note' heading='Note'><DammyText length='codes' /></Note>
 		<Box bgc='green:15%' c='blue:50%' p='box'>
 			<DammyText />
 		</Box>

@@ -86,7 +86,8 @@ export default {
 	c: { presets: 1, converter: 'color' },
 	bg: { style: 'background', presets: 1, utils: 1, map: 1 },
 	bgc: { presets: 1, utils: 1, converter: 'color' },
-	keycolor: { style: '--keycolor', presets: 1, converter: 'color' },
+	keycolor: { style: '--keycolor', converter: 'color' },
+	boxcolor: { presets: 'palette', converter: 'color' },
 	// mask: { map: 1 },
 	bd: {
 		// map: 1,
@@ -226,8 +227,8 @@ const placeProps = {
 };
 const itemProps = {
 	order: { style: 1, utilKey: 'ord', presets: ['0', '-1', '1'] },
-	aslf: { style: 1, utilKey: 'aslf', utils: 'selfPlace' },
-	jslf: { style: 1, utilKey: 'jslf', utils: 'selfPlace' },
+	aslf: { style: 'alignSelf', utilKey: 'aslf', utils: 'selfPlace' },
+	jslf: { style: 'justifySelf', utilKey: 'jslf', utils: 'selfPlace' },
 	pslf: { style: 'placeSelf' },
 };
 export const CONTEXT_PROPS = {
@@ -295,7 +296,7 @@ export const CONTEXT_PROPS = {
 	},
 
 	inset: {
-		inset: { style: 1, utils: 1, converter: 'space' },
+		inset: { style: 1, utils: 1, presets: 1, converter: 'space' },
 		t: { ...insetsProps, style: 'top' },
 		l: { ...insetsProps, style: 'left' },
 		r: { ...insetsProps, style: 'right' },
@@ -339,14 +340,14 @@ export const CONTEXT_PROPS = {
 		transformOrigin: { style: 1, utilKey: 'trfo', utils: 'origin' },
 		translate: { style: 1, utils: 1, utilKey: 'trnslt' },
 		rotate: { style: 1, utils: 1 }, // rot?
-		scale: { style: 1 }, //
+		scale: { style: 1, utils: 1 }, //
 		// flip: { style: 1 },
 		clipPath: { style: 1 }, // cpp ?
 
 		lis: { style: 'listStyle', utils: { none: 'n' } },
 		// appearance: { style: 1, utils: { none: 'n' } },
 		objectFit: { style: 1, utilKey: 'obf', utils: 1 },
-		objectPosition: { style: 1, converter: 'filter' },
+		objectPosition: { style: 1 },
 
 		// animation: { map:1, style: 1, presets: 1 },
 		filter: { style: 1, converter: 'filter' },

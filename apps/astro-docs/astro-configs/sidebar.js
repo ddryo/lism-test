@@ -162,10 +162,7 @@ export default [
 				label: 'Center',
 				link: '/components/center/',
 			},
-			{
-				label: 'Frame',
-				link: '/components/frame/',
-			},
+
 			{
 				label: 'Layer',
 				link: '/components/layer/',
@@ -178,14 +175,25 @@ export default [
 				label: 'Spacer',
 				link: '/components/spacer/',
 			},
-
 			{
-				label: 'Element',
+				label: 'State',
 				link: '###',
 			},
 			{
-				label: 'Avatar',
-				link: '/components/avatar/',
+				label: 'Container',
+				link: '/components/container/',
+			},
+			{
+				label: 'Frame',
+				link: '/components/frame/',
+			},
+			{
+				label: 'LinkBox',
+				link: '/components/linkbox/',
+			},
+			{
+				label: 'Element',
+				link: '###',
 			},
 			{
 				label: 'Icon',
@@ -207,6 +215,10 @@ export default [
 			{
 				label: 'Accordion',
 				link: '/components/accordion/',
+			},
+			{
+				label: 'Avatar',
+				link: '/components/avatar/',
 			},
 			{
 				label: 'Button',
@@ -235,10 +247,6 @@ export default [
 			{
 				label: 'ShapeDivider',
 				link: '/components/shapedivider/',
-			},
-			{
-				label: 'LinkBox',
-				link: '/components/linkbox/',
 			},
 			{
 				label: 'NavMenu',

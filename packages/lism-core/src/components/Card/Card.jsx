@@ -20,6 +20,7 @@ export default function Card({
 	lismState = [],
 	variant,
 	isFlex,
+	isLinkBox,
 	children,
 	...props
 }) {
@@ -28,9 +29,8 @@ export default function Card({
 
 	let CardComponent = isFlex ? Flex : Stack;
 
-	// 以下、 href なし
+	// href あり
 	if (props.href) {
-		lismState.push('is--test');
 		return (
 			<LinkBox
 				as={CardComponent}
@@ -44,9 +44,13 @@ export default function Card({
 		);
 	}
 
+	if (isLinkBox) {
+		lismState.push('is--linkBox');
+	}
+
 	// href 指定なし
 	return (
-		<CardComponent lismClass={lismClass} {...defaultProps} {...props}>
+		<CardComponent lismClass={lismClass} lismState={lismState} {...defaultProps} {...props}>
 			{children}
 		</CardComponent>
 	);

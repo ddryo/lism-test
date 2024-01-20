@@ -90,6 +90,14 @@
 	// .b--demoBox:has(.b--demoBox__code) & {
 	// 	transform: translateY(100%);
 	// }
+
+	opacity: 0;
+	visibility: hidden;
+
+	.c--preview_inner:hover & {
+		opacity: 1;
+		visibility: visible;
+	}
 }
 
 .c--preview_area + .c--preview_code {

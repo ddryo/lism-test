@@ -84,28 +84,37 @@
 // pass-get/ privide-get/throw-get/parent-child/
 .-hov\:pass {
 	--isHover: 0;
-	// --hide2show: hidden;
-	// --show2hide: visible;
+	--hovVisible: hidden;
+	--hov1fr: 0fr;
 	&:hover {
 		--isHover: 1;
+		--hovVisible: visible;
+		--hov1fr: 1fr;
 	}
 }
 
 // .-hov\:get\:show
 .-hov\:get\:show {
-	opacity: 0;
-	visibility: hidden;
+	opacity: var(--isHover);
+	visibility: var(--hovVisible);
 
-	.-hov\:pass:hover & {
-		opacity: 1;
-		visibility: visible;
-	}
+	// .-hov\:pass:hover & {
+	// 	opacity: 1;
+	// 	visibility: visible;
+	// }
 }
 .-hov\:get\:hide {
-	opacity: calc(1 - 1 * var(--isHover, 0));
+	opacity: calc(1 - 1 * var(--isHover));
 }
 .-hov\:get\:zoom {
-	scale: calc(1 + 0.1 * var(--isHover, 0));
+	scale: calc(1 + 0.1 * var(--isHover));
+}
+.-hov\:get\:slideUp {
+	grid-template-rows: var(--hov1fr); // calc() で fr単位が使えない
+	opacity: var(--isHover);
+	transition:
+		opacity 0.25s,
+		grid-template-rows 0.25s;
 }
 
 // [class*='-hov:media'] {

@@ -20,7 +20,7 @@ const lismState = [];
 if (resize) lismState.push('is--resize');
 ---
 
-<Layouter className='c--preview_area -hov:pass'>
+<Layouter className='c--preview_area'>
 	<Layouter
 		className='c--preview_inner'
 		lismState={lismState}
@@ -34,7 +34,7 @@ if (resize) lismState.push('is--resize');
 		{
 			resize && (
 				<Layer
-					className='c--preview_help -d:f -lh:1 -p:em5 -gap:em3 -bdrs:xs -hov:get:show'
+					className='c--preview_help -d:f -lh:1 -p:em5 -gap:em3 -bdrs:xs'
 					position='bottom right'
 				>
 					リサイズ可能 <Icon as={ArrowDownRight} weight='fill' />

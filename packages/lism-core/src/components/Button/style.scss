@@ -8,23 +8,21 @@
 	--bdc: transparent; // reverse用
 	--c: currentColor; // filledColor?
 
-	// --hov--c: var(--bgc);
-	// --hov--bgc: var(--c);
-	// --hov--bdc: var(--bdc);
+	border-radius: var(--radius--xs);
+	line-height: var(--lh--xs);
+	padding: 0.375em 0.875em; // bdrs=full を考慮すると 1em くらいあった方がいいが...
+	gap: var(--em--5);
+	min-block-size: 2.75em;
 }
+
 // py は小さめにして、minHで最低限の高さを確保.
 .c--button {
 	--link-td: none; // pタグ内にくるかもしれないので
 	align-items: center;
-	padding: 0.375em 0.875em; // bdrs=full を考慮すると 1em くらいあった方がいいが...
-	gap: var(--em--5);
 	width: fit-content;
 	color: var(--c);
 	background-color: var(--bgc);
 	border: solid 1px var(--bdc); // アウトラインと並べたときにサイズに差がでないように
-	min-block-size: 2.75em;
-	border-radius: 1px;
-	line-height: var(--lh--xs);
 }
 
 // .c--button:where(.-hov\:reverse):hover {

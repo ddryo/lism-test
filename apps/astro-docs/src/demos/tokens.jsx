@@ -119,7 +119,7 @@ export const RadiusDemos = () => {
 						{/* <Text bd='left' bdw='2px' lh='1' pl='20' fz='xs'>
 							<code>{r}</code>
 						</Text> */}
-						<Frame aspect='1/1' radius={r} bd>
+						<Frame aspect='1/1' bdrs={r} bd>
 							<Center h='100' ff='mono' fz='xs' c='content-2'>
 								{r}
 							</Center>

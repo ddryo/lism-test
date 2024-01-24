@@ -140,3 +140,58 @@
 // .-bdw\:medium{--bdw: var(--bdw--medium)}
 
 // .-bdc\:{border-color: var(--bdc);}
+
+// .-bdc\: {}
+// .-bdc\:i {
+// 	--bdc: inherit;
+// }
+.-bdc\:main {
+	--bdc: var(--main);
+}
+// .-bdc\:accent {
+// 	--bdc: var(--accent);
+// }
+
+// 10,20?
+
+// .-bdc\:strong {
+//--bdc: var(--bdc--strong);
+// }
+
+// bdc:0
+.-bdc\:t {
+	--bdc: transparent;
+}
+// .-bdc\:divider {
+// 	--bdc: var(--bdc--divider);
+// }
+.-bdc\:table {
+	--bdc: var(--table-bdc);
+}
+// .-bdc\:white {
+// 	--bdc: var(--white);
+// }
+// .-bdc\:black {
+// 	--bdc: var(--black);
+// }
+
+// border-style使うと全方向にborder出てくることに注意。
+// bds→ --bdsのみ出力。 borderStyle→border-style出力
+// .-bds\:{border-style: var(--bds);}
+
+// .-bds\:n{border-style:none;}
+// .-bds\:h{border-style:hidden;}
+.-bds\:dt {
+	--bds: dotted;
+}
+.-bds\:ds {
+	--bds: dashed;
+}
+.-bds\:s {
+	--bds: solid;
+}
+.-bds\:db {
+	--bds: double;
+}
+
+// bds,borderSolidで挙動変える？

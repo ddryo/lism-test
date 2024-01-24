@@ -11,7 +11,6 @@ export default {
 		'xl',
 		'l',
 		'm',
-		'r',
 		's',
 		'xs',
 		'2xs',
@@ -29,7 +28,7 @@ export default {
 	// em: ['1', '2', '3', '4', '5', '10', '15', '20', '25', '30'],
 	// p: ['box', 'box:s', 'box:l'],
 
-	radius: ['full', '2xl', 'xl', 'l', 'm', 'r', 's', 'xs'],
+	radius: ['full', '2xl', 'xl', 'l', 'm', 's', 'xs'],
 	shadow: ['-1', '-2', '-3', '-4', '1', '2', '3', '4'],
 
 	// size:['container', 'container:s', 'container:l'],

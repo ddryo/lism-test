@@ -62,10 +62,10 @@ const COLOR = {
 
 			// postcss実行
 			postcss([
-				mergeAtRules({
-					atRulePattern: /(media|layer|supports|container)/im,
-					nest: true,
-				}),
+				// mergeAtRules({
+				// 	atRulePattern: /(media|layer|supports|container)/im,
+				// 	nest: true,
+				// }),
 				autoprefixer,
 				cssnano,
 			])

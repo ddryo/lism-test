@@ -1,8 +1,8 @@
 import { Badge } from '@loos/lism-core';
 
-export const MemoBadge = ({ children, ...props }) => {
+export const MemoBadge = ({ children, color = 'orange', ...props }) => {
 	return (
-		<Badge fz='11px' lh='1' p='10' variant='subtle' boxcolor='orange' {...props}>
+		<Badge fz='11px' lh='1' p='em3' variant='subtle' boxcolor={color} {...props}>
 			{children}
 		</Badge>
 	);

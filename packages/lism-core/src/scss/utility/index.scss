@@ -1,26 +1,30 @@
 @use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
+
 @use '../query' as query;
 @use '../setting' as setting;
 
 @forward './consume';
 @forward './colorbox'; // Note: colorより前に読み込む必要あり
 @forward './color'; // Note: colorboxより後ろに読み込む必要あり
-@forward './aspect';
+
 @forward './border';
-@forward './display';
 @forward './hover';
-@forward './gap';
+// @forward './aspect';
+// @forward './display';
+// @forward './gap';
 @forward './grid-props';
 @forward './flex-props';
 @forward './place';
 @forward './item';
 @forward './bg';
 @forward './mask';
-@forward './margin';
-@forward './padding';
+// @forward './margin';
+// @forward './padding';
 @forward './radius';
 @forward './shadow';
-@forward './sizing';
+// @forward './sizing';
 @forward './typography';
 @forward './transform';
 @forward './positions';
@@ -28,65 +32,124 @@
 @forward './others';
 @forward './lism';
 
-// .-container\:s {
-// 	container-type: size;
-// }
-// .-container\:i {
-// 	container-type: inline-size;
-// }
-
-// [class*='-aspect\:'] aspect-ratio: var(--aspect);}
-// .-d\:{display: var(--d) !important;}
-
-@each $key, $data in setting.$utilities {
-	$prop: map.get($data, prop);
-	$base_type: map.get($data, base_type);
-
-	$important: '';
-	@if map.get($data, important) {
-		$important: ' !important';
+@function get_important($is_important) {
+	@if $is_important {
+		@return ' !important';
 	}
+	@return '';
+}
 
-	@if $base_type == 1 {
-		.-#{$key}\: {
-			#{$prop}: var(--#{$key}) #{$important};
-		}
-	} @else if $base_type == 2 {
+@mixin echoBaseUtil($key, $prop, $base_type, $important) {
+	@if $base_type == 2 {
 		[class*='-#{$key}:'] {
 			#{$prop}: var(--#{$key}) #{$important};
 		}
-	}
-
-	// utilities
-	$utilities: map.get($data, utilities);
-	@each $u, $value in $utilities {
-		.-#{$key}\:#{$u} {
-			#{$prop}: #{$value} #{$important};
+	} @else if $base_type != 0 {
+		.-#{$key}\: {
+			#{$prop}: var(--#{$key}) #{$important};
 		}
 	}
 }
 
-/* stylelint-disable */
-@each $bp in map.keys(query.$break-points) {
-	@include query.bp-up($bp) {
-		@each $key, $data in setting.$bp_props {
-			$prop: map.get($data, prop);
+// 各プロパティのユーティリティクラス
+@mixin echoUtilities($key, $prop, $utilities, $base_type, $important) {
+	@each $ukey, $value in $utilities {
+		$selector: '';
+		$has_comma: string.index($ukey, ',');
 
-			// デフォルトで現在のブレイクポイント ($bp) 用のクラスを出力するかどうか
-			$default_support_now_bp: map.get(setting.$utility_break_points, #{$bp});
+		@if $has_comma {
+			$ukeys: string.split($ukey, ',');
 
-			// Propごとの設定で、現在のブレイクポイント ($bp) 用のクラス出力をサポートするかどうか
-			$prop_support_now_bp: map.get($data, #{$bp});
-
-			@if $prop_support_now_bp == 1 or ($default_support_now_bp == 1 and $prop_support_now_bp != 0) {
-				@if map.get($data, important) {
-					.-#{$key}\@#{$bp} {
-						#{$prop}: var(--#{$key}--#{$bp}) !important;
-					}
+			@for $i from 1 through list.length($ukeys) {
+				$_selector: '.-#{$key}\\:#{list.nth($ukeys, $i)}';
+				@if $i == 1 {
+					$selector: $_selector;
 				} @else {
-					.-#{$key}\@#{$bp} {
-						#{$prop}: var(--#{$key}--#{$bp});
-					}
+					$selector: $selector + ',' + $_selector;
+				}
+			}
+		} @else {
+			$selector: '.-#{$key}\\:#{$ukey}';
+		}
+
+		@if $base_type == 2 {
+			#{$selector} {
+				--#{$key}: #{$value};
+			}
+		} @else {
+			#{$selector} {
+				#{$prop}: #{$value} #{$important};
+			}
+		}
+	}
+}
+
+$bp_support_list: (); // list
+
+@each $key, $data in setting.$prop_class_data {
+	$prop: map.get($data, prop); // 対応するCSSプロパティ名
+	$base_type: map.get($data, base_type); // 基本セレクタの種類
+	$is_important: map.get($data, important);
+
+	$important: get_important($is_important); //を付けるかどうか;
+
+	// ベースセレクタの出力
+	@include echoBaseUtil($key, $prop, $base_type, $important);
+
+	// utilityクラスの出力
+	$utilities: map.get($data, utilities);
+	@if $utilities {
+		// 文字列の場合はそれをキーとして別マップから取得
+		@if (type-of($utilities) == string) {
+			$utilities: map.get(setting.$utilities, $utilities);
+		}
+
+		// リストの場合はそれぞれをキーとして別マップから取得
+		@if (type-of($utilities) == list) {
+			$merged_utilities: ();
+			@each $utilkey in $utilities {
+				$merged_utilities: map.merge(
+					$merged_utilities,
+					map.get(setting.$utilities, $utilkey)
+				);
+			}
+			$utilities: $merged_utilities;
+		}
+
+		@include echoUtilities($key, $prop, $utilities, $base_type, $important);
+	}
+
+	// BPクラスを出力するプロパティのリストを作成
+	@if map.has-key($data, bp) {
+		$bp_support_list: list.append($bp_support_list, $key);
+	}
+}
+
+/* __stylelint-disable */
+//まず定義されている BP でループ
+@each $bp in map.keys(query.$break-points) {
+	// BPサポートプロパティのリストをループ
+	@each $key in $bp_support_list {
+		$prop_data: map.get(setting.$prop_class_data, $key);
+		$prop: map.get($prop_data, prop);
+		$bp_data: map.get($prop_data, bp);
+		$is_important: map.get($prop_data, important);
+
+		// 現在のブレイクポイント ($bp) 用のクラスを出力するかどうかを、デフォルト設定から取得
+		$support_now_bp: map.get(setting.$utility_bps, $bp);
+
+		// Propごとの設定で上書きデータがあるかどうか
+		@if (type-of($bp_data) == map) {
+			// 0, 1 がセットされてれば
+			@if type-of(map.get($bp_data, $bp)) == number {
+				$support_now_bp: map.get($bp_data, $bp);
+			}
+		}
+
+		@if $support_now_bp == 1 {
+			@include query.bp-up($bp) {
+				.-#{$key}\@#{$bp} {
+					#{$prop}: var(--#{$key}--#{$bp}) #{get_important($is_important)};
 				}
 			}
 		}

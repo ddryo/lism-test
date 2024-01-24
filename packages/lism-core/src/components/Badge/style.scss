@@ -1,4 +1,5 @@
 :where(.c--badge) {
+	display: inline-flex; // 文中でもpaddingが効くように
 	font-size: var(--fz--xs);
 	border-radius: var(--radius--xs);
 }

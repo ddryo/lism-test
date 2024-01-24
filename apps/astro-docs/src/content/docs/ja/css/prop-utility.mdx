@@ -1,29 +1,169 @@
 ---
 title: 'Prop Utility'
 description: ...
+sidebar:
+  order: 5
 ---
 import { Box, Flex, Alert, Note } from "@loos/lism-astro";
 import { DammyText, Reference, MemoBadge, HelpText } from "~/components";
 import { Preview, PreviewArea, PreviewTitle, PreviewCode } from "~/components/Preview";
 
 
+export const PropTable = ({data={}, ...props}) => {
+	const dataKyes = Object.keys(data);
+	return (
+		<>
+			<table>
+				<thead>
+					<tr>
+						<th>Utility Class</th>
+						<th>Value</th>
+					</tr>
+				</thead>
+				<tbody>
+				{dataKyes.map((_propName) => {
+					const utils = data[_propName];
+					const utilsKeys = Object.keys(utils);
+					return (
+						<>
+							{utilsKeys.map((utilKey) => {
+								return (
+									<tr>
+										<td><code>{`.-${_propName}:${utilKey}`}</code></td>
+										<td><code>{`${utils[utilKey]}`}</code></td>
+									</tr>
+								);
+							})}
+						</>
+					)
+				})}
+				</tbody>
+			</table>
+		</>
+	);
 
-### Colors
+// 				{showDemo && (
+// 				<Preview>
+// 					<PreviewTitle>{propName}</PreviewTitle>
+// 					<PreviewArea>
+// 					{utilsKeys.map((utilKey) => {
+// 						const _props = {
+// 							[propName]: utilKey,
+// 						};
+// 						return (
+// 							<Box {...props} {..._props}>
+// 								{children}
+// 							</Box>
+// 						);
+// 					})}
+// 					</PreviewArea>
+// 				</Preview>
+// 			)}
+}
 
-|Utility Class|Value|
-|---|---|
-|`-c:base`|`--base`|
-|`-c:content`|`--content`|
-|`-c:content-2`|`--content-2`|
-|`-c:content-3`|`--content-3`|
+
+## Colors
+
+<Preview>
+<PreviewArea resize>
+	<Box bgc='base-2' p={[10, 20]} w={['100', 'fit-content']}>
+		<p>text.</p>
+		<Box mbs='20'>BOX</Box>
+	</Box>
+	<Box bgc='base-2' p={['em10', 40]} px='em5' flex={{gap:'20'}} d={['block', 'flex']}>
+		<p>text.</p>
+		<Box m='40' my='10'>BOX</Box>
+		<p>text.</p>
+	</Box>
+</PreviewArea>
+</Preview>
+
+### color
+
+<PropTable
+	data={{c: {'base':'--base', 'content': '--content', 'content-2': '--content-2', 'content-3': '--content-3'}}}
+/>
+
+### background-color
+
+<PropTable
+	data={{bgc:{'content':'--content', 'base': '--base', 'base-2': '--base-2', 'base-3': '--base-3'}}}
+/>
 
 
-|Utility Class|Value|
-|---|---|
-|`-fz:s`|`--fz--s`|
 
-|Utility Class|Value|
-|---|---|
-|`-ta:c`|`center`|
+## Typography
 
-....
+### font-size
+
+<PropTable
+	data={{fz:{
+		'root': '1rem',
+		'2xs':'--fz--2xs',
+		'xs':'--fz--xs',
+		's':'--fz--s',
+		'm': '--fz--m',
+		'l': '--fz--l',
+		'xl': '--fz--xl',
+		'2xl': '--fz--2xl'
+	}}}
+/>
+
+### text-align
+<PropTable
+	data={{ta:{'l':'left', 'c': 'center', 'r': 'right'}}}
+/>
+
+
+## Sizing
+
+### width, height
+
+<PropTable
+	data={{
+		'w': {'fit':'fit-content', '100': '100%'},
+		'h': {'fit':'fit-content', 'screen':'...', '100': '100%'},
+	}}
+/>
+
+
+### max-width, max-height
+
+<PropTable
+	data={{
+		'maxW': {'100': '100%'}, // s,m,l
+		'maxH': {'100': '100%'},
+	}}
+/>
+
+
+### width, height
+
+<PropTable
+	data={{
+		'minW': {'100': '100%'},
+		'minH': {'100': '100%'},
+	}}
+/>
+
+
+## Others
+
+### aspect-ratio
+
+<PropTable
+	data={{
+		'aspect': {
+			'16/9': '16/9',
+			'4/3': '4/3',
+			'3/2': '3/2',
+			'2/1': '2/1',
+			'1/1': '1/1',
+			'golden': '16.18/10',
+			'silver': '14.14/10',
+			'bronze': '33.03/10',
+			'ogp': '1.91/1',
+			'cinema': '2.35/1',
+		},
+	}}
+/>

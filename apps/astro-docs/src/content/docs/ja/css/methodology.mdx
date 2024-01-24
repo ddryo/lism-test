@@ -35,10 +35,80 @@ LismがどのようなCSS設計になっているかを説明します。
 |Props|CSSプロパティティに紐づいたクラス。|0-1-0 !|
 |Utility|その他の例外的なユーティリティクラス。||
 
+<table className="table--solid">
+	<thead>
+		<tr>
+			<th colSpan={2}>Layer</th>
+			<th>役割</th>
+			<th>最大詳細度</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colSpan={2}>Settings</td>
+			<td>SASSの設定変数, mixinなど直接スタイルに吐き出されないもの。</td>
+			<td>-</td>
+		</tr>
+		<tr>
+			<td rowSpan={3} style={{verticalAlign: 'top'}}>Base</td>
+			<td>Reset</td>
+			<td>reset CSS</td>
+			<td rowSpan={3}>0-0-1</td>
+		</tr>
+		<tr>
+			<td>Tokens</td>
+			<td>`:root`でのトークン定義</td>
+		</tr>
+		<tr>
+			<td>HTML</td>
+			<td>HTML要素に対するスタイルの初期セット</td>
+		</tr>
+		<tr>
+			<td rowSpan={2} style={{verticalAlign: 'top'}}>Layout</td>
+			<td>Design State</td>
+			<td rowSpan={2}>レイアウト構成要素</td>
+			<td rowSpan={2}>0-1-0</td>
+		</tr>
+		<tr>
+			<td>Layout Module</td>
+		</tr>
+		<tr>
+			<td rowSpan={2} style={{verticalAlign: 'top'}}>Objects</td>
+			<td>Element</td>
+			<td rowSpan={2}>具体的な役割を持つコンポーネントなど</td>
+			<td rowSpan={2}>0-1-0</td>
+		</tr>
+		{/* <tr>
+			<td>Block</td>
+		</tr> */}
+		<tr>
+			<td>Component</td>
+		</tr>
+		{/* <tr>
+			<td colSpan={2}>Format</td>
+			<td>書式スタイル</td>
+			<td>0-1-0</td>
+		</tr> */}
+		<tr>
+			<td rowSpan='2'>Utility</td>
+			<td>Props</td>
+			<td>CSSプロパティティに紐づいたクラス。</td>
+			<td rowSpan='2'>0-1-0 !</td>
+		</tr>
+		<tr>
+			<td>Others</td>
+			<td>その他のユーティリティクラス。</td>
+		</tr>
+	</tbody>
+</table>
 
-最大詳細度を超えないようにセレクタを調整してこの順番で読み込むか、`@layer`でカスケードレイヤーを定義して読み込むようにします。
+
+基本的に、最大詳細度を超えないようにセレクタを調整してこのレイヤー順番で読み込みます。  
+それぞれカスケードレイヤー（`@layer`）を定義して読み込むようにすることで詳細度をあまり気にせずに書けるようになります。
 
 <MemoBadge>好きな方を選べるように、2パターンでCSSを作成予定。</MemoBadge>
+
+<Alert preset='info'>例外的にあえて"最大詳細度"を超えてセレクタを定義する場合もあります。絶対的なルールではありません。</Alert>
 
 
 ## デザイントークン

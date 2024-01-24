@@ -167,13 +167,14 @@
 	--black: hsl(0 0% 0%);
 	--white: hsl(0 0% 100%);
 	--gray: hsl(210 12% 40%);
-	--red: hsl(4 72% 48%);
-	--orange: hsl(28 84% 48%);
-	--yellow: hsl(46 96% 45%);
-	--green: hsl(150 88% 40%);
-	--blue: hsl(205 86% 48%);
-	--purple: hsl(256 72% 52%);
-	--pink: hsl(325 72% 48%);
+
+	--red: hsl(4 72% 50%);
+	--orange: hsl(28 76% 50%);
+	--yellow: hsl(46 76% 48%);
+	--green: hsl(145, 80%, 40%);
+	--blue: hsl(205 76% 50%);
+	--purple: hsl(258 72% 50%);
+	--pink: hsl(325 72% 50%);
 
 	// --------------------
 	// basic カラー
@@ -230,12 +231,14 @@
 	// pale→subtle?
 
 	// c(txc?),bgc,bdc
-	--c--base: rgb(240, 144, 216);
-	--c--oppoite: rgb(214, 240, 144);
-	--bgc--base: rgb(214, 240, 144);
-	--bgc--opposite: rgb(240, 144, 216);
-	--c--pale: green;
-	--bgc--pale: red;
+
+	// old
+	// --c--base: rgb(240, 144, 216);
+	// --c--oppoite: rgb(214, 240, 144);
+	// --bgc--base: rgb(214, 240, 144);
+	// --bgc--opposite: rgb(240, 144, 216);
+	// --c--pale: green;
+	// --bgc--pale: red;
 
 	/* ------------------------------------------------------------
 	  カラー: ユーザー側で定義できる仕組みも必要

@@ -7,14 +7,14 @@ const emPresets = ['em1', 'em2', 'em3', 'em5', 'em7', 'em10', 'em15', 'em20', 'e
 export default {
 	radius: ['0', ...TOKENS.radius],
 	shadow: ['0', ...TOKENS.shadow],
-	fz: TOKENS.fz,
+	fz: ['root', TOKENS.fz],
 	lh: ['1', ...TOKENS.lh], // 検討
 	lts: TOKENS.lts,
 	ff: TOKENS.ff,
 	fw: TOKENS.fw,
 	c: [
 		'main',
-		'accent',
+		// 'accent',
 		'base',
 		'content-2',
 		'content-3',
@@ -23,7 +23,7 @@ export default {
 	],
 	bgc: [
 		'main',
-		'accent',
+		// 'accent',
 		'base',
 		'base-2',
 		'base-3',
@@ -33,7 +33,13 @@ export default {
 		// 'opposite',
 		'mix',
 	],
-	bdc: ['main', 'accent', 'mix', 'hr', 'table'],
+	bdc: [
+		'main',
+		//'accent',
+		'mix',
+		'hr',
+		'table',
+	],
 	palette: [
 		// 'main',
 		// 'accent',

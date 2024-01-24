@@ -1,4 +1,6 @@
-import NotePresets from './presets';
+import AlertPresets from '../Alert/presets';
+export const NotePresets = AlertPresets;
+
 export default function getProps({
 	lismClass = {},
 	// lismStyle = {},

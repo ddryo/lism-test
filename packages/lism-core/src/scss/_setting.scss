@@ -127,10 +127,60 @@ $utilities: (
 		'cinema': '2.35/1',
 	),
 	'gt': (
-		'side\\:s,side\\:sl': '"side ." / auto 1fr;',
-		// .-gt\:side\:s, .-gt\:side\:l { grid-template: 'side .' / auto 1fr; }
-		// .-gt\:side\:e, .-gt\:side\:r { grid-template: '. side' / 1fr auto; }
+		'side\\:s,side\\:l': "'side .' / auto 1fr;",
+		'side\\:e,side\\:r': "'. side' / 1fr auto",
 	),
+	'ga': (
+		'side': 'side',
+		's': 'start',
+		'e': 'end',
+		'c': 'center',
+	),
+	'gr': (
+		'span2': 'span 2 / span 2',
+		'full': '1 / -1',
+		'1': 1,
+		'2': 2,
+		'3': 3,
+	),
+	'gre': (
+		'-1': '-1',
+	),
+	'gc': (
+		'span2': 'span 2 / span 2',
+		'full': '1 / -1',
+		'1': 1,
+		'2': 2,
+		'3': 3,
+	),
+	'gce': (
+		'-1': '-1',
+	),
+	'order': (
+		'1': 1,
+		'0': 0,
+		'-1': -1,
+	),
+	'fxw': (
+		'w': 'wrap',
+		// 'nw': 'nowrap', //default
+	),
+	'fxd': (
+		'c': 'column',
+		'cr': 'column-reverse',
+		'r': 'row',
+		'rr': 'row-reverse',
+	),
+	'fx': (
+		'1': '1',
+	),
+	'fxsh': (
+		'0': '0',
+	),
+	'fxg': (
+		'1': '1',
+	),
+	// 'fxb': (),
 );
 
 $prop_class_data: map.deep-merge(
@@ -170,41 +220,41 @@ $prop_class_data: map.deep-merge(
 			prop: 'min-height',
 			utilities: 'min',
 		),
-		'd': (
-			prop: 'display',
-			important: 1,
-			utilities: 'd',
-			bp: 1,
-		),
-		'aspect': (
-			prop: 'aspect-ratio',
-			base_type: 2,
-			utilities: 'aspect',
-		),
+
 		'c': (
 			prop: 'color',
 			base_type: 2,
 			important: 1,
-			utilities: 'c',
+			// utilities: 'c',
 		),
 		'bgc': (
 			prop: 'background-color',
 			base_type: 2,
 			important: 1,
-			utilities: 'bgc',
+			// utilities: 'bgc',
 		),
 		'bdc': (
 			prop: '--bdc',
 			base_type: 0,
-			utilities: 'bdc',
+			// utilities: 'bdc',
 		),
 		'bds': (
 			prop: '--bds',
 			base_type: 0,
-			utilities: 'bds',
+			// utilities: 'bds',
 		),
 		'fz': (
 			prop: 'font-size',
+		),
+
+		'd': (
+			prop: 'display',
+			important: 1,
+			bp: 1,
+		),
+		'aspect': (
+			prop: 'aspect-ratio',
+			base_type: 2,
 		),
 		'gap': (
 			prop: 'gap',
@@ -327,10 +377,68 @@ $prop_class_data: map.deep-merge(
 			important: 1,
 			utilities: 'p-side',
 		),
+		'fxw': (
+			prop: 'flex-wrap',
+			bp: 1,
+		),
+		'fxd': (
+			prop: 'flex-direction',
+			base_type: 0,
+		),
+		'fx': (
+			prop: 'flex',
+			// base_type: 0,
+		),
+		'fxsh': (
+			prop: 'flex-shrink',
+			// base_type: 0,
+		),
+		'fxg': (
+			prop: 'flex-grow',
+			// base_type: 0,
+		),
+		'fxb': (
+			prop: 'flex-basis',
+			bp: 1,
+		),
 		'gt': (
 			prop: 'grid-template',
-			// important: 1,
-			utilities: 'gt',
+			bp: 1,
+		),
+		'gta': (
+			prop: 'grid-template-areas',
+			bp: 1,
+		),
+		'gtc': (
+			prop: 'grid-template-columns',
+			bp: 1,
+		),
+		'gtr': (
+			prop: 'grid-template-rows',
+			bp: 1,
+		),
+		'ga': (
+			prop: 'grid-area',
+		),
+		'gr': (
+			prop: 'grid-row',
+			bp: 1,
+		),
+		'gre': (
+			prop: 'grid-row-end',
+			base_type: 0,
+		),
+		'gc': (
+			prop: 'grid-column',
+			bp: 1,
+		),
+		'gce': (
+			prop: 'grid-column-end',
+			base_type: 0,
+		),
+		'order': (
+			prop: 'order',
+			base_type: 0,
 		),
 	),
 	$prop_class_data

@@ -61,17 +61,13 @@ item側: row/column だけ BP対応。（areaは親側でエリアを組み替�
 // --------------------
 // bpサポートあるので変数
 .-ga\:{ grid-area: var(--ga) }
-.-gc\:{ grid-column: var(--gc) }
-.-gr\:{ grid-row: var(--gr) }
-
-
 .-ga\:side {grid-area: side;}
-// .-ga\:fix{ grid-area: fix; }
-// .-ga\:l{ grid-area: left; }
-// .-ga\:r{ grid-area: right; }
 .-ga\:s{ grid-area: start; }
 .-ga\:e{ grid-area: end; }
 .-ga\:c{ grid-area: center; }
+// .-ga\:fix{ grid-area: fix; }
+// .-ga\:l{ grid-area: left; }
+// .-ga\:r{ grid-area: right; }
 // .-ga\:t{ grid-area: top; }
 // .-ga\:b{ grid-area: bottom; }
 
@@ -110,9 +106,11 @@ item側: row/column だけ BP対応。（areaは親側でエリアを組み替�
 .-gr\:1{ grid-row: 1 }
 .-gr\:2{ grid-row: 2 }
 .-gr\:3{ grid-row: 3 }
+
 // .-grs\:1{ grid-row-start: 1 }
 // .-grs\:2{ grid-row-start: 2 }
 // .-grs\:3{ grid-row-start: 3 }
+
 .-gre\:-1{ grid-row-end: -1 }
 // .-gre\:span2{ grid-row-end: span 2}
 

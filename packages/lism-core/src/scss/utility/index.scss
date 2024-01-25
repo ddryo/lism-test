@@ -14,8 +14,8 @@
 // @forward './aspect';
 // @forward './display';
 // @forward './gap';
-@forward './grid-props';
-@forward './flex-props';
+// @forward './grid-props';
+// @forward './flex-props';
 @forward './place';
 @forward './item';
 @forward './bg';
@@ -96,7 +96,7 @@ $bp_support_list: (); // list
 	// ベースセレクタの出力
 	@include echoBaseUtil($key, $prop, $base_type, $important);
 
-	// utilityクラスの出力
+	// utilityクラスのリストをまずは $data から取得
 	$utilities: map.get($data, utilities);
 	@if $utilities {
 		// 文字列の場合はそれをキーとして別マップから取得
@@ -115,7 +115,13 @@ $bp_support_list: (); // list
 			}
 			$utilities: $merged_utilities;
 		}
+	} @else {
+		// $data.utilities の指定がない場合は、setting.$utilities から $key で探してみる。
+		$utilities: map.get(setting.$utilities, $key);
+	}
 
+	// ユーティリティクラスのリストが取得できていれば出力
+	@if $utilities {
 		@include echoUtilities($key, $prop, $utilities, $base_type, $important);
 	}
 
@@ -146,6 +152,7 @@ $bp_support_list: (); // list
 			}
 		}
 
+		// memo: Note: base_type: 0 の時、インラインスタイルで出力されているのでBPクラスにimoirtantが必要なのでは...?
 		@if $support_now_bp == 1 {
 			@include query.bp-up($bp) {
 				.-#{$key}\@#{$bp} {

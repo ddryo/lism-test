@@ -26,10 +26,11 @@
 // 	)
 // );
 
-@use '@loos/lism-core/scss/setting' as lism-s with (
-	$bp_props: (
+@use '@loos/lism-core/scss/setting' as lism-setting with (
+	$prop_class_data: (
 		'w': (
 			important: 1,
+			bp: 0,
 		),
 	)
 );

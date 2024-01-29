@@ -1,5 +1,5 @@
 ---
-title: 'Prop Utility'
+title: 'Prop Utilities'
 description: ...
 sidebar:
   order: 5
@@ -16,7 +16,7 @@ export const PropTable = ({data={}, ...props}) => {
 			<table>
 				<thead>
 					<tr>
-						<th>Utility Class</th>
+						<th>Class</th>
 						<th>Value</th>
 					</tr>
 				</thead>
@@ -64,20 +64,6 @@ export const PropTable = ({data={}, ...props}) => {
 
 ## Colors
 
-<Preview>
-<PreviewArea resize>
-	<Box bgc='base-2' p={[10, 20]} w={['100', 'fit-content']}>
-		<p>text.</p>
-		<Box mbs='20'>BOX</Box>
-	</Box>
-	<Box bgc='base-2' p={['em10', 40]} px='em5' flex={{gap:'20'}} d={['block', 'flex']}>
-		<p>text.</p>
-		<Box m='40' my='10'>BOX</Box>
-		<p>text.</p>
-	</Box>
-</PreviewArea>
-</Preview>
-
 ### color
 
 <PropTable
@@ -109,9 +95,122 @@ export const PropTable = ({data={}, ...props}) => {
 	}}}
 />
 
+### font-weight
+<PropTable
+	data={{fw:{
+		'bold': 'var(--fw--bold)',
+		'thin': 'var(--fw--thin)',
+	}}}
+/>
+
+
+### font-family
+<PropTable
+	data={{ff:{
+		'sans': 'var(--ff--sans)',
+		'serif': 'var(--ff--serif)',
+		'mono': 'var(--ff--mono)',
+		'emoji': 'var(--ff--emoji)',
+	}}}
+/>
+
+### font-style
+<PropTable
+	data={{fs:{
+		'n': 'normal',
+		'i': 'italic',
+	}}}
+/>
+
+### font
+<PropTable
+	data={{f:{
+		'i': 'inherit',
+	}}}
+/>
+
 ### text-align
 <PropTable
 	data={{ta:{'l':'left', 'c': 'center', 'r': 'right'}}}
+/>
+
+
+### line-height
+
+<PropTable
+	data={{lh:{
+		'1': '1',
+		'root': 'var(--lh--root)',
+		'xs': 'var(--lh--xs)',
+		's': 'var(--lh--s)',
+		'l': 'var(--lh--l)',
+		'xl': 'var(--lh--xl)',
+	}}}
+/>
+
+### letter-spacing
+
+<PropTable
+	data={{lts:{
+		'root': 'var(--lts--root)',
+		's': 'var(--lts--s)',
+		'l': 'var(--lts--l)',
+		'xl': 'var(--lts--xl)',
+	}}}
+/>
+
+
+
+## border
+
+
+<PropTable
+	data={{
+		bd:{
+			'l': 'border-left: var(--bd)',
+			'r': 'border-right: var(--bd)',
+			't': 'border-top: var(--bd)',
+			'b': 'border-bottom: var(--bd)',
+			'is': 'border-inline-start: var(--bd)',
+			'bs': 'border-block-start: var(--bd)',
+			'x': 'border-inline: var(--bd)',
+			'y': 'border-block: var(--bd)',
+		},
+		'bdl':{'n':'border-left: none'},
+		'bdr':{'n':'border-right: none'},
+		'bdt':{'n':'border-top: none'},
+		'bdb':{'n':'border-bottom: none'},
+		'bdis':{'n':'border-inline-start: none'},
+		'bdbs':{'n':'border-block-start: none'},
+		'bdie':{'n':'border-inline-end: none'},
+		'bdbe':{'n':'border-block-end: none'},
+	}}
+/>
+
+
+### `--bdc`(border-color)
+
+<PropTable
+	data={{
+		bdc:{
+			't': 'transparent',
+			'divider': 'var(---divider-bdc)',
+			'table': 'var(---table-bdc)',
+		},
+	}}
+/>
+
+### `--bds` (border-style)
+
+<PropTable
+	data={{
+		'bds': {
+			'dt': 'dotted',
+			'ds': 'dashed',
+			's': 'solid',
+			'db': 'double',
+		}
+	}}
 />
 
 

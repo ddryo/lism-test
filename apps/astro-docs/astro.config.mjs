@@ -23,8 +23,9 @@ export default defineConfig({
 			customCss: [
 				// '@loos/lism-core/css/all.css',
 				'@loos/lism-core/scss/all.scss',
-				// カスタムCSSファイルへの相対パス
-				// './src/styles/lism-custom.scss',
+				// './src/styles/lism-custom.scss', // カスタムCSSファイルへの相対パス
+
+				// ドキュメントサイトCSS
 				'./src/styles/custom.scss',
 			],
 			sidebar,

@@ -1,19 +1,19 @@
 // .-bg\: {
 // 	background: var(--bg);
 // }
+// .-bg\:n {
+// 	background: none;
+// }
 
-.-bg\:n {
-	background: none;
-}
-
-// background-clip: text;は -webkit- いるのでユーティリティクラスで。
-.-bgcp\:tx {
-	background-clip: text;
-	// -webkit-background-clip: text;
-}
+// background-clip: text;は -webkit- いるのでユーティリティクラスを用意。
 :where(.-bgcp\:tx) {
 	color: transparent;
 }
+.-bgcp\:tx {
+	background-clip: text;
+	-webkit-background-clip: text;
+}
+
 // bgcp:bb, bgcp:pb, bgcp:cb, bgcp:nc
 
 // 罫線 : Ruled paper, lined paper, rulied lines

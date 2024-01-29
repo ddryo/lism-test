@@ -22,7 +22,7 @@ $utility_bps: map.merge(
 );
 
 /*
-prop: CSSプロパティ名
+prop:CSSプロパティ名
 important: 1 →　!important を付ける
 base_type:
 	0 →　なし（ユーティリティクラス以外はインラインスタイルのみ）
@@ -32,8 +32,30 @@ utilities: ユーティリティクラスのセレクタと値のリスト
 special_utilities: 特殊な値をセットしたいユーティリティクラスのセレクタと値のリスト
 */
 
+$place_utils: (
+	'c': 'center',
+	's': 'start',
+	'e': 'end',
+	'fs': 'flex-start',
+	'fe': 'flex-end',
+);
+$place_items: map.merge(
+	$place_utils,
+	(
+		'str': 'stretch',
+	)
+);
+$place_content: map.merge(
+	$place_utils,
+	(
+		'sb': 'space-between',
+	)
+);
 // map.get($data, prop);
 $utilities: (
+	'0': (
+		'0': '0',
+	),
 	's': (
 		'0': '0',
 		'5': 'var(--s--5)',
@@ -63,6 +85,56 @@ $utilities: (
 	'p-side': (
 		'0': '0',
 	),
+	'f': (
+		'i': 'inherit',
+	),
+	'ff': (
+		'sans': 'var(--ff--sans)',
+		'serif': 'var(--ff--serif)',
+		'mono': 'var(--ff--mono)',
+		'emoji': 'var(--ff--emoji)',
+	),
+	'fw': (
+		'bold': 'var(--fw--bold)',
+		'thin': 'var(--fw--thin)',
+	),
+	'fs': (
+		'n': 'normal',
+		'i': 'italic',
+	),
+	'fz': (
+		'root': '1rem',
+		'2xs': 'var(--fz--2xs)',
+		'xs': 'var(--fz--xs)',
+		's': 'var(--fz--s)',
+		'm': 'var(--fz--m)',
+		'l': 'var(--fz--l)',
+		'xl': 'var(--fz--xl)',
+		'2xl': 'var(--fz--2xl)',
+		'3xl': 'var(--fz--3xl)',
+		'4xl': 'var(--fz--4xl)',
+		'5xl': 'var(--fz--5xl)',
+	),
+	'lh': (
+		'1': '1',
+		'root': 'var(--lh--root)',
+		'xs': 'var(--lh--xs)',
+		's': 'var(--lh--s)',
+		'l': 'var(--lh--l)',
+		'xl': 'var(--lh--xl)',
+	),
+	'lts': (
+		'root': 'var(--lts--root)',
+		's': 'var(--lts--s)',
+		'l': 'var(--lts--l)',
+		'xl': 'var(--lts--xl)',
+	),
+	'ta': (
+		'l': 'left',
+		'r': 'right',
+		'c': 'center',
+	),
+
 	'c': (
 		'main': 'var(--main)',
 		// 'accent': 'var(--accent)',
@@ -91,6 +163,19 @@ $utilities: (
 		'ds': dashed,
 		's': solid,
 		'db': double,
+	),
+	'bg': (
+		'n': 'none',
+	),
+	'bdrs': (
+		'0': '0;',
+		// '1': '1px;',
+		'xs': 'var(--radius--xs)',
+		's': 'var(--radius--s)',
+		'm': 'var(--radius--m)',
+		'l': 'var(--radius--l)',
+		'xl': 'var(--radius--xl)',
+		'full': 'var(--radius--full)',
 	),
 	'size': (
 		'fit': 'fit-content',
@@ -180,13 +265,19 @@ $utilities: (
 	'fxg': (
 		'1': '1',
 	),
-	// 'fxb': (),
+	'ai': $place_items,
+	'ac': $place_content,
+	'ji': $place_items,
+	'jc': $place_content,
+	'aslf': $place_utils,
+	'jslf': $place_utils,
 );
 
 $prop_class_data: map.deep-merge(
 	(
 		'w': (
 			prop: 'width',
+			base_type: 1,
 			// important: 1,
 			utilities: 'size',
 			bp: 1,
@@ -194,33 +285,34 @@ $prop_class_data: map.deep-merge(
 
 		'h': (
 			prop: 'height',
+			base_type: 1,
 			utilities: 'size',
 			special_utilities: (
 				'screen': 'height: 100vh; height: 100dvh;',
 				//height: calc(100vw - var(--sbar))
 			),
 			bp: 1,
-			// bp: (
-			// 	lg: 1,
-			// ),
 		),
 		'maxW': (
 			prop: 'max-width',
+			base_type: 1,
 			utilities: 'max',
 		),
 		'minW': (
 			prop: 'min-width',
+			base_type: 1,
 			utilities: 'min',
 		),
 		'maxH': (
 			prop: 'max-height',
+			base_type: 1,
 			utilities: 'max',
 		),
 		'minH': (
 			prop: 'min-height',
+			base_type: 1,
 			utilities: 'min',
 		),
-
 		'c': (
 			prop: 'color',
 			base_type: 2,
@@ -243,12 +335,42 @@ $prop_class_data: map.deep-merge(
 			base_type: 0,
 			// utilities: 'bds',
 		),
+		'f': (
+			prop: 'font',
+			base_type: 0,
+		),
 		'fz': (
 			prop: 'font-size',
+			base_type: 2,
 		),
-
+		'ff': (
+			prop: 'font-family',
+			base_type: 0,
+		),
+		'fw': (
+			prop: 'font-weight',
+			base_type: 0,
+		),
+		'fs': (
+			prop: 'font-style',
+			base_type: 0,
+		),
+		'lh': (
+			prop: 'line-height',
+			//　BP対応増やしやすいように 1 でもいいかも?
+			base_type: 0,
+		),
+		'lts': (
+			prop: 'letter-spacing',
+			base_type: 0,
+		),
+		'ta': (
+			prop: 'text-align',
+			base_type: 0,
+		),
 		'd': (
 			prop: 'display',
+			base_type: 1,
 			important: 1,
 			bp: 1,
 		),
@@ -256,15 +378,47 @@ $prop_class_data: map.deep-merge(
 			prop: 'aspect-ratio',
 			base_type: 2,
 		),
+		'bg': (
+			prop: 'background',
+			base_type: 0,
+		),
+		'bdrs': (
+			prop: 'border-radius',
+			base_type: 2,
+		),
+
+		'bdssrs': (
+			prop: 'border-start-start-radius',
+			base_type: 0,
+			utilities: '0',
+		),
+		'bdsers': (
+			prop: 'border-start-end-radius',
+			base_type: 0,
+			utilities: '0',
+		),
+		'bdeers': (
+			prop: 'border-end-end-radius',
+			base_type: 0,
+			utilities: '0',
+		),
+		'bdesrs': (
+			prop: 'border-end-start-radius',
+			base_type: 0,
+			utilities: '0',
+		),
 		'gap': (
 			prop: 'gap',
+			base_type: 1,
 			utilities: s em,
 		),
 		'colg': (
 			prop: 'column-gap',
+			base_type: 1,
 		),
 		'rowg': (
 			prop: 'row-gap',
+			base_type: 1,
 		),
 		'm': (
 			prop: 'margin',
@@ -276,44 +430,49 @@ $prop_class_data: map.deep-merge(
 		),
 		'mx': (
 			prop: 'margin-inline',
-			// base_type: 2,
+			base_type: 1,
 			important: 1,
 			bp: 1,
 			utilities: 'm',
 		),
 		'my': (
 			prop: 'margin-block',
-			// base_type: 2,
+			base_type: 1,
 			important: 1,
 			bp: 1,
 			utilities: 'm',
 		),
 		'mt': (
 			prop: 'margin-top',
+			base_type: 1,
 			important: 1,
 			bp: 1,
 			utilities: 'm',
 		),
 		'mr': (
 			prop: 'margin-right',
+			base_type: 1,
 			important: 1,
 			bp: 1,
 			utilities: 'm',
 		),
 		'mb': (
 			prop: 'margin-bottom',
+			base_type: 1,
 			important: 1,
 			bp: 1,
 			utilities: 'm',
 		),
 		'ml': (
 			prop: 'margin-left',
+			base_type: 1,
 			important: 1,
 			bp: 1,
 			utilities: 'm',
 		),
 		'mis': (
 			prop: 'margin-inline-start',
+			base_type: 1,
 			important: 1,
 			bp: 1,
 			utilities: 'm',
@@ -348,37 +507,44 @@ $prop_class_data: map.deep-merge(
 		),
 		'pt': (
 			prop: 'padding-top',
+			base_type: 1,
 			important: 1,
 			bp: 1,
 			utilities: 'p-side',
 		),
 		'pr': (
 			prop: 'padding-right',
+			base_type: 1,
 			important: 1,
 			utilities: 'p-side',
 		),
 		'pb': (
 			prop: 'padding-bottom',
+			base_type: 1,
 			important: 1,
 			utilities: 'p-side',
 		),
 		'pl': (
 			prop: 'padding-left',
+			base_type: 1,
 			important: 1,
 			utilities: 'p-side',
 		),
 		'pis': (
 			prop: 'padding-inline-start',
+			base_type: 1,
 			important: 1,
 			utilities: 'p-side',
 		),
 		'pbs': (
 			prop: 'padding-block-start',
+			base_type: 1,
 			important: 1,
 			utilities: 'p-side',
 		),
 		'fxw': (
 			prop: 'flex-wrap',
+			base_type: 1,
 			bp: 1,
 		),
 		'fxd': (
@@ -387,41 +553,48 @@ $prop_class_data: map.deep-merge(
 		),
 		'fx': (
 			prop: 'flex',
-			// base_type: 0,
+			base_type: 1,
 		),
 		'fxsh': (
 			prop: 'flex-shrink',
-			// base_type: 0,
+			base_type: 1,
 		),
 		'fxg': (
 			prop: 'flex-grow',
-			// base_type: 0,
+			base_type: 1,
 		),
 		'fxb': (
 			prop: 'flex-basis',
+			base_type: 1,
 			bp: 1,
 		),
 		'gt': (
 			prop: 'grid-template',
+			base_type: 1,
 			bp: 1,
 		),
 		'gta': (
 			prop: 'grid-template-areas',
+			base_type: 1,
 			bp: 1,
 		),
 		'gtc': (
 			prop: 'grid-template-columns',
+			base_type: 1,
 			bp: 1,
 		),
 		'gtr': (
 			prop: 'grid-template-rows',
+			base_type: 1,
 			bp: 1,
 		),
 		'ga': (
 			prop: 'grid-area',
+			base_type: 1,
 		),
 		'gr': (
 			prop: 'grid-row',
+			base_type: 1,
 			bp: 1,
 		),
 		'gre': (
@@ -430,6 +603,7 @@ $prop_class_data: map.deep-merge(
 		),
 		'gc': (
 			prop: 'grid-column',
+			base_type: 1,
 			bp: 1,
 		),
 		'gce': (
@@ -438,6 +612,30 @@ $prop_class_data: map.deep-merge(
 		),
 		'order': (
 			prop: 'order',
+			base_type: 0,
+		),
+		'ai': (
+			prop: 'align-items',
+			base_type: 0,
+		),
+		'ac': (
+			prop: 'align-content',
+			base_type: 0,
+		),
+		'ji': (
+			prop: 'justify-items',
+			base_type: 0,
+		),
+		'jc': (
+			prop: 'justify-content',
+			base_type: 0,
+		),
+		'aslf': (
+			prop: 'align-self',
+			base_type: 0,
+		),
+		'jslf': (
+			prop: 'justify-self',
 			base_type: 0,
 		),
 	),

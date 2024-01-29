@@ -17,11 +17,26 @@ SCSSの変数を上書きすることで、出力するCSSのカスタマイズ�
 	)
 );
 
-// ブレイクポイント対応Propクラスのカスタマイズ
+// prop クラスの設定変更
 @use '../path/to/@loos/lism-core/scss/setting' with (
-	$bp_props: (
+	$prop_class_data: (
 		'w': (
+			// importantを付ける
 			important: 1,
+			// @lg のユーティリティクラスも出力する
+			bp: (
+				lg: 1,
+			),
+		),
+
+
+		'h': (
+			// mdのユーティリティクラスを出力しない
+			bp: (
+				md: 0,
+			),
+			// bp対応クラスを出力しない
+			// bp: 0,
 		),
 	)
 );
